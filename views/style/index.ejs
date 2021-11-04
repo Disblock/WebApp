@@ -1,0 +1,101 @@
+#index_menu_div{
+  position: absolute;
+  top: 0%;
+  bottom: 92%;
+  right: 0%;
+  left: 0%;
+  background-color: #33435C;
+  border-bottom: solid 1px black;
+}
+
+#index_menu_logo_div{
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 65%;
+}
+#index_menu_logo_div > a >img{
+  height: 100%;
+}
+
+#index_menu_login_discord{
+  position: absolute;
+  right: 2%;
+}
+
+/*Telephones*/
+@media (max-width: 949px){
+
+  #index_menu_phone_div{
+    display: block;
+    position: absolute;
+    left: 45%;
+    top: 50%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #index_menu_react_placeholder{
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    right: 0%;
+    background-color: #4B88A2;
+  }
+
+  .index_menu_tab > a > p{
+    text-align: center;
+    font-size: calc(16px + 0.5vw);
+  }
+
+  .index_menu_tab{
+    width: 100%;
+    border-bottom: solid 1px #233458;
+  }
+}
+
+/*Ordinateurs*/
+@media (min-width: 950px) {
+
+  #index_menu_phone_div{
+    display: none;
+  }
+
+  .index_menu_tab{
+    position: relative;
+    top: 15%;
+    display: inline;
+    margin-left: 10%;
+  }
+
+  .index_menu_tab:hover{
+    padding-bottom: 10px;
+    /*background-color: rgb(108, 197, 81, 0.6);*/
+    border-bottom: solid 6px rgb(151, 176, 172, 0.6);
+  }
+
+  .index_menu_tab > a > p{
+    display: inline;
+    vertical-align: middle;
+    font-size: calc(16px + 0.5vw);
+  }
+
+  #index_menu_react_placeholder{
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 15%;
+    right: 10%;
+  }
+
+  #index_menu_tab_div{
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+  }
+
+
+}
