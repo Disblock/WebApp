@@ -1,6 +1,6 @@
 <div id="index_menu_div">
   <div id="index_menu_logo_div">
-    <a href="#"><img src="/img/logo.png"></a>
+    <a href="/"><img src="/img/logo.png"></a>
   </div>
   <div id="index_menu_phone_div">
     <i class="gg-menu" id="index_menu_phone"></i>
@@ -9,19 +9,12 @@
 
   </div>
   <div id="index_menu_login_discord">
-    <%
-      if(username==undefined){ //User not logged in %>
-    <a href="https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- state %>"><p><i class="gg-log-in" align="right" style="left: -20px;"></i>Login with Discord</p></a>
-      <% }else{
+      <%
         if(avatar!='' && avatar!=null){ //Only shown if avatar is set on Discord %>
            <div id="index_menu_user_avatar_div"><img id="index_menu_user_avatar" style="height: 100%;" align="right" class="circle" src="https://cdn.discordapp.com/avatars/<%- id %>/<%- avatar %>?size=64"></div> <%
         }
         %>
         <p><%- username %></p><a href="/logout"><p style="margin-top: -10px;"><i class="gg-log-off" align="right"></i><span style="position:relative; right: -5px;">Logout</span></p></a>
-        <%
-
-      }
-    %>
   </div>
 </div>
 
