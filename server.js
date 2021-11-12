@@ -1,6 +1,9 @@
 const images = require('./modules/images.js');//Fonction gérant le /img/...
 const mysql_connection = require('./modules/database.js');//Crée une connexion Mysql, stocke aussi les infos de connexion
 const discord_login = require('./modules/discord_login.js');//Used to login with Discord
+const discord_regen = require('./modules/discord_token_regen.js');
+const discord_get_servers = require('./modules/discord_get_servers.js');
+
 
 
 const express = require('express');//Import d'Express, simplifie la gestion du backend
@@ -11,10 +14,11 @@ const mysql = require('mysql');//Import de MySql, permettra de faire des requêt
 const redis = require("redis");//Redis
 const session = require('express-session');//Gestion des sessions avec Express
 const redisStore = require('connect-redis')(session);//Stockage des données dans Redis
-const fs = require('fs')//FileSystem, permet d'intéragir avec les fichiers présents sur le serveur
+const fs = require('fs');//FileSystem, permet d'intéragir avec les fichiers présents sur le serveur
 const path = require('path');//Gestion des chemins d'accès
 const crypto = require('crypto');//Generate random strings
 const url = require('url');//Enable access to query string parameters
+const bigInt = require("big-integer");//Used to check permissions on a server
 
 
 
@@ -77,14 +81,14 @@ app.get('/', function(req, res){
     req.session.state = state;
     if(lang=="fr" || lang=="fr-FR"){
       //Français
-      res.render('index.ejs', {language: 'localization/fr', state: state, username: req.session.username, id: req.session.discord_id, avatar: req.session.avatar});
+      res.render('index.ejs', {language: 'localization/fr', state: state, session: req.session});
     }else{
       //Else, default to English
-      res.render('index.ejs', {language: 'localization/en', state: state, username: req.session.username, id: req.session.discord_id, avatar: req.session.avatar});
+      res.render('index.ejs', {language: 'localization/en', state: state, session: req.session});
     }
   }catch(e){
     console.log(e);
-    res.render('index.ejs', {language: 'localization/en', state: state, username: req.session.username, id: req.session.discord_id, avatar: req.session.avatar});
+    res.render('index.ejs', {language: 'localization/en', state: state, session: req.session});
   }
 });
 
@@ -114,19 +118,23 @@ app.get('/logout', function(req, res){
 
 app.get('/panel', function(req, res){
   if(req.session.discord_id!=undefined){
-    try{
-      const lang = req.headers["accept-language"].split(",")[0];
-      if(lang=="fr" || lang=="fr-FR"){
-        //Français
-        res.render('panel.ejs', {language: 'localization/fr', username: req.session.username, id: req.session.discord_id, avatar: req.session.avatar});
-      }else{
-        //Else, default to English
-        res.render('panel.ejs', {language: 'localization/en', username: req.session.username, id: req.session.discord_id, avatar: req.session.avatar});
+    discord_get_servers.servers(req, connection, (guilds)=>{
+
+      //guilds represent the guilds that user is admin on
+      try{
+        const lang = req.headers["accept-language"].split(",")[0];
+        if(lang=="fr" || lang=="fr-FR"){
+          //Français
+          res.render('panel.ejs', {language: 'localization/fr', session: req.session, guilds: guilds});
+        }else{
+          //Else, default to English
+          res.render('panel.ejs', {language: 'localization/en', session: req.session, guilds: guilds});
+        }
+      }catch(e){
+        console.log(e);
+        res.render('panel.ejs', {language: 'localization/en', session: req.session, guilds: guilds});
       }
-    }catch(e){
-      console.log(e);
-      res.render('panel.ejs', {language: 'localization/en', username: req.session.username, id: req.session.discord_id, avatar: req.session.avatar});
-    }
+    });
   }else{
     //Not logged in
     res.redirect('/');

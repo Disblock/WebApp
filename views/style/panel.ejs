@@ -16,8 +16,69 @@
   right: 2%;
 }
 
+#guilds_holder{
+  text-align: center;
+  border-radius: 25px;
+  border: dotted 4px red;
+}
+
+.panel_guild_div{
+  display: inline-block;
+  /*border: dotted 2px;*/
+  margin-left: 5px;
+  width: 10%;
+}
+
+.panel_guild_div_img_holder{
+  height: 25%;
+  width: 100%;
+  /*border: dotted 2px red;*/
+}
+
+#infoDiv{
+  position: absolute;
+  left: 0%;
+  right: calc(20% + 8px);
+  margin-top: 15px;
+  vertical-align: top;
+  text-align: center;
+  border-radius: 25px;
+  border: dotted 4px red;
+}
+
+#rightDiv{
+  margin-top: 15px;
+  text-align: center;
+  border-radius: 25px;
+  border: dotted 4px red;
+}
+
+
+
+
 /*Telephones*/
 @media (max-width: 949px){
+
+  #infoDiv{
+    position: relative;
+    width: 100%;
+  }
+
+  #rightDiv{
+    position: relative;
+    width: 100%;
+  }
+
+  .panel_guild_div{
+    display: inline-block;
+    width: 15%;
+  }
+
+  .panel_guild_div_img_holder{
+    height: 50%;
+    width: 100%;
+  }
+
 
   #index_menu_user_avatar_div{
     position: absolute;
@@ -38,6 +99,7 @@
     background-color: #33435C;
     border-bottom: solid 1px black;
     bottom: 92%;
+    z-index: 99;
   }
 
   #index_menu_phone_div{
@@ -70,10 +132,30 @@
   #index_menu_user_avatar_div{
     display: none;
   }
+
+  .panel_guild_div_img_holder > a > img{
+    width: 100%;
+  }
 }
 
 /*Ordinateurs*/
 @media (min-width: 950px) {
+
+  #rightDiv{
+    position: absolute;
+    left: calc(80% + 8px);
+    right: 0%;
+  }
+
+  #infoDiv{
+    position: absolute;
+    left: 0%;
+    right: calc(20% + 8px);
+  }
+
+  .panel_guild_div_img_holder > a > img{
+    height: 100%;
+  }
 
   #index_menu_login_discord{
     position: absolute;

@@ -58,6 +58,7 @@ module.exports = {
                           req.session.username = response.username+'#'+response.discriminator;
                           req.session.avatar = response.avatar;
                           req.session.token = oauthData.access_token;
+                          req.session.save();
                           res.redirect('/panel');
                         }
                       }else{
@@ -72,6 +73,7 @@ module.exports = {
                          req.session.username = response.username+'#'+response.discriminator;
                          req.session.avatar = response.avatar;
                          req.session.token = oauthData.access_token;
+                         req.session.save();
                          res.redirect('/panel');
                        }
                      }
