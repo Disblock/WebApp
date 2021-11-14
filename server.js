@@ -141,6 +141,33 @@ app.get('/panel', function(req, res){
   }
 });
 
+app.get('/panel/:id', function(req, res){
+  if(req.session.discord_id!=undefined){
+    discord_get_servers.servers(req, connection, (guilds)=>{
+      var in_list = false;
+      for(var i=0; i<guilds.length; i++){
+        if(guilds[i].id==String(req.params.id)){
+          in_list = true;
+        }
+      }
+
+      if(in_list){
+        //User is admin on the selected server
+        console.log('OK');
+      }else{
+        //User isn't admin on the selected server
+        res.redirect('/');
+      }
+    });
+
+
+
+  }else{
+    //Not logged in
+    res.redirect('/');
+  }
+});
+
 
 //Style
 app.get('/style', function(req, res){

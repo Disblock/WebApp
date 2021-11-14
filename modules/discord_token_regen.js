@@ -4,8 +4,6 @@ const mysql = require('mysql');
 
 module.exports = {
   regen: async function(req, database_connection, callback){
-    console.log("AYAYA LE REGEN BORDEL");
-
 
     //Getting user's refresh token
     database_connection.query("SELECT refresh_token FROM user WHERE id="+mysql.escape(req.session.discord_id)+";", async function(error, results, fields){

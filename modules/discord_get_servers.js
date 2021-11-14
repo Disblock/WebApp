@@ -54,6 +54,7 @@ module.exports = {
                 if(new_token==undefined){
                   //Error, the user has removed the application's access ?
                   console.log('ERROR, '+req.session.discord_id+' may have removed app access');
+                  req.session.destroy();
                 }else{
                   //OK, let's try again, no need to use new_token, req.session is updated in regen function
                   getGuilds(req.session.token, function(result){
@@ -62,6 +63,7 @@ module.exports = {
                     }else{
                       //Fatal error : user may have removed access to the application
                       console.log('ERROR, '+req.session.discord_id+' may have removed app access');
+                      req.session.destroy();
                     }
                   })
 

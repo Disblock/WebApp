@@ -15,7 +15,7 @@
             <div className="panel_guild_div tooltip">
               <span className="tooltiptext">{this.props.guildName.slice(0, 31)}</span>
               <div className="panel_guild_div_img_holder">
-                <a href="#"><img className="circle" src={this.props.icon} /></a>
+                <a href={"/panel/"+this.props.guildID}><img className="circle" src={this.props.icon} /></a>
               </div>
             </div>
           );
