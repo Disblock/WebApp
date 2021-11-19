@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "big-integer": "^1.6.50",
+    "blockly": "^6.20210701.0",
     "body-parser": "^1.19.0",
     "connect-redis": "^6.0.0",
     "ejs": "^3.1.6",

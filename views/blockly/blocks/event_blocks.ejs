@@ -1,0 +1,36 @@
+Blockly.defineBlocksWithJsonArray([{
+  //Event block event_channel_deleted
+  "type": "event_channel_deleted",
+  "message0": "Chanel deleted Event %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "actions"
+    }
+  ],
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+},
+
+{
+  //Block block_bot_define_lore
+    "type": "block_bot_define_activity",
+    "message0": "%{BKY_BLOCK_BOT_DEFINE_ACTIVITY}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "activity",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 255,
+    "tooltip": "%{BKY_BLOCK_BOT_DEFINE_ACTIVITY_TOOLTIP}",
+    "helpUrl": ""
+  }]);

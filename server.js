@@ -3,6 +3,7 @@ const mysql_connection = require('./modules/database.js');//Crée une connexion 
 const discord_login = require('./modules/discord_login.js');//Used to login with Discord
 const discord_regen = require('./modules/discord_token_regen.js');
 const discord_get_servers = require('./modules/discord_get_servers.js');
+const blockly_xml_to_js = require('./modules/blockly_xml_to_js.js');
 
 
 
@@ -57,6 +58,9 @@ app.use(sessionMiddleware);
 
 
 const io = require("socket.io")(server);
+io.use(function(socket, next){//A chaque requête io, le middleware de sessions est appelé
+  sessionMiddleware(socket.request, socket.request.res || {}, next);//Pour lire la session : socket.request.session.Variable
+});
 
 
 app.use(morgan('combined'));//Démarre les logs
@@ -125,14 +129,14 @@ app.get('/panel', function(req, res){
         const lang = req.headers["accept-language"].split(",")[0];
         if(lang=="fr" || lang=="fr-FR"){
           //Français
-          res.render('panel.ejs', {language: 'localization/fr', session: req.session, guilds: guilds});
+          res.render('panel.ejs', {language: '/localization/fr', session: req.session, guilds: guilds});
         }else{
           //Else, default to English
-          res.render('panel.ejs', {language: 'localization/en', session: req.session, guilds: guilds});
+          res.render('panel.ejs', {language: '/localization/en', session: req.session, guilds: guilds});
         }
       }catch(e){
         console.log(e);
-        res.render('panel.ejs', {language: 'localization/en', session: req.session, guilds: guilds});
+        res.render('panel.ejs', {language: '/localization/en', session: req.session, guilds: guilds});
       }
     });
   }else{
@@ -144,16 +148,30 @@ app.get('/panel', function(req, res){
 app.get('/panel/:id', function(req, res){
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, connection, (guilds)=>{
-      var in_list = false;
+      var guild = undefined;
       for(var i=0; i<guilds.length; i++){
         if(guilds[i].id==String(req.params.id)){
-          in_list = true;
+          guild = guilds[i];
         }
       }
 
-      if(in_list){
+      if(guild!=undefined){
         //User is admin on the selected server
-        console.log('OK');
+
+        try{
+          const lang = req.headers["accept-language"].split(",")[0];
+          if(lang=="fr" || lang=="fr-FR"){
+            //Français
+            res.render('guildEdit.ejs', {language: '/localization/fr', session: req.session, guild: guild});
+          }else{
+            //Else, default to English
+            res.render('guildEdit.ejs', {language: '/localization/en', session: req.session, guild: guild});
+          }
+        }catch(e){
+          console.log(e);
+          res.render('guildEdit.ejs', {language: '/localization/en', session: req.session, guild: guild});
+        }
+
       }else{
         //User isn't admin on the selected server
         res.redirect('/');
@@ -186,6 +204,10 @@ app.get('/style/panel', function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/panel.ejs');
 });
+app.get('/style/guildEdit', function(req, res){
+  res.setHeader("Content-Type", 'text/css');
+  res.render('./style/guildEdit.ejs');
+});
 
 //Localization
 app.get('/localization/fr', function(req, res){
@@ -214,6 +236,39 @@ app.get('/script/particle_config', function(req, res){
   res.render('./js/scripts/particles_config.ejs');
 });
 
+
+//Blockly
+app.get('/blockly/blocks/event', function(req, res){
+  res.setHeader("Content-Type", 'application/javascript');
+  res.render('./blockly/blocks/event_blocks.ejs');
+});
+
+app.get('/blockly/loc', function(req, res){
+  //TODO : MODIFY TO GET RIGHT LANGUAGE
+  res.setHeader("Content-Type", 'application/javascript');
+  res.render('./blockly/loc/fr.ejs');
+});
+
+
+//Blockly socket.io
+
+io.sockets.on('connection', function(socket){
+  console.log("Un client s'est connecté !");
+
+  socket.on("send_workspace", (data, callback) => {
+    //TODO : Check user access
+    var result = blockly_xml_to_js.xml_to_js(data);
+    if(result==1){
+      callback({status: "OK"});
+    }else if(result==2){
+      callback({status: "NOT  OK"});
+    }
+
+    //TODO : Gérer les données et assurer la sécurité
+    //https://developers.google.com/blockly/reference/js/Blockly.Xml
+  });
+
+});
 
 console.log("Serveur démarré !");
 server.listen(8080, '0.0.0.0');//Le serveur démarre sur le port 8080 ( HTTP par défaut en 80, HTTPS en 443), et écoute les connexions de toutes les IPs

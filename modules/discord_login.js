@@ -1,6 +1,7 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const secrets = require('./secrets.js');
 const mysql = require('mysql');
+const crypto = require('crypto');//Generate random strings
 
 module.exports = {
   //Take the discord login code and a connection object to the database
@@ -58,6 +59,7 @@ module.exports = {
                           req.session.username = response.username+'#'+response.discriminator;
                           req.session.avatar = response.avatar;
                           req.session.token = oauthData.access_token;
+                          req.session.state = crypto.randomBytes(4).toString('hex');//State is regenered; to avoid some security issues
                           req.session.save();
                           res.redirect('/panel');
                         }
@@ -73,6 +75,7 @@ module.exports = {
                          req.session.username = response.username+'#'+response.discriminator;
                          req.session.avatar = response.avatar;
                          req.session.token = oauthData.access_token;
+                         req.session.state = crypto.randomBytes(4).toString('hex');
                          req.session.save();
                          res.redirect('/panel');
                        }

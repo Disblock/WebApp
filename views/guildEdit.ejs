@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
+    <title>CHANGER LE TITRE</title>
+    <link rel="stylesheet" type="text/css" href="/style/guildEdit">
+    <script src="<%- language %>"></script>
+    <%-  include('ejs/include_everywhere.ejs') %>
+  </head>
+  <body>
+    <%-  include('ejs/guildEditMenu.ejs') %>
+    <div class="bodyDiv" id="particles-js">
+      <div id="guildDiv">
+        <div id="guildIconDiv">
+          <%
+            //Calculate icon for the server
+            var link;
+            if(guild.icon!=undefined && guild.icon!=''){
+              link = "https://cdn.discordapp.com/icons/"+guild.id+"/"+guild.icon+".png?size=128";
+            }else{
+              link = "/img/logo.png";
+            }
+          %>
+          <img class="circle" src="<%- link %>">
+          <!-- ADD SOME DETAILS ON SERVER HERE -->
+        </div>
+      </div>
+      <div id="rightDiv">
+        <button onclick="sendWorkspaceToServer()" css="z-index: 999;">TEST</button>
+      </div>
+      <div id="blocklyDiv">
+        <%- include('blockly/toolbox.ejs'); %>
+      </div>
+    </div>
+
+
+    <!-- BLOCKLY -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="/blockly/blocks/event"></script>
+    <script src="/blockly/loc"></script>
+    <script>
+      const socket = io();
+      var toolbox = document.getElementById("toolbox");
+
+  		var custom_theme = Blockly.Theme.defineTheme('themeName', {
+  		  'base': Blockly.Themes.Classic,
+  		  'startHats': true
+  		});
+
+  		var options = {
+  			toolbox : toolbox,
+  			collapse : true,
+  			comments : true,
+  			disable : true,
+  			maxBlocks : Infinity,
+  			trashcan : true,
+  			horizontalLayout : false,
+  			toolboxPosition : 'start',
+  			css : true,
+  			//media : 'https://blockly-demo.appspot.com/static/media/',
+  			rtl : false,
+  			scrollbars : true,
+  			sounds : true,
+  			oneBasedIndex : true,
+  			grid:
+         {spacing: 20,
+          length: 6,
+          colour: '#ccc',
+          snap: true},
+  			zoom:
+         {controls: true,
+          wheel: true,
+          startScale: 1.0,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2,
+          pinch: true},
+  			theme: custom_theme
+  		};
+
+  		/* Inject your workspace */
+  		var workspace = Blockly.inject("#blocklyDiv", options);
+
+      //Function to send workspace's blocks to the server :
+      function sendWorkspaceToServer(){
+        alert("Sending your REMPLACER to the server !");
+        socket.emit("send_workspace", Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)), (callback)=>{
+          console.log(callback.status);
+        });
+      }
+    </script>
+
+
+
+
+
+  </body>
+  <footer>
+    <script src="/script/particles"></script>
+    <script>
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+    particlesJS.load('particles-js', '/script/particle_config');
+    </script>
+
+
+  </footer>
+</html>
