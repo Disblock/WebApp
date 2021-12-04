@@ -79,32 +79,24 @@ app.use(function(req, res, next){
 //Pages
 app.get('/', function(req, res){
   //localization
-  try{
     const lang = req.headers["accept-language"].split(",")[0];
     const state = crypto.randomBytes(4).toString('hex');
     req.session.state = state;
-    if(lang=="fr" || lang=="fr-FR"){
-      //Français
-      res.render('index.ejs', {language: 'localization/fr', state: state, session: req.session});
-    }else{
-      //Else, default to English
-      res.render('index.ejs', {language: 'localization/en', state: state, session: req.session});
-    }
-  }catch(e){
-    console.log(e);
-    res.render('index.ejs', {language: 'localization/en', state: state, session: req.session});
-  }
+    res.render('index.ejs', {state: state, session: req.session});
+
 });
 
 app.get('/discord_login', function(req, res){
   if(req.session.discord_id == undefined){
     if(url.parse(req.url,true).query.state == req.session.state){
+
       //State is the same as the registered one
       if(url.parse(req.url,true).query.code!=undefined){
         discord_login.login(url.parse(req.url,true).query.code, connection, req, res);
       }else{
         res.redirect('/');
       }
+
     }else{
       //User may be clickjacked, cancelling connection
       res.status(403).end("Security error");
@@ -123,21 +115,9 @@ app.get('/logout', function(req, res){
 app.get('/panel', function(req, res){
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, connection, (guilds)=>{
-
       //guilds represent the guilds that user is admin on
-      try{
-        const lang = req.headers["accept-language"].split(",")[0];
-        if(lang=="fr" || lang=="fr-FR"){
-          //Français
-          res.render('panel.ejs', {language: '/localization/fr', session: req.session, guilds: guilds});
-        }else{
-          //Else, default to English
-          res.render('panel.ejs', {language: '/localization/en', session: req.session, guilds: guilds});
-        }
-      }catch(e){
-        console.log(e);
-        res.render('panel.ejs', {language: '/localization/en', session: req.session, guilds: guilds});
-      }
+
+      res.render('panel.ejs', {session: req.session, guilds: guilds});
     });
   }else{
     //Not logged in
@@ -147,7 +127,7 @@ app.get('/panel', function(req, res){
 
 app.get('/panel/:id', function(req, res){
   if(req.session.discord_id!=undefined){
-    discord_get_servers.servers(req, connection, (guilds)=>{
+    discord_get_servers.servers(req, connection, (guilds)=>{//Get all guilds where user has an admin permission
       var guild = undefined;
       for(var i=0; i<guilds.length; i++){
         if(guilds[i].id==String(req.params.id)){
@@ -158,28 +138,13 @@ app.get('/panel/:id', function(req, res){
       if(guild!=undefined){
         //User is admin on the selected server
 
-        try{
-          const lang = req.headers["accept-language"].split(",")[0];
-          if(lang=="fr" || lang=="fr-FR"){
-            //Français
-            res.render('guildEdit.ejs', {language: '/localization/fr', session: req.session, guild: guild});
-          }else{
-            //Else, default to English
-            res.render('guildEdit.ejs', {language: '/localization/en', session: req.session, guild: guild});
-          }
-        }catch(e){
-          console.log(e);
-          res.render('guildEdit.ejs', {language: '/localization/en', session: req.session, guild: guild});
-        }
+        res.render('guildEdit.ejs', {session: req.session, guild: guild});
 
       }else{
         //User isn't admin on the selected server
         res.redirect('/');
       }
     });
-
-
-
   }else{
     //Not logged in
     res.redirect('/');
@@ -210,13 +175,22 @@ app.get('/style/guildEdit', function(req, res){
 });
 
 //Localization
-app.get('/localization/fr', function(req, res){
+app.get('/localization', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
-  res.render('./js/localization/fr.ejs');
-});
-app.get('/localization/en', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./js/localization/en.ejs');
+  try{
+    const lang = req.headers["accept-language"].split(",")[0];
+    if(lang=="fr" || lang=="fr-FR"){
+      //Français
+      res.render('./js/localization/fr.ejs');
+    }else{
+      //Else, default to English
+      res.render('./js/localization/en.ejs');
+    }
+  }catch(e){
+    console.log(e);
+    res.render('./js/localization/en.ejs');
+  }
+
 });
 
 

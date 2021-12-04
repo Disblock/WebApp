@@ -6,7 +6,7 @@
     <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
     <title>CHANGER LE TITRE</title>
     <link rel="stylesheet" type="text/css" href="/style/guildEdit">
-    <script src="<%- language %>"></script>
+    <script src="/localization"></script>
     <%-  include('ejs/include_everywhere.ejs') %>
   </head>
   <body>
@@ -88,7 +88,9 @@
       function sendWorkspaceToServer(){
         alert("Sending your REMPLACER to the server !");
         socket.emit("send_workspace", Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)), (callback)=>{
+          alert(callback);
           console.log(callback.status);
+          alert('ok');
         });
       }
     </script>
