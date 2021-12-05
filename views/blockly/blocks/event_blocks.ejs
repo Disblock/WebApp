@@ -1,36 +1,159 @@
-Blockly.defineBlocksWithJsonArray([{
-  //Event block event_channel_deleted
-  "type": "event_channel_deleted",
-  "message0": "Chanel deleted Event %1 %2",
+Blockly.defineBlocksWithJsonArray([
+
+/* ########## Event Blocks ######### */
+/* Used to trigger events. They come sometimes with var blocks, defined under event blocks */
+
+{
+  "type": "event_message_sent",
+  "message0": "%{BKY_EVENT_MESSAGE_SENT}",
   "args0": [
     {
       "type": "input_dummy"
     },
     {
       "type": "input_statement",
-      "name": "actions"
+      "name": "statements"
     }
   ],
-  "colour": 20,
-  "tooltip": "",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_MESSAGE_SENT_TOOLTIP}",
   "helpUrl": ""
 },
 
 {
-  //Block block_bot_define_lore
-    "type": "block_bot_define_activity",
-    "message0": "%{BKY_BLOCK_BOT_DEFINE_ACTIVITY}",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "activity",
-        "check": "String"
-      }
-    ],
-    "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 255,
-    "tooltip": "%{BKY_BLOCK_BOT_DEFINE_ACTIVITY_TOOLTIP}",
-    "helpUrl": ""
-  }]);
+  "type": "event_message_deleted",
+  "message0": "%{BKY_EVENT_MESSAGE_DELETED}",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statements"
+    }
+  ],
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_MESSAGE_DELETED_TOOLTIP}",
+  "helpUrl": ""
+},
+
+{
+  "type": "event_message_updated",
+  "message0": "%{BKY_EVENT_MESSAGE_UPDATED}",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statements"
+    }
+  ],
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_MESSAGE_UPDATED_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "event_user_join",
+  "message0": "%{BKY_EVENT_USER_JOIN}",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statements"
+    }
+  ],
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_USER_JOIN_TOOLTIP}",
+  "helpUrl": ""
+},
+
+{
+  "type": "event_user_left",
+  "message0": "%{BKY_EVENT_USER_LEFT}",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statements"
+    }
+  ],
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_USER_LEFT_TOOLTIP}",
+  "helpUrl": ""
+},
+
+{
+  "type": "event_user_updated",
+  "message0": "%{BKY_EVENT_USER_UPDATED}",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "statements"
+    }
+  ],
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_USER_UPDATED_TOOLTIP}",
+  "helpUrl": ""
+},
+
+/* ########## Event Var Blocks ######### */
+/* Used to represent event variables */
+
+{
+  "type": "event_var_message",
+  "message0": "%{BKY_EVENT_VAR_MESSAGE}",
+  "output": "Message",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_VAR_MESSAGE_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "event_var_message_old",
+  "message0": "%{BKY_EVENT_VAR_OLD_MESSAGE}",
+  "output": "Message",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_VAR_OLD_MESSAGE_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "event_var_message_new",
+  "message0": "%{BKY_EVENT_VAR_NEW_MESSAGE}",
+  "output": "Message",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_VAR_NEW_MESSAGE_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "event_var_user",
+  "message0": "%{BKY_EVENT_VAR_USER}",
+  "output": "User",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_VAR_USER_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "event_var_old_user",
+  "message0": "%{BKY_EVENT_VAR_OLD_USER}",
+  "output": "User",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_VAR_OLD_USER_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "event_var_new_user",
+  "message0": "%{BKY_EVENT_VAR_NEW_USER}",
+  "output": "User",
+  "colour": 30,
+  "tooltip": "%{BKY_EVENT_VAR_NEW_USER_TOOLTIP}",
+  "helpUrl": ""
+}
+
+]);

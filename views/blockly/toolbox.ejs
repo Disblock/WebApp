@@ -356,8 +356,25 @@
   <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
   <category name="Functions" colour="#995ba5" custom="PROCEDURE"></category>
   <sep></sep>
-  <category name="TEST" colour="#a55b80">
-    <block type="event_channel_deleted"></block>
-    <block type="block_bot_define_activity"></block>
+  <category name="Evénements" colour="30">
+    <label text="%{BKY_WORKSPACE_EVENTS_MESSAGE_SENT_DELETED}"></label>
+      <block type="event_message_sent"></block>
+      <block type="event_message_deleted"></block>
+      <block type="event_var_message"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_MESSAGE_UPDATED}"></label>
+      <block type="event_message_updated"></block>
+      <block type="event_var_message_old"></block>
+      <block type="event_var_message_new"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_USER_JOIN_LEAVE}"></label>
+      <block type="event_user_join"></block>
+      <block type="event_user_left"></block>
+      <block type="event_var_user"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_USER_UPDATED}"></label>
+      <block type="event_user_updated"></block>
+      <block type="event_var_old_user"></block>
+      <block type="event_var_new_user"></block>
   </category>
 </xml>

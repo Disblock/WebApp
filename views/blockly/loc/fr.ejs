@@ -421,73 +421,38 @@ Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 
 //Workspace
-Blockly.Msg["WORKSPACE_EVENT_JOIN_LEAVE"] = "Un membre rejoint ou quitte le serveur";
+Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
+Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
+Blockly.Msg["WORKSPACE_EVENTS_USER_JOIN_LEAVE"] = "Un utilisateur rejoint ou quitte le serveur";
+Blockly.Msg["WORKSPACE_EVENTS_USER_UPDATED"] = "Un utilisateur est modifié";
 
-//Events
-Blockly.Msg["EVENT_BOT_START"] = "Le bot démarre";
-Blockly.Msg["EVENT_USER_JOIN_GUILD"] = "Un utilisateur rejoint un serveur";
-Blockly.Msg["EVENT_USER_LEAVE_GUILD"] = "Un utilisateur quitte un serveur";
-Blockly.Msg["EVENT_MESSAGE_START_WITH"] = "Un message commence par";
-Blockly.Msg["EVENT_MESSAGE_RECEIVED"] = "Quelqu'un a envoyé un message";
-Blockly.Msg["EVENT_MESSAGE_DELETED"] = "Quelqu'un a supprimé un message";
-Blockly.Msg["EVENT_MESSAGE_EDITED"] = "Quelqu'un a modifié un message";
-Blockly.Msg["EVENT_START_TYPING"] = "Quelqu'un commence à écrire";
-Blockly.Msg["EVENT_PRIVATE_MESSAGE_RECEIVED"] = "Le bot reçoit un message privé";
-Blockly.Msg["EVENT_REACTION_ADDED"] = "Une réaction est ajoutée";
-Blockly.Msg["EVENT_REACTION_REMOVED"] = "Une réaction est retirée";
-Blockly.Msg["EVENT_CHANNEL_CREATED"] = "Un channel est créé";
-Blockly.Msg["EVENT_CHANNEL_DELETED"] = "Un channel est supprimé";
-Blockly.Msg["EVENT_CHANNEL_EDITED"] = "Un channel est modifié";
-Blockly.Msg["EVENT_RANK_CREATED"] = "Un grade est créé";
-Blockly.Msg["EVENT_RANK_DELETED"] = "Un grade est supprimé";
-Blockly.Msg["EVENT_RANK_EDITED"] = "Un grade est modifié";
-Blockly.Msg["EVENT_BAN_ADDED"] = "Un utilisateur est banni";
-Blockly.Msg["EVENT_BAN_REMOVED"] = "Un utilisateur est débanni";
-Blockly.Msg["EVENT_THREAD_CREATED"] = "Un thread est créé";
-Blockly.Msg["EVENT_THREAD_DELETED"] = "Un thread est supprimé";
-Blockly.Msg["EVENT_THREAD_EDITED"] = "Un thread est modifié";
-Blockly.Msg["EVENT_USER_KICKED"] = "Un utilisateur est expulsé %1 %2";
+//Event blocks
+Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
+Blockly.Msg["EVENT_MESSAGE_SENT_TOOLTIP"] = "Un message est envoyé sur le serveur, utilisez la variable \"Message envoyé\" pour obtenir les informations sur le message";
+Blockly.Msg["EVENT_MESSAGE_DELETED"] = "Un message est supprimé %1 %2";
+Blockly.Msg["EVENT_MESSAGE_DELETED_TOOLTIP"] = "Un message est supprimé, utilisez a variable \"message\" pour accéder au message supprimé";
+Blockly.Msg["EVENT_MESSAGE_UPDATED"] = "Un message est modifié %1 %2";
+Blockly.Msg["EVENT_MESSAGE_UPDATED_TOOLTIP"] = "Un message est modifié, utilisez les variables \"Ancien message\" et \"Nouveau message\" pour accéder aux messages";
+Blockly.Msg["EVENT_USER_JOIN"] = "Un utilisateur rejoint le serveur %1 %2";
+Blockly.Msg["EVENT_USER_JOIN_TOOLTIP"] = "Un utilisateur rejoint le serveur.";
+Blockly.Msg["EVENT_USER_LEFT"] = "Un utilisateur quitte le serveur %1 %2";
+Blockly.Msg["EVENT_USER_LEFT_TOOLTIP"] = "Un utilisateur quitte le serveur.";
+Blockly.Msg["EVENT_USER_UPDATED"] = "Un utilisateur est modifié %1 %2";
+Blockly.Msg["EVENT_USER_UPDATED_TOOLTIP"] = "Un utilisateur est modifié ( Changement de pseudo sur le serveur, changement de rôles, ... ).";
 
-//Events var
-Blockly.Msg["EVENT_VAR_USER"] = "Utilisateur";
-Blockly.Msg["EVENT_VAR_SERVER"] = "Serveur";
+//Event var blocks
 Blockly.Msg["EVENT_VAR_MESSAGE"] = "Message";
-Blockly.Msg["EVENT_VAR_CHANNEL"] = "Salon";
-Blockly.Msg["EVENT_VAR_OLD_MESSAGE"] = "Message avant modification";
-Blockly.Msg["EVENT_VAR_NEW_MESSAGE"] = "Message après modification";
-Blockly.Msg["EVENT_VAR_REACTION"] = "Réaction";
-Blockly.Msg["EVENT_VAR_OLD_CHANNEL"] = "Salon avant modification";
-Blockly.Msg["EVENT_VAR_NEW_CHANNEL"] = "Salon après modification";
-Blockly.Msg["EVENT_VAR_RANK"] = "Grade";
-Blockly.Msg["EVENT_VAR_OLD_RANK"] = "Grade avant modification";
-Blockly.Msg["EVENT_VAR_NEW_RANK"] = "Grade après modification";
-
-
-//Channels blocks
-Blockly.Msg["BLOCK_TEXT_CHANNEL_CREATE"] = "Créer un nouveau salon textuel %1 Nom du salon %2 Description du salon %3 Catégorie où ajouter ce salon %4 Serveur où ajouter ce salon %5";
-Blockly.Msg["BLOCK_TEXT_CHANNEL_CREATE_TOOLTIP"] = "Crée un nouveau salon textuel avec un nom, un sujet, une catégorie et un serveur où placer ce salon";
-Blockly.Msg["BLOCK_VOICE_CHANNEL_CREATE"] = "Créer salon vocal %1 Nom du salon %2 Catégorie où ajouter ce salon %3 Serveur où ajouter ce salon %4";
-Blockly.Msg["BLOCK_VOICE_CHANNEL_CREATE_TOOLTIP"] = "Crée un nouveau salon vocal avec un nom, une catégorie et un serveur où placer ce salon";
-Blockly.Msg["BLOCK_VAR_CHANNEL"] = "Salon créé";
-Blockly.Msg["BLOCK_VAR_CHANNEL_TOOLTIP"] = "Représente le channel qui vient d'être créé";
-
-Blockly.Msg["BLOCK_IS_TEXT_CHANNEL"] = "Est un salon textuel ? %1";
-Blockly.Msg["BLOCK_IS_VOICE_CHANNEL"] = "Est un salon vocal ? %1";
-Blockly.Msg["BLOCK_IS_THREAD_CHANNEL"] = "Est un fil ? %1";
-Blockly.Msg["BLOCK_IS_TYPE_CHANNEL_TOOLTIP"] = "Permet de vérifier le type d'un salon. Si le channel est du bon type, renvoit Vrai, sinon Faux.";
-Blockly.Msg["BLOCK_CHANNEL_GET_ID"] = "Récupérer l'ID du salon %1";
-Blockly.Msg["BLOCK_CHANNEL_GET_ID_TOOLTIP"] = "Permet de récupérer l'identifiant unique d'un salon. Prend un salon, et retourne une chaîne de caractères contenant l'ID";
-Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Récupérer un salon avec son ID %1";
-Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Permet de retrouver un salon à partir de son identifiant";
-Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_NAME_WITH_ID"] = "Obtenir le nom du salon %1";
-Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_NAME_WITH_ID_TOOLTIP"] = "Permet de récupérer le nom d'un salon textuel ou vocal. Ne fontionne pas sur les fils";
-Blockly.Msg["BLOCK_CHANNEL_CHANGE_NAME"] = "Modifier le nom du salon %1 avec le nouveau nom %2";
-Blockly.Msg["BLOCK_CHANNEL_CHANGE_NAME_TOOLTIP"] = "Permet de modifier le nom d'un salon, le premier emplacement prend le salon à modifier, le second une chaîne de caractères représentant le nouveau nom."
-Blockly.Msg["BLOCK_CHANNEL_DELETE"] = "Supprimer le salon %1";
-Blockly.Msg["BLOCK_CHANNEL_DELETE_TOOLTIP"] = "Permet de supprimer un salon";
-Blockly.Msg["BLOCK_CHANNEL_ARE_EQUAL"] = "Le salon %1 est-il égal au salon %2 ?";
-Blockly.Msg["BLOCK_CHANNEL_ARE_EQUAL_TOOLTIP"] = "Permet de savoir si deux salons sont les mêmes. Retourne Vrai ou Faux";
-
+Blockly.Msg["EVENT_VAR_MESSAGE_TOOLTIP"] = "Représente le message d'un événement";
+Blockly.Msg["EVENT_VAR_OLD_MESSAGE"] = "Ancien Message";
+Blockly.Msg["EVENT_VAR_OLD_MESSAGE_TOOLTIP"] = "Représente l'ancien état d'un message modifié. Ne sert qu'à l'événement message modifié";
+Blockly.Msg["EVENT_VAR_NEW_MESSAGE"] = "Nouveau Message";
+Blockly.Msg["EVENT_VAR_NEW_MESSAGE_TOOLTIP"] = "Représente le nouvel état d'un message modifié. Ne sert qu'à l'événement message modifié";
+Blockly.Msg["EVENT_VAR_USER"] = "Utilisateur";
+Blockly.Msg["EVENT_VAR_USER_TOOLTIP"] = "Représente l'utilisateur d'un événement";
+Blockly.Msg["EVENT_VAR_OLD_USER"] = "Ancien Utilisateur";
+Blockly.Msg["EVENT_VAR_OLD_USER_TOOLTIP"] = "Représente l'ancien état de l'utilisateur";
+Blockly.Msg["EVENT_VAR_NEW_USER"] = "Nouvel Utilisateur";
+Blockly.Msg["EVENT_VAR_NEW_USER_TOOLTIP"] = "Représente le nouvel état de l'utilisateur";
 
 //Text Channel Permissions
 Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 %4 pour %5 dans le salon textuel %6";
@@ -522,55 +487,6 @@ Blockly.Msg["PERMISSION_GRANT_PERMISSION"] = "Autoriser";
 Blockly.Msg["PERMISSION_DENY_PERMISSION"] = "Refuser";
 Blockly.Msg["PERMISSION_UNDEFINED_PERMISSION"] = "Indéfinit";
 Blockly.Msg["PERMISSION_USER"] = Blockly.Msg["EVENT_VAR_USER"];
-Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"];
+Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"] || "Rang";
 Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon écrit. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
 Blockly.Msg["BLOCK_TEXT_VOICE_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon vocal. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
-
-
-//Bot blocks
-Blockly.Msg["BLOCK_BOT_DEFINE_ACTIVITY"] = "Definir l'activité du bot à %1";
-Blockly.Msg["BLOCK_BOT_DEFINE_ACTIVITY_TOOLTIP"] = "Permet de définir l'activité du bot. Prend un texte en argument";
-Blockly.Msg["BLOCK_BOT_DEFINE_PRESENCE"] = "Définir le statut du bot à %1";
-Blockly.Msg["BLOCK_BOT_DEFINE_PRESENCE_TOOLTIP"] = "Permet de définir si le bot est visible comme en ligne, occupé, indisponible ou hors-ligne.";
-Blockly.Msg["BLOCK_BOT_PING"] = "Ping du bot";
-Blockly.Msg["BLOCK_BOT_PING_TOOLTIP"] = "Permet d'obtenir le ping du bot";
-Blockly.Msg["BLOCK_NUMBER_OF_SERVERS"] = "Nombre de serveurs où le bot est ajouté";
-Blockly.Msg["BLOCK_NUMBER_OF_SERVERS_TOOLTIP"] = "Nombre de serveurs où le bot est présent";
-
-
-//Server blocks
-Blockly.Msg["BLOCK_SERVER_GET_NAME"] = "Obtenir le nom du serveur %1";
-Blockly.Msg["BLOCK_SERVER_GET_NAME_TOOLTIP"] = "Permet de récupérer le nom du serveur passé en argument";
-Blockly.Msg["BLOCK_SERVER_GET_ID"] = "Obtenir l'ID du serveur %1";
-Blockly.Msg["BLOCK_SERVER_GET_ID_TOOLTIP"] = "Permet de récupérer l'identifiant d'un serveur, retourné en tant que texte";
-Blockly.Msg["BLOCK_SERVER_GET_SERVER_WITH_ID"] = "Obtenir le serveur avec l'ID %1";
-Blockly.Msg["BLOCK_SERVER_GET_SERVER_WITH_ID_TOOLTIP"] = "Permet de récupérer un serveur à partir de son ID";
-Blockly.Msg["BLOCK_SERVER_GET_NUMBER_OF_MEMBERS"] = "Obtenir le nombre de membres du serveur %1";
-Blockly.Msg["BLOCK_SERVER_GET_NUMBER_OF_MEMBERS_TOOLTIP"] = "Permet de récupérer le nombre de membres présents sur un serveur";
-Blockly.Msg["BLOCK_SERVER_GET_NUMBER_OF_BOOSTS"] = "Obtenir le nombre de boosts du serveur %1";
-Blockly.Msg["BLOCK_SERVER_GET_NUMBER_OF_BOOSTS_TOOLTIP"] = "Permet d'obtenir le nombre de personnes qui ont boosté le serveur";
-Blockly.Msg["BLOCK_SERVER_CREATE_INVITATION"] = "Créer une invitation pour le serveur %1";
-Blockly.Msg["BLOCK_SERVER_CREATE_INVITATION_TOOLTIP"] = "Crée une invitation pour le serveur passé en argument. L'invitation crée est valable 24H, pour un nombre illimité de personnes";
-Blockly.Msg["BLOCK_SERVER_CREATED_INVITATION"] = "Invitation créée";
-Blockly.Msg["BLOCK_SERVER_CREATED_INVITATION_TOOLTIP"] = "Représente l'invitation qui vient d'être créée";
-Blockly.Msg["BLOCK_SERVER_DELETE_INVITATION"] = "Supprimer l'invitation %1";
-Blockly.Msg["BLOCK_SERVER_DELETE_INVITATION_TOOLTIP"] = "Permet de supprimer une invitation";
-
-
-Blockly.Msg["BLOCK_INVITATION_GET_CODE"] = "Obtenir le code de l'invitation %1";
-Blockly.Msg["BLOCK_INVITATION_GET_CODE_TOOLTIP"] = "Récupérer le code de l'invitation permettant de rejoindre le serveur sous forme de texte";
-
-
-//Messages blocks
-Blockly.Msg["BLOCK_MESSAGE_SEND"] = "Envoyer un message %1 Dans le salon %2 Avec le texte %3";
-Blockly.Msg["BLOCK_MESSAGE_SEND_TOOLTIP"] = "Permet d'envoyer un message simple dans un salon textuel";
-Blockly.Msg["BLOCK_MESSAGE_SENT"] = "Message envoyé";
-Blockly.Msg["BLOCK_MESSAGE_SENT_TOOLTIP"] = "Représente le message venant d'être envoyé";
-Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL"] = "Obtenir le salon du message %1";
-Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_TOOLTIP"] = "Permet d'obtenir le salon où a été envoyé le message";
-Blockly.Msg["BLOCK_MESSAGE_GET_TEXT"] = "Obtenir le texte du message %1";
-Blockly.Msg["BLOCK_MESSAGE_GET_TEXT_TOOLTIP"] = "Convertit un message en texte exploitable facilement";
-Blockly.Msg["BLOCK_MESSAGE_DELETE"] = "Supprimer le message %1";
-Blockly.Msg["BLOCK_MESSAGE_DELETE_TOOLTIP"] = "Permet de supprimer le message passé en paramètre";
-Blockly.Msg["BLOCK_MESSAGE_GET_WITH_ID"] = "Retrouver un message avec son ID %1";
-Blockly.Msg["BLOCK_MESSAGE_GET_WITH_ID_TOOLTIP"] = "Permet de récupérer un message avec son identifiant";

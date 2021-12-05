@@ -212,6 +212,11 @@ app.get('/script/particle_config', function(req, res){
 
 
 //Blockly
+app.get('/blockly/custom_types', function(req, res){
+  res.setHeader("Content-Type", 'application/javascript');
+  res.render('./blockly/custom_types/custom_types.ejs');
+});
+
 app.get('/blockly/blocks/event', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./blockly/blocks/event_blocks.ejs');
