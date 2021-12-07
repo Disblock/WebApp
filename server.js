@@ -130,7 +130,7 @@ app.get('/panel/:id', function(req, res){
     discord_get_servers.servers(req, connection, (guilds)=>{//Get all guilds where user has an admin permission
       var guild = undefined;
       for(var i=0; i<guilds.length; i++){
-        if(guilds[i].id==String(req.params.id)){
+        if(guilds[i].id===String(req.params.id)){
           guild = guilds[i];
         }
       }
@@ -234,13 +234,29 @@ app.get('/blockly/loc', function(req, res){
 io.sockets.on('connection', function(socket){
   console.log("Un client s'est connecté !");
 
-  socket.on("send_workspace", (data, callback) => {
-    //TODO : Check user access
-    var result = blockly_xml_to_js.xml_to_js(data);
-    if(result==1){
-      callback({status: "OK"});
-    }else if(result==2){
-      callback({status: "NOT  OK"});
+  socket.on("send_workspace", (server_id, data, callback) => {
+    if(socket.request.session.discord_id!=undefined){//Session must be defined
+
+      discord_get_servers.servers(socket.request, connection, (guilds)=>{//Get a list of user's servers where has admin access
+        var guild = undefined;
+        for(var i=0; i<guilds.length; i++){
+          if(guilds[i].id===String(server_id)){
+            guild = guilds[i];//If a server has same id than sended one, the server is registered in guild
+          }
+        }
+
+        if(guild!=undefined){//If guild is defined, a server where user is admin has been found
+          var result = blockly_xml_to_js.xml_to_js(server_id, data);
+          if(result==1){
+            callback({status: "OK"});
+          }else if(result==2){
+            callback({status: "NOT  OK"});
+          }
+        }else{
+          //User hasn't access to this server
+          callback({status: "NOT  OK"});
+        }
+      });
     }
 
     //TODO : Gérer les données et assurer la sécurité

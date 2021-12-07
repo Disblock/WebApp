@@ -1,7 +1,8 @@
 const Blockly = require('blockly');
 
 module.exports = {
-  xml_to_js: function(xml){
+  xml_to_js: function(server_id, xml){
+    console.log(server_id);
     console.log(xml);
     var convertedXml = Blockly.Xml.textToDom(xml);
     Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(Date.now() - time > 3000){throw 'Infinite loop !'}\n";
