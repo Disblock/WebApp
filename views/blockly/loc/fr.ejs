@@ -421,10 +421,22 @@ Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 
 //Workspace
+Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Evénements";
+
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
 Blockly.Msg["WORKSPACE_EVENTS_USER_JOIN_LEAVE"] = "Un utilisateur rejoint ou quitte le serveur";
 Blockly.Msg["WORKSPACE_EVENTS_USER_UPDATED"] = "Un utilisateur est modifié";
+Blockly.Msg["WORKSPACE_EVENTS_RANK"] = "Un rang est créé ou supprimé";
+Blockly.Msg["WORKSPACE_EVENTS_RANK_UPDATE"] = "Un rang est modifié";
+Blockly.Msg["WORKSPACE_EVENTS_BAN_UNBAN"] = "Un utilisateur est banni ou débanni";
+Blockly.Msg["WORKSPACE_EVENTS_TEXT_CHANNEL"] = "Un salon textuel est créé ou supprimé";
+Blockly.Msg["WORKSPACE_EVENTS_TEXT_CHANNEL_UPDATE"] = "Un salon textuel est modifié";
+Blockly.Msg["WORKSPACE_EVENTS_VOICE_CHANNEL"] = "Un salon vocal est créé ou supprimé";
+Blockly.Msg["WORKSPACE_EVENTS_VOICE_CHANNEL_UPDATE"] = "Un salon vocal est modifié";
+Blockly.Msg["WORKSPACE_EVENTS_VOICE_UPDATE"] = "L'état vocal d'un utilisateur est modifié";
+Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "Une réaction est ajoutée ou retirée d'un message";
+Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Autres";
 
 //Event blocks
 Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -439,6 +451,38 @@ Blockly.Msg["EVENT_USER_LEFT"] = "Un utilisateur quitte le serveur %1 %2";
 Blockly.Msg["EVENT_USER_LEFT_TOOLTIP"] = "Un utilisateur quitte le serveur.";
 Blockly.Msg["EVENT_USER_UPDATED"] = "Un utilisateur est modifié %1 %2";
 Blockly.Msg["EVENT_USER_UPDATED_TOOLTIP"] = "Un utilisateur est modifié ( Changement de pseudo sur le serveur, changement de rôles, ... ).";
+Blockly.Msg["EVENT_ROLE_CREATED"] = "Un rôle est créé %1 %2";
+Blockly.Msg["EVENT_ROLE_CREATED_TOOLTIP"] = "Un nouveau rôle a été créé";
+Blockly.Msg["EVENT_ROLE_DELETED"] = "Un rôle est supprimé %1 %2";
+Blockly.Msg["EVENT_ROLE_DELETED_TOOLTIP"] = "Un rôle a été supprimé";
+Blockly.Msg["EVENT_ROLE_EDITED"] = "Un rôle est modifié %1 %2";
+Blockly.Msg["EVENT_ROLE_EDITED_TOOLTIP"] = "Un rôle a été modifié ( Nom, couleur, permissions, ect... changés )";
+Blockly.Msg["EVENT_USER_BANNED"] = "Un utilisateur est banni %1 %2";
+Blockly.Msg["EVENT_USER_BANNED_TOOLTIP"] = "Un utilisateur a été banni du serveur";
+Blockly.Msg["EVENT_USER_UNBANNED"] = "Un utilisateur est débanni %1 %2";
+Blockly.Msg["EVENT_USER_UNBANNED_TOOLTIP"] = "Un utilisateur est débanni du serveur";
+Blockly.Msg["EVENT_PINNED_UPDATED"] = "Un message est épinglé ou désépinglé %1 %2";
+Blockly.Msg["EVENT_PINNED_UPDATED_TOOLTIP"] = "Un message a été épinglé ou n'est plus épinglé";
+Blockly.Msg["EVENT_USER_VOICE_UPDATE"] = "Un membre se déplace d'un salon vocal %1 %2";
+Blockly.Msg["EVENT_USER_VOICE_UPDATE_TOOLTIP"] = "Un membre a rejoint, quitté ou a changé de salon vocal.";
+Blockly.Msg["EVENT_USER_START_WRITING"] = "Un membre commence à écrire %1 %2";
+Blockly.Msg["EVENT_USER_START_WRITING_TOOLTIP"] = "Un membre a commencé à écrire";
+Blockly.Msg["EVENT_TEXT_CHANNEL_CREATED"] = "Un salon textuel est créé %1 %2";
+Blockly.Msg["EVENT_TEXT_CHANNEL_CREATED_TOOLTIP"] = "Un salon textuel est créé";
+Blockly.Msg["EVENT_TEXT_CHANNEL_DELETED"] = "Un salon textuel est supprimé %1 %2";
+Blockly.Msg["EVENT_TEXT_CHANNEL_DELETED_TOOLTIP"] = "Un salon textuel est supprimé";
+Blockly.Msg["EVENT_TEXT_CHANNEL_EDITED"] = "Un salon textuel est modifié %1 %2";
+Blockly.Msg["EVENT_TEXT_CHANNEL_EDITED_TOOLTIP"] = "Un salon textuel est modifié ( Changement de nom, sujet, ... )";
+Blockly.Msg["EVENT_VOICE_CHANNEL_CREATED"] = "Un salon vocal est créé %1 %2";
+Blockly.Msg["EVENT_VOICE_CHANNEL_CREATED_TOOLTIP"] = "Un salon vocal est créé";
+Blockly.Msg["EVENT_VOICE_CHANNEL_DELETED"] = "Un salon vocal est supprimé %1 %2";
+Blockly.Msg["EVENT_VOICE_CHANNEL_DELETED_TOOLTIP"] = "Un salon vocal est supprimé";
+Blockly.Msg["EVENT_VOICE_CHANNEL_EDITED"] = "Un salon vocal est modifié %1 %2";
+Blockly.Msg["EVENT_VOICE_CHANNEL_EDITED_TOOLTIP"] = "Un salon vocal est modifié ( Changement de nom, sujet, ... )";
+Blockly.Msg["EVENT_REACTION_ADDED"] = "Une réaction est ajoutée %1 %2";
+Blockly.Msg["EVENT_REACTION_ADDED_TOOLTIP"] = "Une réaction est ajoutée à un message";
+Blockly.Msg["EVENT_REACTION_REMOVED"] = "Une réaction est retirée %1 %2";
+Blockly.Msg["EVENT_REACTION_REMOVED_TOOLIP"] = "Une réaction est retirée d'un message";
 
 //Event var blocks
 Blockly.Msg["EVENT_VAR_MESSAGE"] = "Message";
@@ -453,6 +497,26 @@ Blockly.Msg["EVENT_VAR_OLD_USER"] = "Ancien Utilisateur";
 Blockly.Msg["EVENT_VAR_OLD_USER_TOOLTIP"] = "Représente l'ancien état de l'utilisateur";
 Blockly.Msg["EVENT_VAR_NEW_USER"] = "Nouvel Utilisateur";
 Blockly.Msg["EVENT_VAR_NEW_USER_TOOLTIP"] = "Représente le nouvel état de l'utilisateur";
+Blockly.Msg["EVENT_VAR_RANK"] = "Rôle";
+Blockly.Msg["EVENT_VAR_RANK_TOOLTIP"] = "Représente le rôle impliqué dans l'événement";
+Blockly.Msg["EVENT_VAR_OLD_RANK"] = "Ancien Rôle";
+Blockly.Msg["EVENT_VAR_OLD_RANK_TOOLTIP"] = "Représente l'ancien état du rôle impliqué dans l'événement";
+Blockly.Msg["EVENT_VAR_NEW_RANK"] = "Nouveau Rôle";
+Blockly.Msg["EVENT_VAR_NEW_RANK_TOOLTIP"] = "Représente le nouvel état du rôle impliqué dans l'événement";
+Blockly.Msg["EVENT_VAR_OLD_VOICE_CHANNEL"] = "Ancien salon vocal";
+Blockly.Msg["EVENT_VAR_OLD_VOICE_CHANNEL_TOOLTIP"] = "Représente le salon vocal d'avant l'action. Dans le cadre d'une modification du salon, son ancien état, dans le cadre d'une mise à jour d'état vocal, cela représente le salon où était le membre. Si le membre vient de se connecter, cette variable sera vide.";
+Blockly.Msg["EVENT_VAR_NEW_VOICE_CHANNEL"] = "Nouveau salon vocal";
+Blockly.Msg["EVENT_VAR_NEW_VOICE_CHANNEL_TOOLTIP"] = "Représente le salon vocal d'après l'action. Dans le cadre d'une modification du salon, son nouvel état, dans le cadre d'une mise à jour d'état vocal, cela représente le salon où est maintenant le membre. Si le membre vient de se déconnecter, cette variable sera vide.";
+Blockly.Msg["EVENT_VAR_TEXT_CHANNEL"] = "Salon textuel";
+Blockly.Msg["EVENT_VAR_TEXT_CHANNEL_TOOLTIP"] = "Représente le salon de l'événement d'un salon textuel";
+Blockly.Msg["EVENT_VAR_OLD_TEXT_CHANNEL"] = "Ancien Salon textuel";
+Blockly.Msg["EVENT_VAR_OLD_TEXT_CHANNEL_TOOLTIP"] = "Représente l'ancien état d'un salon textuel";
+Blockly.Msg["EVENT_VAR_NEW_TEXT_CHANNEL"] = "Nouveau Salon textuel";
+Blockly.Msg["EVENT_VAR_NEW_TEXT_CHANNEL_TOOLTIP"] = "Représente le nouvel état d'un salon textuel";
+Blockly.Msg["EVENT_VAR_VOICE_CHANNEL"] = "Salon vocal";
+Blockly.Msg["EVENT_VAR_VOICE_CHANNEL_TOOLTIP"] = "Représente le salon vocal où s'est déroulé l'événement";
+Blockly.Msg["EVENT_VAR_REACTION"] = "Réaction";
+Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Représente la réaction de l'événement";
 
 //Text Channel Permissions
 Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 %4 pour %5 dans le salon textuel %6";
@@ -487,6 +551,6 @@ Blockly.Msg["PERMISSION_GRANT_PERMISSION"] = "Autoriser";
 Blockly.Msg["PERMISSION_DENY_PERMISSION"] = "Refuser";
 Blockly.Msg["PERMISSION_UNDEFINED_PERMISSION"] = "Indéfinit";
 Blockly.Msg["PERMISSION_USER"] = Blockly.Msg["EVENT_VAR_USER"];
-Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"] || "Rang";
+Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"];
 Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon écrit. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
 Blockly.Msg["BLOCK_TEXT_VOICE_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon vocal. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";

@@ -39,7 +39,7 @@
     <!-- BLOCKLY -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <script src="/blockly/custom_types"></script>
+    <!--<script src="/blockly/custom_types"></script>-->
     <script src="/blockly/blocks/event"></script>
     <script src="/blockly/loc"></script>
     <script>
@@ -84,6 +84,7 @@
 
   		/* Inject your workspace */
   		var workspace = Blockly.inject("#blocklyDiv", options);
+      workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
 
       //Function to send workspace's blocks to the server :
       function sendWorkspaceToServer(){

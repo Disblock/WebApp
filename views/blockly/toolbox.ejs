@@ -356,7 +356,7 @@
   <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
   <category name="Functions" colour="#995ba5" custom="PROCEDURE"></category>
   <sep></sep>
-  <category name="Evénements" colour="30">
+  <category name="%{BKY_WORKSPACE_TAB_EVENTS}" colour="30">
     <label text="%{BKY_WORKSPACE_EVENTS_MESSAGE_SENT_DELETED}"></label>
       <block type="event_message_sent"></block>
       <block type="event_message_deleted"></block>
@@ -376,5 +376,59 @@
       <block type="event_user_updated"></block>
       <block type="event_var_old_user"></block>
       <block type="event_var_new_user"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_TEXT_CHANNEL}"></label>
+      <block type="event_text_channel_created"></block>
+      <block type="event_text_channel_deleted"></block>
+      <block type="event_var_text_channel"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_TEXT_CHANNEL_UPDATE}"></label>
+      <block type="event_text_channel_edited"></block>
+      <block type="event_var_old_text_channel"></block>
+      <block type="event_var_new_text_channel"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_VOICE_CHANNEL}"></label>
+      <block type="event_voice_channel_created"></block>
+      <block type="event_voice_channel_deleted"></block>
+      <block type="event_var_voice_channel"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_VOICE_CHANNEL_UPDATE}"></label>
+      <block type="event_voice_channel_edited"></block>
+      <block type="event_var_old_voice_channel"></block>
+      <block type="event_var_new_voice_channel"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_RANK}"></label>
+      <block type="event_role_created"></block>
+      <block type="event_role_deleted"></block>
+      <block type="event_var_rank"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_RANK_UPDATE}"></label>
+      <block type="event_role_edited"></block>
+      <block type="event_var_old_rank"></block>
+      <block type="event_var_new_rank"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_BAN_UNBAN}"></label>
+      <block type="event_user_banned"></block>
+      <block type="event_user_unbanned"></block>
+      <block type="event_var_user"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_REACTION}"></label>
+      <block type="event_reaction_added"></block>
+      <block type="event_reaction_removed"></block>
+      <block type="event_var_message"></block>
+      <block type="event_var_reaction"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_VOICE_UPDATE}"></label>
+      <block type="event_user_voice_update"></block>
+      <block type="event_var_old_voice_channel"></block>
+      <block type="event_var_new_voice_channel"></block>
+      <block type="event_var_user"></block>
+
+    <label text="%{BKY_WORKSPACE_EVENTS_EXTRA}"></label>
+      <block type="event_pinned_updated"></block>
+      <block type="event_var_message"></block>
+      <block type="event_user_start_writing"></block>
+      <block type="event_var_user"></block>
+      <block type="event_var_text_channel"></block>
   </category>
 </xml>

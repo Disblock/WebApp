@@ -57,7 +57,7 @@ app.use(sessionMiddleware);
 
 
 
-const io = require("socket.io")(server);
+const io = require("socket.io")(server);//Max 1Mb/send by default
 io.use(function(socket, next){//A chaque requête io, le middleware de sessions est appelé
   sessionMiddleware(socket.request, socket.request.res || {}, next);//Pour lire la session : socket.request.session.Variable
 });
