@@ -1,0 +1,1473 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="Z.e.cx|DCY01]+[60X|c" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_message_sent</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="yVI!DZ$ZQq=/c!oo_!XF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="mYlEpV6RIIAi$H:V}dNC">
+            <field name="TEXT">A message is sent on the server</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="]EHx({!(HfTEPRsPOO+=">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="_@8t10Q^Za4O(D*iW5QV"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="DdM_l4s8y1lZUrNf~E#i" deletable="false" movable="false">
+        <field name="TEXT">Un message est envoyé sur le serveur, utilisez la variable "Message envoyé" pour obtenir les informations sur le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="u3VH+ppmWKH5ke@t|AC]" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="M4McaZD7~n+GfwJ8]H,a">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Z.e.cx|DCY01]+[60X|c" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_message_deleted</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="yVI!DZ$ZQq=/c!oo_!XF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="mYlEpV6RIIAi$H:V}dNC">
+            <field name="TEXT">Un message est supprimé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="]EHx({!(HfTEPRsPOO+=">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="_@8t10Q^Za4O(D*iW5QV"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="DdM_l4s8y1lZUrNf~E#i" deletable="false" movable="false">
+        <field name="TEXT">Un message est supprimé, utilisez a variable "message" pour accéder au message supprimé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="u3VH+ppmWKH5ke@t|AC]" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="M4McaZD7~n+GfwJ8]H,a">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Z.e.cx|DCY01]+[60X|c" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_message_updated</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="yVI!DZ$ZQq=/c!oo_!XF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="mYlEpV6RIIAi$H:V}dNC">
+            <field name="TEXT">Un message est modifié</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="]EHx({!(HfTEPRsPOO+=">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="_@8t10Q^Za4O(D*iW5QV"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="DdM_l4s8y1lZUrNf~E#i" deletable="false" movable="false">
+        <field name="TEXT">Un message est modifié, utilisez les variables "Ancien message" et "Nouveau message" pour accéder aux messages</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="u3VH+ppmWKH5ke@t|AC]" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="M4McaZD7~n+GfwJ8]H,a">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_join</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Un utilisateur rejoint le serveur</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="VqH:T}yYma/4#GgDYlfs">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="b8*C]Jlxr)htS#W4^gH1"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Un utilisateur rejoint le serveur. Utilisez la variable "Membre" pour obtenir l'utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_left</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Un utilisateur quitte le serveur</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="VqH:T}yYma/4#GgDYlfs">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="b8*C]Jlxr)htS#W4^gH1"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Un utilisateur quitte le serveur. Utilisez la variable "Membre" pour obtenir l'utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_updated</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Un utilisateur est modifié</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="VqH:T}yYma/4#GgDYlfs">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="b8*C]Jlxr)htS#W4^gH1"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Un utilisateur est modifié ( Changement de pseudo sur le serveur, changement de rôles, ... ). Utilisez la variable "Membre" pour obtenir l'utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_message</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Message</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Représente le message d'un événement ( Message envoyé, supprimé, ... ). Ne pas utiliser pour l'événement message modifié</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="a|PW@r#aV$x^g_x3/v(D"></shadow>
+      <block type="type_other" id="+;DZw]E:aces0MOs?CN-">
+        <field name="TYPE">Message</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_message_old</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Ancien Message</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Représente l'ancien état d'un message modifié. Ne sert qu'à l'événement message modifié</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="a|PW@r#aV$x^g_x3/v(D"></shadow>
+      <block type="type_other" id="q$5gCiQsY;J!Q5ufVi]O">
+        <field name="TYPE">Message</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_message_new</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Nouveau Message</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Représente le nouvel état d'un message modifié. Ne sert qu'à l'événement message modifié</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="a|PW@r#aV$x^g_x3/v(D"></shadow>
+      <block type="type_other" id="q$5gCiQsY;J!Q5ufVi]O">
+        <field name="TYPE">Message</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Utilisateur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Représente l'utilisateur d'un événement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="a|PW@r#aV$x^g_x3/v(D"></shadow>
+      <block type="type_other" id="+;DZw]E:aces0MOs?CN-">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_old_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Ancien Utilisateur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Représente l'ancien état de l'utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="a|PW@r#aV$x^g_x3/v(D"></shadow>
+      <block type="type_other" id="+;DZw]E:aces0MOs?CN-">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="yvn/TK6)H7utx)x1jb2K" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_new_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="#x4X!iF@bq*AcTWB_|HF">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="sn=17-pY4Hbg}!s}TZ=r">
+            <field name="TEXT">Nouvel Utilisateur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="0;|l@Hhej3mc:g+b|$^)" deletable="false" movable="false">
+        <field name="TEXT">Représente le nouvel état de l'utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="|!p:dvaIO,a/}QOH;,tv" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="a|PW@r#aV$x^g_x3/v(D"></shadow>
+      <block type="type_other" id="+;DZw]E:aces0MOs?CN-">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="s)6pk*{Jl[DC(/r3ESru">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_role_created</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un rôle est créé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="pP=@=Lrlnelu)@`C?}V2">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="!J45#/S5E*@#~h3T$Abk"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un nouveau rôle est créé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_role_deleted</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un rôle est supprimé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="pP=@=Lrlnelu)@`C?}V2">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="!J45#/S5E*@#~h3T$Abk"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un rôle est supprimé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_role_edited</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un rôle est modifié</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="pP=@=Lrlnelu)@`C?}V2">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="!J45#/S5E*@#~h3T$Abk"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un rôle est modifié</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_role</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Rôle</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Représente le rôle impliqué dans l'événement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="sn8$x]BPBd?vVUjd{r=n"></shadow>
+      <block type="type_other" id="$]TvUpaAQM7kW^Y.fuPa">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_old_role</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Ancien Rôle</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Représente l'ancien état du rôle impliqué dans l'événement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="sn8$x]BPBd?vVUjd{r=n"></shadow>
+      <block type="type_other" id="$]TvUpaAQM7kW^Y.fuPa">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_new_role</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Nouveau Rôle</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Représente le nouvel état du rôle impliqué dans l'événement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="sn8$x]BPBd?vVUjd{r=n"></shadow>
+      <block type="type_other" id="$]TvUpaAQM7kW^Y.fuPa">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_banned</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Un utilisateur est banni</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="YG%`:;~y#u!|a^?i~Gqg">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="ecr(.Zon-S|UrZ[f2%]@"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Un utilisateur est banni du serveur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_unbanned</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Un utilisateur est débanni</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="YG%`:;~y#u!|a^?i~Gqg">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="ecr(.Zon-S|UrZ[f2%]@"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Un utilisateur est débanni du serveur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_pinned_updated</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Un message est épinglé ou désépinglé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="YG%`:;~y#u!|a^?i~Gqg">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="ecr(.Zon-S|UrZ[f2%]@"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Un message a été épinglé ou n'est plus épinglé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_voice_update</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Un membre se déplace d'un salon vocal</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="YG%`:;~y#u!|a^?i~Gqg">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="ecr(.Zon-S|UrZ[f2%]@"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Un membre a rejoint, quitté ou a changé de salon vocal.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_user_start_writting</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Un membre commence à écrire</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="YG%`:;~y#u!|a^?i~Gqg">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="ecr(.Zon-S|UrZ[f2%]@"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Un membre a commencé à écrire</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_old_voice_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Ancien salon vocal</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Représente le salon où était le membre avant l'événement. Cette variable sera vide si le membre vient de rejoindre un salon vocal</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="E:_=a2E(ESB$3l#5Wksg"></shadow>
+      <block type="type_other" id="o?Q1KH8ml*kLvRdGTlJ?">
+        <field name="TYPE">VoiceChannel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_new_voice_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Nouveau salon vocal</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Représente le salon où est le membre après l'événement. Cette variable sera vide si le membre vient de quitter un salon vocal</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="E:_=a2E(ESB$3l#5Wksg"></shadow>
+      <block type="type_other" id="1`.wl8S`J+zwOJ**Jj5%">
+        <field name="TYPE">VoiceChannel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_text_channel_created</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un salon est créé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="zd`DS0-D{^LM8(I.eRAR">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="/hB_c0fTuH7Zw`:Lw_k+"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un salon textuel est créé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_text_channel_deleted</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un salon est supprimé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="zd`DS0-D{^LM8(I.eRAR">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="/hB_c0fTuH7Zw`:Lw_k+"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un salon textuel est supprimé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_text_channel_edited</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un salon est modifié</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="zd`DS0-D{^LM8(I.eRAR">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="/hB_c0fTuH7Zw`:Lw_k+"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un salon textuel est modifié ( Changement de nom, sujet, ... )</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_voice_channel_created</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un salon vocal est créé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="zd`DS0-D{^LM8(I.eRAR">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="/hB_c0fTuH7Zw`:Lw_k+"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un salon vocal est créé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_voice_channel_deleted</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un salon vocal est supprimé</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="zd`DS0-D{^LM8(I.eRAR">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="/hB_c0fTuH7Zw`:Lw_k+"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un salon vocal est supprimé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_voice_channel_edited</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Un salon vocal est modifié</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="zd`DS0-D{^LM8(I.eRAR">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="/hB_c0fTuH7Zw`:Lw_k+"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Un salon vocal est modifié ( Changement de nom, sujet, ... )</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_text_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Salon textuel</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Représente le salon de l'événement d'un salon textuel</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="]5KUOI.R!MurA`B?7Y(g"></shadow>
+      <block type="type_other" id="n[qEDd%quGp$Ac~;(e_9">
+        <field name="TYPE">Channel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_old_text_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Ancien Salon textuel</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Représente l'ancien état d'un salon textuel</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="]5KUOI.R!MurA`B?7Y(g"></shadow>
+      <block type="type_other" id="?OSX}T?~nBxPlb9Uln!/">
+        <field name="TYPE">Channel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="hRQzoL/^~oO1MEc|l=0I" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_new_text_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=",^0KN:XZOhCdukzOP4gA">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="]q$|9RFoY}8dU-SS*T1+">
+            <field name="TEXT">Nouveau Salon textuel</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="c+A^cE,c:~x|9DXw21O-" deletable="false" movable="false">
+        <field name="TEXT">Représente le nouvel état d'un salon textuel</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=")GbvQpbhlgu3+qFdDWVP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="]5KUOI.R!MurA`B?7Y(g"></shadow>
+      <block type="type_other" id="8*?qUTHeT.{]_lP]zH20">
+        <field name="TYPE">Channel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="^Giaut(o3B~-_fhfihIU">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="VkpxBq?$4c#ER]fEfZoL" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_voice_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="zU2.JZVdlf8}K{1EAsvp">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",M*$olI6hh(|a7([**-J">
+            <field name="TEXT">Salon vocal</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="(^Ky(A4#kVDt}_uiNTiX" deletable="false" movable="false">
+        <field name="TEXT">Représente le salon vocal où s'est déroulé l'événement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="22lYhESr{$()_Vr4C)Ls" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="E:_=a2E(ESB$3l#5Wksg"></shadow>
+      <block type="type_other" id="1`.wl8S`J+zwOJ**Jj5%">
+        <field name="TYPE">VoiceChannel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="wc?H@KbB%2*gt-OZ(QIv">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Vjsh3T*(z{JUx::l/=7_" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_reaction_added</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="%$xlnL7BI[z-P=-b+Vr?">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="j1~iGu%.dZmf`JyAk.$y">
+            <field name="TEXT">Une réaction est ajoutée</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="1.%]b}qsa5vF`a3g}BDz">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id=":tw:hPy.s3#VgY]Qls:n"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="S.qOkT_`y#{BtPmL8KxH" deletable="false" movable="false">
+        <field name="TEXT">Une réaction est ajoutée à un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="sEd%Qv_nrEi-!;CX1usw" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="E{v!rR9Htc[TAWe7XrL,">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Vjsh3T*(z{JUx::l/=7_" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">event_reaction_removed</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="%$xlnL7BI[z-P=-b+Vr?">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="j1~iGu%.dZmf`JyAk.$y">
+            <field name="TEXT">Une réaction est retirée</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="1.%]b}qsa5vF`a3g}BDz">
+            <field name="INPUTNAME">statements</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id=":tw:hPy.s3#VgY]Qls:n"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="S.qOkT_`y#{BtPmL8KxH" deletable="false" movable="false">
+        <field name="TEXT">Une réaction est retirée d'un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="sEd%Qv_nrEi-!;CX1usw" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="E{v!rR9Htc[TAWe7XrL,">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Vjsh3T*(z{JUx::l/=7_" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">event_var_reaction</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="%$xlnL7BI[z-P=-b+Vr?">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="j1~iGu%.dZmf`JyAk.$y">
+            <field name="TEXT">Réaction</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="S.qOkT_`y#{BtPmL8KxH" deletable="false" movable="false">
+        <field name="TEXT">Représente la réaction de l'événement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="sEd%Qv_nrEi-!;CX1usw" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="!^B6Q3NO{sD8cN0uAPmH"></shadow>
+      <block type="type_other" id="a^AUmLDBVrCTDHISWH4m">
+        <field name="TYPE">Reaction</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="E{v!rR9Htc[TAWe7XrL,">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block></xml>

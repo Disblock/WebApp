@@ -439,6 +439,13 @@ Blockly.Msg["WORKSPACE_EVENTS_VOICE_UPDATE"] = "L'état vocal d'un utilisateur e
 Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "Une réaction est ajoutée ou retirée d'un message";
 Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Autres";
 
+Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
+Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Supprimer un message";
+Blockly.Msg["WORKSPACE_MESSAGES_CREATE_THREAD"] = "Créer un Fil";
+Blockly.Msg["WORKSPACE_MESSAGES_PINE"] = "Epingler et désépingler";
+Blockly.Msg["WORKSPACE_MESSAGES_GET_DATA"] = "Obtenir les données";
+Blockly.Msg["WORKSPACE_MESSAGES_MENTIONS"] = "Gérer les mentions";
+
 //Event blocks
 Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
 Blockly.Msg["EVENT_MESSAGE_SENT_TOOLTIP"] = "Un message est envoyé sur le serveur, utilisez la variable \"Message envoyé\" pour obtenir les informations sur le message";
@@ -522,6 +529,42 @@ Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Représente la réaction de l'évé
 //Message blocks
 Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
 Blockly.Msg["BLOCK_MESSAGE_REPLY_TOOLTIP"] = "Permet de directement répondre à un message";
+Blockly.Msg["BLOCK_MESSAGE_SEND"] = "Envoyer le message dans le channel %1 Avec le message %2";
+Blockly.Msg["BLOCK_MESSAGE_SEND_TOOLTIP"] = "Permet d'envoyer un message dans un salon";
+Blockly.Msg["MESSAGE_SEND_WITH_FILE"] = "Envoyer le message dans le channel %1 Avec le message %2 Et le fichier %3";
+Blockly.Msg["MESSAGE_SEND_WITH_FILE_TOOLTIP"] = "Permet d'envoyer un message dans un salon. Indiquez le fichier à envoyer avec son URL";
+Blockly.Msg["BLOCK_MESSAGE_DELETE"] = "Supprimer le message %1";
+Blockly.Msg["BLOCK_MESSAGE_DELETE_TOOLTIP"] = "Supprimer le message passé en paramètre";
+Blockly.Msg["MESSAGE_DELETE_BULK"] = "Supprimer %1 messages dans le salon %2";
+Blockly.Msg["MESSAGE_DELETE_BULK_TOOLTIP"] = "Supprimer plusieurs messages d'un channel.";
+Blockly.Msg["MESSAGE_START_THREAD"] = "Créer un fil commençant par le message %1";
+Blockly.Msg["MESSAGE_START_THREAD_TOOLTIP"] = "Permet de créer un fil sur un message. Le message DOIT être dans un salon normal et non un thread";
+Blockly.Msg["BLOCK_MESSAGE_PINE"] = "Epingler le message %1";
+Blockly.Msg["BLOCK_MESSAGE_PINE_TOOLTIP"] = "Permet d'épingler un message";
+Blockly.Msg["BLOCK_MESSAGE_UNPINE"] = "Désepingler le message %1";
+Blockly.Msg["BLOCK_MESSAGE_UNPINE_TOOLTIP"] = "Permet de désépingler un message";
+Blockly.Msg["BLOCK_MESSAGE_GET_TEXT"] = "Texte du message %1";
+Blockly.Msg["BLOCK_MESSAGE_GET_TEXT_TOOLTIP"] = "Retourne le texte d'un message";
+Blockly.Msg["MESSAGE_GET_TEXT"] = "ID du message %1";
+Blockly.Msg["MESSAGE_GET_TEXT_TOOLTIP"] = "Retourne l'identifiant d'un message";
+Blockly.Msg["BLOCK_MESSAGE_GET_AUTOR"] = "Auteur du message %1";
+Blockly.Msg["BLOCK_MESSAGE_GET_AUTOR_TOOLTIP"] = "Retourne l'utilisateur qui a créé le message";
+Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL"] = "Salon du message %1";
+Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_TOOLTIP"] = "Retourne le salon ou fil où a été envoyé le message";
+Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_EVERYONE"] = "Le message mentionne @everyone ? %1";
+Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_EVERYONE_TOOLTIP"] = "Retourne Vrai si le message mentionne @everyone, sinon faux";
+Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_USER"] = "Le message mentionne t-il un utilisateur ? %1";
+Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_USER_TOOLTIP"] = "Retourne Vrai si le message mentionne un utilisateur, sinon faux";
+Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION"] = "Obtenir la mention d'utilisateur n° %1 du message %2";
+Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION_TOOLTIP"] = "Retourne l'utilisateur mentionné par la xème mention contenue dans le message";
+Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION"] = "Obtenir la mention du salon n° %1 du message %2";
+Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION_TOOLTIP"] = "Retourne le salon mentionné par la xème mention contenue dans le message";
+Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_USER"] = "Nombre de mentions @utilisateur du message %1";
+Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_USER_TOOLTIP"] = "Retourne le nombre de mentions @utilisateur contenues dans le message";
+Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL"] = "Nombre de mentions #salon du message %1";
+Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL_TOOLTIP"] = "Retourne le nombre de mentions #salon contenues dans le message";
+Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE"] = "Message envoyé";
+Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP"] = "Représente le message venant d'être envoyé";
 
 //Text Channel Permissions
 Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 %4 pour %5 dans le salon textuel %6";

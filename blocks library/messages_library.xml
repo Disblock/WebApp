@@ -1,0 +1,970 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_reply</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Repondre au message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="`f;1S}BXz[KFO6?rGovy">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="r;x(aUbwYQDx3)n`qZAW">
+            <field name="INPUTNAME">text</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="+u(Eux8C8Rs8m5kId5Zt">
+                <field name="TEXT">Avec le texte</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id=",hB~lUgws$ZBUO:Ua6RQ"></shadow>
+              <block type="type_string" id="Hv[0[:-y|a4iiK8g_m/j"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Permet de répondre à un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_send</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Envoyer le message dans le channel</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_group" id="wnG:sWN|2;$`N^42MBa}">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="-m.$.Grv?:SDK$|8qnhN">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="$tjJ9*)5J7*2b$$yN!XJ">
+                <field name="TYPE">ThreadChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="._E,~cMO|`z/3UOuiWRf">
+            <field name="INPUTNAME">text</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="!EYS*G[%sMmc2OU--qh_">
+                <field name="TEXT">Avec le message</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="EhOaB_UKvmT7oy(.$BX|"></shadow>
+              <block type="type_string" id="Q0qY-W/=(Kg{2:EX(48I"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Permet d'envoyer un message dans un salon</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_send_with_file</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Envoyer le message dans le channel</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_group" id="wnG:sWN|2;$`N^42MBa}">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="-m.$.Grv?:SDK$|8qnhN">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="$tjJ9*)5J7*2b$$yN!XJ">
+                <field name="TYPE">ThreadChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="._E,~cMO|`z/3UOuiWRf">
+            <field name="INPUTNAME">text</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="!EYS*G[%sMmc2OU--qh_">
+                <field name="TEXT">Avec le message</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="EhOaB_UKvmT7oy(.$BX|"></shadow>
+              <block type="type_string" id="Q0qY-W/=(Kg{2:EX(48I"></block>
+            </value>
+            <next>
+              <block type="input_value" id=")liL_RLQ.bN;02kS82fL">
+                <field name="INPUTNAME">fileURL</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="gI{!YgGgvE!n.h4-^~BX">
+                    <field name="TEXT">Et le fichier</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null"></shadow>
+                  <block type="type_string" id=":u(s-%@4ctR,%a5pL^Hj"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Permet d'envoyer un message dans un salon. Indiquez le fichier à envoyer avec son URL</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_delete</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Supprimer le message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="a)ITK/WD08~tXwEid_z4">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Supprimer le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_delete_bulk</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Supprimer</field>
+            <next>
+              <block type="field_number" id="G]!YUGS:e)!Y2OO[(@a*">
+                <field name="VALUE">0</field>
+                <field name="FIELDNAME">amount</field>
+                <field name="MIN">1</field>
+                <field name="MAX">100</field>
+                <field name="PRECISION">0</field>
+                <next>
+                  <block type="field_static" id="8b`T}0-UX3T_%_f|=G:P">
+                    <field name="TEXT">messages dans le salon</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_group" id="lS6=YK0Ya@i(Of8zM3na">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="Gka0yds$t10qtNnvOhSS">
+                <field name="TYPE">ThreadChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Supprimer plusieurs messages d'un channel.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_start_thread</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Créer un fil commençant par le message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Permet de créer un fil sur un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_pine</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Epingler le message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Permet d'épingler un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_message_unpine</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Désepingler le message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Permet de désépingler un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="pOBCLgD=r`QT*KMXFezj"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="Sr;|E?Rf5!?M9xR@^FeU"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_get_text</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Texte du message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne le texte d'un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_string" id="5t*rKrX]W-A6n62_|!MM"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_get_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">ID du message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne l'identifiant d'un message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_string" id="5t*rKrX]W-A6n62_|!MM"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_get_autor</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Auteur du message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne l'utilisateur qui a créé le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_other" id="w^=#B+28phnUmHbI3@bA">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_get_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Salon du message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne le salon ou fil où a été envoyé le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_group" id="$*ewdEtb^{7EX!ptYL:)">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="w^=#B+28phnUmHbI3@bA">
+            <field name="TYPE">Channel</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="gzVSC0,W_HT_oi`kcJ[e">
+            <field name="TYPE">ThreadChannel</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_does_mention_everyone</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Le message mentionne @everyone ?</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne Vrai si le message mentionne @everyone, sinon faux</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_boolean" id="w(T~+KvJhJBY7~#DWNqp"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_does_mention_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Le message mentionne un utilisateur ?</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne Vrai si le message mentionne un utilisateur, sinon faux</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_boolean" id="w(T~+KvJhJBY7~#DWNqp"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_get_user_mention</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Obtenir la mention d'utilisateur n°</field>
+            <next>
+              <block type="field_number" id="Rl(Z?U[~n[PgKz;bxcBM">
+                <field name="VALUE">0</field>
+                <field name="FIELDNAME">mention_index</field>
+                <field name="MIN">1</field>
+                <field name="MAX">30</field>
+                <field name="PRECISION">1</field>
+                <next>
+                  <block type="field_static" id="~CoV_;Q%UOZ:1Um:kI)x">
+                    <field name="TEXT">du message</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne l'utilisateur mentionné par la xème mention contenue dans le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_other" id="EDxOD8:2x@SJUs~1RG%2">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_get_channel_mention</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Obtenir la mention du salon n°</field>
+            <next>
+              <block type="field_number" id="Rl(Z?U[~n[PgKz;bxcBM">
+                <field name="VALUE">0</field>
+                <field name="FIELDNAME">mention_index</field>
+                <field name="MIN">1</field>
+                <field name="MAX">30</field>
+                <field name="PRECISION">1</field>
+                <next>
+                  <block type="field_static" id="~CoV_;Q%UOZ:1Um:kI)x">
+                    <field name="TEXT">du message</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne le salon mentionné par la xème mention contenue dans le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_group" id="aLg?4mOgMOTCfw-]](YN">
+        <mutation types="2"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="EDxOD8:2x@SJUs~1RG%2">
+            <field name="TYPE">Channel</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="QBfLI-w_.mhVXQwsH{xG">
+            <field name="TYPE">ThreadChannel</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_number_of_mentions_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Nombre de mentions @utilisateur du message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne le nombre de mentions @utilisateur contenues dans le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_number" id="eX=e(PhmXUm8Qb6S{)]+"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".IYN8{hF[!XKTq`?yr9r" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_number_of_mentions_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="`P)9cQ9sbcpb-,au`[aM">
+        <field name="INPUTNAME">message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="z=2B*PuUNJQXHXM5(FVJ">
+            <field name="TEXT">Nombre de mentions #salon du message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="DVMuW+yqp0-`.A|,v6KA"></shadow>
+          <block type="type_other" id="WXoxHOa(3%K:lYP3kG+C">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="NiWSI-]iNOOoJn{H_lM2" deletable="false" movable="false">
+        <field name="TEXT">Retourne le nombre de mentions #salon contenues dans le message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="AETj3`6tF]^2`+pDZ_Ms" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="m9(Oj-@d:sJYVeB`8EZ4"></shadow>
+      <block type="type_number" id="eX=e(PhmXUm8Qb6S{)]+"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="H-kgDUZq^IQ{tyM-.ROJ">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id=".rl^X~IGBJK]k;u_q}$#" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_message_var_sent_message</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="G!,%p!uBI+s;0-S63S5,">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="mkjt+Q|.^dpMb|*m3~2]">
+            <field name="TEXT">Message envoyé</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="^@xpwcwUxYjbHAE.$3`M" deletable="false" movable="false">
+        <field name="TEXT">Représente le message venant d'être envoyé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="}(yvyV(;;2c;a%bP74dG" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="qnlAR9_rH=-jBRw3uPJv"></shadow>
+      <block type="type_other" id="Ysi}-7HK1]]0,s?1(5a#">
+        <field name="TYPE">Message</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="a9zynM2[oP~Hk@j*ivaa">
+        <mutation colour="#5b99a5"></mutation>
+        <field name="HUE">190</field>
+      </block>
+    </value>
+  </block></xml>
