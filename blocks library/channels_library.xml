@@ -205,4 +205,137 @@
         <field name="HUE">75</field>
       </block>
     </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_channel_delete</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="87Wzs@K?]!,y4v]vDmk5">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="B0.$ROnOK7NUUp[5wlam">
+            <field name="TEXT">Supprimer le salon</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="$?b`F.BDXa)/vg#cD(tF"></shadow>
+          <block type="type_group" id="lq3)hE?*Xh#m,CMyJQMa">
+            <mutation types="3"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="fV_?8H1dkc)dhp,.lom1">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="9oUssk.7aofv$nzK!quj">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+            <value name="TYPE2">
+              <block type="type_other" id="6E!.zhS](hoT{~]/X!F(">
+                <field name="TYPE">ThreadChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de supprimer un salon textuel, vocal ou fil</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="1nb4zNy%eci#L.0)S5xT"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="S[!TdjStoOK._6w(xTwf"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#a5a55b"></mutation>
+        <field name="HUE">60</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_channel_renamme</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="87Wzs@K?]!,y4v]vDmk5">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="B0.$ROnOK7NUUp[5wlam">
+            <field name="TEXT">Modifier le  nom du salon</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="$?b`F.BDXa)/vg#cD(tF"></shadow>
+          <block type="type_group" id="lq3)hE?*Xh#m,CMyJQMa">
+            <mutation types="3"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="fV_?8H1dkc)dhp,.lom1">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="9oUssk.7aofv$nzK!quj">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+            <value name="TYPE2">
+              <block type="type_other" id="3L)D@Cvg*9u3KZnlb*05">
+                <field name="TYPE">ThreadChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="d/p=rG1}3?x-ZyKJv1|A">
+            <field name="INPUTNAME">text</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="^Melk?1K?T.h2H|9eu{7">
+                <field name="TEXT">avec le nom</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="s[?saCS_JJ*`/8QZ;Ruf"></shadow>
+              <block type="type_string" id="_Er:+A3XGUst|VocLJsu"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de renommer un salon textuel, vocal ou fil</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="1nb4zNy%eci#L.0)S5xT"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="S[!TdjStoOK._6w(xTwf"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#a5a55b"></mutation>
+        <field name="HUE">60</field>
+      </block>
+    </value>
   </block></xml>
