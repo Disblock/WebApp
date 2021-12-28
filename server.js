@@ -225,6 +225,10 @@ app.get('/blockly/blocks/messages', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./blockly/blocks/message_blocks.ejs');
 });
+app.get('/blockly/blocks/channels', function(req, res){
+  res.setHeader("Content-Type", 'application/javascript');
+  res.render('./blockly/blocks/channel_blocks.ejs');
+});
 
 app.get('/blockly/loc', function(req, res){
   //TODO : MODIFY TO GET RIGHT LANGUAGE

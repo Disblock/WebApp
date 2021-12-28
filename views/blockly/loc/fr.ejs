@@ -423,6 +423,7 @@ Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 //Workspace
 Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Evénements";
 Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
+Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Salons et fils";
 
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -445,6 +446,15 @@ Blockly.Msg["WORKSPACE_MESSAGES_CREATE_THREAD"] = "Créer un Fil";
 Blockly.Msg["WORKSPACE_MESSAGES_PINE"] = "Epingler et désépingler";
 Blockly.Msg["WORKSPACE_MESSAGES_GET_DATA"] = "Obtenir les données";
 Blockly.Msg["WORKSPACE_MESSAGES_MENTIONS"] = "Gérer les mentions";
+
+
+Blockly.Msg["WORKSPACE_CHANNELS_CREATE"] = "Créer un salon textuel ou vocal";
+Blockly.Msg["WORKSPACE_CHANNELS_DELETE"] = "Supprimer un salon";
+Blockly.Msg["WORKSPACE_CHANNELS_EDIT"] = "Modifier un salon";
+Blockly.Msg["WORKSPACE_CHANNELS_GET_DATA"] = "Obtenir les informations du salon";
+Blockly.Msg["WORKSPACE_CHANNELS_GET_CHANNEL"] = "Récupérer un salon";
+
+
 
 //Event blocks
 Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -567,17 +577,16 @@ Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE"] = "Message envoyé";
 Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP"] = "Représente le message venant d'être envoyé";
 
 //Text Channel Permissions
-Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 %4 pour %5 dans le salon textuel %6";
-Blockly.Msg["BLOCK_TEXT_VOICE_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 pour %4 dans le salon vocal %5";
 Blockly.Msg["PERMISSION_SEE_CHANNEL"] = "Voir le salon";
 Blockly.Msg["PERMISSION_MANAGE_CHANNEL"] = "Gérer le salon";
 Blockly.Msg["PERMISSION_MANAGE_CHANNEL_PERMISSIONS"] = "Gérer les permissions du salon";
+Blockly.Msg["PERMISSION_MANAGE_WEBHOOKS"] = "Gérer les Webhooks";
 Blockly.Msg["PERMISSION_CREATE_INVITE"] = "Créer une invitation";
 Blockly.Msg["PERMISSION_SEND_MESSAGES"] = "Envoyer des messages";
 Blockly.Msg["PERMISSION_SEND_MESSAGE_IN_THREADS"] = "Envoyer des messages dans un fil";
 Blockly.Msg["PERMISSION_CREATE_PUBLIC_THREADS"] = "Créer des fils publics";
 Blockly.Msg["PERMISSION_CREATE_PRIVATE_THREADS"] = "Créer des fils privés";
-Blockly.Msg["PERMISSION_USE_LINKS"] = "Utiliser des liens";
+Blockly.Msg["PERMISSION_EMBED_LINKS"] = "Utiliser des liens";
 Blockly.Msg["PERMISSION_ADD_FILES"] = "Ajouter des fichiers";
 Blockly.Msg["PERMISSION_ADD_REACTIONS"] = "Ajouter des réactions";
 Blockly.Msg["PERMISSION_USE_EXTERNAL_EMOJIS"] = "Utiliser des émojis externes";
@@ -586,6 +595,8 @@ Blockly.Msg["PERMISSION_PING_EVERYONE"] = "Mentionner @everyone";
 Blockly.Msg["PERMISSION_MANAGE_MESSAGES"] = "Gérer les messages";
 Blockly.Msg["PERMISSION_MANAGE_THREADS"] = "Gérer les fils";
 Blockly.Msg["PERMISSION_SEE_OLD_MESSAGES"] = "Voir les anciens messages";
+Blockly.Msg["PERMISSION_SEND_VOICE_MESSAGE"] = "Envoyer des messages de synthèse vocale";
+Blockly.Msg["PERMISSION_USE_APP_COMMANDS"] = "Utiliser les commandes de l'application";
 Blockly.Msg["PERMISSION_CONNECT_TO_VOICE_CHANNEL"] = "Se connecter au salon vocal";
 Blockly.Msg["PERMISSION_SPEAK"] = "Parler";
 Blockly.Msg["PERMISSION_USE_VIDEO"] = "Utiliser la vidéo";
@@ -595,10 +606,40 @@ Blockly.Msg["PERMISSION_PRIORITY_SPEAKER"] = "Voix prioritaire";
 Blockly.Msg["PERMISSION_MUTE_MEMBER"] = "Rendre un membre muet";
 Blockly.Msg["PERMISSION_DEAF_MEMBER"] = "Rendre un membre sourd";
 Blockly.Msg["PERMISSION_MOOVE_MEMBER"] = "Déplacer un membre";
+Blockly.Msg["PERMISSION_MANAGE_VOICE_CHANNEL_EVENTS"] = "Gérer les événements du salon vocal";
 Blockly.Msg["PERMISSION_GRANT_PERMISSION"] = "Autoriser";
 Blockly.Msg["PERMISSION_DENY_PERMISSION"] = "Refuser";
 Blockly.Msg["PERMISSION_UNDEFINED_PERMISSION"] = "Indéfinit";
 Blockly.Msg["PERMISSION_USER"] = Blockly.Msg["EVENT_VAR_USER"];
 Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"];
-Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon écrit. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
-Blockly.Msg["BLOCK_TEXT_VOICE_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon vocal. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
+
+
+//Channels blocks
+Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL"] = "Créer le salon textuel nommé %1 Avec la description %2 Dans la catégorie %3";
+Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL_TOOLTIP"] = "Permet de créer un salon textuel. Si aucune catégorie n'est donnée, il sera créé hors catégorie.";
+Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL"] = "Créer le salon vocal nommé %1 Dans la catégorie %2";
+Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL_TOOLTIP"] = "Permet de créer un salon vocal. Si aucune catégorie n'est donnée, il sera créé hors catégorie.";
+Blockly.Msg["BLOCK_CHANNEL_VAR_VOICE_CHANNEL"] = "Salon vocal créé";
+Blockly.Msg["BLOCK_CHANNEL_VAR_VOICE_CHANNEL_TOOLTIP"] = "Représente le salon vocal créé";
+Blockly.Msg["BLOCK_CHANNEL_VAR_TEXT_CHANNEL"] = "Salon textuel créé";
+Blockly.Msg["BLOCK_CHANNEL_VAR_TEXT_CHANNEL_TOOLTIP"] = "Représente le salon textuel créé";
+Blockly.Msg["BLOCK_CHANNEL_DELETE"] = "Supprimer le salon %1";
+Blockly.Msg["BLOCK_CHANNEL_DELETE_TOOLTIP"] = "Permet de supprimer un salon textuel, vocal ou fil";
+Blockly.Msg["BLOCK_CHANNEL_RENAMME"] = "Modifier le  nom du salon %1 avec le nom %2";
+Blockly.Msg["BLOCK_CHANNEL_RENAMME_TOOLTIP"] = "Permet de renommer un salon textuel, vocal ou fil";
+Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_OF_CHANNEL"] = "Catégorie du salon %1";
+Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_OF_CHANNEL_TOOLTIP"] = "Permet de retrouver la catégorie où est placé un salon textuel ou vocal";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_NAME"] = "Nom du salon %1";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_NAME_TOOLTIP"] = "Permet de récupérer le nom d'un salon";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_TOPIC"] = "Description du salon %1";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_TOPIC_TOOLTIP"] = "Permet de récupérer la description d'un salon";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID"] = "ID du salon %1";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID_TOOLTIP"] = "Permet de récupérer l'ID d'un salon";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Récupérer un salon avec son ID %1";
+Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Permet de récupérer un salon textuel, vocal ou fil à partir de son ID";
+Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION"] = "Vérifier si l'utilisateur ou le rôle %1 Dispose de la permission %2 %3 Dans le salon textuel ou vocal %4";
+Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION_TOOLTIP"] = "Vérifie si un utilisateur ou un rôle dispose d'une permission dans le salon textuel ou vocal indiqué. Retourne Vrai si oui, Faux si non";
+Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] = "Définir pour l'utilisateur ou le rôle %1 la permission %2 %3 %4 Dans le salon textuel ou vocal %5";
+Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] = "Permet de définir une permission pour un membre ou un rôle, dans un salon textuel ou vocal.";
+Blockly.Msg["BLOCK_CHANNEL_LIST"] = "Liste de tous les salons du serveur";
+Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Permet de récupérer la liste de tous les salons du serveur";

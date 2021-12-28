@@ -338,4 +338,635 @@
         <field name="HUE">60</field>
       </block>
     </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_category_of_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Catégorie du salon</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_group" id="A)L9g+wg$~ZI^nu`~XN~">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="An^5~Sd4m,N=12C/H72b">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de retrouver la catégorie où est placé un salon textuel ou vocal</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_other" id="c$4]`l+]6h~#)I(Od{cN">
+        <field name="TYPE">Category</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_channel_name</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Nom du salon</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_group" id="A)L9g+wg$~ZI^nu`~XN~">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="An^5~Sd4m,N=12C/H72b">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer le nom d'un salon</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_string" id="[O?P^y5aeJ%6m%BMu;`S"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_channel_topic</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Description du salon</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_group" id="A)L9g+wg$~ZI^nu`~XN~">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="An^5~Sd4m,N=12C/H72b">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer la description d'un salon</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_string" id="[O?P^y5aeJ%6m%BMu;`S"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_channel_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">ID du salon</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_group" id="A)L9g+wg$~ZI^nu`~XN~">
+            <mutation types="3"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
+                <field name="TYPE">Channel</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="An^5~Sd4m,N=12C/H72b">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+            <value name="TYPE2">
+              <block type="type_other" id="]NSBehT]}u;~hj3:B.b8">
+                <field name="TYPE">ThreadChannel</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'ID d'un salon</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_string" id="[O?P^y5aeJ%6m%BMu;`S"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_channel_with_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">channel_id</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Récupérer un salon avec son ID</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_string" id="L+!I2S@95=3^5tf94+Z."></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer un salon textuel, vocal ou fil à partir de son ID</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_group" id="A)L9g+wg$~ZI^nu`~XN~">
+        <mutation types="3"></mutation>
+        <value name="TYPE0">
+          <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
+            <field name="TYPE">Channel</field>
+          </block>
+        </value>
+        <value name="TYPE1">
+          <block type="type_other" id="An^5~Sd4m,N=12C/H72b">
+            <field name="TYPE">VoiceChannel</field>
+          </block>
+        </value>
+        <value name="TYPE2">
+          <block type="type_other" id="]NSBehT]}u;~hj3:B.b8">
+            <field name="TYPE">ThreadChannel</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_permission</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">userOrRank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Vérifier si l'utilisateur ou le rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_group" id="ziOycw{ovF1*@GKW;BHg">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="voPe@w,N8~bbL/x;Yb3d">
+                <field name="TYPE">User</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="E`qv2lm|R{%ub.ns+y5u">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="h30BZ5itw.?/gqkZB-U}">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="M#gJ`Ehd*]Yap;F2tL8C">
+                <field name="TEXT">Dispose de la permission</field>
+                <next>
+                  <block type="field_dropdown" id="7U=V`EUETK:^!bGL4=7|">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">permission</field>
+                    <field name="USER0">Voir le salon</field>
+                    <field name="CPU0">SEE_CHANNEL</field>
+                    <field name="USER1">Gérer le salon</field>
+                    <field name="CPU1">MANAGE_CHANNEL</field>
+                    <field name="USER2">Gérer les permissions</field>
+                    <field name="CPU2">MANAGE_CHANNEL_PERMISSIONS</field>
+                    <field name="USER3">Gérer les Webhooks</field>
+                    <field name="CPU3">MANAGE_CHANNEL_WEBHOOKS</field>
+                    <field name="USER4">Créer une invitation</field>
+                    <field name="CPU4">CREATE_INVITE</field>
+                    <field name="USER5">Envoyer des messages</field>
+                    <field name="CPU5">SEND_MESSAGES</field>
+                    <field name="USER6">Envoyer des messages dans les fils</field>
+                    <field name="CPU6">SEND_MESSAGES_IN_THREADS</field>
+                    <field name="USER7">Créer des fils publics</field>
+                    <field name="CPU7">CREATE_PUBLIC_THREADS</field>
+                    <field name="USER8">Créer des fils privés</field>
+                    <field name="CPU8">CREATE_PRIVATE_THREADS</field>
+                    <field name="USER9">Intégrer des liens</field>
+                    <field name="CPU9">EMBED_LINKS</field>
+                    <field name="USER10">Joindre des fichiers</field>
+                    <field name="CPU10">ADD_FILES</field>
+                    <field name="USER11">Ajouter des réactions</field>
+                    <field name="CPU11">ADD_REACTIONS</field>
+                    <field name="USER12">Utiliser des émojis externes</field>
+                    <field name="CPU12">USE_EXTERNAL_EMOJIS</field>
+                    <field name="USER13">Utiliser des autocollants externes</field>
+                    <field name="CPU13">USE_EXTERNAL_STICKERS</field>
+                    <field name="USER14">Mentionner @everyone</field>
+                    <field name="CPU14">PING_EVERYONE</field>
+                    <field name="USER15">Gérer les messages</field>
+                    <field name="CPU15">MANAGE_MESSAGES</field>
+                    <field name="USER16">Gérer les fils</field>
+                    <field name="CPU16">MANAGE_THREADS</field>
+                    <field name="USER17">Voir les anciens messages</field>
+                    <field name="CPU17">SEE_OLD_MESSAGES</field>
+                    <field name="USER18">Envoyer des messages de synthèse vocale</field>
+                    <field name="CPU18">SEND_VOICE_MESSAGE</field>
+                    <field name="USER19">Utiliser les commandes de l'application</field>
+                    <field name="CPU19">USE_APP_COMMANDS</field>
+                    <field name="USER20">Se connecter au salon vocal</field>
+                    <field name="CPU20">CONNECT_TO_VOICE_CHANNEL</field>
+                    <field name="USER21">Parler dans le salon vocal</field>
+                    <field name="CPU21">SPEAK</field>
+                    <field name="USER22">Utiliser la vidéo dans le salon vocal</field>
+                    <field name="CPU22">USE_VIDEO</field>
+                    <field name="USER23">Démarrer les activités</field>
+                    <field name="CPU23">START_ACTIVITY</field>
+                    <field name="USER24">Utiliser la détéction de voix</field>
+                    <field name="CPU24">USE_VOICE_DETECTOR</field>
+                    <field name="USER25">Voix prioritaire</field>
+                    <field name="CPU25">PRIORITY_SPEAKER</field>
+                    <field name="USER26">Rendre un membre muet</field>
+                    <field name="CPU26">MUTE_MEMBER</field>
+                    <field name="USER27">Rendre un membre sourd</field>
+                    <field name="CPU27">DEAF_MEMBER</field>
+                    <field name="USER28">Déplacer un membre</field>
+                    <field name="CPU28">MOOVE_MEMBER</field>
+                    <field name="USER29">Gérer les événements du salon vocal</field>
+                    <field name="CPU29">MANAGE_VOICE_CHANNEL_EVENTS</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_value" id="GLhaZTFDZ5hI!n!yvsIV">
+                <field name="INPUTNAME">channel</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="X]{YOsH*)!D9z{=!oA@)">
+                    <field name="TEXT">Dans le salon textuel ou vocal</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="0@4Q.g,EQ{[:aGKW7^2/"></shadow>
+                  <block type="type_group" id="ZL^kQBmyyC7GU%Nh,`Dd">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id=":)=Bei;7n`66JK2rx1dj">
+                        <field name="TYPE">Channel</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="4M_|s@R9%1N.!8_VPkof">
+                        <field name="TYPE">VoiceChannel</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Vérifie si un utilisateur ou un rôle dispose d'une permission dans le salon textuel ou vocal indiqué. Retourne Vrai si oui, Faux si non</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_boolean" id="pow0SNMpTd!]Qg(Vd+*V"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_channel_set_permission</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">userOrRank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Définir pour l'utilisateur ou le rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_group" id="ziOycw{ovF1*@GKW;BHg">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="voPe@w,N8~bbL/x;Yb3d">
+                <field name="TYPE">User</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="E`qv2lm|R{%ub.ns+y5u">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="h30BZ5itw.?/gqkZB-U}">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="M#gJ`Ehd*]Yap;F2tL8C">
+                <field name="TEXT">la permission</field>
+                <next>
+                  <block type="field_dropdown" id="7U=V`EUETK:^!bGL4=7|">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">permission</field>
+                    <field name="USER0">Voir le salon</field>
+                    <field name="CPU0">SEE_CHANNEL</field>
+                    <field name="USER1">Gérer le salon</field>
+                    <field name="CPU1">MANAGE_CHANNEL</field>
+                    <field name="USER2">Gérer les permissions</field>
+                    <field name="CPU2">MANAGE_CHANNEL_PERMISSIONS</field>
+                    <field name="USER3">Gérer les Webhooks</field>
+                    <field name="CPU3">MANAGE_CHANNEL_WEBHOOKS</field>
+                    <field name="USER4">Créer une invitation</field>
+                    <field name="CPU4">CREATE_INVITE</field>
+                    <field name="USER5">Envoyer des messages</field>
+                    <field name="CPU5">SEND_MESSAGES</field>
+                    <field name="USER6">Envoyer des messages dans les fils</field>
+                    <field name="CPU6">SEND_MESSAGES_IN_THREADS</field>
+                    <field name="USER7">Créer des fils publics</field>
+                    <field name="CPU7">CREATE_PUBLIC_THREADS</field>
+                    <field name="USER8">Créer des fils privés</field>
+                    <field name="CPU8">CREATE_PRIVATE_THREADS</field>
+                    <field name="USER9">Intégrer des liens</field>
+                    <field name="CPU9">EMBED_LINKS</field>
+                    <field name="USER10">Joindre des fichiers</field>
+                    <field name="CPU10">ADD_FILES</field>
+                    <field name="USER11">Ajouter des réactions</field>
+                    <field name="CPU11">ADD_REACTIONS</field>
+                    <field name="USER12">Utiliser des émojis externes</field>
+                    <field name="CPU12">USE_EXTERNAL_EMOJIS</field>
+                    <field name="USER13">Utiliser des autocollants externes</field>
+                    <field name="CPU13">USE_EXTERNAL_STICKERS</field>
+                    <field name="USER14">Mentionner @everyone</field>
+                    <field name="CPU14">PING_EVERYONE</field>
+                    <field name="USER15">Gérer les messages</field>
+                    <field name="CPU15">MANAGE_MESSAGES</field>
+                    <field name="USER16">Gérer les fils</field>
+                    <field name="CPU16">MANAGE_THREADS</field>
+                    <field name="USER17">Voir les anciens messages</field>
+                    <field name="CPU17">SEE_OLD_MESSAGES</field>
+                    <field name="USER18">Envoyer des messages de synthèse vocale</field>
+                    <field name="CPU18">SEND_VOICE_MESSAGE</field>
+                    <field name="USER19">Utiliser les commandes de l'application</field>
+                    <field name="CPU19">USE_APP_COMMANDS</field>
+                    <field name="USER20">Se connecter au salon vocal</field>
+                    <field name="CPU20">CONNECT_TO_VOICE_CHANNEL</field>
+                    <field name="USER21">Parler dans le salon vocal</field>
+                    <field name="CPU21">SPEAK</field>
+                    <field name="USER22">Utiliser la vidéo dans le salon vocal</field>
+                    <field name="CPU22">USE_VIDEO</field>
+                    <field name="USER23">Démarrer les activités</field>
+                    <field name="CPU23">START_ACTIVITY</field>
+                    <field name="USER24">Utiliser la détéction de voix</field>
+                    <field name="CPU24">USE_VOICE_DETECTOR</field>
+                    <field name="USER25">Voix prioritaire</field>
+                    <field name="CPU25">PRIORITY_SPEAKER</field>
+                    <field name="USER26">Rendre un membre muet</field>
+                    <field name="CPU26">MUTE_MEMBER</field>
+                    <field name="USER27">Rendre un membre sourd</field>
+                    <field name="CPU27">DEAF_MEMBER</field>
+                    <field name="USER28">Déplacer un membre</field>
+                    <field name="CPU28">MOOVE_MEMBER</field>
+                    <field name="USER29">Gérer les événements du salon vocal</field>
+                    <field name="CPU29">MANAGE_VOICE_CHANNEL_EVENTS</field>
+                    <next>
+                      <block type="field_dropdown" id="k;72Xu|qOMNR`@*Ru`dA">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">isGranted</field>
+                        <field name="USER0">Autoriser</field>
+                        <field name="CPU0">GRANT</field>
+                        <field name="USER1">Refuser</field>
+                        <field name="CPU1">DENY</field>
+                        <field name="USER2">Indéfinit</field>
+                        <field name="CPU2">UNDEFINED</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_value" id="GLhaZTFDZ5hI!n!yvsIV">
+                <field name="INPUTNAME">channel</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="X]{YOsH*)!D9z{=!oA@)">
+                    <field name="TEXT">Dans le salon textuel ou vocal</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="0@4Q.g,EQ{[:aGKW7^2/"></shadow>
+                  <block type="type_group" id="ZL^kQBmyyC7GU%Nh,`Dd">
+                    <mutation types="2"></mutation>
+                    <value name="TYPE0">
+                      <block type="type_other" id=":)=Bei;7n`66JK2rx1dj">
+                        <field name="TYPE">Channel</field>
+                      </block>
+                    </value>
+                    <value name="TYPE1">
+                      <block type="type_other" id="4M_|s@R9%1N.!8_VPkof">
+                        <field name="TYPE">VoiceChannel</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de définir une permission pour un membre ou un rôle, dans un salon textuel ou vocal.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="W*}RYc{a$y9n4P=C0P?t"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="t?(gv)0uB{QgJxFgl]@E"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#a5a55b"></mutation>
+        <field name="HUE">60</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_list</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="(9Yu~]SzoU@x;i(WdOOt">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="FXnZLxdlCtoq{8cZdlCE">
+            <field name="TEXT">Liste de tous les salons du serveur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer la liste de tous les salons du serveur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=".|.NjYtz-zFZ{OTmGr0W"></shadow>
+      <block type="type_list" id="Y/;B`O1Y#zN/(}*~zJP["></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#a5a55b"></mutation>
+        <field name="HUE">60</field>
+      </block>
+    </value>
   </block></xml>
