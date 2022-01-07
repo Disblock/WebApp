@@ -424,6 +424,7 @@ Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Evénements";
 Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
 Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Salons et fils";
+Blockly.Msg["WORKSPACE_TAB_USERS"] = "Utilisateurs";
 
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -454,7 +455,10 @@ Blockly.Msg["WORKSPACE_CHANNELS_EDIT"] = "Modifier un salon";
 Blockly.Msg["WORKSPACE_CHANNELS_GET_DATA"] = "Obtenir les informations du salon";
 Blockly.Msg["WORKSPACE_CHANNELS_GET_CHANNEL"] = "Récupérer un salon";
 
-
+Blockly.Msg["WORKSPACE_USERS_SEND_MESSAGE"] = "Envoyer un message privé";
+Blockly.Msg["WORKSPACE_USERS_MODERATE"] = "Modérer les utilisateurs";
+Blockly.Msg["WORKSPACE_USERS_CHECK_PERMISSIONS"] = "Vérifier les permissions";
+Blockly.Msg["WORKSPACE_USERS_GET_DATA"] = "Obtenir les informations des utilisateurs";
 
 //Event blocks
 Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -576,12 +580,21 @@ Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL_TOOLTIP"] = "Retourne le n
 Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE"] = "Message envoyé";
 Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP"] = "Représente le message venant d'être envoyé";
 
-//Text Channel Permissions
+//Channel Permissions
 Blockly.Msg["PERMISSION_SEE_CHANNEL"] = "Voir le salon";
 Blockly.Msg["PERMISSION_MANAGE_CHANNEL"] = "Gérer le salon";
 Blockly.Msg["PERMISSION_MANAGE_CHANNEL_PERMISSIONS"] = "Gérer les permissions du salon";
+Blockly.Msg["PERMISSION_MANAGE_RANKS"] = "Gérer les rôles";
+Blockly.Msg["PERMISSION_MANAGE_EMOJIS"] = "Gérer les émotes et les autocollants";
+Blockly.Msg["PERMISSION_SEE_SERVER_LOGS"] = "Voir les logs du serveur";
+Blockly.Msg["PERMISSION_MANAGE_SERVER"] = "Gérer le serveur";
 Blockly.Msg["PERMISSION_MANAGE_WEBHOOKS"] = "Gérer les Webhooks";
 Blockly.Msg["PERMISSION_CREATE_INVITE"] = "Créer une invitation";
+Blockly.Msg["PERMISSION_EDIT_USERNAME"] = "Modifier son pseudo";
+Blockly.Msg["PERMISSION_EDIT_OTHERS_USERNAME"] = "Modifier les pseudos des autres";
+Blockly.Msg["PERMISSION_KICK"] = "Expulser un membre";
+Blockly.Msg["PERMISSION_BAN"] = "Bannir un membre";
+Blockly.Msg["PERMISSION_TIMEOUT"] = "Exclure un membre";
 Blockly.Msg["PERMISSION_SEND_MESSAGES"] = "Envoyer des messages";
 Blockly.Msg["PERMISSION_SEND_MESSAGE_IN_THREADS"] = "Envoyer des messages dans un fil";
 Blockly.Msg["PERMISSION_CREATE_PUBLIC_THREADS"] = "Créer des fils publics";
@@ -607,12 +620,20 @@ Blockly.Msg["PERMISSION_MUTE_MEMBER"] = "Rendre un membre muet";
 Blockly.Msg["PERMISSION_DEAF_MEMBER"] = "Rendre un membre sourd";
 Blockly.Msg["PERMISSION_MOOVE_MEMBER"] = "Déplacer un membre";
 Blockly.Msg["PERMISSION_MANAGE_VOICE_CHANNEL_EVENTS"] = "Gérer les événements du salon vocal";
+Blockly.Msg["PERMISSION_ADMINISTRATOR"] = "Administrateur";
 Blockly.Msg["PERMISSION_GRANT_PERMISSION"] = "Autoriser";
 Blockly.Msg["PERMISSION_DENY_PERMISSION"] = "Refuser";
 Blockly.Msg["PERMISSION_UNDEFINED_PERMISSION"] = "Indéfinit";
 Blockly.Msg["PERMISSION_USER"] = Blockly.Msg["EVENT_VAR_USER"];
 Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"];
 
+//Durations
+Blockly.Msg["DURATION_1MIN"] = "1 minute";
+Blockly.Msg["DURATION_5MIN"] = "5 minutes";
+Blockly.Msg["DURATION_10MIN"] = "10 minutes";
+Blockly.Msg["DURATION_1H"] = "1 heure";
+Blockly.Msg["DURATION_1D"] = "1 jour";
+Blockly.Msg["DURATION_1W"] = "1 semaine";
 
 //Channels blocks
 Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL"] = "Créer le salon textuel nommé %1 Avec la description %2 Dans la catégorie %3";
@@ -643,3 +664,46 @@ Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] = "Définir pour l'utilisateur ou le
 Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] = "Permet de définir une permission pour un membre ou un rôle, dans un salon textuel ou vocal.";
 Blockly.Msg["BLOCK_CHANNEL_LIST"] = "Liste de tous les salons du serveur";
 Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Permet de récupérer la liste de tous les salons du serveur";
+
+
+//User blocks
+Blockly.Msg["BLOCK_USER_BAN"] = "Bannir l'utilisateur %1 avec la raison %2";
+Blockly.Msg["BLOCK_USER_BAN_TOOLTIP"] = "Permet de bannir un utilisateur du serveur avec une raison";
+Blockly.Msg["BLOCK_USER_UNBAN"] = "Débannir l'utilisateur %1 avec la raison %2";
+Blockly.Msg["BLOCK_USER_UNBAN_TOOLTIP"] = "Permet de débannir un utilisateur du serveur avec une raison. L'ID de l'utilisateur peur être utilisé pour le retrouver";
+Blockly.Msg["BLOCK_USER_SEND_PRIVATE_MESSAGE"] = "Envoyer le message %1 à l'utilisateur %2";
+Blockly.Msg["BLOCK_USER_SEND_PRIVATE_MESSAGE_TOOLTIP"] = "Envoyer un message privé à l'utilisateur";
+Blockly.Msg["BLOCK_USER_KICK"] = "Expulser l'utilisateur %1 avec la raison %2";
+Blockly.Msg["BLOCK_USER_KICK_TOOLTIP"] = "Permet d'expulser un utilisateur du serveur avec une raison";
+Blockly.Msg["BLOCK_USER_GET_WITH_ID"] = "Récupérer l'utilisateur avec l'ID %1";
+Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Récupérer l'utilisateur avec l'ID indiqué. L'utilisateur doit être présent dans le serveur, sinon une erreur se produira";
+Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME"] = "Récupérer le pseudo serveur de l'utilisateur %1";
+Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME_TOOLTIP"] = "Récupérer le pseudo de l'utilisateur sur le serveur, sans le discriminant";
+Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Récupérer le pseudo de l'utilisateur %1";
+Blockly.Msg["BLOCK_USER_GET_USERNAME_TOOLTIP"] = "Récupérer le pseudo de l'utilisateur, sans le discriminant";
+Blockly.Msg["BLOCK_USER_GET_TAG"] = "Récupérer le discriminant de l'utilisateur %1";
+Blockly.Msg["BLOCK_USER_GET_TAG_TOOLTIP"] = "Récupérer le discriminant de l'utilisateur, sans son pseudo. Ex : 'Pseudo#1234' retourne '1234'";
+Blockly.Msg["BLOCK_USER_GET_ID"] = "Récupérer l'ID de l'utilisateur %1";
+Blockly.Msg["BLOCK_USER_GET_ID_TOOLTIP"] = "Récupérer l'identifiant de l'utilisateur";
+Blockly.Msg["BLOCK_USER_GET_PICTURE"] = "Récupérer l'avatar de l'utilisateur %1";
+Blockly.Msg["BLOCK_USER_GET_PICTURE_TOOLTIP"] = "Récupérer le lien de l'avatar d'un utilisateur";
+Blockly.Msg["BLOCK_USER_IS_BOT"] = "L'utilisateur est-il un bot ? %1";
+Blockly.Msg["BLOCK_USER_IS_BOT_TOOLTIP"] = "Permet de savoir si l'utilisateur est un robot. Retourne Vrai si oui, Faux si non";
+Blockly.Msg["BLOCK_USER_MUTE"] = "Rendre muet le membre %1";
+Blockly.Msg["BLOCK_USER_MUTE_TOOLTIP"] = "Rendre l'utilisateur muet dans les salons vocaux du serveur";
+Blockly.Msg["BLOCK_USER_UNMUTE"] = "Rendre la parole au membre %1";
+Blockly.Msg["BLOCK_USER_UNMUTE_TOOLTIP"] = "Rendre la parole au membre dans un salon vocal. Annule le \"rendre muet\"";
+Blockly.Msg["BLOCK_USER_DEAF"] = "Mettre en sourdine le membre %1";
+Blockly.Msg["BLOCK_USER_DEAF_TOOLTIP"] = "Rendre l'utilisateur sourd dans les salons vocaux du serveur";
+Blockly.Msg["BLOCK_USER_UNDEAF"] = "Rendre le son au membre %1";
+Blockly.Msg["BLOCK_USER_UNDEAF_TOOLTIP"] = "Permet au membre de retrouver le son dans les salons vocaux, annule l'effet d'un \"mettre en sourdine\"";
+Blockly.Msg["BLOCK_USER_IS_TIMEOUT"] = "Le membre est-il exclu ? %1";
+Blockly.Msg["BLOCK_USER_IS_TIMEOUT_TOOLTIP"] = "Permet de savoir si un membre est exclu du serveur ( Ne peut pas envoyer de messages, rejoindre de salons vocaux, ... ). Retourne Vrai si oui, Faux si non";
+Blockly.Msg["BLOCK_USER_TIMEOUT"] = "Exclure le membre %1 pendant %2 Avec la raison %3";
+Blockly.Msg["BLOCK_USER_TIMEOUT_TOOLTIP"] = "Permet d'exclure le membre pour une durée déterminée";
+Blockly.Msg["BLOCK_USER_CUSTOM_TIMEOUT"] = "Exclure le membre %1 pendant %2 secondes avec la raison %3";
+Blockly.Msg["BLOCK_USER_CUSTOM_TIMEOUT_TOOLTIP"] = "Permet d'exclure le membre pour une durée personnalisée";
+Blockly.Msg["BLOCK_USER_REMOVE_TIMEOUT"] = "Retirer l'exclusion du membre %1";
+Blockly.Msg["BLOCK_USER_REMOVE_TIMEOUT_TOOLTIP"] = "Permet de supprimer une exclusion d'un membre";
+Blockly.Msg["BLOCK_USER_HAS_PERMISSION"] = "L'utilisateur %1 possède t-il la permission %2 ?";
+Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir si un membre possède la permission associée. Retourne Vrai si oui, Faux si non";
