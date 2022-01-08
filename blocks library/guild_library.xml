@@ -1,0 +1,226 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="7WcWFQ.bzCeER{otelMA" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_guild_get_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="RoH[+||Ql1eye%WaA}0K">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="AM?-9Ex=-_-w.4WY7dME">
+            <field name="TEXT">Identifiant du serveur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+20]*`OD-!Lf06H`~0`0" deletable="false" movable="false">
+        <field name="TEXT">Permet d'obtenir l'identifiant du serveur DIscord</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="cF6u5;ty*]w!qf%qOoh," deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="5m7XyTV[Pw422-,Z=]oz"></shadow>
+      <block type="type_string" id="kKr=;tzZn{BT|,*|mKlm"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+dTct,Fps?o;r-d=7;Ml">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="7WcWFQ.bzCeER{otelMA" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_guild_get_boosts_count</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="RoH[+||Ql1eye%WaA}0K">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="AM?-9Ex=-_-w.4WY7dME">
+            <field name="TEXT">Nombre de boosts du serveur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+20]*`OD-!Lf06H`~0`0" deletable="false" movable="false">
+        <field name="TEXT">Permet d'obtenir le nombre de boosts du serveur Discord</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="cF6u5;ty*]w!qf%qOoh," deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="5m7XyTV[Pw422-,Z=]oz"></shadow>
+      <block type="type_number" id="Ed}dX3.on8]]kn1*d3+Z"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+dTct,Fps?o;r-d=7;Ml">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="7WcWFQ.bzCeER{otelMA" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_guild_get_members_count</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="RoH[+||Ql1eye%WaA}0K">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="AM?-9Ex=-_-w.4WY7dME">
+            <field name="TEXT">Nombre de personnes dans le serveur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+20]*`OD-!Lf06H`~0`0" deletable="false" movable="false">
+        <field name="TEXT">Permet d'obtenir le nombre de personnes dans le serveur Discord</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="cF6u5;ty*]w!qf%qOoh," deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="5m7XyTV[Pw422-,Z=]oz"></shadow>
+      <block type="type_number" id="Ed}dX3.on8]]kn1*d3+Z"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+dTct,Fps?o;r-d=7;Ml">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="7WcWFQ.bzCeER{otelMA" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_guild_create_invite</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="RoH[+||Ql1eye%WaA}0K">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="AM?-9Ex=-_-w.4WY7dME">
+            <field name="TEXT">Créer une invitation expirant après</field>
+            <next>
+              <block type="field_dropdown" id="~b{`78JW,e3^I]L]N1l~">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">duration</field>
+                <field name="USER0">30 minutes</field>
+                <field name="CPU0">30MIN</field>
+                <field name="USER1">1 heure</field>
+                <field name="CPU1">1H</field>
+                <field name="USER2">6 heures</field>
+                <field name="CPU2">6H</field>
+                <field name="USER3">12 heures</field>
+                <field name="CPU3">12H</field>
+                <field name="USER4">1 jour</field>
+                <field name="CPU4">1D</field>
+                <field name="USER5">7 jours</field>
+                <field name="CPU5">1W</field>
+                <field name="USER6">Jamais</field>
+                <field name="CPU6">NEVER</field>
+                <next>
+                  <block type="field_static" id="1kRin+z)?%^tqkLW-koS">
+                    <field name="TEXT">et avec</field>
+                    <next>
+                      <block type="field_dropdown" id="Z}4f-?Z`JqD:^w7W*to1">
+                        <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                        <field name="FIELDNAME">uses</field>
+                        <field name="USER0">Illimité</field>
+                        <field name="CPU0">UNLIMITED</field>
+                        <field name="USER1">1</field>
+                        <field name="CPU1">1</field>
+                        <field name="USER2">5</field>
+                        <field name="CPU2">5</field>
+                        <field name="USER3">10</field>
+                        <field name="CPU3">10</field>
+                        <field name="USER4">25</field>
+                        <field name="CPU4">25</field>
+                        <field name="USER5">50</field>
+                        <field name="CPU5">50</field>
+                        <field name="USER6">100</field>
+                        <field name="CPU6">100</field>
+                        <next>
+                          <block type="field_static" id="LwX5-:wJe_GYCN{Ix.yw">
+                            <field name="TEXT">utilisations</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+20]*`OD-!Lf06H`~0`0" deletable="false" movable="false">
+        <field name="TEXT">Créer une invitation pour le serveur. Retourne le lien de l'invitation créée</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="cF6u5;ty*]w!qf%qOoh," deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="5m7XyTV[Pw422-,Z=]oz"></shadow>
+      <block type="type_string" id="hWt1Qz)Mk,|FAd*@7NhJ"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+dTct,Fps?o;r-d=7;Ml">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="7WcWFQ.bzCeER{otelMA" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_guild_get_name</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="RoH[+||Ql1eye%WaA}0K">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="AM?-9Ex=-_-w.4WY7dME">
+            <field name="TEXT">Nom du serveur</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+20]*`OD-!Lf06H`~0`0" deletable="false" movable="false">
+        <field name="TEXT">Permet d'obtenir le nom du serveur Discord</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="cF6u5;ty*]w!qf%qOoh," deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="5m7XyTV[Pw422-,Z=]oz"></shadow>
+      <block type="type_string" id="kKr=;tzZn{BT|,*|mKlm"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+dTct,Fps?o;r-d=7;Ml">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block></xml>

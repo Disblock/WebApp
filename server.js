@@ -233,6 +233,10 @@ app.get('/blockly/blocks/users', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./blockly/blocks/user_blocks.ejs');
 });
+app.get('/blockly/blocks/guild', function(req, res){
+  res.setHeader("Content-Type", 'application/javascript');
+  res.render('./blockly/blocks/guild_blocks.ejs');
+});
 
 app.get('/blockly/loc', function(req, res){
   //TODO : MODIFY TO GET RIGHT LANGUAGE
