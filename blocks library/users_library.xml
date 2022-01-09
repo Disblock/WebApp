@@ -1095,4 +1095,73 @@
         <field name="HUE">285</field>
       </block>
     </value>
+  </block><block type="factory_base" id="/U3`A/oGU4XIauIi%f^`" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_user_has_rank</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="Bp/50vi7N}7o7R:^yE6R">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",Qv3kA]TWjRnE)W%]?p9">
+            <field name="TEXT">L'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="%+!n#.Zj!w:[!s1pu@ZO"></shadow>
+          <block type="type_other" id="E;oq@p)1g#?%ogLG0E-E">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="CdZ6CB|W1WHxXTcJlNpL">
+            <field name="INPUTNAME">rank</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="Hg49/ctKZ6Y.H{ZCYy.%">
+                <field name="TEXT">possède t-il le rôle</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="L|;PD6{0vTK#O}X7{24u"></shadow>
+              <block type="type_other" id="!8%UnpVTCnN{mfra4=GR">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_dummy" id="s:4h:x)3;IS4s(zWPH^H">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="8ago)889Tpjh1j%qBn5C">
+                    <field name="TEXT">?</field>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="FvY98@JR[Pku,%_efS^a" deletable="false" movable="false">
+        <field name="TEXT">Permet de savoir si un utilisateur possède le rôle indiqué. Retourne Vrai si oui, Faux si non</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="53=${NLtQF-XL*HW{0q*" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vEm}sd6^uPMS|s{_Z(-."></shadow>
+      <block type="type_boolean" id="z|]jM~k]]*p)/Y,WIi$;"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="hpTlT,1zt~TV|L+2%sWV">
+        <mutation colour="#935ba5"></mutation>
+        <field name="HUE">285</field>
+      </block>
+    </value>
   </block></xml>
