@@ -611,4 +611,237 @@
         <field name="HUE">0</field>
       </block>
     </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_get_name</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Obtenir le nom du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Retourne le nom du rôle donné en paramètre</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",plt{$5iFPF~poSvAl}c"></shadow>
+      <block type="type_string" id="h(%GSo#Q:2z7TcY2~~UY"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_get_position</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Obtenir la position dans l'arborescence du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Retourne la position du rôle dans l'arborescence des rôles du serveur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",plt{$5iFPF~poSvAl}c"></shadow>
+      <block type="type_number" id="J%j*xV6,8VddUG-#%:1u"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_get_color</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Obtenir la couleur du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Retourne la couleur du rôle au format #ffffff</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",plt{$5iFPF~poSvAl}c"></shadow>
+      <block type="type_string" id="{5adU0pV%`RIF;8CHGO`"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_get_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Obtenir l'identifiant du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Retourne l'identifiant du rôle</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",plt{$5iFPF~poSvAl}c"></shadow>
+      <block type="type_string" id="{5adU0pV%`RIF;8CHGO`"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_has_permission</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Le rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="rdZz@*aZSjq.^%Zt0GuX">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="e_z9Rtwpx1V;*L6$^;1R">
+                <field name="TEXT">possède t-il la permission</field>
+                <next>
+                  <block type="field_dropdown" id="XTxShlB|dH0;4ryaeEkz">
+                    <mutation options="[&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">permission</field>
+                    <field name="USER0">INSERT PERMISSIONS HERE</field>
+                    <field name="CPU0">OPTIONNAME</field>
+                    <next>
+                      <block type="field_static" id="Th)j71Ix)o_-E3/Fns:x">
+                        <field name="TEXT">?</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de savoir un rôle dispose d'une permission. Retourne Vrai si oui, Faux si non ou indéfinit</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="wKT7A.=PHF]Hj%1,4HR="></shadow>
+      <block type="type_boolean" id="wC0yJ)e]AzeWUi,q#6Xs"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
   </block></xml>
