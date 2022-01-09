@@ -426,6 +426,7 @@ Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
 Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Salons et fils";
 Blockly.Msg["WORKSPACE_TAB_USERS"] = "Utilisateurs";
 Blockly.Msg["WORKSPACE_TAB_GUILD"] = "Serveur";
+Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Rôles";
 
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
 Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -462,7 +463,12 @@ Blockly.Msg["WORKSPACE_USERS_CHECK_PERMISSIONS"] = "Vérifier les permissions";
 Blockly.Msg["WORKSPACE_USERS_GET_DATA"] = "Obtenir les informations des utilisateurs";
 
 Blockly.Msg["WORKSPACE_GUILD_INVITE"] = "Gérer les invitations";
-Blockly.Msg["WORKSPACE_GUILD_GET_DATE"] = "Gérer les invitations";
+Blockly.Msg["WORKSPACE_GUILD_GET_DATA"] = "Obtenir des données";
+
+Blockly.Msg["WORKSPACE_RANKS_CREATE"] = "Créer un rôle";
+Blockly.Msg["WORKSPACE_RANKS_DELETE"] = "Supprimer un rôle";
+Blockly.Msg["WORKSPACE_RANKS_EDIT"] = "Modifier un rôle";
+Blockly.Msg["WORKSPACE_RANKS_GET_DATA"] = "Obtenir les données d'un rôle";
 
 //Event blocks
 Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -729,11 +735,31 @@ Blockly.Msg["BLOCK_GUILD_GET_MEMBERS_COUNT"] = "Nombre de personnes dans le serv
 Blockly.Msg["BLOCK_GUILD_GET_MEMBERS_COUNT_TOOLTIP"] = "Permet d'obtenir le nombre de personnes dans le serveur Discord";
 Blockly.Msg["BLOCK_GUILD_CREATE_INVITE"] = "Créer une invitation expirant après %1 et avec %2 utilisations";
 Blockly.Msg["BLOCK_GUILD_CREATE_INVITE_TOOLTIP"] = "Créer une invitation pour le serveur. Retourne le lien de l'invitation créée";
-Blockly.Msg[""] = "";
-Blockly.Msg["_TOOLTIP"] = "";
-Blockly.Msg[""] = "";
-Blockly.Msg["_TOOLTIP"] = "";
-Blockly.Msg[""] = "";
-Blockly.Msg["_TOOLTIP"] = "";
-Blockly.Msg[""] = "";
-Blockly.Msg["_TOOLTIP"] = "";
+
+
+//Ranks blocks
+Blockly.Msg["BLOCK_RANK_CREATE"] = "Créer un rôle avec le nom %1 et la couleur %2 %3 Les membres peuvent être mentionnés : %4 %5 Les membres sont affichés dans la liste : %6 %7 Ajouter ce rôle dans l'arborescence à la position %8";
+Blockly.Msg["BLOCK_RANK_CREATE_TOOLTIP"] = "Permet de créer un rôle. Insérez un nom, choisissez une couleur ( Blanc = transparent ) et indiquez si le rôle est mentionnable et si les membres sont visibles dans la liste des utilisateurs. Enfin, indiquez la position de ce rôle dans l'arborescence des grades.";
+Blockly.Msg["BLOCK_RANK_CREATED_RANK"] = "Rôle créé";
+Blockly.Msg["BLOCK_RANK_CREATED_RANK_TOOLTIP"] = "Retourne le rôle créé";
+Blockly.Msg["BLOCK_RANK_DELETE"] = "Supprimer le rôle %1";
+Blockly.Msg["BLOCK_RANK_DELETE_TOOLTIP"] = "Supprime le rôle passé en paramètre";
+Blockly.Msg["BLOCK_RANK_EDIT_NAME"] = "Renommer le rôle %1 Avec le nouveau nom %2";
+Blockly.Msg["BLOCK_RANK_EDIT_NAME_TOOLTIP"] = "Permet de renommer un rôle";
+Blockly.Msg["BLOCK_RANK_EDIT_COLOR"] = "Changer la couleur du rôle %1 avec la nouvelle couleur %2";
+Blockly.Msg["BLOCK_RANK_EDIT_COLOR_TOOLTIP"] = "Permet de changer la couleur d'un rôle. La couleur Blanc donne un rôle transparent";
+Blockly.Msg["BLOCK_RANK_EDIT_PINGEABLE"] = "Définir si le rôle %1 doit être mentionnable : %2";
+Blockly.Msg["BLOCK_RANK_EDIT_PINGEABLE_TOOLTIP"] = "Permet de définir si le rôle devrait être mentionnable ou non";
+Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN"] = "Définir si les membres du rôle %1 doivent être affichés dans la liste des membres %2";
+Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN_TOOLTIP"] = "Permet de définir si les membres d'un rôle sont affichés dans la liste des membres du serveur";
+Blockly.Msg["BLOCK_RANK_EDIT_POSITION"] = "Définir la position du rôle %1 dans l'arborescence des rôles à %2";
+Blockly.Msg["BLOCK_RANK_EDIT_POSITION_TOOLTIP"] = "Permet de définir la position du rôle dans l'arborescence des rôles du serveur";
+Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID"] = "Obtenir le rôle ayant l'identifiant %1";
+Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID_TOOLTIP"] = "Permet de retrouver un rôle avec son identifiant";
+Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS"] = "Définir la permission %1 du rôle %2 à %3";
+Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS_TOOLTIP"] = "Permet de modifier les permissions du rôle";
+
+
+//Others
+Blockly.Msg["YES"] = "Oui";
+Blockly.Msg["NO"] = "Non";

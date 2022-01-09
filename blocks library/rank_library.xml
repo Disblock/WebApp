@@ -1,0 +1,614 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_create</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Créer un rôle avec le nom</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_string" id="YCp!G!e2qx.`EZ{S[o,t"></block>
+        </value>
+        <next>
+          <block type="input_dummy" id="{:jJ,BrVkto6d^-X0EOS">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="aDtsh0HhwS)G_Z-,z[Kf">
+                <field name="TEXT">et la couleur</field>
+                <next>
+                  <block type="field_colour" id="SD]j42Y8)d=weLfKw`~{">
+                    <field name="COLOUR">#ffffff</field>
+                    <field name="FIELDNAME">color</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id=",Y@L?4IW:hlg{xKn}48.">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="*w?l5vvLDvh%r{?~a7B6">
+                    <field name="TEXT">Les membres peuvent être mentionnés :</field>
+                    <next>
+                      <block type="field_checkbox" id="r4Dcep8CoG(nXK*|C3Pk">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">is_pingeable</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="input_dummy" id="nl!j~[.LCG[^?eoc3=Xf">
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="!C%SEbeKX=;Oc-#lDV8)">
+                        <field name="TEXT">Les membres sont affichés dans la liste :</field>
+                        <next>
+                          <block type="field_checkbox" id="V8l7gcn_f?RP=cQH,uue">
+                            <field name="CHECKED">TRUE</field>
+                            <field name="FIELDNAME">are_members_shown</field>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="input_value" id="S*g/?Mr3ubs,?T7l:zhp">
+                        <field name="INPUTNAME">position</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_static" id="hW)I;E;qL:@lP6gpg@VC">
+                            <field name="TEXT">Ajouter ce rôle dans l'arborescence à la position</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id="gR/i)V2O6Xo;Xn31x.,s"></shadow>
+                          <block type="type_number" id="%2qU.)CX#J.#HG:jkW$="></block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de créer un rôle. Insérez un nom, choisissez une couleur ( Blanc = transparent ) et indiquez si le rôle est mentionnable et si les membres sont visibles dans la liste des utilisateurs. Enfin, indiquez la position de ce rôle dans l'arborescence des grades.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8[x%1(h1UbBDa;vMN#1!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="yh4_Fg1@]xLgW%`|htk-"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_created_rank</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="9u49tOIUUz*tH8fzDqeP">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="8zB)_9:UzM85Gp|(9[`U">
+            <field name="TEXT">Rôle créé</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Retourne le rôle créé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="oJ%T+1z7,l%$;.]*sM!d"></shadow>
+      <block type="type_other" id="{2hTb,{J9uV:UIWc[cG:">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_delete</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="v?+suZxWS*;3R`!GK_QN">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="8zB)_9:UzM85Gp|(9[`U">
+            <field name="TEXT">Supprimer le rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id=",wo1;E0eh}1t[BWuUQZ("></shadow>
+          <block type="type_other" id="{2hTb,{J9uV:UIWc[cG:">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Supprime le rôle passé en paramètre</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="oW@DfgdLR,?oj/4n/Y1Z"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="LvViL9[b6O$CN9fE#^*v"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_edit_name</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Renommer le rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="T/3Ltgm3;HyRKoBj|c,?">
+            <field name="INPUTNAME">name</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="N{DOclEtLuP1}H}yR1)V">
+                <field name="TEXT">Avec le nouveau nom</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="*8%L`H~y{v;.P{G2Y1n6"></shadow>
+              <block type="type_string" id="hP-gP;22+fV:@^Zf[@7$"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de renommer un rôle</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8[x%1(h1UbBDa;vMN#1!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="yh4_Fg1@]xLgW%`|htk-"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_edit_color</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Changer la couleur du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="7`]rv-;%Cz.jcum8FPuI">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="gf2w,(sH:!HcJLgf}zcb">
+                <field name="TEXT">avec la nouvelle couleur</field>
+                <next>
+                  <block type="field_colour" id=",.,*9NXG|{[`S$sxrJ)T">
+                    <field name="COLOUR">#ffffff</field>
+                    <field name="FIELDNAME">color</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de changer la couleur d'un rôle. La couleur Blanc donne un rôle transparent</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8[x%1(h1UbBDa;vMN#1!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="yh4_Fg1@]xLgW%`|htk-"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_edit_pingeable</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Définir si le rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="7`]rv-;%Cz.jcum8FPuI">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="gf2w,(sH:!HcJLgf}zcb">
+                <field name="TEXT">doit être mentionnable :</field>
+                <next>
+                  <block type="field_dropdown" id="Jnv[!Tk5n{m.D(!ZVAq:">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">IS_PINGEABLE</field>
+                    <field name="USER0">Oui</field>
+                    <field name="CPU0">PINGEABLE</field>
+                    <field name="USER1">Non</field>
+                    <field name="CPU1">NOT_PINGEABLE</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de définir si le rôle devrait être mentionnable ou non</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8[x%1(h1UbBDa;vMN#1!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="yh4_Fg1@]xLgW%`|htk-"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_edit_members_shown</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Définir si les membres du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="7`]rv-;%Cz.jcum8FPuI">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="gf2w,(sH:!HcJLgf}zcb">
+                <field name="TEXT">doivent être affichés dans la liste des membres</field>
+                <next>
+                  <block type="field_dropdown" id="Jnv[!Tk5n{m.D(!ZVAq:">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">ARE_MEMBER_SHOWN</field>
+                    <field name="USER0">Oui</field>
+                    <field name="CPU0">SHOWN</field>
+                    <field name="USER1">Non</field>
+                    <field name="CPU1">NOT_SHOWN</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de définir si les membres d'un rôle sont affichés dans la liste des membres du serveur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8[x%1(h1UbBDa;vMN#1!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="yh4_Fg1@]xLgW%`|htk-"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_edit_position</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Définir la position du rôle</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="g|b(Y`UvWQ`uwKe4f)a!">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="riH6MFez_5axq=nQ*@^s">
+            <field name="INPUTNAME">position</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="gf2w,(sH:!HcJLgf}zcb">
+                <field name="TEXT">dans l'arborescence des rôles à</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="NaL(*!^3mouOR`(C0*7@"></shadow>
+              <block type="type_number" id="pVj441o`7MFVuFj|j+_R"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de définir la position du rôle dans l'arborescence des rôles du serveur.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="8[x%1(h1UbBDa;vMN#1!"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="yh4_Fg1@]xLgW%`|htk-"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_get_rank_with_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">id</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Obtenir le rôle ayant l'identifiant</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_string" id="YCp!G!e2qx.`EZ{S[o,t"></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de retrouver un rôle avec son identifiant</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="-x@k`p)/R))mWHV81V|-"></shadow>
+      <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_rank_edit_permissions</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="4=Hr4Q]K[?D7/6J_bpj%">
+        <field name="INPUTNAME">rank</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="v2Bda9}cGXWq?HkB)*y[">
+            <field name="TEXT">Définir la permission</field>
+            <next>
+              <block type="field_dropdown" id="XTxShlB|dH0;4ryaeEkz">
+                <mutation options="[&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">permission</field>
+                <field name="USER0">INSERT PERMISSIONS HERE</field>
+                <field name="CPU0">OPTIONNAME</field>
+                <next>
+                  <block type="field_static" id="e_z9Rtwpx1V;*L6$^;1R">
+                    <field name="TEXT">du rôle</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
+          <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
+            <field name="TYPE">Rank</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="X[N(j`?T;jj0LQb{d+jG">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="[5*`w~3@q$84hW:}CdGz">
+                <field name="TEXT">à</field>
+                <next>
+                  <block type="field_dropdown" id="0veGf,{[;Pk%*Aw2vrM,">
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <field name="FIELDNAME">isGranted</field>
+                    <field name="USER0">Autorisé</field>
+                    <field name="CPU0">GRANT</field>
+                    <field name="USER1">Refusé</field>
+                    <field name="CPU1">DENY</field>
+                    <field name="USER2">Indéfinit</field>
+                    <field name="CPU2">UNDEFINED</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Permet de modifier les permissions du rôle</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="f`p!=IkZH)a1NBG40TwY"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="B$f#x82M!|RP]M`U=OwM"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a55b5b"></mutation>
+        <field name="HUE">0</field>
+      </block>
+    </value>
+  </block></xml>

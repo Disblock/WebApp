@@ -516,10 +516,32 @@
   <category name="%{BKY_WORKSPACE_TAB_GUILD}" colour="270">
     <label text="%{BKY_WORKSPACE_GUILD_INVITE}"></label>
       <block type="block_guild_create_invite"></block>
-    <label text="%{BKY_WORKSPACE_GUILD_GET_DATE}"></label>
+    <label text="%{BKY_WORKSPACE_GUILD_GET_DATA}"></label>
       <block type="block_guild_get_id"></block>
       <block type="block_guild_get_name"></block>
       <block type="block_guild_get_boosts_count"></block>
       <block type="block_guild_get_members_count"></block>
+  </category>
+  <category name="%{BKY_WORKSPACE_TAB_RANKS}" colour="0">
+    <label text="%{BKY_WORKSPACE_RANKS_CREATE}"></label>
+      <block type="block_rank_create">
+        <value name="position">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="block_rank_created_rank"></block>
+    <label text="%{BKY_WORKSPACE_RANKS_DELETE}"></label>
+      <block type="block_rank_delete"></block>
+    <label text="%{BKY_WORKSPACE_RANKS_GET_DATA}"></label>
+      <block type="block_rank_get_rank_with_id"></block>
+    <label text="%{BKY_WORKSPACE_RANKS_EDIT}"></label>
+      <block type="block_rank_edit_name"></block>
+      <block type="block_rank_edit_color"></block>
+      <block type="block_rank_edit_pingeable"></block>
+      <block type="block_rank_edit_members_shown"></block>
+      <block type="block_rank_edit_position"></block>
+      <block type="block_rank_edit_permissions"></block>
   </category>
 </xml>
