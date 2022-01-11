@@ -62,7 +62,7 @@ module.exports = {
                       getChannelsWhereAdmin(result);
                     }else{
                       //Fatal error : user may have removed access to the application
-                      console.log('ERROR, '+req.session.discord_id+' may have removed app access');
+                      console.log('USER\'S FATAL ERROR, '+req.session.discord_id+' may have removed app access');
                       req.session.destroy();
                     }
                   })
@@ -73,6 +73,7 @@ module.exports = {
       }else{
         //NOT OK, was an error
         console.log('ERROR');
+        req.session.destroy();
         return(callback(undefined));
       }
     });
