@@ -465,31 +465,53 @@
       <block type="block_message_number_of_mentions_channel"></block>
 
   </category>
+  <category name="%{BKY_WORKSPACE_TAB_EMBEDS}" colour="345">
+    <label text="%{BKY_WORKSPACE_EMBEDS_CREATE_SEND}"></label>
+      <block type="block_embed_create"></block>
+      <block type="block_embed_var_embed"></block>
+      <block type="block_embed_send"></block>
+
+    <label text="%{BKY_WORKSPACE_EMBEDS_EDIT}"></label>
+      <block type="block_embed_option_set_image"></block>
+      <block type="block_embed_option_set_thumbnail"></block>
+      <block type="block_embed_option_add_field"></block>
+      <block type="block_embed_option_set_author"></block>
+      <block type="block_embed_option_set_footer"></block>
+      <block type="block_embed_option_set_timestamp"></block>
+
+  </category>
   <category name="%{BKY_WORKSPACE_TAB_CHANNELS}" colour="75">
     <label text="%{BKY_WORKSPACE_CHANNELS_CREATE}"></label>
       <block type="block_channel_create_text_channel"></block>
       <block type="block_channel_var_text_channel"></block>
       <block type="block_channel_create_voice_channel"></block>
       <block type="block_channel_var_voice_channel"></block>
+
     <label text="%{BKY_WORKSPACE_CHANNELS_DELETE}"></label>
       <block type="block_channel_delete"></block>
+
     <label text="%{BKY_WORKSPACE_CHANNELS_EDIT}"></label>
       <block type="block_channel_renamme"></block>
       <block type="block_channel_set_permission"></block>
+
     <label text="%{BKY_WORKSPACE_CHANNELS_GET_CHANNEL}"></label>
       <block type="block_channel_get_channel_with_id"></block>
+
     <label text="%{BKY_WORKSPACE_CHANNELS_GET_DATA}"></label>
       <block type="block_channel_get_channel_name"></block>
       <block type="block_channel_get_channel_topic"></block>
       <block type="block_channel_get_channel_id"></block>
       <block type="block_channel_get_category_of_channel"></block>
       <block type="block_channel_get_permission"></block>
+
     <label text="%{BKY_WORKSPACE_EVENTS_EXTRA}"></label>
       <block type="block_channel_list"></block>
   </category>
+
   <category name="%{BKY_WORKSPACE_TAB_USERS}" colour="300">
     <label text="%{BKY_WORKSPACE_USERS_SEND_MESSAGE}"></label>
       <block type="block_user_send_private_message"></block>
+
     <label text="%{BKY_WORKSPACE_USERS_MODERATE}"></label>
       <block type="block_user_kick"></block>
       <block type="block_user_ban"></block>
@@ -501,9 +523,11 @@
       <block type="block_user_unmute"></block>
       <block type="block_user_deaf"></block>
       <block type="block_user_undeaf"></block>
+
     <label text="%{BKY_WORKSPACE_USERS_CHECK_PERMISSIONS}"></label>
       <block type="block_user_has_permission"></block>
       <block type="block_user_has_rank"></block>
+
     <label text="%{BKY_WORKSPACE_USERS_GET_DATA}"></label>
       <block type="block_user_get_with_id"></block>
       <block type="block_user_get_username"></block>
@@ -514,15 +538,18 @@
       <block type="block_user_is_bot"></block>
       <block type="block_user_is_timeout"></block>
   </category>
+
   <category name="%{BKY_WORKSPACE_TAB_GUILD}" colour="270">
     <label text="%{BKY_WORKSPACE_GUILD_INVITE}"></label>
       <block type="block_guild_create_invite"></block>
+
     <label text="%{BKY_WORKSPACE_GUILD_GET_DATA}"></label>
       <block type="block_guild_get_id"></block>
       <block type="block_guild_get_name"></block>
       <block type="block_guild_get_boosts_count"></block>
       <block type="block_guild_get_members_count"></block>
   </category>
+
   <category name="%{BKY_WORKSPACE_TAB_RANKS}" colour="0">
     <label text="%{BKY_WORKSPACE_RANKS_CREATE}"></label>
       <block type="block_rank_create">
@@ -533,8 +560,10 @@
         </value>
       </block>
       <block type="block_rank_created_rank"></block>
+
     <label text="%{BKY_WORKSPACE_RANKS_DELETE}"></label>
       <block type="block_rank_delete"></block>
+
     <label text="%{BKY_WORKSPACE_RANKS_GET_DATA}"></label>
       <block type="block_rank_get_rank_with_id"></block>
       <block type="block_rank_get_name"></block>
@@ -542,6 +571,7 @@
       <block type="block_rank_get_color"></block>
       <block type="block_rank_get_id"></block>
       <block type="block_rank_has_permission"></block>
+
     <label text="%{BKY_WORKSPACE_RANKS_EDIT}"></label>
       <block type="block_rank_edit_name"></block>
       <block type="block_rank_edit_color"></block>
@@ -550,4 +580,5 @@
       <block type="block_rank_edit_position"></block>
       <block type="block_rank_edit_permissions"></block>
   </category>
+
 </xml>

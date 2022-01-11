@@ -1,0 +1,543 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="Q9E8!X`ISPl1s{C_y`DW" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_create</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="hc,`?D*#OgU`K4C;:o#w">
+        <field name="INPUTNAME">name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="M5.yocL[qQna*45=@/3H">
+            <field name="TEXT">Créer un message Embed avec le titre</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="k5fP!`Il*1p:,4%c!lmr"></shadow>
+          <block type="type_string" id="+qbh$t7]jzbF$@dvRmt%"></block>
+        </value>
+        <next>
+          <block type="input_dummy" id="@cw)=8`1[$rghC(ZOs{i">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="v?PeD%wBZjHWzfNVA}Z-">
+                <field name="TEXT">Avec la couleur</field>
+                <next>
+                  <block type="field_colour" id="*.7Ci0]:49aYdZ`Xd@p@">
+                    <field name="COLOUR">#ff0000</field>
+                    <field name="FIELDNAME">color</field>
+                    <next>
+                      <block type="field_static" id="sYnAtsr%1mJPo3!#5wbA">
+                        <field name="TEXT">et les options :</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_statement" id="S9VKXJO;%V[(Z(%eQv]k">
+                <field name="INPUTNAME">options</field>
+                <field name="ALIGN">LEFT</field>
+                <value name="TYPE">
+                  <shadow type="type_null" id="Tw_9[3BK3H_,U`BAuCB)"></shadow>
+                  <block type="type_other" id="wDrPY,#L+dM@S%yk_l}3">
+                    <field name="TYPE">EmbedOptions</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="r5bc1fhepJs@g[hgT=kI" deletable="false" movable="false">
+        <field name="TEXT">Permet de créer un message Embed, avec un titre et une couleur. Utilisez les blocs de description d'embed pour le modifier.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="6Ff)V_^@,1e@^(%WL][G" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="I*Q,21FYK0IBW0WG~HH9"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="u~VKjzy=r:I+C-he(XmM"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="pr=smI|D8!909aW[oDOr">
+        <mutation colour="#a55b6d"></mutation>
+        <field name="HUE">345</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Kub}@P*?MhBC,}{|RV93" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_option_set_image</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="cmR5B^a,`6MZ?4qhpcw_">
+        <field name="INPUTNAME">image_url</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="KlI=PIR50_2:YQYA#b~j">
+            <field name="TEXT">Définir l'URL de l'image de l'embed :</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="_w(sl+MUV?Ybbao1:X=["></shadow>
+          <block type="type_string" id="0l;mv7o@g]ve3Fc+sV-,"></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Jt-%qZ5XY|10d.l.C=#," deletable="false" movable="false">
+        <field name="TEXT">Option d'embed, indiquez l'URL de l'image sous forme de chaîne de charactères</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8dz/B3d@5?kYMI,y#sG(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="rGAZg%.EeKNd9QDZ6[Vp"></shadow>
+      <block type="type_other" id="=+CWuQ86B@%@:~CQlB::">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="=gODGa.`(3yn)d)m^]Z:"></shadow>
+      <block type="type_other" id="D),NZ;lTGZt0:QLf`x)m">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="!eW^t_sCI07}:TxAqqP=">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Kub}@P*?MhBC,}{|RV93" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_option_set_thumbnail</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="cmR5B^a,`6MZ?4qhpcw_">
+        <field name="INPUTNAME">thumbnail_url</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="KlI=PIR50_2:YQYA#b~j">
+            <field name="TEXT">Définir l'URL de l'icone de l'embed :</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="_w(sl+MUV?Ybbao1:X=["></shadow>
+          <block type="type_string" id="0l;mv7o@g]ve3Fc+sV-,"></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Jt-%qZ5XY|10d.l.C=#," deletable="false" movable="false">
+        <field name="TEXT">Option d'embed, indiquez l'URL de l'icone sous forme de chaîne de charactères</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8dz/B3d@5?kYMI,y#sG(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="rGAZg%.EeKNd9QDZ6[Vp"></shadow>
+      <block type="type_other" id="=+CWuQ86B@%@:~CQlB::">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="=gODGa.`(3yn)d)m^]Z:"></shadow>
+      <block type="type_other" id="D),NZ;lTGZt0:QLf`x)m">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="!eW^t_sCI07}:TxAqqP=">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Kub}@P*?MhBC,}{|RV93" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_option_add_field</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="cmR5B^a,`6MZ?4qhpcw_">
+        <field name="INPUTNAME">name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="KlI=PIR50_2:YQYA#b~j">
+            <field name="TEXT">Ajouter un champ avec le nom</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="_w(sl+MUV?Ybbao1:X=["></shadow>
+          <block type="type_string" id="0l;mv7o@g]ve3Fc+sV-,"></block>
+        </value>
+        <next>
+          <block type="input_value" id="hZ*ENa|Cz1XT!YRMv2%[">
+            <field name="INPUTNAME">text</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="ThsroLiOH)qBe0[,YVZs">
+                <field name="TEXT">Et le texte :</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null"></shadow>
+              <block type="type_string" id="Fe{Ixc;p,tDF/GT(}f1:"></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="J0Zg{f7[.oKP21YQrf5d">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="$Apd`4z!/^bLx|L_/}.o">
+                    <field name="TEXT">Aligné avec les autres :</field>
+                    <next>
+                      <block type="field_checkbox" id="@2)T-(AvRqUDMqc5,A2|">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">inline</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Jt-%qZ5XY|10d.l.C=#," deletable="false" movable="false">
+        <field name="TEXT">Option d'embed, Ajoutez un champ dans un embed. Taille max du texte : 255 charactères</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8dz/B3d@5?kYMI,y#sG(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="rGAZg%.EeKNd9QDZ6[Vp"></shadow>
+      <block type="type_other" id="=+CWuQ86B@%@:~CQlB::">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="=gODGa.`(3yn)d)m^]Z:"></shadow>
+      <block type="type_other" id="D),NZ;lTGZt0:QLf`x)m">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="!eW^t_sCI07}:TxAqqP=">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Kub}@P*?MhBC,}{|RV93" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_option_set_author</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="cmR5B^a,`6MZ?4qhpcw_">
+        <field name="INPUTNAME">name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="KlI=PIR50_2:YQYA#b~j">
+            <field name="TEXT">Définir l'auteur avec le nom</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="_w(sl+MUV?Ybbao1:X=["></shadow>
+          <block type="type_string" id="0l;mv7o@g]ve3Fc+sV-,"></block>
+        </value>
+        <next>
+          <block type="input_value" id="hZ*ENa|Cz1XT!YRMv2%[">
+            <field name="INPUTNAME">URL</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="ThsroLiOH)qBe0[,YVZs">
+                <field name="TEXT">l'URL</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null"></shadow>
+              <block type="type_string" id="Fe{Ixc;p,tDF/GT(}f1:"></block>
+            </value>
+            <next>
+              <block type="input_value" id="@uV-ZNtD7c),H~xebQ!Y">
+                <field name="INPUTNAME">icon_URL</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="}+Vu?v]k}hx*-{b+xWu#">
+                    <field name="TEXT">Et le lien de son image</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null"></shadow>
+                  <block type="type_string" id="]^!:@hv0;Bu_MwUQbl]G"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Jt-%qZ5XY|10d.l.C=#," deletable="false" movable="false">
+        <field name="TEXT">Option d'embed, Définissez l'auteur de l'embed</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8dz/B3d@5?kYMI,y#sG(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="rGAZg%.EeKNd9QDZ6[Vp"></shadow>
+      <block type="type_other" id="=+CWuQ86B@%@:~CQlB::">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="=gODGa.`(3yn)d)m^]Z:"></shadow>
+      <block type="type_other" id="D),NZ;lTGZt0:QLf`x)m">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="!eW^t_sCI07}:TxAqqP=">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Kub}@P*?MhBC,}{|RV93" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_option_set_footer</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="cmR5B^a,`6MZ?4qhpcw_">
+        <field name="INPUTNAME">name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="KlI=PIR50_2:YQYA#b~j">
+            <field name="TEXT">Ajouter un Footer avec le texte</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="_w(sl+MUV?Ybbao1:X=["></shadow>
+          <block type="type_string" id="0l;mv7o@g]ve3Fc+sV-,"></block>
+        </value>
+        <next>
+          <block type="input_value" id="@uV-ZNtD7c),H~xebQ!Y">
+            <field name="INPUTNAME">icon_URL</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="}+Vu?v]k}hx*-{b+xWu#">
+                <field name="TEXT">Et le lien de son image</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null"></shadow>
+              <block type="type_string" id="]^!:@hv0;Bu_MwUQbl]G"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Jt-%qZ5XY|10d.l.C=#," deletable="false" movable="false">
+        <field name="TEXT">Option d'embed, Définissez le bas de l'embed</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8dz/B3d@5?kYMI,y#sG(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="rGAZg%.EeKNd9QDZ6[Vp"></shadow>
+      <block type="type_other" id="=+CWuQ86B@%@:~CQlB::">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="=gODGa.`(3yn)d)m^]Z:"></shadow>
+      <block type="type_other" id="D),NZ;lTGZt0:QLf`x)m">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="!eW^t_sCI07}:TxAqqP=">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Kub}@P*?MhBC,}{|RV93" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_option_set_timestamp</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="U19~BLRnVU-V,Knn*75~">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="P^;)v%lU=RF6@]Vls|)Y">
+            <field name="TEXT">Ajouter la date d'envoi de l'embed</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Jt-%qZ5XY|10d.l.C=#," deletable="false" movable="false">
+        <field name="TEXT">Option d'embed, permet d'ajouter la date d'envoi de l'embed</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8dz/B3d@5?kYMI,y#sG(" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="rGAZg%.EeKNd9QDZ6[Vp"></shadow>
+      <block type="type_other" id="=+CWuQ86B@%@:~CQlB::">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="=gODGa.`(3yn)d)m^]Z:"></shadow>
+      <block type="type_other" id="D),NZ;lTGZt0:QLf`x)m">
+        <field name="TYPE">EmbedOptions</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="!eW^t_sCI07}:TxAqqP=">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q9E8!X`ISPl1s{C_y`DW" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_embed_send</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="hc,`?D*#OgU`K4C;:o#w">
+        <field name="INPUTNAME">embed</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="M5.yocL[qQna*45=@/3H">
+            <field name="TEXT">Envoyer le message Embed</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="k5fP!`Il*1p:,4%c!lmr"></shadow>
+          <block type="type_other" id="K$U:uelkENDJ2k:S_hv_">
+            <field name="TYPE">Embed</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="_|u4q};(|[[yF[G*A%/P">
+            <field name="INPUTNAME">channel</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="^`/IsbR%J6nyP5$b7r0b">
+                <field name="TEXT">dans le salon</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="}E}#BgBq9L=cyPb`l!q/"></shadow>
+              <block type="type_group" id="hh4q*K$4!}:TDw~$NR:L">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="Q27f7Hum|?|@}9:E~LRl">
+                    <field name="TYPE">Channel</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="U#fqqvO3FtdS^j;6}0{9">
+                    <field name="TYPE">ThreadChannel</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="r5bc1fhepJs@g[hgT=kI" deletable="false" movable="false">
+        <field name="TEXT">Permet d'envoyer un message Embed</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="6Ff)V_^@,1e@^(%WL][G" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="I*Q,21FYK0IBW0WG~HH9"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="u~VKjzy=r:I+C-he(XmM"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="pr=smI|D8!909aW[oDOr">
+        <mutation colour="#a55b6d"></mutation>
+        <field name="HUE">345</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q9E8!X`ISPl1s{C_y`DW" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_embed_var_embed</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="9)i!Sqgo1aav-0rRbokG">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="K$sEF*f};o.^jR]}o{X7">
+            <field name="TEXT">Message Embed</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="r5bc1fhepJs@g[hgT=kI" deletable="false" movable="false">
+        <field name="TEXT">Représente le message Embed créé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="6Ff)V_^@,1e@^(%WL][G" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",V~nVKd!ZkaUMiIWwgsQ"></shadow>
+      <block type="type_other" id="xx|*@hk`SK$J^4k4*XUC">
+        <field name="TYPE">Embed</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="pr=smI|D8!909aW[oDOr">
+        <mutation colour="#a55b80"></mutation>
+        <field name="HUE">330</field>
+      </block>
+    </value>
+  </block></xml>
