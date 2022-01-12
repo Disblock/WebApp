@@ -1,0 +1,13 @@
+version: '3'
+services:
+  redis-server:
+    image: redis:alpine
+    restart: always
+
+  blockly:
+    depends_on:
+      - redis-server
+    image: disblock
+    ports:
+      - "8080:8080"
+    restart: always

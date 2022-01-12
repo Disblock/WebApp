@@ -1,52 +1,74 @@
-const images = require('./modules/images.js');//Fonction gérant le /img/...
-const mysql_connection = require('./modules/database.js');//Crée une connexion Mysql, stocke aussi les infos de connexion
+/*############################################*/
+/* Homemade modules */
+/*############################################*/
+
+const images = require('./modules/images.js');//Allow to get pictures ( /img/...)
+const mysql_connection = require('./modules/database.js');//Store Database credentials
 const discord_login = require('./modules/discord_login.js');//Used to login with Discord
-const discord_regen = require('./modules/discord_token_regen.js');
-const discord_get_servers = require('./modules/discord_get_servers.js');
-const blockly_xml_to_js = require('./modules/blockly_xml_to_js.js');
+const discord_regen = require('./modules/discord_token_regen.js');//Used to regen user's tokens
+const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
+const blockly_xml_to_js = require('./modules/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 
 
+/*############################################*/
+/* Imported modules */
+/*############################################*/
 
-const express = require('express');//Import d'Express, simplifie la gestion du backend
-const morgan = require('morgan');//Import de morgan, permet de log les connexions au serveur
-const ejs = require('ejs');//Import d'ejs : permet de rendre les .ejs, les <% %>
-const bodyParser = require('body-parser');// Import de body-parser : permet de récupérer les infos des formulaires sur le site
-const mysql = require('mysql');//Import de MySql, permettra de faire des requêtes vers la BDD
+const express = require('express');//Did I really need to explain ?
+const morgan = require('morgan');//Logs for the server
+const ejs = require('ejs');//Allow to serve .ejs files
+const bodyParser = require('body-parser');//Get data from <form>
+const mysql = require('mysql');//Mysql
 const redis = require("redis");//Redis
-const session = require('express-session');//Gestion des sessions avec Express
-const redisStore = require('connect-redis')(session);//Stockage des données dans Redis
-const fs = require('fs');//FileSystem, permet d'intéragir avec les fichiers présents sur le serveur
-const path = require('path');//Gestion des chemins d'accès
+const session = require('express-session');//Sessions management
+const redisStore = require('connect-redis')(session);//Save sessions in Redis
+const fs = require('fs');//FileSystem, can interact with files stored in the system
+const path = require('path');//Manage access paths
 const crypto = require('crypto');//Generate random strings
 const url = require('url');//Enable access to query string parameters
 const bigInt = require("big-integer");//Used to check permissions on a server
 
 
+/*############################################*/
+/* Express and server creation */
+/*############################################*/
 
 var app = express();//Création de l'app Express
 var server = require("http").createServer(app);//Crée le serveur
 var connection = mysql_connection.getConnexion();//Création d'une connexion à la BDD
 
+
+/*############################################*/
+/* Database connection */
+/*############################################*/
+
 //Connection to the database
 try{
   connection.connect();//Connexion à la BDD
 }catch(error){
-  console.log("Impossible d'accéder à la BDD !!");
+  console.log("ERROR : CAN'T ACCESS TO THE DATABASE !!");
   console.log(error);
 }
 
+/*############################################*/
+/* Redis Connection */
+/*############################################*/
 
 //Redis and session init
-var redisClient  = redis.createClient();
+var redisClient  = redis.createClient({url:'redis://@redis-server:6379'});/* Add credentials on Redis */
 
 redisClient.on('error', (err) => {
   console.log('Redis error : ', err);
 });
 
+/*############################################*/
+/* Session module */
+/*############################################*/
+
 var sessionMiddleware = session({
   secret: ['@ptR9F=~Y&qDZ3jW<_{bGt/C:lsKBJqE', 'U5WHH,aR\IF~4gCKhgOQ2lJwQH=T-C>C', 'M+ll2BYkCy0|0ze<ZaS}]&6l,iHzSA5B'],
   //Sessions are stored in Redis server
-  store: new redisStore({ host: '127.0.0.1', port: 6379, client: redisClient, ttl:  86000}),
+  store: new redisStore({client: redisClient, ttl:  86000}),
   saveUninitialized: true,
   resave: true
 });
@@ -54,8 +76,9 @@ var sessionMiddleware = session({
 app.use(sessionMiddleware);
 
 
-
-
+/*############################################*/
+/* Socket.io module */
+/*############################################*/
 
 const io = require("socket.io")(server);//Max 1Mb/send by default
 io.use(function(socket, next){//A chaque requête io, le middleware de sessions est appelé
@@ -63,10 +86,18 @@ io.use(function(socket, next){//A chaque requête io, le middleware de sessions 
 });
 
 
+/*############################################*/
+/* Morgan module ( Logging ) */
+/*############################################*/
+
 app.use(morgan('combined'));//Démarre les logs
 app.use(bodyParser.urlencoded({extended: true}));
 
 
+
+/*############################################*/
+/* Function ran on every request */
+/*############################################*/
 
 //Headers on every request
 app.use(function(req, res, next){
@@ -76,10 +107,13 @@ app.use(function(req, res, next){
     next();
 });
 
-//Pages
+/*############################################*/
+/* Pages Definition */
+/*############################################*/
+
 app.get('/', function(req, res){
   //localization
-    const lang = req.headers["accept-language"].split(",")[0];
+    const lang = req.headers["accept-language"].split(",")[0];//Useless ?
     const state = crypto.randomBytes(4).toString('hex');
     req.session.state = state;
     res.render('index.ejs', {state: state, session: req.session});
@@ -152,7 +186,10 @@ app.get('/panel/:id', function(req, res){
 });
 
 
-//Style
+/*############################################*/
+/* Style definition */
+/*############################################*/
+
 app.get('/style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/style.ejs');
@@ -174,7 +211,10 @@ app.get('/style/guildEdit', function(req, res){
   res.render('./style/guildEdit.ejs');
 });
 
-//Localization
+/*############################################*/
+/* localization */
+/*############################################*/
+
 app.get('/localization', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   try{
@@ -253,7 +293,9 @@ app.get('/blockly/loc', function(req, res){
 });
 
 
-//Blockly socket.io
+/*############################################*/
+/* Blockly Socket.io */
+/*############################################*/
 
 io.sockets.on('connection', function(socket){
   console.log("Un client s'est connecté !");
