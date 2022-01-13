@@ -1,7 +1,7 @@
-Blockly.defineBlocksWithJsonArray([
-
 /* ########## Messages Blocks ######### */
 /* Used to interact with Messages methods. */
+module.exports = {
+  blocks: JSON.stringify([
 {
   "type": "block_message_reply",
   "message0": "%{BKY_BLOCK_MESSAGE_REPLY}",
@@ -350,4 +350,4 @@ Blockly.defineBlocksWithJsonArray([
   "tooltip": "%{BKY_BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP}",
   "helpUrl": ""
 }
-]);
+])};

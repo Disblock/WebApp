@@ -1,9 +1,7 @@
-Blockly.defineBlocksWithJsonArray([
-
 /* ########## Event Blocks ######### */
 /* Used to trigger events. They come sometimes with var blocks, defined under event blocks */
-
-{
+module.exports = {
+  blocks: JSON.stringify([{
   "type": "event_message_sent",
   "message0": "%{BKY_EVENT_MESSAGE_SENT}",
   "args0": [
@@ -492,4 +490,5 @@ Blockly.defineBlocksWithJsonArray([
   "tooltip": "%{BKY_EVENT_VAR_REACTION_TOOLTIP}",
   "helpUrl": ""
 }
-]);
+])
+};

@@ -1,7 +1,8 @@
-Blockly.defineBlocksWithJsonArray(
-
 /* ########## Ranks Blocks ######### */
 /* Used to perform actions and get data about ranks */
+
+module.exports = {
+  blocks: JSON.stringify(
   [{
     "type": "block_rank_create",
     "message0": "%{BKY_BLOCK_RANK_CREATE}",
@@ -643,4 +644,4 @@ Blockly.defineBlocksWithJsonArray(
   "tooltip": "%{BKY_BLOCK_RANK_HAS_PERMISSION_TOOLTIP}",
   "helpUrl": ""
 }]
-);
+)};

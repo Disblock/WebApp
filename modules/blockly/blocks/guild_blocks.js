@@ -1,7 +1,8 @@
-Blockly.defineBlocksWithJsonArray([
-
 /* ########## Guild Blocks ######### */
 /* Used to perform actions and get data about the guild */
+
+module.exports = {
+  blocks: JSON.stringify([
 {
   "type": "block_guild_get_id",
   "message0": "%{BKY_BLOCK_GUILD_GET_ID}",
@@ -111,4 +112,4 @@ Blockly.defineBlocksWithJsonArray([
   "colour": 270,
   "tooltip": "%{BKY_BLOCK_GUILD_CREATE_INVITE_TOOLTIP}",
   "helpUrl": ""
-}]);
+}])};

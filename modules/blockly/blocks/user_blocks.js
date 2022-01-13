@@ -1,7 +1,8 @@
-Blockly.defineBlocksWithJsonArray(
-
 /* ########## User Blocks ######### */
 /* Used to interact with Users methods. */
+
+module.exports = {
+  blocks: JSON.stringify(
 [{
   "type": "block_user_ban",
   "message0": "%{BKY_BLOCK_USER_BAN}",
@@ -569,4 +570,4 @@ Blockly.defineBlocksWithJsonArray(
   "colour": 285,
   "tooltip": "%{BKY_BLOCK_USER_HAS_RANK_TOOLTIP}",
   "helpUrl": ""
-}]);
+}])};

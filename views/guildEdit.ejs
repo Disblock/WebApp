@@ -38,19 +38,17 @@
 
     <!-- BLOCKLY -->
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <!--<script src="/blockly/custom_types"></script>-->
-    <script src="/blockly/blocks/event"></script>
-    <script src="/blockly/blocks/messages"></script>
-    <script src="/blockly/blocks/channels"></script>
-    <script src="/blockly/blocks/users"></script>
-    <script src="/blockly/blocks/guild"></script>
-    <script src="/blockly/blocks/rank"></script>
-    <script src="/blockly/blocks/embed"></script>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>s
     <script src="/blockly/loc"></script>
     <script>
       const socket = io();
       var toolbox = document.getElementById("toolbox");
+
+      <%
+        for(var i=0;i<blocks.length;i++){
+          %> Blockly.defineBlocksWithJsonArray(<%- blocks[i] %>); <%
+        }
+      %>
 
   		var custom_theme = Blockly.Theme.defineTheme('themeName', {
   		  'base': Blockly.Themes.Classic,
@@ -91,6 +89,8 @@
   		/* Inject your workspace */
   		var workspace = Blockly.inject("#blocklyDiv", options);
       workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
+
+
 
       //Function to send workspace's blocks to the server :
       function sendWorkspaceToServer(){

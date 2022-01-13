@@ -113,7 +113,6 @@ app.use(function(req, res, next){
 
 app.get('/', function(req, res){
   //localization
-    const lang = req.headers["accept-language"].split(",")[0];//Useless ?
     const state = crypto.randomBytes(4).toString('hex');
     req.session.state = state;
     res.render('index.ejs', {state: state, session: req.session});
@@ -172,7 +171,8 @@ app.get('/panel/:id', function(req, res){
       if(guild!=undefined){
         //User is admin on the selected server
 
-        res.render('guildEdit.ejs', {session: req.session, guild: guild});
+        //Let's render Blockly app, with custom blocks added here
+        res.render('guildEdit.ejs', {session: req.session, guild: guild, blocks: [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,require('./modules/blockly/blocks/user_blocks.js').blocks]});
 
       }else{
         //User isn't admin on the selected server
@@ -234,12 +234,18 @@ app.get('/localization', function(req, res){
 });
 
 
-//Images
+/*############################################*/
+/* Images gateway */
+/*############################################*/
+
 app.get('/img/:img', function(req, res){
   images.getImage(req, res);
 });
 
-//Scripts
+/*############################################*/
+/* JS scripts */
+/*############################################*/
+
 app.get('/script/particles', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./js/scripts/particles.min.ejs');
@@ -251,40 +257,18 @@ app.get('/script/particle_config', function(req, res){
 });
 
 
-//Blockly
+/*############################################*/
+/* Blockly contents ( blocks, ... ) */
+/*############################################*/
+
 app.get('/blockly/custom_types', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./blockly/custom_types/custom_types.ejs');
 });
 
-app.get('/blockly/blocks/event', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/event_blocks.ejs');
-});
-app.get('/blockly/blocks/messages', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/message_blocks.ejs');
-});
-app.get('/blockly/blocks/channels', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/channel_blocks.ejs');
-});
-app.get('/blockly/blocks/users', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/user_blocks.ejs');
-});
-app.get('/blockly/blocks/guild', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/guild_blocks.ejs');
-});
-app.get('/blockly/blocks/rank', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/rank_blocks.ejs');
-});
-app.get('/blockly/blocks/embed', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/blocks/embed_blocks.ejs');
-});
+/*############################################*/
+/* Blockly Localization */
+/*############################################*/
 
 app.get('/blockly/loc', function(req, res){
   //TODO : MODIFY TO GET RIGHT LANGUAGE
