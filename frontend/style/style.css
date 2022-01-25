@@ -1,0 +1,15 @@
+*{
+  font-family: Arial; /* C'est dégeulasse, faut changer */
+}
+
+html,body{
+  margin: 0px;
+  border: 0px;
+  width: 100%;
+  background-color: #131415;
+  overflow-x: hidden;
+}
+
+
+
+/* Keyframes */
