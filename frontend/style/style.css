@@ -1,5 +1,16 @@
+/* #### Neccessary knowledge to work on style #### */
+/*
+
+General CSS properties are on top of the document, followed by screen size specific properties, by size ( Computers, tablets, phones )
+The content of pages is 60% of the sceen width on computers screen and 80% on tablets / phones
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+
 *{
-  font-family: Arial; /* C'est dégeulasse, faut changer */
+  font-family: 'Josefin Sans', Arial; /* https://fonts.google.com/specimen/Josefin+Sans#standard-styles */
 }
 
 html,body{
