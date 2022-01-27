@@ -53,6 +53,7 @@
 #first_area_div_panel_button:hover, #first_area_div_text button:hover{
   animation-duration: 0.5s;
   animation-name: button_hover;
+  background-color: #3EA1CC;
 }
 
 #first_area_div_text{
@@ -139,7 +140,7 @@
 #why_disblock_div h2{
   color: white;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .why_disblock_content_div{ /* A sub-section of the big Why section */
@@ -157,13 +158,14 @@
   position: absolute;
 }
 
-.why_disblock_content_div div *{/* Contents in div, img and text sections */
+.why_disblock_content_div div *:not(span,a){/* Contents in div, img and text sections */
+  /* That don't apply on span and a, since their properties are defined by the parent <p> element */
   position: absolute;
   top:50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   width:100%;
-  text-align: center;
+  text-align: left;
   color:white;
 }
 
@@ -180,6 +182,81 @@
   width: 40%;
 }
 
+.why_disblock_content_div_text_main_span{
+  font-size: 2em;
+}
+.why_disblock_content_div_text_desc_span{
+  font-size: 1em;
+}
+.why_disblock_content_div_text_link_span a{
+  font-size: 1em;
+  color:#2E86AB;
+}
+.why_disblock_content_div_text_link_span a::before{
+  content: '> ';
+}
+
+
+/* ##### docs area ##### */
+#docs_div{
+  border: dotted 4px white;
+  width: 60%;
+  margin: auto;
+  margin-top: 60px;
+}
+
+#docs_div h2{
+  color: white;
+  text-align: center;
+  font-size: 2em;
+}
+#docs_div p{
+  color: white;
+  text-align: center;
+  font-size: 1em;
+}
+
+#docs_div_content::before{
+  /* Content is defined directly on html */
+  color:white;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+}
+#docs_div_content{
+  width: 100%;
+  border: dotted 2px red;
+  margin-top: 20px;
+  position: relative;
+}
+
+.docs_div_content_link{
+  margin-top: 60px;
+  height: 180px;
+  width: 40%;
+  border: dotted 2px yellow;
+}
+/*.docs_div_content_link p{
+  display: inline-block;
+  margin-top: 50%;
+  border: dotted 4px red;
+}
+.docs_div_content_link a img{
+  display: inline-block;
+  float: right;
+  align: right;
+  height: 100%;
+  border-radius: 16px;
+}*/
+
+#docs_div_content_discord_integration{
+  position: absolute;
+  top:60px;
+  bottom: 0px;
+  right: 0px;
+  left:50%;
+  border: dotted 2px orange;
+}
 
 /* Keyframes */
 @keyframes button_hover {

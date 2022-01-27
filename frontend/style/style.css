@@ -21,6 +21,12 @@ html,body{
   overflow-x: hidden;
 }
 
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
 
 
 /* Keyframes */

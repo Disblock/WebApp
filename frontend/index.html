@@ -53,19 +53,40 @@
     <div id="why_disblock_div">
       <h2>Pourquoi Disblock ?</h2>
 
-      <div class="why_disblock_content_div">
-        <div class="why_disblock_content_div_img why_disblock_content_div_left">
+      <div class="why_disblock_content_div"><!-- That's the div  that contain everything -->
+        <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
-        <div class="why_disblock_content_div_text why_disblock_content_div_right">
-          <p>Issou</p>
+        <div class="why_disblock_content_div_text why_disblock_content_div_right"><!-- This div contain the description of the image -->
+          <p>
+            <span class="why_disblock_content_div_text_main_span"><!-- Three span are present, they contain the title of this image, a detailled description, and a link to see more -->
+              Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            </span><br><br>
+            <span class="why_disblock_content_div_text_desc_span">
+              Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            </span><br><br>
+            <span class="why_disblock_content_div_text_link_span">
+              <a href="#">Voir la liste des fonctionnalités</a>
+            </span>
+          </p>
         </div>
       </div>
 
       <div class="why_disblock_content_div">
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
-          <p>Issou</p>
+          <p>
+            <span class="why_disblock_content_div_text_main_span">
+              Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            </span><br><br>
+            <span class="why_disblock_content_div_text_desc_span">
+              Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            </span><br><br>
+            <span class="why_disblock_content_div_text_link_span">
+              <a href="#">Voir la liste des fonctionnalités</a>
+            </span>
+          </p>
         </div>
+
         <div class="why_disblock_content_div_img why_disblock_content_div_right">
           <img src="img/main.png">
         </div>
@@ -75,20 +96,82 @@
         <div class="why_disblock_content_div_img why_disblock_content_div_left">
           <img src="img/main.png">
         </div>
+
         <div class="why_disblock_content_div_text why_disblock_content_div_right">
-          <p>Issou</p>
+          <p>
+            <span class="why_disblock_content_div_text_main_span">
+              Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            </span><br><br>
+            <span class="why_disblock_content_div_text_desc_span">
+              Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            </span><br><br>
+            <span class="why_disblock_content_div_text_link_span">
+              <a href="#">Voir la liste des fonctionnalités</a>
+            </span>
+          </p>
         </div>
       </div>
 
       <div class="why_disblock_content_div">
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
-          <p>Issou</p>
+          <p>
+            <span class="why_disblock_content_div_text_main_span">
+              Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            </span><br><br>
+            <span class="why_disblock_content_div_text_desc_span">
+              Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            </span><br><br>
+            <span class="why_disblock_content_div_text_link_span">
+              <a href="#">Voir la liste des fonctionnalités</a>
+            </span>
+          </p>
         </div>
-        <div class="why_disblock_content_div_img why_disblock_content_div_right">
+
+        <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
       </div>
 
+    </div>
+
+
+    <!-- The div with a little text and a button/img -->
+    <div class="content_line_div" id="first_content_line_div">
+      <div class="content_line_div_text">
+        <p>Lorem ipsum dolor sit amet !</p>
+      </div>
+      <div class="content_line_div_media">
+      </div>
+    </div>
+
+    <!-- The div with some docs and help to use the bot -->
+    <div id="docs_div">
+      <h2>Une documentation en constante expansion</h2>
+      <p>Besoin d'aide ? Nous avons des guides et une communauté Discord !</p>
+
+      <style>/* That's defined here to make the translations easier */
+      #docs_div_content::before{content: "Je veux...";}
+      </style>
+
+      <!-- This div contain everything else about docs and Discord integration -->
+      <div id="docs_div_content">
+
+        <!-- These div contain links to the docs-->
+        <div class="docs_div_content_link"><!-- Faire ders sous-div -->
+          <!--<p>Utiliser un événement ?</p>
+          <a href="#" style="border: dotted 4px white;"><img src="img/doc_link.png"></a>-->
+        </div>
+        <div class="docs_div_content_link">
+        </div>
+        <div class="docs_div_content_link">
+        </div>
+
+        <!-- This div contain Discord integration -->
+        <div id="docs_div_content_discord_integration">
+
+        </div>
+
+      </div>
     </div>
 
   </body>
