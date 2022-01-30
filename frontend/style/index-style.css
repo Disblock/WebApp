@@ -158,8 +158,8 @@
   position: absolute;
 }
 
-.why_disblock_content_div div *:not(span,a){/* Contents in div, img and text sections */
-  /* That don't apply on span and a, since their properties are defined by the parent <p> element */
+.why_disblock_content_div div *:not(p,a){/* Contents in div, img and text sections */
+  /* That don't apply on p and a, since their properties are defined by class */
   position: absolute;
   top:50%;
   -ms-transform: translateY(-50%);
@@ -168,6 +168,12 @@
   text-align: left;
   color:white;
 }
+
+.why_disblock_content_div div p{
+  color:white;
+  margin-top: 2em;
+}
+
 
 .why_disblock_content_div_left{
   left:0px;
@@ -193,7 +199,8 @@
   color:#2E86AB;
 }
 .why_disblock_content_div_text_link_span a::before{
-  content: '> ';
+  content: "> ";
+
 }
 
 
@@ -235,19 +242,26 @@
   height: 180px;
   width: 40%;
   border: dotted 2px yellow;
+  position: relative;
 }
-/*.docs_div_content_link p{
+.docs_div_content_link_text_div{
   display: inline-block;
-  margin-top: 50%;
-  border: dotted 4px red;
+  border: dotted 2px red;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-.docs_div_content_link a img{
+.docs_div_content_link_img_div{
   display: inline-block;
-  float: right;
-  align: right;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+}
+.docs_div_content_link_img_div a img{
   height: 100%;
   border-radius: 16px;
-}*/
+}
 
 #docs_div_content_discord_integration{
   position: absolute;
