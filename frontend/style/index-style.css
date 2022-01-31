@@ -1,5 +1,12 @@
 /* Style for index */
 
+/* ##### Globally used properties ##### */
+.section_title{
+  color:white;
+  text-align: center;
+  font-size: 2em;
+}
+
 /* ##### first_area_div ##### */
 #first_area_div{
   width: 100%;
@@ -96,6 +103,7 @@
     background-color: #1C232A;
     position: relative;
     overflow: hidden;
+    margin-top: 100px;
 }
 
 .content_line_div_text{
@@ -110,7 +118,6 @@
 .content_line_div_text p{
   color: white;
   font-size: 1.5em;
-
 }
 
 .content_line_div_media{
@@ -125,35 +132,24 @@
   border: dotted 2px red;
 }
 
-#first_content_line_div{
-  margin-top: 100px;
-}
-
 /* ##### why disblock area ##### */
 #why_disblock_div{
-  border: dotted 2px red;
   width: 60%;
   margin: auto;
   margin-top: 50px;
 }
 
-#why_disblock_div h2{
-  color: white;
-  text-align: center;
-  font-size: 2em;
-}
+
 
 .why_disblock_content_div{ /* A sub-section of the big Why section */
   width: 100%;
   min-height: 40vh;
-  margin-top: 20vh;
+  margin-top: 15vh;
   position: relative;
-  border: dotted 3px green;
 }
 
 .why_disblock_content_div div{/* Sub-div, parents of img/text sections */
   height: 100%;
-  border: dotted 2px orange;
   display: inline-block;
   position: absolute;
 }
@@ -171,7 +167,7 @@
 
 .why_disblock_content_div div p{
   color:white;
-  margin-top: 2em;
+  /*margin-top: 2em; Seems to be useless*/
 }
 
 
@@ -200,23 +196,17 @@
 }
 .why_disblock_content_div_text_link_span a::before{
   content: "> ";
-
 }
 
 
 /* ##### docs area ##### */
 #docs_div{
-  border: dotted 4px white;
   width: 60%;
   margin: auto;
   margin-top: 60px;
 }
 
-#docs_div h2{
-  color: white;
-  text-align: center;
-  font-size: 2em;
-}
+
 #docs_div p{
   color: white;
   text-align: center;
@@ -232,7 +222,6 @@
 }
 #docs_div_content{
   width: 100%;
-  border: dotted 2px red;
   margin-top: 20px;
   position: relative;
 }
@@ -241,38 +230,128 @@
   margin-top: 60px;
   height: 180px;
   width: 40%;
-  border: dotted 2px yellow;
-  position: relative;
+
 }
 .docs_div_content_link_text_div{
-  display: inline-block;
-  border: dotted 2px red;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  width: 100%;
+  height: 20%;
 }
 .docs_div_content_link_img_div{
-  display: inline-block;
-  position: absolute;
-  right: 0px;
-  height: 100%;
+  width: 100%;
+  height: 75%;
 }
 .docs_div_content_link_img_div a img{
+  width: 100%;
   height: 100%;
   border-radius: 16px;
 }
 
-#docs_div_content_discord_integration{
+#docs_div_content_discord_widget{
   position: absolute;
   top:60px;
   bottom: 0px;
   right: 0px;
   left:50%;
-  border: dotted 2px orange;
+}
+.docs_div_content_discord_widget_text_div{
+  width: 100%;
+}
+.docs_div_content_discord_widget_div{
+  width: 350px;/* That's the width defined on the iframe of the Discord's widget*/
+  margin: auto;
+  margin-top: 5em;
 }
 
-/* Keyframes */
+
+/* ##### Social networks area ##### */
+#social_networks_div{
+  width: 60%;
+  margin: auto;
+  border: dotted 2px blue;
+  margin-top: 60px;
+}
+
+#social_networks_div_content{
+  /* display flex defined here: this display must be defined in the parent div */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social_networks_div_content_publication{
+  border: dotted 2px green;
+  display: inline-block;
+  width: 40%;
+  min-height: 100px;
+  margin: 2%;
+}
+
+/* ##### Footer ##### */
+.footer{
+  background-color: #1C232A;
+  margin: 0px;
+  margin-top: 60px;
+  min-height: 20vh;
+  height: auto;
+}
+
+.footer_content{
+  width: 60%;
+  min-height: 20vh;
+  margin:auto;
+  position: relative;
+  border: dotted 2px red;
+}
+
+.footer_content_language{
+  margin-top: 10px;
+  width: 120px;
+  height: 40px;
+  border: dotted 2px green;
+}
+
+.footer_content h2{
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin: 0px;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.footer_content ul{
+  max-width: 40%;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 20px;
+  border: dotted 2px red;
+}
+.footer_content ul li{
+  list-style: none;
+  margin: 0px;
+}
+.footer_content ul li a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  line-height: 150%;
+  margin: 0px;
+}
+.footer_content p{
+  margin-top: 10px;
+  color: grey;
+  font-size: 0.7em;
+}
+.footer_content_img_div{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 15%;
+    height: 90%;
+}
+
+
+/*  ##### Keyframes ##### */
 @keyframes button_hover {
   from {
     background-color: #2E86AB;

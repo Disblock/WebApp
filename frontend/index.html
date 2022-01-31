@@ -41,7 +41,7 @@
     </div>
 
     <!-- The div with a little text and a button/img -->
-    <div class="content_line_div" id="first_content_line_div">
+    <div class="content_line_div">
       <div class="content_line_div_text">
         <p>Lorem ipsum dolor sit amet !</p>
       </div>
@@ -51,7 +51,7 @@
 
     <!-- The "Why Disblock" area -->
     <div id="why_disblock_div">
-      <h2>Pourquoi Disblock ?</h2>
+      <h2 class="section_title">Pourquoi Disblock ?</h2>
 
       <div class="why_disblock_content_div"><!-- That's the div  that contain everything -->
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
@@ -128,7 +128,7 @@
 
 
     <!-- The div with a little text and a button/img -->
-    <div class="content_line_div" id="first_content_line_div">
+    <div class="content_line_div">
       <div class="content_line_div_text">
         <p>Lorem ipsum dolor sit amet !</p>
       </div>
@@ -138,14 +138,14 @@
 
     <!-- The div with some docs and help to use the bot -->
     <div id="docs_div">
-      <h2>Une documentation en constante expansion</h2>
+      <h2 class="section_title">Une documentation en constante expansion</h2>
       <p>Besoin d'aide ? Nous avons des guides et une communauté Discord !</p>
 
       <style>/* That's defined here to make the translations easier */
       #docs_div_content::before{content: "Je veux...";}
       </style>
 
-      <!-- This div contain everything else about docs and Discord integration -->
+      <!-- This div contain everything else about docs and Discord widget -->
       <div id="docs_div_content">
 
         <!-- These div contain links to the docs-->
@@ -159,16 +159,75 @@
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
-        <div class="docs_div_content_link">  
+        <div class="docs_div_content_link">
           <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
-        <!-- This div contain Discord integration -->
-        <div id="docs_div_content_discord_integration">
-
+        <!-- This div contain Discord widget -->
+        <div id="docs_div_content_discord_widget">
+          <div class="docs_div_content_discord_widget_text_div"><p>Demander ?</p></div>
+          <div class="docs_div_content_discord_widget_div">
+            <iframe src="https://discord.com/widget?id=893991454798643230&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+          </div>
         </div>
 
+      </div>
+    </div>
+
+
+    <!-- The div with a little text and a button/img -->
+    <div class="content_line_div">
+      <div class="content_line_div_text">
+        <p>Lorem ipsum dolor sit amet !</p>
+      </div>
+      <div class="content_line_div_media">
+      </div>
+    </div>
+
+    <!-- The div with social networks ( Twitter )-->
+    <div id="social_networks_div">
+      <h2 class="section_title">Suivez-nous sur Twitter !</h2>
+      <div id="social_networks_div_content">
+
+        <!-- Four last publications made on Twitter -->
+        <div class="social_networks_div_content_publication">
+        </div>
+        <div class="social_networks_div_content_publication">
+        </div>
+        <div class="social_networks_div_content_publication">
+        </div>
+        <div class="social_networks_div_content_publication">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- The footer -->
+    <div class="footer">
+      <div class="footer_content">
+
+        <!-- Div used to select language -->
+        <div class="footer_content_language">
+        </div>
+
+        <!-- The title -->
+        <h2 class="section_title">Disblock</h2>
+
+        <!-- Links -->
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">RGPD</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+
+        <!-- Text on the bottom -->
+        <p>&lt;/&gt; by LJ50</p>
+
+        <!-- Div for an img -->
+        <div class="footer_content_img_div">
+          <img src="img/doc_link.png" height="100%" width="100%">
+        </div>
       </div>
     </div>
 
