@@ -1,9 +1,20 @@
 /* #### Neccessary knowledge to work on style #### */
 /*
 
-General CSS properties are on top of the document, followed by screen size specific properties, by size ( Computers, tablets, phones )
+Style is defined by element, and responsive rules are defined per element.
+First, global properties, then, responsive rules, from biggest screen to smallers.
 The content of pages is 60% of the sceen width on computers screen and 80% on tablets / phones
 
+Responsive mode is calculated by screen width :
+
+[900px;+infinity[ => Computers version
+[650; 900px[ => Tablet version
+[0; 649] => Phones version
+
+If a property must be modified for only one/two screen size, we can just keep the normal in global properties, then overwrite it for the target screen
+Just make it simple and try to avoid repetitions if possible
+
+Good luck
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,700;1,400&display=swap');
