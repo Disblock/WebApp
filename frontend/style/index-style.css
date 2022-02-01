@@ -1,3 +1,12 @@
+/* TODO :
+Ajouter le JS pour le menu :
+Afficher le menu sur le click menu,
+Le retirer en reclick
+Penser à display fixed le svg du menu
+Good luck
+*/
+
+
 /* Style for index */
 
 /* ##### Globally used properties ##### */
@@ -5,6 +14,17 @@
   color:white;
   text-align: center;
   font-size: 2em;
+}
+
+.black_opacity{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(19,20,21,0.4);
+  display: none;
 }
 
 /* ##### first_area_div ##### */
@@ -16,6 +36,10 @@
   background-size: 100%;
   position: relative;
   border: 4px red;
+}
+
+#first_area_menu_slider_button{
+  display: none;
 }
 
 #first_area_nav{
@@ -147,6 +171,88 @@
 
 /* || Phones properties */
 @media (max-width: 649px){
+  #first_area_div{
+    height: 80vh;
+    position: static;
+    background: url('../img/phone_main.png') no-repeat;
+    background-size: cover;
+  }
+
+  #first_area_nav ul li{
+    font-size: 1em;
+    color: white;
+    margin: 0px;
+    margin-top: 20px;
+    margin-left: 5px;
+    display: block;
+  }
+
+  #first_area_nav ul{
+    padding: 0px;
+    position: static;
+    margin-top: 80px;
+    margin-bottom: 15px;
+  }
+
+  #first_area_nav{
+    background-color: #1C232A;
+    position: fixed;
+    top: 0px;
+    min-width: 40%;
+    bottom: 0%;
+    left: 0px;
+    border-right: solid 5px #2E86AB;
+    display: none;
+  }
+
+  #first_area_div_panel_button, #first_area_div_text button{
+    padding: 6px 15px;
+    font-size: 1em;
+  }
+
+  #first_area_div_panel_button{
+    margin-right: -30px;
+  }
+
+  #first_area_div_text{
+    top: 50vh;
+    width: 50%;
+    left: 25%;
+  }
+
+  #first_area_div_text p{
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  #first_area_menu_slider_button{
+    display: block;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    z-index: 5;
+  }
+
+  #first_area_menu_slider_button::after{
+    content: "Disblock";
+    display: inline;
+    font-size: 1.5em;
+    font-weight: bold;
+    vertical-align: top;
+    margin-left: 20px;
+  }
+
+  #first_area_menu_slider_button img{
+    height: 100%;
+    color:red;
+     /*filter: invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%);
+     -webkit-filter: invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%);*/
+  }
+
+   #first_area_div_text h1{
+     display: none;
+   }
 
 }
 
@@ -211,7 +317,20 @@
 
 /* || Phones properties */
 @media (max-width: 649px){
+  .content_line_div_text{
+    margin-left: 10%;
+  }
+  .content_line_div_media{
+    margin-right: 10%;
+  }
 
+  .content_line_div_text p{
+    color: white;
+    font-size: 1em;
+  }
+  .content_line_div_text{
+    width: 30%;
+  }
 }
 
 /* ##### why disblock area ##### */
@@ -312,6 +431,10 @@
 @media (max-width: 649px){
   #why_disblock_div{
     width: 80%;
+  }
+
+  .why_disblock_content_div_text, .why_disblock_content_div_img{
+    width:100%;
   }
 }
 
@@ -430,6 +553,26 @@
     width: 80%;
   }
 
+  .docs_div_content_link{
+    width: 100%;
+  }
+  .docs_div_content_link_img_div a img{
+    width: 90%;
+  }
+  .docs_div_content_link_img_div{
+    margin-left: 5%;
+  }
+
+  #docs_div_content_discord_widget{
+    width: 100%;
+  }
+  .docs_div_content_discord_widget_text_div{
+    margin-top: 60px;
+  }
+  .docs_div_content_discord_widget_div{
+    margin-top: 20px;
+  }
+
 }
 
 /* ##### Social networks area ##### */
@@ -486,6 +629,17 @@
   #social_networks_div{
     width: 80%;
   }
+
+  .social_networks_div_content_publication{
+    border: dotted 2px green;
+    width: 80%;
+    min-height: 100px;
+    margin-top: 10px;
+  }
+
+  .social_networks_div_content_publication:nth-last-of-type(-n+2){/* Remove two last divs */
+    display: none;
+  }
 }
 
 /* ##### Footer ##### */
@@ -524,9 +678,10 @@
 .footer_content_language ul li{
   list-style: none;
   padding: 0px;
-  display: none;
   margin: 0px;
   margin-right: 1em;
+  /*display: none; Disabled : Can't rely on :hover for devices without mouse, will find a solution later */
+  display: inline-block;
 }
 .footer_content_language ul li img{
   width: 40px;
@@ -534,9 +689,9 @@
   border-radius: 50%;
 
 }
-.footer_content_language:hover ul li, .footer_content_language ul li:first-child{
+/*.footer_content_language:hover ul li, .footer_content_language ul li:first-child{
   display: inline-block;
-}
+} Disabled temporarly */
 
 .footer_content h2{
   position: absolute;
@@ -565,10 +720,10 @@
   margin: 0px;
 }
 .footer_content p{
-  margin-top: 10px;
   color: grey;
   font-size: 0.7em;
   margin: 0px;
+  margin-top: 10px;
 }
 /*.footer_content_img_div{
     position: absolute;
@@ -596,6 +751,21 @@
 @media (max-width: 649px){
   .footer_content{
     width: 80%;
+  }
+
+  .footer_content h2{
+    right: 0px;
+    top: 50%;
+    left: auto;
+    font-size: 1.5em;
+    -ms-transform:none;
+    transform:none;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .footer_content > ul li a{
+    font-size: 0.8em;
   }
 }
 
