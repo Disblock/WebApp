@@ -237,14 +237,41 @@
 
         <!-- Text on the bottom -->
         <p>&lt;/&gt; by LJ50</p>
-
         <!-- Div for an img -->
         <!--<div class="footer_content_img_div">
           <img src="img/doc_link.png" height="100%" width="100%">
         </div>-->
       </div>
     </div>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+      /* Menu slider on phones */
+      let isMenuShown = false;
+
+      $("#first_area_menu_slider_button img").click(()=>{
+        if(isMenuShown){
+          //Remove menu
+          $(".black_opacity").css("display", "none");
+          $("#first_area_menu_slider_button").css("position", "absolute");
+          $("#first_area_menu_slider_button").css("filter", "none");
+          $("#first_area_nav").animate({"min-width":"0%", "width":"0%"}, 500, "swing", ()=>{
+            $("#first_area_nav").css("display", "none");
+          });
+
+          isMenuShown = false;
+        }else{
+          //Show menu
+          $(".black_opacity").css("display", "block");
+          $("#first_area_nav").css("display", "block");
+          $("#first_area_menu_slider_button").css("position", "fixed");
+          $("#first_area_nav").animate({"min-width":"40%", "width":"auto"}, 500);
+          $("#first_area_menu_slider_button").css("filter", "invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%)");
+
+          isMenuShown = true;
+        }
+      });
+    </script>
   </body>
   <footer>
     <script>

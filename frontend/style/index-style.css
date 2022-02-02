@@ -198,7 +198,8 @@ Good luck
     background-color: #1C232A;
     position: fixed;
     top: 0px;
-    min-width: 40%;
+    min-width: 0%;/* Defined to 40% when menu is shown ( in JS ) */
+    width: 0%;/* Defined to auto when menu is shown */
     bottom: 0%;
     left: 0px;
     border-right: solid 5px #2E86AB;
@@ -245,9 +246,6 @@ Good luck
 
   #first_area_menu_slider_button img{
     height: 100%;
-    color:red;
-     /*filter: invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%);
-     -webkit-filter: invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%);*/
   }
 
    #first_area_div_text h1{
