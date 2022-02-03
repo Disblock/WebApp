@@ -254,9 +254,9 @@
           //Remove menu
           $(".black_opacity").css("display", "none");
           $("#first_area_menu_slider_button").css("position", "absolute");
-          $("#first_area_menu_slider_button").css("filter", "none");
           $("#first_area_nav").animate({"min-width":"0%", "width":"0%"}, 500, "swing", ()=>{
             $("#first_area_nav").css("display", "none");
+            $("#first_area_menu_slider_button").css("filter", "none");
           });
 
           isMenuShown = false;
@@ -274,7 +274,5 @@
     </script>
   </body>
   <footer>
-    <script>
-    </script>
   </footer>
 </html>

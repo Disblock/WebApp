@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
+    <title>Disblock - Panel</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/panel-style.css">
+  </head>
+  <body>
+
+    <!-- The div on top -->
+    <div id="top_div">
+
+      <div id="top_div_img_div">
+        <a href="#"><img src="img/FR_flag.svg"></a>
+      </div>
+
+      <!-- Div used to contain logout svg -->
+      <div id="top_div_logout">
+        <a href="#"><img src="img/logout.svg"></a>
+      </div>
+
+      <!-- Div used to show user profile picture/pseudo, or the "Login" button -->
+      <style>
+        #top_div_user::after{content: "HelloWorld#1234";}
+      </style>
+
+      <div id="top_div_user">
+        <img src="img/FR_flag.svg">
+      </div>
+
+    </div>
+
+    <!-- Menu on the left -->
+    <div id="menu_div">
+
+      <!-- Div used for navigation links -->
+      <div id="menu_div_links">
+      </div>
+
+      <!-- Div used to show user's guilds ( with Admin access ) -->
+      <div id="menu_div_guilds">
+
+        <a href="#">
+          <div class="menu_div_guilds_guild_div">
+            <img src="img/UK_flag.svg">
+            <p>Ayaya Ayaya Ayaya AyayaAyaya Ayaya Ayaya Ayaya Ayaya Ayaya</p>
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="menu_div_guilds_guild_div">
+            <img src="img/UK_flag.svg">
+            <p>Ayaya Ayaya Ayaya AyayaAyaya Ayaya Ayaya Ayaya Ayaya Ayaya</p>
+          </div>
+        </a>
+
+
+        <a href="#">
+          <div class="menu_div_guilds_guild_div">
+            <img src="img/UK_flag.svg">
+            <p>Ayaya Ayaya Ayaya AyayaAyaya Ayaya Ayaya Ayaya Ayaya Ayaya</p>
+          </div>
+        </a>
+
+
+      </div>
+
+    </div>
+
+    <!-- Content div : Informations, ect... -->
+    <div id="content_div">
+
+      <!-- This div is just under the #top_div -->
+      <div id="content_div_top_div">
+      </div>
+    </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </body>
+  <footer>
+  </footer>
+</html>
