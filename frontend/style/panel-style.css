@@ -61,7 +61,6 @@
 
 #top_div_user{
   position: absolute;
-  border: dotted 2px red;
   top: 8px;
   bottom: 5px;
   right: 35px;
@@ -74,6 +73,7 @@
   color:white;
   font-size: 1.2em;
   margin-left: 10px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 #top_div_user img{
