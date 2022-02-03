@@ -61,15 +61,19 @@
 
 #top_div_user{
   position: absolute;
+  border: dotted 2px red;
   top: 8px;
   bottom: 5px;
   right: 35px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 #top_div_user::after{
   /*content defined in HTML*/
   color:white;
   font-size: 1.2em;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-bottom: 5px;
 }
 #top_div_user img{
