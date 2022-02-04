@@ -45,7 +45,7 @@
   margin-left: 15px;
 }
 #top_div_img_div a img{
-  width: 100%;
+  height: 100%;
   border-radius: 50%;
   margin: 0;
 }
@@ -78,29 +78,24 @@
   margin-bottom: 5px;
 }
 #top_div_user img{
-  height: 100%;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 
 /* || Computer properties */
 @media (min-width: 900px) {
-  #top_div{
-    background-color: #1C232A;
-  }
+  
 }
 
 /* || Tablets properties */
 @media (max-width: 899px) and (min-width: 650px) {
-  #top_div{
-    background-color: green;
-  }
+
 }
 
 /* || Phones properties */
 @media (max-width: 649px){
-  #top_div{
-    background-color: red;
-  }
+
 }
 
 /* ##### menu_div ##### */
@@ -186,39 +181,41 @@
     display: none;
   }
   .menu_div_guilds_guild_div img{
-    margin: auto;
     border-radius: 50%;
-    height: 80%;
-    width: 50%;
+    height: 2em;
+    width: 2em;
+    margin: auto;
+  }
+  .menu_div_guilds_guild_div{
+    height: 3.5em;
   }
 }
 
 /* || Phones properties */
 @media (max-width: 649px){
   #menu_div{
-    display: block;/* Shown with JS */
     right: auto;
-    width: 70%;
+    width: 0%;
+    display: none;/* Shown with JS */
   }
 
-  .black_opacity{
-    display: block;
-  }
-
-/* TODO: Faire le menu ici, + JS */
   #menu_div_guilds{
-    width: 60%;
+    width: 80%;
+  }
+
+  .menu_div_guilds_guild_div{
+    height: 3.5em;
   }
 
   .menu_div_guilds_guild_div img{
     margin: auto;
     border-radius: 50%;
-    height: 40%;
-    width: 20%;
+    height: 2em;
+    width: 2em;
   }
 
   .menu_div_guilds_guild_div p{
-    display: block;
+    display: none;
   }
 }
 
@@ -335,21 +332,22 @@
     left: 0%;/* Menu is hidden, content can expand on left */
   }
 
-  #content_div_top_div_menu_button{
+  #content_div_header_div{
+    height: auto;
     display: block;
-    position: fixed;
-    left: 10px;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    height: 24px;
-    width: 24px;
-    filter: invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%);
+  }
+
+  .content_div_header_div_subdiv{
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 1em;
   }
 }
 
 /*##### OTHERS #####*/
 #menu_button{
   display: none;
+  cursor: pointer;
 }
 /* || Phones properties */
 @media (max-width: 649px){

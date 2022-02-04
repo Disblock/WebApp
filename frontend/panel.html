@@ -18,7 +18,7 @@
     <div id="top_div">
 
       <div id="top_div_img_div">
-        <a href="#"><img src="img/FR_flag.svg"></a>
+        <a href="#"><img src="img/carree.png"></a>
       </div>
 
       <!-- Div used to contain logout svg -->
@@ -32,7 +32,7 @@
       </style>
 
       <div id="top_div_user">
-        <img src="img/FR_flag.svg">
+        <img src="img/carree.png">
       </div>
 
     </div>
@@ -60,7 +60,7 @@
 
         <a href="#">
           <div class="menu_div_guilds_guild_div">
-            <img src="img/UK_flag.svg">
+            <img src="img/carree.png">
             <p>Touhou Lost Word | Official</p>
           </div>
         </a>
@@ -114,6 +114,31 @@
     </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    /* Menu slider on phones */
+    let isMenuShown = false;
+
+    $("#menu_button img").click(()=>{
+      if(isMenuShown){
+        //Remove menu
+        $("#menu_div > *").css("display", "none");
+        $(".black_opacity").css("display", "none");
+        $("#menu_div").animate({"width":"0%"}, 500, "swing", ()=>{
+          $("#menu_div").css("display", "none");
+        });
+
+        isMenuShown = false;
+      }else{
+        //Show menu
+        $("#menu_div > *").css("display", "block");
+        $(".black_opacity").css("display", "block");
+        $("#menu_div").css("display", "block");
+        $("#menu_div").animate({"width":"30%"}, 500);
+
+        isMenuShown = true;
+      }
+    });
+  </script>
   </body>
   <footer>
   </footer>
