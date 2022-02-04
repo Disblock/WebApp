@@ -10,6 +10,10 @@
   </head>
   <body>
 
+    <!-- Div only used to add opacity on all screen -->
+    <div class="black_opacity">
+    </div>
+
     <!-- The div on top -->
     <div id="top_div">
 
@@ -33,11 +37,22 @@
 
     </div>
 
+    <!-- The menu button-->
+    <div id="menu_button">
+      <img src="img/menu.svg">
+    </div>
+
     <!-- Menu on the left -->
     <div id="menu_div">
 
       <!-- Div used for navigation links -->
       <div id="menu_div_links">
+        <nav>
+          <ul>
+            <li><a href="#">Ayaya</a></li>
+            <li><a href="#">Ayaya 2</a></li>
+          </ul>
+        </nav>
       </div>
 
       <!-- Div used to show user's guilds ( with Admin access ) -->
@@ -46,11 +61,9 @@
         <a href="#">
           <div class="menu_div_guilds_guild_div">
             <img src="img/UK_flag.svg">
-            <p>ABC</p>
+            <p>Touhou Lost Word | Official</p>
           </div>
         </a>
-
-
 
       </div>
 
@@ -61,7 +74,43 @@
 
       <!-- This div is just under the #top_div -->
       <div id="content_div_top_div">
+
       </div>
+
+      <!-- This div contain the blocks on top of this space -->
+      <div id="content_div_header_div">
+        <div class="content_div_header_div_subdiv">
+          <!-- Informations and help about the panel -->
+          <p>
+            Lorem ipsum dolor sit amet !<br>
+            Issou !<br>
+          </p>
+        </div>
+
+        <div class="content_div_header_div_subdiv">
+          <!-- ? -->
+        </div>
+      </div>
+
+      <!-- This div is used to contain news -->
+      <div id="content_div_news_div">
+
+        <!-- A news div -->
+        <div class="content_div_news_subdiv">
+          <div class="news_subdiv_header">
+            <h2>Ayaya, Hello WORLD !</h2>
+            <p>Le 03/02/2022 à 21H11</p>
+          </div>
+
+          <div class="news_subdiv_text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit, mi id rutrum fringilla, eros dolor consequat orci, pharetra congue arcu leo et turpis. Suspendisse ut ultricies mauris, ut aliquet sapien. Morbi auctor venenatis posuere. Donec dignissim sem sem, id rhoncus quam porta a. Nullam pellentesque commodo sem, eget cursus massa ultricies et. Donec dapibus orci nec vehicula rutrum. Ut dictum nibh ultricies neque pulvinar bibendum.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
