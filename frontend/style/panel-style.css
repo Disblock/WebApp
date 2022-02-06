@@ -85,7 +85,7 @@
 
 /* || Computer properties */
 @media (min-width: 900px) {
-  
+
 }
 
 /* || Tablets properties */
@@ -219,130 +219,6 @@
   }
 }
 
-
-
-/* ##### content_div ##### */
-
-/* || Global properties */
-#content_div{
-  position: absolute;
-  top: 40px;
-  bottom: 0px;
-  left: 20%;
-  right: 0%;
-}
-
-#content_div_top_div{
-  width: 100%;
-  height: 40px;
-  background-color: #141C24;
-  border-top: solid 3px #2E86AB;
-  position: relative;
-}
-
-#content_div_header_div{
-  width: 90%;
-  margin: auto;
-  height: 25%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
-}
-
-.content_div_header_div_subdiv{
-  background-color: #141C24;
-  border: solid 2px #2E86AB;
-  overflow: auto;
-  border-radius: 5%;
-  width: 40%;
-  height: 100%;
-}
-.content_div_header_div_subdiv p{
-  color: #EAEAEA;
-  font-size: 0.8em;
-  margin: 1em;
-  line-height: 150%;
-}
-
-#content_div_news_div{
-  margin: auto;
-  margin-bottom: 2%;
-  width: 90%;
-  border: solid 2px #2E86AB;
-  background-color: #141C24;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.content_div_news_subdiv{
-  margin: auto;
-  margin-top: 15px;
-  width: 95%;
-  border: solid 2px #EAEAEA;
-  border-radius: 50px 0px 50px 50px;
-  min-height: 2em;
-}
-.news_subdiv_header{
-  width: 100%;
-  border-bottom: solid 1px #2E86AB;
-  overflow: hidden;
-  min-height: 3em;
-}
-.news_subdiv_header h2{
-  color: #EAEAEA;
-  margin-left: 1em;
-  margin-right: 0.5em;
-  font-size: 1.5em;
-  display: inline-block;
-}
-.news_subdiv_header p{
-  color: #83878A;
-  font-size: 1em;
-  display: inline-block;
-  margin: 0;
-}
-.news_subdiv_text{
-  min-height: 4em;
-  margin: 1em;
-}
-.news_subdiv_text p{
-  color: #EAEAEA;
-  font-size: 1em;
-}
-
-/* || Computer properties */
-@media (min-width: 900px) {
-  #content_div_news_div{
-    min-height: 60%;
-  }
-}
-
-/* || Tablets properties */
-@media (max-width: 899px) and (min-width: 650px) {
-  #content_div_news_div{
-    min-height: 40%;
-  }
-}
-
-/* || Phones properties */
-@media (max-width: 649px){
-  #content_div{
-    left: 0%;/* Menu is hidden, content can expand on left */
-  }
-
-  #content_div_header_div{
-    height: auto;
-    display: block;
-  }
-
-  .content_div_header_div_subdiv{
-    width: 100%;
-    min-height: 50px;
-    margin-bottom: 1em;
-  }
-}
 
 /*##### OTHERS #####*/
 #menu_button{
