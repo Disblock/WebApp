@@ -1,0 +1,768 @@
+/* Style for index */
+
+/* ##### Globally used properties ##### */
+.section_title{
+  color:white;
+  text-align: center;
+  font-size: 2em;
+}
+
+/* ##### first_area_div ##### */
+
+/* || Global properties */
+#first_area_div{
+  width: 100%;
+  background: url('../img/main.png') no-repeat;
+  background-size: 100%;
+  position: relative;
+  border: 4px red;
+}
+
+#first_area_menu_slider_button{
+  display: none;
+}
+
+#first_area_nav{
+  z-index: 2;
+  margin: 0px;
+}
+
+#first_area_nav ul{
+  position: absolute;
+  top: 20px;
+  margin-top: 0px;
+}
+
+#first_area_nav ul li{
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 30px;
+}
+
+#first_area_div_panel_button, #first_area_div_text button{
+  border-radius: 16px;
+  border: solid 1px black;
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  background-color: #2E86AB;
+  color:white;
+  cursor: pointer;
+  animation-duration: 0.5s;
+  animation-name: button_not_hover;
+}
+
+#first_area_div_panel_button:hover, #first_area_div_text button:hover{
+  animation-duration: 0.5s;
+  animation-name: button_hover;
+  background-color: #3EA1CC;
+}
+
+#first_area_div_text{
+  position: absolute;
+  left: 5%;
+  text-align: center;
+}
+
+#first_area_div_text h1{
+  line-height: 100%;
+  font-size: 2em;
+}
+
+#first_area_div_text p{
+  line-height: 100%;
+}
+
+#first_area_div_text button{
+  top:0px;left:0px;
+  position: static;
+}
+
+/*#first_area_div_wave{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top:95%;
+  border: dotted 6px green;
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+  #first_area_div{
+    height: 90vh;
+  }
+
+  #first_area_nav ul li{
+    font-size: 1.5em;
+  }
+
+  #first_area_nav{
+    margin-left: 10%;
+  }
+
+  #first_area_div_panel_button, #first_area_div_text button{
+    padding: 6px 40px;
+    font-size: 1.5em;
+  }
+
+  #first_area_div_text{
+    top: 25%;
+    max-width: 25%;
+  }
+
+  #first_area_div_text p{
+    font-size: 1.5em;
+  }
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  #first_area_div{
+    height: 50vh;
+  }
+
+  #first_area_nav ul li{
+    font-size: 1.2em;
+  }
+
+  #first_area_nav{
+    margin-left: -5%;
+  }
+
+  #first_area_div_panel_button, #first_area_div_text button{
+    padding: 6px 20px;
+    font-size: 1em;
+  }
+
+  #first_area_div_panel_button{
+    margin-right: -30px;
+  }
+
+  #first_area_div_text{
+    top: 15%;
+    max-width: 35%;
+  }
+
+  #first_area_div_text p{
+    font-size: 1.5em;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  #first_area_div{
+    height: 80vh;
+    position: static;
+    background: url('../img/phone_main.png') no-repeat;
+    background-size: cover;
+  }
+
+  #first_area_nav ul li{
+    font-size: 1em;
+    color: white;
+    margin: 0px;
+    margin-top: 20px;
+    margin-left: 5px;
+    display: block;
+  }
+
+  #first_area_nav ul{
+    padding: 0px;
+    position: static;
+    margin-top: 80px;
+    margin-bottom: 15px;
+  }
+
+  #first_area_nav{
+    background-color: #1C232A;
+    position: fixed;
+    top: 0px;
+    min-width: 0%;/* Defined to 40% when menu is shown ( in JS ) */
+    width: 0%;/* Defined to auto when menu is shown */
+    bottom: 0%;
+    left: 0px;
+    border-right: solid 5px #2E86AB;
+    display: none;
+  }
+
+  #first_area_div_panel_button, #first_area_div_text button{
+    padding: 6px 15px;
+    font-size: 1em;
+  }
+
+  #first_area_div_panel_button{
+    margin-right: -30px;
+  }
+
+  #first_area_div_text{
+    top: 50vh;
+    width: 50%;
+    left: 25%;
+  }
+
+  #first_area_div_text p{
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  #first_area_menu_slider_button{
+    display: block;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    z-index: 5;
+  }
+
+  #first_area_menu_slider_button::after{
+    content: "Disblock";
+    display: inline;
+    font-size: 1.5em;
+    font-weight: bold;
+    vertical-align: top;
+    margin-left: 20px;
+  }
+
+  #first_area_menu_slider_button img{
+    height: 100%;
+  }
+
+   #first_area_div_text h1{
+     display: none;
+   }
+
+}
+
+/* ##### content_line_div ##### */
+
+/* || Global properties */
+.content_line_div{
+    width: 100%;
+    height: 120px;
+    background-color: #1C232A;
+    position: relative;
+    overflow: hidden;
+    margin-top: 100px;
+}
+
+.content_line_div_text{
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width:20%;
+}
+
+.content_line_div_text p{
+  color: white;
+  font-size: 1.5em;
+}
+
+.content_line_div_media{
+  position: absolute;
+  top:50%;
+  right: 0px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 80%;
+  width: 40%;
+  border: dotted 2px red;
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+  .content_line_div_text{
+    margin-left: 20%;
+  }
+  .content_line_div_media{
+    margin-right: 20%;
+  }
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  .content_line_div_text{
+    margin-left: 10%;
+  }
+  .content_line_div_media{
+    margin-right: 10%;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  .content_line_div_text{
+    margin-left: 10%;
+  }
+  .content_line_div_media{
+    margin-right: 10%;
+  }
+
+  .content_line_div_text p{
+    color: white;
+    font-size: 1em;
+  }
+  .content_line_div_text{
+    width: 30%;
+  }
+}
+
+/* ##### why disblock area ##### */
+
+/* || Global properties */
+
+#why_disblock_div{
+  margin: auto;
+  margin-top: 50px;
+}
+
+.why_disblock_content_div{ /* A sub-section of the big Why section */
+  width: 100%;
+  min-height: 40vh;
+  margin-top: 15vh;
+  position: relative;
+}
+.why_disblock_content_div:first-of-type {
+  margin-top: 5vh;
+}
+
+.why_disblock_content_div > div > *:not(p,a){/* Contents in div, img and text sections */
+  /* That don't apply on p and a, since their properties are defined by class */
+  width:100%;
+  text-align: left;
+  color:white;
+}
+
+.why_disblock_content_div div p{
+  color:white;
+}
+
+.why_disblock_content_div_text_main_span{
+  font-size: 2em;
+}
+.why_disblock_content_div_text_desc_span{
+  font-size: 1em;
+}
+.why_disblock_content_div_text_link_span a{
+  font-size: 1em;
+  color:#2E86AB;
+}
+.why_disblock_content_div_text_link_span a::before{
+  content: "> ";
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+  #why_disblock_div{
+    width: 60%;
+  }
+
+  .why_disblock_content_div div{/* Sub-div, parents of img/text sections */
+    height: 100%;
+    display: inline-block;
+    position: absolute;
+  }
+
+  .why_disblock_content_div > div > *:not(p,a){
+    position: absolute;
+    top:50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .why_disblock_content_div_left{
+    left:0px;
+  }
+  .why_disblock_content_div_right{
+    right:0px;
+  }
+  .why_disblock_content_div_img{
+    width:50%;
+  }
+  .why_disblock_content_div_text{
+    width: 40%;
+  }
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  #why_disblock_div{
+    width: 80%;
+  }
+
+  .why_disblock_content_div_text{
+    width:100%;
+  }
+
+  .why_disblock_content_div_img{
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+
+
+/* || Phones properties */
+@media (max-width: 649px){
+  #why_disblock_div{
+    width: 80%;
+  }
+
+  .why_disblock_content_div_text, .why_disblock_content_div_img{
+    width:100%;
+  }
+}
+
+/* ##### docs area ##### */
+
+/* || Global properties */
+#docs_div{
+  margin: auto;
+  margin-top: 60px;
+}
+
+#docs_div p{
+  color: white;
+  text-align: center;
+  font-size: 1em;
+}
+
+#docs_div_content::before{
+  /* Content is defined directly on html */
+  color:white;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+}
+#docs_div_content{
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+.docs_div_content_link{
+  margin-top: 60px;
+  height: 180px;
+}
+.docs_div_content_link_text_div{
+  width: 100%;
+  height: 20%;
+}
+.docs_div_content_link_img_div{
+  width: 100%;
+  height: 75%;
+}
+.docs_div_content_link_img_div a img{
+  height: 100%;
+  border-radius: 16px;
+}
+
+.docs_div_content_discord_widget_text_div{
+  width: 100%;
+}
+.docs_div_content_discord_widget_div{
+  width: 350px;/* That's the width defined on the iframe of the Discord's widget*/
+  margin: auto;
+}
+
+#discord_widget{
+  width: 350px;
+  height: 500px;
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+  #docs_div{
+    width: 60%;
+  }
+
+  .docs_div_content_link{
+    width: 40%;
+  }
+  .docs_div_content_link_img_div a img{
+    width: 100%;
+  }
+
+  #docs_div_content_discord_widget{
+    position: absolute;
+    top:60px;
+    bottom: 0px;
+    right: 0px;
+    left:50%;
+  }
+  .docs_div_content_discord_widget_div{
+    margin-top: 5em;
+  }
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  #docs_div{
+    width: 80%;
+  }
+
+  .docs_div_content_link{
+    width: 100%;
+  }
+  .docs_div_content_link_img_div a img{
+    width: 80%;
+  }
+  .docs_div_content_link_img_div{
+    margin-left: 10%;
+  }
+
+  #docs_div_content_discord_widget{
+    width: 100%;
+  }
+  .docs_div_content_discord_widget_text_div{
+    margin-top: 60px;
+  }
+  .docs_div_content_discord_widget_div{
+    margin-top: 20px;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  #docs_div{
+    width: 80%;
+  }
+
+  .docs_div_content_link{
+    width: 100%;
+  }
+  .docs_div_content_link_img_div a img{
+    width: 90%;
+  }
+  .docs_div_content_link_img_div{
+    margin-left: 5%;
+  }
+
+  #docs_div_content_discord_widget{
+    width: 100%;
+  }
+  .docs_div_content_discord_widget_text_div{
+    margin-top: 60px;
+  }
+  .docs_div_content_discord_widget_div{
+    margin-top: 20px;
+  }
+
+}
+
+/* ##### Social networks area ##### */
+
+/* || Global properties */
+
+#social_networks_div{
+  margin: auto;
+  margin-top: 60px;
+}
+
+#social_networks_div_content{
+  /* display flex defined here: this display must be defined in the parent div */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+  #social_networks_div{
+    width: 60%;
+  }
+
+  .social_networks_div_content_publication{
+    border: dotted 2px green;
+    display: inline-block;
+    width: 45%;
+    min-height: 100px;
+    margin: 2%;
+  }
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  #social_networks_div{
+    width: 80%;
+  }
+
+  .social_networks_div_content_publication{
+    border: dotted 2px green;
+    width: 80%;
+    min-height: 100px;
+    margin-top: 10px;
+  }
+
+  .social_networks_div_content_publication:nth-last-of-type(-n+2){/* Remove two last divs */
+    display: none;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  #social_networks_div{
+    width: 80%;
+  }
+
+  .social_networks_div_content_publication{
+    border: dotted 2px green;
+    width: 80%;
+    min-height: 100px;
+    margin-top: 10px;
+  }
+
+  .social_networks_div_content_publication:nth-last-of-type(-n+2){/* Remove two last divs */
+    display: none;
+  }
+}
+
+/* ##### Footer ##### */
+
+/* || Global properties */
+
+.footer{
+  background-color: #1C232A;
+  margin: 0px;
+  margin-top: 60px;
+  min-height: 20vh;
+
+  /* Background image*/
+  /*background-image: url('../img/main.png');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: contain;
+  Seems to not be a good idea, cover everything with small screens */
+}
+
+.footer_content{
+  height: 100%;
+  margin:auto;
+  position: relative;
+}
+
+.footer_content_language{
+  margin-top: 10px;
+  height: 40px;
+  display: inline-block;
+}
+.footer_content_language ul{
+  margin: 0px;
+  padding: 0px;
+}
+.footer_content_language ul li{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  margin-right: 1em;
+  /*display: none; Disabled : Can't rely on :hover for devices without mouse, will find a solution later */
+  display: inline-block;
+}
+.footer_content_language ul li img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+}
+/*.footer_content_language:hover ul li, .footer_content_language ul li:first-child{
+  display: inline-block;
+} Disabled temporarly */
+
+.footer_content h2{
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin: 0px;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.footer_content > ul{
+  max-width: 40%;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 20px;
+}
+.footer_content > ul li{
+  list-style: none;
+  margin: 0px;
+}
+.footer_content > ul li a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  line-height: 150%;
+  margin: 0px;
+}
+.footer_content p{
+  color: grey;
+  font-size: 0.7em;
+  margin: 0px;
+  margin-top: 10px;
+}
+/*.footer_content_img_div{
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    left: 80%;
+    top: 20px;
+}*/
+
+/* || Computer properties */
+@media (min-width: 900px) {
+  .footer_content{
+    width: 60%;
+  }
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  .footer_content{
+    width: 80%;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  .footer_content{
+    width: 80%;
+  }
+
+  .footer_content h2{
+    right: 0px;
+    top: 50%;
+    left: auto;
+    font-size: 1.5em;
+    -ms-transform:none;
+    transform:none;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .footer_content > ul li a{
+    font-size: 0.8em;
+  }
+}
+
+
+
+/*  ##### Keyframes ##### */
+@keyframes button_hover {
+  from {
+    background-color: #2E86AB;
+  }
+
+  to {
+    background-color: #3EA1CC;
+  }
+}
+
+@keyframes button_not_hover {
+  from {
+    background-color: #3EA1CC;
+  }
+
+  to {
+    background-color: #2E86AB;
+  }
+}

@@ -113,17 +113,17 @@ app.use(function(req, res, next){
 
 app.get('/', function(req, res){
   //localization
-    const state = crypto.randomBytes(4).toString('hex');
-    req.session.state = state;
-    res.render('index.ejs', {state: state, session: req.session});
-
+    req.session.state = crypto.randomBytes(4).toString('hex');
+    res.render('index.ejs', {session: req.session});
 });
 
-app.get('/discord_login', function(req, res){
-  if(req.session.discord_id == undefined){
-    if(url.parse(req.url,true).query.state == req.session.state){
+/*-----------------------------------*/
 
+app.get('/discord_login', function(req, res){
+  if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
+    if(url.parse(req.url,true).query.state == req.session.state){
       //State is the same as the registered one
+      
       if(url.parse(req.url,true).query.code!=undefined){
         discord_login.login(url.parse(req.url,true).query.code, connection, req, res);
       }else{
@@ -140,30 +140,37 @@ app.get('/discord_login', function(req, res){
   }
 });
 
+/*-----------------------------------*/
+
 app.get('/logout', function(req, res){
   req.session.destroy();
   res.redirect('/');
 });
 
+/*-----------------------------------*/
+
 app.get('/panel', function(req, res){
+  req.session.state = crypto.randomBytes(4).toString('hex');
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, connection, (guilds)=>{
       //guilds represent the guilds that user is admin on
 
-      res.render('panel.ejs', {session: req.session, guilds: guilds});
+      res.render('panel.ejs', {session: req.session, guilds: guilds, guild: undefined});
     });
   }else{
     //Not logged in
-    res.redirect('/');
+    res.render('panel.ejs', {session: req.session, guilds: [], guild: undefined});
   }
 });
+
+/*-----------------------------------*/
 
 app.get('/panel/:id', function(req, res){
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, connection, (guilds)=>{//Get all guilds where user has an admin permission
-      var guild = undefined;
-      for(var i=0; i<guilds.length; i++){
-        if(guilds[i].id===String(req.params.id)){
+      let guild = undefined;
+      for(var i=0; i<guilds.length; i++){//Iterate throught all user's admin guilds, and compare them to the ID of the selected guilds
+        if(guilds[i].id===String(req.params.id)){//If one guild match this ID, the user is admin in this guild. If none match with, user isn't admin on it
           guild = guilds[i];
         }
       }
@@ -172,7 +179,7 @@ app.get('/panel/:id', function(req, res){
         //User is admin on the selected server
 
         //Let's render Blockly app, with custom blocks added here
-        res.render('guildEdit.ejs', {session: req.session, guild: guild, blocks: [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,require('./modules/blockly/blocks/user_blocks.js').blocks]});
+        res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,require('./modules/blockly/blocks/user_blocks.js').blocks]});
 
       }else{
         //User isn't admin on the selected server
@@ -181,9 +188,11 @@ app.get('/panel/:id', function(req, res){
     });
   }else{
     //Not logged in
-    res.redirect('/');
+    res.redirect('/panel');
   }
 });
+
+/*-----------------------------------*/
 
 
 /*############################################*/
@@ -194,21 +203,21 @@ app.get('/style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/style.ejs');
 });
-app.get('/style/index', function(req, res){
+app.get('/style/index-style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
-  res.render('./style/index.ejs');
+  res.render('./style/index-style.ejs');
 });
-app.get('/style/icons', function(req, res){
+app.get('/style/panel-style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
-  res.render('./style/icons.ejs');
+  res.render('./style/panel-style.ejs');
 });
-app.get('/style/panel', function(req, res){
+app.get('/style/index-panel-style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
-  res.render('./style/panel.ejs');
+  res.render('./style/index-panel-style.ejs');
 });
-app.get('/style/guildEdit', function(req, res){
+app.get('/style/guild-panel-style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
-  res.render('./style/guildEdit.ejs');
+  res.render('./style/guild-panel-style.ejs');
 });
 
 /*############################################*/

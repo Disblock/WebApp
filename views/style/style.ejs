@@ -1,104 +1,54 @@
-/*Stylesheet used on every page*/
+/* #### Neccessary knowledge to work on style #### */
+/*
+
+Style is defined by element, and responsive rules are defined per element.
+First, global properties, then, responsive rules, from biggest screen to smallers.
+The content of pages is 60% of the sceen width on computers screen and 80% on tablets / phones
+
+Responsive mode is calculated by screen width :
+
+[900px;+infinity[ => Computers version
+[650; 900px[ => Tablet version
+[0; 649] => Phones version
+
+If a property must be modified for only one/two screen size, we can just keep the normal in global properties, then overwrite it for the target screen
+Just make it simple and try to avoid repetitions if possible
+
+Good luck
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+
 *{
-	font-family: Arial;
-	z-index: 1;
+  font-family: 'Josefin Sans', Arial; /* https://fonts.google.com/specimen/Josefin+Sans#standard-styles */
 }
 
-html, body{
-	/*height: 100%;*/
-	/*overflow:hidden;*/
-	overflow: auto;
+html,body{
+  margin: 0px;
+  border: 0px;
+  width: 100%;
+  background-color: #131415;
+  overflow-x: hidden;
 }
-
-
-body{
-	background-color: #2C363A;
-}
-
-p{
-  color:#e2d7b6;
-}
-
-
 
 a{
-		text-decoration: none;
-		color:#e2d7b6;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
 }
 
-.circle{
-  border-radius: 50%;
-}
-
-.bodyDiv{
-	z-index: 0;
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	right: 0%;
-	bottom: 0%;
-}
-
-.contentBodyDiv{
-	z-index: 1;
-	position: absolute;
-	left: 10%;
-	right: 10%;
+.black_opacity{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(19,20,21,0.4);
+  display: none;
 }
 
 
-
-
-/*Phones*/
-@media (max-width: 949px){
-	.contentBodyDiv{
-		top: 10%;
-	}
-	.tooltiptext{
-		display: none;
-	}
-}
-
-/*Computer*/
-
-@media (min-width: 950px) {
-	.contentBodyDiv{
-		top: 8%;
-	}
-
-	/*TOOLTIP*/
-	.tooltip {
-	  position: relative;
-	  display: inline-block;
-	}
-
-	.tooltip .tooltiptext {
-	  visibility: hidden;
-		overflow: hidden;
-	  width: 120px;
-	  background-color: black;
-	  color: #fff;
-	  text-align: center;
-	  border-radius: 6px;
-	  padding: 5px 0;
-	  position: absolute;
-	  z-index: 1;
-	  bottom: 105%;
-	  left: 50%;
-	  margin-left: -60px;
-	}
-	.tooltip .tooltiptext::after {
-	  content: "";
-	  position: absolute;
-	  top: 100%;
-	  left: 50%;
-	  margin-left: -5px;
-	  border-width: 5px;
-	  border-style: solid;
-	  border-color: black transparent transparent transparent;
-	}
-
-	.tooltip:hover .tooltiptext {
-	  visibility: visible;
-	}
-}
+/* Keyframes */

@@ -41,7 +41,7 @@ module.exports = {
                }else{
                  //Correctly ended, sending the new token
                  req.session.token = oauthData.access_token;
-                 req.session.save();//Must save to ensure everything is recor
+                 req.session.save();//Must save to ensure everything is saved
                  return(callback(oauthData.access_token));
                }
 
@@ -58,8 +58,6 @@ module.exports = {
 
 
 
-
-          ;
         }else{
           console.log("Error : Tried to get refresh token of user "+req.session.discord_id+" but was unable to get it !");
           return(callback(undefined));

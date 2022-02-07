@@ -4,67 +4,155 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
-    <title>Control Panel</title>
-    <link rel="stylesheet" type="text/css" href="/style/panel">
-    <script src="/localization"></script>
-    <%-  include('ejs/include_everywhere.ejs'); %>
-    <script type="text/babel">
-      class GuildDiv extends React.Component {
-        render() {
-          return (
-            <div className="panel_guild_div tooltip">
-              <span className="tooltiptext">{this.props.guildName.slice(0, 31)}</span>
-              <div className="panel_guild_div_img_holder">
-                <a href={"/panel/"+this.props.guildID}><img className="circle" src={this.props.icon} /></a>
-              </div>
-            </div>
-          );
-        }
-      }
-    </script>
+    <title>Disblock - Panel</title>
+    <link rel="stylesheet" type="text/css" href="/style">
+    <link rel="stylesheet" type="text/css" href="/style/panel-style">
   </head>
   <body>
-    <%-  include('ejs/panelMenu.ejs'); %>
-    <div class="bodyDiv" id="particles-js">
 
-    </div>
-    <div class="contentBodyDiv" id="contentBodyDiv">
-
-      <div id="guildsDiv">
-      </div>
-      <div id="infoDiv">
-        <h2>Le grand Issou 1er viendra purifier par l'atome !</h2>
-      </div>
-      <div id="rightDiv">
-        <h2>Mais avant tout, nous remercions notre sponsor, IssouVPN !</h2>
-      </div>
+    <!-- Div only used to add opacity on all screen -->
+    <div class="black_opacity">
     </div>
 
-  </body>
-  <footer>
-  <script type="text/babel">
-    ReactDOM.render(<div id="guilds_holder">
-    <h2>Lorem Ipsum sit dolor adem</h2>
-    <%
-      for(var i=0; i<guilds.length;i++){
-        //Calculate icon for the server
-        var link;
-        if(guilds[i].icon!=undefined && guilds[i].icon!=''){
-          link = "https://cdn.discordapp.com/icons/"+guilds[i].id+"/"+guilds[i].icon+".png?size=128";
+    <!-- The div on top -->
+    <div id="top_div">
+
+      <div id="top_div_img_div">
+        <a href="/"><img src="/img/carree.png"></a>
+      </div>
+      <!-- Div used to contain logout svg ( Or login svg ) -->
+      <div id="top_div_logout">
+        <%
+          if(session.username==undefined){
+            //Not logged in
+            %>
+              <style>
+                #top_div_logout a::before{
+                  content: "Login With Discord";
+                  color: white;
+                  font-size: 1em;
+                  margin-bottom: 40%;
+                }
+              </style>
+              <a href="https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- session.state %>"><img src="img/login.svg"></a>
+            <%
+          }else{
+            //Logged in
+            %><a href="/logout"><img src="/img/logout.svg"></a><%
+          }
+        %>
+      </div>
+
+      <!-- Div used to show user profile picture/pseudo, or the "Login" button -->
+      <style>
+        #top_div_user::after{content: "<%- session.username||"" %>";}
+      </style>
+
+      <div id="top_div_user">
+        <%
+          if(session.username!=undefined){
+            //Logged in
+            %><img src="https://cdn.discordapp.com/avatars/<%- session.discord_id %>/<%- session.avatar %>?size=64"><%
+          }
+        %>
+      </div>
+
+    </div>
+
+    <!-- The menu button-->
+    <div id="menu_button">
+      <img src="/img/menu.svg">
+    </div>
+
+    <!-- Menu on the left -->
+    <div id="menu_div">
+
+      <!-- Div used for navigation links -->
+      <div id="menu_div_links">
+        <nav>
+          <ul>
+            <li><a href="#">Ayaya</a></li>
+            <li><a href="#">Ayaya 2</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Div used to show user's guilds ( with Admin access ) -->
+      <div id="menu_div_guilds">
+
+        <%
+          for(var i=0; i<guilds.length;i++){
+            //Calculate icon for the server
+            let link;
+            if(guilds[i].icon!=undefined && guilds[i].icon!=''){
+              link = "https://cdn.discordapp.com/icons/"+guilds[i].id+"/"+guilds[i].icon+".png?size=64";
+            }else{
+              link = "/img/profile.svg";
+            }
+
+            %>
+            <a href="/panel/<%- guilds[i].id %>">
+              <div class="menu_div_guilds_guild_div" id="<%- guilds[i].id %>">
+                <img src="<%- link %>">
+                <p><%- guilds[i].name %></p>
+              </div>
+            </a>
+            <%
+          }
+        %>
+
+
+      </div>
+
+    </div>
+
+    <!-- ##### Include Here index-panel or guild-panel #####-->
+      <%
+        if(guild==undefined){
+          //On /panel
+          %><%- include('ejs/index-panel.ejs'); %><%
         }else{
-          link = "/img/logo.png";
-        }
-
-        %><GuildDiv guildID="<%- guilds[i].id %>" guildName="<%- guilds[i].name %>" icon="<%- link %>" /><%
+          //On /panel/:id
+          %><%- include('ejs/guild-panel.ejs'); %><%
         }
       %>
-      </div>,document.getElementById('guildsDiv'));
-    </script>
-    <script src="/script/particles"></script>
-    <script>
 
-    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-    particlesJS.load('particles-js', '/script/particle_config');
-    </script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    /* Menu slider on phones */
+    let isMenuShown = false;
+
+    $("#menu_button img").click(()=>{
+      if(isMenuShown){
+        //Remove menu
+        $("#menu_div > *").css("display", "none");
+        $(".black_opacity").css("display", "none");
+        $("#menu_div").animate({"width":"0%"}, 500, "swing", ()=>{
+          $("#menu_div").css("display", "none");
+        });
+
+        isMenuShown = false;
+      }else{
+        //Show menu
+        $("#menu_div > *").css("display", "block");
+        $(".black_opacity").css("display", "block");
+        $("#menu_div").css("display", "block");
+        $("#menu_div").animate({"width":"30%"}, 500);
+
+        isMenuShown = true;
+      }
+    });
+
+
+    /* Show currentGuild in guilds list :*/
+    let guildId = window.location.href.split('/');
+    guildId = guildId[guildId.length - 1];
+    $('#'+guildId).css("background-color", "#7F7F80");
+
+  </script>
+  </body>
+  <footer>
   </footer>
 </html>

@@ -4,23 +4,284 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
-    <title>CHANGER LE TITRE</title>
-    <link rel="stylesheet" type="text/css" href="/style/index">
-    <script src="/localization"></script>
-    <%-  include('ejs/include_everywhere.ejs') %>
+    <title>Disblock</title>
+    <link rel="stylesheet" type="text/css" href="style">
+    <link rel="stylesheet" type="text/css" href="style/index-style">
   </head>
   <body>
-    <%-  include('ejs/indexMenu.ejs') %>
-    <div class="bodyDiv" id="particles-js">
+
+    <!-- Div only used to add opacity on all screen -->
+    <div class="black_opacity">
     </div>
 
-  </body>
-  <footer>
-    <script src="/script/particles"></script>
+    <!-- Nav and the big image ( The first thing the user see, so that's the first area)-->
+    <div id="first_area_div">
+
+      <!-- Used only in Phone responsive mode -->
+      <div id="first_area_menu_slider_button">
+        <img src="img/menu.svg">
+      </div>
+
+      <!-- Menu / nav -->
+      <nav id="first_area_nav">
+        <ul>
+          <li>Accueil</li>
+          <li>Fonctionnalités</li>
+          <li>Inviter</li>
+          <li>Premium</li>
+        </ul>
+      </nav>
+
+      <!-- Call to action / Go to panel button -->
+      <button onclick="location.href='/panel'" id="first_area_div_panel_button">Panel</button>
+
+      <!-- Text / title -->
+      <div id="first_area_div_text">
+        <h1>Disblock</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit !</p>
+        <%
+          if(session.username==undefined){
+            //Used not logged in
+            %><button onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- session.state %>'">Login with Discord</button><%
+          }else{
+            //User logged in
+            %><button onclick="location.href='/panel'">Go to Panel</button><%
+          }
+        %>
+
+      </div>
+
+      <!-- Wave -->
+      <!--<div id="first_area_div_wave">
+        <img src="img/wave.svg">
+      </div>-->
+    </div>
+
+    <!-- The div with a little text and a button/img -->
+    <div class="content_line_div">
+      <div class="content_line_div_text">
+        <p>Lorem ipsum dolor sit amet !</p>
+      </div>
+      <div class="content_line_div_media">
+      </div>
+    </div>
+
+    <!-- The "Why Disblock" area -->
+    <div id="why_disblock_div">
+      <h2 class="section_title">Pourquoi Disblock ?</h2>
+
+      <div class="why_disblock_content_div"><!-- That's the div  that contain everything -->
+        <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
+          <img src="img/main.png">
+        </div>
+
+        <div class="why_disblock_content_div_text why_disblock_content_div_right"><!-- This div contain the description of the image -->
+          <p class="why_disblock_content_div_text_main_span"><!-- Three <p> are present for the title, description, and link -->
+            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+          </p>
+          <p class="why_disblock_content_div_text_desc_span">
+            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+          </p>
+          <p class="why_disblock_content_div_text_link_span">
+            <a href="#">Voir la liste des fonctionnalités</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="why_disblock_content_div">
+        <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
+          <img src="img/main.png">
+        </div>
+
+        <div class="why_disblock_content_div_text why_disblock_content_div_left">
+          <p class="why_disblock_content_div_text_main_span">
+            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+          </p>
+          <p class="why_disblock_content_div_text_desc_span">
+            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+          </p>
+          <p class="why_disblock_content_div_text_link_span">
+            <a href="#">Voir la liste des fonctionnalités</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="why_disblock_content_div">
+        <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
+          <img src="img/main.png">
+        </div>
+
+        <div class="why_disblock_content_div_text why_disblock_content_div_right">
+          <p class="why_disblock_content_div_text_main_span">
+            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+          </p>
+          <p class="why_disblock_content_div_text_desc_span">
+            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+          </p>
+          <p class="why_disblock_content_div_text_link_span">
+            <a href="#">Voir la liste des fonctionnalités</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="why_disblock_content_div">
+        <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
+          <img src="img/main.png">
+        </div>
+
+        <div class="why_disblock_content_div_text why_disblock_content_div_left">
+          <p class="why_disblock_content_div_text_main_span">
+            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+          </p>
+          <p class="why_disblock_content_div_text_desc_span">
+            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+          </p>
+          <p class="why_disblock_content_div_text_link_span">
+            <a href="#">Voir la liste des fonctionnalités</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- The div with a little text and a button/img -->
+    <div class="content_line_div">
+      <div class="content_line_div_text">
+        <p>Lorem ipsum dolor sit amet !</p>
+      </div>
+      <div class="content_line_div_media">
+      </div>
+    </div>
+
+    <!-- The div with some docs and help to use the bot -->
+    <div id="docs_div">
+      <h2 class="section_title">Une documentation en constante expansion</h2>
+      <p>Besoin d'aide ? Nous avons des guides et une communauté Discord !</p>
+
+      <style>/* That's defined here to make the translations easier */
+      #docs_div_content::before{content: "Je veux...";}
+      </style>
+
+      <!-- This div contain everything else about docs and Discord widget -->
+      <div id="docs_div_content">
+
+        <!-- These div contain links to the docs-->
+        <div class="docs_div_content_link">
+          <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
+          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
+        </div>
+
+        <div class="docs_div_content_link">
+          <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
+          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
+        </div>
+
+        <div class="docs_div_content_link">
+          <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
+          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
+        </div>
+
+        <!-- This div contain Discord widget -->
+        <div id="docs_div_content_discord_widget">
+          <div class="docs_div_content_discord_widget_text_div"><p>Demander ?</p></div>
+          <div class="docs_div_content_discord_widget_div">
+            <iframe id="discord_widget" src="https://discord.com/widget?id=893991454798643230&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- The div with a little text and a button/img -->
+    <div class="content_line_div">
+      <div class="content_line_div_text">
+        <p>Lorem ipsum dolor sit amet !</p>
+      </div>
+      <div class="content_line_div_media">
+      </div>
+    </div>
+
+    <!-- The div with social networks ( Twitter )-->
+    <div id="social_networks_div">
+      <h2 class="section_title">Suivez-nous sur Twitter !</h2>
+      <div id="social_networks_div_content">
+
+        <!-- Four last publications made on Twitter -->
+        <div class="social_networks_div_content_publication">
+        </div>
+        <div class="social_networks_div_content_publication">
+        </div>
+        <div class="social_networks_div_content_publication">
+        </div>
+        <div class="social_networks_div_content_publication">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- The footer -->
+    <div class="footer">
+      <div class="footer_content">
+
+        <!-- Div used to select language -->
+        <div class="footer_content_language">
+          <ul>
+            <li><img src="img/FR_flag.svg"></li>
+            <li><img src="img/US_flag.svg"></li>
+            <li><img src="img/JP_flag.svg"></li>
+          </ul>
+        </div>
+
+        <!-- The title -->
+        <h2 class="section_title">Disblock</h2>
+
+        <!-- Links -->
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">RGPD</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+
+        <!-- Text on the bottom -->
+        <p>&lt;/&gt; by LJ50</p>
+        <!-- Div for an img -->
+        <!--<div class="footer_content_img_div">
+          <img src="img/doc_link.png" height="100%" width="100%">
+        </div>-->
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
 
-    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-    particlesJS.load('particles-js', '/script/particle_config');
+      /* Menu slider on phones */
+      let isMenuShown = false;
+
+      $("#first_area_menu_slider_button img").click(()=>{
+        if(isMenuShown){
+          //Remove menu
+          $(".black_opacity").css("display", "none");
+          $("#first_area_menu_slider_button").css("position", "absolute");
+          $("#first_area_nav").animate({"min-width":"0%", "width":"0%"}, 500, "swing", ()=>{
+            $("#first_area_nav").css("display", "none");
+            $("#first_area_menu_slider_button").css("filter", "none");
+          });
+
+          isMenuShown = false;
+        }else{
+          //Show menu
+          $(".black_opacity").css("display", "block");
+          $("#first_area_nav").css("display", "block");
+          $("#first_area_menu_slider_button").css("position", "fixed");
+          $("#first_area_nav").animate({"min-width":"40%", "width":"auto"}, 500);
+          $("#first_area_menu_slider_button").css("filter", "invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%)");
+
+          isMenuShown = true;
+        }
+      });
     </script>
+  </body>
+  <footer>
   </footer>
 </html>

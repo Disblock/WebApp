@@ -14,9 +14,12 @@ module.exports = {
         fetch('https://discord.com/api/users/@me/guilds', {
           headers: {
             authorization: 'Bearer '+req.session.token,
-          },
+          }
         }).then(result => result.json()).then(response => {
-          if(response.error==undefined && response.message==undefined){
+          if(response.message=="You are being rate limited."){
+            //Rate limited, rip ( User has spammed )
+            return(callback(undefined));
+          }else if(response.error==undefined && response.message==undefined){
             //OK
             return(callback(response));
           }else{
@@ -72,9 +75,9 @@ module.exports = {
 
       }else{
         //NOT OK, was an error
-        console.log('ERROR');
+        console.log('ERROR : Unable to get guilds of an user. He may have removed app\'s access or triggered a rate limit');
         req.session.destroy();
-        return(callback(undefined));
+        return(callback([]));
       }
     });
   }
