@@ -17,6 +17,25 @@
   position: relative;
 }
 
+#content_div_top_div_guild_div{
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+#content_div_top_div_guild_div img{
+  border-radius: 50%;
+  margin-top: 5px;
+  /* Size defined on <img> tag */
+}
+
+#content_div_top_div_guild_div::after{
+  color: #EAEAEA;
+  font-size: 1em;/* img size, defined in <img>, in guild-panel.ejs */
+}
+
 #content_div_header_div{
   z-index: 2;
   position: absolute;

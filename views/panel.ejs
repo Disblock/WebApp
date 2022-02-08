@@ -113,7 +113,13 @@
           %><%- include('ejs/index-panel.ejs'); %><%
         }else{
           //On /panel/:id
-          %><%- include('ejs/guild-panel.ejs'); %><%
+          %><%- include('ejs/guild-panel.ejs'); %>
+            <style>
+              #content_div_top_div_guild_div::after{
+                content: "<%- guild.name %>";
+              }
+            </style>
+          <%
         }
       %>
 
@@ -150,6 +156,12 @@
     let guildId = window.location.href.split('/');
     guildId = guildId[guildId.length - 1];
     $('#'+guildId).css("background-color", "#7F7F80");
+
+    /* Adding Guild picture on top of the guild editor panel */
+    if(guildId!="panel"){
+      //Must not be on the index panel
+      $("#content_div_top_div_guild_div img").attr('src', $('#'+guildId+" img").attr('src'));//Img src getted from menu, and sent to the header <img>'s src 
+    }
 
   </script>
   </body>
