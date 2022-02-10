@@ -119,6 +119,7 @@
                 content: "<%- guild.name %>";
               }
             </style>
+            <%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
           <%
         }
       %>
@@ -126,6 +127,76 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <%
+    if(guild!=undefined){
+      //On guild panel
+      %>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+        <script src="/blockly/loc"></script>
+
+        <script>
+          const socket = io();
+          const toolbox = document.getElementById("toolbox");
+
+          <%
+            for(var i=0;i<blocks.length;i++){
+              %> Blockly.defineBlocksWithJsonArray(<%- blocks[i] %>); <%
+            }
+          %>
+
+          const custom_theme = Blockly.Theme.defineTheme('themeName', {
+            'base': Blockly.Themes.Classic,
+            'startHats': true
+          });
+
+          var options = {
+            toolbox : toolbox,
+            collapse : true,
+            comments : true,
+            disable : true,
+            maxBlocks : Infinity,
+            trashcan : true,
+            horizontalLayout : false,
+            toolboxPosition : 'start',
+            css : true,
+            //media : 'https://blockly-demo.appspot.com/static/media/',
+            rtl : false,
+            scrollbars : true,
+            sounds : true,
+            oneBasedIndex : true,
+            grid:
+             {spacing: 20,
+              length: 6,
+              colour: '#ccc',
+              snap: true},
+            zoom:
+             {controls: true,
+              wheel: true,
+              startScale: 1.0,
+              maxScale: 3,
+              minScale: 0.3,
+              scaleSpeed: 1.2,
+              pinch: true},
+            theme: custom_theme
+          };
+
+          let workspace = Blockly.inject("#content_blockly", options);
+          workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
+
+          //Function to send workspace's blocks to the server :
+          function sendWorkspaceToServer(){
+            alert("Sending your REMPLACER to the server !");
+            socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)), (callback)=>{
+              alert(callback);
+              console.log(callback.status);
+              alert('ok');
+            });
+          }
+        </script>
+      <%
+    }
+  %>
   <script>
     /* Menu slider on phones */
     let isMenuShown = false;
@@ -160,7 +231,7 @@
     /* Adding Guild picture on top of the guild editor panel */
     if(guildId!="panel"){
       //Must not be on the index panel
-      $("#content_div_top_div_guild_div img").attr('src', $('#'+guildId+" img").attr('src'));//Img src getted from menu, and sent to the header <img>'s src 
+      $("#content_div_top_div_guild_div img").attr('src', $('#'+guildId+" img").attr('src'));//Img src getted from menu, and sent to the header <img>'s src
     }
 
   </script>
