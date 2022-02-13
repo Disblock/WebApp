@@ -7,8 +7,9 @@ const mysql_connection = require('./modules/database.js');//Store Database crede
 const discord_login = require('./modules/discord_login.js');//Used to login with Discord
 const discord_regen = require('./modules/discord_token_regen.js');//Used to regen user's tokens
 const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
-const blockly_xml_to_js = require('./modules/blockly_xml_to_js.js');//Convert Blockly's XML into JS
-
+const blockly_xml_to_js = require('./modules/blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
+const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
+const blockly_localization = require('./modules/blockly/localization/fr.js');//Add localization to the generator
 
 /*############################################*/
 /* Imported modules */
@@ -27,6 +28,7 @@ const path = require('path');//Manage access paths
 const crypto = require('crypto');//Generate random strings
 const url = require('url');//Enable access to query string parameters
 const bigInt = require("big-integer");//Used to check permissions on a server
+let Blockly = require('blockly');//Blockly
 
 
 /*############################################*/
@@ -93,7 +95,23 @@ io.use(function(socket, next){//A chaque requête io, le middleware de sessions 
 app.use(morgan('combined'));//Démarre les logs
 app.use(bodyParser.urlencoded({extended: true}));
 
+/*############################################*/
+/* Blockly Initialization */
+/*############################################*/
 
+//Blocks definition
+const blocklyBlocks = [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,require('./modules/blockly/blocks/user_blocks.js').blocks]
+blocklyBlocks.forEach(element => {
+  Blockly.defineBlocksWithJsonArray(JSON.parse(element));
+});
+
+//Text definition
+Blockly = blockly_localization.initializeLocalization(Blockly);
+
+const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the string code later
+Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 10000){throw 'Infinite loop !'}\nloopCount++;\n";
+Blockly.JavaScript.addReservedWords('loopCount');
+Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
 
 /*############################################*/
 /* Function ran on every request */
@@ -123,7 +141,7 @@ app.get('/discord_login', function(req, res){
   if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
     if(url.parse(req.url,true).query.state == req.session.state){
       //State is the same as the registered one
-      
+
       if(url.parse(req.url,true).query.code!=undefined){
         discord_login.login(url.parse(req.url,true).query.code, connection, req, res);
       }else{
@@ -179,7 +197,7 @@ app.get('/panel/:id', function(req, res){
         //User is admin on the selected server
 
         //Let's render Blockly app, with custom blocks added here
-        res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,require('./modules/blockly/blocks/user_blocks.js').blocks]});
+        res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization.initializeLocalization});
 
       }else{
         //User isn't admin on the selected server
@@ -279,11 +297,11 @@ app.get('/blockly/custom_types', function(req, res){
 /* Blockly Localization */
 /*############################################*/
 
-app.get('/blockly/loc', function(req, res){
+/*app.get('/blockly/loc', function(req, res){
   //TODO : MODIFY TO GET RIGHT LANGUAGE
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./blockly/loc/fr.ejs');
-});
+});*/
 
 
 /*############################################*/
@@ -305,7 +323,7 @@ io.sockets.on('connection', function(socket){
         }
 
         if(guild!=undefined){//If guild is defined, a server where user is admin has been found
-          var result = blockly_xml_to_js.xml_to_js(server_id, data);
+          var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly);
           if(result==1){
             callback({status: "OK"});
           }else if(result==2){

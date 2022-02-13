@@ -1,531 +1,5 @@
-//Blocks used in backend by blockly
-
 module.exports = {
-  initializeBlocks: function(Blockly){
-    Blockly.defineBlocksWithJsonArray([
-
-/* ########## Event Blocks ######### */
-/* Used to trigger events. They come sometimes with var blocks, defined under event blocks */
-
-{
-  "type": "event_message_sent",
-  "message0": "%{BKY_EVENT_MESSAGE_SENT}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_MESSAGE_SENT_TOOLTIP}",
-  "helpUrl": ""
-},
-
-{
-  "type": "event_message_deleted",
-  "message0": "%{BKY_EVENT_MESSAGE_DELETED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_MESSAGE_DELETED_TOOLTIP}",
-  "helpUrl": ""
-},
-
-{
-  "type": "event_message_updated",
-  "message0": "%{BKY_EVENT_MESSAGE_UPDATED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_MESSAGE_UPDATED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_user_join",
-  "message0": "%{BKY_EVENT_USER_JOIN}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_JOIN_TOOLTIP}",
-  "helpUrl": ""
-},
-
-{
-  "type": "event_user_left",
-  "message0": "%{BKY_EVENT_USER_LEFT}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_LEFT_TOOLTIP}",
-  "helpUrl": ""
-},
-
-{
-  "type": "event_user_updated",
-  "message0": "%{BKY_EVENT_USER_UPDATED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_UPDATED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_role_created",
-  "message0": "%{BKY_EVENT_ROLE_CREATED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_ROLE_CREATED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_role_deleted",
-  "message0": "%{BKY_EVENT_ROLE_DELETED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_ROLE_DELETED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_role_edited",
-  "message0": "%{BKY_EVENT_ROLE_EDITED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_ROLE_EDITED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_user_banned",
-  "message0": "%{BKY_EVENT_USER_BANNED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_BANNED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_user_unbanned",
-  "message0": "%{BKY_EVENT_USER_UNBANNED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_UNBANNED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_pinned_updated",
-  "message0": "%{BKY_EVENT_PINNED_UPDATED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_PINNED_UPDATED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_user_voice_update",
-  "message0": "%{BKY_EVENT_USER_VOICE_UPDATE}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_VOICE_UPDATE_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_user_start_writing",
-  "message0": "%{BKY_EVENT_USER_START_WRITING}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_START_WRITING_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_text_channel_created",
-  "message0": "%{BKY_EVENT_TEXT_CHANNEL_CREATED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_TEXT_CHANNEL_CREATED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_text_channel_deleted",
-  "message0": "%{BKY_EVENT_TEXT_CHANNEL_DELETED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_TEXT_CHANNEL_DELETED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_text_channel_edited",
-  "message0": "%{BKY_EVENT_TEXT_CHANNEL_EDITED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_TEXT_CHANNEL_EDITED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_voice_channel_created",
-  "message0": "%{BKY_EVENT_VOICE_CHANNEL_CREATED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VOICE_CHANNEL_CREATED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_voice_channel_deleted",
-  "message0": "%{BKY_EVENT_VOICE_CHANNEL_DELETED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VOICE_CHANNEL_DELETED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_voice_channel_edited",
-  "message0": "%{BKY_EVENT_VOICE_CHANNEL_EDITED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VOICE_CHANNEL_EDITED_TOOLTIP}",
-  "helpUrl": ""
-},
-
-{
-  "type": "event_reaction_added",
-  "message0": "%{BKY_EVENT_REACTION_ADDED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_REACTION_ADDED_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_reaction_removed",
-  "message0": "%{BKY_EVENT_REACTION_REMOVED}",
-  "args0": [
-    {
-      "type": "input_dummy"
-    },
-    {
-      "type": "input_statement",
-      "name": "statements"
-    }
-  ],
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_REACTION_REMOVED_TOOLIP}",
-  "helpUrl": ""
-},
-
-/* ########## Event Var Blocks ######### */
-/* Used to represent event variables */
-
-{
-  "type": "event_var_message",
-  "message0": "%{BKY_EVENT_VAR_MESSAGE}",
-  "output": "Message",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_MESSAGE_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_message_old",
-  "message0": "%{BKY_EVENT_VAR_OLD_MESSAGE}",
-  "output": "Message",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_OLD_MESSAGE_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_message_new",
-  "message0": "%{BKY_EVENT_VAR_NEW_MESSAGE}",
-  "output": "Message",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_NEW_MESSAGE_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_user",
-  "message0": "%{BKY_EVENT_VAR_USER}",
-  "output": "User",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_USER_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_old_user",
-  "message0": "%{BKY_EVENT_VAR_OLD_USER}",
-  "output": "User",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_OLD_USER_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_new_user",
-  "message0": "%{BKY_EVENT_VAR_NEW_USER}",
-  "output": "User",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_NEW_USER_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_rank",
-  "message0": "%{BKY_EVENT_VAR_RANK}",
-  "output": "Rank",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_RANK_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_old_rank",
-  "message0": "%{BKY_EVENT_VAR_OLD_RANK}",
-  "output": "Rank",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_OLD_RANK_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_new_rank",
-  "message0": "%{BKY_EVENT_VAR_NEW_RANK}",
-  "output": "Rank",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_NEW_RANK_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_old_voice_channel",
-  "message0": "%{BKY_EVENT_VAR_OLD_VOICE_CHANNEL}",
-  "output": "VoiceChannel",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_OLD_VOICE_CHANNEL_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_new_voice_channel",
-  "message0": "%{BKY_EVENT_VAR_NEW_VOICE_CHANNEL}",
-  "output": "VoiceChannel",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_NEW_VOICE_CHANNEL_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_text_channel",
-  "message0": "%{BKY_EVENT_VAR_TEXT_CHANNEL}",
-  "output": "Channel",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_TEXT_CHANNEL_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_old_text_channel",
-  "message0": "%{BKY_EVENT_VAR_OLD_TEXT_CHANNEL}",
-  "output": "Channel",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_OLD_TEXT_CHANNEL_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_new_text_channel",
-  "message0": "%{BKY_EVENT_VAR_NEW_TEXT_CHANNEL}",
-  "output": "Channel",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_NEW_TEXT_CHANNEL_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_voice_channel",
-  "message0": "%{BKY_EVENT_VAR_VOICE_CHANNEL}",
-  "output": "VoiceChannel",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_VOICE_CHANNEL_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "event_var_reaction",
-  "message0": "%{BKY_EVENT_VAR_REACTION}",
-  "output": "Reaction",
-  "colour": 30,
-  "tooltip": "%{BKY_EVENT_VAR_REACTION_TOOLTIP}",
-  "helpUrl": ""
-}
-]);
-Blockly.defineBlocksWithJsonArray([
-
-/* ########## Messages Blocks ######### */
-/* Used to interact with Messages methods. */
-{
-  "type": "block_message_reply",
-  "message0": "%{BKY_BLOCK_MESSAGE_REPLY}",
-  "args0": [
-    {
-      "type": "input_value",
-      "name": "message",
-      "check": "Message"
-    },
-    {
-      "type": "input_value",
-      "name": "text",
-      "check": "String"
-    }
-  ],
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": 180,
-  "tooltip": "%{BKY_BLOCK_MESSAGE_REPLY_TOOLTIP}",
-  "helpUrl": ""
-}
-]);
-return(Blockly);
-  },
-  initializeText: function(Blockly){
+  initializeLocalization:function init(Blockly){//A name has been set, in order to make it runnable when sent to front-end
 
     Blockly.Msg["ADD_COMMENT"] = "Ajouter un commentaire";
     Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Impossible de supprimer la variable « %1 » parce qu’elle fait partie de la définition de la fonction « %2 »";
@@ -950,6 +424,11 @@ return(Blockly);
     //Workspace
     Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Evénements";
     Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
+    Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Salons et fils";
+    Blockly.Msg["WORKSPACE_TAB_USERS"] = "Utilisateurs";
+    Blockly.Msg["WORKSPACE_TAB_GUILD"] = "Serveur";
+    Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Rôles";
+    Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
 
     Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
     Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -965,6 +444,36 @@ return(Blockly);
     Blockly.Msg["WORKSPACE_EVENTS_VOICE_UPDATE"] = "L'état vocal d'un utilisateur est modifié";
     Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "Une réaction est ajoutée ou retirée d'un message";
     Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Autres";
+
+    Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
+    Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Supprimer un message";
+    Blockly.Msg["WORKSPACE_MESSAGES_CREATE_THREAD"] = "Créer un Fil";
+    Blockly.Msg["WORKSPACE_MESSAGES_PINE"] = "Epingler et désépingler";
+    Blockly.Msg["WORKSPACE_MESSAGES_GET_DATA"] = "Obtenir les données";
+    Blockly.Msg["WORKSPACE_MESSAGES_MENTIONS"] = "Gérer les mentions";
+
+
+    Blockly.Msg["WORKSPACE_CHANNELS_CREATE"] = "Créer un salon textuel ou vocal";
+    Blockly.Msg["WORKSPACE_CHANNELS_DELETE"] = "Supprimer un salon";
+    Blockly.Msg["WORKSPACE_CHANNELS_EDIT"] = "Modifier un salon";
+    Blockly.Msg["WORKSPACE_CHANNELS_GET_DATA"] = "Obtenir les informations du salon";
+    Blockly.Msg["WORKSPACE_CHANNELS_GET_CHANNEL"] = "Récupérer un salon";
+
+    Blockly.Msg["WORKSPACE_USERS_SEND_MESSAGE"] = "Envoyer un message privé";
+    Blockly.Msg["WORKSPACE_USERS_MODERATE"] = "Modérer les utilisateurs";
+    Blockly.Msg["WORKSPACE_USERS_CHECK_PERMISSIONS"] = "Vérifier les permissions";
+    Blockly.Msg["WORKSPACE_USERS_GET_DATA"] = "Obtenir les informations des utilisateurs";
+
+    Blockly.Msg["WORKSPACE_GUILD_INVITE"] = "Gérer les invitations";
+    Blockly.Msg["WORKSPACE_GUILD_GET_DATA"] = "Obtenir des données";
+
+    Blockly.Msg["WORKSPACE_RANKS_CREATE"] = "Créer un rôle";
+    Blockly.Msg["WORKSPACE_RANKS_DELETE"] = "Supprimer un rôle";
+    Blockly.Msg["WORKSPACE_RANKS_EDIT"] = "Modifier un rôle";
+    Blockly.Msg["WORKSPACE_RANKS_GET_DATA"] = "Obtenir les données d'un rôle";
+
+    Blockly.Msg["WORKSPACE_EMBEDS_CREATE_SEND"] = "Créer et envoyer un Embed";
+    Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Personnaliser un Embed";
 
     //Event blocks
     Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -1046,22 +555,27 @@ return(Blockly);
     Blockly.Msg["EVENT_VAR_REACTION"] = "Réaction";
     Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Représente la réaction de l'événement";
 
-    //Message blocks
-    Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
-    Blockly.Msg["BLOCK_MESSAGE_REPLY_TOOLTIP"] = "Permet de directement répondre à un message";
 
-    //Text Channel Permissions
-    Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 %4 pour %5 dans le salon textuel %6";
-    Blockly.Msg["BLOCK_TEXT_VOICE_PERMISSION"] = "Définir les permissions pour un %1 %2 %3 pour %4 dans le salon vocal %5";
+    //Channel Permissions
     Blockly.Msg["PERMISSION_SEE_CHANNEL"] = "Voir le salon";
     Blockly.Msg["PERMISSION_MANAGE_CHANNEL"] = "Gérer le salon";
     Blockly.Msg["PERMISSION_MANAGE_CHANNEL_PERMISSIONS"] = "Gérer les permissions du salon";
+    Blockly.Msg["PERMISSION_MANAGE_RANKS"] = "Gérer les rôles";
+    Blockly.Msg["PERMISSION_MANAGE_EMOJIS"] = "Gérer les émotes et les autocollants";
+    Blockly.Msg["PERMISSION_SEE_SERVER_LOGS"] = "Voir les logs du serveur";
+    Blockly.Msg["PERMISSION_MANAGE_SERVER"] = "Gérer le serveur";
+    Blockly.Msg["PERMISSION_MANAGE_WEBHOOKS"] = "Gérer les Webhooks";
     Blockly.Msg["PERMISSION_CREATE_INVITE"] = "Créer une invitation";
+    Blockly.Msg["PERMISSION_EDIT_USERNAME"] = "Modifier son pseudo";
+    Blockly.Msg["PERMISSION_EDIT_OTHERS_USERNAME"] = "Modifier les pseudos des autres";
+    Blockly.Msg["PERMISSION_KICK"] = "Expulser un membre";
+    Blockly.Msg["PERMISSION_BAN"] = "Bannir un membre";
+    Blockly.Msg["PERMISSION_TIMEOUT"] = "Exclure un membre";
     Blockly.Msg["PERMISSION_SEND_MESSAGES"] = "Envoyer des messages";
     Blockly.Msg["PERMISSION_SEND_MESSAGE_IN_THREADS"] = "Envoyer des messages dans un fil";
     Blockly.Msg["PERMISSION_CREATE_PUBLIC_THREADS"] = "Créer des fils publics";
     Blockly.Msg["PERMISSION_CREATE_PRIVATE_THREADS"] = "Créer des fils privés";
-    Blockly.Msg["PERMISSION_USE_LINKS"] = "Utiliser des liens";
+    Blockly.Msg["PERMISSION_EMBED_LINKS"] = "Utiliser des liens";
     Blockly.Msg["PERMISSION_ADD_FILES"] = "Ajouter des fichiers";
     Blockly.Msg["PERMISSION_ADD_REACTIONS"] = "Ajouter des réactions";
     Blockly.Msg["PERMISSION_USE_EXTERNAL_EMOJIS"] = "Utiliser des émojis externes";
@@ -1070,6 +584,8 @@ return(Blockly);
     Blockly.Msg["PERMISSION_MANAGE_MESSAGES"] = "Gérer les messages";
     Blockly.Msg["PERMISSION_MANAGE_THREADS"] = "Gérer les fils";
     Blockly.Msg["PERMISSION_SEE_OLD_MESSAGES"] = "Voir les anciens messages";
+    Blockly.Msg["PERMISSION_SEND_VOICE_MESSAGE"] = "Envoyer des messages de synthèse vocale";
+    Blockly.Msg["PERMISSION_USE_APP_COMMANDS"] = "Utiliser les commandes de l'application";
     Blockly.Msg["PERMISSION_CONNECT_TO_VOICE_CHANNEL"] = "Se connecter au salon vocal";
     Blockly.Msg["PERMISSION_SPEAK"] = "Parler";
     Blockly.Msg["PERMISSION_USE_VIDEO"] = "Utiliser la vidéo";
@@ -1079,13 +595,209 @@ return(Blockly);
     Blockly.Msg["PERMISSION_MUTE_MEMBER"] = "Rendre un membre muet";
     Blockly.Msg["PERMISSION_DEAF_MEMBER"] = "Rendre un membre sourd";
     Blockly.Msg["PERMISSION_MOOVE_MEMBER"] = "Déplacer un membre";
+    Blockly.Msg["PERMISSION_MANAGE_VOICE_CHANNEL_EVENTS"] = "Gérer les événements du salon vocal";
+    Blockly.Msg["PERMISSION_ADMINISTRATOR"] = "Administrateur";
     Blockly.Msg["PERMISSION_GRANT_PERMISSION"] = "Autoriser";
     Blockly.Msg["PERMISSION_DENY_PERMISSION"] = "Refuser";
     Blockly.Msg["PERMISSION_UNDEFINED_PERMISSION"] = "Indéfinit";
     Blockly.Msg["PERMISSION_USER"] = Blockly.Msg["EVENT_VAR_USER"];
     Blockly.Msg["PERMISSION_RANK"] = Blockly.Msg["EVENT_VAR_RANK"];
-    Blockly.Msg["BLOCK_TEXT_CHANNEL_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon écrit. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
-    Blockly.Msg["BLOCK_TEXT_VOICE_PERMISSION_TOOLTIP"] = "Permet de définir les permissions d'un salon vocal. Indiquez si vous définissez les permissions d'un grade ou d'un utilisateur, puis quelle permission, si elle est accordée, refusée ou indéfinie, puis ajoutez les variables Utilisateur ou Groupe ainsi que celle du salon.";
+
+    //Durations
+    Blockly.Msg["DURATION_1MIN"] = "1 minute";
+    Blockly.Msg["DURATION_5MIN"] = "5 minutes";
+    Blockly.Msg["DURATION_10MIN"] = "10 minutes";
+    Blockly.Msg["DURATION_30MIN"] = "30 minutes";
+    Blockly.Msg["DURATION_1H"] = "1 heure";
+    Blockly.Msg["DURATION_6H"] = "6 heures";
+    Blockly.Msg["DURATION_12H"] = "12 heures";
+    Blockly.Msg["DURATION_1D"] = "1 jour";
+    Blockly.Msg["DURATION_1W"] = "1 semaine";
+    Blockly.Msg["DURATION_NEVER"] = "Jamais";
+
+    //Channels blocks
+    Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL"] = "Créer le salon textuel nommé %1 Avec la description %2 Dans la catégorie %3";
+    Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL_TOOLTIP"] = "Permet de créer un salon textuel. Si aucune catégorie n'est donnée, il sera créé hors catégorie.";
+    Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL"] = "Créer le salon vocal nommé %1 Dans la catégorie %2";
+    Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL_TOOLTIP"] = "Permet de créer un salon vocal. Si aucune catégorie n'est donnée, il sera créé hors catégorie.";
+    Blockly.Msg["BLOCK_CHANNEL_VAR_VOICE_CHANNEL"] = "Salon vocal créé";
+    Blockly.Msg["BLOCK_CHANNEL_VAR_VOICE_CHANNEL_TOOLTIP"] = "Représente le salon vocal créé";
+    Blockly.Msg["BLOCK_CHANNEL_VAR_TEXT_CHANNEL"] = "Salon textuel créé";
+    Blockly.Msg["BLOCK_CHANNEL_VAR_TEXT_CHANNEL_TOOLTIP"] = "Représente le salon textuel créé";
+    Blockly.Msg["BLOCK_CHANNEL_DELETE"] = "Supprimer le salon %1";
+    Blockly.Msg["BLOCK_CHANNEL_DELETE_TOOLTIP"] = "Permet de supprimer un salon textuel, vocal ou fil";
+    Blockly.Msg["BLOCK_CHANNEL_RENAMME"] = "Modifier le  nom du salon %1 avec le nom %2";
+    Blockly.Msg["BLOCK_CHANNEL_RENAMME_TOOLTIP"] = "Permet de renommer un salon textuel, vocal ou fil";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_OF_CHANNEL"] = "Catégorie du salon %1";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_OF_CHANNEL_TOOLTIP"] = "Permet de retrouver la catégorie où est placé un salon textuel ou vocal";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_NAME"] = "Nom du salon %1";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_NAME_TOOLTIP"] = "Permet de récupérer le nom d'un salon";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_TOPIC"] = "Description du salon %1";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_TOPIC_TOOLTIP"] = "Permet de récupérer la description d'un salon";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID"] = "ID du salon %1";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID_TOOLTIP"] = "Permet de récupérer l'ID d'un salon";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Récupérer un salon avec son ID %1";
+    Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Permet de récupérer un salon textuel, vocal ou fil à partir de son ID";
+    Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION"] = "Vérifier si l'utilisateur ou le rôle %1 Dispose de la permission %2 %3 Dans le salon textuel ou vocal %4";
+    Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION_TOOLTIP"] = "Vérifie si un utilisateur ou un rôle dispose d'une permission dans le salon textuel ou vocal indiqué. Retourne Vrai si oui, Faux si non";
+    Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] = "Définir pour l'utilisateur ou le rôle %1 la permission %2 %3 %4 Dans le salon textuel ou vocal %5";
+    Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] = "Permet de définir une permission pour un membre ou un rôle, dans un salon textuel ou vocal.";
+    Blockly.Msg["BLOCK_CHANNEL_LIST"] = "Liste de tous les salons du serveur";
+    Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Permet de récupérer la liste de tous les salons du serveur";
+
+    //Message blocks
+    Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
+    Blockly.Msg["BLOCK_MESSAGE_REPLY_TOOLTIP"] = "Permet de directement répondre à un message";
+    Blockly.Msg["BLOCK_MESSAGE_SEND"] = "Envoyer le message dans le channel %1 Avec le message %2";
+    Blockly.Msg["BLOCK_MESSAGE_SEND_TOOLTIP"] = "Permet d'envoyer un message dans un salon";
+    Blockly.Msg["BLOCK_MESSAGE_SEND_WITH_FILE"] = "Envoyer le message dans le channel %1 Avec le message %2 Et le fichier %3";
+    Blockly.Msg["BLOCK_MESSAGE_SEND_WITH_FILE_TOOLTIP"] = "Permet d'envoyer un message dans un salon. Indiquez le fichier à envoyer avec son URL";
+    Blockly.Msg["BLOCK_MESSAGE_DELETE"] = "Supprimer le message %1";
+    Blockly.Msg["BLOCK_MESSAGE_DELETE_TOOLTIP"] = "Supprimer le message passé en paramètre";
+    Blockly.Msg["BLOCK_MESSAGE_DELETE_BULK"] = "Supprimer %1 messages dans le salon %2";
+    Blockly.Msg["BLOCK_MESSAGE_DELETE_BULK_TOOLTIP"] = "Supprimer plusieurs messages d'un channel.";
+    Blockly.Msg["BLOCK_MESSAGE_START_THREAD"] = "Créer un fil commençant par le message %1";
+    Blockly.Msg["BLOCK_MESSAGE_START_THREAD_TOOLTIP"] = "Permet de créer un fil sur un message. Le message DOIT être dans un salon normal et non un thread";
+    Blockly.Msg["BLOCK_MESSAGE_PINE"] = "Epingler le message %1";
+    Blockly.Msg["BLOCK_MESSAGE_PINE_TOOLTIP"] = "Permet d'épingler un message";
+    Blockly.Msg["BLOCK_MESSAGE_UNPINE"] = "Désepingler le message %1";
+    Blockly.Msg["BLOCK_MESSAGE_UNPINE_TOOLTIP"] = "Permet de désépingler un message";
+    Blockly.Msg["BLOCK_MESSAGE_GET_TEXT"] = "Texte du message %1";
+    Blockly.Msg["BLOCK_MESSAGE_GET_TEXT_TOOLTIP"] = "Retourne le texte d'un message";
+    Blockly.Msg["BLOCK_MESSAGE_GET_ID"] = "ID du message %1";
+    Blockly.Msg["BLOCK_MESSAGE_GET_ID_TOOLTIP"] = "Retourne l'identifiant d'un message";
+    Blockly.Msg["BLOCK_MESSAGE_GET_AUTOR"] = "Auteur du message %1";
+    Blockly.Msg["BLOCK_MESSAGE_GET_AUTOR_TOOLTIP"] = "Retourne l'utilisateur qui a créé le message";
+    Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL"] = "Salon du message %1";
+    Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_TOOLTIP"] = "Retourne le salon ou fil où a été envoyé le message";
+    Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_EVERYONE"] = "Le message mentionne @everyone ? %1";
+    Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_EVERYONE_TOOLTIP"] = "Retourne Vrai si le message mentionne @everyone, sinon faux";
+    Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_USER"] = "Le message mentionne t-il un utilisateur ? %1";
+    Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_USER_TOOLTIP"] = "Retourne Vrai si le message mentionne un utilisateur, sinon faux";
+    Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION"] = "Obtenir la mention d'utilisateur n° %1 du message %2";
+    Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION_TOOLTIP"] = "Retourne l'utilisateur mentionné par la xème mention contenue dans le message";
+    Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION"] = "Obtenir la mention du salon n° %1 du message %2";
+    Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION_TOOLTIP"] = "Retourne le salon mentionné par la xème mention contenue dans le message";
+    Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_USER"] = "Nombre de mentions @utilisateur du message %1";
+    Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_USER_TOOLTIP"] = "Retourne le nombre de mentions @utilisateur contenues dans le message";
+    Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL"] = "Nombre de mentions #salon du message %1";
+    Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL_TOOLTIP"] = "Retourne le nombre de mentions #salon contenues dans le message";
+    Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE"] = "Message envoyé";
+    Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP"] = "Représente le message venant d'être envoyé";
+
+
+    //User blocks
+    Blockly.Msg["BLOCK_USER_BAN"] = "Bannir l'utilisateur %1 avec la raison %2";
+    Blockly.Msg["BLOCK_USER_BAN_TOOLTIP"] = "Permet de bannir un utilisateur du serveur avec une raison";
+    Blockly.Msg["BLOCK_USER_UNBAN"] = "Débannir l'utilisateur %1 avec la raison %2";
+    Blockly.Msg["BLOCK_USER_UNBAN_TOOLTIP"] = "Permet de débannir un utilisateur du serveur avec une raison. L'ID de l'utilisateur peur être utilisé pour le retrouver";
+    Blockly.Msg["BLOCK_USER_SEND_PRIVATE_MESSAGE"] = "Envoyer le message %1 à l'utilisateur %2";
+    Blockly.Msg["BLOCK_USER_SEND_PRIVATE_MESSAGE_TOOLTIP"] = "Envoyer un message privé à l'utilisateur";
+    Blockly.Msg["BLOCK_USER_KICK"] = "Expulser l'utilisateur %1 avec la raison %2";
+    Blockly.Msg["BLOCK_USER_KICK_TOOLTIP"] = "Permet d'expulser un utilisateur du serveur avec une raison";
+    Blockly.Msg["BLOCK_USER_GET_WITH_ID"] = "Récupérer l'utilisateur avec l'ID %1";
+    Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Récupérer l'utilisateur avec l'ID indiqué. L'utilisateur doit être présent dans le serveur, sinon une erreur se produira";
+    Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME"] = "Récupérer le pseudo serveur de l'utilisateur %1";
+    Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME_TOOLTIP"] = "Récupérer le pseudo de l'utilisateur sur le serveur, sans le discriminant";
+    Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Récupérer le pseudo de l'utilisateur %1";
+    Blockly.Msg["BLOCK_USER_GET_USERNAME_TOOLTIP"] = "Récupérer le pseudo de l'utilisateur, sans le discriminant";
+    Blockly.Msg["BLOCK_USER_GET_TAG"] = "Récupérer le discriminant de l'utilisateur %1";
+    Blockly.Msg["BLOCK_USER_GET_TAG_TOOLTIP"] = "Récupérer le discriminant de l'utilisateur, sans son pseudo. Ex : 'Pseudo#1234' retourne '1234'";
+    Blockly.Msg["BLOCK_USER_GET_ID"] = "Récupérer l'ID de l'utilisateur %1";
+    Blockly.Msg["BLOCK_USER_GET_ID_TOOLTIP"] = "Récupérer l'identifiant de l'utilisateur";
+    Blockly.Msg["BLOCK_USER_GET_PICTURE"] = "Récupérer l'avatar de l'utilisateur %1";
+    Blockly.Msg["BLOCK_USER_GET_PICTURE_TOOLTIP"] = "Récupérer le lien de l'avatar d'un utilisateur";
+    Blockly.Msg["BLOCK_USER_IS_BOT"] = "L'utilisateur est-il un bot ? %1";
+    Blockly.Msg["BLOCK_USER_IS_BOT_TOOLTIP"] = "Permet de savoir si l'utilisateur est un robot. Retourne Vrai si oui, Faux si non";
+    Blockly.Msg["BLOCK_USER_MUTE"] = "Rendre muet le membre %1";
+    Blockly.Msg["BLOCK_USER_MUTE_TOOLTIP"] = "Rendre l'utilisateur muet dans les salons vocaux du serveur";
+    Blockly.Msg["BLOCK_USER_UNMUTE"] = "Rendre la parole au membre %1";
+    Blockly.Msg["BLOCK_USER_UNMUTE_TOOLTIP"] = "Rendre la parole au membre dans un salon vocal. Annule le \"rendre muet\"";
+    Blockly.Msg["BLOCK_USER_DEAF"] = "Mettre en sourdine le membre %1";
+    Blockly.Msg["BLOCK_USER_DEAF_TOOLTIP"] = "Rendre l'utilisateur sourd dans les salons vocaux du serveur";
+    Blockly.Msg["BLOCK_USER_UNDEAF"] = "Rendre le son au membre %1";
+    Blockly.Msg["BLOCK_USER_UNDEAF_TOOLTIP"] = "Permet au membre de retrouver le son dans les salons vocaux, annule l'effet d'un \"mettre en sourdine\"";
+    Blockly.Msg["BLOCK_USER_IS_TIMEOUT"] = "Le membre est-il exclu ? %1";
+    Blockly.Msg["BLOCK_USER_IS_TIMEOUT_TOOLTIP"] = "Permet de savoir si un membre est exclu du serveur ( Ne peut pas envoyer de messages, rejoindre de salons vocaux, ... ). Retourne Vrai si oui, Faux si non";
+    Blockly.Msg["BLOCK_USER_TIMEOUT"] = "Exclure le membre %1 pendant %2 Avec la raison %3";
+    Blockly.Msg["BLOCK_USER_TIMEOUT_TOOLTIP"] = "Permet d'exclure le membre pour une durée déterminée";
+    Blockly.Msg["BLOCK_USER_CUSTOM_TIMEOUT"] = "Exclure le membre %1 pendant %2 secondes avec la raison %3";
+    Blockly.Msg["BLOCK_USER_CUSTOM_TIMEOUT_TOOLTIP"] = "Permet d'exclure le membre pour une durée personnalisée";
+    Blockly.Msg["BLOCK_USER_REMOVE_TIMEOUT"] = "Retirer l'exclusion du membre %1";
+    Blockly.Msg["BLOCK_USER_REMOVE_TIMEOUT_TOOLTIP"] = "Permet de supprimer une exclusion d'un membre";
+    Blockly.Msg["BLOCK_USER_HAS_PERMISSION"] = "L'utilisateur %1 possède t-il la permission %2 ?";
+    Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir si un membre possède la permission associée. Retourne Vrai si oui, Faux si non";
+    Blockly.Msg["BLOCK_USER_HAS_RANK"] = "L'utilisateur %1 possède t-il le rôle %2 ?";
+    Blockly.Msg["BLOCK_USER_HAS_RANK_TOOLTIP"] = "Permet de savoir si un utilisateur possède le rôle indiqué. Retourne Vrai si oui, Faux si non";
+
+    //Guild blocks
+    Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Identifiant du serveur";
+    Blockly.Msg["BLOCK_GUILD_GET_ID_TOOLTIP"] = "Permet d'obtenir l'identifiant du serveur DIscord";
+    Blockly.Msg["BLOCK_GUILD_GET_NAME"] = "Nom du serveur";
+    Blockly.Msg["BLOCK_GUILD_GET_NAME_TOOLTIP"] = "Permet d'obtenir le nom du serveur Discord";
+    Blockly.Msg["BLOCK_GUILD_GET_BOOST_COUNT"] = "Nombre de boosts du serveur";
+    Blockly.Msg["BLOCK_GUILD_GET_BOOST_COUNT_TOOLTIP"] = "Permet d'obtenir le nombre de boosts du serveur Discord";
+    Blockly.Msg["BLOCK_GUILD_GET_MEMBERS_COUNT"] = "Nombre de personnes dans le serveur";
+    Blockly.Msg["BLOCK_GUILD_GET_MEMBERS_COUNT_TOOLTIP"] = "Permet d'obtenir le nombre de personnes dans le serveur Discord";
+    Blockly.Msg["BLOCK_GUILD_CREATE_INVITE"] = "Créer une invitation expirant après %1 et avec %2 utilisations";
+    Blockly.Msg["BLOCK_GUILD_CREATE_INVITE_TOOLTIP"] = "Créer une invitation pour le serveur. Retourne le lien de l'invitation créée";
+
+
+    //Ranks blocks
+    Blockly.Msg["BLOCK_RANK_CREATE"] = "Créer un rôle avec le nom %1 et la couleur %2 %3 Les membres peuvent être mentionnés : %4 %5 Les membres sont affichés dans la liste : %6 %7 Ajouter ce rôle dans l'arborescence à la position %8";
+    Blockly.Msg["BLOCK_RANK_CREATE_TOOLTIP"] = "Permet de créer un rôle. Insérez un nom, choisissez une couleur ( Blanc = transparent ) et indiquez si le rôle est mentionnable et si les membres sont visibles dans la liste des utilisateurs. Enfin, indiquez la position de ce rôle dans l'arborescence des grades.";
+    Blockly.Msg["BLOCK_RANK_CREATED_RANK"] = "Rôle créé";
+    Blockly.Msg["BLOCK_RANK_CREATED_RANK_TOOLTIP"] = "Retourne le rôle créé";
+    Blockly.Msg["BLOCK_RANK_DELETE"] = "Supprimer le rôle %1";
+    Blockly.Msg["BLOCK_RANK_DELETE_TOOLTIP"] = "Supprime le rôle passé en paramètre";
+    Blockly.Msg["BLOCK_RANK_EDIT_NAME"] = "Renommer le rôle %1 Avec le nouveau nom %2";
+    Blockly.Msg["BLOCK_RANK_EDIT_NAME_TOOLTIP"] = "Permet de renommer un rôle";
+    Blockly.Msg["BLOCK_RANK_EDIT_COLOR"] = "Changer la couleur du rôle %1 avec la nouvelle couleur %2";
+    Blockly.Msg["BLOCK_RANK_EDIT_COLOR_TOOLTIP"] = "Permet de changer la couleur d'un rôle. La couleur Blanc donne un rôle transparent";
+    Blockly.Msg["BLOCK_RANK_EDIT_PINGEABLE"] = "Définir si le rôle %1 doit être mentionnable : %2";
+    Blockly.Msg["BLOCK_RANK_EDIT_PINGEABLE_TOOLTIP"] = "Permet de définir si le rôle devrait être mentionnable ou non";
+    Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN"] = "Définir si les membres du rôle %1 doivent être affichés dans la liste des membres %2";
+    Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN_TOOLTIP"] = "Permet de définir si les membres d'un rôle sont affichés dans la liste des membres du serveur";
+    Blockly.Msg["BLOCK_RANK_EDIT_POSITION"] = "Définir la position du rôle %1 dans l'arborescence des rôles à %2";
+    Blockly.Msg["BLOCK_RANK_EDIT_POSITION_TOOLTIP"] = "Permet de définir la position du rôle dans l'arborescence des rôles du serveur";
+    Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID"] = "Obtenir le rôle ayant l'identifiant %1";
+    Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID_TOOLTIP"] = "Permet de retrouver un rôle avec son identifiant";
+    Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS"] = "Définir la permission %1 du rôle %2 à %3";
+    Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS_TOOLTIP"] = "Permet de modifier les permissions du rôle";
+    Blockly.Msg["BLOCK_RANK_GET_NAME"] = "Obtenir le nom du rôle %1";
+    Blockly.Msg["BLOCK_RANK_GET_NAME_TOOLTIP"] = "Retourne le nom du rôle donné en paramètre";
+    Blockly.Msg["BLOCK_RANK_GET_POSITION"] = "Obtenir la position dans l'arborescence du rôle %1";
+    Blockly.Msg["BLOCK_RANK_GET_POSITION_TOOLTIP"] = "Retourne la position du rôle dans l'arborescence des rôles du serveur";
+    Blockly.Msg["BLOCK_RANK_GET_COLOR"] = "Obtenir la couleur du rôle %1";
+    Blockly.Msg["BLOCK_RANK_GET_COLOR_TOOLTIP"] = "Retourne la couleur du rôle au format #ffffff";
+    Blockly.Msg["BLOCK_RANK_GET_ID"] = "Obtenir l'identifiant du rôle %1";
+    Blockly.Msg["BLOCK_RANK_GET_ID_TOOLTIP"] = "Retourne l'identifiant du rôle";
+    Blockly.Msg["BLOCK_RANK_HAS_PERMISSION"] = "Le rôle %1 possède t-il la permission %2 ?";
+    Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir un rôle dispose d'une permission. Retourne Vrai si oui, Faux si non ou indéfinit";
+
+    //Embeds blocks
+    Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la couleur %2 et les options : %3 %4";
+    Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] = "Permet de créer un message Embed, avec un titre et une couleur. Utilisez les blocs de description d'embed pour le modifier.";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE"] = "Définir l'URL de l'image de l'embed : %1";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'image sous forme de chaîne de charactères";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL"] = "Définir l'URL de l'icone de l'embed : %1";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'icone sous forme de chaîne de charactères";
+    Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD"] = "Ajouter un champ avec le nom %1 Et le texte : %2 Aligné avec les autres : %3";
+    Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD_TOOLTIP"] = "Option d'embed, Ajoutez un champ dans un embed. Taille max du texte : 255 charactères";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR"] = "Définir l'auteur avec le nom %1 l'URL %2 Et le lien de son image %3";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR_TOOLTIP"] = "Option d'embed, Définissez l'auteur de l'embed";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER"] = "Ajouter un Footer avec le texte %1 Et le lien de son image %2";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER_TOOLTIP"] = "Option d'embed, Définissez le bas de l'embed";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP"] = "Ajouter la date d'envoi de l'embed";
+    Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] = "Option d'embed, permet d'ajouter la date d'envoi de l'embed";
+    Blockly.Msg["BLOCK_EMBED_SEND"] = "Envoyer le message Embed %1 dans le salon %2";
+    Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Permet d'envoyer un message Embed";
+    Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Message Embed";
+    Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Représente le message Embed créé";
+
+    //Others
+    Blockly.Msg["YES"] = "Oui";
+    Blockly.Msg["NO"] = "Non";
 
     return(Blockly);
   }

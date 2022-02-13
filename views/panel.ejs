@@ -133,7 +133,7 @@
       %>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-        <script src="/blockly/loc"></script>
+        <script><%- localization %>Blockly = init(Blockly);</script>
 
         <script>
           const socket = io();
