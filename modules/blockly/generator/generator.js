@@ -50,32 +50,32 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_var_message'] = function(block) {
-      var code = "message";
+      var code = "eventMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_message_old'] = function(block) {
-      var code="oldMessage";
+      var code="eventOldMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_message_new'] = function(block) {
-      var code="newMessage";
+      var code="eventNewMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_user'] = function(block) {
-      var code="user";
+      var code="eventUser";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_old_user'] = function(block) {
-      var code="oldUser";
+      var code="eventOldUser";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_new_user'] = function(block) {
-      var code="newUser";
+      var code="eventNewUser";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -98,17 +98,17 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_var_role'] = function(block) {
-      var code="role";
+      var code="eventRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_old_role'] = function(block) {
-      var code="oldRole";
+      var code="eventOldRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_new_role'] = function(block) {
-      var code="newRole";
+      var code="eventNewRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -143,12 +143,12 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_var_old_voice_channel'] = function(block) {
-      var code="oldVoiceChannel";
+      var code="eventOldVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_new_voice_channel'] = function(block) {
-      var code="newVoiceChannel";
+      var code="eventNewVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -189,22 +189,22 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_var_text_channel'] = function(block) {
-      var code="textChannel";
+      var code="eventTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_old_text_channel'] = function(block) {
-      var code="oldTextChannel";
+      var code="eventOldTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_new_text_channel'] = function(block) {
-      var code="newTextChannel";
+      var code="eventNewTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['event_var_voice_channel'] = function(block) {
-      var code="voiceChannel";
+      var code="eventVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -221,7 +221,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_var_reaction'] = function(block) {
-      var code="reaction";
+      var code="eventReaction";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -237,149 +237,209 @@ module.exports = {
     Blockly.JavaScript['block_message_reply'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
       var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-      var code = value_message+".reply("+value_text+");\n";
-      return code;
+
+      if(value_message!='' && value_text!=''){
+        var code = value_message+".reply("+value_text+");\n";
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_send'] = function(block) {
       var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
       var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+
+      if(value_channel!='' && value_text!=''){
+        var code = value_channel+'.send('+value_text+');\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_send_with_file'] = function(block) {
       var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
       var value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
       var value_fileurl = Blockly.JavaScript.valueToCode(block, 'fileURL', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+      if(value_channel!='' && value_text!='' && value_fileurl!='' && (value_fileurl.substr(1, 7)==='http://' || value_fileurl.substr(1, 8)==='https://') ){//Index 1, Blockly surrond with ', index 0 give 'http:/
+        var code = value_channel+".send({content: "+value_text +",files: [{attachment: "+value_fileurl+",name: 'file.jpg'}]});\n";
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_delete'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+
+      if(value_message!=''){
+        var code = value_message+'.delete();\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_delete_bulk'] = function(block) {
       var number_amount = block.getFieldValue('amount');
       var value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+
+      if(number_amount!='' && value_channel!=''){
+        var code = value_channel+'.bulkDelete('+number_amount+');\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_start_thread'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+
+      if(value_message!=''){
+        var code = value_message+'.startThread();\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_pine'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+
+      if(value_message!=''){
+        var code = value_message+'.pin();\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_unpine'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...;\n';
-      return code;
+
+      if(value_message!=''){
+        var code = value_message+'.unpin();\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_message_get_text'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.content';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_get_id'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.id';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_get_autor'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.member';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_get_channel'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.channel';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_does_mention_everyone'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.mentions.everyone';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_does_mention_user'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.mentions.members.size>0';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_get_user_mention'] = function(block) {
       var number_mention_index = block.getFieldValue('mention_index');
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!='' && number_mention_index!='' && number_mention_index!='NaN'){
+        var code = value_message+'.mentions.members.at(('+number_mention_index+'-1) % '+value_message+'.mentions.members.size)';// For us, Collection start at index 0, for users, a collection start at index 1
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_get_channel_mention'] = function(block) {
       var number_mention_index = block.getFieldValue('mention_index');
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!='' && number_mention_index!='' && number_mention_index!='NaN'){
+        var code = value_message+'.mentions.channels.at(('+number_mention_index+'-1) % '+value_message+'.mentions.channels.size)';// For us, Collection start at index 0, for users, a collection start at index 1
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_number_of_mentions_user'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.mentions.members.size';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_number_of_mentions_channel'] = function(block) {
       var value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
-      return [code, Blockly.JavaScript.ORDER_NONE];
+
+      if(value_message!=''){
+        var code = value_message+'.mentions.channels.size';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     Blockly.JavaScript['block_message_var_sent_message'] = function(block) {
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      var code = "sentMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     }
 
