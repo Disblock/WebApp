@@ -1,4 +1,4 @@
-const blockly = require('blockly');
+//const blockly = require('blockly');
 
 module.exports = {
   initializeGenerator: function(Blockly, token){//Token is used to separe events later
@@ -15,7 +15,7 @@ module.exports = {
 
     /*
 
-    The const GLOBAL_GUILD represent the Guild object that triggered an event, this var is defined in the bot when executing the code.
+    The const GLOBAL_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
 
     */
 
@@ -646,25 +646,25 @@ module.exports = {
         let code = value_user;
         switch(dropdown_duration){
           case '1min':
-            code = code + '.timeout(60000, '+value_reason+')';
+            code = code + '.timeout(60000, '+value_reason+');\n';
             break;
           case '5min':
-            code = code + '.timeout(300000, '+value_reason+')';
+            code = code + '.timeout(300000, '+value_reason+');\n';
             break;
           case '10min':
-            code = code + '.timeout(600000, '+value_reason+')';
+            code = code + '.timeout(600000, '+value_reason+');\n';
             break;
           case '1h':
-            code = code + '.timeout(3600000, '+value_reason+')';
+            code = code + '.timeout(3600000, '+value_reason+');\n';
             break;
           case '1d':
-            code = code + '.timeout(86400000, '+value_reason+')';
+            code = code + '.timeout(86400000, '+value_reason+');\n';
             break;
           case '1w':
-            code = code + '.timeout(604800000, '+value_reason+')';
+            code = code + '.timeout(604800000, '+value_reason+');\n';
             break;
           default:
-            code = code + '.timeout(60000, '+value_reason+')';
+            code = code + '.timeout(60000, '+value_reason+');\n';
             break;
         }
         return code;
@@ -680,7 +680,7 @@ module.exports = {
 
       if(value_user!=='' && value_duration!==''){
         if(value_reason===''){value_reason='\'Reason undefined\''}
-        const code = value_user + '.timeout('+value_duration*1000+', '+value_reason+')';
+        const code = value_user + '.timeout('+value_duration*1000+', '+value_reason+');\n';
         return code;
       }else{
         return '';
@@ -691,7 +691,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user + '.timeout(null)';//Giving null as argument remove the timeout
+        const code = value_user + '.timeout(null);\n';//Giving null as argument remove the timeout
         return code;
       }else{
         return '';
@@ -842,6 +842,359 @@ module.exports = {
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
       }
+    };
+
+    /* ##### CHANNELS blocks ##### */
+
+    Blockly.JavaScript['block_channel_create_text_channel'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_topic = Blockly.JavaScript.valueToCode(block, 'topic', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_name!=='' && value_category!==''){
+        let code = 'GLOBAL_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
+        code = code + ((value_topic!=='') ? ', topic: '+value_topic+'});\n' : '});\n');
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_channel_create_voice_channel'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_name!=='' && value_category!==''){
+        const code = 'GLOBAL_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_channel_var_voice_channel'] = function(block) {
+      const code = 'createdVoiceChannel';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_channel_var_text_channel'] = function(block) {
+      const code = 'createdTextChannel';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_channel_delete'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.delete();\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_channel_renamme'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!=='' && value_text!==''){
+        const code = value_channel+'.setName('+value_text+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_category_of_channel'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.parent';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_channel_name'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.name';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_channel_topic'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.topic || \'\'';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_channel_id'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.id';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_channel_with_id'] = function(block) {
+      const value_channel_id = Blockly.JavaScript.valueToCode(block, 'channel_id', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel_id!==''){
+        const code = 'GLOBAL_GUILD.channels.resolve('+value_channel_id+')';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_permission'] = function(block) {
+      const value_userorrank = Blockly.JavaScript.valueToCode(block, 'userOrRank', Blockly.JavaScript.ORDER_ATOMIC);
+      const dropdown_permission = block.getFieldValue('permission');
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_userorrank!=='' && dropdown_permission!=='' && value_channel!==''){
+        let code = value_channel+'.permissionsFor('+value_userorrank+', true).has(';
+
+        switch(dropdown_permission){
+          case 'SEE_CHANNEL':
+            code = code + '\'VIEW_CHANNEL\', true)';
+            break;
+          case 'MANAGE_CHANNEL':
+            code = code + '\'MANAGE_CHANNELS\', true)';
+            break;
+          case 'MANAGE_CHANNEL_PERMISSIONS':
+            code = code + '\'MANAGE_ROLES\', true)';
+            break;
+          case 'MANAGE_CHANNEL_WEBHOOKS':
+            code = code + '\'MANAGE_WEBHOOKS\', true)';
+            break;
+          case 'CREATE_INVITE':
+            code = code + '\'CREATE_INSTANT_INVITE\', true)';
+            break;
+          case 'SEND_MESSAGES':
+            code = code + '\'SEND_MESSAGES\', true)';
+            break;
+          case 'SEND_MESSAGES_IN_THREADS':
+            code = code + '\'SEND_MESSAGES_IN_THREADS\', true)';
+            break;
+          case 'CREATE_PUBLIC_THREADS':
+            code = code + '\'CREATE_PUBLIC_THREADS\', true)';
+            break;
+          case 'CREATE_PRIVATE_THREADS':
+            code = code + '\'CREATE_PRIVATE_THREADS\', true)';
+            break;
+          case 'EMBED_LINKS':
+            code = code + '\'EMBED_LINKS\', true)';
+            break;
+          case 'ADD_FILES':
+            code = code + '\'ATTACH_FILES\', true)';
+            break;
+          case 'ADD_REACTIONS':
+            code = code + '\'ADD_REACTIONS\', true)';
+            break;
+          case 'USE_EXTERNAL_EMOJIS':
+            code = code + '\'USE_EXTERNAL_EMOJIS\', true)';
+            break;
+          case 'USE_EXTERNAL_STICKERS':
+            code = code + '\'USE_EXTERNAL_STICKERS\', true)';
+            break;
+          case 'PING_EVERYONE':
+            code = code + '\'MENTION_EVERYONE\', true)';
+            break;
+          case 'MANAGE_MESSAGES':
+            code = code + '\'MANAGE_MESSAGES\', true)';
+            break;
+          case 'MANAGE_THREADS':
+            code = code + '\'MANAGE_THREADS\', true)';
+            break;
+          case 'SEE_OLD_MESSAGES':
+            code = code + '\'READ_MESSAGE_HISTORY\', true)';
+            break;
+          case 'SEND_VOICE_MESSAGE':
+            code = code + '\'SEND_TTS_MESSAGES\', true)';
+            break;
+          case 'USE_APP_COMMANDS':
+            code = code + '\'USE_APPLICATION_COMMANDS\', true)';
+            break;
+          case 'CONNECT_TO_VOICE_CHANNEL':
+            code = code + '\'CONNECT\', true)';
+            break;
+          case 'SPEAK':
+            code = code + '\'SPEAK\', true)';
+            break;
+          case 'USE_VIDEO':
+            code = code + '\'STREAM\', true)';
+            break;
+          case 'START_ACTIVITY':
+            code = code + '\'START_EMBEDDED_ACTIVITIES\', true)';
+            break;
+          case 'USE_VOICE_DETECTOR':
+            code = code + '\'USE_VAD\', true)';
+            break;
+          case 'PRIORITY_SPEAKER':
+            code = code + '\'PRIORITY_SPEAKER\', true)';
+            break;
+          case 'MUTE_MEMBER':
+            code = code + '\'MUTE_MEMBERS\', true)';
+            break;
+          case 'DEAF_MEMBER':
+            code = code + '\'DEAFEN_MEMBERS\', true)';
+            break;
+          case 'MOOVE_MEMBER':
+            code = code + '\'MOVE_MEMBERS\', true)';
+            break;
+          case 'MANAGE_VOICE_CHANNEL_EVENTS':
+            code = code + '\'MANAGE_EVENTS\', true)';
+            break;
+          default:
+            code = code + '\'VIEW_CHANNEL\', true)';
+            break;
+        }
+
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_set_permission'] = function(block) {
+      const value_userorrank = Blockly.JavaScript.valueToCode(block, 'userOrRank', Blockly.JavaScript.ORDER_ATOMIC);
+      const dropdown_permission = block.getFieldValue('permission');
+      let dropdown_isgranted = block.getFieldValue('isGranted');
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+      let permissionToEdit = '\'SEE_CHANNEL\'';//Used to store the permission to edit
+      let code = '';
+
+      if(value_userorrank!=='' && dropdown_permission!=='' && dropdown_isgranted!=='' && value_channel!==''){
+
+        switch(dropdown_permission){
+          case 'SEE_CHANNEL':
+            permissionToEdit = '\'VIEW_CHANNEL\'';
+            break;
+          case 'MANAGE_CHANNEL':
+            permissionToEdit = '\'MANAGE_CHANNELS\'';
+            break;
+          case 'MANAGE_CHANNEL_PERMISSIONS':
+            permissionToEdit = '\'MANAGE_ROLES\'';
+            break;
+          case 'MANAGE_CHANNEL_WEBHOOKS':
+            permissionToEdit = '\'MANAGE_WEBHOOKS\'';
+            break;
+          case 'CREATE_INVITE':
+            permissionToEdit = '\'CREATE_INSTANT_INVITE\'';
+            break;
+          case 'SEND_MESSAGES':
+            permissionToEdit = '\'SEND_MESSAGES\'';
+            break;
+          case 'SEND_MESSAGES_IN_THREADS':
+            permissionToEdit = '\'SEND_MESSAGES_IN_THREADS\'';
+            break;
+          case 'CREATE_PUBLIC_THREADS':
+            permissionToEdit = '\'CREATE_PUBLIC_THREADS\'';
+            break;
+          case 'CREATE_PRIVATE_THREADS':
+            permissionToEdit = '\'CREATE_PRIVATE_THREADS\'';
+            break;
+          case 'EMBED_LINKS':
+            permissionToEdit = '\'EMBED_LINKS\'';
+            break;
+          case 'ADD_FILES':
+            permissionToEdit = '\'ATTACH_FILES\'';
+            break;
+          case 'ADD_REACTIONS':
+            permissionToEdit = '\'ADD_REACTIONS\'';
+            break;
+          case 'USE_EXTERNAL_EMOJIS':
+            permissionToEdit = '\'USE_EXTERNAL_EMOJIS\'';
+            break;
+          case 'USE_EXTERNAL_STICKERS':
+            permissionToEdit = '\'USE_EXTERNAL_STICKERS\'';
+            break;
+          case 'PING_EVERYONE':
+            permissionToEdit = '\'MENTION_EVERYONE\'';
+            break;
+          case 'MANAGE_MESSAGES':
+            permissionToEdit = '\'MANAGE_MESSAGES\'';
+            break;
+          case 'MANAGE_THREADS':
+            permissionToEdit = '\'MANAGE_THREADS\'';
+            break;
+          case 'SEE_OLD_MESSAGES':
+            permissionToEdit = '\'READ_MESSAGE_HISTORY\'';
+            break;
+          case 'SEND_VOICE_MESSAGE':
+            permissionToEdit = '\'SEND_TTS_MESSAGES\'';
+            break;
+          case 'USE_APP_COMMANDS':
+            permissionToEdit = '\'USE_APPLICATION_COMMANDS\'';
+            break;
+          case 'CONNECT_TO_VOICE_CHANNEL':
+            permissionToEdit = '\'CONNECT\'';
+            break;
+          case 'SPEAK':
+            permissionToEdit = '\'SPEAK\'';
+            break;
+          case 'USE_VIDEO':
+            permissionToEdit = '\'STREAM\'';
+            break;
+          case 'START_ACTIVITY':
+            permissionToEdit = '\'START_EMBEDDED_ACTIVITIES\'';
+            break;
+          case 'USE_VOICE_DETECTOR':
+            permissionToEdit = '\'USE_VAD\'';
+            break;
+          case 'PRIORITY_SPEAKER':
+            permissionToEdit = '\'PRIORITY_SPEAKER\'';
+            break;
+          case 'MUTE_MEMBER':
+            permissionToEdit = '\'MUTE_MEMBERS\'';
+            break;
+          case 'DEAF_MEMBER':
+            permissionToEdit = '\'DEAFEN_MEMBERS\'';
+            break;
+          case 'MOOVE_MEMBER':
+            permissionToEdit = '\'MOVE_MEMBERS\'';
+            break;
+          case 'MANAGE_VOICE_CHANNEL_EVENTS':
+            permissionToEdit = '\'MANAGE_EVENTS\'';
+            break;
+          default:
+            permissionToEdit = '\'VIEW_CHANNEL\'';
+            break;
+        }
+        switch(dropdown_isgranted){
+          case 'GRANT':
+            code = 'await '+value_channel+'.permissionOverwrites.edit('+value_userorrank+', {'+permissionToEdit+': true});\n';//If two modifications are made at the same time, that's will be very buggy
+            break;
+          case 'DENY':
+            code = 'await '+value_channel+'.permissionOverwrites.edit('+value_userorrank+', {'+permissionToEdit+': false});\n';
+            break;
+          default://UNDEFINED is sent here
+            code = 'await '+value_channel+'.permissionOverwrites.edit('+value_userorrank+', {'+permissionToEdit+': null});\n';
+            break;
+        }
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_channel_list'] = function(block) {
+      const code = 'await GLOBAL_GUILD.channels.fetch()';
+      return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     return(Blockly);
