@@ -1,4 +1,4 @@
-# Style # Style guide
+# Style guide
 
 ------------
 
@@ -24,7 +24,7 @@ const blockly_generator = require('./modules/blockly/generator/generator.js');//
 const blockly_block_message_reply = {
   "type": "block_message_reply",
   (...)
-}//Good
+};//Good
 ```
 
 ### Configuration parameters
@@ -47,8 +47,8 @@ let userData = {
     '1234567890',
     '0987654321',
     '7574898489'
-  ] 
-}//Good
+  ]
+};//Good
 
 if(req.session.discord_id != undefined){
   res.redirect('/panel');
