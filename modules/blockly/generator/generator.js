@@ -1742,6 +1742,93 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
+    /* ##### GUILD blocks ##### */
+
+    Blockly.JavaScript['block_guild_get_id'] = function(block) {
+      const code = 'CURRENT_GUILD.id';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_guild_get_boosts_count'] = function(block) {
+      const code = 'CURRENT_GUILD.premiumSubscriptionCount';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_guild_get_members_count'] = function(block) {
+      const code = 'CURRENT_GUILD.memberCount';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_guild_create_invite'] = function(block) {
+      const dropdown_duration = block.getFieldValue('duration');
+      const dropdown_uses = block.getFieldValue('uses');
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel===''){return ''}
+
+      let duration = 0;
+      let maxUses = 0;
+
+      switch(dropdown_duration){
+        case '30MIN':
+          duration = 1800;//In seconds
+          break;
+        case '1H':
+          duration = 3600;
+          break;
+        case '6H':
+          duration = 21600;
+          break;
+        case '12H':
+          duration = 43200;
+          break;
+        case '1D':
+          duration = 86400;
+          break;
+        case '1W':
+          duration = 604800;
+          break;
+        case 'NEVER':
+          duration = 0;
+          break;
+        default:
+          duration = 1800;
+          break;
+      }
+
+      switch(dropdown_uses){
+        case '1':
+          maxUses = 1;
+          break;
+        case '5':
+          maxUses = 5;
+          break;
+        case '10':
+          maxUses = 10;
+          break;
+        case '25':
+          maxUses = 25;
+          break;
+        case '50':
+          maxUses = 50;
+          break;
+        case '100':
+          maxUses = 100;
+          break;
+        default:
+          maxUses = 0;//Infinity
+          break;
+      }
+
+      const code = '(await CURRENT_GUILD.invites.create('+value_channel+', {maxAge: '+duration+', maxUses: '+maxUses+'})).toString()';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_guild_get_name'] = function(block) {
+      const code = 'CURRENT_GUILD.name';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
     return(Blockly);
   }
 }

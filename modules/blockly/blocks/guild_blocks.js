@@ -40,6 +40,11 @@ module.exports = {
   "message0": "%{BKY_BLOCK_GUILD_CREATE_INVITE}",
   "args0": [
     {
+      "type": "input_value",
+      "name": "channel",
+      "check": "Channel"
+    },
+    {
       "type": "field_dropdown",
       "name": "duration",
       "options": [

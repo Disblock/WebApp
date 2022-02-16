@@ -739,7 +739,7 @@ module.exports = {
     Blockly.Msg["BLOCK_GUILD_GET_BOOST_COUNT_TOOLTIP"] = "Permet d'obtenir le nombre de boosts du serveur Discord";
     Blockly.Msg["BLOCK_GUILD_GET_MEMBERS_COUNT"] = "Nombre de personnes dans le serveur";
     Blockly.Msg["BLOCK_GUILD_GET_MEMBERS_COUNT_TOOLTIP"] = "Permet d'obtenir le nombre de personnes dans le serveur Discord";
-    Blockly.Msg["BLOCK_GUILD_CREATE_INVITE"] = "Créer une invitation expirant après %1 et avec %2 utilisations";
+    Blockly.Msg["BLOCK_GUILD_CREATE_INVITE"] = "Créer une invitation dans le salon %1 expirant après %2 et avec %3 utilisations";
     Blockly.Msg["BLOCK_GUILD_CREATE_INVITE_TOOLTIP"] = "Créer une invitation pour le serveur. Retourne le lien de l'invitation créée";
 
 
