@@ -15,7 +15,7 @@ module.exports = {
 
     /*
 
-    The const GLOBAL_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
+    The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
 
     */
 
@@ -304,7 +304,7 @@ module.exports = {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_message!==''){
-        const code = value_message+'.startThread();\n';
+        const code = value_message+'.startThread({name: \'New Thread\'});\n';
         return code;
       }else{
         return '';
@@ -472,7 +472,7 @@ module.exports = {
 
       if(value_user!==''){
         if(value_reason===''){value_reason='\'Reason undefined\''}
-        const code = 'GLOBAL_GUILD.bans.remove('+value_user+', '+value_reason+');\n';
+        const code = 'CURRENT_GUILD.bans.remove('+value_user+', '+value_reason+');\n';
         return code;
       }else{
         return '';
@@ -484,7 +484,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!=='' && value_message!==''){
-        const code = value_user+'.send('+value_message+'+"\\nCustom message sent from the server *"+GLOBAL_GUILD.name+"*");\n';
+        const code = value_user+'.send('+value_message+'+"\\nCustom message sent from the server *"+CURRENT_GUILD.name+"*");\n';
         return code;
       }else{
         return '';
@@ -508,7 +508,7 @@ module.exports = {
       const value_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_id!==''){
-        const code = 'await GLOBAL_GUILD.members.fetch('+value_id+')';
+        const code = 'await CURRENT_GUILD.members.fetch('+value_id+')';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -852,7 +852,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        let code = 'GLOBAL_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
+        let code = 'CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
         code = code + ((value_topic!=='') ? ', topic: '+value_topic+'});\n' : '});\n');
         return code;
       }else{
@@ -865,7 +865,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        const code = 'GLOBAL_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
+        const code = 'CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
         return code;
       }else{
         return '';
@@ -953,7 +953,7 @@ module.exports = {
       const value_channel_id = Blockly.JavaScript.valueToCode(block, 'channel_id', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_channel_id!==''){
-        const code = 'GLOBAL_GUILD.channels.resolve('+value_channel_id+')';
+        const code = 'CURRENT_GUILD.channels.resolve('+value_channel_id+')';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -1193,8 +1193,437 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_channel_list'] = function(block) {
-      const code = 'await GLOBAL_GUILD.channels.fetch()';
+      const code = 'await CURRENT_GUILD.channels.fetch()';
       return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    /* ##### RANKS blocks ##### */
+
+    Blockly.JavaScript['block_rank_create'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      const colour_color = block.getFieldValue('color');
+      const checkbox_is_pingeable = block.getFieldValue('is_pingeable') === 'TRUE';
+      const checkbox_are_members_shown = block.getFieldValue('are_members_shown') === 'TRUE';
+      const value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_name!=='' && colour_color!=='' && value_position!==''){
+        const code = 'CURRENT_GUILD.roles.create({name:'+value_name+', color:\''+colour_color+'\', position: '+value_position+', hoist: '+checkbox_are_members_shown+', mentionable: '+checkbox_is_pingeable+'});\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_created_rank'] = function(block) {
+      const code = 'createdRank';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_rank_delete'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!==''){
+        const code = value_rank+'.delete();\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_edit_name'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!=='' && value_name!==''){
+        const code = value_rank+'.setName('+value_name+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_edit_color'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const colour_color = block.getFieldValue('color');
+
+      if(value_rank!=='' && colour_color!==''){
+        const code = value_rank+'.setColor(\''+colour_color+'\');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_edit_pingeable'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const dropdown_is_pingeable = block.getFieldValue('IS_PINGEABLE');
+
+      if(value_rank!==''){
+        const code = value_rank+'.setMentionable('+( (dropdown_is_pingeable==='PINGEABLE') ? 'true' : 'false' )+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_edit_members_shown'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const dropdown_are_member_shown = block.getFieldValue('ARE_MEMBER_SHOWN');
+
+      if(value_rank!==''){
+        const code = value_rank+'.setHoist('+( (dropdown_are_member_shown==='SHOWN') ? 'true' : 'false' )+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_edit_position'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!=='' && value_position!==''){
+        const code = value_rank+'.setPosition('+value_position+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_get_rank_with_id'] = function(block) {
+      const value_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_id!==''){
+        const code = 'CURRENT_GUILD.roles.resolve('+value_id+')';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_rank_edit_permissions'] = function(block) {
+      const dropdown_permission = block.getFieldValue('permission');
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const dropdown_isgranted = block.getFieldValue('isGranted');
+
+      if(dropdown_permission!=='' && value_rank!=='' && dropdown_isgranted!==''){
+
+        let currentPermission = '\'VIEW_CHANNEL\'';
+        let code = '';
+        switch(dropdown_permission){
+          case 'SEE_CHANNEL':
+            currentPermission = '\'VIEW_CHANNEL\'';
+            break;
+          case 'MANAGE_CHANNEL':
+            currentPermission = '\'MANAGE_CHANNELS\'';
+            break;
+          case 'MANAGE_RANKS':
+            currentPermission = '\'MANAGE_ROLES\'';
+            break;
+          case 'MANAGE_EMOJIS':
+            currentPermission = '\'MANAGE_EMOJIS_AND_STICKERS\'';
+            break;
+          case 'SEE_SERVER_LOGS':
+            currentPermission = '\'VIEW_AUDIT_LOG\'';
+            break;
+          case 'MANAGE_WEBHOOKS':
+            currentPermission = '\'MANAGE_WEBHOOKS\'';
+            break;
+          case 'MANAGE_SERVER':
+            currentPermission = '\'MANAGE_GUILD\'';
+            break;
+          case 'CREATE_INVITE':
+            currentPermission = '\'CREATE_INSTANT_INVITE\'';
+            break;
+          case 'EDIT_USERNAME':
+            currentPermission = '\'CHANGE_NICKNAME\'';
+            break;
+          case 'EDIT_OTHERS_USERNAME':
+            currentPermission = '\'MANAGE_NICKNAMES\'';
+            break;
+          case 'KICK':
+            currentPermission = '\'KICK_MEMBERS\'';
+            break;
+          case 'BAN':
+            currentPermission = '\'BAN_MEMBERS\'';
+            break;
+          case 'TIMEOUT':
+            currentPermission = '\'MODERATE_MEMBERS\'';
+            break;
+          case 'SEND_MESSAGES':
+            currentPermission = '\'SEND_MESSAGES\'';
+            break;
+          case 'SEND_MESSAGES_IN_THREADS':
+            currentPermission = '\'SEND_MESSAGES_IN_THREADS\'';
+            break;
+          case 'CREATE_PUBLIC_THREADS':
+            currentPermission = '\'CREATE_PUBLIC_THREADS\'';
+            break;
+          case 'CREATE_PRIVATE_THREADS':
+            currentPermission = '\'CREATE_PRIVATE_THREADS\'';
+            break;
+          case 'EMBED_LINKS':
+            currentPermission = '\'EMBED_LINKS\'';
+            break;
+          case 'ADD_FILES':
+            currentPermission = '\'ATTACH_FILES\'';
+            break;
+          case 'ADD_REACTIONS':
+            currentPermission = '\'ADD_REACTIONS\'';
+            break;
+          case 'USE_EXTERNAL_EMOJIS':
+            currentPermission = '\'USE_EXTERNAL_EMOJIS\'';
+            break;
+          case 'USE_EXTERNAL_STICKERS':
+            currentPermission = '\'USE_EXTERNAL_STICKERS\'';
+            break;
+          case 'PING_EVERYONE':
+            currentPermission = '\'MENTION_EVERYONE\'';
+            break;
+          case 'MANAGE_MESSAGES':
+            currentPermission = '\'MANAGE_MESSAGES\'';
+            break;
+          case 'MANAGE_THREADS':
+            currentPermission = '\'MANAGE_THREADS\'';
+            break;
+          case 'SEE_OLD_MESSAGES':
+            currentPermission = '\'READ_MESSAGE_HISTORY\'';
+            break;
+          case 'SEND_VOICE_MESSAGE':
+            currentPermission = '\'SEND_TTS_MESSAGES\'';
+            break;
+          case 'USE_APP_COMMANDS':
+            currentPermission = '\'USE_APPLICATION_COMMANDS\'';
+            break;
+          case 'CONNECT_TO_VOICE_CHANNEL':
+            currentPermission = '\'CONNECT\'';
+            break;
+          case 'SPEAK':
+            currentPermission = '\'SPEAK\'';
+            break;
+          case 'USE_VIDEO':
+            currentPermission = '\'STREAM\'';
+            break;
+          case 'START_ACTIVITY':
+            currentPermission = '\'START_EMBEDDED_ACTIVITIES\'';
+            break;
+          case 'VOICE_DETECTION':
+            currentPermission = '\'USE_VAD\'';
+            break;
+          case 'PRIORITY_SPEAKER':
+            currentPermission = '\'PRIORITY_SPEAKER\'';
+            break;
+          case 'MUTE_MEMBER':
+            currentPermission = '\'MUTE_MEMBERS\'';
+            break;
+          case 'DEAF_MEMBER':
+            currentPermission = '\'DEAFEN_MEMBERS\'';
+            break;
+          case 'MOOVE_MEMBER':
+            currentPermission = '\'MOVE_MEMBERS\'';
+            break;
+          case 'MANAGE_EVENTS':
+            currentPermission = '\'MANAGE_EVENTS\'';
+            break;
+          case 'ADMINISTRATOR':
+            currentPermission = '\'ADMINISTRATOR\'';
+            break;
+          default:
+            currentPermission = '\'VIEW_CHANNEL\'';
+            break;
+        }
+
+        if(dropdown_isgranted==='GRANT'){
+          code = 'await '+value_rank+'.edit({permissions:'+value_rank+'.permissions.add('+currentPermission+')});\n';//We get the permission bits, remove the bits of the selected permission and send these bits to discord
+        }else if(dropdown_isgranted==='DENY'){
+          code = 'await '+value_rank+'.edit({permissions:'+value_rank+'.permissions.remove('+currentPermission+')});\n';
+        }
+
+        return code;
+
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_rank_get_name'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!==''){
+        const code = value_rank+'.name';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_rank_get_position'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!==''){
+        const code = value_rank+'.position';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_rank_get_color'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!==''){
+        const code = value_rank+'.color';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_rank_get_id'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_rank!==''){
+        const code = value_rank+'.id';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_rank_has_permission'] = function(block) {
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+      const dropdown_permission = block.getFieldValue('permission');
+
+      if(value_rank!=='' && dropdown_permission!==''){
+        let currentPermission = '\'VIEW_CHANNEL\'';
+        switch(dropdown_permission){
+          case 'SEE_CHANNEL':
+            currentPermission = '\'VIEW_CHANNEL\'';
+            break;
+          case 'MANAGE_CHANNEL':
+            currentPermission = '\'MANAGE_CHANNELS\'';
+            break;
+          case 'MANAGE_RANKS':
+            currentPermission = '\'MANAGE_ROLES\'';
+            break;
+          case 'MANAGE_EMOJIS':
+            currentPermission = '\'MANAGE_EMOJIS_AND_STICKERS\'';
+            break;
+          case 'SEE_SERVER_LOGS':
+            currentPermission = '\'VIEW_AUDIT_LOG\'';
+            break;
+          case 'MANAGE_WEBHOOKS':
+            currentPermission = '\'MANAGE_WEBHOOKS\'';
+            break;
+          case 'MANAGE_SERVER':
+            currentPermission = '\'MANAGE_GUILD\'';
+            break;
+          case 'CREATE_INVITE':
+            currentPermission = '\'CREATE_INSTANT_INVITE\'';
+            break;
+          case 'EDIT_USERNAME':
+            currentPermission = '\'CHANGE_NICKNAME\'';
+            break;
+          case 'EDIT_OTHERS_USERNAME':
+            currentPermission = '\'MANAGE_NICKNAMES\'';
+            break;
+          case 'KICK':
+            currentPermission = '\'KICK_MEMBERS\'';
+            break;
+          case 'BAN':
+            currentPermission = '\'BAN_MEMBERS\'';
+            break;
+          case 'TIMEOUT':
+            currentPermission = '\'MODERATE_MEMBERS\'';
+            break;
+          case 'SEND_MESSAGES':
+            currentPermission = '\'SEND_MESSAGES\'';
+            break;
+          case 'SEND_MESSAGES_IN_THREADS':
+            currentPermission = '\'SEND_MESSAGES_IN_THREADS\'';
+            break;
+          case 'CREATE_PUBLIC_THREADS':
+            currentPermission = '\'CREATE_PUBLIC_THREADS\'';
+            break;
+          case 'CREATE_PRIVATE_THREADS':
+            currentPermission = '\'CREATE_PRIVATE_THREADS\'';
+            break;
+          case 'EMBED_LINKS':
+            currentPermission = '\'EMBED_LINKS\'';
+            break;
+          case 'ADD_FILES':
+            currentPermission = '\'ATTACH_FILES\'';
+            break;
+          case 'ADD_REACTIONS':
+            currentPermission = '\'ADD_REACTIONS\'';
+            break;
+          case 'USE_EXTERNAL_EMOJIS':
+            currentPermission = '\'USE_EXTERNAL_EMOJIS\'';
+            break;
+          case 'USE_EXTERNAL_STICKERS':
+            currentPermission = '\'USE_EXTERNAL_STICKERS\'';
+            break;
+          case 'PING_EVERYONE':
+            currentPermission = '\'MENTION_EVERYONE\'';
+            break;
+          case 'MANAGE_MESSAGES':
+            currentPermission = '\'MANAGE_MESSAGES\'';
+            break;
+          case 'MANAGE_THREADS':
+            currentPermission = '\'MANAGE_THREADS\'';
+            break;
+          case 'SEE_OLD_MESSAGES':
+            currentPermission = '\'READ_MESSAGE_HISTORY\'';
+            break;
+          case 'SEND_VOICE_MESSAGE':
+            currentPermission = '\'SEND_TTS_MESSAGES\'';
+            break;
+          case 'USE_APP_COMMANDS':
+            currentPermission = '\'USE_APPLICATION_COMMANDS\'';
+            break;
+          case 'CONNECT_TO_VOICE_CHANNEL':
+            currentPermission = '\'CONNECT\'';
+            break;
+          case 'SPEAK':
+            currentPermission = '\'SPEAK\'';
+            break;
+          case 'USE_VIDEO':
+            currentPermission = '\'STREAM\'';
+            break;
+          case 'START_ACTIVITY':
+            currentPermission = '\'START_EMBEDDED_ACTIVITIES\'';
+            break;
+          case 'VOICE_DETECTION':
+            currentPermission = '\'USE_VAD\'';
+            break;
+          case 'PRIORITY_SPEAKER':
+            currentPermission = '\'PRIORITY_SPEAKER\'';
+            break;
+          case 'MUTE_MEMBER':
+            currentPermission = '\'MUTE_MEMBERS\'';
+            break;
+          case 'DEAF_MEMBER':
+            currentPermission = '\'DEAFEN_MEMBERS\'';
+            break;
+          case 'MOOVE_MEMBER':
+            currentPermission = '\'MOVE_MEMBERS\'';
+            break;
+          case 'MANAGE_EVENTS':
+            currentPermission = '\'MANAGE_EVENTS\'';
+            break;
+          case 'ADMINISTRATOR':
+            currentPermission = '\'ADMINISTRATOR\'';
+            break;
+          default:
+            currentPermission = '\'VIEW_CHANNEL\'';
+            break;
+        }
+
+        const code = value_rank+'.permissions.has('+currentPermission+', true)';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     return(Blockly);
