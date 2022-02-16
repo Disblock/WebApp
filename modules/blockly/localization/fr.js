@@ -776,7 +776,7 @@ module.exports = {
     Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir un rôle dispose d'une permission. Retourne Vrai si oui, Faux si non ou indéfinit";
 
     //Embeds blocks
-    Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la couleur %2 et les options : %3 %4";
+    Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la description : %2 Et avec la couleur %3 et les options : %4 %5";
     Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] = "Permet de créer un message Embed, avec un titre et une couleur. Utilisez les blocs de description d'embed pour le modifier.";
     Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE"] = "Définir l'URL de l'image de l'embed : %1";
     Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'image sous forme de chaîne de charactères";

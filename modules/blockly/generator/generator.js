@@ -17,6 +17,7 @@ module.exports = {
 
     The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
 
+    embedMessage represent the embed message created
     */
 
     /* ##### EVENTS blocks ##### */
@@ -1624,6 +1625,121 @@ module.exports = {
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
       }
+    };
+
+    /* ##### EMBEDS blocks ##### */
+
+    Blockly.JavaScript['block_embed_create'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      const colour_color = block.getFieldValue('color');
+      const statements_options = Blockly.JavaScript.statementToCode(block, 'options');
+      const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_name!=='' && colour_color!==''){
+        const code = 'let embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor(\''+colour_color+'\')'+statements_options.trim()+';\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_option_set_image'] = function(block) {
+      const value_image_url = Blockly.JavaScript.valueToCode(block, 'image_url', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_image_url!=='' && (value_image_url.substr(1, 7)==='http://' || value_image_url.substr(1, 8)==='https://') ){//First caracter is ', so I start verification at index 1
+        const code = '.setImage('+value_image_url+')';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_option_set_thumbnail'] = function(block) {
+      const value_thumbnail_url = Blockly.JavaScript.valueToCode(block, 'thumbnail_url', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_thumbnail_url!=='' && (value_thumbnail_url.substr(1, 7)==='http://' || value_thumbnail_url.substr(1, 8)==='https://') ){//First caracter is ', so I start verification at index 1
+        const code = '.setThumbnail('+value_thumbnail_url+')';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_option_add_field'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
+      const checkbox_inline = block.getFieldValue('inline') === 'TRUE';
+
+      if(value_name!=='' && value_text!==''){
+        const code = '.addField('+value_name+', '+value_text+', '+( checkbox_inline ? 'true':'false' )+')';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_option_set_author'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      let value_url = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
+      let value_icon_url = Blockly.JavaScript.valueToCode(block, 'icon_URL', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_name!==''){
+
+        if(!(value_url!=='' && (value_url.substr(1, 7)==='http://' || value_url.substr(1, 8)==='https://'))){
+          //value_url is invalid
+          value_url = '';
+        }
+        if(!(value_icon_url!=='' && (value_icon_url.substr(1, 7)==='http://' || value_icon_url.substr(1, 8)==='https://'))){
+          //value_icon_url is invalid
+          value_icon_url = '';
+        }
+
+        const code = '.setAuthor({name:'+value_name+' '+( (value_url!=='') ? ', url: '+value_url : '')+' '+ ( (value_icon_url!=='') ? ', iconURL: '+value_icon_url : '') +'})';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_option_set_footer'] = function(block) {
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_icon_url = Blockly.JavaScript.valueToCode(block, 'icon_URL', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_name!==''){
+
+        if(!(value_icon_url!=='' && (value_icon_url.substr(1, 7)==='http://' || value_icon_url.substr(1, 8)==='https://'))){
+          //value_icon_url is invalid
+          value_icon_url = '';
+        }
+
+        const code = '.setFooter({text: '+value_name+' '+ ( (value_icon_url!=='') ? ', iconURL: '+value_icon_url : '' ) +'})';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_option_set_timestamp'] = function(block) {
+      // TODO: Assemble JavaScript into code variable.
+      const code = '.setTimestamp()';
+      return code;
+    };
+
+    Blockly.JavaScript['block_embed_send'] = function(block) {
+      const value_embed = Blockly.JavaScript.valueToCode(block, 'embed', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_embed!=='' && value_channel!==''){
+        const code = value_channel+'.send({ embeds: ['+value_embed+'] });\n'
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_embed_var_embed'] = function(block) {
+      const code = 'embedMessage';
+      return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     return(Blockly);

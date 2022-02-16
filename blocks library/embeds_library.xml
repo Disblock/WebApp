@@ -17,34 +17,49 @@
           <block type="type_string" id="+qbh$t7]jzbF$@dvRmt%"></block>
         </value>
         <next>
-          <block type="input_dummy" id="@cw)=8`1[$rghC(ZOs{i">
+          <block type="input_value" id="C`}4O9+A|lnP[,B+X3WQ">
+            <field name="INPUTNAME">description</field>
             <field name="ALIGN">LEFT</field>
             <statement name="FIELDS">
-              <block type="field_static" id="v?PeD%wBZjHWzfNVA}Z-">
-                <field name="TEXT">Avec la couleur</field>
-                <next>
-                  <block type="field_colour" id="*.7Ci0]:49aYdZ`Xd@p@">
-                    <field name="COLOUR">#ff0000</field>
-                    <field name="FIELDNAME">color</field>
+              <block type="field_static" id="]?7!3FzjstypV(!A{G9^">
+                <field name="TEXT">Avec la description :</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="D?{FT_r4pNXOacBlGJUY"></shadow>
+              <block type="type_string" id=",_Vwqki*yU10#=1fh*YT"></block>
+            </value>
+            <next>
+              <block type="input_dummy" id="@cw)=8`1[$rghC(ZOs{i">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="v?PeD%wBZjHWzfNVA}Z-">
+                    <field name="TEXT">Et avec la couleur</field>
                     <next>
-                      <block type="field_static" id="sYnAtsr%1mJPo3!#5wbA">
-                        <field name="TEXT">et les options :</field>
+                      <block type="field_colour" id="*.7Ci0]:49aYdZ`Xd@p@">
+                        <field name="COLOUR">#ff0000</field>
+                        <field name="FIELDNAME">color</field>
+                        <next>
+                          <block type="field_static" id="sYnAtsr%1mJPo3!#5wbA">
+                            <field name="TEXT">et les options :</field>
+                          </block>
+                        </next>
                       </block>
                     </next>
                   </block>
-                </next>
-              </block>
-            </statement>
-            <next>
-              <block type="input_statement" id="S9VKXJO;%V[(Z(%eQv]k">
-                <field name="INPUTNAME">options</field>
-                <field name="ALIGN">LEFT</field>
-                <value name="TYPE">
-                  <shadow type="type_null" id="Tw_9[3BK3H_,U`BAuCB)"></shadow>
-                  <block type="type_other" id="wDrPY,#L+dM@S%yk_l}3">
-                    <field name="TYPE">EmbedOptions</field>
+                </statement>
+                <next>
+                  <block type="input_statement" id="S9VKXJO;%V[(Z(%eQv]k">
+                    <field name="INPUTNAME">options</field>
+                    <field name="ALIGN">LEFT</field>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="Tw_9[3BK3H_,U`BAuCB)"></shadow>
+                      <block type="type_other" id="wDrPY,#L+dM@S%yk_l}3">
+                        <field name="TYPE">EmbedOptions</field>
+                      </block>
+                    </value>
                   </block>
-                </value>
+                </next>
               </block>
             </next>
           </block>

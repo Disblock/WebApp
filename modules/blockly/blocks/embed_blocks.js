@@ -3,35 +3,40 @@
 module.exports = {
 
   blocks: JSON.stringify([{
-    "type": "block_embed_create",
-    "message0": "%{BKY_BLOCK_EMBED_CREATE}",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "name",
-        "check": "String"
-      },
-      {
-        "type": "field_colour",
-        "name": "color",
-        "colour": "#ff0000"
-      },
-      {
-        "type": "input_dummy"
-      },
-      {
-        "type": "input_statement",
-        "name": "options",
-        "check": "EmbedOptions"
-      }
-    ],
-    "inputsInline": false,
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 345,
-    "tooltip": "%{BKY_BLOCK_EMBED_CREATE_TOOLTIP}",
-    "helpUrl": ""
-  },
+  "type": "block_embed_create",
+  "message0": "%{BKY_BLOCK_EMBED_CREATE}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "name",
+      "check": "String"
+    },
+    {
+      "type": "input_value",
+      "name": "description",
+      "check": "String"
+    },
+    {
+      "type": "field_colour",
+      "name": "color",
+      "colour": "#ff0000"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "options",
+      "check": "EmbedOptions"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 345,
+  "tooltip": "%{BKY_BLOCK_EMBED_CREATE_TOOLTIP}",
+  "helpUrl": ""
+},
   {
     "type": "block_embed_option_set_image",
     "message0": "%{BKY_BLOCK_EMBED_OPTION_SET_IMAGE}",
