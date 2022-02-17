@@ -152,10 +152,7 @@ module.exports = {
       {
         "type": "input_value",
         "name": "channel",
-        "check": [
-          "Channel",
-          "VoiceChannel"
-        ]
+        "check": "Channel"
       }
     ],
     "output": "String",
@@ -347,7 +344,8 @@ module.exports = {
         "name": "channel",
         "check": [
           "Channel",
-          "VoiceChannel"
+          "VoiceChannel",
+          "ThreadChannel"
         ]
       }
     ],
@@ -531,7 +529,8 @@ module.exports = {
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP}",
     "helpUrl": ""
-  },
+  }
+  /*,
   {
     "type": "block_channel_list",
     "message0": "%{BKY_BLOCK_CHANNEL_LIST}",
@@ -539,5 +538,6 @@ module.exports = {
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_LIST_TOOLTIP}",
     "helpUrl": ""
-  }])
+  }*/
+])
 }

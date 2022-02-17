@@ -1201,7 +1201,8 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_channel_list'] = function(block) {
-      const code = 'await CURRENT_GUILD.channels.fetch()';
+      //const code = 'await CURRENT_GUILD.channels.fetch()';
+      const code = '';//This block is disabled
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 

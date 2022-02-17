@@ -460,18 +460,8 @@
         </statement>
         <value name="TYPE">
           <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
-          <block type="type_group" id="A)L9g+wg$~ZI^nu`~XN~">
-            <mutation types="2"></mutation>
-            <value name="TYPE0">
-              <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
-                <field name="TYPE">Channel</field>
-              </block>
-            </value>
-            <value name="TYPE1">
-              <block type="type_other" id="An^5~Sd4m,N=12C/H72b">
-                <field name="TYPE">VoiceChannel</field>
-              </block>
-            </value>
+          <block type="type_other" id="Ca~-fiP$Y6ObXxGs2^A7">
+            <field name="TYPE">Channel</field>
           </block>
         </value>
       </block>
@@ -726,7 +716,7 @@
                 <value name="TYPE">
                   <shadow type="type_null" id="0@4Q.g,EQ{[:aGKW7^2/"></shadow>
                   <block type="type_group" id="ZL^kQBmyyC7GU%Nh,`Dd">
-                    <mutation types="2"></mutation>
+                    <mutation types="3"></mutation>
                     <value name="TYPE0">
                       <block type="type_other" id=":)=Bei;7n`66JK2rx1dj">
                         <field name="TYPE">Channel</field>
@@ -735,6 +725,11 @@
                     <value name="TYPE1">
                       <block type="type_other" id="4M_|s@R9%1N.!8_VPkof">
                         <field name="TYPE">VoiceChannel</field>
+                      </block>
+                    </value>
+                    <value name="TYPE2">
+                      <block type="type_other" id="pFJwRC3V2,7+:Ge1zuaD">
+                        <field name="TYPE">ThreadChannel</field>
                       </block>
                     </value>
                   </block>
@@ -947,6 +942,16 @@
             <field name="TEXT">Liste de tous les salons du serveur</field>
           </block>
         </statement>
+        <next>
+          <block type="input_dummy" id="HhDByWY~i:IE1D_^bLiQ">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="YW3WbP.dpa)g|uVA`}QH">
+                <field name="TEXT">THIS BLOCK IS DESACTIVATED</field>
+              </block>
+            </statement>
+          </block>
+        </next>
       </block>
     </statement>
     <value name="TOOLTIP">
