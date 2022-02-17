@@ -748,8 +748,8 @@ module.exports = {
     //Ranks blocks
     Blockly.Msg["BLOCK_RANK_CREATE"] = "Créer un rôle avec le nom %1 et la couleur %2 %3 Les membres peuvent être mentionnés : %4 %5 Les membres sont affichés dans la liste : %6 %7 Ajouter ce rôle dans l'arborescence à la position %8";
     Blockly.Msg["BLOCK_RANK_CREATE_TOOLTIP"] = "Permet de créer un rôle. Insérez un nom, choisissez une couleur ( Blanc = transparent ) et indiquez si le rôle est mentionnable et si les membres sont visibles dans la liste des utilisateurs. Enfin, indiquez la position de ce rôle dans l'arborescence des grades.";
-    Blockly.Msg["BLOCK_RANK_CREATED_RANK"] = "Rôle créé";
-    Blockly.Msg["BLOCK_RANK_CREATED_RANK_TOOLTIP"] = "Retourne le rôle créé";
+    Blockly.Msg["BLOCK_RANK_VAR_CREATED_RANK"] = "Rôle créé";
+    Blockly.Msg["BLOCK_RANK_VAR_CREATED_RANK_TOOLTIP"] = "Retourne le rôle créé";
     Blockly.Msg["BLOCK_RANK_DELETE"] = "Supprimer le rôle %1";
     Blockly.Msg["BLOCK_RANK_DELETE_TOOLTIP"] = "Supprime le rôle passé en paramètre";
     Blockly.Msg["BLOCK_RANK_EDIT_NAME"] = "Renommer le rôle %1 Avec le nouveau nom %2";

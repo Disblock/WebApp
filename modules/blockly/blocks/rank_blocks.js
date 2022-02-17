@@ -49,11 +49,11 @@ module.exports = {
     "helpUrl": ""
   },
   {
-    "type": "block_rank_created_rank",
-    "message0": "%{BKY_BLOCK_RANK_CREATED_RANK}",
+    "type": "block_rank_var_created_rank",
+    "message0": "%{BKY_BLOCK_RANK_VAR_CREATED_RANK}",
     "output": "Rank",
     "colour": 15,
-    "tooltip": "%{BKY_BLOCK_RANK_CREATED_RANK_TOOLTIP}",
+    "tooltip": "%{BKY_BLOCK_RANK_VAR_CREATED_RANK_TOOLTIP}",
     "helpUrl": ""
   },
   {
@@ -393,10 +393,6 @@ module.exports = {
         [
           "%{BKY_PERMISSION_DENY_PERMISSION}",
           "DENY"
-        ],
-        [
-          "%{BKY_PERMISSION_UNDEFINED_PERMISSION}",
-          "UNDEFINED"
         ]
       ]
     }

@@ -1222,7 +1222,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript['block_rank_created_rank'] = function(block) {
+    Blockly.JavaScript['block_rank_var_created_rank'] = function(block) {
       const code = 'createdRank';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
