@@ -104,43 +104,6 @@
       </block>
     </value>
   </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
-    <mutation connections="LEFT"></mutation>
-    <field name="NAME">block_rank_created_rank</field>
-    <field name="INLINE">AUTO</field>
-    <field name="CONNECTIONS">LEFT</field>
-    <statement name="INPUTS">
-      <block type="input_dummy" id="9u49tOIUUz*tH8fzDqeP">
-        <field name="ALIGN">LEFT</field>
-        <statement name="FIELDS">
-          <block type="field_static" id="8zB)_9:UzM85Gp|(9[`U">
-            <field name="TEXT">Rôle créé</field>
-          </block>
-        </statement>
-      </block>
-    </statement>
-    <value name="TOOLTIP">
-      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
-        <field name="TEXT">Retourne le rôle créé</field>
-      </block>
-    </value>
-    <value name="HELPURL">
-      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="OUTPUTTYPE">
-      <shadow type="type_null" id="oJ%T+1z7,l%$;.]*sM!d"></shadow>
-      <block type="type_other" id="{2hTb,{J9uV:UIWc[cG:">
-        <field name="TYPE">Rank</field>
-      </block>
-    </value>
-    <value name="COLOUR">
-      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
-        <mutation colour="#a56d5b"></mutation>
-        <field name="HUE">15</field>
-      </block>
-    </value>
-  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
     <mutation connections="BOTH"></mutation>
     <field name="NAME">block_rank_delete</field>
     <field name="INLINE">AUTO</field>
@@ -573,14 +536,12 @@
                 <field name="TEXT">à</field>
                 <next>
                   <block type="field_dropdown" id="0veGf,{[;Pk%*Aw2vrM,">
-                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
                     <field name="FIELDNAME">isGranted</field>
                     <field name="USER0">Autorisé</field>
                     <field name="CPU0">GRANT</field>
                     <field name="USER1">Refusé</field>
                     <field name="CPU1">DENY</field>
-                    <field name="USER2">Indéfinit</field>
-                    <field name="CPU2">UNDEFINED</field>
                   </block>
                 </next>
               </block>
@@ -837,6 +798,43 @@
     <value name="OUTPUTTYPE">
       <shadow type="type_null" id="wKT7A.=PHF]Hj%1,4HR="></shadow>
       <block type="type_boolean" id="wC0yJ)e]AzeWUi,q#6Xs"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_var_created_rank</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="9u49tOIUUz*tH8fzDqeP">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="8zB)_9:UzM85Gp|(9[`U">
+            <field name="TEXT">Rôle créé</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Retourne le rôle créé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="oJ%T+1z7,l%$;.]*sM!d"></shadow>
+      <block type="type_other" id="{2hTb,{J9uV:UIWc[cG:">
+        <field name="TYPE">Rank</field>
+      </block>
     </value>
     <value name="COLOUR">
       <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
