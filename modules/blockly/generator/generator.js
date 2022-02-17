@@ -1,4 +1,4 @@
-//const blockly = require('blockly');
+'use strict';
 
 module.exports = {
   initializeGenerator: function(Blockly, token){//Token is used to separe events later
@@ -593,7 +593,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.voice.setMute(true);\n'
+        const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setMute(true);}\n';
         return code;
       }else{
         return '';
@@ -604,7 +604,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.voice.setMute(false);\n'
+        const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setMute(false);}\n';
         return code;
       }else{
         return '';
@@ -615,7 +615,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.voice.setDeaf(true);\n'
+        const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setDeaf(true);}\n';
         return code;
       }else{
         return '';
@@ -626,7 +626,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.voice.setDeaf(false);\n'
+        const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setDeaf(false);}\n';
         return code;
       }else{
         return '';
