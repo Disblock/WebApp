@@ -650,13 +650,11 @@ module.exports = {
     Blockly.Msg["BLOCK_MESSAGE_REPLY_TOOLTIP"] = "Permet de directement répondre à un message";
     Blockly.Msg["BLOCK_MESSAGE_SEND"] = "Envoyer le message dans le channel %1 Avec le message %2";
     Blockly.Msg["BLOCK_MESSAGE_SEND_TOOLTIP"] = "Permet d'envoyer un message dans un salon";
-    Blockly.Msg["BLOCK_MESSAGE_SEND_WITH_FILE"] = "Envoyer le message dans le channel %1 Avec le message %2 Et le fichier %3";
-    Blockly.Msg["BLOCK_MESSAGE_SEND_WITH_FILE_TOOLTIP"] = "Permet d'envoyer un message dans un salon. Indiquez le fichier à envoyer avec son URL";
     Blockly.Msg["BLOCK_MESSAGE_DELETE"] = "Supprimer le message %1";
     Blockly.Msg["BLOCK_MESSAGE_DELETE_TOOLTIP"] = "Supprimer le message passé en paramètre";
     Blockly.Msg["BLOCK_MESSAGE_DELETE_BULK"] = "Supprimer %1 messages dans le salon %2";
     Blockly.Msg["BLOCK_MESSAGE_DELETE_BULK_TOOLTIP"] = "Supprimer plusieurs messages d'un channel.";
-    Blockly.Msg["BLOCK_MESSAGE_START_THREAD"] = "Créer un fil commençant par le message %1";
+    Blockly.Msg["BLOCK_MESSAGE_START_THREAD"] = "Créer un fil nommé %1 commençant par le message %2";
     Blockly.Msg["BLOCK_MESSAGE_START_THREAD_TOOLTIP"] = "Permet de créer un fil sur un message. Le message DOIT être dans un salon normal et non un thread";
     Blockly.Msg["BLOCK_MESSAGE_PINE"] = "Epingler le message %1";
     Blockly.Msg["BLOCK_MESSAGE_PINE_TOOLTIP"] = "Permet d'épingler un message";
@@ -674,6 +672,8 @@ module.exports = {
     Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_EVERYONE_TOOLTIP"] = "Retourne Vrai si le message mentionne @everyone, sinon faux";
     Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_USER"] = "Le message mentionne t-il un utilisateur ? %1";
     Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_USER_TOOLTIP"] = "Retourne Vrai si le message mentionne un utilisateur, sinon faux";
+    Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_CHANNEL"] = "Le message mentionne un salon ? %1";
+    Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_CHANNEL_TOOLTIP"] = "Retourne Vrai si le message mentionne un salon, sinon faux";
     Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION"] = "Obtenir la mention d'utilisateur n° %1 du message %2";
     Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION_TOOLTIP"] = "Retourne l'utilisateur mentionné par la xème mention contenue dans le message";
     Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION"] = "Obtenir la mention du salon n° %1 du message %2";
@@ -684,6 +684,8 @@ module.exports = {
     Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL_TOOLTIP"] = "Retourne le nombre de mentions #salon contenues dans le message";
     Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE"] = "Message envoyé";
     Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP"] = "Représente le message venant d'être envoyé";
+    Blockly.Msg["BLOCK_MESSAGE_VAR_CREATED_THREAD"] = "Fil créé";
+    Blockly.Msg["BLOCK_MESSAGE_VAR_CREATED_THREAD_TOOLTIP"] = "Représente le salon Fil créé";
 
 
     //User blocks

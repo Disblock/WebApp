@@ -23,8 +23,6 @@ module.exports = {
   "tooltip": "%{BKY_BLOCK_MESSAGE_REPLY_TOOLTIP}",
   "helpUrl": ""
 },
-
-//ADD
 {
   "type": "block_message_send",
   "message0": "%{BKY_BLOCK_MESSAGE_SEND}",
@@ -47,35 +45,6 @@ module.exports = {
   "nextStatement": null,
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_SEND_TOOLTIP}",
-  "helpUrl": ""
-},
-{
-  "type": "block_message_send_with_file",
-  "message0": "%{BKY_BLOCK_MESSAGE_SEND_WITH_FILE}",
-  "args0": [
-    {
-      "type": "input_value",
-      "name": "channel",
-      "check": [
-        "Channel",
-        "ThreadChannel"
-      ]
-    },
-    {
-      "type": "input_value",
-      "name": "text",
-      "check": "String"
-    },
-    {
-      "type": "input_value",
-      "name": "fileURL",
-      "check": "String"
-    }
-  ],
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": 180,
-  "tooltip": "%{BKY_BLOCK_MESSAGE_SEND_WITH_FILE_TOOLTIP}",
   "helpUrl": ""
 },
 {
@@ -124,6 +93,11 @@ module.exports = {
   "type": "block_message_start_thread",
   "message0": "%{BKY_BLOCK_MESSAGE_START_THREAD}",
   "args0": [
+    {
+      "type": "input_value",
+      "name": "name",
+      "check": "String"
+    },
     {
       "type": "input_value",
       "name": "message",
@@ -262,6 +236,21 @@ module.exports = {
   "helpUrl": ""
 },
 {
+  "type": "block_message_does_mention_channel",
+  "message0": "%{BKY_BLOCK_MESSAGE_DOES_MENTION_CHANNEL}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "message",
+      "check": "Message"
+    }
+  ],
+  "output": "Boolean",
+  "colour": 190,
+  "tooltip": "%{BKY_BLOCK_MESSAGE_DOES_MENTION_CHANNEL_TOOLTIP}",
+  "helpUrl": ""
+},
+{
   "type": "block_message_get_user_mention",
   "message0": "%{BKY_BLOCK_MESSAGE_GET_USER_MENTION}",
   "args0": [
@@ -348,6 +337,14 @@ module.exports = {
   "output": "Message",
   "colour": 190,
   "tooltip": "%{BKY_BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_message_var_created_thread",
+  "message0": "%{BKY_BLOCK_MESSAGE_VAR_CREATED_THREAD}",
+  "output": "ThreadChannel",
+  "colour": 190,
+  "tooltip": "%{BKY_BLOCK_MESSAGE_VAR_CREATED_THREAD_TOOLTIP}",
   "helpUrl": ""
 }
 ])};

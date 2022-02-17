@@ -14,10 +14,12 @@ module.exports = {
     */
 
     /*
+    All variables here must be declared when starting to execute code
 
     The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
 
-    embedMessage represent the embed message created
+    embedMessage represents the embed message created
+    createdThreadOnMessage represents the created Thread on created thread on message block
     */
 
     /* ##### EVENTS blocks ##### */
@@ -266,18 +268,6 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript['block_message_send_with_file'] = function(block) {
-      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-      const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
-      const value_fileurl = Blockly.JavaScript.valueToCode(block, 'fileURL', Blockly.JavaScript.ORDER_ATOMIC);
-      if(value_channel!=='' && value_text!=='' && value_fileurl!=='' && (value_fileurl.substr(1, 7)==='http://' || value_fileurl.substr(1, 8)==='https://') ){//Index 1, Blockly surrond with ', index 0 give 'http:/
-        const code = value_channel+".send({content: "+value_text +",files: [{attachment: "+value_fileurl+",name: 'file.jpg'}]});\n";
-        return code;
-      }else{
-        return '';
-      }
-    };
-
     Blockly.JavaScript['block_message_delete'] = function(block) {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -303,9 +293,10 @@ module.exports = {
 
     Blockly.JavaScript['block_message_start_thread'] = function(block) {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_message!==''){
-        const code = value_message+'.startThread({name: \'New Thread\'});\n';
+      if(value_message!=='' && value_name!==''){
+        const code = 'createdThreadOnMessage = await '+value_message+'.startThread({name: '+value_name+'});\n';
         return code;
       }else{
         return '';
@@ -400,6 +391,17 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_message_does_mention_channel'] = function(block) {
+      const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_message!==''){
+        const code = value_message+'.mentions.channels.size>0';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
     Blockly.JavaScript['block_message_get_user_mention'] = function(block) {
       const number_mention_index = block.getFieldValue('mention_index');
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
@@ -450,6 +452,11 @@ module.exports = {
       const code = "sentMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     }
+
+    Blockly.JavaScript['block_message_var_created_thread'] = function(block) {
+      var code = 'createdThreadOnMessage';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+};
 
 
     /* ##### USERS blocks ##### */
@@ -1636,7 +1643,7 @@ module.exports = {
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && colour_color!==''){
-        const code = 'let embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor(\''+colour_color+'\')'+statements_options.trim()+';\n';
+        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor(\''+colour_color+'\')'+statements_options.trim()+';\n';
         return code;
       }else{
         return '';
