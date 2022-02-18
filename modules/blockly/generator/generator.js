@@ -19,7 +19,36 @@ module.exports = {
     The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
 
     embedMessage represents the embed message created
+
+    createdTextChannel represents the created Text Channel with create text channel block
+    createdVoiceChannel represents the created voice channel with create voice channel block
+
+    sentMessage is a message sent with reply block or send message block
     createdThreadOnMessage represents the created Thread on created thread on message block
+
+    createdRank Represent the rank created with a create rank block
+
+    eventMessage
+    eventOldMessage
+    eventNewMessage
+
+    eventUser
+    eventOldUser
+    eventNewUser
+
+    eventRole
+    eventOldRole
+    eventNewRole
+
+    eventOldVoiceChannel
+    eventNewVoiceChannel
+    eventVoiceChannel
+
+    eventTextChannel
+    eventOldTextChannel
+    eventNewTextChannel
+
+    eventReaction All of these are variables are used in events
     */
 
     /* ##### EVENTS blocks ##### */
@@ -249,7 +278,7 @@ module.exports = {
       const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_message!=='' && value_text!==''){
-        const code = value_message+".reply("+value_text+");\n";
+        const code = 'sentMessage = await '+value_message+".reply("+value_text+");\n";
         return code;
       }else{
         return '';
@@ -261,7 +290,7 @@ module.exports = {
       const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_channel!=='' && value_text!==''){
-        const code = value_channel+'.send('+value_text+');\n';
+        const code = 'sentMessage = await '+value_channel+'.send('+value_text+');\n';
         return code;
       }else{
         return '';
@@ -582,7 +611,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.user.bot';//Users can have a per guild avatar or a global avatar
+        const code = value_user+'.user.bot';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -860,7 +889,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        let code = 'CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
+        let code = 'createdTextChannel = await CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
         code = code + ((value_topic!=='') ? ', topic: '+value_topic+'});\n' : '});\n');
         return code;
       }else{
@@ -873,7 +902,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        const code = 'CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
+        const code = 'createdVoiceChannel = await CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
         return code;
       }else{
         return '';
@@ -1216,7 +1245,7 @@ module.exports = {
       const value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && colour_color!=='' && value_position!==''){
-        const code = 'CURRENT_GUILD.roles.create({name:'+value_name+', color:\''+colour_color+'\', position: '+value_position+', hoist: '+checkbox_are_members_shown+', mentionable: '+checkbox_is_pingeable+'});\n';
+        const code = 'createdRank = await CURRENT_GUILD.roles.create({name:'+value_name+', color:\''+colour_color+'\', position: '+value_position+', hoist: '+checkbox_are_members_shown+', mentionable: '+checkbox_is_pingeable+'});\n';
         return code;
       }else{
         return '';
