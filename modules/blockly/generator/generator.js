@@ -358,7 +358,7 @@ module.exports = {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_message!==''){
-        const code = value_message+'.content';
+        const code = value_message+'.content || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -369,7 +369,7 @@ module.exports = {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_message!==''){
-        const code = value_message+'.id';
+        const code = value_message+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -556,7 +556,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.displayName';
+        const code = value_user+'.displayName || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -567,7 +567,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.user.username';
+        const code = value_user+'.user.username || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -578,7 +578,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.user.tag';
+        const code = value_user+'.user.tag || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -589,7 +589,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.id';
+        const code = value_user+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -600,7 +600,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true})';//Users can have a per guild avatar or a global avatar
+        const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true}) || \'\'';//Users can have a per guild avatar or a global avatar
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -957,7 +957,7 @@ module.exports = {
       const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_channel!==''){
-        const code = value_channel+'.name';
+        const code = value_channel+'.name || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -979,7 +979,7 @@ module.exports = {
       const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_channel!==''){
-        const code = value_channel+'.id';
+        const code = value_channel+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -1488,7 +1488,7 @@ module.exports = {
       const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_rank!==''){
-        const code = value_rank+'.name';
+        const code = value_rank+'.name || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -1510,7 +1510,7 @@ module.exports = {
       const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_rank!==''){
-        const code = value_rank+'.color';
+        const code = value_rank+'.color || \'#000000\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -1521,7 +1521,7 @@ module.exports = {
       const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_rank!==''){
-        const code = value_rank+'.id';
+        const code = value_rank+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -1782,7 +1782,7 @@ module.exports = {
     /* ##### GUILD blocks ##### */
 
     Blockly.JavaScript['block_guild_get_id'] = function(block) {
-      const code = 'CURRENT_GUILD.id';
+      const code = 'CURRENT_GUILD.id || \'\'';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -1862,7 +1862,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_guild_get_name'] = function(block) {
-      const code = 'CURRENT_GUILD.name';
+      const code = 'CURRENT_GUILD.name || \'\'';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
