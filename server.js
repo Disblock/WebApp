@@ -344,4 +344,4 @@ io.sockets.on('connection', function(socket){
 });
 
 console.log("Serveur démarré !");
-server.listen(8080, '0.0.0.0');//Le serveur démarre sur le port 8080 ( HTTP par défaut en 80, HTTPS en 443), et écoute les connexions de toutes les IPs
+server.listen(8081, '0.0.0.0');//Le serveur démarre sur le port 8080 ( HTTP par défaut en 80, HTTPS en 443), et écoute les connexions de toutes les IPs
