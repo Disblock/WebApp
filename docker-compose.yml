@@ -4,6 +4,7 @@ services:
     image: redis:alpine
     restart: always
 
+#https://hub.docker.com/_/postgres/?tab=description
   db:
     image: postgres
     volumes:
