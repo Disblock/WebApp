@@ -21,6 +21,7 @@ const morgan = require('morgan');//Logs for the server
 const ejs = require('ejs');//Allow to serve .ejs files
 const bodyParser = require('body-parser');//Get data from <form>
 const mysql = require('mysql');//Mysql
+const pg = require('pg');//Postgresql
 const redis = require("redis");//Redis
 const session = require('express-session');//Sessions management
 const redisStore = require('connect-redis')(session);//Save sessions in Redis
@@ -46,12 +47,14 @@ var connection = mysql_connection.getConnexion();//Création d'une connexion à 
 /*############################################*/
 
 //Connection to the database
-try{
-  connection.connect();//Connexion à la BDD
-}catch(error){
-  console.log("ERROR : CAN'T ACCESS TO THE DATABASE !!");
-  console.log(error);
-}
+const database_pool = new pg.Pool();//Credentials are given by env var
+database_pool.query('SELECT NOW();', (err, res) => {
+      if(err instanceof Error){
+        throw(err);
+      }else{
+        console.log("Connected to database !");
+      }
+});
 
 /*############################################*/
 /* Redis Connection */
