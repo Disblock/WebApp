@@ -1,18 +1,17 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const secrets = require('./secrets.js');
-const mysql = require('mysql');
 
 module.exports = {
-  regen: async function(req, database_connection, callback){
+  regen: async function(req, database_pool, callback){
 
     //Getting user's refresh token
-    database_connection.query("SELECT refresh_token FROM user WHERE id="+mysql.escape(req.session.discord_id)+";", async function(error, results, fields){
+    database_pool.query("SELECT refresh_token FROM users WHERE user_id=$1;",[req.session.discord_id], async function(error, results){
       if(error instanceof Error){
         console.log(error);
         return(callback(undefined));
       }else{
         //Correctly got the refresh token
-        if(results[0].refresh_token!=undefined && results[0].refresh_token!=''){
+        if(results.rows[0].refresh_token!=undefined && results.rows[0].refresh_token!=''){
 
           try{
 
@@ -23,7 +22,7 @@ module.exports = {
       					client_id: secrets.clientId,
       					client_secret: secrets.clientSecret,
       					grant_type: 'refresh_token',
-      					refresh_token: results[0].refresh_token
+      					refresh_token: results.rows[0].refresh_token
       				}),
       				headers: {
       					'Content-Type': 'application/x-www-form-urlencoded',
@@ -34,17 +33,17 @@ module.exports = {
 
             if(oauthData.error==undefined && oauthData.message==undefined){
               //If the token is correctly received
-              database_connection.query("UPDATE user SET token = "+mysql.escape(oauthData.access_token)+", refresh_token = "+mysql.escape(oauthData.refresh_token)+" WHERE id = "+mysql.escape(req.session.discord_id)+";");
-               if (error instanceof Error){
-                 console.log(error);
-                 return(callback(undefined));
-               }else{
-                 //Correctly ended, sending the new token
-                 req.session.token = oauthData.access_token;
-                 req.session.save();//Must save to ensure everything is saved
-                 return(callback(oauthData.access_token));
-               }
-
+              database_pool.query("UPDATE users SET token = $1, refresh_token = $2 WHERE user_id = $3;", [oauthData.access_token, oauthData.refresh_token, req.session.discord_id], async function(error, results){
+                if (error instanceof Error){
+                  console.log(error);
+                  return(callback(undefined));
+                }else{
+                  //Correctly ended, sending the new token
+                  req.session.token = oauthData.access_token;
+                  req.session.save();//Must save to ensure everything is saved
+                  return(callback(oauthData.access_token));
+                }
+              });
 
 
             }else{

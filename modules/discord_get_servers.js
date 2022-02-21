@@ -1,11 +1,10 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const secrets = require('./secrets.js');
-const mysql = require('mysql');
 const discord_regen = require('./discord_token_regen.js');
 const bigInt = require("big-integer");//Used to check permissions on a server
 
 module.exports = {
-  servers: async function(req, database_connection, callback){
+  servers: async function(req, database_pool, callback){
 
     function getGuilds(token, callback){
       if(token==undefined){return(callback(undefined));}
@@ -53,7 +52,7 @@ module.exports = {
       }else if(result=='Token not set'){
         //NOT OK, must regen the token
 
-        discord_regen.regen(req, database_connection, function(new_token){
+        discord_regen.regen(req, database_pool, function(new_token){
                 if(new_token==undefined){
                   //Error, the user has removed the application's access ?
                   console.log('ERROR, '+req.session.discord_id+' may have removed app access');

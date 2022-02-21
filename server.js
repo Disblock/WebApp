@@ -4,7 +4,6 @@
 /*############################################*/
 
 const images = require('./modules/images.js');//Allow to get pictures ( /img/...)
-const mysql_connection = require('./modules/database.js');//Store Database credentials
 const discord_login = require('./modules/discord_login.js');//Used to login with Discord
 const discord_regen = require('./modules/discord_token_regen.js');//Used to regen user's tokens
 const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
@@ -20,7 +19,6 @@ const express = require('express');//Did I really need to explain ?
 const morgan = require('morgan');//Logs for the server
 const ejs = require('ejs');//Allow to serve .ejs files
 const bodyParser = require('body-parser');//Get data from <form>
-const mysql = require('mysql');//Mysql
 const pg = require('pg');//Postgresql
 const redis = require("redis");//Redis
 const session = require('express-session');//Sessions management
@@ -39,14 +37,13 @@ let Blockly = require('blockly');//Blockly
 
 var app = express();//Création de l'app Express
 var server = require("http").createServer(app);//Crée le serveur
-var connection = mysql_connection.getConnexion();//Création d'une connexion à la BDD
 
 
 /*############################################*/
-/* Database connection */
+/* Database database_pool */
 /*############################################*/
 
-//Connection to the database
+//database_pool to the database
 const database_pool = new pg.Pool();//Credentials are given by env var
 database_pool.query('SELECT NOW();', (err, res) => {
       if(err instanceof Error){
@@ -57,7 +54,7 @@ database_pool.query('SELECT NOW();', (err, res) => {
 });
 
 /*############################################*/
-/* Redis Connection */
+/* Redis database_pool */
 /*############################################*/
 
 //Redis and session init
@@ -147,13 +144,13 @@ app.get('/discord_login', function(req, res){
       //State is the same as the registered one
 
       if(url.parse(req.url,true).query.code!=undefined){
-        discord_login.login(url.parse(req.url,true).query.code, connection, req, res);
+        discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res);
       }else{
         res.redirect('/');
       }
 
     }else{
-      //User may be clickjacked, cancelling connection
+      //User may be clickjacked, cancelling database_pool
       res.status(403).end("Security error");
     }
   }else{
@@ -174,7 +171,7 @@ app.get('/logout', function(req, res){
 app.get('/panel', function(req, res){
   req.session.state = crypto.randomBytes(4).toString('hex');
   if(req.session.discord_id!=undefined){
-    discord_get_servers.servers(req, connection, (guilds)=>{
+    discord_get_servers.servers(req, database_pool, (guilds)=>{
       //guilds represent the guilds that user is admin on
 
       res.render('panel.ejs', {session: req.session, guilds: guilds, guild: undefined});
@@ -189,7 +186,7 @@ app.get('/panel', function(req, res){
 
 app.get('/panel/:id', function(req, res){
   if(req.session.discord_id!=undefined){
-    discord_get_servers.servers(req, connection, (guilds)=>{//Get all guilds where user has an admin permission
+    discord_get_servers.servers(req, database_pool, (guilds)=>{//Get all guilds where user has an admin permission
       let guild = undefined;
       for(var i=0; i<guilds.length; i++){//Iterate throught all user's admin guilds, and compare them to the ID of the selected guilds
         if(guilds[i].id===String(req.params.id)){//If one guild match this ID, the user is admin in this guild. If none match with, user isn't admin on it
@@ -312,13 +309,13 @@ app.get('/blockly/custom_types', function(req, res){
 /* Blockly Socket.io */
 /*############################################*/
 
-io.sockets.on('connection', function(socket){
+io.sockets.on('database_pool', function(socket){
   console.log("Un client s'est connecté !");
 
   socket.on("send_workspace", (server_id, data, callback) => {
     if(socket.request.session.discord_id!=undefined){//Session must be defined
 
-      discord_get_servers.servers(socket.request, connection, (guilds)=>{//Get a list of user's servers where has admin access
+      discord_get_servers.servers(socket.request, database_pool, (guilds)=>{//Get a list of user's servers where has admin access
         var guild = undefined;
         for(var i=0; i<guilds.length; i++){
           if(guilds[i].id===String(server_id)){

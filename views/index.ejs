@@ -42,7 +42,7 @@
         <%
           if(session.username==undefined){
             //Used not logged in
-            %><button onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- session.state %>'">Login with Discord</button><%
+            %><button onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- session.state %>'">Login with Discord</button><%
           }else{
             //User logged in
             %><button onclick="location.href='/panel'">Go to Panel</button><%
