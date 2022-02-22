@@ -50,6 +50,8 @@ module.exports = {
 
     eventReaction All of these are variables are used in events
     */
+    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction');
+    Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
 
     /* ##### EVENTS blocks ##### */
     Blockly.JavaScript['event_message_sent'] = function(block) {

@@ -110,8 +110,6 @@ blocklyBlocks.forEach(element => {
 Blockly = blockly_localization.initializeLocalization(Blockly);
 
 const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the string code later
-Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 10000){throw 'Infinite loop !'}\nloopCount++;\n";
-Blockly.JavaScript.addReservedWords('loopCount');
 Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
 
 /*############################################*/
@@ -309,7 +307,7 @@ app.get('/blockly/custom_types', function(req, res){
 /* Blockly Socket.io */
 /*############################################*/
 
-io.sockets.on('database_pool', function(socket){
+io.sockets.on('connect', function(socket){
   console.log("Un client s'est connecté !");
 
   socket.on("send_workspace", (server_id, data, callback) => {
