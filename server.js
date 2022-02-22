@@ -282,16 +282,6 @@ app.get('/script/particle_config', function(req, res){
   res.render('./js/scripts/particles_config.ejs');
 });
 
-
-/*############################################*/
-/* Blockly contents ( blocks, ... ) */
-/*############################################*/
-
-app.get('/blockly/custom_types', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/custom_types/custom_types.ejs');
-});
-
 /*############################################*/
 /* Blockly Localization */
 /*############################################*/
