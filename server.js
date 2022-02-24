@@ -312,12 +312,16 @@ io.sockets.on('connect', function(socket){
         }
 
         if(guild!=undefined){//If guild is defined, a server where user is admin has been found
-          var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly);
-          if(result==1){
-            callback({status: "OK"});
-          }else if(result==2){
-            callback({status: "NOT  OK"});
-          }
+          var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, blocklyToken, database_pool).then(result=>{//blocklyToken is a random string used to split the generated code
+
+            if(result==0){
+              callback({status: "OK"});
+            }else if(result==1){
+              callback({status: "NOT  OK"});
+            }
+
+          });
+
         }else{
           //User hasn't access to this server
           callback({status: "NOT  OK"});
