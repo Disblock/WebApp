@@ -51,6 +51,7 @@ module.exports = {
       //Transaction start
       client.query('BEGIN;', (err)=>{
         if(err){
+          client.query('ROLLBACK');
           release(err);
         }else{
 
@@ -64,6 +65,7 @@ module.exports = {
               //Semms good, let's try to commit
               client.query('COMMIT;', (err)=>{
                 if(err){
+                  client.query('ROLLBACK');
                   release(err);
                 }else{
                   release();
