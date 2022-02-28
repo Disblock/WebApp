@@ -29,7 +29,7 @@ const crypto = require('crypto');//Generate random strings
 const url = require('url');//Enable access to query string parameters
 const bigInt = require("big-integer");//Used to check permissions on a server
 let Blockly = require('blockly');//Blockly
-
+const winston = require('winston');//Used to save logs
 
 /*############################################*/
 /* Express and server creation */
@@ -90,10 +90,68 @@ io.use(function(socket, next){//A chaque requête io, le middleware de sessions 
 
 
 /*############################################*/
-/* Morgan module ( Logging ) */
+/* Morgan & winston modules ( Logging ) */
 /*############################################*/
 
-app.use(morgan('combined'));//Démarre les logs
+/* ##### MAIN LOGGER ##### */
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(winston.format.timestamp({
+      format: 'YYYY-MM-DD HH:mm:ss'
+    }), winston.format.json()),
+  //exitOnError: false,
+  transports: [
+    new winston.transports.File({ filename: './logs/app/error.log', level: 'error' }),//Errors file
+    new winston.transports.File({ filename: './logs/app/backend.log' })//Backend logs
+  ]
+});
+
+//If not in production, data is also logged in console
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+
+    format: winston.format.combine(
+      winston.format.colorize({level:true}),
+      winston.format.timestamp({
+        format: 'YYYY-MM-DD HH:mm:ss'
+      }), winston.format.simple()),
+
+    level: (process.env.DEBUG === 'true' ? 'debug':'info')//Debug mode or normal errors ?
+  }));
+}
+
+//Debug mode
+if(process.env.DEBUG === 'true'){
+  logger.add(new winston.transports.File({filename:'./logs/app/debug.log', level: 'debug'}))
+}
+
+/* ##### ACCESS LOGGER ##### */
+const accessLogger = winston.createLogger({
+  levels: {access:0},
+  level: 'access',
+  format: winston.format.simple(),
+  transports: [
+    new winston.transports.File({ filename: './logs/access/access.log'}),//Access logs
+  ]
+});
+
+//If not in production, show logs in console
+if (process.env.NODE_ENV !== 'production') {
+  accessLogger.add(new winston.transports.Console({
+    format:winston.format.combine(winston.format.colorize({level:true, colors:{access:'black whiteBG'}}),winston.format.simple())
+  }));
+}
+
+app.use(morgan('combined', { "stream": {
+  write: async (message)=>{
+    accessLogger.access(message.trim());
+  }
+}}));//Start logging
+
+/*############################################*/
+/* BodyParser Initialization */
+/*############################################*/
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 /*############################################*/

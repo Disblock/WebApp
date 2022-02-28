@@ -33,12 +33,18 @@ services:
       - 8081:8081
     restart: always
     environment:
+      #Values are stored in .env file
       PGHOST: ${DB_HOST}
       PGPASSWORD: ${DB_PASSWORD}
       PGUSER: ${DB_USER}
       PGDATABASE: ${DB_DATABASE}
       PGPORT: ${DB_PORT}
+      NODE_ENV: ${NODE_ENV}
+      DEBUG: ${DEBUG}
+    volumes:
+      - disblock_logs:/node/logs
 
 
 volumes:
   db_data: {}
+  disblock_logs: {}
