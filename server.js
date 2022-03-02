@@ -10,6 +10,7 @@ const discord_get_servers = require('./modules/discord_get_servers.js');//Used t
 const blockly_xml_to_js = require('./modules/blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
 const blockly_localization = require('./modules/blockly/localization/fr.js');//Add localization to the generator
+const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
 
 /*############################################*/
 /* Imported modules */
@@ -30,6 +31,7 @@ const url = require('url');//Enable access to query string parameters
 const bigInt = require("big-integer");//Used to check permissions on a server
 let Blockly = require('blockly');//Blockly
 const winston = require('winston');//Used to save logs
+require('winston-daily-rotate-file');//Daily rotating files
 
 /*############################################*/
 /* Express and server creation */
@@ -93,6 +95,8 @@ io.use(function(socket, next){//A chaque requête io, le middleware de sessions 
 /* Morgan & winston modules ( Logging ) */
 /*############################################*/
 
+init_logs.init_console();//Show a message in console when starting
+
 /* ##### MAIN LOGGER ##### */
 const logger = winston.createLogger({
   level: 'info',
@@ -101,10 +105,18 @@ const logger = winston.createLogger({
     }), winston.format.json()),
   //exitOnError: false,
   transports: [
-    new winston.transports.File({ filename: './logs/app/error.log', level: 'error' }),//Errors file
-    new winston.transports.File({ filename: './logs/app/backend.log' })//Backend logs
+    new winston.transports.DailyRotateFile({ filename: './logs/app/error-%DATE%.log', level: 'error', maxFiles:process.env.LOGS_MAX_FILES, maxSize:'1g' }),//Errors file ( Errors )
+    new winston.transports.DailyRotateFile({ filename: './logs/app/backend-%DATE%.log', maxFiles:process.env.LOGS_MAX_FILES, maxSize:'1g' })//Backend logs ( info, errors, debug, ...)
   ]
 });
+
+//Debug mode
+if(process.env.DEBUG === 'true'){
+  logger.add(new winston.transports.DailyRotateFile({filename:'./logs/app/debug-%DATE%.log', level: 'debug', maxFiles:process.env.LOGS_MAX_FILES, maxSize:'1g'}))
+}
+
+init_logs.init_logger(logger);//Initialized here to avoid showing the message twice in console
+//logger.error('The server has started, logging errors here !');//Sending a message in error logs to show that we started
 
 //If not in production, data is also logged in console
 if (process.env.NODE_ENV !== 'production') {
@@ -120,20 +132,18 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-//Debug mode
-if(process.env.DEBUG === 'true'){
-  logger.add(new winston.transports.File({filename:'./logs/app/debug.log', level: 'debug'}))
-}
 
 /* ##### ACCESS LOGGER ##### */
 const accessLogger = winston.createLogger({
-  levels: {access:0},
-  level: 'access',
+  levels: {debug:2,info:1,access:0},
+  level: 'debug',
   format: winston.format.simple(),
   transports: [
-    new winston.transports.File({ filename: './logs/access/access.log'}),//Access logs
+    new winston.transports.DailyRotateFile({ filename: './logs/access/access-%DATE%.log', maxFiles:process.env.LOGS_MAX_FILES, maxSize:'1g'}),//Access logs
   ]
 });
+
+init_logs.init_logger(accessLogger);//Initialized here to avoid showing the message twice in console
 
 //If not in production, show logs in console
 if (process.env.NODE_ENV !== 'production') {

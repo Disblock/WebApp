@@ -41,6 +41,7 @@ services:
       PGPORT: ${DB_PORT}
       NODE_ENV: ${NODE_ENV}
       DEBUG: ${DEBUG}
+      LOGS_MAX_FILES: ${LOGS_MAX_FILES}
     volumes:
       - disblock_logs:/node/logs
 
