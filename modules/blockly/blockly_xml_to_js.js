@@ -3,13 +3,14 @@ let Blockly = require('blockly');
 //const crypto = require('crypto');//Generate random strings
 
 module.exports = {
-  xml_to_js: async function(server_id, xml, Blockly, token, database_pool){
+  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger){
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
      const code = Blockly.JavaScript.workspaceToCode(workspace);
 
+     logger.debug("Working on code for the guild "+server_id+"...");
      let splittedCode = code.replace('.token', 't0ken').split('<<'+token+'>>');
 
      if(splittedCode[0]==''){//Remove the empty string at the first index of loop
@@ -18,6 +19,7 @@ module.exports = {
 
 
      //creating Sql request
+
      let splittedCodeToSend = [];
      let sql = 'INSERT INTO server_code (server_id, action_type, code) VALUES '
      let sqlCompleted = false;//Check if a valid tupple is added to the sql string
@@ -38,13 +40,18 @@ module.exports = {
 
      }
 
-     if(!sqlCompleted){return(1)}
+     if(!sqlCompleted){
+       logger.debug("There isn't any code to add in the database for the guild "+server_id+", aborting...");
+       return(1);
+     }
+
+     logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
 
      //Saving to Database
      database_pool.connect((err, client, release) => {
       if(err){
         release(err);
-        console.log("ERROR while connecting a client to database");
+        logger.error("Error when getting a client from database pool : "+err);
       }
 
       //TODO add logs here
