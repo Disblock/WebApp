@@ -24,6 +24,7 @@ services:
     ports:
       - 8080:8080
 
+  #Web panel
   disblock:
     depends_on:
       - redis-server
@@ -45,7 +46,27 @@ services:
     volumes:
       - disblock_logs:/node/logs
 
+  #Discord bot
+  disbot:
+    depends_on:
+      - db
+    image: disbot
+    restart: always
+    volumes:
+      - disbot_logs:/node/logs
+    environment:
+      PGHOST: ${DB_HOST}
+      PGPASSWORD: ${DB_PASSWORD}
+      PGUSER: ${DB_USER}
+      PGDATABASE: ${DB_DATABASE}
+      PGPORT: ${DB_PORT}
+      TOKEN: ${BOT_TOKEN}
+      LOGS_MAX_FILES: ${LOGS_MAX_FILES}
+      DEBUG: ${DEBUG}
+      NODE_ENV: ${NODE_ENV}
+
 
 volumes:
   db_data: {}
   disblock_logs: {}
+  disbot_logs: {}
