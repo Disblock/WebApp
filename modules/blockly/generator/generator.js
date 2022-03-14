@@ -28,6 +28,8 @@ module.exports = {
 
     createdRank Represent the rank created with a create rank block
 
+    Don't delare these, or you will overwrite the Discord vars
+
     eventMessage
     eventOldMessage
     eventNewMessage
