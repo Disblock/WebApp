@@ -140,17 +140,17 @@ module.exports = {
       return code;
     };
 
-    Blockly.JavaScript['event_var_role'] = function(block) {
+    Blockly.JavaScript['event_var_rank'] = function(block) {
       const code="eventRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript['event_var_old_role'] = function(block) {
+    Blockly.JavaScript['event_var_old_rank'] = function(block) {
       const code="eventOldRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript['event_var_new_role'] = function(block) {
+    Blockly.JavaScript['event_var_new_rank'] = function(block) {
       const code="eventNewRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };

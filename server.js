@@ -123,7 +123,7 @@ database_pool.query('SELECT NOW();', (err, res) => {
 });
 
 /*############################################*/
-/* Redis database_pool */
+/* Redis database */
 /*############################################*/
 
 //Redis and session init
