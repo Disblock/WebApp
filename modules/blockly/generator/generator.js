@@ -268,12 +268,6 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript['event_user_start_writing'] = function(block) {
-      const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_start_writing<<"+token+">>"+statements;
-      return code;
-    };
-
 
     /* ##### MESSAGES blocks ##### */
 
