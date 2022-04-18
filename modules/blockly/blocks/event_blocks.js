@@ -214,8 +214,8 @@ module.exports = {
   "helpUrl": ""
 },
 {
-  "type": "event_user_start_writing",
-  "message0": "%{BKY_EVENT_USER_START_WRITING}",
+  "type": "event_user_start_writting",
+  "message0": "%{BKY_EVENT_USER_START_WRITTING}",
   "args0": [
     {
       "type": "input_dummy"
@@ -226,7 +226,7 @@ module.exports = {
     }
   ],
   "colour": 30,
-  "tooltip": "%{BKY_EVENT_USER_START_WRITING_TOOLTIP}",
+  "tooltip": "%{BKY_EVENT_USER_START_WRITTING_TOOLTIP}",
   "helpUrl": ""
 },
 {

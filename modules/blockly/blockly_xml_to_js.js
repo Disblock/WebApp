@@ -15,7 +15,7 @@ module.exports = {
 
      if(splittedCode[0]==''){//Remove the empty string at the first index of loop
        splittedCode.splice(0,1);
-     }//spliitedCode = [trigger, code, trigger, code, ...]
+     }//splittedCode = [trigger, code, trigger, code, ...]
 
 
      //creating Sql request
