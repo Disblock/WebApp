@@ -26,7 +26,8 @@ module.exports = {
      let args = [server_id];
 
      for(var i=0; i<splittedCode.length; i=i+2){
-       if(splittedCode[i]!='' && splittedCode[i+1].replace(/(\r\n|\n|\r)/gm, '')!=''){//If user added an action block without instruction, it will be removed
+       if(splittedCode[i]==undefined || splittedCode[i+1]==undefined){return(1)}//Event and actions must be defined
+       if(splittedCode[i].includes("event_") && splittedCode[i]!='' && splittedCode[i+1].replace(/(\r\n|\n|\r)/gm, '')!=''){//If trigger isn't event block, do nothing; If user added an action block without instruction, it will be removed
          //Trigger event defined, code defined, and not just some \n
          splittedCodeToSend.push(splittedCode[i], splittedCode[i+1]);
        }
