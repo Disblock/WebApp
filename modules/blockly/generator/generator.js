@@ -1738,7 +1738,7 @@ module.exports = {
 
     Blockly.JavaScript['block_embed_option_set_footer'] = function(block) {
       const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-      const value_icon_url = Blockly.JavaScript.valueToCode(block, 'icon_URL', Blockly.JavaScript.ORDER_ATOMIC);
+      let value_icon_url = Blockly.JavaScript.valueToCode(block, 'icon_URL', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!==''){
 
