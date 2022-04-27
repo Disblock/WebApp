@@ -93,6 +93,15 @@ module.exports = {
       });
     });
 
+    //TODO add logs here
+    //Workspace save
+    logger.debug("Saving Workspace for guild "+server_id);
+    database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, xml], (err, res) => {
+      if (err) {
+        logger.error("Error while saving workspace for guild "+server_id+" : "+err);
+      }
+    });
+
 
 
     return(1);

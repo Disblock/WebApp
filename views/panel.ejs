@@ -184,6 +184,11 @@
           let workspace = Blockly.inject("#content_blockly", options);
           workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
 
+          //If a workspace is stored in database, it is restored here
+          <% if(workspace_xml){ %>
+            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom('<%- workspace_xml %> '), workspace); <%
+          }%>
+
           //Function to send workspace's blocks to the server :
           function sendWorkspaceToServer(){
             alert("Sending your REMPLACER to the server !");

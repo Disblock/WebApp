@@ -269,8 +269,23 @@ app.get('/panel/:id', function(req, res){
         logger.info("User "+ req.session.discord_id +" got panel access to guild "+guild.id);
         //User is admin on the selected server
 
-        //Let's render Blockly app, with custom blocks added here
-        res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization.initializeLocalization});
+        //Getting guild saved workspace
+        database_pool.query('SELECT xml FROM server_workspace WHERE server_id = $1 ORDER BY workspace_id DESC LIMIT 1;', [guild.id], (err, data) => {
+          if(err){
+            logger.error("Error while getting saved workspace from database for guild "+guild.id+" : "+err);
+            res.status(500).end("Error");
+          }else{
+            //Check here if a previous workspace was saved
+            let workspace_xml = undefined;
+            if(data.rows[0]){
+              workspace_xml = data.rows[0].xml;
+              logger.debug("A saved workspace was found for guild "+guild.id);
+            }
+
+            //Let's render Blockly app, with custom blocks added here
+            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization.initializeLocalization, workspace_xml:workspace_xml});
+          }
+        });
 
       }else{
         //User isn't admin on the selected server
