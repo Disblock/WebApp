@@ -50,7 +50,18 @@ module.exports = {
      }
 
      if(!sqlCompleted){
-       logger.debug("There isn't any code to add in the database for the guild "+server_id+", aborting...");
+
+       //Seem like the user sent a blank workspace, codes will be removed...
+       logger.debug("There isn't any code to add in the database for the guild "+server_id+", aborting and deleting active server code and workspace...");
+       database_pool.query('DELETE FROM server_code WHERE server_id = $1;', [server_id])
+        .catch(err=>{
+          logger.error("Error while deleting active codes for guild "+server_id+" : "+err);
+        });
+        //Workspace is updated ( The workspace is probably empty )
+        database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, xml])
+         .catch(err=>{
+           logger.error("Error while saving workspace for guild "+server_id+" : "+err);
+         });
        return(1);
      }
 
@@ -70,21 +81,27 @@ module.exports = {
           client.query('ROLLBACK');
           release(err);
         }else{
-
-          //Tuples inserted
-          client.query(sql+';', args, (err, rep)=>{
+          client.query('DELETE FROM server_code WHERE server_id = $1;', [server_id], (err,rep)=>{
             if(err){
-              //Problem, let's rollback
               client.query('ROLLBACK');
               release(err);
             }else{
-              //Semms good, let's try to commit
-              client.query('COMMIT;', (err)=>{
+              //Tuples inserted
+              client.query(sql+';', args, (err, rep)=>{
                 if(err){
+                  //Problem, let's rollback
                   client.query('ROLLBACK');
                   release(err);
                 }else{
-                  release();
+                  //Semms good, let's try to commit
+                  client.query('COMMIT;', (err)=>{
+                    if(err){
+                      client.query('ROLLBACK');
+                      release(err);
+                    }else{
+                      release();
+                    }
+                  });
                 }
               });
             }
