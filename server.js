@@ -243,9 +243,16 @@ app.get('/panel', function(req, res){
   req.session.state = crypto.randomBytes(4).toString('hex');
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
-      //guilds represent the guilds that user is admin on
+      //guilds represent the guilds that user is admin on ( Array )
+      //This function can destroy the session if user is rate limited
 
-      res.render('panel.ejs', {session: req.session, guilds: guilds, guild: undefined});
+      if(req.session){
+        //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
+        res.render('panel.ejs', {session: req.session, guilds: guilds, guild: undefined});
+      }else{
+        res.redirect('/');
+      }
+
     });
   }else{
     //Not logged in
