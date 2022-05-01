@@ -95,6 +95,8 @@ module.exports = {
                  });
 
                }catch(err){logger.error("Error when saving to database an user's data : "+err);res.status(500).end("Error 500");}
+             }).catch(err=>{
+               logger.error("Error when trying to get user's data from Discord API : "+err);res.status(500).end("Error 500");
              });
            }catch(error){
              logger.error("Error when trying to get user's data from Discord API : "+err);res.status(500).end("Error 500");

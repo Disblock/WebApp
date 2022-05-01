@@ -276,7 +276,7 @@ app.get('/panel/:id', function(req, res){
         logger.info("User "+ req.session.discord_id +" got panel access to guild "+guild.id);
         //User is admin on the selected server
 
-        //Getting guild saved workspace
+        //Getting guilds saved workspace
         database_pool.query('SELECT xml FROM server_workspace WHERE server_id = $1 ORDER BY workspace_id DESC LIMIT 1;', [guild.id], (err, data) => {
           if(err){
             logger.error("Error while getting saved workspace from database for guild "+guild.id+" : "+err);
