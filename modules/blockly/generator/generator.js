@@ -167,11 +167,13 @@ module.exports = {
       return code;
     };
 
+    /*  This event is disabled : Discord don't send the updated message, so we have to found it ourselves.
+        This feature is planned, but require more development
     Blockly.JavaScript['event_pinned_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       const code = "\n<<"+token+">>event_pinned_updated<<"+token+">>"+statements;
       return code;
-    };
+    };*/
 
     Blockly.JavaScript['event_user_voice_update'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
