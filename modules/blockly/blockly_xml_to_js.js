@@ -7,8 +7,21 @@ module.exports = {
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
-     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
-     const code = Blockly.JavaScript.workspaceToCode(workspace);
+
+     //Function used to try/catch when generating code. If an error occured, undefined is returned
+     function tryCodeGeneration(xml, workspace){
+       try{
+         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+         const code = Blockly.JavaScript.workspaceToCode(workspace);
+         return code;
+       }catch(err){
+         logger.error("Error while converting workspace to code for guild "+server_id+" : "+err);
+         return undefined;
+       }
+     }
+     const code = tryCodeGeneration(xml, workspace);
+     if(code==undefined){return(1);}//An error occured, return here
+
 
      logger.debug("Working on code for the guild "+server_id+"...");
      let splittedCode = code.replace('.token', 't0ken').split('<<'+token+'>>');
