@@ -5,6 +5,8 @@ services:
   redis-server:
     image: redis:alpine
     restart: always
+    volumes:
+      - redis_data:/data
 
 
 #https://hub.docker.com/_/postgres/?tab=description
@@ -70,3 +72,4 @@ volumes:
   db_data: {}
   disblock_logs: {}
   disbot_logs: {}
+  redis_data: {}
