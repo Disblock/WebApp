@@ -161,11 +161,14 @@ module.exports = {
       return code;
     };
 
+    /*  This event is disabled : Discord send the User but we can't get a GuildMember...
+        This feature is planned, but require more development
+
     Blockly.JavaScript['event_user_unbanned'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       const code = "\n<<"+token+">>event_user_unbanned<<"+token+">>"+statements;
       return code;
-    };
+    };*/
 
     /*  This event is disabled : Discord don't send the updated message, so we have to found it ourselves.
         This feature is planned, but require more development
