@@ -79,8 +79,8 @@ module.exports = {
         .catch(err=>{
           logger.error("Error while deleting active codes for guild "+server_id+" : "+err);
         });
-        //Workspace is updated ( The workspace is probably empty )
-        database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, xml])
+        //Workspace is updated
+        database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, '<xml xmlns="https://developers.google.com/blockly/xml"></xml>'])
          .catch(err=>{
            logger.error("Error while saving workspace for guild "+server_id+" : "+err);
          });

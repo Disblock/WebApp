@@ -1869,6 +1869,37 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
+    /* ##### DISABLED blocks ##### */
+    //Blockly's default blocks that should be disabled
+    //These blocks are removed / commented in toolbox.ejs
+
+    const disabledFunction = function(block){
+      return '';
+    }
+        //Loops
+        Blockly.JavaScript['controls_repeat_ext'] = disabledFunction;
+        Blockly.JavaScript['controls_whileUntil'] = disabledFunction;
+        Blockly.JavaScript['controls_for'] = disabledFunction;
+        Blockly.JavaScript['controls_forEach'] = disabledFunction;
+        Blockly.JavaScript['controls_flow_statements'] = disabledFunction;
+
+        //Text
+        Blockly.JavaScript['text_print'] = disabledFunction;
+        Blockly.JavaScript['text_append'] = disabledFunction;
+        Blockly.JavaScript['text_prompt_ext'] = disabledFunction;
+
+        //Lists
+        Blockly.JavaScript['lists_create_with'] = disabledFunction;
+        Blockly.JavaScript['lists_repeat'] = disabledFunction;
+        Blockly.JavaScript['lists_length'] = disabledFunction;
+        Blockly.JavaScript['lists_isEmpty'] = disabledFunction;
+        Blockly.JavaScript['lists_indexOf'] = disabledFunction;
+        Blockly.JavaScript['lists_getIndex'] = disabledFunction;
+        Blockly.JavaScript['lists_setIndex'] = disabledFunction;
+        Blockly.JavaScript['lists_getSublist'] = disabledFunction;
+        Blockly.JavaScript['lists_split'] = disabledFunction;
+        Blockly.JavaScript['lists_sort'] = disabledFunction;
+
     return(Blockly);
   }
 }

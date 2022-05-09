@@ -1,3 +1,4 @@
+<!-- If a block is disabled here, it is also disabled in generator.js ! -->
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
   <category name="Logic" colour="#5b80a5">
     <block type="controls_if"></block>
@@ -14,7 +15,7 @@
     <block type="logic_null"></block>
     <block type="logic_ternary"></block>
   </category>
-  <category name="Loops" colour="#5ba55b">
+  <!--<category name="Loops" colour="#5ba55b">
     <block type="controls_repeat_ext">
       <value name="TIMES">
         <shadow type="math_number">
@@ -49,7 +50,7 @@
     <block type="controls_flow_statements">
       <field name="FLOW">BREAK</field>
     </block>
-  </category>
+  </category>-->
   <category name="Math" colour="#5b67a5">
     <block type="math_number">
       <field name="NUM">0</field>
@@ -157,14 +158,14 @@
     <block type="text_join">
       <mutation items="2"></mutation>
     </block>
-    <block type="text_append">
+    <!--<block type="text_append">
       <field name="VAR" id=")nW4ijRT9rG?[fW:8CyB">item</field>
       <value name="TEXT">
         <shadow type="text">
           <field name="TEXT"></field>
         </shadow>
       </value>
-    </block>
+    </block>-->
     <block type="text_length">
       <value name="VALUE">
         <shadow type="text">
@@ -182,9 +183,12 @@
     <block type="text_indexOf">
       <field name="END">FIRST</field>
       <value name="VALUE">
-        <block type="variables_get">
+        <!--<block type="variables_get">
           <field name="VAR" id="aTqqF*tmT-GHXQXRvl:n">text</field>
-        </block>
+        </block>-->
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
       </value>
       <value name="FIND">
         <shadow type="text">
@@ -196,9 +200,12 @@
       <mutation at="true"></mutation>
       <field name="WHERE">FROM_START</field>
       <value name="VALUE">
-        <block type="variables_get">
+        <!--<block type="variables_get">
           <field name="VAR" id="aTqqF*tmT-GHXQXRvl:n">text</field>
-        </block>
+        </block>-->
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
       </value>
     </block>
     <block type="text_getSubstring">
@@ -206,9 +213,12 @@
       <field name="WHERE1">FROM_START</field>
       <field name="WHERE2">FROM_START</field>
       <value name="STRING">
-        <block type="variables_get">
+        <!--<block type="variables_get">
           <field name="VAR" id="aTqqF*tmT-GHXQXRvl:n">text</field>
-        </block>
+        </block>-->
+        <shadow type="text">
+          <field name="TEXT">abcdef</field>
+        </shadow>
       </value>
     </block>
     <block type="text_changeCase">
@@ -227,7 +237,7 @@
         </shadow>
       </value>
     </block>
-    <block type="text_print">
+    <!--<block type="text_print">
       <value name="TEXT">
         <shadow type="text">
           <field name="TEXT">abc</field>
@@ -242,9 +252,9 @@
           <field name="TEXT">abc</field>
         </shadow>
       </value>
-    </block>
+    </block>-->
   </category>
-  <category name="Lists" colour="#745ba5">
+  <!--<category name="Lists" colour="#745ba5">
     <block type="lists_create_with">
       <mutation items="0"></mutation>
     </block>
@@ -311,7 +321,7 @@
       <field name="TYPE">NUMERIC</field>
       <field name="DIRECTION">1</field>
     </block>
-  </category>
+  </category>-->
   <category name="Colour" colour="#a5745b">
     <block type="colour_picker">
       <field name="COLOUR">#ff0000</field>
@@ -352,9 +362,6 @@
       </value>
     </block>
   </category>
-  <sep></sep>
-  <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
-  <category name="Functions" colour="#995ba5" custom="PROCEDURE"></category>
   <sep></sep>
   <category name="%{BKY_WORKSPACE_TAB_EVENTS}" colour="30">
     <label text="%{BKY_WORKSPACE_EVENTS_MESSAGE_SENT_DELETED}"></label>
@@ -570,7 +577,7 @@
       <block type="block_rank_get_rank_with_id"></block>
       <block type="block_rank_get_name"></block>
       <block type="block_rank_get_position"></block>
-      <block type="block_rank_get_color"></block>
+      <!--<block type="block_rank_get_color"></block>-->
       <block type="block_rank_get_id"></block>
       <block type="block_rank_has_permission"></block>
 
