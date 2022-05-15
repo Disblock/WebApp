@@ -626,7 +626,7 @@ module.exports = {
     Blockly.Msg["BLOCK_CHANNEL_VAR_TEXT_CHANNEL_TOOLTIP"] = "Représente le salon textuel créé";
     Blockly.Msg["BLOCK_CHANNEL_DELETE"] = "Supprimer le salon %1";
     Blockly.Msg["BLOCK_CHANNEL_DELETE_TOOLTIP"] = "Permet de supprimer un salon textuel, vocal ou fil";
-    Blockly.Msg["BLOCK_CHANNEL_RENAMME"] = "Modifier le  nom du salon %1 avec le nom %2";
+    Blockly.Msg["BLOCK_CHANNEL_RENAMME"] = "Modifier le nom du salon %1 avec le nom %2";
     Blockly.Msg["BLOCK_CHANNEL_RENAMME_TOOLTIP"] = "Permet de renommer un salon textuel, vocal ou fil";
     Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_OF_CHANNEL"] = "Catégorie du salon %1";
     Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_OF_CHANNEL_TOOLTIP"] = "Permet de retrouver la catégorie où est placé un salon textuel ou vocal";
@@ -800,6 +800,7 @@ module.exports = {
     //Others
     Blockly.Msg["YES"] = "Oui";
     Blockly.Msg["NO"] = "Non";
+    Blockly.Msg["UNLIMITED"] = "Illimité";
 
     return(Blockly);
   }

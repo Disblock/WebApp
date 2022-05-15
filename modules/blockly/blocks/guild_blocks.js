@@ -83,7 +83,7 @@ module.exports = {
       "name": "uses",
       "options": [
         [
-          "Illimité",
+          "%{BKY_UNLIMITED}",
           "UNLIMITED"
         ],
         [
