@@ -64,6 +64,7 @@ module.exports = {
                            req.session.avatar = response.avatar;
                            req.session.token = oauthData.access_token;
                            req.session.state = crypto.randomBytes(4).toString('hex');//State is regenered; to avoid some security issues
+                           req.session.locale = (response.locale==='fr' ? 'fr':'en');//If discord locale is French, save it. If not, default to English
                            req.session.save();
                            logger.debug("Saved session's data for user "+req.session.discord_id);
                            logger.info("User "+req.session.discord_id+" logged in");
@@ -84,6 +85,7 @@ module.exports = {
                            req.session.avatar = response.avatar;
                            req.session.token = oauthData.access_token;
                            req.session.state = crypto.randomBytes(4).toString('hex');
+                           req.session.locale = (response.locale==='fr' ? 'fr':'en');//If discord locale is French, save it. If not, default to English
                            req.session.save();
                            logger.debug("Saved session's data for user "+req.session.discord_id);
                            logger.info("User "+req.session.discord_id+" registered");

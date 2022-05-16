@@ -9,8 +9,8 @@ const discord_login = require('./modules/discord_login.js');//Used to login with
 const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
 const blockly_xml_to_js = require('./modules/blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
-const blockly_localization = require('./modules/blockly/localization/fr.js');//Add localization to the generator - FR
-const blockly_localization = require('./modules/blockly/localization/en.js');//Add localization to the generator - EN
+const blockly_localization_fr = require('./modules/blockly/localization/fr.js');//Add localization to the generator - FR
+const blockly_localization_en = require('./modules/blockly/localization/en.js');//Add localization to the generator - EN
 const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
 
 /*############################################*/
@@ -180,7 +180,7 @@ blocklyBlocks.forEach(element => {
 });
 
 //Text definition
-Blockly = blockly_localization.initializeLocalization(Blockly);
+Blockly = blockly_localization_en.initializeLocalization(Blockly);
 
 const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the string code later
 Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
@@ -194,6 +194,7 @@ app.use(function(req, res, next){
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "deny");
     res.setHeader("X-XSS-Protection", "1;mode=block");
+    logger.info(req.session.locale);
     next();
 });
 
@@ -291,7 +292,7 @@ app.get('/panel/:id', function(req, res){
             }
 
             //Let's render Blockly app, with custom blocks added here
-            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization.initializeLocalization, workspace_xml:workspace_xml});
+            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization_fr.initializeLocalization, workspace_xml:workspace_xml});
           }
         });
 
