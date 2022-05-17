@@ -194,7 +194,12 @@ app.use(function(req, res, next){
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "deny");
     res.setHeader("X-XSS-Protection", "1;mode=block");
-    logger.info(req.session.locale);
+
+    //Save user language if not defined
+    if(!req.session.locale && req.headers["accept-language"]!=''){
+      let lang = req.headers["accept-language"].split(",")[0];
+      req.session.locale = (lang.includes("fr") ? 'fr' : 'en');//If seems to be French, user locale is set to French. Else, set to English
+    }
     next();
 });
 
