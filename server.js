@@ -191,6 +191,7 @@ Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initial
 
 //Headers on every request
 app.use(function(req, res, next){
+    //Headers on every pages
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "deny");
     res.setHeader("X-XSS-Protection", "1;mode=block");
@@ -200,6 +201,8 @@ app.use(function(req, res, next){
       let lang = req.headers["accept-language"].split(",")[0];
       req.session.locale = (lang.includes("fr") ? 'fr' : 'en');//If seems to be French, user locale is set to French. Else, set to English
     }
+
+    //Continue actions
     next();
 });
 
@@ -227,7 +230,7 @@ app.get('/discord_login', function(req, res){
       }
 
     }else{
-      //User may be clickjacked, cancelling database_pool
+      //User may be clickjacked, cancelling connection
       res.status(403).end("Security error");
     }
   }else{
@@ -389,7 +392,7 @@ app.get('/script/particle_config', function(req, res){
 });
 
 /*############################################*/
-/* Blockly Localization */
+/* Localization */
 /*############################################*/
 
 /*app.get('/blockly/loc', function(req, res){
@@ -397,6 +400,18 @@ app.get('/script/particle_config', function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./blockly/loc/fr.ejs');
 });*/
+
+app.get('/loc/:lang', function(req, res){
+  if(req.params.lang==='fr'){
+    //French
+    req.session.locale = 'fr';
+  }else{
+    //English
+    req.session.locale = 'en';
+  }
+
+  res.redirect('/');
+});
 
 
 /*############################################*/
