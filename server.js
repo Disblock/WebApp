@@ -312,7 +312,12 @@ app.get('/panel/:id', function(req, res){
             }
 
             //Let's render Blockly app, with custom blocks added here
-            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization_fr, workspace_xml:workspace_xml});
+            let locale;//Store the language file to use
+
+            if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
+            else{locale=blockly_localization_en}
+
+            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml});
           }
         });
 
