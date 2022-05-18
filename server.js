@@ -9,8 +9,6 @@ const discord_login = require('./modules/discord_login.js');//Used to login with
 const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
 const blockly_xml_to_js = require('./modules/blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
-const blockly_localization_fr = require('./modules/blockly/localization/fr.js');//Add localization to the generator - FR
-const blockly_localization_en = require('./modules/blockly/localization/en.js');//Add localization to the generator - EN
 const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
 
 /*############################################*/
@@ -33,6 +31,15 @@ const bigInt = require("big-integer");//Used to check permissions on a server
 let Blockly = require('blockly');//Blockly
 const winston = require('winston');//Used to save logs
 require('winston-daily-rotate-file');//Daily rotating files
+
+/*############################################*/
+/* Used translations */
+/*############################################*/
+
+const blockly_localization_fr = require('./modules/blockly/localization/fr.js');//Add localization to the generator - FR
+const blockly_localization_en = require('./modules/blockly/localization/en.js');//Add localization to the generator - EN
+const index_localization_fr = require('./modules/localization/index_fr.js');//Used to translate index page
+
 
 /*############################################*/
 /* Express and server creation */
@@ -180,7 +187,7 @@ blocklyBlocks.forEach(element => {
 });
 
 //Text definition
-Blockly = blockly_localization_en.initializeLocalization(Blockly);
+Blockly = blockly_localization_en(Blockly);
 
 const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the string code later
 Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
@@ -197,9 +204,14 @@ app.use(function(req, res, next){
     res.setHeader("X-XSS-Protection", "1;mode=block");
 
     //Save user language if not defined
-    if(!req.session.locale && req.headers["accept-language"]!=''){
-      let lang = req.headers["accept-language"].split(",")[0];
-      req.session.locale = (lang.includes("fr") ? 'fr' : 'en');//If seems to be French, user locale is set to French. Else, set to English
+    if(!req.session.locale){
+      if(req.headers["accept-language"]!=''){
+        let lang = req.headers["accept-language"].split(",")[0];
+        req.session.locale = (lang.includes("fr") ? 'fr' : 'en');//If seems to be French, user locale is set to French. Else, set to English
+      }else{
+        //Browser didn't sent accept-language header
+        req.session.locale = 'en';
+      }
     }
 
     //Continue actions
@@ -213,7 +225,7 @@ app.use(function(req, res, next){
 app.get('/', function(req, res){
   //localization
     req.session.state = crypto.randomBytes(4).toString('hex');
-    res.render('index.ejs', {session: req.session});
+    res.render('index.ejs', {session: req.session, locale:index_localization_fr});
 });
 
 /*-----------------------------------*/
@@ -300,7 +312,7 @@ app.get('/panel/:id', function(req, res){
             }
 
             //Let's render Blockly app, with custom blocks added here
-            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization_fr.initializeLocalization, workspace_xml:workspace_xml});
+            res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: blockly_localization_fr, workspace_xml:workspace_xml});
           }
         });
 
@@ -345,29 +357,6 @@ app.get('/style/guild-panel-style', function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/guild-panel-style.ejs');
 });
-
-/*############################################*/
-/* localization */
-/*############################################*/
-
-app.get('/localization', function(req, res){
-  res.setHeader("Content-Type", 'application/javascript');
-  try{
-    const lang = req.headers["accept-language"].split(",")[0];
-    if(lang=="fr" || lang=="fr-FR"){
-      //Français
-      res.render('./js/localization/fr.ejs');
-    }else{
-      //Else, default to English
-      res.render('./js/localization/en.ejs');
-    }
-  }catch(e){
-    console.log(e);
-    res.render('./js/localization/en.ejs');
-  }
-
-});
-
 
 /*############################################*/
 /* Images gateway */
