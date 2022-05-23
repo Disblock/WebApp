@@ -1,5 +1,5 @@
-const fs = require('fs')//FileSystem, permet d'intéragir avec les fichiers présents sur le serveur
-var path = require('path');//Gestion des chemins d'accès
+const fs = require('fs')//FileSystem, is used to interact with files on the server
+var path = require('path');//Files paths
 
 var retours_possibles = {
     html: 'text/html',
@@ -14,23 +14,23 @@ var retours_possibles = {
 
 module.exports = {
   getImage: function(req, res){
-    if(/^([a-zA-Z0-9._]{0,99})$/.test(req.params.img)){//Vérification pour éviter une possible faille ici
+    if(/^([a-zA-Z0-9._]{0,99})$/.test(req.params.img)){//Name must be "correct" and not too long
 
-        var type = retours_possibles[path.extname('views/img/'+req.params.img).slice(1)] || 'text/plain';//En fonction de l'extension du fichier, je choisis le type du retour
-        var s = fs.createReadStream('views/img/'+req.params.img);//Puis je crée un stream pour envoyer ce fichier
+        var type = retours_possibles[path.extname('views/img/'+req.params.img).slice(1)] || 'text/plain';//File extension is used to determine the right return type
+        var s = fs.createReadStream('views/img/'+req.params.img);//A stream is created to send the file
 
-        s.on('open', function () {//Quand l'événement ouverture est détécté, le fichier est envoyé au client
+        s.on('open', function () {//When stream ready, data is sent to the client
           res.set('Content-Type', type);
           s.pipe(res);
         });
 
-        s.on('error', function () {//S'il y a une erreur, une erreur 404 est renvoyée
+        s.on('error', function () {//In case of an error, 404 is sent
           res.set('Content-Type', 'text/plain');
           res.status(404).end('Not found');
         });
 
     }else{
-      res.status(404).end('Not found');//Argument :img incorrect
+      res.status(404).end('Not found');//:img is incorrect
     }
   }
 }
