@@ -26,26 +26,26 @@
       <nav id="first_area_nav">
         <ul>
           <li><%- locale.home %></li>
-          <li>Fonctionnalités</li>
-          <li>Inviter</li>
-          <li>Premium</li>
+          <li><%- locale.functionnalities %></li>
+          <li><%- locale.invite %></li>
+          <li><%- locale.premium %></li>
         </ul>
       </nav>
 
       <!-- Call to action / Go to panel button -->
-      <button onclick="location.href='/panel'" id="first_area_div_panel_button">Panel</button>
+      <button onclick="location.href='/panel'" id="first_area_div_panel_button"><%- locale.panel %></button>
 
       <!-- Text / title -->
       <div id="first_area_div_text">
-        <h1>Disblock</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit !</p>
+        <h1><%- locale.title %></h1>
+        <p><%- locale.subtitle %></p>
         <%
           if(session.username==undefined){
             //Used not logged in
             %><button onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- session.state %>'">Login with Discord</button><%
           }else{
             //User logged in
-            %><button onclick="location.href='/panel'">Go to Panel</button><%
+            %><button onclick="location.href='/panel'"><%- locale.goToPanel %></button><%
           }
         %>
 
@@ -60,7 +60,7 @@
     <!-- The div with a little text and a button/img -->
     <div class="content_line_div">
       <div class="content_line_div_text">
-        <p>Lorem ipsum dolor sit amet !</p>
+        <p><%- locale.div1Text %></p>
       </div>
       <div class="content_line_div_media">
       </div>
@@ -68,7 +68,7 @@
 
     <!-- The "Why Disblock" area -->
     <div id="why_disblock_div">
-      <h2 class="section_title">Pourquoi Disblock ?</h2>
+      <h2 class="section_title"><%- locale.whyDisblock %></h2>
 
       <div class="why_disblock_content_div"><!-- That's the div  that contain everything -->
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
@@ -77,13 +77,13 @@
 
         <div class="why_disblock_content_div_text why_disblock_content_div_right"><!-- This div contain the description of the image -->
           <p class="why_disblock_content_div_text_main_span"><!-- Three <p> are present for the title, description, and link -->
-            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            <%- locale.whyDisblock1Title %>
           </p>
           <p class="why_disblock_content_div_text_desc_span">
-            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            <%- locale.whyDisblock1Text %>
           </p>
           <p class="why_disblock_content_div_text_link_span">
-            <a href="#">Voir la liste des fonctionnalités</a>
+            <a href="#"><%- locale.whyDisblock1Link %></a>
           </p>
         </div>
       </div>
@@ -95,13 +95,13 @@
 
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
           <p class="why_disblock_content_div_text_main_span">
-            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            <%- locale.whyDisblock2Title %>
           </p>
           <p class="why_disblock_content_div_text_desc_span">
-            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            <%- locale.whyDisblock2Text %>
           </p>
           <p class="why_disblock_content_div_text_link_span">
-            <a href="#">Voir la liste des fonctionnalités</a>
+            <a href="#"><%- locale.whyDisblock2Link %></a>
           </p>
         </div>
       </div>
@@ -113,13 +113,13 @@
 
         <div class="why_disblock_content_div_text why_disblock_content_div_right">
           <p class="why_disblock_content_div_text_main_span">
-            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            <%- locale.whyDisblock3Title %>
           </p>
           <p class="why_disblock_content_div_text_desc_span">
-            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            <%- locale.whyDisblock3Text %>
           </p>
           <p class="why_disblock_content_div_text_link_span">
-            <a href="#">Voir la liste des fonctionnalités</a>
+            <a href="#"><%- locale.whyDisblock3Link %></a>
           </p>
         </div>
       </div>
@@ -131,13 +131,13 @@
 
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
           <p class="why_disblock_content_div_text_main_span">
-            Créez vos commandes, vos actions, sans devoir maîtriser le développement
+            <%- locale.whyDisblock4Title %>
           </p>
           <p class="why_disblock_content_div_text_desc_span">
-            Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !
+            <%- locale.whyDisblock4Text %>
           </p>
           <p class="why_disblock_content_div_text_link_span">
-            <a href="#">Voir la liste des fonctionnalités</a>
+            <a href="#"><%- locale.whyDisblock4Link %></a>
           </p>
         </div>
       </div>
@@ -148,7 +148,7 @@
     <!-- The div with a little text and a button/img -->
     <div class="content_line_div">
       <div class="content_line_div_text">
-        <p>Lorem ipsum dolor sit amet !</p>
+        <p><%- locale.div2Text %></p>
       </div>
       <div class="content_line_div_media">
       </div>
@@ -156,11 +156,11 @@
 
     <!-- The div with some docs and help to use the bot -->
     <div id="docs_div">
-      <h2 class="section_title">Une documentation en constante expansion</h2>
-      <p>Besoin d'aide ? Nous avons des guides et une communauté Discord !</p>
+      <h2 class="section_title"><%- locale.docsTitle %></h2>
+      <p><%- locale.docsText %></p>
 
       <style>/* That's defined here to make the translations easier */
-      #docs_div_content::before{content: "Je veux...";}
+      #docs_div_content::before{content: "<%- locale.iWant %>";}
       </style>
 
       <!-- This div contain everything else about docs and Discord widget -->
@@ -168,23 +168,23 @@
 
         <!-- These div contain links to the docs-->
         <div class="docs_div_content_link">
-          <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
+          <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic1 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
         <div class="docs_div_content_link">
-          <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
+          <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic2 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
         <div class="docs_div_content_link">
-          <div class="docs_div_content_link_text_div"><p>Utiliser un événement ?</p></div>
+          <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic3 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
         <!-- This div contain Discord widget -->
         <div id="docs_div_content_discord_widget">
-          <div class="docs_div_content_discord_widget_text_div"><p>Demander ?</p></div>
+          <div class="docs_div_content_discord_widget_text_div"><p><%- locale.docsAsk %></p></div>
           <div class="docs_div_content_discord_widget_div">
             <iframe id="discord_widget" src="https://discord.com/widget?id=893991454798643230&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
           </div>
@@ -197,7 +197,7 @@
     <!-- The div with a little text and a button/img -->
     <div class="content_line_div">
       <div class="content_line_div_text">
-        <p>Lorem ipsum dolor sit amet !</p>
+        <p><%- locale.div3Text %></p>
       </div>
       <div class="content_line_div_media">
       </div>
@@ -205,7 +205,7 @@
 
     <!-- The div with social networks ( Twitter )-->
     <div id="social_networks_div">
-      <h2 class="section_title">Suivez-nous sur Twitter !</h2>
+      <h2 class="section_title"><%- locale.followUsTwitter %></h2>
       <div id="social_networks_div_content">
 
         <!-- Four last publications made on Twitter -->
