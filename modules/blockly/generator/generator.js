@@ -52,7 +52,7 @@ module.exports = {
 
     eventReaction All of these are variables are used in events
     */
-    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction');
+    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,arrayStorage');
     Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
 
     /* ##### EVENTS blocks ##### */
@@ -1866,6 +1866,22 @@ module.exports = {
 
     Blockly.JavaScript['block_guild_get_name'] = function(block) {
       const code = 'CURRENT_GUILD.name || \'\'';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    /* ##### LIST blocks ##### */
+
+    Blockly.JavaScript['block_list_save'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const value_array = Blockly.JavaScript.valueToCode(block, 'array', Blockly.JavaScript.ORDER_ATOMIC);
+
+      const code = 'arrayStorage.'+(text_name || 'defaultName')+' = '+(value_array || '[]')+';\n';
+      return code;
+    };
+
+    Blockly.JavaScript['block_list_get'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'arrayStorage.'+(text_name || 'defaultName');
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
