@@ -1,0 +1,95 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="r#i:uKg.h2CE2eIqGF|]" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_list_save</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="*eul8?a-!#oz+`rQ$E/V">
+        <field name="INPUTNAME">array</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="[;HC.?x/~T?*{8h^HNfr">
+            <field name="TEXT">Enregistrer dans la variable</field>
+            <next>
+              <block type="field_input" id="Eh^$3m*@9mcu4#MW.vzs">
+                <field name="TEXT">ListName</field>
+                <field name="FIELDNAME">NAME</field>
+                <next>
+                  <block type="field_static" id="6ywvj]8ORsb{.c?FnnT=">
+                    <field name="TEXT">la liste</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="vo$:to]ST7_ZM5MJ}$td"></shadow>
+          <block type="type_list" id="K?w}zS}G~EP#__~gvux:"></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="KeG6NW$@XLKy^.v`N0%j" deletable="false" movable="false">
+        <field name="TEXT">Permet d'enregistrer une liste pour l'utiliser plus tard dans l'évènement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="o.QF(:/w?iLg#kd`)}8Q" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id=":cC|iMfR7WE5`ks/4Vk%"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="kM64c%9ZorWJ^i+C5ggV"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="a2OhOU6jA6w-Efe=z4L2">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="r#i:uKg.h2CE2eIqGF|]" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_list_get</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="plNzw=bNKs6:191BDu#*">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="[;HC.?x/~T?*{8h^HNfr">
+            <field name="TEXT">Obtenir la liste enregistrée dans la variable</field>
+            <next>
+              <block type="field_input" id="Eh^$3m*@9mcu4#MW.vzs">
+                <field name="TEXT">ListName</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="KeG6NW$@XLKy^.v`N0%j" deletable="false" movable="false">
+        <field name="TEXT">Permet d'obtenir la liste enregistrée avec le même nom dans l'évènement</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="o.QF(:/w?iLg#kd`)}8Q" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="iOXdS61$=kKFtn$n?Lhn"></shadow>
+      <block type="type_list" id="rbm~1P_|x[-2)G}Gz.zg"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="a2OhOU6jA6w-Efe=z4L2">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block></xml>

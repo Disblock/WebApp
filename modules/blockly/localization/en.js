@@ -474,6 +474,9 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_CREATE_SEND"] = "Create and send an Embed message";
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Embed customization";
 
+  Blockly.Msg["WORKSPACE_LISTS_SAVE_GET"] = "Save or Get a list";
+  Blockly.Msg["WORKSPACE_LISTS_USE"] = "Work with lists";
+
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "A message was sent %1 %2";
   Blockly.Msg["EVENT_MESSAGE_SENT_TOOLTIP"] = "A message was sent, use the \"Sent Message\" variable to get message's data";
@@ -795,6 +798,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Send an embed message in given channel";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Embed message";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Represents the created embed message";
+
+  //Lists blocks
+  Blockly.Msg["BLOCK_LIST_SAVE"] = "Save in variable %1 the list %2";
+  Blockly.Msg["BLOCK_LIST_SAVE_TOOLTIP"] = "Save a created list in a variable to use it later in the event. The list is not saved after the event";
+  Blockly.Msg["BLOCK_LIST_GET"] = "Get the list saved in variable %1";
+  Blockly.Msg["BLOCK_LIST_GET_TOOLTIP"] = "Get a list saved in a variable previously in this event";
 
   //Others
   Blockly.Msg["YES"] = "Yes";

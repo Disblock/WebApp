@@ -181,7 +181,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 /*############################################*/
 
 //Blocks definition
-const blocklyBlocks = [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,require('./modules/blockly/blocks/user_blocks.js').blocks]
+const blocklyBlocks = [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,
+                      require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,
+                      require('./modules/blockly/blocks/user_blocks.js').blocks,require('./modules/blockly/blocks/list_blocks.js').blocks]
 blocklyBlocks.forEach(element => {
   Blockly.defineBlocksWithJsonArray(JSON.parse(element));
 });

@@ -474,6 +474,9 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_CREATE_SEND"] = "Créer et envoyer un Embed";
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Personnaliser un Embed";
 
+  Blockly.Msg["WORKSPACE_LISTS_SAVE_GET"] = "Enregistrer ou obtenir une liste";
+  Blockly.Msg["WORKSPACE_LISTS_USE"] = "Travailler sur les listes";
+
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
   Blockly.Msg["EVENT_MESSAGE_SENT_TOOLTIP"] = "Un message est envoyé sur le serveur, utilisez la variable \"Message envoyé\" pour obtenir les informations sur le message";
@@ -795,6 +798,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Permet d'envoyer un message Embed";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Message Embed";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Représente le message Embed créé";
+
+  //Lists blocks
+  Blockly.Msg["BLOCK_LIST_SAVE"] = "Enregistrer dans la variable %1 la liste %2";
+  Blockly.Msg["BLOCK_LIST_SAVE_TOOLTIP"] = "Permet d'enregistrer une liste pour l'utiliser plus tard dans l'évènement. La liste n'est pas conservée à la fin de l'évènement";
+  Blockly.Msg["BLOCK_LIST_GET"] = "Obtenir la liste enregistrée dans la variable %1";
+  Blockly.Msg["BLOCK_LIST_GET_TOOLTIP"] = "Permet d'obtenir la liste enregistrée avec le même nom dans l'évènement";
 
   //Others
   Blockly.Msg["YES"] = "Oui";
