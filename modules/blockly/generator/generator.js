@@ -1896,8 +1896,8 @@ module.exports = {
         Blockly.JavaScript['controls_repeat_ext'] = disabledFunction;
         Blockly.JavaScript['controls_whileUntil'] = disabledFunction;
         Blockly.JavaScript['controls_for'] = disabledFunction;
-        //Blockly.JavaScript['controls_forEach'] = disabledFunction;
-        //Blockly.JavaScript['controls_flow_statements'] = disabledFunction;
+        Blockly.JavaScript['controls_forEach'] = disabledFunction;
+        Blockly.JavaScript['controls_flow_statements'] = disabledFunction;
 
         //Text
         Blockly.JavaScript['text_print'] = disabledFunction;
