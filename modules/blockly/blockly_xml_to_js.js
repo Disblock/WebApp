@@ -84,7 +84,7 @@ module.exports = {
          .catch(err=>{
            logger.error("Error while saving workspace for guild "+server_id+" : "+err);
          });
-       return(1);
+       return(0);
      }
 
      logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
@@ -143,7 +143,7 @@ module.exports = {
 
 
 
-    return(1);
+    return(0);
     //TODO : Generating code https://github.com/google/blockly/blob/master/demos/headless/index.html
   }
 }

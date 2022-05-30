@@ -435,7 +435,7 @@ io.sockets.on('connect', function(socket){
             if(result==0){
               callback({status: "OK"});
             }else if(result==1){
-              callback({status: "NOT  OK"});
+              callback({status: "NOT OK"});
             }
 
           });

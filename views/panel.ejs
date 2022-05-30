@@ -191,11 +191,14 @@
 
           //Function to send workspace's blocks to the server :
           function sendWorkspaceToServer(){
-            alert("Sending your REMPLACER to the server !");
+            alert("Envoi du code en cours !");
             socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)), (callback)=>{
-              alert(callback);
-              console.log(callback.status);
-              alert('ok');
+              if(callback.status == "OK"){
+                alert("Code correctement envoyé");
+              }else{
+                alert("Il y a eu une erreur !");
+                console.log("ERREUR : "+ callback.status);
+              }
             });
           }
         </script>
