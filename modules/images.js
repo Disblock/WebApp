@@ -13,7 +13,7 @@ var retours_possibles = {
 };
 
 module.exports = {
-  getImage: function(req, res){
+  getImage: async function(req, res){
     if(/^([a-zA-Z0-9._]{0,99})$/.test(req.params.img)){//Name must be "correct" and not too long
 
         var type = retours_possibles[path.extname('views/img/'+req.params.img).slice(1)] || 'text/plain';//File extension is used to determine the right return type

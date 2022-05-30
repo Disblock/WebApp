@@ -199,7 +199,7 @@ Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initial
 /*############################################*/
 
 //Headers on every request
-app.use(function(req, res, next){
+app.use(async function(req, res, next){
     //Headers on every pages
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "deny");
@@ -224,7 +224,7 @@ app.use(function(req, res, next){
 /* Pages Definition */
 /*############################################*/
 
-app.get('/', function(req, res){
+app.get('/', async function(req, res){
   //localization
     req.session.state = crypto.randomBytes(4).toString('hex');
     res.render('index.ejs', {session: req.session, locale:index_localization_fr});
@@ -232,7 +232,7 @@ app.get('/', function(req, res){
 
 /*-----------------------------------*/
 
-app.get('/discord_login', function(req, res){
+app.get('/discord_login',async function(req, res){
   if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
     if(url.parse(req.url,true).query.state == req.session.state){
       //State is the same as the registered one
@@ -255,7 +255,7 @@ app.get('/discord_login', function(req, res){
 
 /*-----------------------------------*/
 
-app.get('/logout', function(req, res){
+app.get('/logout',async function(req, res){
   logger.info("Logged out the user "+req.session.discord_id);
   req.session.destroy();
   res.redirect('/');
@@ -263,7 +263,7 @@ app.get('/logout', function(req, res){
 
 /*-----------------------------------*/
 
-app.get('/panel', function(req, res){
+app.get('/panel',async function(req, res){
   req.session.state = crypto.randomBytes(4).toString('hex');
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
@@ -286,7 +286,7 @@ app.get('/panel', function(req, res){
 
 /*-----------------------------------*/
 
-app.get('/panel/:id', function(req, res){
+app.get('/panel/:id',async function(req, res){
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
       let guild = undefined;
@@ -344,23 +344,23 @@ app.get('/panel/:id', function(req, res){
 /* Style definition */
 /*############################################*/
 
-app.get('/style', function(req, res){
+app.get('/style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/style.ejs');
 });
-app.get('/style/index-style', function(req, res){
+app.get('/style/index-style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/index-style.ejs');
 });
-app.get('/style/panel-style', function(req, res){
+app.get('/style/panel-style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/panel-style.ejs');
 });
-app.get('/style/index-panel-style', function(req, res){
+app.get('/style/index-panel-style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/index-panel-style.ejs');
 });
-app.get('/style/guild-panel-style', function(req, res){
+app.get('/style/guild-panel-style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/guild-panel-style.ejs');
 });
@@ -369,7 +369,7 @@ app.get('/style/guild-panel-style', function(req, res){
 /* Images gateway */
 /*############################################*/
 
-app.get('/img/:img', function(req, res){
+app.get('/img/:img',async function(req, res){
   images.getImage(req, res);
 });
 
@@ -377,12 +377,12 @@ app.get('/img/:img', function(req, res){
 /* JS scripts */
 /*############################################*/
 
-app.get('/script/particles', function(req, res){
+app.get('/script/particles',async function(req, res){
   res.setHeader("Content-Type", 'application/javascript');
   res.render('./js/scripts/particles.min.ejs');
 });
 
-app.get('/script/particle_config', function(req, res){
+app.get('/script/particle_config',async function(req, res){
   res.setHeader("Content-Type", 'text/json');
   res.render('./js/scripts/particles_config.ejs');
 });
@@ -397,7 +397,7 @@ app.get('/script/particle_config', function(req, res){
   res.render('./blockly/loc/fr.ejs');
 });*/
 
-app.get('/loc/:lang', function(req, res){
+app.get('/loc/:lang',async function(req, res){
   if(req.params.lang==='fr'){
     //French
     req.session.locale = 'fr';
@@ -414,7 +414,7 @@ app.get('/loc/:lang', function(req, res){
 /* Blockly Socket.io */
 /*############################################*/
 
-io.sockets.on('connect', function(socket){
+io.sockets.on('connect',async function(socket){
   logger.debug((socket.request.session.discord_id||"An unknown user")+" connected with socket.io");
 
   socket.on("send_workspace", (server_id, data, callback) => {
