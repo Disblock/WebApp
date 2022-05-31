@@ -2,7 +2,7 @@ FROM node
 
 ADD . ./node
 WORKDIR ./node
-EXPOSE 8080
+EXPOSE 8081 80 443
 RUN mkdir certs
 RUN npm install
 

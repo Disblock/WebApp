@@ -478,8 +478,27 @@ io.sockets.on('connect',async function(socket){
 
 });
 
+/*############################################*/
+/* Port management and server starting */
+/*############################################*/
 
-server.listen(8081, '0.0.0.0', ()=>{
+let port;
+
+if(process.env.HTTPS=='true'){
+  //HTTPS enabled
+  port = 443;
+
+  //Let's redirect port 80 to 443
+  require('http').createServer(function (req, res) {
+      res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+      res.end();
+  }).listen(80);
+
+}else{
+  //No HTTPS mode
+  port = 80;
+}
+server.listen(port, '0.0.0.0', ()=>{
   console.log("Server Ready !");
   logger.info("Server Ready !");
 });

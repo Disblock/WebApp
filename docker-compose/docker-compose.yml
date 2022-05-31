@@ -34,6 +34,8 @@ services:
     image: disblock
     ports:
       - 8081:8081
+      - 80:80
+      - 443:443
     restart: always
     environment:
       #Values are stored in .env file
