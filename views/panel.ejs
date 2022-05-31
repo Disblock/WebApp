@@ -34,7 +34,7 @@
                   margin-bottom: 40%;
                 }
               </style>
-              <a href="https://discord.com/api/oauth2/authorize?client_id=903324635108634654&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2Fdiscord_login&response_type=code&scope=identify%20guilds&state=<%- session.state %>"><img src="img/login.svg"></a>
+              <a href="<%- login_url %>&state=<%- session.state %>"><img src="img/login.svg"></a>
             <%
           }else{
             //Logged in

@@ -234,7 +234,7 @@ app.use(async function(req, res, next){
 app.get('/', async function(req, res){
   //localization
     req.session.state = crypto.randomBytes(4).toString('hex');
-    res.render('index.ejs', {session: req.session, locale:index_localization_fr});
+    res.render('index.ejs', {session: req.session, login_url: process.env.LOGIN_URL, locale:index_localization_fr});
 });
 
 /*-----------------------------------*/
@@ -279,7 +279,7 @@ app.get('/panel',async function(req, res){
 
       if(req.session){
         //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-        res.render('panel.ejs', {session: req.session, guilds: guilds, guild: undefined});
+        res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined});
       }else{
         res.redirect('/');
       }
@@ -287,7 +287,7 @@ app.get('/panel',async function(req, res){
     });
   }else{
     //Not logged in
-    res.render('panel.ejs', {session: req.session, guilds: [], guild: undefined});
+    res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined});
   }
 });
 

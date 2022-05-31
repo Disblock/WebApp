@@ -22,10 +22,10 @@ Install Docker and Docker-Compose and download files
 ```
 git clone https://github.com/Disblock/Disblock-WebApp
 cd Disblock-WebApp
-cp "env_files/development_example.env" ".env"
+cp "env_files/example.env" ".env"
 cp "docker-compose/docker-compose.yml" "docker-compose.yml"
 ```
-Configure  `.env file` and `docker-compose/docker-compose.yml` if needed
+Configure  `.env file` and `docker-compose.yml` if needed
 Then, start everything :
 ```
 docker-compose up

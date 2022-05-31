@@ -5,3 +5,4 @@ docker-compose.yml
 env_files/
 docker-compose/
 .gitignore
+/certs
