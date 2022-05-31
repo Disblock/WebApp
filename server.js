@@ -45,8 +45,15 @@ const index_localization_fr = require('./modules/localization/index_fr.js');//Us
 /* Express and server creation */
 /*############################################*/
 
-var app = express();//Création de l'app Express
-var server = require("http").createServer(app);//Crée le serveur
+let app = express();//Express initialisation
+let server;
+if(process.env.HTTPS == "true"){
+  //HTTPS enabled
+  server = require('https').createServer({key: fs.readFileSync('./certs/key.pem'), cert:fs.readFileSync('./certs/cert.pem')}, app)
+}else{
+  //HTTPS disabled
+  server = require("http").createServer(app);//Server creation
+}
 
 /*############################################*/
 /* Morgan & winston modules ( Logging ) */
@@ -413,12 +420,6 @@ app.get('/script/particle_config',async function(req, res){
 /*############################################*/
 /* Localization */
 /*############################################*/
-
-/*app.get('/blockly/loc', function(req, res){
-  //TODO : MODIFY TO GET RIGHT LANGUAGE
-  res.setHeader("Content-Type", 'application/javascript');
-  res.render('./blockly/loc/fr.ejs');
-});*/
 
 app.get('/loc/:lang',async function(req, res){
   if(req.params.lang==='fr'){
