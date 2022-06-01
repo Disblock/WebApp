@@ -74,7 +74,7 @@ module.exports = {
 
                       }else{
                        //Not in database
-                       database_pool.query("INSERT INTO users (user_id, token, refresh_token, username, avatar, last_login, creation_date) VALUES($1, $2, $3, $4, $5, NOW(), NOW() );", [response.id, oauthData.access_token, oauthData.refresh_token, response.username+'#'+response.discriminator, response.avatar], (error, results)=>{
+                       /*database_pool.query("INSERT INTO users (user_id, token, refresh_token, username, avatar, last_login, creation_date) VALUES($1, $2, $3, $4, $5, NOW(), NOW() );", [response.id, oauthData.access_token, oauthData.refresh_token, response.username+'#'+response.discriminator, response.avatar], (error, results)=>{
                          if(error instanceof Error){
                            logger.error("Error in SQL request when registering an user : "+error);
                            res.redirect("/");//Error in the register process, user redirected to the main page
@@ -91,7 +91,10 @@ module.exports = {
                            logger.info("User "+req.session.discord_id+" registered");
                            res.redirect('/panel');
                          }
-                       });
+                       });*/
+
+                       //We're in Closed Alpha, so we just send user back to index with an error message
+                       res.redirect('/?error=1975664');
                      }
                    }
                  });

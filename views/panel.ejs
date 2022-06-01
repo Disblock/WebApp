@@ -131,9 +131,6 @@
     const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
     let error = url.get("error") || '0';
 
-    //console.log(error);
-    //console.log(url.get("error"));
-
     switch(error){
       case '0':
         break;//Everything is OK

@@ -280,6 +280,19 @@
           isMenuShown = true;
         }
       });
+
+      const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
+      let error = url.get("error") || '0';
+
+      switch(error){
+        case '0':
+          break;//Everything is OK
+        case '1975664':
+          alert("Sorry but Disblock is actually in closed Alpha for testing purposes. You can join the Discord Server to stay informed about us, we're planning to open soon !");
+          break;
+        default:
+          break;
+      }
     </script>
   </body>
   <footer>
