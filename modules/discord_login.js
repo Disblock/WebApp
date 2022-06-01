@@ -16,7 +16,7 @@ module.exports = {
 					client_secret: secrets.clientSecret,
 					code: code,
 					grant_type: 'authorization_code',
-					redirect_uri: 'http://localhost:8081/discord_login',
+					redirect_uri: process.env.REDIRECT_URL,
 					scope: 'identify guilds',
 				}),
 				headers: {

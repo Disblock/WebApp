@@ -49,6 +49,7 @@ services:
       LOGS_MAX_FILES: ${LOGS_MAX_FILES}
       HTTPS: ${HTTPS}
       LOGIN_URL: ${LOGIN_URL}
+      REDIRECT_URL: ${REDIRECT_URL}
     volumes:
       - disblock_logs:/node/logs
       - ./certs/:/node/certs/:ro
