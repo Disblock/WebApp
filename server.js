@@ -214,7 +214,7 @@ app.use(async function(req, res, next){
 
     //Save user language if not defined
     if(!req.session.locale){
-      if(req.headers["accept-language"]!=''){
+      if(req.headers["accept-language"]!='' && req.headers["accept-language"]!=undefined){
         let lang = req.headers["accept-language"].split(",")[0];
         req.session.locale = (lang.includes("fr") ? 'fr' : 'en');//If seems to be French, user locale is set to French. Else, set to English
       }else{
