@@ -33,7 +33,23 @@ module.exports = {
 
 
      logger.debug("Working on code for the guild "+server_id+"...");
-     let splittedCode = code.replace('.token', 't0ken').split('<<'+token+'>>');
+     let codeToSplit = code.replace('.token', 't0ken').split('\n');
+
+     let listWithoutCommentCode = [];
+
+     //Removing comments from code
+     for(let i=0; i<codeToSplit.length; i++){
+       if(codeToSplit[i].charAt(0)!='/'){//Comments start with // text
+         listWithoutCommentCode.push(codeToSplit[i]);
+       }
+     }
+
+     let stringWithoutCommentCode = '';//Recreate String code without comments
+     //Recreating a String with list, and divide it correctly
+     for(let i=0; i<listWithoutCommentCode.length; i++){
+         stringWithoutCommentCode = stringWithoutCommentCode+listWithoutCommentCode[i];
+     }
+     let splittedCode = stringWithoutCommentCode.split('<<'+token+'>>');
 
      if(splittedCode[0]==''){//Remove the empty string at the first index of loop
        splittedCode.splice(0,1);
@@ -41,7 +57,6 @@ module.exports = {
 
 
      //creating Sql request
-
      let splittedCodeToSend = [];
      let sql = 'INSERT INTO server_code (server_id, action_type, code) VALUES '
      let sqlCompleted = false;//Check if a valid tupple is added to the sql string
