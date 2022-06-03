@@ -646,6 +646,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] = "Define a permission for an user or rank in a voice or text channel";
   Blockly.Msg["BLOCK_CHANNEL_LIST"] = "List of all channels in the server";
   Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Get a list of all channels in the server";
+  Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT"] = "Count users in voice channel %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Return the number of users connected to the given voice channel";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";

@@ -989,6 +989,17 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_channel_get_user_count'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.members.size || 0';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
     Blockly.JavaScript['block_channel_get_channel_with_id'] = function(block) {
       const value_channel_id = Blockly.JavaScript.valueToCode(block, 'channel_id', Blockly.JavaScript.ORDER_ATOMIC);
 
