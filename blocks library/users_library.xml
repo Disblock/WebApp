@@ -1164,4 +1164,283 @@
         <field name="HUE">285</field>
       </block>
     </value>
+  </block><block type="factory_base" id="/U3`A/oGU4XIauIi%f^`" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_user_is_in_voice_channel</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="Bp/50vi7N}7o7R:^yE6R">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",Qv3kA]TWjRnE)W%]?p9">
+            <field name="TEXT">L'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="%+!n#.Zj!w:[!s1pu@ZO"></shadow>
+          <block type="type_other" id="E;oq@p)1g#?%ogLG0E-E">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id="s:4h:x)3;IS4s(zWPH^H">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="8ago)889Tpjh1j%qBn5C">
+                <field name="TEXT">est t-il dans un salon vocal ?</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="FvY98@JR[Pku,%_efS^a" deletable="false" movable="false">
+        <field name="TEXT">Permet de savoir si un utilisateur est connecté à un salon vocal</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="53=${NLtQF-XL*HW{0q*" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vEm}sd6^uPMS|s{_Z(-."></shadow>
+      <block type="type_boolean" id="z|]jM~k]]*p)/Y,WIi$;"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="hpTlT,1zt~TV|L+2%sWV">
+        <mutation colour="#935ba5"></mutation>
+        <field name="HUE">285</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="/U3`A/oGU4XIauIi%f^`" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_user_get_voice_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="Bp/50vi7N}7o7R:^yE6R">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",Qv3kA]TWjRnE)W%]?p9">
+            <field name="TEXT">Salon vocal de l'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="%+!n#.Zj!w:[!s1pu@ZO"></shadow>
+          <block type="type_other" id="E;oq@p)1g#?%ogLG0E-E">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="FvY98@JR[Pku,%_efS^a" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer le salon vocal où un utilisateur est connecté. Retourne Nul si l'utilisateur n'est pas connecté en vocal</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="53=${NLtQF-XL*HW{0q*" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vEm}sd6^uPMS|s{_Z(-."></shadow>
+      <block type="type_other" id="(MxOIx:A6xU;3pKM/3##">
+        <field name="TYPE">VoiceChannel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="hpTlT,1zt~TV|L+2%sWV">
+        <mutation colour="#935ba5"></mutation>
+        <field name="HUE">285</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ia#P_P?Sp5V]dA92dac@" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_user_move_to_voice_channel</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="yII5Cnpgo_YOF`!0{Jyw">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="$}U-`w#e^u^aR9Zz%J!F">
+            <field name="TEXT">Déplacer l'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="dFW{+WXDvK!;jv|/Gk#S"></shadow>
+          <block type="type_other" id="I2M]hI.Czd)zvLhbG@f7">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="T$7`adsfcmAM:F-z5t^7">
+            <field name="INPUTNAME">reason</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="|di:#H,Ql+TT+o0:@GuT">
+                <field name="TEXT">dans le salon vocal</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="F/dih}SQ}}b^M^}OGu4W"></shadow>
+              <block type="type_other" id="3qU:UdqsE0-jGCQ|Rhw=">
+                <field name="TYPE">VoiceChannel</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="7#I/@8^xpE[{Z{(!Uv}1" deletable="false" movable="false">
+        <field name="TEXT">Permet de déplacer un membre dans un salon vocal. Le membre doit être connecté en vocal, cela peut être vérifié avec une condition et le bloc "L'utilisateur est-il dans un salon vocal ?"</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dl21~ov/CoPBSl+DrwyY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="QJb;mIREg^oj4~66I!J}"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="_o,!oLn{e#2h{~n!GRq~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="?9I.t_^dCB-wAo`LiKRf">
+        <mutation colour="#a55ba5"></mutation>
+        <field name="HUE">300</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ia#P_P?Sp5V]dA92dac@" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_user_give_rank</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="yII5Cnpgo_YOF`!0{Jyw">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="$}U-`w#e^u^aR9Zz%J!F">
+            <field name="TEXT">Donner à l'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="dFW{+WXDvK!;jv|/Gk#S"></shadow>
+          <block type="type_other" id="I2M]hI.Czd)zvLhbG@f7">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="T$7`adsfcmAM:F-z5t^7">
+            <field name="INPUTNAME">reason</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="|di:#H,Ql+TT+o0:@GuT">
+                <field name="TEXT">le grade</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="F/dih}SQ}}b^M^}OGu4W"></shadow>
+              <block type="type_other" id="3qU:UdqsE0-jGCQ|Rhw=">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="7#I/@8^xpE[{Z{(!Uv}1" deletable="false" movable="false">
+        <field name="TEXT">Permet de donner un grade à un utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dl21~ov/CoPBSl+DrwyY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="QJb;mIREg^oj4~66I!J}"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="_o,!oLn{e#2h{~n!GRq~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="?9I.t_^dCB-wAo`LiKRf">
+        <mutation colour="#a55ba5"></mutation>
+        <field name="HUE">300</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ia#P_P?Sp5V]dA92dac@" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_user_remove_rank</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="yII5Cnpgo_YOF`!0{Jyw">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="$}U-`w#e^u^aR9Zz%J!F">
+            <field name="TEXT">Retirer à l'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="dFW{+WXDvK!;jv|/Gk#S"></shadow>
+          <block type="type_other" id="I2M]hI.Czd)zvLhbG@f7">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="T$7`adsfcmAM:F-z5t^7">
+            <field name="INPUTNAME">reason</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="|di:#H,Ql+TT+o0:@GuT">
+                <field name="TEXT">le grade</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="F/dih}SQ}}b^M^}OGu4W"></shadow>
+              <block type="type_other" id="3qU:UdqsE0-jGCQ|Rhw=">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="7#I/@8^xpE[{Z{(!Uv}1" deletable="false" movable="false">
+        <field name="TEXT">Permet de retirer un grade à un utilisateur</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dl21~ov/CoPBSl+DrwyY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="QJb;mIREg^oj4~66I!J}"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="_o,!oLn{e#2h{~n!GRq~"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="?9I.t_^dCB-wAo`LiKRf">
+        <mutation colour="#a55ba5"></mutation>
+        <field name="HUE">300</field>
+      </block>
+    </value>
   </block></xml>

@@ -735,6 +735,16 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] = "Check if user has given permission. Return True if has permission, False if not";
   Blockly.Msg["BLOCK_USER_HAS_RANK"] = "Does user %1 has the role %2 ?";
   Blockly.Msg["BLOCK_USER_HAS_RANK_TOOLTIP"] = "Check if user has given role. Return True if has role, False if not.";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL"] = "Is user %1 connected to a voice channel ?";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL_TOOLTIP"] = "Return true if given user is connected to a voice channel, false if not";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL"] = "Get voice channel where is connected user %1";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL_TOOLTIP"] = "Return the voice channel where the user is connected. Return Nul if user isn't connected to a voice channel";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL"] = "Move user %1 to voice channel %2";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP"] = "Move an user to another voice channel. The user must be connected to a voice channel, this can be checked with \"If\" block and \"Is user connected to a voice channel ?\" block";
+  Blockly.Msg["BLOCK_USER_GIVE_RANK"] = "Give to user %1 the role %2";
+  Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Give a role to an user";
+  Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Remove from user %1 the role %2";
+  Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Remove a role from an user";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Get Server ID";

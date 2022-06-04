@@ -877,10 +877,68 @@ module.exports = {
       const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!=='' && value_rank!==''){
-        const code = value_user+'.roles.resolve('+value_rank+')';//value_rank should be a string with the ID, or a role object
+        const code = value_user+'.roles.cache.has('+value_rank+'.id)';//value_rank should be a string with the ID, or a role object
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_user_is_in_voice_channel'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!==''){
+        const code = '('+value_user+'.voice.channel!=undefined)';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_user_get_voice_channel'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!==''){
+        const code = value_user+'.voice.channel';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_user_move_to_voice_channel'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_channel!==''){
+        const code = value_user+".voice.setChannel("+value_channel+");";
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_user_give_rank'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_rank!==''){
+        const code = value_user+".roles.add("+value_rank+");";
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_user_remove_rank'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_rank!==''){
+        const code = value_user+".roles.remove("+value_rank+");";
+        return code;
+      }else{
+        return '';
       }
     };
 

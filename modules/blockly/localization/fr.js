@@ -735,6 +735,16 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir si un membre possède la permission associée. Retourne Vrai si oui, Faux si non";
   Blockly.Msg["BLOCK_USER_HAS_RANK"] = "L'utilisateur %1 possède t-il le rôle %2 ?";
   Blockly.Msg["BLOCK_USER_HAS_RANK_TOOLTIP"] = "Permet de savoir si un utilisateur possède le rôle indiqué. Retourne Vrai si oui, Faux si non";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL"] = "L'utilisateur %1 est t-il dans un salon vocal ?";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL_TOOLTIP"] = "Permet de savoir si un utilisateur est connecté à un salon vocal";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL"] = "Salon vocal de l'utilisateur %1";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL_TOOLTIP"] = "Permet de récupérer le salon vocal où un utilisateur est connecté. Retourne Nul si l'utilisateur n'est pas connecté en vocal";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL"] = "Déplacer l'utilisateur %1 dans le salon vocal %2";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP"] = "Permet de déplacer un membre dans un salon vocal. Le membre doit être connecté en vocal, cela peut être vérifié avec une condition et le bloc \"L'utilisateur est-il dans un salon vocal ?\"";
+  Blockly.Msg["BLOCK_USER_GIVE_RANK"] = "Donner à l'utilisateur %1 le grade %2";
+  Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Permet de donner un grade à un utilisateur";
+  Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Retirer à l'utilisateur %1 le grade %2";
+  Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Permet de retirer un grade à un utilisateur";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Identifiant du serveur";
