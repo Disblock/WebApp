@@ -12,7 +12,7 @@ module.exports = {
      Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
      <variables> ; procedures_defreturn ; procedures_defnoreturn must not be in xml
      */
-     if(xml.includes("<variables>") || xml.includes("procedures_defreturn") || xml.includes("procedures_defnoreturn")){
+     if(xml.includes("<variables>") || xml.includes("procedures_defreturn") || xml.includes("procedures_defnoreturn") || xml.includes("<comment")){
        logger.debug(server_id+" used functions or variables in workspace, stopping here...");
        return(1);
      }
