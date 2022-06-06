@@ -8,19 +8,21 @@ module.exports = {
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
 
+     const replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
+
      /*
      Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
      <variables> ; procedures_defreturn ; procedures_defnoreturn must not be in xml
      */
-     if(xml.includes("<variables>") || xml.includes("procedures_defreturn") || xml.includes("procedures_defnoreturn") || xml.includes("<comment")){
+     if(replacedXml.includes("<variables>") || replacedXml.includes("procedures_defreturn") || replacedXml.includes("procedures_defnoreturn")){
        logger.debug(server_id+" used functions or variables in workspace, stopping here...");
        return(1);
      }
 
      //Function used to try/catch when generating code. If an error occured, undefined is returned
-     function tryCodeGeneration(xml, workspace){
+     function tryCodeGeneration(replacedXml, workspace){
        try{
-         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
+         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
          const code = Blockly.JavaScript.workspaceToCode(workspace);
          return code;
        }catch(err){
@@ -28,12 +30,12 @@ module.exports = {
          return undefined;
        }
      }
-     const code = tryCodeGeneration(xml, workspace);
+     const code = tryCodeGeneration(replacedXml, workspace);
      if(code==undefined){return(1);}//An error occured, return here
 
 
      logger.debug("Working on code for the guild "+server_id+"...");
-     let codeToSplit = code.replace('.token', 't0ken').split('\n');
+     let codeToSplit = code.split('\n');//Splited here to remove comments
 
      let listWithoutCommentCode = [];
 
@@ -150,7 +152,7 @@ module.exports = {
     //TODO add logs here
     //Workspace save
     logger.debug("Saving Workspace for guild "+server_id);
-    database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, xml], (err, res) => {
+    database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml], (err, res) => {
       if (err) {
         logger.error("Error while saving workspace for guild "+server_id+" : "+err);
       }
