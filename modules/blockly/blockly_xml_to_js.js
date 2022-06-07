@@ -35,27 +35,11 @@ module.exports = {
 
 
      logger.debug("Working on code for the guild "+server_id+"...");
-     let codeToSplit = code.split('\n');//Splited here to remove comments
 
-     let listWithoutCommentCode = [];
+     let splittedCode = code.split('<<'+token+'>>');
 
-     //Removing comments from code
-     for(let i=0; i<codeToSplit.length; i++){
-       if(codeToSplit[i].charAt(0)!='/'){//Comments start with // text
-         listWithoutCommentCode.push(codeToSplit[i]);
-       }
-     }
-
-     let stringWithoutCommentCode = '';//Recreate String code without comments
-     //Recreating a String with list, and divide it correctly
-     for(let i=0; i<listWithoutCommentCode.length; i++){
-         stringWithoutCommentCode = stringWithoutCommentCode+listWithoutCommentCode[i];
-     }
-     let splittedCode = stringWithoutCommentCode.split('<<'+token+'>>');
-
-     if(splittedCode[0]==''){//Remove the empty string at the first index of loop
-       splittedCode.splice(0,1);
-     }//splittedCode = [trigger, code, trigger, code, ...]
+    splittedCode.splice(0,1);//Remove first index ( contain only comments or empty string )
+    //splittedCode = [trigger, code, trigger, code, ...]
 
 
      //creating Sql request
