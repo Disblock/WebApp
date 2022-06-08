@@ -30,6 +30,7 @@ const url = require('url');//Enable access to query string parameters
 const bigInt = require("big-integer");//Used to check permissions on a server
 let Blockly = require('blockly');//Blockly
 const winston = require('winston');//Used to save logs
+const rateLimiter = require("rate-limiter-flexible");//Rates limits management
 require('winston-daily-rotate-file');//Daily rotating files
 
 /*############################################*/
@@ -142,7 +143,8 @@ database_pool.query('SELECT NOW();', (err, res) => {
 /*############################################*/
 
 //Redis and session init
-var redisClient  = redis.createClient({url:'redis://@redis-server:6379'});/* Add credentials on Redis */
+let redisClient  = redis.createClient({url:'redis://@redis-server:6379'});/* Add credentials on Redis */
+let redisDatabase = new redisStore({client: redisClient, ttl:  86000});
 
 redisClient.on('error', (err) => {
   logger.error("Redis error : "+err);
@@ -160,7 +162,7 @@ redisClient.on('ready', ()=>{
 var sessionMiddleware = session({
   secret: ['@ptR9F=~Y&qDZ3jW<_{bGt/C:lsKBJqE', 'U5WHH,aR\IF~4gCKhgOQ2lJwQH=T-C>C', 'M+ll2BYkCy0|0ze<ZaS}]&6l,iHzSA5B'],
   //Sessions are stored in Redis server
-  store: new redisStore({client: redisClient, ttl:  86000}),
+  store: redisDatabase,
   saveUninitialized: true,
   resave: true
 });
@@ -202,6 +204,19 @@ const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the str
 Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
 
 /*############################################*/
+/* Rates limits */
+/*############################################*/
+
+//https://github.com/animir/node-rate-limiter-flexible/wiki/Options
+const ratesLimitsRedis = new rateLimiter.RateLimiterRedis({
+  points:40,
+  duration:5,
+  blockDuration:0,//Duration to wait if limit reached
+  storeClient: redisClient,
+  inmemoryBlockOnConsumed: 0
+});
+
+/*############################################*/
 /* Function ran on every request */
 /*############################################*/
 
@@ -233,62 +248,93 @@ app.use(async function(req, res, next){
 
 app.get('/', async function(req, res){
   //localization
+  ratesLimitsRedis.consume(req.ip, 3).then(async()=>{
     req.session.state = crypto.randomBytes(4).toString('hex');
     res.render('index.ejs', {session: req.session, login_url: process.env.LOGIN_URL, locale:index_localization_fr});
+  }).catch(async(err)=>{
+    res.status(429).end("Too many requests !");
+  });
 });
 
 /*-----------------------------------*/
 
 app.get('/discord_login',async function(req, res){
-  if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
-    if(url.parse(req.url,true).query.state == req.session.state){
-      //State is the same as the registered one
+  ratesLimitsRedis.consume(req.ip, 20)
+  .then(async()=>{
+    //User isn't rate limited
+    if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
+      if(url.parse(req.url,true).query.state == req.session.state){
+        //State is the same as the registered one
 
-      if(url.parse(req.url,true).query.code!=undefined){
-        discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger);
+        if(url.parse(req.url,true).query.code!=undefined){
+          discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger);
+        }else{
+          res.redirect('/');
+        }
+
       }else{
-        res.redirect('/');
+        //User may be clickjacked, cancelling connection
+        res.status(403).end("Security error");
       }
-
     }else{
-      //User may be clickjacked, cancelling connection
-      res.status(403).end("Security error");
+      //User is already logged in
+      res.redirect('/');
     }
-  }else{
-    //User is already logged in
-    res.redirect('/');
-  }
+  })
+  .cach(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
 });
 
 /*-----------------------------------*/
 
 app.get('/logout',async function(req, res){
-  logger.info("Logged out the user "+req.session.discord_id);
-  req.session.destroy();
-  res.redirect('/');
+  ratesLimitsRedis.consume(req.ip, 2)
+  .then(async()=>{
+    //User isn't rate limited
+    logger.info("Logged out the user "+req.session.discord_id);
+    req.session.destroy();
+    res.redirect('/');
+  })
+  .cach(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+
 });
 
 /*-----------------------------------*/
 
 app.get('/panel',async function(req, res){
-  req.session.state = crypto.randomBytes(4).toString('hex');
-  if(req.session.discord_id!=undefined){
-    discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
-      //guilds represent the guilds that user is admin on ( Array )
-      //This function can destroy the session if user is rate limited
+  ratesLimitsRedis.consume(req.ip, 8)
+  .then(async()=>{
+    //User isn't rate limited
 
-      if(req.session){
-        //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-        res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined});
-      }else{
-        res.redirect('/');
-      }
+    req.session.state = crypto.randomBytes(4).toString('hex');
+    if(req.session.discord_id!=undefined){
+      discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
+        //guilds represent the guilds that user is admin on ( Array )
+        //This function can destroy the session if user is rate limited
 
-    });
-  }else{
-    //Not logged in
-    res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined});
-  }
+        if(req.session){
+          //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
+          res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined});
+        }else{
+          res.redirect('/');
+        }
+
+      });
+    }else{
+      //Not logged in
+      res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined});
+    }
+    
+  })
+  .cach(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
 });
 
 /*-----------------------------------*/
