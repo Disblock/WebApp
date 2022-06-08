@@ -30,6 +30,7 @@ const url = require('url');//Enable access to query string parameters
 const bigInt = require("big-integer");//Used to check permissions on a server
 let Blockly = require('blockly');//Blockly
 const winston = require('winston');//Used to save logs
+const rateLimiter = require("rate-limiter-flexible");//Rates limits management
 require('winston-daily-rotate-file');//Daily rotating files
 
 /*############################################*/
@@ -142,7 +143,8 @@ database_pool.query('SELECT NOW();', (err, res) => {
 /*############################################*/
 
 //Redis and session init
-var redisClient  = redis.createClient({url:'redis://@redis-server:6379'});/* Add credentials on Redis */
+let redisClient  = redis.createClient({url:'redis://@redis-server:6379'});/* Add credentials on Redis */
+let redisDatabase = new redisStore({client: redisClient, ttl:  86000});
 
 redisClient.on('error', (err) => {
   logger.error("Redis error : "+err);
@@ -160,7 +162,7 @@ redisClient.on('ready', ()=>{
 var sessionMiddleware = session({
   secret: ['@ptR9F=~Y&qDZ3jW<_{bGt/C:lsKBJqE', 'U5WHH,aR\IF~4gCKhgOQ2lJwQH=T-C>C', 'M+ll2BYkCy0|0ze<ZaS}]&6l,iHzSA5B'],
   //Sessions are stored in Redis server
-  store: new redisStore({client: redisClient, ttl:  86000}),
+  store: redisDatabase,
   saveUninitialized: true,
   resave: true
 });
@@ -202,6 +204,19 @@ const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the str
 Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
 
 /*############################################*/
+/* Rates limits */
+/*############################################*/
+
+//https://github.com/animir/node-rate-limiter-flexible/wiki/Options
+const ratesLimitsRedis = new rateLimiter.RateLimiterRedis({
+  points:40,
+  duration:5,
+  blockDuration:0,//Duration to wait if limit reached
+  storeClient: redisClient,
+  inmemoryBlockOnConsumed: 0
+});
+
+/*############################################*/
 /* Function ran on every request */
 /*############################################*/
 
@@ -233,138 +248,184 @@ app.use(async function(req, res, next){
 
 app.get('/', async function(req, res){
   //localization
+  ratesLimitsRedis.consume(req.ip, 3).then(async()=>{
+    //User not rate limited
+
     req.session.state = crypto.randomBytes(4).toString('hex');
     res.render('index.ejs', {session: req.session, login_url: process.env.LOGIN_URL, locale:index_localization_fr});
+
+  }).catch(async(err)=>{
+    //User rate limited
+    res.status(429).end("Too many requests !");
+  });
 });
 
 /*-----------------------------------*/
 
 app.get('/discord_login',async function(req, res){
-  if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
-    if(url.parse(req.url,true).query.state == req.session.state){
-      //State is the same as the registered one
+  ratesLimitsRedis.consume(req.ip, 20)
+  .then(async()=>{
+    //User isn't rate limited
+    if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
+      if(url.parse(req.url,true).query.state == req.session.state){
+        //State is the same as the registered one
 
-      if(url.parse(req.url,true).query.code!=undefined){
-        discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger);
+        if(url.parse(req.url,true).query.code!=undefined){
+          discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger);
+        }else{
+          res.redirect('/');
+        }
+
       }else{
-        res.redirect('/');
+        //User may be clickjacked, cancelling connection
+        res.status(403).end("Security error");
       }
-
     }else{
-      //User may be clickjacked, cancelling connection
-      res.status(403).end("Security error");
+      //User is already logged in
+      res.redirect('/');
     }
-  }else{
-    //User is already logged in
-    res.redirect('/');
-  }
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
 });
 
 /*-----------------------------------*/
 
 app.get('/logout',async function(req, res){
-  logger.info("Logged out the user "+req.session.discord_id);
-  req.session.destroy();
-  res.redirect('/');
+  ratesLimitsRedis.consume(req.ip, 2)
+  .then(async()=>{
+    //User isn't rate limited
+    logger.info("Logged out the user "+req.session.discord_id);
+    req.session.destroy();
+    res.redirect('/');
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+
 });
 
 /*-----------------------------------*/
 
 app.get('/panel',async function(req, res){
-  req.session.state = crypto.randomBytes(4).toString('hex');
-  if(req.session.discord_id!=undefined){
-    discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
-      //guilds represent the guilds that user is admin on ( Array )
-      //This function can destroy the session if user is rate limited
+  ratesLimitsRedis.consume(req.ip, 8)
+  .then(async()=>{
+    //User isn't rate limited
 
-      if(req.session){
-        //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-        res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined});
-      }else{
-        res.redirect('/');
-      }
+    req.session.state = crypto.randomBytes(4).toString('hex');
+    if(req.session.discord_id!=undefined){
+      discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
+        //guilds represent the guilds that user is admin on ( Array )
+        //This function can destroy the session if user is rate limited
 
-    });
-  }else{
-    //Not logged in
-    res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined});
-  }
+        if(req.session){
+          //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
+          res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined});
+        }else{
+          res.redirect('/');
+        }
+
+      });
+    }else{
+      //Not logged in
+      res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined});
+    }
+
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
 });
 
 /*-----------------------------------*/
 
 app.get('/panel/:id',async function(req, res){
-  if(req.session.discord_id!=undefined){
+  ratesLimitsRedis.consume(req.ip, 10)
+  .then(async()=>{
+    //User isn't rate limited
 
-    //Check if server is in database ( = if the bot was added in the server )
-    database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS exist;', [String(req.params.id)])
-    .then(async(data)=>{
-      if(data.rows[0].exist){
-        //Server is registered in database
+    if(req.session.discord_id!=undefined){
 
-        //Check if user is admin on selected server
-        discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
-          let guild = undefined;
-          for(var i=0; i<guilds.length; i++){//Iterate throught all user's admin guilds, and compare them to the ID of the selected guilds
-            if(guilds[i].id===String(req.params.id)){//If one guild match this ID, the user is admin in this guild. If none match with, user isn't admin on it
-              guild = guilds[i];
-            }
-          }
+      //Check if server is in database ( = if the bot was added in the server )
+      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS exist;', [String(req.params.id)])
+      .then(async(data)=>{
+        if(data.rows[0].exist){
+          //Server is registered in database
 
-          if(guild!=undefined){
-            logger.info("User "+ req.session.discord_id +" got panel access to guild "+guild.id);
-            //User is admin on the selected server
-
-            //Getting guilds saved workspace
-            database_pool.query('SELECT xml FROM server_workspace WHERE server_id = $1 ORDER BY workspace_id DESC LIMIT 1;', [guild.id])
-            .then(async (data) => {
-
-              //Check here if a previous workspace was saved
-              let workspace_xml = undefined;
-              if(data.rows[0]){
-                workspace_xml = data.rows[0].xml;
-                logger.debug("A saved workspace was found for guild "+guild.id);
+          //Check if user is admin on selected server
+          discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
+            let guild = undefined;
+            for(let i=0; i<guilds.length; i++){//Iterate throught all user's admin guilds, and compare them to the ID of the selected guilds
+              if(guilds[i].id===String(req.params.id)){//If one guild match this ID, the user is admin in this guild. If none match with, user isn't admin on it
+                guild = guilds[i];
               }
+            }
 
-              //Let's render Blockly app, with custom blocks added here
-              let locale;//Store the language file to use
+            if(guild!=undefined){
+              logger.info("User "+ req.session.discord_id +" got panel access to guild "+guild.id);
+              //User is admin on the selected server
 
-              if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
-              else{locale=blockly_localization_en}
+              //Getting guilds saved workspace
+              database_pool.query('SELECT xml FROM server_workspace WHERE server_id = $1 ORDER BY workspace_id DESC LIMIT 1;', [guild.id])
+              .then(async (data) => {
 
-              res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml});
+                //Check here if a previous workspace was saved
+                let workspace_xml = undefined;
+                if(data.rows[0]){
+                  workspace_xml = data.rows[0].xml;
+                  logger.debug("A saved workspace was found for guild "+guild.id);
+                }
 
-            })
+                //Let's render Blockly app, with custom blocks added here
+                let locale;//Store the language file to use
 
-          .catch(async(err)=>{//If there is an error while getting server workspace
-            logger.error("Error while getting saved workspace from database for guild "+guild.id+" : "+err);
-            res.status(500).end("Error 500");
+                if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
+                else{locale=blockly_localization_en}
+
+                res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml});
+
+              })
+
+            .catch(async(err)=>{//If there is an error while getting server workspace
+              logger.error("Error while getting saved workspace from database for guild "+guild.id+" : "+err);
+              res.status(500).end("Error 500");
+            });
+
+            }else{
+              //User isn't admin on the selected server
+
+              //The discord_get_servers.servers() function can log out an user if error while getting his guilds ( rate limits, ... ). We should suppose that req.session isn't defined here
+              //logger.debug("User "+ req.session.discord_id +" was denied access to a guild");
+              res.redirect('/');
+            }
           });
 
-          }else{
-            //User isn't admin on the selected server
+        }else{
+          //Server isn't registered in database
+          res.redirect('/panel?error=1');
+        }
 
-            //The discord_get_servers.servers() function can log out an user if error while getting his guilds ( rate limits, ... ). We should suppose that req.session isn't defined here
-            //logger.debug("User "+ req.session.discord_id +" was denied access to a guild");
-            res.redirect('/');
-          }
-        });
+      })
+      .catch(async(err)=>{//If there is an erro while checking if server exist in database
+        logger.error("Error while checking if guild is registered in database : "+err);
+        res.status(500).end("Error 500");
+      });
 
-      }else{
-        //Server isn't registered in database
-        res.redirect('/panel?error=1');
-      }
+    }else{
+      //Not logged in
+      res.redirect('/panel');
+    }
 
-    })
-    .catch(async(err)=>{//If there is an erro while checking if server exist in database
-      logger.error("Error while checking if guild is registered in database : "+err);
-      res.status(500).end("Error 500");
-    });
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
 
-  }else{
-    //Not logged in
-    res.redirect('/panel');
-  }
 });
 
 /*-----------------------------------*/
@@ -422,15 +483,25 @@ app.get('/script/particle_config',async function(req, res){
 /*############################################*/
 
 app.get('/loc/:lang',async function(req, res){
-  if(req.params.lang==='fr'){
-    //French
-    req.session.locale = 'fr';
-  }else{
-    //English
-    req.session.locale = 'en';
-  }
+  ratesLimitsRedis.consume(req.ip, 2)
+  .then(async()=>{
+    //User isn't rate limited
 
-  res.redirect('/');
+    if(req.params.lang==='fr'){
+      //French
+      req.session.locale = 'fr';
+    }else{
+      //English
+      req.session.locale = 'en';
+    }
+
+    res.redirect('/');
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+
 });
 
 
@@ -442,35 +513,47 @@ io.sockets.on('connect',async function(socket){
   logger.debug((socket.request.session.discord_id||"An unknown user")+" connected with socket.io");
 
   socket.on("send_workspace", (server_id, data, callback) => {
-    if(socket.request.session.discord_id!=undefined){//Session must be defined
-      logger.debug(socket.request.session.discord_id+" is sending a workspace");
-      discord_get_servers.servers(socket.request, database_pool, logger, (guilds)=>{//Get a list of user's servers where has admin access
-        var guild = undefined;
-        for(var i=0; i<guilds.length; i++){
-          if(guilds[i].id===String(server_id)){
-            guild = guilds[i];//If a server has same id than sended one, the server is registered in guild
-          }
-        }
 
-        if(guild!=undefined){//If guild is defined, a server where user is admin has been found
-          logger.info(socket.request.session.discord_id+" sent a new workspace via socket.io for the guild "+guild.id);
-          var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, blocklyToken, database_pool, logger).then(result=>{//blocklyToken is a random string used to split the generated code
+    ratesLimitsRedis.consume(socket.handshake.address, 20)
+    .then(async()=>{
+      //User isn't rate limited
 
-            if(result==0){
-              callback({status: "OK"});
-            }else if(result==1){
-              callback({status: "NOT OK"});
+      if(socket.request.session.discord_id!=undefined){//Session must be defined
+        logger.debug(socket.request.session.discord_id+" is sending a workspace");
+        discord_get_servers.servers(socket.request, database_pool, logger, (guilds)=>{//Get a list of user's servers where has admin access
+          var guild = undefined;
+          for(var i=0; i<guilds.length; i++){
+            if(guilds[i].id===String(server_id)){
+              guild = guilds[i];//If a server has same id than sended one, the server is registered in guild
             }
+          }
 
-          });
+          if(guild!=undefined){//If guild is defined, a server where user is admin has been found
+            logger.info(socket.request.session.discord_id+" sent a new workspace via socket.io for the guild "+guild.id);
+            var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, blocklyToken, database_pool, logger).then(result=>{//blocklyToken is a random string used to split the generated code
 
-        }else{
-          //User hasn't access to this server
-          logger.info(socket.request.session.discord_id+ "tried to edit a workspace via socket.io without access to the guild");
-          callback({status: "NOT  OK"});
-        }
-      });
-    }
+              if(result==0){
+                callback({status: "OK"});
+              }else if(result==1){
+                callback({status: "NOT OK"});
+              }
+
+            });
+
+          }else{
+            //User hasn't access to this server
+            logger.info(socket.request.session.discord_id+ "tried to edit a workspace via socket.io without access to the guild");
+            callback({status: "NOT  OK"});
+          }
+        });
+      }
+
+    })
+    .catch(async(err)=>{
+      //User is rate limited
+      callback({status: "NOT  OK"});
+    });
+
 
     //TODO : Gérer les données et assurer la sécurité
     //https://developers.google.com/blockly/reference/js/Blockly.Xml
