@@ -270,12 +270,11 @@
 
           //Function to send workspace's blocks to the server :
           function sendWorkspaceToServer(){
-            alert("Envoi du code en cours !");
             socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace, true/*Skip blocks id*/)), (callback)=>{
               if(callback.status == "OK"){
-                alert("Code correctement envoyé");
+                showWindow(true, "Succès !", "Le code a été enregistré, et est prêt à être utilisé !");
               }else{
-                alert("Il y a eu une erreur !");
+                showWindow(false, "Echec !", "Il y a eu une erreur durant le traitement du code.");
                 console.log("ERREUR : "+ callback.status);
               }
             });
