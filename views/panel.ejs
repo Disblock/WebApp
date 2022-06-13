@@ -11,7 +11,35 @@
   <body>
 
     <!-- Div only used to add opacity on all screen -->
-    <div class="black_opacity">
+    <div class="black_opacity" id="black_opacity_full_screen">
+    </div>
+
+    <!-- Div only used to add opacity when menu is shown ( phones ) -->
+    <div class="black_opacity" style="z-index:1;" id="black_opacity_menu">
+    </div>
+
+    <!-- Div used to contain the message window -->
+    <div class="message_window_div" style="display:none;">
+      <h2 class="message_window_div_title">Title</h2>
+      <div class="message_window_div_animation_div">
+
+        <!-- Imported code, license available in stylesheet -->
+        <link rel="stylesheet" type="text/css" href="/style/check-cross-animation">
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" height="100%" width="100%" style="display:none;" class="check_svg">
+          <circle class="path" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+          <polyline class="path" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+        </svg>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" height="100%" width="100%" style="display:none;" class="cross_svg">
+          <circle class="path" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+          <line class="path" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+          <line class="path" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+        </svg>
+        <!-- End of imported code -->
+
+      </div>
+      <p class="message_window_div_text"></p>
+      <button class="message_window_div_button" onclick="hideWindow();">Confirmer</button>
     </div>
 
     <!-- The div on top -->
@@ -128,6 +156,42 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
+    //Function used to show the error/success window
+    function showWindow(isSuccess, title, text){
+      $("#black_opacity_full_screen").css('display', 'block');
+
+      if(isSuccess){//Show green check
+        $('.check_svg').css('display', 'block');
+        $('.check_svg > circle').addClass('circle');
+        $('.check_svg > polyline').addClass('check');
+      }else{//Show red cross
+        $('.cross_svg').css('display', 'block');
+        $('.cross_svg > circle').addClass('circle');
+        $('.cross_svg > line').addClass('line');
+      }
+
+      $('.message_window_div_title').text(title);
+      $('.message_window_div_text').text(text);
+
+      $('.message_window_div').fadeIn(400);
+
+    }
+
+    //Function used to hide the error/success window
+    function hideWindow(){
+      //Fade out the window
+      $('.message_window_div').fadeOut(300, ()=>{
+        //Then, removing classes to reset animations
+        $("#black_opacity_full_screen").css('display', 'none');
+        $('.check_svg,.cross_svg').css('display', 'none');
+        $('.check_svg > circle,.cross_svg > circle').removeClass('circle');
+        $('.check_svg > polyline').removeClass('check');
+        $('.cross_svg > line').removeClass('line');
+      });
+    }
+
+
+
     const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
     let error = url.get("error") || '0';
 
@@ -135,7 +199,8 @@
       case '0':
         break;//Everything is OK
       case '1':
-        alert("Sorry but the bot must be added first to access Workspace. If you believe this is an error, try to kick the bot and add it again");
+        showWindow(false, "Impossible d'accéder à ce serveur !", "Le bot doit être ajouté sur ce serveur avant de modifier le code !");
+        //alert("Sorry but the bot must be added first to access Workspace. If you believe this is an error, try to kick the bot and add it again");
         break;
       default:
         break;
@@ -227,7 +292,7 @@
       if(isMenuShown){
         //Remove menu
         $("#menu_div > *").css("display", "none");
-        $(".black_opacity").css("display", "none");
+        $("#black_opacity_menu").css("display", "none");
         $("#menu_div").animate({"width":"0%"}, 500, "swing", ()=>{
           $("#menu_div").css("display", "none");
         });
@@ -236,7 +301,7 @@
       }else{
         //Show menu
         $("#menu_div > *").css("display", "block");
-        $(".black_opacity").css("display", "block");
+        $("#black_opacity_menu").css("display", "block");
         $("#menu_div").css("display", "block");
         $("#menu_div").animate({"width":"30%"}, 500);
 

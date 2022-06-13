@@ -219,6 +219,91 @@
   }
 }
 
+/* ##### Messages Window ##### */
+
+/* || Global properties */
+.message_window_div{
+  background-color: #EAEAEA;
+  border-radius: 8px;
+  width: 275px;
+  /*height: 425px;*/
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.message_window_div_title{
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.message_window_div_animation_div{
+  height: 180px;
+  width: 180px;
+  margin: auto;
+}
+
+.message_window_div_text{
+  font-size: 1.2em;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.message_window_div_button {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
+    background-color: #2e86ab;
+    cursor: pointer;
+    border: black 1px solid;
+    border-radius: 8px;
+}
+
+button.message_window_div_button:hover {
+    background-color: #2995c3;
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  .message_window_div{
+    width: auto;
+    /*height: 425px;*/
+  }
+
+  .message_window_div_animation_div{
+    height: 8em;
+    width: 8em;
+  }
+
+  .message_window_div_button {
+      width: 80%;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  /*.message_window_div{
+    width:70%;
+    height:60%;
+  }*/
+}
+
 
 /*##### OTHERS #####*/
 #menu_button{

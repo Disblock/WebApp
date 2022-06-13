@@ -455,6 +455,10 @@ app.get('/style/guild-panel-style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/guild-panel-style.ejs');
 });
+app.get('/style/check-cross-animation',async function(req, res){
+  res.setHeader("Content-Type", 'text/css');
+  res.render('./style/check-cross-animation.ejs');
+});
 
 /*############################################*/
 /* Images gateway */
