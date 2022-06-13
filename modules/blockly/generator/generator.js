@@ -1755,8 +1755,8 @@ module.exports = {
     Blockly.JavaScript['block_embed_option_set_image'] = function(block) {
       const value_image_url = Blockly.JavaScript.valueToCode(block, 'image_url', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_image_url!=='' && (value_image_url.substr(1, 7)==='http://' || value_image_url.substr(1, 8)==='https://') ){//First caracter is ', so I start verification at index 1
-        const code = '.setImage('+value_image_url+')';
+      if(value_image_url!==''){
+        const code = '.setImage(('+value_image_url+'.substr(0, 7)==="http://" || '+value_image_url+'.substr(0, 8)==="https://")?'+value_image_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png")';
         return code;
       }else{
         return '';
@@ -1766,8 +1766,8 @@ module.exports = {
     Blockly.JavaScript['block_embed_option_set_thumbnail'] = function(block) {
       const value_thumbnail_url = Blockly.JavaScript.valueToCode(block, 'thumbnail_url', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_thumbnail_url!=='' && (value_thumbnail_url.substr(1, 7)==='http://' || value_thumbnail_url.substr(1, 8)==='https://') ){//First caracter is ', so I start verification at index 1
-        const code = '.setThumbnail('+value_thumbnail_url+')';
+      if(value_thumbnail_url!==''){
+        const code = '.setThumbnail(('+value_thumbnail_url+'.substr(0, 7)==="http://" || '+value_thumbnail_url+'.substr(0, 8)==="https://")?'+value_thumbnail_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png")';
         return code;
       }else{
         return '';
@@ -1794,16 +1794,7 @@ module.exports = {
 
       if(value_name!==''){
 
-        if(!(value_url!=='' && (value_url.substr(1, 7)==='http://' || value_url.substr(1, 8)==='https://'))){
-          //value_url is invalid
-          value_url = '';
-        }
-        if(!(value_icon_url!=='' && (value_icon_url.substr(1, 7)==='http://' || value_icon_url.substr(1, 8)==='https://'))){
-          //value_icon_url is invalid
-          value_icon_url = '';
-        }
-
-        const code = '.setAuthor({name:'+value_name+' '+( (value_url!=='') ? ', url: '+value_url : '')+' '+ ( (value_icon_url!=='') ? ', iconURL: '+value_icon_url : '') +'})';
+        const code = '.setAuthor({name:'+value_name+' '+( (value_url!=='') ? ', url: ('+value_url+'.substr(0, 7)==="http://" || '+value_url+'.substr(0, 8)==="https://")?'+value_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"' : '')+' '+ ( (value_icon_url!=='') ? ', iconURL: ('+value_icon_url+'.substr(0, 7)==="http://" || '+value_icon_url+'.substr(0, 8)==="https://")?'+value_icon_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"' : '') +'})';
         return code;
       }else{
         return '';
@@ -1816,12 +1807,7 @@ module.exports = {
 
       if(value_name!==''){
 
-        if(!(value_icon_url!=='' && (value_icon_url.substr(1, 7)==='http://' || value_icon_url.substr(1, 8)==='https://'))){
-          //value_icon_url is invalid
-          value_icon_url = '';
-        }
-
-        const code = '.setFooter({text: '+value_name+' '+ ( (value_icon_url!=='') ? ', iconURL: '+value_icon_url : '' ) +'})';
+        const code = '.setFooter({text: '+value_name+' '+ ( (value_icon_url!=='') ? ', iconURL: ('+value_icon_url+'.substr(0, 7)==="http://" || '+value_icon_url+'.substr(0, 8)==="https://")?'+value_icon_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"': '' ) +'})';
         return code;
       }else{
         return '';
