@@ -192,7 +192,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Blocks definition
 const blocklyBlocks = [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,
                       require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,
-                      require('./modules/blockly/blocks/user_blocks.js').blocks,require('./modules/blockly/blocks/list_blocks.js').blocks]
+                      require('./modules/blockly/blocks/user_blocks.js').blocks,require('./modules/blockly/blocks/list_blocks.js').blocks, require('./modules/blockly/blocks/color_blocks.js').blocks]
 blocklyBlocks.forEach(element => {
   Blockly.defineBlocksWithJsonArray(JSON.parse(element));
 });
@@ -209,7 +209,7 @@ Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initial
 
 //https://github.com/animir/node-rate-limiter-flexible/wiki/Options
 const ratesLimitsRedis = new rateLimiter.RateLimiterRedis({
-  points:40,
+  points:50,
   duration:5,
   blockDuration:0,//Duration to wait if limit reached
   storeClient: redisClient,

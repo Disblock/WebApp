@@ -1,0 +1,44 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="DssFgvsKOm.r{sUJ*`Z4" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_color_hex</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="GIZ/PUal}!Rb{9Ae}V){">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=")ikk8-vWk^jxP$ot`*yJ">
+            <field name="TEXT">Couleur depuis un code hexadécimal</field>
+            <next>
+              <block type="field_input" id=":+zCogk4QRY;Jx$HbMz)">
+                <field name="TEXT">#CC3300</field>
+                <field name="FIELDNAME">color</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="SVdVn7BD=bdwWD(_tT7=" deletable="false" movable="false">
+        <field name="TEXT">Permet d'obtenir une couleur à partir de son code héxadécimal</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="f^t_SkYaJGg=l#~iKw*y" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="xM82x/p%A2(hya*1tO|V"></shadow>
+      <block type="type_other" id="02EmmH18`2_^Es@s$xXQ">
+        <field name="TYPE">Colour</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="c5YcX{i9lr9$y,wE%Y:^">
+        <mutation colour="#a5745b"></mutation>
+        <field name="HUE">20</field>
+      </block>
+    </value>
+  </block></xml>

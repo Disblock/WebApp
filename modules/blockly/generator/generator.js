@@ -1740,12 +1740,12 @@ module.exports = {
 
     Blockly.JavaScript['block_embed_create'] = function(block) {
       const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-      const colour_color = block.getFieldValue('color');
+      const value_color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
       const statements_options = Blockly.JavaScript.statementToCode(block, 'options');
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_name!=='' && colour_color!==''){
-        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor(\''+colour_color+'\')'+statements_options.trim()+';\n';
+      if(value_name!=='' && value_color!==''){
+        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
         return '';
@@ -1940,6 +1940,13 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
+    /* ##### COLOR blocks ##### */
+    Blockly.JavaScript['block_color_hex'] = function(block) {
+      const text_color = block.getFieldValue('color');
+      var code = (/^#[0-9a-f]{3,6}$/i.test(text_color))?'\''+text_color+'\'':'';//A regex check if color hex is valid
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled
     //These blocks are removed / commented in toolbox.ejs
@@ -1970,6 +1977,10 @@ module.exports = {
         Blockly.JavaScript['lists_getSublist'] = disabledFunction;
         Blockly.JavaScript['lists_split'] = disabledFunction;
         Blockly.JavaScript['lists_sort'] = disabledFunction;*/
+
+        //Colors
+        Blockly.JavaScript['colour_rgb'] = disabledFunction;
+        Blockly.JavaScript['colour_blend'] = disabledFunction;
 
     return(Blockly);
   }

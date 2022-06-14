@@ -17,9 +17,9 @@ module.exports = {
       "check": "String"
     },
     {
-      "type": "field_colour",
+      "type": "input_value",
       "name": "color",
-      "colour": "#ff0000"
+      "check": "Colour"
     },
     {
       "type": "input_dummy"

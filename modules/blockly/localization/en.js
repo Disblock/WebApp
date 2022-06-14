@@ -792,7 +792,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Check if given role has given permission. Return True if role is allowed to use permission, False if not";
 
   //Embeds blocks
-  Blockly.Msg["BLOCK_EMBED_CREATE"] = "Create an embed message with title %1 Embed description : %2 Embed color %3 and customization : %4 %5";
+  Blockly.Msg["BLOCK_EMBED_CREATE"] = "Create an embed message with title %1 Embed description : %2 Embed color : %3 and customization : %4 %5";
   Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] = "Create an embed message with defined title and color. Use embeds customization blocks to modify the created embed";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE"] = "Define Embed Image %1";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Embed option, define the image shown within the embed message. Give an URL linked to the image";
@@ -816,6 +816,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_LIST_SAVE_TOOLTIP"] = "Save a created list in a variable to use it later in the event. The list is not saved after the event";
   Blockly.Msg["BLOCK_LIST_GET"] = "Get the list saved in variable %1";
   Blockly.Msg["BLOCK_LIST_GET_TOOLTIP"] = "Get a list saved in a variable previously in this event";
+
+  //Color blocks
+  Blockly.Msg["BLOCK_COLOR_HEX"] = "Color from hexadecimal code %1";
+  Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Get a color from his hexadecimal code";
 
   //Others
   Blockly.Msg["YES"] = "Yes";
