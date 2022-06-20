@@ -141,7 +141,7 @@
           %><%- include('ejs/index-panel.ejs'); %><%
         }else{
           //On /panel/:id
-          %><%- include('ejs/guild-panel.ejs'); %>
+          %><%- include('ejs/guild-panel.ejs', {blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
             <style>
               #content_div_top_div_guild_div::after{
                 content: "<%- guild.name %>";
@@ -206,83 +206,6 @@
         break;
     }
   </script>
-  <%
-    if(guild!=undefined){
-      //On guild panel
-      %>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-        <script><%- localization %>Blockly = init(Blockly);</script>
-
-        <script>
-          const socket = io();
-          const toolbox = document.getElementById("toolbox");
-
-          <%
-            for(var i=0;i<blocks.length;i++){
-              %> Blockly.defineBlocksWithJsonArray(<%- blocks[i] %>); <%
-            }
-          %>
-
-          const custom_theme = Blockly.Theme.defineTheme('themeName', {
-            'base': Blockly.Themes.Classic,
-            'startHats': true
-          });
-
-          var options = {
-            toolbox : toolbox,
-            collapse : true,
-            comments : true,
-            disable : false,
-            maxBlocks : Infinity,
-            trashcan : true,
-            horizontalLayout : false,
-            toolboxPosition : 'start',
-            css : true,
-            //media : 'https://blockly-demo.appspot.com/static/media/',
-            rtl : false,
-            scrollbars : true,
-            sounds : true,
-            oneBasedIndex : true,
-            grid:
-             {spacing: 20,
-              length: 6,
-              colour: '#ccc',
-              snap: true},
-            zoom:
-             {controls: true,
-              wheel: true,
-              startScale: 1.0,
-              maxScale: 3,
-              minScale: 0.3,
-              scaleSpeed: 1.2,
-              pinch: true},
-            theme: custom_theme
-          };
-
-          let workspace = Blockly.inject("#content_blockly", options);
-          workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
-
-          //If a workspace is stored in database, it is restored here
-          <% if(workspace_xml){ %>
-            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- workspace_xml %>`), workspace); <%
-          }%>
-
-          //Function to send workspace's blocks to the server :
-          function sendWorkspaceToServer(){
-            socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace, true/*Skip blocks id*/)), (callback)=>{
-              if(callback.status == "OK"){
-                showWindow(true, "Succès !", "Le code a été enregistré, et est prêt à être utilisé !");
-              }else{
-                showWindow(false, "Echec !", "Il y a eu une erreur durant le traitement du code.");
-                console.log("ERREUR : "+ callback.status);
-              }
-            });
-          }
-        </script>
-      <%
-    }
-  %>
   <script>
     /* Menu slider on phones */
     let isMenuShown = false;
