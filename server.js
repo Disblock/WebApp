@@ -430,6 +430,75 @@ app.get('/panel/:id',async function(req, res){
 
 /*-----------------------------------*/
 
+app.get('/panel/:id/rollback',async function(req, res){
+  ratesLimitsRedis.consume(req.ip, 10)
+  .then(async()=>{
+    //User isn't rate limited
+
+    if(req.session.discord_id!=undefined){
+
+      //Check if server is in database ( = if the bot was added in the server )
+      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS exist;', [String(req.params.id)])
+      .then(async(data)=>{
+        if(data.rows[0].exist){
+          //Server is registered in database
+
+          //Check if user is admin on selected server
+          discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
+            let guild = undefined;
+            for(let i=0; i<guilds.length; i++){//Iterate throught all user's admin guilds, and compare them to the ID of the selected guilds
+              if(guilds[i].id===String(req.params.id)){//If one guild match this ID, the user is admin in this guild. If none match with, user isn't admin on it
+                guild = guilds[i];
+              }
+            }
+
+            if(guild!=undefined){
+              logger.info("User "+ req.session.discord_id +" got rollback access to guild "+guild.id);
+              //User is admin on the selected server
+
+              //Let's render Blockly app, with custom blocks added here
+              let locale;//Store the language file to use
+
+              if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
+              else{locale=blockly_localization_en}
+
+              //res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml});
+              res.status(500).end("Page en cours de construction !");
+
+            }else{
+              //User isn't admin on the selected server
+
+              //The discord_get_servers.servers() function can log out an user if error while getting his guilds ( rate limits, ... ). We should suppose that req.session isn't defined here
+              //logger.debug("User "+ req.session.discord_id +" was denied access to a guild");
+              res.redirect('/');
+            }
+          });
+
+        }else{
+          //Server isn't registered in database
+          res.redirect('/panel?error=1');
+        }
+
+      })
+      .catch(async(err)=>{//If there is an error while checking if server exist in database
+        logger.error("Error while checking if guild is registered in database : "+err);
+        res.status(500).end("Error 500");
+      });
+
+    }else{
+      //Not logged in
+      res.redirect('/panel');
+    }
+
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+
+});
+
+
 
 /*############################################*/
 /* Style definition */
