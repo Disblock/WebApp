@@ -136,10 +136,16 @@
 
     <!-- ##### Include Here index-panel or guild-panel #####-->
       <%
-        if(guild==undefined){
+        /*
+        page arg :
+        0 = index-panel
+        1 = guild-panel
+        2 = rollback-panel
+        */
+        if(page==0){//Guild undefined
           //On /panel
           %><%- include('ejs/index-panel.ejs'); %><%
-        }else{
+        }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('ejs/guild-panel.ejs', {blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
             <style>
@@ -149,6 +155,8 @@
             </style>
             <%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
           <%
+        }else if(page==2){//Guild defined, blocks undefined
+          //On /panel/:id/rollback
         }
       %>
 

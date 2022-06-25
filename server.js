@@ -323,7 +323,7 @@ app.get('/panel',async function(req, res){
 
         if(req.session){
           //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-          res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined});
+          res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined, page:0});
         }else{
           res.redirect('/');
         }
@@ -331,7 +331,7 @@ app.get('/panel',async function(req, res){
       });
     }else{
       //Not logged in
-      res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined});
+      res.render('panel.ejs', {session: req.session, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined, page:0});
     }
 
   })
@@ -386,7 +386,7 @@ app.get('/panel/:id',async function(req, res){
                 if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
                 else{locale=blockly_localization_en}
 
-                res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml});
+                res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml, page:1});
 
               })
 
@@ -462,8 +462,7 @@ app.get('/panel/:id/rollback',async function(req, res){
               if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
               else{locale=blockly_localization_en}
 
-              //res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, blocks: blocklyBlocks, localization: locale, workspace_xml:workspace_xml});
-              res.status(500).end("Page en cours de construction !");
+              res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, localization: locale, page:2});
 
             }else{
               //User isn't admin on the selected server
