@@ -135,6 +135,7 @@
     </div>
 
     <!-- ##### Include Here index-panel or guild-panel #####-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <%
         /*
         page arg :
@@ -148,21 +149,16 @@
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('ejs/guild-panel.ejs', {blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
-            <style>
-              #content_div_top_div_guild_div::after{
-                content: "<%- guild.name %>";
-              }
-            </style>
             <%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
           <%
         }else if(page==2){//Guild defined, blocks undefined
           //On /panel/:id/rollback
+          %><%- include('ejs/rollback-panel.ejs', {guild:guild}); %><%
         }
       %>
 
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     //Function used to show the error/success window
     function showWindow(isSuccess, title, text){
@@ -243,12 +239,6 @@
 
     /* Show currentGuild in guilds list :*/
     $('#<%- guild.id %>').css("background-color", "#7F7F80");
-
-    /* Adding Guild picture on top of the guild editor panel */
-    if(<%- guild.id %>!="panel"){
-      //Must not be on the index panel
-      $("#content_div_top_div_guild_div img").attr('src', $('#<%- guild.id %> img').attr('src'));//Img src getted from menu, and sent to the header <img>'s src
-    }
 
     <% } %>
 

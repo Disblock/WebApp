@@ -1,0 +1,35 @@
+/* Style for rollback panel */
+
+/* || Global properties */
+
+#content_div{
+  position: absolute;
+  top: 40px;
+  bottom: 0px;
+  left: 20%;
+  right: 0%;
+}
+.content_title{
+  text-align: center;
+  font-size: 1.6em;
+  color: #EAEAEA;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+/* || Computer properties */
+@media (min-width: 900px) {
+
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  #content_div{
+    left: 0%;/* Menu is hidden, content can expand on left */
+  }
+}

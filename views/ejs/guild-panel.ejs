@@ -4,12 +4,7 @@
 <div id="content_div">
 
   <!-- This div is just under the #top_div, contain guild name and picture  -->
-  <div id="content_div_top_div">
-    <div id="content_div_top_div_guild_div">
-      <img width="24" height="24" src="">
-    </div>
-    <!-- src defined with JS -->
-  </div>
+  <%- include("../assets/guild_div.ejs", {guild:guild})%>
 
   <!-- This div contain the blocks on top of this space -->
   <div id="content_div_header_div">

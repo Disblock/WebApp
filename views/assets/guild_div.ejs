@@ -1,0 +1,48 @@
+<style>
+  #content_div_top_div{
+    width: 100%;
+    height: 40px;
+    background-color: #141C24;
+    border-top: solid 3px #2E86AB;
+    position: relative;
+  }
+
+  #content_div_top_div_guild_div{
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  #content_div_top_div_guild_div img{
+    border-radius: 50%;
+    margin-top: 5px;
+    /* Size defined on <img> tag */
+  }
+
+  #content_div_top_div_guild_div::after{
+    color: #EAEAEA;
+    font-size: 1em;/* img size, defined in <img>, in guild-panel.ejs */
+  }
+  #content_div_top_div_guild_div::after{
+    content: "<%- guild.name %>";
+  }
+</style>
+
+<div id="content_div_top_div">
+  <div id="content_div_top_div_guild_div">
+    <img width="24" height="24" src="">
+  </div>
+  <!-- src defined with JS -->
+</div>
+
+<script>
+    <%
+    if(guild.icon!=undefined && guild.icon!=''){
+      %>$("#content_div_top_div_guild_div img").attr('src', "https://cdn.discordapp.com/icons/"+"<%- guild.id %>"+"/"+"<%- guild.icon %>"+".png?size=64");<%
+    }else{
+      %>$("#content_div_top_div_guild_div img").attr('src',"/img/profile.svg");<%
+    }
+    %>
+</script>
