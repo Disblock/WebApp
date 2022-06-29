@@ -11,22 +11,28 @@
 
   <div class="content_saves_div">
     <!-- A save which can be restored -->
-    <div class="content_saves_div_saved_workspace">
-      <p class="content_saves_div_saved_workspace_id">#4564</p><br>
-      <p class="content_saves_div_saved_workspace_date">14/07/2022 à 14h25</p>
-      <button class="content_saves_div_saved_workspace_restore">Restaurer</button>
-    </div>
 
-    <div class="content_saves_div_saved_workspace">
-      <p class="content_saves_div_saved_workspace_id">#4564</p><br>
-      <p class="content_saves_div_saved_workspace_date">14/07/2022 à 14h25</p>
-      <button class="content_saves_div_saved_workspace_restore">Restaurer</button>
-    </div>
+    <%
+    if(savedWorkspaces.length>0){
+      for(let i=0; i<savedWorkspaces.length; i++){
 
-    <div class="content_saves_div_saved_workspace">
-      <p class="content_saves_div_saved_workspace_id">#4564</p><br>
-      <p class="content_saves_div_saved_workspace_date">14/07/2022 à 14h25</p>
-      <button class="content_saves_div_saved_workspace_restore">Restaurer</button>
-    </div>
+        %>
+        <div class="content_saves_div_saved_workspace">
+          <p class="content_saves_div_saved_workspace_id">#<%- savedWorkspaces[i].workspace_id %></p><br>
+          <p class="content_saves_div_saved_workspace_date"><%- savedWorkspaces[i].creation_date.valueOf() %></p>
+          <button class="content_saves_div_saved_workspace_restore">Restaurer</button>
+        </div>
+        <%
+      }
+    }else{
+      %><p class="content_text"> There isn't any saved workspace for this server !</p><%
+    }
+
+    %>
   </div>
 </div>
+<script>
+  $(".content_saves_div_saved_workspace_date").each((index,element)=>{
+    $(element).text(new Date(parseInt($(element).text())).toLocaleString());
+  });
+</script>

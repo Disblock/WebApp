@@ -32,17 +32,13 @@
 
 <div id="content_div_top_div">
   <div id="content_div_top_div_guild_div">
-    <img width="24" height="24" src="">
+    <%
+    if(guild.icon!=undefined && guild.icon!=''){
+      %><img width="24" height="24" src="https://cdn.discordapp.com/icons/<%- guild.id %>/<%- guild.icon %>.png?size=64"><%
+    }else{
+      %><img width="24" height="24" src="/img/profile.svg"><%
+    }
+    %>
   </div>
   <!-- src defined with JS -->
 </div>
-
-<script>
-    <%
-    if(guild.icon!=undefined && guild.icon!=''){
-      %>$("#content_div_top_div_guild_div img").attr('src', "https://cdn.discordapp.com/icons/"+"<%- guild.id %>"+"/"+"<%- guild.icon %>"+".png?size=64");<%
-    }else{
-      %>$("#content_div_top_div_guild_div img").attr('src',"/img/profile.svg");<%
-    }
-    %>
-</script>

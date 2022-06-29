@@ -456,13 +456,18 @@ app.get('/panel/:id/rollback',async function(req, res){
               logger.info("User "+ req.session.discord_id +" got rollback access to guild "+guild.id);
               //User is admin on the selected server
 
-              //Let's render Blockly app, with custom blocks added here
-              let locale;//Store the language file to use
+              //Get saved workspaces for this guild :
+              database_pool.query('SELECT workspace_id, creation_date FROM server_workspace WHERE server_id=$1 ORDER BY creation_date DESC LIMIT $2 OFFSET 1', [String(req.params.id), 20])
+              .then(async(savedWorkspaces)=>{
+                //Successfully got saved workspaces
 
-              if(req.session.locale=='fr'){locale=blockly_localization_fr}//Select right language
-              else{locale=blockly_localization_en}
-
-              res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, localization: locale, page:2});
+                //Everything seems good, rendering page
+                res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, page:2, savedWorkspaces:savedWorkspaces.rows});
+              })
+              .catch(async(err)=>{//If there is an error
+                logger.error("Error while getting guild's saved workspaces : "+err);
+                res.status(500).end("Error 500");
+              });
 
             }else{
               //User isn't admin on the selected server
