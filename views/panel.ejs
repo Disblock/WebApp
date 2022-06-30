@@ -148,8 +148,9 @@
           %><%- include('ejs/index-panel.ejs'); %><%
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
-          %><%- include('ejs/guild-panel.ejs', {blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
-            <%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
+          %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
+          <%- include('ejs/guild-panel.ejs', {blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
+
           <%
         }else if(page==2){//Guild defined, blocks undefined
           //On /panel/:id/rollback
@@ -197,14 +198,19 @@
 
 
     const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
-    let error = url.get("error") || '0';
+    let error = url.get("message") || '0';
 
     switch(error){
       case '0':
         break;//Everything is OK
       case '1':
         showWindow(false, "Impossible d'accéder à ce serveur !", "Le bot doit être ajouté sur ce serveur avant de modifier le code !");
-        //alert("Sorry but the bot must be added first to access Workspace. If you believe this is an error, try to kick the bot and add it again");
+        break;
+      case '2':
+        showWindow(true, "Espace de travail restauré !", "Les actions du bot ainsi que l'espace de travail ont été restaurés.");
+        break;
+      case '3':
+        showWindow(false, "Erreur lors de la restauration !", "Il y a eu une erreur en restaurant l'espace de travail.");
         break;
       default:
         break;

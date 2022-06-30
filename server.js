@@ -399,14 +399,13 @@ app.get('/panel/:id',async function(req, res){
               //User isn't admin on the selected server
 
               //The discord_get_servers.servers() function can log out an user if error while getting his guilds ( rate limits, ... ). We should suppose that req.session isn't defined here
-              //logger.debug("User "+ req.session.discord_id +" was denied access to a guild");
               res.redirect('/');
             }
           });
 
         }else{
           //Server isn't registered in database
-          res.redirect('/panel?error=1');
+          res.redirect('/panel?message=1');
         }
 
       })
@@ -461,6 +460,11 @@ app.get('/panel/:id/rollback',async function(req, res){
               .then(async(savedWorkspaces)=>{
                 //Successfully got saved workspaces
 
+                //If a rollback is done, we will use a security token to be sure that users can rollback only after visited this page
+                //We also save last seen server's id to avoid rollbacking a server with token generated on another server's rollback page
+                req.session.securityToken = crypto.randomBytes(16).toString('hex');
+                req.session.rollbackServer = String(req.params.id);
+
                 //Everything seems good, rendering page
                 res.render('panel.ejs', {session: req.session, guilds:guilds, guild: guild, page:2, savedWorkspaces:savedWorkspaces.rows});
               })
@@ -473,14 +477,13 @@ app.get('/panel/:id/rollback',async function(req, res){
               //User isn't admin on the selected server
 
               //The discord_get_servers.servers() function can log out an user if error while getting his guilds ( rate limits, ... ). We should suppose that req.session isn't defined here
-              //logger.debug("User "+ req.session.discord_id +" was denied access to a guild");
               res.redirect('/');
             }
           });
 
         }else{
           //Server isn't registered in database
-          res.redirect('/panel?error=1');
+          res.redirect('/panel?message=1');
         }
 
       })
@@ -502,6 +505,73 @@ app.get('/panel/:id/rollback',async function(req, res){
 
 });
 
+/*-----------------------------------*/
+
+app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
+  ratesLimitsRedis.consume(req.ip, 15)
+  .then(async()=>{
+    //User isn't rate limited
+
+    if(req.session.discord_id!=undefined){
+
+      if(req.session.securityToken===req.query.token && req.session.securityToken!=undefined && req.session.rollbackServer === String(req.params.id)){
+        //User is admin on the selected server : token generated on /rollback is correct
+
+        req.session.securityToken = crypto.randomBytes(16).toString('hex');
+
+        database_pool.query("SELECT xml FROM server_workspace WHERE server_id=$1 AND workspace_id=$2;", [req.params.id, req.params.workspaceId])
+        .then(async(data)=>{
+          if(data.rows.length>0){
+            //Found xml for this workspace
+
+            //This function will regenerate codes for this workspace and save it as the newest workspace existing
+            blockly_xml_to_js.xml_to_js(String(req.params.id), data.rows[0].xml, Blockly, blocklyToken, database_pool, logger).then(async(result)=>{
+              if(result==0){
+                //OK
+                logger.info("User "+ req.session.discord_id +" rollbacked workspace for guild "+req.params.id);
+                res.redirect('/panel/'+String(req.params.id)+'?message=2');
+              }else{
+                //Error with xml
+                logger.debug("Failed to rollback guild "+String(req.params.id)+" : xml_to_js function returned an error :"+ result);
+                res.redirect('/panel?message=3');
+              }
+            })
+            .catch(async(err)=>{
+              //Error while executing function
+              logger.debug("Failed to rollback guild "+String(req.params.id)+" : error was thrown in xml_to_js function : "+err);
+              res.redirect('/panel?message=3');
+            });
+          }else{
+            //Didn't found xml
+            logger.debug("Failed to rollback guild "+String(req.params.id)+" : xml not found in database !");
+            res.redirect('/panel?message=3');
+          }
+        })
+        .catch(async(err)=>{
+          //Error in database
+
+          logger.error("Error while getting xml for rollback : "+err);
+          res.status(500).end("Error 500");
+        });
+
+      }else{
+        //User hadn't visited rollback page, so he may not be an admin on this server
+
+        //The discord_get_servers.servers() function can log out an user if error while getting his guilds ( rate limits, ... ). We should suppose that req.session isn't defined here
+        res.redirect('/');
+      }
+    }else{
+      //Not logged in
+      res.redirect('/panel');
+    }
+
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+
+});
 
 
 /*############################################*/

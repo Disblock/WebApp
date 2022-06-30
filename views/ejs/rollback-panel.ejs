@@ -20,7 +20,7 @@
         <div class="content_saves_div_saved_workspace">
           <p class="content_saves_div_saved_workspace_id">#<%- savedWorkspaces[i].workspace_id %></p><br>
           <p class="content_saves_div_saved_workspace_date"><%- savedWorkspaces[i].creation_date.valueOf() %></p>
-          <button class="content_saves_div_saved_workspace_restore">Restaurer</button>
+          <button class="content_saves_div_saved_workspace_restore" onclick="location.href='/panel/<%- guild.id %>/rollback/<%- savedWorkspaces[i].workspace_id %>?token=<%- session.securityToken %>'">Restaurer</button>
         </div>
         <%
       }
