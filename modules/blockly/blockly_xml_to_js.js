@@ -57,7 +57,7 @@ module.exports = {
          return(1);
        }
 
-       if(splittedCode[i].includes("event_") && splittedCode[i]!='' && splittedCode[i+1].replace(/(\r\n|\n|\r)/gm, '')!=''){//If trigger isn't event block, do nothing; If user added an action block without instruction, it will be removed
+       if(splittedCode[i].includes("event_") && splittedCode[i]!='' && splittedCode[i+1].replaceAll(/(\r\n|\n|\r)/gm, '')!=''){//If trigger isn't event block, do nothing; If user added an action block without instruction, it will be removed
          //Trigger event defined, code defined, and not just some \n
          splittedCodeToSend.push(splittedCode[i], splittedCode[i+1]);
        }

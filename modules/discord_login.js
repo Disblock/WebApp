@@ -1,5 +1,4 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const secrets = require('./secrets.js');
 const crypto = require('crypto');//Generate random strings
 
 module.exports = {
@@ -12,8 +11,8 @@ module.exports = {
       const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
 				method: 'POST',
 				body: new URLSearchParams({
-					client_id: secrets.clientId,
-					client_secret: secrets.clientSecret,
+					client_id: process.env.clientId,
+					client_secret: process.env.clientSecret,
 					code: code,
 					grant_type: 'authorization_code',
 					redirect_uri: process.env.REDIRECT_URL,

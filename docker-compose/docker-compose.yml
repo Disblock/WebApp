@@ -50,6 +50,8 @@ services:
       HTTPS: ${HTTPS}
       LOGIN_URL: ${LOGIN_URL}
       REDIRECT_URL: ${REDIRECT_URL}
+      clientId: ${CLIENT_ID}
+      clientSecret: ${CLIENT_SECRET}
     volumes:
       - disblock_logs:/node/logs
       - ./certs/:/node/certs/:ro
