@@ -145,16 +145,16 @@
         */
         if(page==0){//Guild undefined
           //On /panel
-          %><%- include('ejs/index-panel.ejs'); %><%
+          %><%- include('ejs/index-panel.ejs', {locale:locale}); %><%
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
-          <%- include('ejs/guild-panel.ejs', {blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
+          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
 
           <%
         }else if(page==2){//Guild defined, blocks undefined
           //On /panel/:id/rollback
-          %><%- include('ejs/rollback-panel.ejs', {guild:guild}); %><%
+          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild}); %><%
         }
       %>
 
@@ -204,13 +204,13 @@
       case '0':
         break;//Everything is OK
       case '1':
-        showWindow(false, "Impossible d'accéder à ce serveur !", "Le bot doit être ajouté sur ce serveur avant de modifier le code !");
+        showWindow(false, "<%- locale.showWindowCantAccessServerTitle %>", "<%- locale.showWindowCantAccessServerText %>");
         break;
       case '2':
-        showWindow(true, "Espace de travail restauré !", "Les actions du bot ainsi que l'espace de travail ont été restaurés.");
+        showWindow(true, "<%- locale.showWindowRollbackSuccessTitle %>", "<%- locale.showWindowRollbackSuccessText %>");
         break;
       case '3':
-        showWindow(false, "Erreur lors de la restauration !", "Il y a eu une erreur en restaurant l'espace de travail.");
+        showWindow(false, "<%- locale.showWindowRollbackErrorTitle %>", "<%- locale.showWindowRollbackErrorText %>");
         break;
       default:
         break;

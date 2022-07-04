@@ -10,19 +10,19 @@
   <div id="content_div_header_div">
     <div class="content_div_header_div_subdiv">
       <p>
-        <a href="#">Manage server variables</a>
+        <a href="#"><%- locale.manageServerVars %></a>
       </p>
     </div>
 
     <div class="content_div_header_div_subdiv">
       <p>
-        <a href="#">Modifications logs</a>
+        <a href="#"><%- locale.modificationsLogs %></a>
       </p>
     </div>
 
     <div class="content_div_header_div_subdiv">
       <p>
-        <a href="/panel/<%- guild.id %>/rollback">Rollback Workspace</a>
+        <a href="/panel/<%- guild.id %>/rollback"><%- locale.rollbackServer %></a>
       </p>
     </div>
   </div>
@@ -31,7 +31,7 @@
   </div>
 
   <div id="content_bottom_div">
-    <button onclick="sendWorkspaceToServer()" css="z-index: 999;">Send code</button>
+    <button onclick="sendWorkspaceToServer()" css="z-index: 999;"><%- locale.sendCodeButton %></button>
     <!-- Temporary ! -->
   </div>
 
@@ -40,7 +40,7 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-<script><%- localization %>Blockly = init(Blockly);</script>
+<script><%- blocklyLocale %>Blockly = init(Blockly);</script>
 
 <script>
   const socket = io();
@@ -100,10 +100,10 @@
   function sendWorkspaceToServer(){
     socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace, true/*Skip blocks id*/)), (callback)=>{
       if(callback.status == "OK"){
-        showWindow(true, "Succès !", "Le code a été enregistré, et est prêt à être utilisé !");
+        showWindow(true, "<%- locale.showWindowSendCodeSuccessTitle %>", "<%- locale.showWindowSendCodeSuccessText %>");
       }else{
-        showWindow(false, "Echec !", "Il y a eu une erreur durant le traitement du code.");
-        console.log("ERREUR : "+ callback.status);
+        showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", "<%- locale.showWindowSendCodeErrorText %>");
+        console.log("ERROR : "+ callback.status);
       }
     });
   }
