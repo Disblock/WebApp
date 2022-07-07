@@ -39,8 +39,11 @@ require('winston-daily-rotate-file');//Daily rotating files
 
 const blockly_localization_fr = require('./modules/blockly/localization/fr.js');//Add localization to the generator - FR
 const blockly_localization_en = require('./modules/blockly/localization/en.js');//Add localization to the generator - EN
-const index_localization_fr = require('./modules/localization/index_fr.js');//Used to translate index page
-const panel_localization_fr = require('./modules/localization/panel_fr.js');//Used to translate index page
+//Translations for index/panel pages
+const index_localization_fr = require('./modules/localization/index_fr.js');
+const panel_localization_fr = require('./modules/localization/panel_fr.js');
+const index_localization_en = require('./modules/localization/index_en.js');
+const panel_localization_en = require('./modules/localization/panel_en.js');
 
 /*############################################*/
 /* Express and server creation */
@@ -252,7 +255,16 @@ app.get('/', async function(req, res){
     //User not rate limited
 
     req.session.state = crypto.randomBytes(4).toString('hex');
-    res.render('index.ejs', {session: req.session, login_url: process.env.LOGIN_URL, locale:index_localization_fr});
+
+    let locale;
+    //Select right language
+    if(req.session.locale=='fr'){
+      locale=index_localization_fr
+    }
+    else{
+      locale=index_localization_en
+    }
+    res.render('index.ejs', {session: req.session, login_url: process.env.LOGIN_URL, locale:locale});
 
   }).catch(async(err)=>{
     //User rate limited
@@ -314,6 +326,13 @@ app.get('/panel',async function(req, res){
   ratesLimitsRedis.consume(req.ip, 8)
   .then(async()=>{
     //User isn't rate limited
+    let locale;
+    //Select right language
+    if(req.session.locale=='fr'){
+      locale=panel_localization_fr
+    }else{
+      locale=panel_localization_en
+    }
 
     req.session.state = crypto.randomBytes(4).toString('hex');
     if(req.session.discord_id!=undefined){
@@ -323,7 +342,7 @@ app.get('/panel',async function(req, res){
 
         if(req.session){
           //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-          res.render('panel.ejs', {session: req.session, locale: panel_localization_fr, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined, page:0});
+          res.render('panel.ejs', {session: req.session, locale: locale, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined, page:0});
         }else{
           res.redirect('/');
         }
@@ -331,7 +350,7 @@ app.get('/panel',async function(req, res){
       });
     }else{
       //Not logged in
-      res.render('panel.ejs', {session: req.session, locale: panel_localization_fr, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined, page:0});
+      res.render('panel.ejs', {session: req.session, locale: locale, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined, page:0});
     }
 
   })
@@ -381,12 +400,18 @@ app.get('/panel/:id',async function(req, res){
                 }
 
                 //Let's render Blockly app, with custom blocks added here
-                let blocklyLocale;//Store the language file to use
+                let blocklyLocale,locale;//Store the language file to use
 
-                if(req.session.locale=='fr'){blocklyLocale=blockly_localization_fr}//Select right language
-                else{blocklyLocale=blockly_localization_en}
+                //Select right language
+                if(req.session.locale=='fr'){
+                  blocklyLocale=blockly_localization_fr
+                  locale=panel_localization_fr
+                }else{
+                  blocklyLocale=blockly_localization_en
+                  locale=panel_localization_en
+                }
 
-                res.render('panel.ejs', {session: req.session, locale: panel_localization_fr, guilds:guilds, guild: guild, blocks: blocklyBlocks, blocklyLocale: blocklyLocale, workspace_xml:workspace_xml, page:1});
+                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, blocks: blocklyBlocks, blocklyLocale: blocklyLocale, workspace_xml:workspace_xml, page:1});
 
               })
 
@@ -465,8 +490,16 @@ app.get('/panel/:id/rollback',async function(req, res){
                 req.session.securityToken = crypto.randomBytes(16).toString('hex');
                 req.session.rollbackServer = String(req.params.id);
 
+                let locale;
+                //Select right language
+                if(req.session.locale=='fr'){
+                  locale=panel_localization_fr
+                }else{
+                  locale=panel_localization_en
+                }
+
                 //Everything seems good, rendering page
-                res.render('panel.ejs', {session: req.session, locale: panel_localization_fr, guilds:guilds, guild: guild, page:2, savedWorkspaces:savedWorkspaces.rows});
+                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, page:2, savedWorkspaces:savedWorkspaces.rows});
               })
               .catch(async(err)=>{//If there is an error
                 logger.error("Error while getting guild's saved workspaces : "+err);
