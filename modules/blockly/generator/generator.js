@@ -603,7 +603,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true}) || \'\'';//Users can have a per guild avatar or a global avatar
+        const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true}) || \'https://cdn.discordapp.com/attachments/973567795189153802/995083353663488010/unknown.png\'';//Users can have a per guild avatar or a global avatar
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
