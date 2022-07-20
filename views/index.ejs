@@ -7,6 +7,7 @@
     <title>Disblock</title>
     <link rel="stylesheet" type="text/css" href="style">
     <link rel="stylesheet" type="text/css" href="style/index-style">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css"><!-- AOS stylesheet -->
   </head>
   <body>
 
@@ -70,7 +71,7 @@
     <div id="why_disblock_div">
       <h2 class="section_title"><%- locale.whyDisblock %></h2>
 
-      <div class="why_disblock_content_div"><!-- That's the div  that contain everything -->
+      <div class="why_disblock_content_div" data-aos="fade-right"><!-- That's the div  that contain everything -->
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/blocks.JPG">
         </div>
@@ -88,7 +89,7 @@
         </div>
       </div>
 
-      <div class="why_disblock_content_div">
+      <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
@@ -106,7 +107,7 @@
         </div>
       </div>
 
-      <div class="why_disblock_content_div">
+      <div class="why_disblock_content_div" data-aos="fade-right">
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
@@ -124,7 +125,7 @@
         </div>
       </div>
 
-      <div class="why_disblock_content_div">
+      <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
@@ -167,23 +168,23 @@
       <div id="docs_div_content">
 
         <!-- These div contain links to the docs-->
-        <div class="docs_div_content_link">
+        <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic1 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
-        <div class="docs_div_content_link">
+        <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic2 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
-        <div class="docs_div_content_link">
+        <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic3 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
         <!-- This div contain Discord widget -->
-        <div id="docs_div_content_discord_widget">
+        <div id="docs_div_content_discord_widget" data-aos="zoom-out">
           <div class="docs_div_content_discord_widget_text_div"><p><%- locale.docsAsk %></p></div>
           <div class="docs_div_content_discord_widget_div">
             <iframe id="discord_widget" src="https://discord.com/widget?id=893991454798643230&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
@@ -253,7 +254,14 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      //AOS initialisation
+      AOS.init({
+        duration: 1200,
+        once: true,
+        mirror: false
+      });
 
       /* Menu slider on phones */
       let isMenuShown = false;
