@@ -688,6 +688,29 @@ app.get('/loc/:lang',async function(req, res){
 
 });
 
+/*############################################*/
+/* 404 error */
+/*############################################*/
+
+/* 404 Error, must be the LATEST route
+   If the request wasn't caught by another route, it will end here and will be answered by the last app.use
+   See https://github.com/expressjs/express/blob/master/examples/error-pages/index.js */
+app.get('/404', async function(req, res, next){
+  next();//Continue to app.use
+});
+app.use(async function(req, res, next){
+  //localization
+  ratesLimitsRedis.consume(req.ip, 20).then(async()=>{
+    //User not rate limited
+
+    res.status(404).render('404.ejs');
+
+  }).catch(async(err)=>{
+    //User rate limited
+    res.status(429).end("Too many requests !");
+  });
+});
+
 
 /*############################################*/
 /* Blockly Socket.io */
