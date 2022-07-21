@@ -17,8 +17,8 @@ module.exports = {
       "check": "String"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_REPLY_TOOLTIP}",
   "helpUrl": ""
@@ -41,8 +41,8 @@ module.exports = {
       "check": "String"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_SEND_TOOLTIP}",
   "helpUrl": ""
@@ -57,8 +57,8 @@ module.exports = {
       "check": "Message"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_DELETE_TOOLTIP}",
   "helpUrl": ""
@@ -83,8 +83,8 @@ module.exports = {
       ]
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_DELETE_BULK_TOOLTIP}",
   "helpUrl": ""
@@ -104,8 +104,8 @@ module.exports = {
       "check": "Message"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_START_THREAD_TOOLTIP}",
   "helpUrl": ""
@@ -120,8 +120,8 @@ module.exports = {
       "check": "Message"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_PINE_TOOLTIP}",
   "helpUrl": ""
@@ -136,8 +136,8 @@ module.exports = {
       "check": "Message"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_MESSAGE_UNPINE_TOOLTIP}",
   "helpUrl": ""

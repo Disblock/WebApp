@@ -10,7 +10,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -27,7 +28,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -44,7 +46,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -60,7 +63,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -77,7 +81,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -94,7 +99,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -110,7 +116,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -126,7 +133,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -142,7 +150,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -158,7 +167,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -174,7 +184,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -190,7 +201,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -206,7 +218,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -222,7 +235,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -238,7 +252,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -254,7 +269,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -270,7 +286,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -286,7 +303,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -302,7 +320,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -318,7 +337,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -335,7 +355,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,
@@ -351,7 +372,8 @@ module.exports = {
     },
     {
       "type": "input_statement",
-      "name": "statements"
+      "name": "statements",
+      "check": "block"
     }
   ],
   "colour": 30,

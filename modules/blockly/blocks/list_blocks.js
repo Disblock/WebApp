@@ -20,8 +20,8 @@ module.exports = {
       "check": "Array"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 225,
   "tooltip": "%{BKY_BLOCK_LIST_SAVE_TOOLTIP}",
   "helpUrl": ""

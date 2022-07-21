@@ -31,8 +31,8 @@ module.exports = {
     }
   ],
   "inputsInline": false,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 345,
   "tooltip": "%{BKY_BLOCK_EMBED_CREATE_TOOLTIP}",
   "helpUrl": ""
@@ -174,8 +174,8 @@ module.exports = {
       }
     ],
     "inputsInline": false,
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 345,
     "tooltip": "%{BKY_BLOCK_EMBED_SEND_TOOLTIP}",
     "helpUrl": ""

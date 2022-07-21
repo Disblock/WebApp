@@ -19,8 +19,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_BAN_TOOLTIP}",
   "helpUrl": ""
@@ -44,8 +44,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_UNBAN_TOOLTIP}",
   "helpUrl": ""
@@ -65,8 +65,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_SEND_PRIVATE_MESSAGE_TOOLTIP}",
   "helpUrl": ""
@@ -87,8 +87,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_KICK_TOOLTIP}",
   "helpUrl": ""
@@ -208,8 +208,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_MUTE_TOOLTIP}",
   "helpUrl": ""
@@ -224,8 +224,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_UNMUTE_TOOLTIP}",
   "helpUrl": ""
@@ -240,8 +240,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_DEAF_TOOLTIP}",
   "helpUrl": ""
@@ -256,8 +256,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_UNDEAF_TOOLTIP}",
   "helpUrl": ""
@@ -323,8 +323,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_TIMEOUT_TOOLTIP}",
   "helpUrl": ""
@@ -350,8 +350,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_CUSTOM_TIMEOUT_TOOLTIP}",
   "helpUrl": ""
@@ -366,8 +366,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_REMOVE_TIMEOUT_TOOLTIP}",
   "helpUrl": ""
@@ -618,8 +618,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP}",
   "helpUrl": ""
@@ -640,8 +640,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_GIVE_RANK_TOOLTIP}",
   "helpUrl": ""
@@ -662,8 +662,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_REMOVE_RANK_TOOLTIP}",
   "helpUrl": ""

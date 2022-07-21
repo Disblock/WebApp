@@ -21,8 +21,8 @@ module.exports = {
         "check": "Category"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_CREATE_TEXT_CHANNEL_TOOLTIP}",
     "helpUrl": ""
@@ -42,8 +42,8 @@ module.exports = {
         "check": "Category"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_CREATE_VOICE_CHANNEL_TOOLTIP}",
     "helpUrl": ""
@@ -78,8 +78,8 @@ module.exports = {
         ]
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_DELETE_TOOLTIP}",
     "helpUrl": ""
@@ -103,8 +103,8 @@ module.exports = {
         "check": "String"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_RENAMME_TOOLTIP}",
     "helpUrl": ""
@@ -524,8 +524,8 @@ module.exports = {
       }
     ],
     "inputsInline": false,
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP}",
     "helpUrl": ""
