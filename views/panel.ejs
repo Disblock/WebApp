@@ -142,6 +142,7 @@
         0 = index-panel
         1 = guild-panel
         2 = rollback-panel
+        3 = logs-panel
         */
         if(page==0){//Guild undefined
           //On /panel
@@ -154,7 +155,10 @@
           <%
         }else if(page==2){//Guild defined, blocks undefined
           //On /panel/:id/rollback
-          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild}); %><%
+          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild, savedWorkspaces:savedWorkspaces}); %><%
+        }else if(page==3){//Guild defined, blocks undefined
+          //On /panel/:id/logs
+          %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs}); %><%
         }
       %>
 

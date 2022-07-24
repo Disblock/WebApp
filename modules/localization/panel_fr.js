@@ -22,5 +22,11 @@ module.exports = {
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",
   rollbackPageText: "Sur cette page, vous pouvez restaurer une ancienne sauvegarde de l'espace de travail du serveur. Une fois une ancienne version restaurée, le bot va immédiatement appliquer le code lié à cette ancienne version. En cas de restauration, l'espace de travail actuel est sauvegardé et restaurable ici.",
   rollbackPageNoSaves: "Il n'y a aucune sauvegarde enregistrée pour ce serveur !",
-  rollbackPageRestaure: "Restaurer"
+  rollbackPageRestaure: "Restaurer",
+
+  /* Logs panel */
+  logsPageTitle: "Vérifier l'historique de votre serveur",
+  logsPageText: "Ici, vous pouvez voir toutes les modifications faites sur votre serveur, quand et par qui elles ont été faites",
+  logsPageNoLogs: "Il n'y a aucune modification enregistrée pour ce serveur !",
+  logsPageStaff: "Action du Staff"
 }

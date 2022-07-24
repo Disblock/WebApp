@@ -22,5 +22,11 @@ module.exports = {
   rollbackPageTitle: "Rollback to a previous state your server's workspace",
   rollbackPageText: "Here, you can rollback to an old state of your server's workspace. When you rollback to an old version, we will immediatly update the code executed by the bot to the restored version. If you rollback your workspace, the actual state will be restorable here.",
   rollbackPageNoSaves: "There isn't any saved workspace for this server !",
-  rollbackPageRestaure: "Rollback"
+  rollbackPageRestaure: "Rollback",
+
+  /* Logs panel */
+  logsPageTitle: "Check you server's audit log",
+  logsPageText: "Here, you can see every modifications made to your server, when they was made and who did it.",
+  logsPageNoLogs: "There isn't any saved modifications for this server !",
+  logsPageStaff: "Staff action"
 }
