@@ -3,7 +3,7 @@ let Blockly = require('blockly');
 //const crypto = require('crypto');//Generate random strings
 
 module.exports = {
-  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger){
+  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, user_id=undefined){//If user_id is defined, we will log that in server's logs
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
@@ -97,32 +97,50 @@ module.exports = {
         logger.error("Error when getting a client from database pool : "+err);
       }
 
-      //TODO add logs here
+      //Used to check if there is an error during transaction
+      function isError(err, client){
+        if(err){
+          logger.error("Error in transaction while saving a workspace !"+err);
+          try{
+            client.query("ROLLBACK");
+          }catch(err2){
+            logger.error("Can't rollback transaction : "+err2);
+          }
+          return true;
+        }else{
+          return false;
+        }
+      }
+      
       //Transaction start
       client.query('BEGIN;', (err)=>{
-        if(err){
-          client.query('ROLLBACK');
+        if(isError(err, client)){
           release(err);
         }else{
           client.query('DELETE FROM server_code WHERE server_id = $1;', [server_id], (err,rep)=>{
-            if(err){
-              client.query('ROLLBACK');
+            if(isError(err, client)){
               release(err);
             }else{
               //Tuples inserted
               client.query(sql+';', args, (err, rep)=>{
-                if(err){
+                if(isError(err, client)){
                   //Problem, let's rollback
-                  client.query('ROLLBACK');
                   release(err);
                 }else{
-                  //Semms good, let's try to commit
-                  client.query('COMMIT;', (err)=>{
-                    if(err){
-                      client.query('ROLLBACK');
+                  //Saving workspace
+                  client.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml], (err)=>{
+                    if(isError(err, client)){
                       release(err);
                     }else{
-                      release();
+                      //Everything seems OK, let's commit
+                      client.query('COMMIT;', (err)=>{
+                        if(isError(err, client)){
+                          release(err);//Release the client with an error, this should delete this client
+                        }else{
+                          logger.debug("Correctly saved new workspace for server "+server_id);
+                          release();//Release the client into pool
+                        }
+                      });
                     }
                   });
                 }
@@ -133,18 +151,17 @@ module.exports = {
       });
     });
 
-    //TODO add logs here
-    //Workspace save
-    logger.debug("Saving Workspace for guild "+server_id);
-    database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml], (err, res) => {
-      if (err) {
-        logger.error("Error while saving workspace for guild "+server_id+" : "+err);
-      }
-    });
+    if(user_id){//If undefined, this is a rollback which is logged as a different event
+      //Save this modification in logs
+      database_pool.query('INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 1, NOW(), FALSE);', [server_id, user_id], (err, res) => {
+        if (err) {
+          logger.error("Error while saving workspace modification in logs for guild "+server_id+" : "+err);
+        }
+      });
+    }
 
 
 
     return(0);
-    //TODO : Generating code https://github.com/google/blockly/blob/master/demos/headless/index.html
   }
 }

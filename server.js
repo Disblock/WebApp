@@ -212,7 +212,7 @@ Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initial
 
 //https://github.com/animir/node-rate-limiter-flexible/wiki/Options
 const ratesLimitsRedis = new rateLimiter.RateLimiterRedis({
-  points:50,
+  points:70,
   duration:5,
   blockDuration:0,//Duration to wait if limit reached
   storeClient: redisClient,
@@ -541,7 +541,7 @@ app.get('/panel/:id/rollback',async function(req, res){
 /*-----------------------------------*/
 
 app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
-  ratesLimitsRedis.consume(req.ip, 15)
+  ratesLimitsRedis.consume(req.ip, 20)
   .then(async()=>{
     //User isn't rate limited
 
@@ -562,21 +562,31 @@ app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
               if(result==0){
                 //OK
                 logger.info("User "+ req.session.discord_id +" rollbacked workspace for guild "+req.params.id);
-                res.redirect('/panel/'+String(req.params.id)+'?message=2');
+
+                //Adding this event to server's logs
+                database_pool.query("INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 2, NOW(), FALSE);", [req.params.id, req.session.discord_id])
+                .then(async(result)=>{
+                  res.redirect('/panel/'+String(req.params.id)+'?message=2');
+                })
+                .catch(async(err)=>{
+                  logger.error("Failed to save workspace rollback in database ! Error :" + err);
+                  res.redirect('/panel?message=3');
+                });
+
               }else{
                 //Error with xml
-                logger.debug("Failed to rollback guild "+String(req.params.id)+" : xml_to_js function returned an error :"+ result);
+                logger.error("Failed to rollback guild "+String(req.params.id)+" : xml_to_js function returned an error :"+ result);
                 res.redirect('/panel?message=3');
               }
             })
             .catch(async(err)=>{
               //Error while executing function
-              logger.debug("Failed to rollback guild "+String(req.params.id)+" : error was thrown in xml_to_js function : "+err);
+              logger.error("Failed to rollback guild "+String(req.params.id)+" : error was thrown in xml_to_js function : "+err);
               res.redirect('/panel?message=3');
             });
           }else{
             //Didn't found xml
-            logger.debug("Failed to rollback guild "+String(req.params.id)+" : xml not found in database !");
+            logger.error("Failed to rollback guild "+String(req.params.id)+" : xml not found in database !");
             res.redirect('/panel?message=3');
           }
         })
@@ -824,7 +834,7 @@ io.sockets.on('connect',async function(socket){
 
           if(guild!=undefined){//If guild is defined, a server where user is admin has been found
             logger.info(socket.request.session.discord_id+" sent a new workspace via socket.io for the guild "+guild.id);
-            var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, blocklyToken, database_pool, logger).then(result=>{//blocklyToken is a random string used to split the generated code
+            var result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, blocklyToken, database_pool, logger, socket.request.session.discord_id).then(result=>{//blocklyToken is a random string used to split the generated code
 
               if(result==0){
                 callback({status: "OK"});
