@@ -41,7 +41,10 @@ module.exports = {
       			.then(response => {
                 //Now, check if the user is already registered
                try{
-                 if(!response.id){throw("Invalid user ID sent by Discord API when logging in");}//Throw an error if Discord didn't sent user's data
+                 if(!response.id){
+                   logger.error("Response from Discord : "+response);
+                   throw("Invalid user ID sent by Discord API when logging in");
+                 }//Throw an error if Discord didn't sent user's data
 
                  logger.debug("Sending an SQL request to the database : Checking if an user exist in database with user ID "+response.id);
                  database_pool.query("SELECT EXISTS(SELECT 1 FROM users WHERE user_id=$1) AS exist;",[response.id], function(error, results){
