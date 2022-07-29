@@ -255,9 +255,6 @@
     </block>-->
   </category>
   <category name="Lists" colour="#745ba5">
-    <label text="%{BKY_WORKSPACE_LISTS_SAVE_GET}"></label>
-      <block type="block_list_save"></block>
-      <block type="block_list_get"></block>
     <label text="%{BKY_WORKSPACE_LISTS_USE}"></label>
       <block type="lists_create_with">
         <mutation items="0"></mutation>
@@ -276,37 +273,21 @@
       <block type="lists_isEmpty"></block>
       <block type="lists_indexOf">
         <field name="END">FIRST</field>
-        <value name="VALUE">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_getIndex">
         <mutation statement="false" at="true"></mutation>
         <field name="MODE">GET</field>
         <field name="WHERE">FROM_START</field>
-        <value name="VALUE">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_setIndex">
         <mutation at="true"></mutation>
         <field name="MODE">SET</field>
         <field name="WHERE">FROM_START</field>
-        <value name="LIST">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_getSublist">
         <mutation at1="true" at2="true"></mutation>
         <field name="WHERE1">FROM_START</field>
         <field name="WHERE2">FROM_START</field>
-        <value name="LIST">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_split">
         <mutation mode="SPLIT"></mutation>
@@ -362,6 +343,10 @@
         </shadow>
       </value>
     </block>-->
+  </category>
+  <category name="%{BKY_WORKSPACE_TAB_VARIABLES}" colour="225">
+    <block type="block_var_save"></block>
+    <block type="block_var_get"></block>
   </category>
   <sep></sep>
   <category name="%{BKY_WORKSPACE_TAB_EVENTS}" colour="30">

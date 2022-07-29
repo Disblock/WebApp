@@ -428,6 +428,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_GUILD"] = "Serveur";
   Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Rôles";
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
+  Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -474,7 +475,6 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_CREATE_SEND"] = "Créer et envoyer un Embed";
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Personnaliser un Embed";
 
-  Blockly.Msg["WORKSPACE_LISTS_SAVE_GET"] = "Enregistrer ou obtenir une liste";
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Travailler sur les listes";
 
   //Event blocks
@@ -811,15 +811,37 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Message Embed";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Représente le message Embed créé";
 
-  //Lists blocks
-  Blockly.Msg["BLOCK_LIST_SAVE"] = "Enregistrer dans la variable %1 la liste %2";
-  Blockly.Msg["BLOCK_LIST_SAVE_TOOLTIP"] = "Permet d'enregistrer une liste pour l'utiliser plus tard dans l'évènement. La liste n'est pas conservée à la fin de l'évènement";
-  Blockly.Msg["BLOCK_LIST_GET"] = "Obtenir la liste enregistrée dans la variable %1";
-  Blockly.Msg["BLOCK_LIST_GET_TOOLTIP"] = "Permet d'obtenir la liste enregistrée avec le même nom dans l'évènement";
-
   //Color blocks
   Blockly.Msg["BLOCK_COLOR_HEX"] = "Couleur depuis le code hexadécimal %1";
   Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Permet d'obtenir une couleur à partir de son code héxadécimal";
+
+  //Temporary variables blocks
+  Blockly.Msg["BLOCK_VAR_SAVE"] = "Sauvegarder la valeur %1 dans une variable temporaire nommée %2 de type %3";
+  Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour conserver quelque chose et l'utiliser plus tard. Vous devez déclarer et utiliser la variable dans le même évènement, car elle n'est pas conservée après l'éxécution du code";
+  Blockly.Msg["BLOCK_VAR_GET"] = "Obtenir le contenu de la variable nommée %1";
+  Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour obtenir le contenu d'une variable sauvegardée dans le même évènement. Soyez sûr que le contenu est du bon type quand vous l'utilisez quelque part !";
+
+  //Workspace warnings
+  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
+  Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "Pour utiliser cette variable, vous devez lui donner une valeur !";
+  Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"] = "Le type de la valeur n'est pas compatible avec le type de la variable. Essayez d'utiliser une autre valeur, ou de changer le type de la variable.";
+  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] = "Des blocs de variable temporaires sont mals placés ! Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
+  Blockly.Msg["WARNING_INVALID_NAME"] = "Vous devez uniquement utiliser des lettres (a-z A-Z) et des chiffres (1-9) tout en ne dépassant pas 16 charactères en nommant cela !";
+
+  //Types names
+  Blockly.Msg["STRING"] = "Chaîne de caractères";
+  Blockly.Msg["NUMBER"] = "Nombre";
+  Blockly.Msg["BOOLEAN"] = "Booléen";
+  Blockly.Msg["ARRAY"] = "Liste";
+  Blockly.Msg["COLOUR"] = "Couleur";
+  Blockly.Msg["MESSAGE"] = "Message";
+  Blockly.Msg["TEXT_CHANNEL"] = "Salon textuel";
+  Blockly.Msg["VOICE_CHANNEL"] = "Salon vocal";
+  Blockly.Msg["THREAD_CHANNEL"] = "Salon fil";
+  Blockly.Msg["CATEGORY"] = "Catégorie";
+  Blockly.Msg["USER"] = "Utilisateur";
+  Blockly.Msg["ROLE"] = "Rôle";
+  Blockly.Msg["EMBED_MESSAGE"] = "Message Embed";
 
   //Others
   Blockly.Msg["YES"] = "Oui";

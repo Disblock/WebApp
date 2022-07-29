@@ -52,7 +52,7 @@ module.exports = {
 
     eventReaction All of these are variables are used in events
     */
-    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,arrayStorage');
+    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,temporaryStorage');
     Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
 
     /* ##### EVENTS blocks ##### */
@@ -1924,28 +1924,44 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    /* ##### LIST blocks ##### */
-
-    Blockly.JavaScript['block_list_save'] = function(block) {
-      const text_name = block.getFieldValue('NAME');
-      const value_array = Blockly.JavaScript.valueToCode(block, 'array', Blockly.JavaScript.ORDER_ATOMIC);
-
-      const code = 'arrayStorage.'+(text_name || 'defaultName')+' = '+(value_array || '[]')+';\n';
-      return code;
-    };
-
-    Blockly.JavaScript['block_list_get'] = function(block) {
-      const text_name = block.getFieldValue('NAME');
-      const code = 'arrayStorage.'+(text_name || 'defaultName');
-      return [code, Blockly.JavaScript.ORDER_NONE];
-    };
-
     /* ##### COLOR blocks ##### */
     Blockly.JavaScript['block_color_hex'] = function(block) {
       const text_color = block.getFieldValue('color');
       var code = (/^#[0-9a-f]{3,6}$/i.test(text_color))?'\''+text_color+'\'':'';//A regex check if color hex is valid
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
+
+    /* ##### Temporary VARIABLES blocks ##### */
+    Blockly.JavaScript['block_var_save'] = function(block) {
+      const value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
+      const text_name = block.getFieldValue('NAME');
+      //const dropdown_type = block.getFieldValue('TYPE');
+
+      if(!/^[a-zA-Z0-9]{1,16}$/.test(text_name)){
+        throw("User gave an incorrect name to temporary variables : "+text_name);
+      }
+
+      if(value_input=='' || value_input==undefined){
+        //Error
+        return 'temporaryStorage.'+text_name+' = undefined;\n';
+      }else{
+        //OK
+        return 'temporaryStorage.'+text_name+' = '+value_input+';\n';
+      }
+    };
+
+    Blockly.JavaScript['block_var_get'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+
+      if(!/^[a-zA-Z0-9]{1,16}$/.test(text_name)){
+        throw("User gave an incorrect name to temporary variables : "+text_name);
+      }
+
+      const code = 'temporaryStorage.'+text_name;
+
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
 
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled

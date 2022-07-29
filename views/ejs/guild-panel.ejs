@@ -96,8 +96,19 @@
     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- workspace_xml %>`), workspace); <%
   }%>
 
+  //We include here events for Blockly
+  <%-include("../js/blockly_functions.ejs");%>
+
   //Function to send workspace's blocks to the server :
   function sendWorkspaceToServer(){
+    //We check here that everything seems OK
+    const check = validateWorkspace(workspace);
+    if(!check.correct){
+      //There is a problem !
+      showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", check.message);
+      return;
+    }
+
     socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace, true/*Skip blocks id*/)), (callback)=>{
       if(callback.status == "OK"){
         showWindow(true, "<%- locale.showWindowSendCodeSuccessTitle %>", "<%- locale.showWindowSendCodeSuccessText %>");

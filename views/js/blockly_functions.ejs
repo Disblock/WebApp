@@ -1,0 +1,145 @@
+/* Function used to check if there is a compatible "save_var" block before the "get_var" block when "get_var" block is placed somewhere*/
+/*function checkIfCompatibleSaveVarPresentOnMove(event){
+  if(event.type==Blockly.Events.BLOCK_MOVE){
+    if(workspace.getBlockById(event.blockId).type!="block_var_get" || workspace.getBlockById(event.blockId).outputConnection.targetConnection==null){return;}//Must be of right type and connected to something
+
+    let neededType = workspace.getBlockById(event.blockId).outputConnection.targetConnection.getCheck();//Type that we need to etablish a connection. null = everything
+    if(neededType==null){neededType=[];}
+
+    //We will loop through all previous block to check if there is a var_save block, and check is type later
+    let loopBlock = workspace.getBlockById(event.blockId).getParent();
+    let foundSaveVarBlocks = []//List of all save var blocks found
+
+    while(loopBlock!=null){
+      if(loopBlock.type=="block_var_save"){
+        foundSaveVarBlocks.push(loopBlock);
+      }
+      loopBlock=loopBlock.getParent();
+    }
+
+    if(foundSaveVarBlocks.length==0 || workspace.getBlockById(event.blockId).getParent().type == "block_var_save"){
+      //There isn't any save var in this event or get block used directly inside a save block
+      workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
+      workspace.getBlockById(event.blockId).unplug();
+    }else{
+      //There is at least one save var block, let's check if right name/type are set
+      let valid = false;//Is a compatible var save block was found ?
+      for(let i=0; i<foundSaveVarBlocks.length; i++){
+        if(foundSaveVarBlocks[i].getFieldValue('NAME')===workspace.getBlockById(event.blockId).getFieldValue('NAME') && (neededType.includes(foundSaveVarBlocks[i].getFieldValue('TYPE')) || neededType==0)){//If neededType = []; neededType==[] => false...
+          valid=true;
+        }
+      }
+
+      if(!valid){
+        //Valid block wasn't found
+        workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
+        workspace.getBlockById(event.blockId).unplug();
+      }else{
+        //Valid block found, everything seems OK
+        workspace.getBlockById(event.blockId).setWarningText(null);
+      }
+    }
+
+  }
+}*/
+
+/* When variable type edited, this function remove the value of this variable to avoid types errors*/
+function saveVarBlockModified(event){
+  if(event.type==Blockly.Events.BLOCK_CHANGE && workspace.getBlockById(event.blockId).type=="block_var_save"){
+    if(event.name=="TYPE" && workspace.getBlockById(event.blockId).allInputsFilled()){
+      //A block is in block input, we can remove it to make sure an incompatible type isn't used
+      workspace.getBlockById(event.blockId).getChildren(true)[0].unplug();
+      workspace.getBlockById(event.blockId).bumpNeighbours();
+    }else if(event.name=="NAME"){
+      if(/^[a-zA-Z0-9]{1,16}$/.test(event.newValue)){
+        //Valid name
+        workspace.getBlockById(event.blockId).setWarningText(null);
+      }else{
+        //Error : invalid name
+        workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);
+      }
+    }
+  }
+}
+
+/* When a value is added in save variable block, we check that this value is compatible with the variable's type.
+   We also disable utilization of variable get directly in variable set blocks*/
+function checkIfValueAndTypeVarCompatibles(event){
+  if(event.type==Blockly.Events.BLOCK_MOVE && event.newParentId){
+    if(workspace.getBlockById(event.newParentId).type!="block_var_save" || workspace.getBlockById(event.blockId).outputConnection==null)return;//We only work with blocks connected as value of a save variable block
+    if(workspace.getBlockById(event.blockId).type=="block_var_get"){workspace.getBlockById(event.blockId).unplug();return;}//Using getter directly in a setter may cause an error. Must correctly handle this before allowing it
+
+    if(workspace.getBlockById(event.blockId).outputConnection.getCheck().includes(workspace.getBlockById(event.newParentId).getFieldValue('TYPE'))){
+      //If value and var type are compatibles
+      workspace.getBlockById(event.newParentId).setWarningText(null);
+    }else{
+      //They aren't compatibles
+      workspace.getBlockById(event.newParentId).setWarningText(Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"]);
+      workspace.getBlockById(event.blockId).unplug();
+    }
+
+  }
+}
+
+workspace.addChangeListener(saveVarBlockModified);
+workspace.addChangeListener(checkIfValueAndTypeVarCompatibles);
+
+/*Function used to check if everything seems OK in workspace before sending code
+We check : - Temporary variables blocks
+
+Return {correct:true, message:'OK'} or {correct:false, message:'Error message'}*/
+function validateWorkspace(workspace){
+  //Get all top blocks
+  let topBlocks = workspace.getTopBlocks();
+  let foundError = false;//Become true when an error is found
+
+  //For each top block, we check what types and names of variables are defined, and check that every getter block is correctly placed
+  for(let i=0; i<topBlocks.length; i++){
+    let variablesTypes = {};//Will store what name contain what type of data as an object : {name:type, ...}
+    let blocks = topBlocks[i].getDescendants(true);//Every blocks in this event, sorted
+
+    if(blocks.length==1)continue;//This block is alone, that's useless to continue
+
+
+    for(let j=0; j<blocks.length; j++){
+      if(blocks[j].type=="block_var_save"){
+        //That's a setter block, we save his name and type here
+
+        if(blocks[j].allInputsFilled() && /^[a-zA-Z0-9]{1,16}$/.test(blocks[j].getFieldValue('NAME'))){
+          //OK
+          blocks[j].setWarningText(null);
+        }else{
+          if(!blocks[j].allInputsFilled()) blocks[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
+          if(!/^[a-zA-Z0-9]{1,16}$/.test(blocks[j].getFieldValue('NAME'))) blocks[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
+
+          foundError = true;
+        }
+
+        variablesTypes[blocks[j].getFieldValue('NAME')] = blocks[j].getFieldValue('TYPE');
+
+      }else if(blocks[j].type=="block_var_get"){
+
+        //Getter block, we check if it's correctly placed or not
+        let neededTypes = blocks[j].outputConnection.targetConnection.getCheck();
+        if(neededTypes==null)neededTypes=[];// Accept everything, [] == 0
+
+        if( neededTypes.includes(variablesTypes[blocks[j].getFieldValue('NAME')]) || neededTypes==0 ){
+          //OK
+          blocks[j].setWarningText(null);
+        }else{
+          //That's an error
+          blocks[j].setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
+          foundError = true;
+        }
+
+      }
+    }
+  }
+
+  //Finished to check temporary variables, if there is an error, we can stop here
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]})
+
+  //End of this function, we didn't found any error
+  return({correct:true, message:'OK'});
+
+}
