@@ -76,6 +76,7 @@ services:
       LOGS_MAX_FILES: ${LOGS_MAX_FILES}
       DEBUG: ${DEBUG}
       NODE_ENV: ${NODE_ENV}
+      BOT_LOG_ERRORS: ${BOT_LOG_ERRORS}
 
 
 volumes:
