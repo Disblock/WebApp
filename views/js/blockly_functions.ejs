@@ -1,48 +1,3 @@
-/* Function used to check if there is a compatible "save_var" block before the "get_var" block when "get_var" block is placed somewhere*/
-/*function checkIfCompatibleSaveVarPresentOnMove(event){
-  if(event.type==Blockly.Events.BLOCK_MOVE){
-    if(workspace.getBlockById(event.blockId).type!="block_var_get" || workspace.getBlockById(event.blockId).outputConnection.targetConnection==null){return;}//Must be of right type and connected to something
-
-    let neededType = workspace.getBlockById(event.blockId).outputConnection.targetConnection.getCheck();//Type that we need to etablish a connection. null = everything
-    if(neededType==null){neededType=[];}
-
-    //We will loop through all previous block to check if there is a var_save block, and check is type later
-    let loopBlock = workspace.getBlockById(event.blockId).getParent();
-    let foundSaveVarBlocks = []//List of all save var blocks found
-
-    while(loopBlock!=null){
-      if(loopBlock.type=="block_var_save"){
-        foundSaveVarBlocks.push(loopBlock);
-      }
-      loopBlock=loopBlock.getParent();
-    }
-
-    if(foundSaveVarBlocks.length==0 || workspace.getBlockById(event.blockId).getParent().type == "block_var_save"){
-      //There isn't any save var in this event or get block used directly inside a save block
-      workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
-      workspace.getBlockById(event.blockId).unplug();
-    }else{
-      //There is at least one save var block, let's check if right name/type are set
-      let valid = false;//Is a compatible var save block was found ?
-      for(let i=0; i<foundSaveVarBlocks.length; i++){
-        if(foundSaveVarBlocks[i].getFieldValue('NAME')===workspace.getBlockById(event.blockId).getFieldValue('NAME') && (neededType.includes(foundSaveVarBlocks[i].getFieldValue('TYPE')) || neededType==0)){//If neededType = []; neededType==[] => false...
-          valid=true;
-        }
-      }
-
-      if(!valid){
-        //Valid block wasn't found
-        workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
-        workspace.getBlockById(event.blockId).unplug();
-      }else{
-        //Valid block found, everything seems OK
-        workspace.getBlockById(event.blockId).setWarningText(null);
-      }
-    }
-
-  }
-}*/
-
 /* When variable type edited, this function remove the value of this variable to avoid types errors*/
 function saveVarBlockModified(event){
   if(event.type==Blockly.Events.BLOCK_CHANGE && workspace.getBlockById(event.blockId).type=="block_var_save"){
@@ -143,3 +98,44 @@ function validateWorkspace(workspace){
   return({correct:true, message:'OK'});
 
 }
+
+//Used to store what var blocks can be used in what event block
+const events_var_blocks = {
+  event_message_sent:['event_var_message'],
+  event_message_deleted:['event_var_message'],
+  event_message_updated:['event_var_message_old', 'event_var_message_new'],
+  event_user_join:['event_var_user'],
+  event_user_left:['event_var_user'],
+  event_user_updated:['event_var_old_user', 'event_var_new_user'],
+  event_text_channel_created:['event_var_text_channel'],
+  event_text_channel_deleted:['event_var_text_channel'],
+  event_text_channel_edited:['event_var_old_text_channel', 'event_var_new_text_channel'],
+  event_voice_channel_created:['event_var_voice_channel'],
+  event_voice_channel_deleted:['event_var_voice_channel'],
+  event_voice_channel_edited:['event_var_old_voice_channel', 'event_var_new_voice_channel'],
+  event_role_created:['event_var_rank'],
+  event_role_deleted:['event_var_rank'],
+  event_role_edited:['event_var_old_rank', 'event_var_new_rank'],
+  event_user_banned:['event_var_user'],
+  event_reaction_added:['event_var_message', 'event_var_reaction', 'event_var_user'],
+  event_reaction_removed:['event_var_message', 'event_var_reaction', 'event_var_user'],
+  event_user_voice_update:['event_var_old_voice_channel', 'event_var_new_voice_channel', 'event_var_user'],
+  event_user_start_writting:['event_var_user', 'event_var_text_channel']
+}
+
+//When an event var block is added somewhere, we check if the event is compatible with the var block
+function checkIfEventVarBlockCorrectlyPlaced(event){
+  if( event.type==Blockly.Events.BLOCK_MOVE && events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type] && workspace.getBlockById(event.blockId).type.startsWith("event_var_")){
+
+    if( events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type].includes(workspace.getBlockById(event.blockId).type) ){
+      //OK
+      workspace.getBlockById(event.blockId).setWarningText(null);
+    }else{
+      //NOT OK, event type incompatible with this event var
+      workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"]);
+      workspace.getBlockById(event.blockId).unplug();
+    }
+
+  }
+}
+workspace.addChangeListener(checkIfEventVarBlockCorrectlyPlaced);
