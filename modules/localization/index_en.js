@@ -7,6 +7,7 @@ module.exports = {
   panel: "Panel",
   title: "Disblock",
   subtitle: "Actually in private Alpha, we're opening soon !",
+  connectWith: "Login with",
   goToPanel: "Go to panel",
   div1Text: "More than x blocks availables !",
   whyDisblock: "Why Disblock ?",

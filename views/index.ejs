@@ -15,13 +15,21 @@
     <div class="black_opacity" style="z-index:1;">
     </div>
 
-    <!-- Nav and the big image ( The first thing the user see, so that's the first area)-->
-    <div id="first_area_div">
+    <!-- Used to show bot logo, "Disblock" and "Go to panel" button -->
+    <div class="header_div">
+      <div id="header_div_logo">
+      </div>
+      <h1>D<span>IS</span>BLOCK</h1>
+      <!-- Call to action / Go to panel button -->
+      <button onclick="location.href='/panel'" id="header_div_panel_button"><%- locale.panel %></button>
 
       <!-- Used only in Phone responsive mode -->
       <div id="first_area_menu_slider_button">
         <img src="img/menu.svg">
       </div>
+    </div>
+
+    <div id="first_area_div">
 
       <!-- Menu / nav -->
       <nav id="first_area_nav">
@@ -33,33 +41,46 @@
         </ul>
       </nav>
 
-      <!-- Call to action / Go to panel button -->
-      <button onclick="location.href='/panel'" id="first_area_div_panel_button"><%- locale.panel %></button>
+      <div class="first_area_div_text">
+        <p><span style="font-size:1.5em;"><%- locale.title %></span><br><br>
+          <%- locale.subtitle %>
+      </div>
 
-      <!-- Text / title -->
-      <div id="first_area_div_text">
-        <h1><%- locale.title %></h1>
-        <p><%- locale.subtitle %></p>
-        <%
-          if(session.username==undefined){
-            //Used not logged in
-            %><button onclick="location.href='<%- login_url %>&state=<%- session.state %>'">Login with Discord</button><%
-          }else{
-            //User logged in
-            %><button onclick="location.href='/panel'"><%- locale.goToPanel %></button><%
-          }
-        %>
+      <%
+      // We calculate here where this button must redirect and what is written on it
+      let buttonLink, buttonText;
+      if(session.username==undefined){
+        //User not logged in
+        buttonLink = login_url+"&state="+session.state;
+        buttonText = locale.connectWith;
+      }else{
+        //User logged in
+        buttonLink = "/panel";
+        buttonText = locale.goToPanel;
+      }
+      %>
+
+      <a href="<%- buttonLink %>" id="header_div_a_button">
+        <div class="first_area_div_button">
+          <div class="first_area_div_button_text">
+            <p><%- buttonText %> </p>
+          </div>
+          <% if(session.username==undefined){ /* Discord logo*/%>
+            <div class="first_area_div_button_img">
+              <img src="img/discord.png" width="60px" height="60px">
+            </div>
+          <% } %>
+        </div>
+      </a>
 
       </div>
 
-      <!-- Wave -->
-      <!--<div id="first_area_div_wave">
-        <img src="img/wave.svg">
-      </div>-->
-    </div>
+      <!-- Used to place a space between the gradient and the rest of the page -->
+      <div class="first_area_gradient_start">
+      </div>
 
     <!-- The div with a little text and a button/img -->
-    <div class="content_line_div">
+    <div class="content_line_div" style="margin-top:0px;">
       <div class="content_line_div_text">
         <p><%- locale.div1Text %></p>
       </div>
@@ -189,7 +210,7 @@
             <p><%- locale.docsAsk %></p>
           </div>
           <div class="docs_div_content_discord_img_div">
-              <a href="#"><img id="discord_img" width="350px" height="350px" src="img/discord.png"></a>
+              <a href="#"><img id="discord_img" width="350px" height="350px" src="img/join_discord.png"></a>
           </div>
         </div>
 
@@ -272,10 +293,9 @@
         if(isMenuShown){
           //Remove menu
           $(".black_opacity").css("display", "none");
-          $("#first_area_menu_slider_button").css("position", "absolute");
-          $("#first_area_nav").animate({"min-width":"0%", "width":"0%"}, 500, "swing", ()=>{
+          $("#first_area_nav ul").css("visibility", "hidden");
+          $("#first_area_nav").animate({"max-width":"0%"}, 500, "swing", ()=>{
             $("#first_area_nav").css("display", "none");
-            $("#first_area_menu_slider_button").css("filter", "none");
           });
 
           isMenuShown = false;
@@ -283,9 +303,9 @@
           //Show menu
           $(".black_opacity").css("display", "block");
           $("#first_area_nav").css("display", "block");
-          $("#first_area_menu_slider_button").css("position", "fixed");
-          $("#first_area_nav").animate({"min-width":"40%", "width":"auto"}, 500);
-          $("#first_area_menu_slider_button").css("filter", "invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%)");
+          $("#first_area_nav").animate({"max-width":"60%"}, 500, ()=>{
+            $("#first_area_nav ul").css("visibility", "visible");
+          });
 
           isMenuShown = true;
         }
