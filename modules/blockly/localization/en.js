@@ -828,6 +828,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] = "Some temporary variables blocks are incorrectly used ! We placed warnings on these blocks to locate them and fix the problem.";
   Blockly.Msg["WARNING_INVALID_NAME"] = "You must use only letters (a-z A-Z) and numbers (1-9) and shouldn't give a name longer than 16 characters when naming this";
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] = "This block can only be placed in a compatible event ! Try using another compatible Event Variable Block here";
+  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "An Event Variable blocks is incorrectly placed ! We placed warnings on these blocks to locate them and fix the problem.";
 
   //Types names
   Blockly.Msg["STRING"] = "String";

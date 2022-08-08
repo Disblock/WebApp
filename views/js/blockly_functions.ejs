@@ -1,3 +1,27 @@
+//Used to store what var blocks can be used in what event block
+const events_var_blocks = {
+  event_message_sent:['event_var_message'],
+  event_message_deleted:['event_var_message'],
+  event_message_updated:['event_var_message_old', 'event_var_message_new'],
+  event_user_join:['event_var_user'],
+  event_user_left:['event_var_user'],
+  event_user_updated:['event_var_old_user', 'event_var_new_user'],
+  event_text_channel_created:['event_var_text_channel'],
+  event_text_channel_deleted:['event_var_text_channel'],
+  event_text_channel_edited:['event_var_old_text_channel', 'event_var_new_text_channel'],
+  event_voice_channel_created:['event_var_voice_channel'],
+  event_voice_channel_deleted:['event_var_voice_channel'],
+  event_voice_channel_edited:['event_var_old_voice_channel', 'event_var_new_voice_channel'],
+  event_role_created:['event_var_rank'],
+  event_role_deleted:['event_var_rank'],
+  event_role_edited:['event_var_old_rank', 'event_var_new_rank'],
+  event_user_banned:['event_var_user'],
+  event_reaction_added:['event_var_message', 'event_var_reaction', 'event_var_user'],
+  event_reaction_removed:['event_var_message', 'event_var_reaction', 'event_var_user'],
+  event_user_voice_update:['event_var_old_voice_channel', 'event_var_new_voice_channel', 'event_var_user'],
+  event_user_start_writting:['event_var_user', 'event_var_text_channel']
+}
+
 /* When variable type edited, this function remove the value of this variable to avoid types errors*/
 function saveVarBlockModified(event){
   if(event.type==Blockly.Events.BLOCK_CHANGE && workspace.getBlockById(event.blockId).type=="block_var_save"){
@@ -94,39 +118,37 @@ function validateWorkspace(workspace){
   //Finished to check temporary variables, if there is an error, we can stop here
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]})
 
+  //Now checking if an Event var Block was uncorrectly placed
+  let blocks = workspace.getAllBlocks(false);
+  for(let i=0; i<blocks.length; i++){
+    if(!blocks[i].getRootBlock())continue;//This block is alone
+
+    if(events_var_blocks[blocks[i].getRootBlock().type] && blocks[i].type.startsWith("event_var_")){//The top block must be an event and have registered event var blocks, the source block must be an event var block
+      if( events_var_blocks[blocks[i].getRootBlock().type].includes(blocks[i].type) ){
+        //OK
+        blocks[i].setWarningText(null);
+      }else{
+        //There is an error in workspace !
+        blocks[i].setWarningText(Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"]);
+        foundError = true;
+      }
+    }
+  }
+
+  //Finished to check event var blocks, stop here in case of error
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"]})
+
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
 
 }
 
-//Used to store what var blocks can be used in what event block
-const events_var_blocks = {
-  event_message_sent:['event_var_message'],
-  event_message_deleted:['event_var_message'],
-  event_message_updated:['event_var_message_old', 'event_var_message_new'],
-  event_user_join:['event_var_user'],
-  event_user_left:['event_var_user'],
-  event_user_updated:['event_var_old_user', 'event_var_new_user'],
-  event_text_channel_created:['event_var_text_channel'],
-  event_text_channel_deleted:['event_var_text_channel'],
-  event_text_channel_edited:['event_var_old_text_channel', 'event_var_new_text_channel'],
-  event_voice_channel_created:['event_var_voice_channel'],
-  event_voice_channel_deleted:['event_var_voice_channel'],
-  event_voice_channel_edited:['event_var_old_voice_channel', 'event_var_new_voice_channel'],
-  event_role_created:['event_var_rank'],
-  event_role_deleted:['event_var_rank'],
-  event_role_edited:['event_var_old_rank', 'event_var_new_rank'],
-  event_user_banned:['event_var_user'],
-  event_reaction_added:['event_var_message', 'event_var_reaction', 'event_var_user'],
-  event_reaction_removed:['event_var_message', 'event_var_reaction', 'event_var_user'],
-  event_user_voice_update:['event_var_old_voice_channel', 'event_var_new_voice_channel', 'event_var_user'],
-  event_user_start_writting:['event_var_user', 'event_var_text_channel']
-}
-
 //When an event var block is added somewhere, we check if the event is compatible with the var block
 function checkIfEventVarBlockCorrectlyPlaced(event){
-  if( event.type==Blockly.Events.BLOCK_MOVE && events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type] && workspace.getBlockById(event.blockId).type.startsWith("event_var_")){
+  if(event.type!=Blockly.Events.BLOCK_MOVE || !workspace.getBlockById(event.blockId) )return;//wrong event type or block undefined
+  if(!workspace.getBlockById(event.blockId).getRootBlock())return;//block alone
 
+  if(events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type] && workspace.getBlockById(event.blockId).type.startsWith("event_var_")){
     if( events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type].includes(workspace.getBlockById(event.blockId).type) ){
       //OK
       workspace.getBlockById(event.blockId).setWarningText(null);
@@ -135,7 +157,6 @@ function checkIfEventVarBlockCorrectlyPlaced(event){
       workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"]);
       workspace.getBlockById(event.blockId).unplug();
     }
-
   }
 }
 workspace.addChangeListener(checkIfEventVarBlockCorrectlyPlaced);
