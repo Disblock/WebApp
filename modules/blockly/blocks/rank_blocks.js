@@ -42,8 +42,8 @@ module.exports = {
         "check": "Number"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_CREATE_TOOLTIP}",
     "helpUrl": ""
@@ -66,8 +66,8 @@ module.exports = {
         "check": "Rank"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_DELETE_TOOLTIP}",
     "helpUrl": ""
@@ -87,8 +87,8 @@ module.exports = {
         "check": "String"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_EDIT_NAME_TOOLTIP}",
     "helpUrl": ""
@@ -108,8 +108,8 @@ module.exports = {
         "colour": "#ffffff"
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_EDIT_COLOR_TOOLTIP}",
     "helpUrl": ""
@@ -138,8 +138,8 @@ module.exports = {
         ]
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_EDIT_PINGEABLE_TOOLTIP}",
     "helpUrl": ""
@@ -168,8 +168,8 @@ module.exports = {
         ]
       }
     ],
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_EDIT_MEMBERS_SHOWN_TOOLTIP}",
     "helpUrl": ""
@@ -190,8 +190,8 @@ module.exports = {
       }
     ],
     "inputsInline": true,
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 0,
     "tooltip": "%{BKY_BLOCK_RANK_EDIT_POSITION_TOOLTIP}",
     "helpUrl": ""
@@ -397,8 +397,8 @@ module.exports = {
       ]
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 0,
   "tooltip": "%{BKY_BLOCK_RANK_EDIT_PERMISSIONS_TOOLTIP}",
   "helpUrl": ""

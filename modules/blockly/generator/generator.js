@@ -52,7 +52,7 @@ module.exports = {
 
     eventReaction All of these are variables are used in events
     */
-    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,arrayStorage');
+    Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,temporaryStorage');
     Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
 
     /* ##### EVENTS blocks ##### */
@@ -603,7 +603,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true}) || \'\'';//Users can have a per guild avatar or a global avatar
+        const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true}) || \'https://cdn.discordapp.com/attachments/973567795189153802/995083353663488010/unknown.png\'';//Users can have a per guild avatar or a global avatar
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -877,10 +877,68 @@ module.exports = {
       const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!=='' && value_rank!==''){
-        const code = value_user+'.roles.resolve('+value_rank+')';//value_rank should be a string with the ID, or a role object
+        const code = value_user+'.roles.cache.has('+value_rank+'.id)';//value_rank should be a string with the ID, or a role object
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_user_is_in_voice_channel'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!==''){
+        const code = '('+value_user+'.voice.channel!=undefined)';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_user_get_voice_channel'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!==''){
+        const code = value_user+'.voice.channel';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_user_move_to_voice_channel'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_channel!==''){
+        const code = value_user+".voice.setChannel("+value_channel+");";
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_user_give_rank'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_rank!==''){
+        const code = value_user+".roles.add("+value_rank+");";
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_user_remove_rank'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_rank = Blockly.JavaScript.valueToCode(block, 'rank', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_rank!==''){
+        const code = value_user+".roles.remove("+value_rank+");";
+        return code;
+      }else{
+        return '';
       }
     };
 
@@ -983,6 +1041,17 @@ module.exports = {
 
       if(value_channel!==''){
         const code = value_channel+'.id || \'\'';
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_channel_get_user_count'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+'.members.size || 0';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         return ['', Blockly.JavaScript.ORDER_NONE];
@@ -1671,12 +1740,12 @@ module.exports = {
 
     Blockly.JavaScript['block_embed_create'] = function(block) {
       const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
-      const colour_color = block.getFieldValue('color');
+      const value_color = Blockly.JavaScript.valueToCode(block, 'color', Blockly.JavaScript.ORDER_ATOMIC);
       const statements_options = Blockly.JavaScript.statementToCode(block, 'options');
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_name!=='' && colour_color!==''){
-        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor(\''+colour_color+'\')'+statements_options.trim()+';\n';
+      if(value_name!=='' && value_color!==''){
+        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
         return '';
@@ -1686,8 +1755,8 @@ module.exports = {
     Blockly.JavaScript['block_embed_option_set_image'] = function(block) {
       const value_image_url = Blockly.JavaScript.valueToCode(block, 'image_url', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_image_url!=='' && (value_image_url.substr(1, 7)==='http://' || value_image_url.substr(1, 8)==='https://') ){//First caracter is ', so I start verification at index 1
-        const code = '.setImage('+value_image_url+')';
+      if(value_image_url!==''){
+        const code = '.setImage(('+value_image_url+'.substr(0, 7)==="http://" || '+value_image_url+'.substr(0, 8)==="https://")?'+value_image_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png")';
         return code;
       }else{
         return '';
@@ -1697,8 +1766,8 @@ module.exports = {
     Blockly.JavaScript['block_embed_option_set_thumbnail'] = function(block) {
       const value_thumbnail_url = Blockly.JavaScript.valueToCode(block, 'thumbnail_url', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_thumbnail_url!=='' && (value_thumbnail_url.substr(1, 7)==='http://' || value_thumbnail_url.substr(1, 8)==='https://') ){//First caracter is ', so I start verification at index 1
-        const code = '.setThumbnail('+value_thumbnail_url+')';
+      if(value_thumbnail_url!==''){
+        const code = '.setThumbnail(('+value_thumbnail_url+'.substr(0, 7)==="http://" || '+value_thumbnail_url+'.substr(0, 8)==="https://")?'+value_thumbnail_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png")';
         return code;
       }else{
         return '';
@@ -1725,16 +1794,7 @@ module.exports = {
 
       if(value_name!==''){
 
-        if(!(value_url!=='' && (value_url.substr(1, 7)==='http://' || value_url.substr(1, 8)==='https://'))){
-          //value_url is invalid
-          value_url = '';
-        }
-        if(!(value_icon_url!=='' && (value_icon_url.substr(1, 7)==='http://' || value_icon_url.substr(1, 8)==='https://'))){
-          //value_icon_url is invalid
-          value_icon_url = '';
-        }
-
-        const code = '.setAuthor({name:'+value_name+' '+( (value_url!=='') ? ', url: '+value_url : '')+' '+ ( (value_icon_url!=='') ? ', iconURL: '+value_icon_url : '') +'})';
+        const code = '.setAuthor({name:'+value_name+' '+( (value_url!=='') ? ', url: ('+value_url+'.substr(0, 7)==="http://" || '+value_url+'.substr(0, 8)==="https://")?'+value_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"' : '')+' '+ ( (value_icon_url!=='') ? ', iconURL: ('+value_icon_url+'.substr(0, 7)==="http://" || '+value_icon_url+'.substr(0, 8)==="https://")?'+value_icon_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"' : '') +'})';
         return code;
       }else{
         return '';
@@ -1747,12 +1807,7 @@ module.exports = {
 
       if(value_name!==''){
 
-        if(!(value_icon_url!=='' && (value_icon_url.substr(1, 7)==='http://' || value_icon_url.substr(1, 8)==='https://'))){
-          //value_icon_url is invalid
-          value_icon_url = '';
-        }
-
-        const code = '.setFooter({text: '+value_name+' '+ ( (value_icon_url!=='') ? ', iconURL: '+value_icon_url : '' ) +'})';
+        const code = '.setFooter({text: '+value_name+' '+ ( (value_icon_url!=='') ? ', iconURL: ('+value_icon_url+'.substr(0, 7)==="http://" || '+value_icon_url+'.substr(0, 8)==="https://")?'+value_icon_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"': '' ) +'})';
         return code;
       }else{
         return '';
@@ -1869,21 +1924,44 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    /* ##### LIST blocks ##### */
-
-    Blockly.JavaScript['block_list_save'] = function(block) {
-      const text_name = block.getFieldValue('NAME');
-      const value_array = Blockly.JavaScript.valueToCode(block, 'array', Blockly.JavaScript.ORDER_ATOMIC);
-
-      const code = 'arrayStorage.'+(text_name || 'defaultName')+' = '+(value_array || '[]')+';\n';
-      return code;
-    };
-
-    Blockly.JavaScript['block_list_get'] = function(block) {
-      const text_name = block.getFieldValue('NAME');
-      const code = 'arrayStorage.'+(text_name || 'defaultName');
+    /* ##### COLOR blocks ##### */
+    Blockly.JavaScript['block_color_hex'] = function(block) {
+      const text_color = block.getFieldValue('color');
+      var code = (/^#[0-9a-f]{3,6}$/i.test(text_color))?'\''+text_color+'\'':'';//A regex check if color hex is valid
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
+
+    /* ##### Temporary VARIABLES blocks ##### */
+    Blockly.JavaScript['block_var_save'] = function(block) {
+      const value_input = Blockly.JavaScript.valueToCode(block, 'INPUT', Blockly.JavaScript.ORDER_ATOMIC);
+      const text_name = block.getFieldValue('NAME');
+      //const dropdown_type = block.getFieldValue('TYPE');
+
+      if(!/^[a-zA-Z0-9]{1,16}$/.test(text_name)){
+        throw("User gave an incorrect name to temporary variables : "+text_name);
+      }
+
+      if(value_input=='' || value_input==undefined){
+        //Error
+        return 'temporaryStorage.'+text_name+' = undefined;\n';
+      }else{
+        //OK
+        return 'temporaryStorage.'+text_name+' = '+value_input+';\n';
+      }
+    };
+
+    Blockly.JavaScript['block_var_get'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+
+      if(!/^[a-zA-Z0-9]{1,16}$/.test(text_name)){
+        throw("User gave an incorrect name to temporary variables : "+text_name);
+      }
+
+      const code = 'temporaryStorage.'+text_name;
+
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
 
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled
@@ -1915,6 +1993,10 @@ module.exports = {
         Blockly.JavaScript['lists_getSublist'] = disabledFunction;
         Blockly.JavaScript['lists_split'] = disabledFunction;
         Blockly.JavaScript['lists_sort'] = disabledFunction;*/
+
+        //Colors
+        Blockly.JavaScript['colour_rgb'] = disabledFunction;
+        Blockly.JavaScript['colour_blend'] = disabledFunction;
 
     return(Blockly);
   }

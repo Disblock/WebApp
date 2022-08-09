@@ -1,0 +1,100 @@
+/* Style for logs panel */
+
+/* || Global properties */
+
+#content_div{
+  position: absolute;
+  top: 40px;
+  bottom: 0px;
+  left: 20%;
+  right: 0%;
+}
+.content_title, .content_text{
+  text-align: center;
+  font-size: 1.6em;
+  color: #EAEAEA;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.content_text{
+  font-size: 1em;
+  margin-top: 20px;
+}
+.content_logs_div{
+  margin: 20px;
+  overflow: auto;
+  max-height: 550px;
+}
+.content_logs_div_saved_entry{
+  max-height:100px;
+  min-height: 50px;
+  background-color: #EAEAEA;
+  border-bottom: solid 1px black;
+  position:relative;
+  overflow: hidden;
+}
+.content_logs_div_saved_entry > img{
+  /* Width/height = 40px in HTML */
+  border-radius: 50%;
+  position:absolute;
+  top:5px;
+  left:5px;
+}
+.content_logs_div_saved_entry_username{
+  font-size:1em;
+  margin-left:45px;
+  position: relative;
+  top: 5px;
+  display:inline;
+}
+.content_logs_div_saved_entry_action{
+  font-size:1.2em;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.content_logs_div_saved_entry_date{
+  font-size:1em;
+  position: absolute;
+  right:5px;
+  top:5px;
+  margin:0px;
+}
+.content_logs_div_saved_entry_staff{
+  margin: 0;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #ff483b;
+  border-radius: 24px;
+  padding: 10px;
+  color: white;
+  border: solid 1px black;
+}
+
+
+/* || Computer properties */
+@media (min-width: 900px) {
+
+}
+
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  .content_logs_div{
+    max-height: 350px;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  #content_div{
+    left: 0%;/* Menu is hidden, content can expand on left */
+  }
+  .content_logs_div{
+    max-height: 350px;
+  }
+  .content_logs_div_saved_entry_staff{
+    padding: 2px;
+    font-size:0.65em;
+  }
+}

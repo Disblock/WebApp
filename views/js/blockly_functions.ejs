@@ -1,0 +1,162 @@
+//Used to store what var blocks can be used in what event block
+const events_var_blocks = {
+  event_message_sent:['event_var_message'],
+  event_message_deleted:['event_var_message'],
+  event_message_updated:['event_var_message_old', 'event_var_message_new'],
+  event_user_join:['event_var_user'],
+  event_user_left:['event_var_user'],
+  event_user_updated:['event_var_old_user', 'event_var_new_user'],
+  event_text_channel_created:['event_var_text_channel'],
+  event_text_channel_deleted:['event_var_text_channel'],
+  event_text_channel_edited:['event_var_old_text_channel', 'event_var_new_text_channel'],
+  event_voice_channel_created:['event_var_voice_channel'],
+  event_voice_channel_deleted:['event_var_voice_channel'],
+  event_voice_channel_edited:['event_var_old_voice_channel', 'event_var_new_voice_channel'],
+  event_role_created:['event_var_rank'],
+  event_role_deleted:['event_var_rank'],
+  event_role_edited:['event_var_old_rank', 'event_var_new_rank'],
+  event_user_banned:['event_var_user'],
+  event_reaction_added:['event_var_message', 'event_var_reaction', 'event_var_user'],
+  event_reaction_removed:['event_var_message', 'event_var_reaction', 'event_var_user'],
+  event_user_voice_update:['event_var_old_voice_channel', 'event_var_new_voice_channel', 'event_var_user'],
+  event_user_start_writting:['event_var_user', 'event_var_text_channel']
+}
+
+/* When variable type edited, this function remove the value of this variable to avoid types errors*/
+function saveVarBlockModified(event){
+  if(event.type==Blockly.Events.BLOCK_CHANGE && workspace.getBlockById(event.blockId).type=="block_var_save"){
+    if(event.name=="TYPE" && workspace.getBlockById(event.blockId).allInputsFilled()){
+      //A block is in block input, we can remove it to make sure an incompatible type isn't used
+      workspace.getBlockById(event.blockId).getChildren(true)[0].unplug();
+      workspace.getBlockById(event.blockId).bumpNeighbours();
+    }else if(event.name=="NAME"){
+      if(/^[a-zA-Z0-9]{1,16}$/.test(event.newValue)){
+        //Valid name
+        workspace.getBlockById(event.blockId).setWarningText(null);
+      }else{
+        //Error : invalid name
+        workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);
+      }
+    }
+  }
+}
+
+/* When a value is added in save variable block, we check that this value is compatible with the variable's type.
+   We also disable utilization of variable get directly in variable set blocks*/
+function checkIfValueAndTypeVarCompatibles(event){
+  if(event.type==Blockly.Events.BLOCK_MOVE && event.newParentId){
+    if(workspace.getBlockById(event.newParentId).type!="block_var_save" || workspace.getBlockById(event.blockId).outputConnection==null)return;//We only work with blocks connected as value of a save variable block
+    if(workspace.getBlockById(event.blockId).type=="block_var_get"){workspace.getBlockById(event.blockId).unplug();return;}//Using getter directly in a setter may cause an error. Must correctly handle this before allowing it
+
+    if(workspace.getBlockById(event.blockId).outputConnection.getCheck().includes(workspace.getBlockById(event.newParentId).getFieldValue('TYPE'))){
+      //If value and var type are compatibles
+      workspace.getBlockById(event.newParentId).setWarningText(null);
+    }else{
+      //They aren't compatibles
+      workspace.getBlockById(event.newParentId).setWarningText(Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"]);
+      workspace.getBlockById(event.blockId).unplug();
+    }
+
+  }
+}
+
+workspace.addChangeListener(saveVarBlockModified);
+workspace.addChangeListener(checkIfValueAndTypeVarCompatibles);
+
+/*Function used to check if everything seems OK in workspace before sending code
+We check : - Temporary variables blocks
+
+Return {correct:true, message:'OK'} or {correct:false, message:'Error message'}*/
+function validateWorkspace(workspace){
+  //Get all top blocks
+  let topBlocks = workspace.getTopBlocks();
+  let foundError = false;//Become true when an error is found
+
+  //For each top block, we check what types and names of variables are defined, and check that every getter block is correctly placed
+  for(let i=0; i<topBlocks.length; i++){
+    let variablesTypes = {};//Will store what name contain what type of data as an object : {name:type, ...}
+    let blocks = topBlocks[i].getDescendants(true);//Every blocks in this event, sorted
+
+    if(blocks.length==1)continue;//This block is alone, that's useless to continue
+
+
+    for(let j=0; j<blocks.length; j++){
+      if(blocks[j].type=="block_var_save"){
+        //That's a setter block, we save his name and type here
+
+        if(blocks[j].allInputsFilled() && /^[a-zA-Z0-9]{1,16}$/.test(blocks[j].getFieldValue('NAME'))){
+          //OK
+          blocks[j].setWarningText(null);
+        }else{
+          if(!blocks[j].allInputsFilled()) blocks[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
+          if(!/^[a-zA-Z0-9]{1,16}$/.test(blocks[j].getFieldValue('NAME'))) blocks[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
+
+          foundError = true;
+        }
+
+        variablesTypes[blocks[j].getFieldValue('NAME')] = blocks[j].getFieldValue('TYPE');
+
+      }else if(blocks[j].type=="block_var_get"){
+
+        //Getter block, we check if it's correctly placed or not
+        let neededTypes = blocks[j].outputConnection.targetConnection.getCheck();
+        if(neededTypes==null)neededTypes=[];// Accept everything, [] == 0
+
+        if( neededTypes.includes(variablesTypes[blocks[j].getFieldValue('NAME')]) || neededTypes==0 ){
+          //OK
+          blocks[j].setWarningText(null);
+        }else{
+          //That's an error
+          blocks[j].setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
+          foundError = true;
+        }
+
+      }
+    }
+  }
+
+  //Finished to check temporary variables, if there is an error, we can stop here
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]})
+
+  //Now checking if an Event var Block was uncorrectly placed
+  let blocks = workspace.getAllBlocks(false);
+  for(let i=0; i<blocks.length; i++){
+    if(!blocks[i].getRootBlock())continue;//This block is alone
+
+    if(events_var_blocks[blocks[i].getRootBlock().type] && blocks[i].type.startsWith("event_var_")){//The top block must be an event and have registered event var blocks, the source block must be an event var block
+      if( events_var_blocks[blocks[i].getRootBlock().type].includes(blocks[i].type) ){
+        //OK
+        blocks[i].setWarningText(null);
+      }else{
+        //There is an error in workspace !
+        blocks[i].setWarningText(Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"]);
+        foundError = true;
+      }
+    }
+  }
+
+  //Finished to check event var blocks, stop here in case of error
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"]})
+
+  //End of this function, we didn't found any error
+  return({correct:true, message:'OK'});
+
+}
+
+//When an event var block is added somewhere, we check if the event is compatible with the var block
+function checkIfEventVarBlockCorrectlyPlaced(event){
+  if(event.type!=Blockly.Events.BLOCK_MOVE || !workspace.getBlockById(event.blockId) )return;//wrong event type or block undefined
+  if(!workspace.getBlockById(event.blockId).getRootBlock())return;//block alone
+
+  if(events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type] && workspace.getBlockById(event.blockId).type.startsWith("event_var_")){
+    if( events_var_blocks[workspace.getBlockById(event.blockId).getRootBlock().type].includes(workspace.getBlockById(event.blockId).type) ){
+      //OK
+      workspace.getBlockById(event.blockId).setWarningText(null);
+    }else{
+      //NOT OK, event type incompatible with this event var
+      workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"]);
+      workspace.getBlockById(event.blockId).unplug();
+    }
+  }
+}
+workspace.addChangeListener(checkIfEventVarBlockCorrectlyPlaced);

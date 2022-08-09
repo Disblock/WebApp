@@ -1,0 +1,141 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="}-w!+7(G4?,?$EVS(.2S" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_var_save</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="qJA`W0A,hbz?9EvKf8,g">
+        <field name="INPUTNAME">INPUT</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="WFOnO+-3Gt88M_(YkJyS">
+            <field name="TEXT">Save</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="-1MPI]b]kB)c9DF7dV[W"></shadow>
+        </value>
+        <next>
+          <block type="input_dummy" id="Sa{iBg#2Zn0tX:(o+3Sb">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="f^H;_5w-oXzacyd61crT">
+                <field name="TEXT">in a temporary variable named </field>
+                <next>
+                  <block type="field_input" id="YY[HKh!d_v]npM90qyN(">
+                    <field name="TEXT">MyVariable</field>
+                    <field name="FIELDNAME">NAME</field>
+                    <next>
+                      <block type="field_static" id="U[?WQbz0#:8XVbs[z1pi">
+                        <field name="TEXT">of type</field>
+                        <next>
+                          <block type="field_dropdown" id="r2r{7z_z;#.-K(e9o?7q">
+                            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                            <field name="FIELDNAME">TYPE</field>
+                            <field name="USER0">String</field>
+                            <field name="CPU0">String</field>
+                            <field name="USER1">Number</field>
+                            <field name="CPU1">Number</field>
+                            <field name="USER2">Boolean</field>
+                            <field name="CPU2">Boolean</field>
+                            <field name="USER3">List</field>
+                            <field name="CPU3">Array</field>
+                            <field name="USER4">Colour</field>
+                            <field name="CPU4">Colour</field>
+                            <field name="USER5">Message</field>
+                            <field name="CPU5">Message</field>
+                            <field name="USER6">Text channel</field>
+                            <field name="CPU6">Channel</field>
+                            <field name="USER7">Voice channel</field>
+                            <field name="CPU7">VoiceChannel</field>
+                            <field name="USER8">Thread</field>
+                            <field name="CPU8">ThreadChannel</field>
+                            <field name="USER9">Category</field>
+                            <field name="CPU9">Category</field>
+                            <field name="USER10">User</field>
+                            <field name="CPU10">User</field>
+                            <field name="USER11">Role</field>
+                            <field name="CPU11">Rank</field>
+                            <field name="USER12">Embed Message</field>
+                            <field name="CPU12">Embed</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="}x}u:7_2kNto[w$!qb~h" deletable="false" movable="false">
+        <field name="TEXT">You can use this block to store something and use it later. You must declare the variable and use it in the same event, they aren't kept after the code execution..</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="6bDJp)^E~^CG}bRJa+oU" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id=")R~jQzhDUM8(1fqG5YVP"></shadow>
+      <block type="type_other" id="4|Rtm3IhXMOfXA4P@}3S">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="O{dy/J5#0NjZ[*E:4DYi"></shadow>
+      <block type="type_other" id="FX6Hw5VRR*#w~sH)o0]y">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="ruKyTx@#MZJ%dx|,xO97">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="}-w!+7(G4?,?$EVS(.2S" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_var_get</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="Sa{iBg#2Zn0tX:(o+3Sb">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="WFOnO+-3Gt88M_(YkJyS">
+            <field name="TEXT">Get the content of the variable named</field>
+            <next>
+              <block type="field_input" id="YY[HKh!d_v]npM90qyN(">
+                <field name="TEXT">MyVariable</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="}x}u:7_2kNto[w$!qb~h" deletable="false" movable="false">
+        <field name="TEXT">You can use this block to get the content of a variable that was saved during the same event. Make sure the content is of the right type when using this somewhere !</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="6bDJp)^E~^CG}bRJa+oU" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="tCSJ~?duw6G1_9uBtErF"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="ruKyTx@#MZJ%dx|,xO97">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block></xml>

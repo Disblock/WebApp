@@ -255,9 +255,6 @@
     </block>-->
   </category>
   <category name="Lists" colour="#745ba5">
-    <label text="%{BKY_WORKSPACE_LISTS_SAVE_GET}"></label>
-      <block type="block_list_save"></block>
-      <block type="block_list_get"></block>
     <label text="%{BKY_WORKSPACE_LISTS_USE}"></label>
       <block type="lists_create_with">
         <mutation items="0"></mutation>
@@ -276,37 +273,21 @@
       <block type="lists_isEmpty"></block>
       <block type="lists_indexOf">
         <field name="END">FIRST</field>
-        <value name="VALUE">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_getIndex">
         <mutation statement="false" at="true"></mutation>
         <field name="MODE">GET</field>
         <field name="WHERE">FROM_START</field>
-        <value name="VALUE">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_setIndex">
         <mutation at="true"></mutation>
         <field name="MODE">SET</field>
         <field name="WHERE">FROM_START</field>
-        <value name="LIST">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_getSublist">
         <mutation at1="true" at2="true"></mutation>
         <field name="WHERE1">FROM_START</field>
         <field name="WHERE2">FROM_START</field>
-        <value name="LIST">
-          <block type="block_list_get">
-          </block>
-        </value>
       </block>
       <block type="lists_split">
         <mutation mode="SPLIT"></mutation>
@@ -327,7 +308,8 @@
       <field name="COLOUR">#ff0000</field>
     </block>
     <block type="colour_random"></block>
-    <block type="colour_rgb">
+    <block type="block_color_hex"></block>
+    <!--<block type="colour_rgb">
       <value name="RED">
         <shadow type="math_number">
           <field name="NUM">100</field>
@@ -360,7 +342,11 @@
           <field name="NUM">0.5</field>
         </shadow>
       </value>
-    </block>
+    </block>-->
+  </category>
+  <category name="%{BKY_WORKSPACE_TAB_VARIABLES}" colour="225">
+    <block type="block_var_save"></block>
+    <block type="block_var_get"></block>
   </category>
   <sep></sep>
   <category name="%{BKY_WORKSPACE_TAB_EVENTS}" colour="30">
@@ -442,8 +428,20 @@
   <sep></sep>
   <category name="%{BKY_WORKSPACE_TAB_MESSAGES}" colour="180">
     <label text="%{BKY_WORKSPACE_MESSAGES_SEND}"></label>
-      <block type="block_message_reply"></block>
-      <block type="block_message_send"></block>
+      <block type="block_message_reply">
+        <value name="text">
+          <shadow type="text">
+            <field name="TEXT">Type something here or replace me with others blocks</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="block_message_send">
+        <value name="text">
+          <shadow type="text">
+            <field name="TEXT">Type something here or replace me with others blocks</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_message_var_sent_message"></block>
 
     <label text="%{BKY_WORKSPACE_MESSAGES_DELETE}"></label>
@@ -451,7 +449,13 @@
       <block type="block_message_delete_bulk"></block>
 
     <label text="%{BKY_WORKSPACE_MESSAGES_CREATE_THREAD}"></label>
-      <block type="block_message_start_thread"></block>
+      <block type="block_message_start_thread">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">New Thread</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_message_var_created_thread"></block>
 
     <label text="%{BKY_WORKSPACE_MESSAGES_PINE}"></label>
@@ -476,31 +480,105 @@
   </category>
   <category name="%{BKY_WORKSPACE_TAB_EMBEDS}" colour="345">
     <label text="%{BKY_WORKSPACE_EMBEDS_CREATE_SEND}"></label>
-      <block type="block_embed_create"></block>
+      <block type="block_embed_create">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">Hi !</field>
+          </shadow>
+        </value>
+        <value name="description">
+          <shadow type="text">
+            <field name="TEXT">This is an Embed message !</field>
+          </shadow>
+        </value>
+        <value name="color">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_embed_var_embed"></block>
-      <block type="block_embed_send"></block>
+      <block type="block_embed_send">
+        <value name="embed">
+          <shadow type="block_embed_var_embed">
+          </shadow>
+        </value>
+      </block>
 
     <label text="%{BKY_WORKSPACE_EMBEDS_EDIT}"></label>
-      <block type="block_embed_option_set_image"></block>
-      <block type="block_embed_option_set_thumbnail"></block>
-      <block type="block_embed_option_add_field"></block>
-      <block type="block_embed_option_set_author"></block>
-      <block type="block_embed_option_set_footer"></block>
+      <block type="block_embed_option_set_image">
+        <value name="image_url">
+          <shadow type="text">
+            <field name="TEXT">https://a-link-to-your-image.com/</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="block_embed_option_set_thumbnail">
+        <value name="thumbnail_url">
+          <shadow type="text">
+            <field name="TEXT">https://a-link-to-your-image.com/</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="block_embed_option_add_field">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">Add a title here !</field>
+          </shadow>
+        </value>
+        <value name="text">
+          <shadow type="text">
+            <field name="TEXT">And type your text here</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="block_embed_option_set_author">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">Who created this embed ?</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="block_embed_option_set_footer">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">Add a text to the footer</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_embed_option_set_timestamp"></block>
 
   </category>
   <category name="%{BKY_WORKSPACE_TAB_CHANNELS}" colour="75">
     <label text="%{BKY_WORKSPACE_CHANNELS_CREATE}"></label>
-      <block type="block_channel_create_text_channel"></block>
+      <block type="block_channel_create_text_channel">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">New channel</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_channel_var_text_channel"></block>
-      <block type="block_channel_create_voice_channel"></block>
+      <block type="block_channel_create_voice_channel">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">New channel</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_channel_var_voice_channel"></block>
 
     <label text="%{BKY_WORKSPACE_CHANNELS_DELETE}"></label>
       <block type="block_channel_delete"></block>
 
     <label text="%{BKY_WORKSPACE_CHANNELS_EDIT}"></label>
-      <block type="block_channel_renamme"></block>
+      <block type="block_channel_renamme">
+        <value name="text">
+          <shadow type="text">
+            <field name="TEXT">New name</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_channel_set_permission"></block>
 
     <label text="%{BKY_WORKSPACE_CHANNELS_GET_CHANNEL}"></label>
@@ -510,6 +588,7 @@
       <block type="block_channel_get_channel_name"></block>
       <block type="block_channel_get_channel_topic"></block>
       <block type="block_channel_get_channel_id"></block>
+      <block type="block_channel_get_user_count"></block>
       <block type="block_channel_get_category_of_channel"></block>
       <block type="block_channel_get_permission"></block>
 
@@ -519,9 +598,17 @@
 
   <category name="%{BKY_WORKSPACE_TAB_USERS}" colour="300">
     <label text="%{BKY_WORKSPACE_USERS_SEND_MESSAGE}"></label>
-      <block type="block_user_send_private_message"></block>
+      <block type="block_user_send_private_message">
+        <value name="message">
+          <shadow type="text">
+            <field name="TEXT">Hi :wave:</field>
+          </shadow>
+        </value>
+      </block>
 
     <label text="%{BKY_WORKSPACE_USERS_MODERATE}"></label>
+      <block type="block_user_give_rank"></block>
+      <block type="block_user_remove_rank"></block>
       <block type="block_user_kick"></block>
       <block type="block_user_ban"></block>
       <block type="block_user_unban"></block>
@@ -532,6 +619,7 @@
       <block type="block_user_unmute"></block>
       <block type="block_user_deaf"></block>
       <block type="block_user_undeaf"></block>
+      <block type="block_user_move_to_voice_channel"></block>
 
     <label text="%{BKY_WORKSPACE_USERS_CHECK_PERMISSIONS}"></label>
       <block type="block_user_has_permission"></block>
@@ -546,6 +634,8 @@
       <block type="block_user_get_picture"></block>
       <block type="block_user_is_bot"></block>
       <block type="block_user_is_timeout"></block>
+      <block type="block_user_is_in_voice_channel"></block>
+      <block type="block_user_get_voice_channel"></block>
   </category>
 
   <category name="%{BKY_WORKSPACE_TAB_GUILD}" colour="270">
@@ -567,6 +657,11 @@
             <field name="NUM">1</field>
           </shadow>
         </value>
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">New role</field>
+          </shadow>
+        </value>
       </block>
       <block type="block_rank_var_created_rank"></block>
 
@@ -582,11 +677,23 @@
       <block type="block_rank_has_permission"></block>
 
     <label text="%{BKY_WORKSPACE_RANKS_EDIT}"></label>
-      <block type="block_rank_edit_name"></block>
+      <block type="block_rank_edit_name">
+        <value name="name">
+          <shadow type="text">
+            <field name="TEXT">new name</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_rank_edit_color"></block>
       <block type="block_rank_edit_pingeable"></block>
       <block type="block_rank_edit_members_shown"></block>
-      <block type="block_rank_edit_position"></block>
+      <block type="block_rank_edit_position">
+        <value name="position">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
       <block type="block_rank_edit_permissions"></block>
   </category>
 

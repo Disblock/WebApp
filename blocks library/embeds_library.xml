@@ -30,34 +30,40 @@
               <block type="type_string" id=",_Vwqki*yU10#=1fh*YT"></block>
             </value>
             <next>
-              <block type="input_dummy" id="@cw)=8`1[$rghC(ZOs{i">
+              <block type="input_value" id="T[qm)kKr=3!kzLTi%7BV">
+                <field name="INPUTNAME">color</field>
                 <field name="ALIGN">LEFT</field>
                 <statement name="FIELDS">
                   <block type="field_static" id="v?PeD%wBZjHWzfNVA}Z-">
-                    <field name="TEXT">Et avec la couleur</field>
-                    <next>
-                      <block type="field_colour" id="*.7Ci0]:49aYdZ`Xd@p@">
-                        <field name="COLOUR">#ff0000</field>
-                        <field name="FIELDNAME">color</field>
-                        <next>
-                          <block type="field_static" id="sYnAtsr%1mJPo3!#5wbA">
-                            <field name="TEXT">et les options :</field>
-                          </block>
-                        </next>
-                      </block>
-                    </next>
+                    <field name="TEXT">Avec la couleur :</field>
                   </block>
                 </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="L7+Kd|I!qy1S`|2c#D+O"></shadow>
+                  <block type="type_other" id="SO=nwhSO[4G,#=qpm;%=">
+                    <field name="TYPE">Colour</field>
+                  </block>
+                </value>
                 <next>
-                  <block type="input_statement" id="S9VKXJO;%V[(Z(%eQv]k">
-                    <field name="INPUTNAME">options</field>
+                  <block type="input_dummy" id="l`24E8i{+5KdBDG:Q/uD">
                     <field name="ALIGN">LEFT</field>
-                    <value name="TYPE">
-                      <shadow type="type_null" id="Tw_9[3BK3H_,U`BAuCB)"></shadow>
-                      <block type="type_other" id="wDrPY,#L+dM@S%yk_l}3">
-                        <field name="TYPE">EmbedOptions</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="sYnAtsr%1mJPo3!#5wbA">
+                        <field name="TEXT">et les options :</field>
                       </block>
-                    </value>
+                    </statement>
+                    <next>
+                      <block type="input_statement" id="S9VKXJO;%V[(Z(%eQv]k">
+                        <field name="INPUTNAME">options</field>
+                        <field name="ALIGN">LEFT</field>
+                        <value name="TYPE">
+                          <shadow type="type_null" id="Tw_9[3BK3H_,U`BAuCB)"></shadow>
+                          <block type="type_other" id="wDrPY,#L+dM@S%yk_l}3">
+                            <field name="TYPE">EmbedOptions</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
                   </block>
                 </next>
               </block>

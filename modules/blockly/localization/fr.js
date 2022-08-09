@@ -428,6 +428,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_GUILD"] = "Serveur";
   Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Rôles";
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
+  Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -474,7 +475,6 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_CREATE_SEND"] = "Créer et envoyer un Embed";
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Personnaliser un Embed";
 
-  Blockly.Msg["WORKSPACE_LISTS_SAVE_GET"] = "Enregistrer ou obtenir une liste";
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Travailler sur les listes";
 
   //Event blocks
@@ -646,6 +646,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] = "Permet de définir une permission pour un membre ou un rôle, dans un salon textuel ou vocal.";
   Blockly.Msg["BLOCK_CHANNEL_LIST"] = "Liste de tous les salons du serveur";
   Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Permet de récupérer la liste de tous les salons du serveur";
+  Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT"] = "Nombre d'utilisateurs dans le salon vocal %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Permet de récupérer le nombre d'utilisateurs connectés à un salon vocal";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
@@ -733,6 +735,16 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir si un membre possède la permission associée. Retourne Vrai si oui, Faux si non";
   Blockly.Msg["BLOCK_USER_HAS_RANK"] = "L'utilisateur %1 possède t-il le rôle %2 ?";
   Blockly.Msg["BLOCK_USER_HAS_RANK_TOOLTIP"] = "Permet de savoir si un utilisateur possède le rôle indiqué. Retourne Vrai si oui, Faux si non";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL"] = "L'utilisateur %1 est t-il dans un salon vocal ?";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL_TOOLTIP"] = "Permet de savoir si un utilisateur est connecté à un salon vocal";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL"] = "Salon vocal de l'utilisateur %1";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL_TOOLTIP"] = "Permet de récupérer le salon vocal où un utilisateur est connecté. Retourne Nul si l'utilisateur n'est pas connecté en vocal";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL"] = "Déplacer l'utilisateur %1 dans le salon vocal %2";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP"] = "Permet de déplacer un membre dans un salon vocal. Le membre doit être connecté en vocal, cela peut être vérifié avec une condition et le bloc \"L'utilisateur est-il dans un salon vocal ?\"";
+  Blockly.Msg["BLOCK_USER_GIVE_RANK"] = "Donner à l'utilisateur %1 le grade %2";
+  Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Permet de donner un grade à un utilisateur";
+  Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Retirer à l'utilisateur %1 le grade %2";
+  Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Permet de retirer un grade à un utilisateur";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Identifiant du serveur";
@@ -780,7 +792,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir un rôle dispose d'une permission. Retourne Vrai si oui, Faux si non ou indéfinit";
 
   //Embeds blocks
-  Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la description : %2 Et avec la couleur %3 et les options : %4 %5";
+  Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la description : %2 Avec la couleur : %3 et les options : %4 %5";
   Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] = "Permet de créer un message Embed, avec un titre et une couleur. Utilisez les blocs de description d'embed pour le modifier.";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE"] = "Définir l'URL de l'image de l'embed : %1";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'image sous forme de chaîne de charactères";
@@ -799,11 +811,39 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Message Embed";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Représente le message Embed créé";
 
-  //Lists blocks
-  Blockly.Msg["BLOCK_LIST_SAVE"] = "Enregistrer dans la variable %1 la liste %2";
-  Blockly.Msg["BLOCK_LIST_SAVE_TOOLTIP"] = "Permet d'enregistrer une liste pour l'utiliser plus tard dans l'évènement. La liste n'est pas conservée à la fin de l'évènement";
-  Blockly.Msg["BLOCK_LIST_GET"] = "Obtenir la liste enregistrée dans la variable %1";
-  Blockly.Msg["BLOCK_LIST_GET_TOOLTIP"] = "Permet d'obtenir la liste enregistrée avec le même nom dans l'évènement";
+  //Color blocks
+  Blockly.Msg["BLOCK_COLOR_HEX"] = "Couleur depuis le code hexadécimal %1";
+  Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Permet d'obtenir une couleur à partir de son code héxadécimal";
+
+  //Temporary variables blocks
+  Blockly.Msg["BLOCK_VAR_SAVE"] = "Sauvegarder la valeur %1 dans une variable temporaire nommée %2 de type %3";
+  Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour conserver quelque chose et l'utiliser plus tard. Vous devez déclarer et utiliser la variable dans le même évènement, car elle n'est pas conservée après l'éxécution du code";
+  Blockly.Msg["BLOCK_VAR_GET"] = "Obtenir le contenu de la variable nommée %1";
+  Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour obtenir le contenu d'une variable sauvegardée dans le même évènement. Soyez sûr que le contenu est du bon type quand vous l'utilisez quelque part !";
+
+  //Workspace warnings
+  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
+  Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "Pour utiliser cette variable, vous devez lui donner une valeur !";
+  Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"] = "Le type de la valeur n'est pas compatible avec le type de la variable. Essayez d'utiliser une autre valeur, ou de changer le type de la variable.";
+  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] = "Des blocs de variable temporaires sont mals placés ! Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
+  Blockly.Msg["WARNING_INVALID_NAME"] = "Vous devez uniquement utiliser des lettres (a-z A-Z) et des chiffres (1-9) tout en ne dépassant pas 16 charactères en nommant cela !";
+  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] = "Ce bloc n'est pas placé dans un évènement compatible ! Essayez d'utiliser un autre bloc de variable d'évènement compatible";
+  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "un bloc de variable d'évènement est incorrectement placé. Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
+
+  //Types names
+  Blockly.Msg["STRING"] = "Chaîne de caractères";
+  Blockly.Msg["NUMBER"] = "Nombre";
+  Blockly.Msg["BOOLEAN"] = "Booléen";
+  Blockly.Msg["ARRAY"] = "Liste";
+  Blockly.Msg["COLOUR"] = "Couleur";
+  Blockly.Msg["MESSAGE"] = "Message";
+  Blockly.Msg["TEXT_CHANNEL"] = "Salon textuel";
+  Blockly.Msg["VOICE_CHANNEL"] = "Salon vocal";
+  Blockly.Msg["THREAD_CHANNEL"] = "Salon fil";
+  Blockly.Msg["CATEGORY"] = "Catégorie";
+  Blockly.Msg["USER"] = "Utilisateur";
+  Blockly.Msg["ROLE"] = "Rôle";
+  Blockly.Msg["EMBED_MESSAGE"] = "Message Embed";
 
   //Others
   Blockly.Msg["YES"] = "Oui";

@@ -50,6 +50,8 @@ services:
       HTTPS: ${HTTPS}
       LOGIN_URL: ${LOGIN_URL}
       REDIRECT_URL: ${REDIRECT_URL}
+      clientId: ${CLIENT_ID}
+      clientSecret: ${CLIENT_SECRET}
     volumes:
       - disblock_logs:/node/logs
       - ./certs/:/node/certs/:ro
@@ -74,6 +76,7 @@ services:
       LOGS_MAX_FILES: ${LOGS_MAX_FILES}
       DEBUG: ${DEBUG}
       NODE_ENV: ${NODE_ENV}
+      BOT_LOG_ERRORS: ${BOT_LOG_ERRORS}
 
 
 volumes:

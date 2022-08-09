@@ -17,9 +17,9 @@ module.exports = {
       "check": "String"
     },
     {
-      "type": "field_colour",
+      "type": "input_value",
       "name": "color",
-      "colour": "#ff0000"
+      "check": "Colour"
     },
     {
       "type": "input_dummy"
@@ -31,8 +31,8 @@ module.exports = {
     }
   ],
   "inputsInline": false,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 345,
   "tooltip": "%{BKY_BLOCK_EMBED_CREATE_TOOLTIP}",
   "helpUrl": ""
@@ -174,8 +174,8 @@ module.exports = {
       }
     ],
     "inputsInline": false,
-    "previousStatement": null,
-    "nextStatement": null,
+    "previousStatement": "block",
+    "nextStatement": "block",
     "colour": 345,
     "tooltip": "%{BKY_BLOCK_EMBED_SEND_TOOLTIP}",
     "helpUrl": ""

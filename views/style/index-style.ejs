@@ -7,230 +7,252 @@
   font-size: 2em;
 }
 
-/* ##### first_area_div ##### */
+/* ##### header_div ##### */
 
-/* || Global properties */
-#first_area_div{
+.header_div{
   width: 100%;
-  background: url('../img/main.png') no-repeat;
-  background-size: 100%;
+  height: 100px;
+  background-color: #10475E;
   position: relative;
-  border: 4px red;
 }
-
+.header_div > h1{
+  font-family: Orbitron, Arial;
+  margin:0;
+  text-align: center;
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
+  font-size: 3em;
+  color: #2E86AB;
+}
+.header_div > h1 > span{
+  color:white;
+  position: relative;
+  top:5px;
+  font-family: Orbitron, Arial;
+}
+#header_div_panel_button{
+  position:absolute;
+  top:50%;
+  right:30px;
+  transform: translateY(-50%);
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  background-color: #2E86AB;
+  border: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  opacity: 75%;
+}
+#header_div_panel_button:hover{
+  opacity: 100%;
+}
+#header_div_logo{
+  position: absolute;
+  top:50%;
+  left:30px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color: white;
+  width: 60px;
+  height: 60px;
+}
 #first_area_menu_slider_button{
   display: none;
 }
 
-#first_area_nav{
-  z-index: 2;
-  margin: 0px;
+/* || Tablets properties */
+@media (max-width: 899px) and (min-width: 650px) {
+  .header_div > h1{
+    font-size: 2.5em;
+  }
+}
+
+/* || Phones properties */
+@media (max-width: 649px){
+  .header_div > h1{
+    font-size: 2em;
+  }
+
+  #header_div_panel_button, #header_div_logo{
+    display: none;
+  }
+
+  #first_area_menu_slider_button{
+    display: block;
+    width: fit-content;
+    padding-left: 15px;
+    background-color: #2E86AB;
+    padding-top: 5px;
+    padding-right: 5px;
+    border-radius: 0px 8px 8px 0px;
+    position: fixed;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+}
+
+/* ##### first_area_div ##### */
+
+/* || Global properties */
+
+#header_div_a_button{
+  text-decoration: none;
+  height: 0px;
+  display: block;
+}
+
+#first_area_div{
+  width: 100%;
+  height: calc(100vh - 250px);
+  position: relative;
+  /*background: linear-gradient(#2E86AB, #131415);*/
+  background: radial-gradient(at 0% 0%, #2E86AB, #131415 70%);
 }
 
 #first_area_nav ul{
-  position: absolute;
-  top: 20px;
-  margin-top: 0px;
+  margin: 0px;
+  padding-top: 15px;
 }
-
 #first_area_nav ul li{
   list-style-type: none;
   display: inline-block;
   margin-left: 30px;
 }
-
-#first_area_div_panel_button, #first_area_div_text button{
-  border-radius: 16px;
-  border: solid 1px black;
-  position: absolute;
-  right: 50px;
-  top: 20px;
-  background-color: #2E86AB;
+#first_area_nav ul li a{
   color:white;
-  cursor: pointer;
-  animation-duration: 0.5s;
-  animation-name: button_not_hover;
+  text-decoration: none;
+  font-size:1.5em;
+}
+#first_area_nav ul li a:hover{
+  border-bottom: solid 3px white;
 }
 
-#first_area_div_panel_button:hover, #first_area_div_text button:hover{
-  animation-duration: 0.5s;
-  animation-name: button_hover;
-  background-color: #3EA1CC;
-}
-
-#first_area_div_text{
+.first_area_div_text{
   position: absolute;
-  left: 5%;
-  text-align: center;
+  top: 20%;
+  right: 10%;
+  max-width: 30%;
 }
 
-#first_area_div_text h1{
-  line-height: 100%;
+.first_area_div_text > p{
+  font-family: Roboto, Arial;
+  color: white;
   font-size: 2em;
+  text-align: center;
+  margin:0;
 }
 
-#first_area_div_text p{
-  line-height: 100%;
-}
-
-#first_area_div_text button{
-  top:0px;left:0px;
-  position: static;
-}
-
-/*#first_area_div_wave{
+.first_area_div_button{
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  background-color: #10475E;
+  opacity: 75%;
   position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  top:95%;
-  border: dotted 6px green;
+  bottom: 20%;
+  left: 10%;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.first_area_div_button:hover{
+  opacity:100%;
+}
+.first_area_div_button > div > p{
+  color: rgba(46,134,171,0.75);
+  font-size: 30px;
+  font-family: 'Montserrat Alternates', Arial;
+  margin:0;
+  display:inline;
+  margin-right: 10px;
+}
+.first_area_div_button > div > img{
+  opacity: 0.75;
+  position: relative;
+  top: 5px;
+}
+
+.first_area_gradient_start{
+  height: 150px;
+  width: 100%;
+  background-color: #131415;
 }
 
 /* || Computer properties */
 @media (min-width: 900px) {
-  #first_area_div{
-    height: 90vh;
-  }
 
-  #first_area_nav ul li{
-    font-size: 1.5em;
-  }
-
-  #first_area_nav{
-    margin-left: 10%;
-  }
-
-  #first_area_div_panel_button, #first_area_div_text button{
-    padding: 6px 40px;
-    font-size: 1.5em;
-  }
-
-  #first_area_div_text{
-    top: 25%;
-    max-width: 25%;
-  }
-
-  #first_area_div_text p{
-    font-size: 1.5em;
-  }
 }
 
 /* || Tablets properties */
 @media (max-width: 899px) and (min-width: 650px) {
   #first_area_div{
-    height: 50vh;
+    min-height: calc(100vh - 100px);/* Avoid button behind line_div on horizontals phones*/
+    position: static;
   }
-
-  #first_area_nav ul li{
-    font-size: 1.2em;
+  .first_area_div_text{
+    position: static;
+    max-width: 60%;
+    margin-left:35%;
+    margin-right: 5px;
+    margin-top: 50px;
+    float:right;
   }
-
-  #first_area_nav{
-    margin-left: -5%;
-  }
-
-  #first_area_div_panel_button, #first_area_div_text button{
-    padding: 6px 20px;
-    font-size: 1em;
-  }
-
-  #first_area_div_panel_button{
-    margin-right: -30px;
-  }
-
-  #first_area_div_text{
-    top: 15%;
-    max-width: 35%;
-  }
-
-  #first_area_div_text p{
-    font-size: 1.5em;
+  .first_area_div_button{
+    width: fit-content;
+    position: relative;
+    top: 60px;
   }
 }
 
 /* || Phones properties */
 @media (max-width: 649px){
   #first_area_div{
-    height: 80vh;
+    height: auto;
+    min-height: calc(100vh - 250px);
     position: static;
-    background: url('../img/phone_main.png') no-repeat;
-    background-size: cover;
   }
 
-  #first_area_nav ul li{
-    font-size: 1em;
-    color: white;
-    margin: 0px;
-    margin-top: 20px;
-    margin-left: 5px;
-    display: block;
+  .first_area_div_text{
+    position: static;
+    width: 80%;
+    margin: auto;
+    max-width: none;
+    margin-top: 0px;
+    padding-top:40px;
   }
 
-  #first_area_nav ul{
-    padding: 0px;
+  .first_area_div_button{
     position: static;
-    margin-top: 80px;
-    margin-bottom: 15px;
+    margin:auto;
+    margin-top: 40px;
+    width: fit-content;
   }
 
   #first_area_nav{
-    background-color: #1C232A;
-    position: fixed;
-    top: 0px;
-    min-width: 0%;/* Defined to 40% when menu is shown ( in JS ) */
-    width: 0%;/* Defined to auto when menu is shown */
-    bottom: 0%;
-    left: 0px;
-    border-right: solid 5px #2E86AB;
     display: none;
+    position: fixed;
+    z-index: 2;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    background-color: rgba(28,35,42,0.75);
+    border-right: solid 4px #2E86AB;
   }
-
-  #first_area_div_panel_button, #first_area_div_text button{
-    padding: 6px 15px;
-    font-size: 1em;
+  #first_area_nav ul{
+    padding-right: 15px;
   }
-
-  #first_area_div_panel_button{
-    margin-right: -30px;
-  }
-
-  #first_area_div_text{
-    top: 50vh;
-    width: 50%;
-    left: 25%;
-  }
-
-  #first_area_div_text p{
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-
-  #first_area_menu_slider_button{
+  #first_area_nav ul li{
+    margin-top: 5px;
     display: block;
-    height: 30px;
-    position: absolute;
-    top: 20px;
-    left: 5px;
-    z-index: 5;
   }
-
-  #first_area_menu_slider_button::after{
-    content: "Disblock";
-    display: inline;
-    font-size: 1.5em;
-    font-weight: bold;
-    vertical-align: top;
-    margin-left: 20px;
-  }
-
-  #first_area_menu_slider_button img{
-    height: 100%;
-  }
-
-   #first_area_div_text h1{
-     display: none;
-   }
 
 }
 
@@ -457,17 +479,16 @@
   border-radius: 16px;
 }
 
-.docs_div_content_discord_widget_text_div{
+.docs_div_content_discord_img_text_div{
   width: 100%;
 }
-.docs_div_content_discord_widget_div{
+.docs_div_content_discord_img_div{
   width: 350px;/* That's the width defined on the iframe of the Discord's widget*/
   margin: auto;
 }
 
-#discord_widget{
-  width: 350px;
-  height: 500px;
+#discord_img{
+  cursor: pointer;
 }
 
 /* || Computer properties */
@@ -483,14 +504,14 @@
     width: 100%;
   }
 
-  #docs_div_content_discord_widget{
+  #docs_div_content_discord_img{
     position: absolute;
     top:60px;
     bottom: 0px;
     right: 0px;
     left:50%;
   }
-  .docs_div_content_discord_widget_div{
+  .docs_div_content_discord_img_div{
     margin-top: 5em;
   }
 }
@@ -511,13 +532,13 @@
     margin-left: 10%;
   }
 
-  #docs_div_content_discord_widget{
+  #docs_div_content_discord_img{
     width: 100%;
   }
-  .docs_div_content_discord_widget_text_div{
+  .docs_div_content_discord_img_text_div{
     margin-top: 60px;
   }
-  .docs_div_content_discord_widget_div{
+  .docs_div_content_discord_img_div{
     margin-top: 20px;
   }
 }
@@ -538,13 +559,13 @@
     margin-left: 5%;
   }
 
-  #docs_div_content_discord_widget{
+  #docs_div_content_discord_img{
     width: 100%;
   }
-  .docs_div_content_discord_widget_text_div{
+  .docs_div_content_discord_img_text_div{
     margin-top: 60px;
   }
-  .docs_div_content_discord_widget_div{
+  .docs_div_content_discord_img_div{
     margin-top: 20px;
   }
 
@@ -747,22 +768,3 @@
 
 
 /*  ##### Keyframes ##### */
-@keyframes button_hover {
-  from {
-    background-color: #2E86AB;
-  }
-
-  to {
-    background-color: #3EA1CC;
-  }
-}
-
-@keyframes button_not_hover {
-  from {
-    background-color: #3EA1CC;
-  }
-
-  to {
-    background-color: #2E86AB;
-  }
-}

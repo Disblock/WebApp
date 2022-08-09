@@ -11,7 +11,35 @@
   <body>
 
     <!-- Div only used to add opacity on all screen -->
-    <div class="black_opacity">
+    <div class="black_opacity" id="black_opacity_full_screen">
+    </div>
+
+    <!-- Div only used to add opacity when menu is shown ( phones ) -->
+    <div class="black_opacity" style="z-index:1;" id="black_opacity_menu">
+    </div>
+
+    <!-- Div used to contain the message window -->
+    <div class="message_window_div" style="display:none;">
+      <h2 class="message_window_div_title">Title</h2>
+      <div class="message_window_div_animation_div">
+
+        <!-- Imported code, license available in stylesheet -->
+        <link rel="stylesheet" type="text/css" href="/style/check-cross-animation">
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" height="100%" width="100%" style="display:none;" class="check_svg">
+          <circle class="path" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+          <polyline class="path" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+        </svg>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" height="100%" width="100%" style="display:none;" class="cross_svg">
+          <circle class="path" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+          <line class="path" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+          <line class="path" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+        </svg>
+        <!-- End of imported code -->
+
+      </div>
+      <p class="message_window_div_text"></p>
+      <button class="message_window_div_button" onclick="hideWindow();">Confirmer</button>
     </div>
 
     <!-- The div on top -->
@@ -107,121 +135,91 @@
     </div>
 
     <!-- ##### Include Here index-panel or guild-panel #####-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <%
-        if(guild==undefined){
+        /*
+        page arg :
+        0 = index-panel
+        1 = guild-panel
+        2 = rollback-panel
+        3 = logs-panel
+        */
+        if(page==0){//Guild undefined
           //On /panel
-          %><%- include('ejs/index-panel.ejs'); %><%
-        }else{
+          %><%- include('ejs/index-panel.ejs', {locale:locale}); %><%
+        }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
-          %><%- include('ejs/guild-panel.ejs'); %>
-            <style>
-              #content_div_top_div_guild_div::after{
-                content: "<%- guild.name %>";
-              }
-            </style>
-            <%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
+          %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
+          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
+
           <%
+        }else if(page==2){//Guild defined, blocks undefined
+          //On /panel/:id/rollback
+          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild, savedWorkspaces:savedWorkspaces}); %><%
+        }else if(page==3){//Guild defined, blocks undefined
+          //On /panel/:id/logs
+          %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs}); %><%
         }
       %>
 
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
-    let error = url.get("error") || '0';
+    //Function used to show the error/success window
+    function showWindow(isSuccess, title, text){
+      $("#black_opacity_full_screen").css('display', 'block');
 
-    //console.log(error);
-    //console.log(url.get("error"));
+      if(isSuccess){//Show green check
+        $('.check_svg').css('display', 'block');
+        $('.check_svg > circle').addClass('circle');
+        $('.check_svg > polyline').addClass('check');
+      }else{//Show red cross
+        $('.cross_svg').css('display', 'block');
+        $('.cross_svg > circle').addClass('circle');
+        $('.cross_svg > line').addClass('line');
+      }
+
+      $('.message_window_div_title').text(title);
+      $('.message_window_div_text').text(text);
+
+      $('.message_window_div').fadeIn(400);
+
+    }
+
+    //Function used to hide the error/success window
+    function hideWindow(){
+      //Fade out the window
+      $('.message_window_div').fadeOut(300, ()=>{
+        //Then, removing classes to reset animations
+        $("#black_opacity_full_screen").css('display', 'none');
+        $('.check_svg,.cross_svg').css('display', 'none');
+        $('.check_svg > circle,.cross_svg > circle').removeClass('circle');
+        $('.check_svg > polyline').removeClass('check');
+        $('.cross_svg > line').removeClass('line');
+      });
+    }
+
+
+
+    const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
+    let error = url.get("message") || '0';
 
     switch(error){
       case '0':
         break;//Everything is OK
       case '1':
-        alert("Sorry but the bot must be added first to access Workspace. If you believe this is an error, try to kick the bot and add it again");
+        showWindow(false, "<%- locale.showWindowCantAccessServerTitle %>", "<%- locale.showWindowCantAccessServerText %>");
+        break;
+      case '2':
+        showWindow(true, "<%- locale.showWindowRollbackSuccessTitle %>", "<%- locale.showWindowRollbackSuccessText %>");
+        break;
+      case '3':
+        showWindow(false, "<%- locale.showWindowRollbackErrorTitle %>", "<%- locale.showWindowRollbackErrorText %>");
         break;
       default:
         break;
     }
   </script>
-  <%
-    if(guild!=undefined){
-      //On guild panel
-      %>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-        <script><%- localization %>Blockly = init(Blockly);</script>
-
-        <script>
-          const socket = io();
-          const toolbox = document.getElementById("toolbox");
-
-          <%
-            for(var i=0;i<blocks.length;i++){
-              %> Blockly.defineBlocksWithJsonArray(<%- blocks[i] %>); <%
-            }
-          %>
-
-          const custom_theme = Blockly.Theme.defineTheme('themeName', {
-            'base': Blockly.Themes.Classic,
-            'startHats': true
-          });
-
-          var options = {
-            toolbox : toolbox,
-            collapse : true,
-            comments : true,
-            disable : false,
-            maxBlocks : Infinity,
-            trashcan : true,
-            horizontalLayout : false,
-            toolboxPosition : 'start',
-            css : true,
-            //media : 'https://blockly-demo.appspot.com/static/media/',
-            rtl : false,
-            scrollbars : true,
-            sounds : true,
-            oneBasedIndex : true,
-            grid:
-             {spacing: 20,
-              length: 6,
-              colour: '#ccc',
-              snap: true},
-            zoom:
-             {controls: true,
-              wheel: true,
-              startScale: 1.0,
-              maxScale: 3,
-              minScale: 0.3,
-              scaleSpeed: 1.2,
-              pinch: true},
-            theme: custom_theme
-          };
-
-          let workspace = Blockly.inject("#content_blockly", options);
-          workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
-
-          //If a workspace is stored in database, it is restored here
-          <% if(workspace_xml){ %>
-            Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom('<%- workspace_xml %> '), workspace); <%
-          }%>
-
-          //Function to send workspace's blocks to the server :
-          function sendWorkspaceToServer(){
-            alert("Envoi du code en cours !");
-            socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)), (callback)=>{
-              if(callback.status == "OK"){
-                alert("Code correctement envoyé");
-              }else{
-                alert("Il y a eu une erreur !");
-                console.log("ERREUR : "+ callback.status);
-              }
-            });
-          }
-        </script>
-      <%
-    }
-  %>
   <script>
     /* Menu slider on phones */
     let isMenuShown = false;
@@ -230,7 +228,7 @@
       if(isMenuShown){
         //Remove menu
         $("#menu_div > *").css("display", "none");
-        $(".black_opacity").css("display", "none");
+        $("#black_opacity_menu").css("display", "none");
         $("#menu_div").animate({"width":"0%"}, 500, "swing", ()=>{
           $("#menu_div").css("display", "none");
         });
@@ -239,7 +237,7 @@
       }else{
         //Show menu
         $("#menu_div > *").css("display", "block");
-        $(".black_opacity").css("display", "block");
+        $("#black_opacity_menu").css("display", "block");
         $("#menu_div").css("display", "block");
         $("#menu_div").animate({"width":"30%"}, 500);
 
@@ -251,12 +249,6 @@
 
     /* Show currentGuild in guilds list :*/
     $('#<%- guild.id %>').css("background-color", "#7F7F80");
-
-    /* Adding Guild picture on top of the guild editor panel */
-    if(<%- guild.id %>!="panel"){
-      //Must not be on the index panel
-      $("#content_div_top_div_guild_div img").attr('src', $('#<%- guild.id %> img').attr('src'));//Img src getted from menu, and sent to the header <img>'s src
-    }
 
     <% } %>
 

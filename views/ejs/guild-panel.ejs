@@ -1,33 +1,27 @@
 <!-- Content div : Informations, ect... -->
 <link rel="stylesheet" type="text/css" href="/style/guild-panel-style">
-<script src="https://unpkg.com/blockly/blockly.min.js"></script><!-- Blockly -->
 <div id="content_div">
 
   <!-- This div is just under the #top_div, contain guild name and picture  -->
-  <div id="content_div_top_div">
-    <div id="content_div_top_div_guild_div">
-      <img width="24" height="24" src="">
-    </div>
-    <!-- src defined with JS -->
-  </div>
+  <%- include("../assets/guild_div.ejs", {guild:guild})%>
 
   <!-- This div contain the blocks on top of this space -->
   <div id="content_div_header_div">
     <div class="content_div_header_div_subdiv">
       <p>
-        <a href="#">Manage server variables</a>
+        <a href="#"><%- locale.manageServerVars %></a>
       </p>
     </div>
 
     <div class="content_div_header_div_subdiv">
       <p>
-        <a href="#">Modifications logs</a>
+        <a href="/panel/<%- guild.id %>/logs"><%- locale.modificationsLogs %></a>
       </p>
     </div>
 
     <div class="content_div_header_div_subdiv">
       <p>
-        <a href="#">Last notifications</a>
+        <a href="/panel/<%- guild.id %>/rollback"><%- locale.rollbackServer %></a>
       </p>
     </div>
   </div>
@@ -36,9 +30,91 @@
   </div>
 
   <div id="content_bottom_div">
-    <button onclick="sendWorkspaceToServer()" css="z-index: 999;">Send code</button>
+    <button onclick="sendWorkspaceToServer()" css="z-index: 999;"><%- locale.sendCodeButton %></button>
     <!-- Temporary ! -->
   </div>
 
 
 </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/blockly/blockly.min.js"></script>
+<script><%- blocklyLocale %>Blockly = init(Blockly);</script>
+
+<script>
+  const socket = io();
+  const toolbox = document.getElementById("toolbox");
+
+  <%
+    for(var i=0;i<blocks.length;i++){
+      %> Blockly.defineBlocksWithJsonArray(<%- blocks[i] %>); <%
+    }
+  %>
+
+  const custom_theme = Blockly.Theme.defineTheme('themeName', {
+    'base': Blockly.Themes.Classic,
+    'startHats': true
+  });
+
+  var options = {
+    toolbox : toolbox,
+    collapse : true,
+    comments : true,
+    disable : false,
+    maxBlocks : Infinity,
+    trashcan : true,
+    horizontalLayout : false,
+    toolboxPosition : 'start',
+    css : true,
+    //media : 'https://blockly-demo.appspot.com/static/media/',
+    rtl : false,
+    scrollbars : true,
+    sounds : true,
+    oneBasedIndex : true,
+    grid:
+     {spacing: 20,
+      length: 6,
+      colour: '#ccc',
+      snap: true},
+    zoom:
+     {controls: true,
+      wheel: true,
+      startScale: 1.0,
+      maxScale: 3,
+      minScale: 0.3,
+      scaleSpeed: 1.2,
+      pinch: true},
+    theme: custom_theme
+  };
+
+  let workspace = Blockly.inject("#content_blockly", options);
+  workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
+
+  //If a workspace is stored in database, it is restored here
+  <% if(workspace_xml){ %>
+    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- workspace_xml %>`), workspace); <%
+  }%>
+
+  //We include here events for Blockly
+  <%-include("../js/blockly_functions.ejs");%>
+
+  //Function to send workspace's blocks to the server :
+  function sendWorkspaceToServer(){
+    //We check here that everything seems OK
+    const check = validateWorkspace(workspace);
+    if(!check.correct){
+      //There is a problem !
+      showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", check.message);
+      return;
+    }
+
+    socket.emit("send_workspace","<%- guild.id %>" , Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace, true/*Skip blocks id*/)), (callback)=>{
+      if(callback.status == "OK"){
+        showWindow(true, "<%- locale.showWindowSendCodeSuccessTitle %>", "<%- locale.showWindowSendCodeSuccessText %>");
+      }else{
+        showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", "<%- locale.showWindowSendCodeErrorText %>");
+        console.log("ERROR : "+ callback.status);
+      }
+    });
+  }
+</script>

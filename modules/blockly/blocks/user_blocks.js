@@ -19,8 +19,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_BAN_TOOLTIP}",
   "helpUrl": ""
@@ -44,8 +44,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_UNBAN_TOOLTIP}",
   "helpUrl": ""
@@ -65,8 +65,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_SEND_PRIVATE_MESSAGE_TOOLTIP}",
   "helpUrl": ""
@@ -87,8 +87,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_KICK_TOOLTIP}",
   "helpUrl": ""
@@ -208,8 +208,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_MUTE_TOOLTIP}",
   "helpUrl": ""
@@ -224,8 +224,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_UNMUTE_TOOLTIP}",
   "helpUrl": ""
@@ -240,8 +240,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_DEAF_TOOLTIP}",
   "helpUrl": ""
@@ -256,8 +256,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_UNDEAF_TOOLTIP}",
   "helpUrl": ""
@@ -323,8 +323,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_TIMEOUT_TOOLTIP}",
   "helpUrl": ""
@@ -350,8 +350,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_CUSTOM_TIMEOUT_TOOLTIP}",
   "helpUrl": ""
@@ -366,8 +366,8 @@ module.exports = {
       "check": "User"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_REMOVE_TIMEOUT_TOOLTIP}",
   "helpUrl": ""
@@ -569,5 +569,102 @@ module.exports = {
   "output": "Boolean",
   "colour": 285,
   "tooltip": "%{BKY_BLOCK_USER_HAS_RANK_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_user_is_in_voice_channel",
+  "message0": "%{BKY_BLOCK_USER_IS_IN_VOICE_CHANNEL}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "user",
+      "check": "User"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 285,
+  "tooltip": "%{BKY_BLOCK_USER_IS_IN_VOICE_CHANNEL_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_user_get_voice_channel",
+  "message0": "%{BKY_BLOCK_USER_GET_VOICE_CHANNEL}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "user",
+      "check": "User"
+    }
+  ],
+  "output": "VoiceChannel",
+  "colour": 285,
+  "tooltip": "%{BKY_BLOCK_USER_GET_VOICE_CHANNEL_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_user_move_to_voice_channel",
+  "message0": "%{BKY_BLOCK_USER_MOVE_TO_VOICE_CHANNEL}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "user",
+      "check": "User"
+    },
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "VoiceChannel"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 300,
+  "tooltip": "%{BKY_BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_user_give_rank",
+  "message0": "%{BKY_BLOCK_USER_GIVE_RANK}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "user",
+      "check": "User"
+    },
+    {
+      "type": "input_value",
+      "name": "rank",
+      "check": "Rank"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 300,
+  "tooltip": "%{BKY_BLOCK_USER_GIVE_RANK_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_user_remove_rank",
+  "message0": "%{BKY_BLOCK_USER_REMOVE_RANK}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "user",
+      "check": "User"
+    },
+    {
+      "type": "input_value",
+      "name": "rank",
+      "check": "Rank"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 300,
+  "tooltip": "%{BKY_BLOCK_USER_REMOVE_RANK_TOOLTIP}",
   "helpUrl": ""
 }])};

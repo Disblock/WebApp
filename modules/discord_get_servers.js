@@ -1,5 +1,4 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const secrets = require('./secrets.js');
 const discord_regen = require('./discord_token_regen.js');
 const bigInt = require("big-integer");//Used to check permissions on a server
 

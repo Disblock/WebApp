@@ -7,58 +7,80 @@
     <title>Disblock</title>
     <link rel="stylesheet" type="text/css" href="style">
     <link rel="stylesheet" type="text/css" href="style/index-style">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css"><!-- AOS stylesheet -->
   </head>
   <body>
 
     <!-- Div only used to add opacity on all screen -->
-    <div class="black_opacity">
+    <div class="black_opacity" style="z-index:1;">
     </div>
 
-    <!-- Nav and the big image ( The first thing the user see, so that's the first area)-->
-    <div id="first_area_div">
+    <!-- Used to show bot logo, "Disblock" and "Go to panel" button -->
+    <div class="header_div">
+      <div id="header_div_logo">
+      </div>
+      <h1>D<span>IS</span>BLOCK</h1>
+      <!-- Call to action / Go to panel button -->
+      <button onclick="location.href='/panel'" id="header_div_panel_button"><%- locale.panel %></button>
 
       <!-- Used only in Phone responsive mode -->
       <div id="first_area_menu_slider_button">
         <img src="img/menu.svg">
       </div>
+    </div>
+
+    <div id="first_area_div">
 
       <!-- Menu / nav -->
       <nav id="first_area_nav">
         <ul>
-          <li><%- locale.home %></li>
-          <li><%- locale.functionnalities %></li>
-          <li><%- locale.invite %></li>
-          <li><%- locale.premium %></li>
+          <li><a href="#"><%- locale.home %></a></li>
+          <li><a href="#"><%- locale.functionnalities %></a></li>
+          <li><a href="#"><%- locale.invite %></a></li>
+          <li><a href="#"><%- locale.premium %></a></li>
         </ul>
       </nav>
 
-      <!-- Call to action / Go to panel button -->
-      <button onclick="location.href='/panel'" id="first_area_div_panel_button"><%- locale.panel %></button>
+      <div class="first_area_div_text">
+        <p><span style="font-size:1.5em;font-family: Roboto, Arial;"><%- locale.title %></span><br><br>
+          <%- locale.subtitle %>
+      </div>
 
-      <!-- Text / title -->
-      <div id="first_area_div_text">
-        <h1><%- locale.title %></h1>
-        <p><%- locale.subtitle %></p>
-        <%
-          if(session.username==undefined){
-            //Used not logged in
-            %><button onclick="location.href='<%- login_url %>&state=<%- session.state %>'">Login with Discord</button><%
-          }else{
-            //User logged in
-            %><button onclick="location.href='/panel'"><%- locale.goToPanel %></button><%
-          }
-        %>
+      <%
+      // We calculate here where this button must redirect and what is written on it
+      let buttonLink, buttonText;
+      if(session.username==undefined){
+        //User not logged in
+        buttonLink = login_url+"&state="+session.state;
+        buttonText = locale.connectWith;
+      }else{
+        //User logged in
+        buttonLink = "/panel";
+        buttonText = locale.goToPanel;
+      }
+      %>
+
+      <a href="<%- buttonLink %>" id="header_div_a_button">
+        <div class="first_area_div_button">
+          <div class="first_area_div_button_text">
+            <p><%- buttonText %> </p>
+          </div>
+          <% if(session.username==undefined){ /* Discord logo*/%>
+            <div class="first_area_div_button_img">
+              <img src="img/discord.png" width="60px" height="60px">
+            </div>
+          <% } %>
+        </div>
+      </a>
 
       </div>
 
-      <!-- Wave -->
-      <!--<div id="first_area_div_wave">
-        <img src="img/wave.svg">
-      </div>-->
-    </div>
+      <!-- Used to place a space between the gradient and the rest of the page -->
+      <div class="first_area_gradient_start">
+      </div>
 
     <!-- The div with a little text and a button/img -->
-    <div class="content_line_div">
+    <div class="content_line_div" style="margin-top:0px;">
       <div class="content_line_div_text">
         <p><%- locale.div1Text %></p>
       </div>
@@ -70,9 +92,9 @@
     <div id="why_disblock_div">
       <h2 class="section_title"><%- locale.whyDisblock %></h2>
 
-      <div class="why_disblock_content_div"><!-- That's the div  that contain everything -->
+      <div class="why_disblock_content_div" data-aos="fade-right"><!-- That's the div  that contain everything -->
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/main.png">
+          <img src="img/blocks.JPG">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_right"><!-- This div contain the description of the image -->
@@ -88,7 +110,7 @@
         </div>
       </div>
 
-      <div class="why_disblock_content_div">
+      <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
@@ -106,7 +128,7 @@
         </div>
       </div>
 
-      <div class="why_disblock_content_div">
+      <div class="why_disblock_content_div" data-aos="fade-right">
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
@@ -124,7 +146,7 @@
         </div>
       </div>
 
-      <div class="why_disblock_content_div">
+      <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
           <img src="img/main.png">
         </div>
@@ -167,26 +189,28 @@
       <div id="docs_div_content">
 
         <!-- These div contain links to the docs-->
-        <div class="docs_div_content_link">
+        <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic1 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
-        <div class="docs_div_content_link">
+        <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic2 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
-        <div class="docs_div_content_link">
+        <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic3 %></p></div>
           <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
         </div>
 
         <!-- This div contain Discord widget -->
-        <div id="docs_div_content_discord_widget">
-          <div class="docs_div_content_discord_widget_text_div"><p><%- locale.docsAsk %></p></div>
-          <div class="docs_div_content_discord_widget_div">
-            <iframe id="discord_widget" src="https://discord.com/widget?id=893991454798643230&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        <div id="docs_div_content_discord_img" data-aos="zoom-out">
+          <div class="docs_div_content_discord_img_text_div">
+            <p><%- locale.docsAsk %></p>
+          </div>
+          <div class="docs_div_content_discord_img_div">
+              <a href="#"><img id="discord_img" width="350px" height="350px" src="img/join_discord.png"></a>
           </div>
         </div>
 
@@ -204,12 +228,12 @@
     </div>
 
     <!-- The div with social networks ( Twitter )-->
-    <div id="social_networks_div">
+    <!--<div id="social_networks_div">
       <h2 class="section_title"><%- locale.followUsTwitter %></h2>
-      <div id="social_networks_div_content">
+      <div id="social_networks_div_content">-->
 
         <!-- Four last publications made on Twitter -->
-        <div class="social_networks_div_content_publication">
+        <!--<div class="social_networks_div_content_publication">
         </div>
         <div class="social_networks_div_content_publication">
         </div>
@@ -253,7 +277,14 @@
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      //AOS initialisation
+      AOS.init({
+        duration: 1200,
+        once: false,
+        mirror: true
+      });
 
       /* Menu slider on phones */
       let isMenuShown = false;
@@ -262,10 +293,9 @@
         if(isMenuShown){
           //Remove menu
           $(".black_opacity").css("display", "none");
-          $("#first_area_menu_slider_button").css("position", "absolute");
-          $("#first_area_nav").animate({"min-width":"0%", "width":"0%"}, 500, "swing", ()=>{
+          $("#first_area_nav ul").css("visibility", "hidden");
+          $("#first_area_nav").animate({"max-width":"0%"}, 500, "swing", ()=>{
             $("#first_area_nav").css("display", "none");
-            $("#first_area_menu_slider_button").css("filter", "none");
           });
 
           isMenuShown = false;
@@ -273,13 +303,26 @@
           //Show menu
           $(".black_opacity").css("display", "block");
           $("#first_area_nav").css("display", "block");
-          $("#first_area_menu_slider_button").css("position", "fixed");
-          $("#first_area_nav").animate({"min-width":"40%", "width":"auto"}, 500);
-          $("#first_area_menu_slider_button").css("filter", "invert(99%) sepia(99%) saturate(0%) hue-rotate(36deg) brightness(105%) contrast(100%)");
+          $("#first_area_nav").animate({"max-width":"60%"}, 500, ()=>{
+            $("#first_area_nav ul").css("visibility", "visible");
+          });
 
           isMenuShown = true;
         }
       });
+
+      const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
+      let error = url.get("error") || '0';
+
+      switch(error){
+        case '0':
+          break;//Everything is OK
+        case '1975664':
+          alert("Sorry but Disblock is actually in closed Alpha for testing purposes. You can join the Discord Server to stay informed about us, we're planning to open soon !");
+          break;
+        default:
+          break;
+      }
     </script>
   </body>
   <footer>

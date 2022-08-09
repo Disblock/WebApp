@@ -1,5 +1,4 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const secrets = require('./secrets.js');
 
 module.exports = {
   regen: async function(req, database_pool, logger, callback){
@@ -22,8 +21,8 @@ module.exports = {
             const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
       				method: 'POST',
       				body: new URLSearchParams({
-      					client_id: secrets.clientId,
-      					client_secret: secrets.clientSecret,
+      					client_id: process.env.clientId,
+      					client_secret: process.env.clientSecret,
       					grant_type: 'refresh_token',
       					refresh_token: results.rows[0].refresh_token
       				}),

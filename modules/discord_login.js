@@ -1,5 +1,4 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const secrets = require('./secrets.js');
 const crypto = require('crypto');//Generate random strings
 
 module.exports = {
@@ -12,8 +11,8 @@ module.exports = {
       const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
 				method: 'POST',
 				body: new URLSearchParams({
-					client_id: secrets.clientId,
-					client_secret: secrets.clientSecret,
+					client_id: process.env.clientId,
+					client_secret: process.env.clientSecret,
 					code: code,
 					grant_type: 'authorization_code',
 					redirect_uri: process.env.REDIRECT_URL,
@@ -42,7 +41,10 @@ module.exports = {
       			.then(response => {
                 //Now, check if the user is already registered
                try{
-                 if(!response.id){throw("Invalid user ID sent by Discord API when logging in");}//Throw an error if Discord didn't sent user's data
+                 if(!response.id){
+                   logger.error("Response from Discord : "+response);
+                   throw("Invalid user ID sent by Discord API when logging in");
+                 }//Throw an error if Discord didn't sent user's data
 
                  logger.debug("Sending an SQL request to the database : Checking if an user exist in database with user ID "+response.id);
                  database_pool.query("SELECT EXISTS(SELECT 1 FROM users WHERE user_id=$1) AS exist;",[response.id], function(error, results){
@@ -74,7 +76,7 @@ module.exports = {
 
                       }else{
                        //Not in database
-                       database_pool.query("INSERT INTO users (user_id, token, refresh_token, username, avatar, last_login, creation_date) VALUES($1, $2, $3, $4, $5, NOW(), NOW() );", [response.id, oauthData.access_token, oauthData.refresh_token, response.username+'#'+response.discriminator, response.avatar], (error, results)=>{
+                       /*database_pool.query("INSERT INTO users (user_id, token, refresh_token, username, avatar, last_login, creation_date) VALUES($1, $2, $3, $4, $5, NOW(), NOW() );", [response.id, oauthData.access_token, oauthData.refresh_token, response.username+'#'+response.discriminator, response.avatar], (error, results)=>{
                          if(error instanceof Error){
                            logger.error("Error in SQL request when registering an user : "+error);
                            res.redirect("/");//Error in the register process, user redirected to the main page
@@ -91,7 +93,10 @@ module.exports = {
                            logger.info("User "+req.session.discord_id+" registered");
                            res.redirect('/panel');
                          }
-                       });
+                       });*/
+
+                       //We're in Closed Alpha, so we just send user back to index with an error message
+                       res.redirect('/?error=1975664');
                      }
                    }
                  });

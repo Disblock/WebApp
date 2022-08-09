@@ -10,9 +10,36 @@
     "morgan": "^1.10.0",
     "node-fetch": "^3.1.1",
     "pg": "^8.7.3",
+    "rate-limiter-flexible": "^2.3.7",
     "redis": "^3.1.2",
     "socket.io": "^4.3.1",
     "winston": "^3.6.0",
     "winston-daily-rotate-file": "^4.6.1"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "disblock_webapp",
+  "description": "Disblock is a totally customizable Discord Bot.\r You can create your own actions with blocks, and the bot will execute your created code in Discord !",
+  "version": "1.0.0-alpha",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Disblock/WebApp.git"
+  },
+  "keywords": [
+    "Disblock",
+    "Discord",
+    "Scratch",
+    "Bot",
+    "Easy",
+    "development"
+  ],
+  "author": "LJ50",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Disblock/WebApp/issues"
+  },
+  "homepage": "https://github.com/Disblock/WebApp#readme"
 }
