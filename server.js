@@ -786,6 +786,15 @@ app.get('/loc/:lang',async function(req, res){
 });
 
 /*############################################*/
+/* robots.txt */
+/*############################################*/
+
+app.get('/robots.txt',async function(req, res){
+  res.setHeader("Content-Type", 'text/plain');
+  res.render('robots.ejs');
+});
+
+/*############################################*/
 /* 404 error */
 /*############################################*/
 
