@@ -3,7 +3,6 @@
 /* Homemade modules */
 /*############################################*/
 
-const images = require('./modules/images.js');//Allow to get pictures ( /img/...)
 const discord_login = require('./modules/discord_login.js');//Used to login with Discord
 //const discord_regen = require('./modules/discord_token_regen.js');//Used to regen user's tokens
 const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
@@ -248,6 +247,9 @@ app.use(async function(req, res, next){
 /*############################################*/
 /* Pages Definition */
 /*############################################*/
+
+/* Used to serve robots.txt; images; ... */
+app.use(express.static("views/static/"));
 
 app.get('/', async function(req, res){
   //localization
@@ -738,14 +740,6 @@ app.get('/style/check-cross-animation',async function(req, res){
 });
 
 /*############################################*/
-/* Images gateway */
-/*############################################*/
-
-app.get('/img/:img',async function(req, res){
-  images.getImage(req, res);
-});
-
-/*############################################*/
 /* JS scripts */
 /*############################################*/
 
@@ -783,15 +777,6 @@ app.get('/loc/:lang',async function(req, res){
     res.status(429).end("Too many requests !");
   });
 
-});
-
-/*############################################*/
-/* robots.txt */
-/*############################################*/
-
-app.get('/robots.txt',async function(req, res){
-  res.setHeader("Content-Type", 'text/plain');
-  res.render('robots.ejs');
 });
 
 /*############################################*/
