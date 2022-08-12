@@ -950,7 +950,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        let code = 'createdTextChannel = await CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
+        let code = 'createdTextChannel = await CURRENT_GUILD.channels.create({name:'+value_name+' ,type: Discord.ChannelType.GuildText, parent: '+value_category;//value_category should be a string with the ID or Category object
         code = code + ((value_topic!=='') ? ', topic: '+value_topic+'});\n' : '});\n');
         return code;
       }else{
@@ -963,7 +963,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        const code = 'createdVoiceChannel = await CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
+        const code = 'createdVoiceChannel = await CURRENT_GUILD.channels.create({name:'+value_name+', type: Discord.ChannelType.GuildVoice, parent: '+value_category+'});\n';
         return code;
       }else{
         return '';
@@ -1745,7 +1745,7 @@ module.exports = {
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_color!==''){
-        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
+        const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
         return '';
@@ -1780,7 +1780,7 @@ module.exports = {
       const checkbox_inline = block.getFieldValue('inline') === 'TRUE';
 
       if(value_name!=='' && value_text!==''){
-        const code = '.addField('+value_name+', '+value_text+', '+( checkbox_inline ? 'true':'false' )+')';
+        const code = '.addFields({name:'+value_name+', value:'+value_text+', inline:'+( checkbox_inline ? 'true':'false' )+'})';
         return code;
       }else{
         return '';
