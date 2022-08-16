@@ -11,11 +11,11 @@ module.exports = {
      const replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
 
      /*
-     Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
+     Blockly's Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
      <variables> ; procedures_defreturn ; procedures_defnoreturn must not be in xml
      */
      if(replacedXml.includes("<variables>") || replacedXml.includes("procedures_defreturn") || replacedXml.includes("procedures_defnoreturn")){
-       logger.debug(server_id+" used functions or variables in workspace, stopping here...");
+       logger.debug(server_id+" used blockly's functions or variables in workspace, stopping here...");
        return(1);
      }
 
@@ -45,7 +45,7 @@ module.exports = {
      //creating Sql request
      let splittedCodeToSend = [];
      let sql = 'INSERT INTO server_code (server_id, action_type, code) VALUES '
-     let sqlCompleted = false;//Check if a valid tupple is added to the sql string
+     let sqlCompleted = false;//Check if at least a valid tupple is added to the sql string
      let args = [server_id];
 
      for(var i=0; i<splittedCode.length; i=i+2){
@@ -111,7 +111,7 @@ module.exports = {
           return false;
         }
       }
-      
+
       //Transaction start
       client.query('BEGIN;', (err)=>{
         if(isError(err, client)){

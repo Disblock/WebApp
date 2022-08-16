@@ -507,7 +507,7 @@ module.exports = {
 {
   "type": "event_var_reaction",
   "message0": "%{BKY_EVENT_VAR_REACTION}",
-  "output": "Reaction",
+  "output": "Emoji",
   "colour": 30,
   "tooltip": "%{BKY_EVENT_VAR_REACTION_TOOLTIP}",
   "helpUrl": ""

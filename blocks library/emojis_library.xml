@@ -1,0 +1,43 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="oDe4%F{V!T,vkS.*:Rm," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_emoji_get_name</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="#cF}~im0;p-3WEnVVPs^">
+        <field name="INPUTNAME">EMOJI</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="/b%KkqKLM}xI}.(*T+9B">
+            <field name="TEXT">Get emoji's name</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="i}v~P=U@Ou-={/Z{Sq%N"></shadow>
+          <block type="type_other" id=":CjQLGmGYb:_49-VM4cc">
+            <field name="TYPE">Emoji</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="%`%B-XQ6%AC@:zpmIIkb" deletable="false" movable="false">
+        <field name="TEXT">Get the name of an emoji from Discord or your server.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8Nx/Crub]t_/4L#P#3{I" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="X6dLUBHo5M5$}w5,w3N}"></shadow>
+      <block type="type_string" id="5O+dO$4B5o1w.B6@#ImM"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="S46Td=]67=`NJ+@K#+np">
+        <mutation colour="#5ba55b"></mutation>
+        <field name="HUE">120</field>
+      </block>
+    </value>
+  </block></xml>
