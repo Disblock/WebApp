@@ -116,7 +116,7 @@ function validateWorkspace(workspace){
   }
 
   //Finished to check temporary variables, if there is an error, we can stop here
-  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]})
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]});
 
   //Now checking if an Event var Block was uncorrectly placed
   let blocks = workspace.getAllBlocks(false);
@@ -136,7 +136,23 @@ function validateWorkspace(workspace){
   }
 
   //Finished to check event var blocks, stop here in case of error
-  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"]})
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"]});
+
+  //Now checking for empty text blocks
+  for(let i=0; i<blocks.length; i++){
+     if(blocks[i].type==="text"){
+       if(/^\s*('|\\')*\s*$/.test(blocks[i].getFieldValue('TEXT'))){
+         //Text value is empty
+         blocks[i].setWarningText(Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"]);
+         foundError = true;
+       }else{
+         //OK
+         blocks[i].setWarningText(null);
+       }
+     }
+  }
+  //Finished to check text blocks, stop here in case of error
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"]});
 
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
