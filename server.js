@@ -841,8 +841,8 @@ io.sockets.on('connect',async function(socket){
 
           }else{
             //User hasn't access to this server
-            logger.info(socket.request.session.discord_id+ "tried to edit a workspace via socket.io without access to the guild");
-            callback({status: "NOT  OK"});
+            logger.debug("Someone tried to edit a workspace via socket.io without access to the guild");
+            callback({status: "NOT OK"});
           }
         });
       }
