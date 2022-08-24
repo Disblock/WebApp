@@ -72,95 +72,69 @@ module.exports = {
 
      }
 
-     if(!sqlCompleted){
+     let sqlRequests; // [ [request, args], [request, args] ]; will store requests and args to execute
+     if(sqlCompleted){
+       //User sent a valid workspace
+       sqlRequests = [
+         ['BEGIN;', []],
+         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]],
+         [sql+';', args],
+         ['INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml]],
+         ['COMMIT;', []]
+       ];
+       logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
 
+     }else{
        //Seem like the user sent a blank workspace, codes will be removed...
-       logger.debug("There isn't any code to add in the database for the guild "+server_id+", aborting and deleting active server code and workspace...");
-       database_pool.query('DELETE FROM server_code WHERE server_id = $1;', [server_id])
-        .catch(err=>{
-          logger.error("Error while deleting active codes for guild "+server_id+" : "+err);
-        });
-        //Workspace is updated
-        database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, '<xml xmlns="https://developers.google.com/blockly/xml"></xml>'])
-         .catch(err=>{
-           logger.error("Error while saving workspace for guild "+server_id+" : "+err);
-         });
-       return(0);
+       logger.debug("There isn't any code to add in the database for the guild "+server_id+", deleting active server code and workspace...");
+
+       sqlRequests = [
+         ['BEGIN;', []],
+         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]],
+         ['INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, '<xml xmlns="https://developers.google.com/blockly/xml"></xml>']],
+         ['COMMIT;', []]
+       ];
      }
 
-     logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
-
      //Saving to Database
-     database_pool.connect((err, client, release) => {
-      if(err){
-        release(err);
-        logger.error("Error when getting a client from database pool : "+err);
-      }
+     let client = await database_pool.connect();
 
-      //Used to check if there is an error during transaction
-      function isError(err, client){
-        if(err){
-          logger.error("Error in transaction while saving a workspace !"+err);
-          try{
-            client.query("ROLLBACK");
-          }catch(err2){
-            logger.error("Can't rollback transaction : "+err2);
-          }
-          return true;
-        }else{
-          return false;
-        }
-      }
 
-      //Transaction start
-      client.query('BEGIN;', (err)=>{
-        if(isError(err, client)){
-          release(err);
-        }else{
-          client.query('DELETE FROM server_code WHERE server_id = $1;', [server_id], (err,rep)=>{
-            if(isError(err, client)){
-              release(err);
-            }else{
-              //Tuples inserted
-              client.query(sql+';', args, (err, rep)=>{
-                if(isError(err, client)){
-                  //Problem, let's rollback
-                  release(err);
-                }else{
-                  //Saving workspace
-                  client.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml], (err)=>{
-                    if(isError(err, client)){
-                      release(err);
-                    }else{
-                      //Everything seems OK, let's commit
-                      client.query('COMMIT;', (err)=>{
-                        if(isError(err, client)){
-                          release(err);//Release the client with an error, this should delete this client
-                        }else{
-                          logger.debug("Correctly saved new workspace for server "+server_id);
-                          release();//Release the client into pool
-                        }
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          });
+
+    //Transactions & running sql queries
+    for(let i=0; i<sqlRequests.length; i++){
+      try{
+        await client.query(sqlRequests[i][0], sqlRequests[i][1]);
+      }catch(err){
+        logger.error("Error in transaction while saving a workspace : "+err);
+
+        try{
+          await client.query("ROLLBACK;");
+        }catch(err2){
+          logger.error("Can't rollback transaction : "+err2);
+        }finally{
+          client.release(err);//Release the client with an error, this should delete this client
+          return(1);
         }
-      });
-    });
+
+      }
+    }
+    logger.debug("Correctly saved new workspace for server "+server_id);
+
+
 
     if(user_id){//If undefined, this is a rollback which is logged as a different event
       //Save this modification in logs
-      database_pool.query('INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 1, NOW(), FALSE);', [server_id, user_id], (err, res) => {
+      client.query('INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 1, NOW(), FALSE);', [server_id, user_id], (err, res) => {
         if (err) {
           logger.error("Error while saving workspace modification in logs for guild "+server_id+" : "+err);
+          client.release(err);
+          return(1);
         }
       });
     }
 
-
+    client.release();//Release the client into pool
 
     return(0);
   }
