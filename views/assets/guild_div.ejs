@@ -13,20 +13,24 @@
     left: 50%;
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   #content_div_top_div_guild_div img{
-    border-radius: 50%;
     margin-top: 5px;
     /* Size defined on <img> tag */
   }
 
-  #content_div_top_div_guild_div::after{
+  #content_div_top_div_guild_div h3{
     color: #EAEAEA;
-    font-size: 1em;/* img size, defined in <img>, in guild-panel.ejs */
-  }
-  #content_div_top_div_guild_div::after{
-    content: "<%- guild.name %>";
+    font-size: 1em;/* img size, defined in <img> */
+    margin-left: 5px;
+    margin-right: 5px;
   }
 </style>
 
@@ -34,10 +38,12 @@
   <div id="content_div_top_div_guild_div">
     <%
     if(guild.icon!=undefined && guild.icon!=''){
-      %><img width="24" height="24" src="https://cdn.discordapp.com/icons/<%- guild.id %>/<%- guild.icon %>.png?size=64"><%
+      %><img width="24px" height="24px" style="border-radius: 50%;" src="https://cdn.discordapp.com/icons/<%- guild.id %>/<%- guild.icon %>.png?size=64" alt="Server icon"><%
     }else{
-      %><img width="24" height="24" src="/img/profile.svg"><%
+      %><img width="24px" height="24px" style="border-radius: 50%;" src="/img/profile.svg" alt="Server icon"><%
     }
     %>
+    <h3><%- guild.name %></h3>
+    <% if(premium){ %> <img width="24px" height="24px" src="/img/star.svg" alt="Premium"> <%}%>
   </div>
 </div>
