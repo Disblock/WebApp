@@ -53,7 +53,7 @@
       let buttonLink, buttonText;
       if(session.username==undefined){
         //User not logged in
-        buttonLink = login_url+"&state="+session.state;
+        buttonLink = '/login';
         buttonText = locale.connectWith;
       }else{
         //User logged in

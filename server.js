@@ -225,24 +225,29 @@ const ratesLimitsRedis = new rateLimiter.RateLimiterRedis({
 
 //Headers on every request
 app.use(async function(req, res, next){
-    //Headers on every pages
-    res.setHeader("X-Content-Type-Options", "nosniff");
-    res.setHeader("X-Frame-Options", "deny");
-    res.setHeader("X-XSS-Protection", "1;mode=block");
+  //Headers on every pages
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "deny");
+  res.setHeader("X-XSS-Protection", "1;mode=block");
 
-    //Save user language if not defined
+  //Save user language if not defined
+  try{
     if(!req.session.locale){
       if(req.headers["accept-language"]!='' && req.headers["accept-language"]!=undefined){
         let lang = req.headers["accept-language"].split(",")[0];
         req.session.locale = (lang.includes("fr") ? 'fr' : 'en');//If seems to be French, user locale is set to French. Else, set to English
       }else{
-        //Browser didn't sent accept-language header
-        req.session.locale = 'en';
+      //Browser didn't sent accept-language header
+      req.session.locale = 'en';
       }
     }
+  }catch(err){
+    logger.error("Error while trying to determine the user language : "+err);
+    req.session.locale = 'en';
+  }
 
-    //Continue actions
-    next();
+  //Continue actions
+  next();
 });
 
 /*############################################*/
@@ -253,21 +258,18 @@ app.use(async function(req, res, next){
 app.use(express.static("views/static/"));
 
 app.get('/', async function(req, res){
-  //localization
   ratesLimitsRedis.consume(req.ip, 3).then(async()=>{
     //User not rate limited
-
-    req.session.state = crypto.randomBytes(4).toString('hex');
 
     let locale;
     //Select right language
     if(req.session.locale=='fr'){
-      locale=index_localization_fr
+      locale=index_localization_fr;
     }
     else{
-      locale=index_localization_en
+      locale=index_localization_en;
     }
-    res.render('index.ejs', {session: req.session, login_url: process.env.LOGIN_URL, locale:locale});
+    res.render('index.ejs', {session: req.session, locale:locale});
 
   }).catch(async(err)=>{
     //User rate limited
@@ -277,23 +279,43 @@ app.get('/', async function(req, res){
 
 /*-----------------------------------*/
 
+app.get('/login', async function(req, res){
+
+  ratesLimitsRedis.consume(req.ip, 5).then(async()=>{
+    //User not rate limited
+
+    req.session.state = crypto.randomBytes(4).toString('hex');
+    res.redirect(process.env.LOGIN_URL+'&state='+req.session.state);
+
+  }).catch(async(err)=>{
+    //User rate limited
+    res.status(429).end("Too many requests !");
+  });
+
+})
+
+/*-----------------------------------*/
+
 app.get('/discord_login',async function(req, res){
   ratesLimitsRedis.consume(req.ip, 20)
   .then(async()=>{
     //User isn't rate limited
     if(req.session.discord_id == undefined){//If the user is logged in, his Discord Id is stored, and is not undefined
-      if(url.parse(req.url,true).query.state == req.session.state){
+      if(url.parse(req.url,true).query.state === req.session.state){
         //State is the same as the registered one
+
+        req.session.state = crypto.randomBytes(4).toString('hex');//State is regenered; to avoid some security issues
 
         if(url.parse(req.url,true).query.code!=undefined){
           discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger);
         }else{
+          //User denied access, we can redirect him to the home page
           res.redirect('/');
         }
 
       }else{
         //User may be clickjacked, cancelling connection
-        res.status(403).end("Security error");
+        res.status(403).end("Security error ! Go back to the home page, reload and try again.");
       }
     }else{
       //User is already logged in
@@ -332,12 +354,11 @@ app.get('/panel',async function(req, res){
     let locale;
     //Select right language
     if(req.session.locale=='fr'){
-      locale=panel_localization_fr
+      locale=panel_localization_fr;
     }else{
-      locale=panel_localization_en
+      locale=panel_localization_en;
     }
 
-    req.session.state = crypto.randomBytes(4).toString('hex');
     if(req.session.discord_id!=undefined){
       discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
         //guilds represent the guilds that user is admin on ( Array )
@@ -345,7 +366,7 @@ app.get('/panel',async function(req, res){
 
         if(req.session){
           //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-          res.render('panel.ejs', {session: req.session, locale: locale, login_url: process.env.LOGIN_URL, guilds: guilds, guild: undefined, page:0});
+          res.render('panel.ejs', {session: req.session, locale: locale, guilds: guilds, guild: undefined, page:0});
         }else{
           res.redirect('/');
         }
@@ -407,11 +428,11 @@ app.get('/panel/:id',async function(req, res){
 
                 //Select right language
                 if(req.session.locale=='fr'){
-                  blocklyLocale=blockly_localization_fr
-                  locale=panel_localization_fr
+                  blocklyLocale=blockly_localization_fr;
+                  locale=panel_localization_fr;
                 }else{
-                  blocklyLocale=blockly_localization_en
-                  locale=panel_localization_en
+                  blocklyLocale=blockly_localization_en;
+                  locale=panel_localization_en;
                 }
 
                 res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, blocks: blocklyBlocks, blocklyLocale: blocklyLocale, workspace_xml:workspace_xml, page:1});
@@ -496,9 +517,9 @@ app.get('/panel/:id/rollback',async function(req, res){
                 let locale;
                 //Select right language
                 if(req.session.locale=='fr'){
-                  locale=panel_localization_fr
+                  locale=panel_localization_fr;
                 }else{
-                  locale=panel_localization_en
+                  locale=panel_localization_en;
                 }
 
                 //Everything seems good, rendering page
@@ -655,9 +676,9 @@ app.get('/panel/:id/logs',async function(req, res){
                 let locale;
                 //Select right language
                 if(req.session.locale=='fr'){
-                  locale=panel_localization_fr
+                  locale=panel_localization_fr;
                 }else{
-                  locale=panel_localization_en
+                  locale=panel_localization_en;
                 }
 
                 //Everything seems good, rendering page
@@ -845,6 +866,9 @@ io.sockets.on('connect',async function(socket){
             callback({status: "NOT OK"});
           }
         });
+      }else{
+        //Not logged in
+        callback({status: "NOT OK"});
       }
 
     })
