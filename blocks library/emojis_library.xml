@@ -40,4 +40,121 @@
         <field name="HUE">120</field>
       </block>
     </value>
+  </block><block type="factory_base" id="oDe4%F{V!T,vkS.*:Rm," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_emoji_get_by_name</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="#cF}~im0;p-3WEnVVPs^">
+        <field name="INPUTNAME">Name</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="/b%KkqKLM}xI}.(*T+9B">
+            <field name="TEXT">Get emoji by name</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="i}v~P=U@Ou-={/Z{Sq%N"></shadow>
+          <block type="type_string" id="5c`}:S=^}W:28fiRQOi0"></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="%`%B-XQ6%AC@:zpmIIkb" deletable="false" movable="false">
+        <field name="TEXT">Get an emoji with his name. Use his unicode value if from Discord, or his given name if from your server.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8Nx/Crub]t_/4L#P#3{I" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="X6dLUBHo5M5$}w5,w3N}"></shadow>
+      <block type="type_other" id="7ft+esCE]N).W7!?;+Gk">
+        <field name="TYPE">Emoji</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="S46Td=]67=`NJ+@K#+np">
+        <mutation colour="#5ba55b"></mutation>
+        <field name="HUE">120</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="oDe4%F{V!T,vkS.*:Rm," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_emoji_react</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="#cF}~im0;p-3WEnVVPs^">
+        <field name="INPUTNAME">emoji</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="/b%KkqKLM}xI}.(*T+9B">
+            <field name="TEXT">React with the emoji</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="i}v~P=U@Ou-={/Z{Sq%N"></shadow>
+          <block type="type_group" id="h9gMuL;dN6fk_VGq..kX">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_string" id="5c`}:S=^}W:28fiRQOi0"></block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="]o99%,WOk{xQC(8CPH|9">
+                <field name="TYPE">Emoji</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="t|I()FZ8X_Yv}G2l$BnI">
+            <field name="INPUTNAME">message</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="uTOYVBO`,5`:fUyAq;7H">
+                <field name="TEXT">to the message</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="i}v~P=U@Ou-={/Z{Sq%N"></shadow>
+              <block type="type_other" id="NdLmof[hV1y*Ba%|T#`n">
+                <field name="TYPE">Message</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="%`%B-XQ6%AC@:zpmIIkb" deletable="false" movable="false">
+        <field name="TEXT">Add a reaction to a message. Use an Emoji, or copy-paste the result of sending \:your_emoji: somewhere in Discord.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="8Nx/Crub]t_/4L#P#3{I" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="[`WpAY*e/jJbWA3r]#id"></shadow>
+      <block type="type_other" id="7ft+esCE]N).W7!?;+Gk">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="D=FyY|$XdMciZ[jRD{($"></shadow>
+      <block type="type_other" id="cpO]k1@88fV3C22HrQ%,">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="S46Td=]67=`NJ+@K#+np">
+        <mutation colour="#5ba55b"></mutation>
+        <field name="HUE">120</field>
+      </block>
+    </value>
   </block></xml>

@@ -1974,6 +1974,17 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_emoji_react'] = function(block) {
+      const value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_emoji!=='' && value_message!==''){
+        return value_message+".react("+value_emoji+");\n";
+      }else{
+        return '';
+      }
+    };
+
 
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled

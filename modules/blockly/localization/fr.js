@@ -479,6 +479,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Travailler sur les listes";
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Obtenir les informations d'un Emoji";
+  Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Utiliser les émojis";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -821,6 +822,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   //Emojis blocks
   Blockly.Msg["BLOCK_EMOJI_GET_NAME"] = "Obtenir le nom de l'émoji %1";
   Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Obtenir le nom d'un émoji de Discord ou de votre serveur. S'il vient de Discord, retourne la valeur unicode de l'émoji ( Trouvable en tapant \"\\:joy:\" dans Discord ). S'il vient de votre serveur, retourne son nom.";
+  Blockly.Msg["BLOCK_EMOJI_REACT"] = "Réagir avec l'émoji %1 au message %2";
+  Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Ajoute une réaction au message. Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord.";
 
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Sauvegarder la valeur %1 dans une variable temporaire nommée %2 de type %3";
