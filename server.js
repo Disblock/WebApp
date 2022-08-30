@@ -393,11 +393,12 @@ app.get('/panel/:id',async function(req, res){
 
     if(req.session.discord_id!=undefined){
 
-      //Check if server is in database ( = if the bot was added in the server )
-      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS exist;', [String(req.params.id)])
+      //Check if server is in database ( = if the bot was added in the server ) and if this server is premium
+      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS server, EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;', [String(req.params.id)])
       .then(async(data)=>{
-        if(data.rows[0].exist){
+        if(data.rows[0].server){
           //Server is registered in database
+          const premium = !!data.rows[0].premium;//From Int to Bool, will store if the server is premium or not
 
           //Check if user is admin on selected server
           discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
@@ -486,10 +487,11 @@ app.get('/panel/:id/rollback',async function(req, res){
     if(req.session.discord_id!=undefined){
 
       //Check if server is in database ( = if the bot was added in the server )
-      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS exist;', [String(req.params.id)])
+      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS server, EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;', [String(req.params.id)])
       .then(async(data)=>{
-        if(data.rows[0].exist){
+        if(data.rows[0].server){
           //Server is registered in database
+          const premium = !!data.rows[0].premium;//From Int to Bool, will store if the server is premium or not
 
           //Check if user is admin on selected server
           discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
@@ -587,7 +589,7 @@ app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
                 //OK
                 logger.info("User "+ req.session.discord_id +" rollbacked workspace for guild "+req.params.id);
 
-                //Adding this event to server's logs
+                //Adding this event to server's logs. Action = 2 represent a rollback.
                 database_pool.query("INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 2, NOW(), FALSE);", [req.params.id, req.session.discord_id])
                 .then(async(result)=>{
                   res.redirect('/panel/'+String(req.params.id)+'?message=2');
@@ -650,10 +652,11 @@ app.get('/panel/:id/logs',async function(req, res){
     if(req.session.discord_id!=undefined){
 
       //Check if server is in database ( = if the bot was added in the server )
-      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS exist;', [String(req.params.id)])
+      database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS server, EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;', [String(req.params.id)])
       .then(async(data)=>{
-        if(data.rows[0].exist){
+        if(data.rows[0].server){
           //Server is registered in database
+          const premium = !!data.rows[0].premium;//From Int to Bool, will store if the server is premium or not
 
           //Check if user is admin on selected server
           discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission
@@ -874,7 +877,7 @@ io.sockets.on('connect',async function(socket){
     })
     .catch(async(err)=>{
       //User is rate limited
-      callback({status: "NOT  OK"});
+      callback({status: "NOT OK"});
     });
 
 
