@@ -841,6 +841,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "Un bloc de variable d'évènement est incorrectement placé. Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "Vous devez entrer une valeur pour ce bloc !";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "Un bloc de texte semble vide ! Essayez d'y entrer quelque chose avant de réessayer";
+  Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "Il y a trop de blocs dans votre espace de travail ! Essayez d'utiliser moins de blocs";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";

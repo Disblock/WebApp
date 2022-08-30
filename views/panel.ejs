@@ -152,15 +152,15 @@
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
-          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
+          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild, premium:premium}); %>
 
           <%
         }else if(page==2){//Guild defined, blocks undefined
           //On /panel/:id/rollback
-          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild, savedWorkspaces:savedWorkspaces}); %><%
+          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild, savedWorkspaces:savedWorkspaces, premium:premium}); %><%
         }else if(page==3){//Guild defined, blocks undefined
           //On /panel/:id/logs
-          %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs}); %><%
+          %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs, premium:premium}); %><%
         }
       %>
 

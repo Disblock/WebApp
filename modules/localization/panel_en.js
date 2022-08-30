@@ -9,6 +9,7 @@ module.exports = {
   showWindowSendCodeSuccessText: "Your workspace was saved, and is ready to use !",
   showWindowSendCodeErrorTitle: "Failed !",
   showWindowSendCodeErrorText: "There was an error while processing your workspace.",
+  blocksInWorkspace: "Blocks in workspace : ",
 
   /* showWindow function, panel.ejs */
   showWindowCantAccessServerTitle: "Unable to access this server !",

@@ -9,6 +9,7 @@ module.exports = {
   showWindowSendCodeSuccessText: "Le code a été enregistré, et est prêt à être utilisé !",
   showWindowSendCodeErrorTitle: "Echec !",
   showWindowSendCodeErrorText: "Il y a eu une erreur durant le traitement du code.",
+  blocksInWorkspace: "Blocks utilisés : ",
 
   /* showWindow function, panel.ejs */
   showWindowCantAccessServerTitle: "Impossible d'accéder à ce serveur !",

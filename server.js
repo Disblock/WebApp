@@ -436,7 +436,7 @@ app.get('/panel/:id',async function(req, res){
                   locale=panel_localization_en;
                 }
 
-                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, blocks: blocklyBlocks, blocklyLocale: blocklyLocale, workspace_xml:workspace_xml, page:1});
+                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, premium:premium, blocks: blocklyBlocks, blocklyLocale: blocklyLocale, workspace_xml:workspace_xml, page:1});
 
               })
 
@@ -525,7 +525,7 @@ app.get('/panel/:id/rollback',async function(req, res){
                 }
 
                 //Everything seems good, rendering page
-                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, page:2, savedWorkspaces:savedWorkspaces.rows});
+                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, premium:premium, page:2, savedWorkspaces:savedWorkspaces.rows});
               })
               .catch(async(err)=>{//If there is an error
                 logger.error("Error while getting guild's saved workspaces : "+err);
@@ -685,7 +685,7 @@ app.get('/panel/:id/logs',async function(req, res){
                 }
 
                 //Everything seems good, rendering page
-                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, page:3, logs:logs.rows});
+                res.render('panel.ejs', {session: req.session, locale: locale, guilds:guilds, guild: guild, premium:premium, page:3, logs:logs.rows});
               })
               .catch(async(err)=>{//If there is an error
                 logger.error("Error while getting guild's saved workspaces : "+err);
@@ -815,7 +815,6 @@ app.get('/404', async function(req, res, next){
   next();//Continue to app.use
 });
 app.use(async function(req, res, next){
-  //localization
   ratesLimitsRedis.consume(req.ip, 20).then(async()=>{
     //User not rate limited
 

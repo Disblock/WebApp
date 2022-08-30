@@ -60,14 +60,28 @@ function checkIfValueAndTypeVarCompatibles(event){
   }
 }
 
+/* This function will be called each time a block is added or removed from workspace to update the blocks count <p> */
+function updateMaxBlocks(event){
+  if(event.type==Blockly.Events.BLOCK_CREATE || Blockly.Events.BLOCK_DELETE){
+    $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+workspace.getAllBlocks(false).length +' / '+maxBlocks);
+  }
+}
+
 workspace.addChangeListener(saveVarBlockModified);
 workspace.addChangeListener(checkIfValueAndTypeVarCompatibles);
+workspace.addChangeListener(updateMaxBlocks);
 
 /*Function used to check if everything seems OK in workspace before sending code
 We check : - Temporary variables blocks
 
 Return {correct:true, message:'OK'} or {correct:false, message:'Error message'}*/
 function validateWorkspace(workspace){
+
+  //We check if user used the allowed number of blocks
+  if(workspace.getAllBlocks(false).length > maxBlocks){
+    return({correct:false, message:Blockly.Msg["WARNING_TOO_MANY_BLOCKS"]});
+  }
+
   //Get all top blocks
   let topBlocks = workspace.getTopBlocks();
   let foundError = false;//Become true when an error is found
