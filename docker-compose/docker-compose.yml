@@ -52,6 +52,14 @@ services:
       REDIRECT_URL: ${REDIRECT_URL}
       clientId: ${CLIENT_ID}
       clientSecret: ${CLIENT_SECRET}
+      NP_WORKSPACE_MAX_BLOCKS: ${NP_WORKSPACE_MAX_BLOCKS}
+      NP_DISABLED_BLOCKS: ${NP_DISABLED_BLOCKS}
+      NP_MAX_ROLLBACKS: ${NP_MAX_ROLLBACKS}
+      NP_MAX_LOGS: ${NP_MAX_LOGS}
+      P_WORKSPACE_MAX_BLOCKS: ${P_WORKSPACE_MAX_BLOCKS}
+      P_DISABLED_BLOCKS: ${P_DISABLED_BLOCKS}
+      P_MAX_ROLLBACKS: ${P_MAX_ROLLBACKS}
+      P_MAX_LOGS: ${P_MAX_LOGS}
     volumes:
       - disblock_logs:/node/logs
       - ./certs/:/node/certs/:ro
