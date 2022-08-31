@@ -815,7 +815,7 @@ app.get('/404', async function(req, res, next){
   next();//Continue to app.use
 });
 app.use(async function(req, res, next){
-  ratesLimitsRedis.consume(req.ip, 20).then(async()=>{
+  ratesLimitsRedis.consume(req.ip, 30).then(async()=>{
     //User not rate limited
 
     res.status(404).render('404.ejs');
@@ -836,7 +836,7 @@ io.sockets.on('connect',async function(socket){
 
   socket.on("send_workspace", (server_id, data, callback) => {
 
-    ratesLimitsRedis.consume(socket.handshake.address, 20)
+    ratesLimitsRedis.consume(socket.handshake.address, 40)
     .then(async()=>{
       //User isn't rate limited
 

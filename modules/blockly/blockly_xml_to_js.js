@@ -1,9 +1,22 @@
+'use-strict';
 let Blockly = require('blockly');
-//const fs = require('fs');
-//const crypto = require('crypto');//Generate random strings
+const validateWorkspace = require('./validate_workspace.js');
 
 module.exports = {
   xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, user_id=undefined){//If user_id is defined, we will log that in server's logs
+
+    let premium;//Will store if the server is premium or not
+
+    //We check here if the server exist and if it is premium or not
+    try{
+      let data;
+      data = await database_pool.query("SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS server, EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;", [server_id]);
+      if(!data.rows[0].server)return(1);//This server don't exist in database
+      premium = !!data.rows[0].premium;
+    }catch(err){
+      logger.error("Error while checking if a guild is premium : "+err);
+      return(1);
+    }
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
@@ -23,6 +36,9 @@ module.exports = {
      function tryCodeGeneration(replacedXml, workspace){
        try{
          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
+
+         if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
+
          const code = Blockly.JavaScript.workspaceToCode(workspace);
          return code;
        }catch(err){
@@ -32,6 +48,11 @@ module.exports = {
      }
      const code = tryCodeGeneration(replacedXml, workspace);
      if(code==undefined){return(1);}//An error occured, return here
+     else if(code==="TOO MANY BLOCKS !"){
+       //User used too many blocks...
+       logger.debug("Too many blocks error for guild "+server_id);
+       return(1);
+     }
 
 
      logger.debug("Working on code for the guild "+server_id+"...");
