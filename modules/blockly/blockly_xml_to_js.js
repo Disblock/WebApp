@@ -1,6 +1,7 @@
 'use-strict';
 let Blockly = require('blockly');
 const validateWorkspace = require('./validate_workspace.js');
+const serverLogs = require('../database/logs.js');
 
 module.exports = {
   xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, user_id=undefined){//If user_id is defined, we will log that in server's logs
@@ -146,13 +147,13 @@ module.exports = {
 
     if(user_id){//If undefined, this is a rollback which is logged as a different event
       //Save this modification in logs
-      client.query('INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 1, NOW(), FALSE);', [server_id, user_id], (err, res) => {
-        if (err) {
-          logger.error("Error while saving workspace modification in logs for guild "+server_id+" : "+err);
-          client.release(err);
-          return(1);
-        }
-      });
+      let resultLog = await serverLogs.addEventToLogs(client, server_id, user_id, serverLogs.eventType.updatedWorkspace, premium);
+      if(!resultLog.correct){
+        //error
+        logger.error("Error while saving workspace modification in logs for guild "+server_id+" : "+resultLog.message);
+        client.release(true);//Error, the pool will destroy this client.
+        return(1);
+      }
     }
 
     client.release();//Release the client into pool
