@@ -1,5 +1,6 @@
 'use strict';
 const discord_get_servers = require('../discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
+const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 const panel_localization_fr = require('../localization/panel_fr.js');
 const panel_localization_en = require('../localization/panel_en.js');
 
@@ -8,11 +9,11 @@ module.exports = async function(req, res, database_pool, logger){
   if(req.session.discord_id!=undefined){
 
     //Check if server is in database ( = if the bot was added in the server )
-    database_pool.query('SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS server, EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;', [String(req.params.id)])
+    guilds_database.checkIfServerExist(database_pool, req.params.id, true)
     .then(async(data)=>{
-      if(data.rows[0].server){
+      if(data.exist){
         //Server is registered in database
-        const premium = !!data.rows[0].premium;//From Int to Bool, will store if the server is premium or not
+        const premium = data.premium;//Will store if the server is premium or not
 
         //Check if user is admin on selected server
         discord_get_servers.servers(req, database_pool, logger, (guilds)=>{//Get all guilds where user has an admin permission

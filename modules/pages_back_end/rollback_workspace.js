@@ -2,6 +2,7 @@
 const crypto = require('crypto');//Generate random strings
 const serverLogs = require('../database/logs.js');//Save modifications on servers to logs
 const blockly_xml_to_js = require('../blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
+const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 
 module.exports = async function(req, res, database_pool, logger, Blockly, blocklyToken){
 
@@ -14,9 +15,7 @@ module.exports = async function(req, res, database_pool, logger, Blockly, blockl
 
       let premium;//Store if the server is premium or not
       try{
-        let data;
-        data = await database_pool.query("SELECT EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;", [req.params.id]);
-        premium = !!data.rows[0].premium;
+        premium = (await guilds_database.checkIfServerExist(database_pool, req.params.id, true)).premium;
       }catch(err){
         logger.error("Error while checking if a guild is premium : "+err);
         return(1);

@@ -1,6 +1,7 @@
 'use-strict';
 let Blockly = require('blockly');
 const validateWorkspace = require('./validate_workspace.js');
+const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 const serverLogs = require('../database/logs.js');
 
 module.exports = {
@@ -11,9 +12,9 @@ module.exports = {
     //We check here if the server exist and if it is premium or not
     try{
       let data;
-      data = await database_pool.query("SELECT EXISTS(SELECT 1 FROM servers WHERE server_id=$1) AS server, EXISTS(SELECT 1 FROM premium WHERE server_id=$1 AND (end_date > NOW() OR end_date IS NULL) ) AS premium;", [server_id]);
-      if(!data.rows[0].server)return(1);//This server don't exist in database
-      premium = !!data.rows[0].premium;
+      data = await guilds_database.checkIfServerExist(database_pool, server_id, true);
+      if(!data.exist)return(1);//This server don't exist in database
+      premium = data.premium;
     }catch(err){
       logger.error("Error while checking if a guild is premium : "+err);
       return(1);
