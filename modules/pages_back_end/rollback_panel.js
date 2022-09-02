@@ -30,7 +30,7 @@ module.exports = async function(req, res, database_pool, logger){
             //User is admin on the selected server
 
             //Get saved workspaces for this guild :
-            database_pool.query('SELECT workspace_id, creation_date FROM server_workspace WHERE server_id=$1 ORDER BY creation_date DESC LIMIT $2 OFFSET 1', [String(req.params.id), 20])
+            database_pool.query('SELECT workspace_id, creation_date FROM server_workspace WHERE server_id=$1 ORDER BY creation_date DESC LIMIT $2 OFFSET 1', [String(req.params.id), process.env.P_MAX_ROLLBACKS])
             .then(async(savedWorkspaces)=>{
               //Successfully got saved workspaces
 

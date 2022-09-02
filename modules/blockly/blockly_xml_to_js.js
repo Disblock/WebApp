@@ -3,6 +3,7 @@ let Blockly = require('blockly');
 const validateWorkspace = require('./validate_workspace.js');
 const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 const serverLogs = require('../database/logs.js');
+const guildsWorkspaces = require('../database/workspaces.js');
 
 module.exports = {
   xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, user_id=undefined){//If user_id is defined, we will log that in server's logs
@@ -23,7 +24,7 @@ module.exports = {
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
 
-     const replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
+     let replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
 
      /*
      Blockly's Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
@@ -101,47 +102,49 @@ module.exports = {
        sqlRequests = [
          ['BEGIN;', []],
          ['DELETE FROM server_code WHERE server_id = $1;', [server_id]],
-         [sql+';', args],
-         ['INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml]],
-         ['COMMIT;', []]
+         [sql+';', args]
        ];
        logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
 
      }else{
        //Seem like the user sent a blank workspace, codes will be removed...
+       replacedXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
        logger.debug("There isn't any code to add in the database for the guild "+server_id+", deleting active server code and workspace...");
 
        sqlRequests = [
          ['BEGIN;', []],
-         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]],
-         ['INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, '<xml xmlns="https://developers.google.com/blockly/xml"></xml>']],
-         ['COMMIT;', []]
+         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]]
        ];
      }
 
      //Saving to Database
      let client = await database_pool.connect();
 
+     try{
+       //Saving codes
+       for(let i=0; i<sqlRequests.length; i++){
+         await client.query(sqlRequests[i][0], sqlRequests[i][1]);
+       }
 
+       //Saving Workspace
+       let resultWorkspace = await guildsWorkspaces.addWorkspace(client, server_id, replacedXml, premium);
+       if(!resultWorkspace.correct)throw(resultWorkspace.message);
 
-    //Transactions & running sql queries
-    for(let i=0; i<sqlRequests.length; i++){
-      try{
-        await client.query(sqlRequests[i][0], sqlRequests[i][1]);
-      }catch(err){
-        logger.error("Error in transaction while saving a workspace : "+err);
+       //Commit
+       await client.query('COMMIT;', []);
+     }catch(err){
+       logger.error("Error in transaction while saving a workspace and codes : "+err);
 
-        try{
-          await client.query("ROLLBACK;");
-        }catch(err2){
-          logger.error("Can't rollback transaction : "+err2);
-        }finally{
-          client.release(err);//Release the client with an error, this should delete this client
-          return(1);
-        }
+       try{
+         await client.query("ROLLBACK;");
+       }catch(err2){
+         logger.error("Can't rollback transaction : "+err2);
+       }finally{
+         client.release(err);//Release the client with an error, this should delete this client
+         return(1);
+       }
+     }
 
-      }
-    }
     logger.debug("Correctly saved new workspace for server "+server_id);
 
 
