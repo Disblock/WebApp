@@ -1,25 +1,11 @@
 'use-strict';
 let Blockly = require('blockly');
 const validateWorkspace = require('./validate_workspace.js');
-const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
-const serverLogs = require('../database/logs.js');
 const guildsWorkspaces = require('../database/workspaces.js');
 
 module.exports = {
-  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, user_id=undefined){//If user_id is defined, we will log that in server's logs
-
-    let premium;//Will store if the server is premium or not
-
-    //We check here if the server exist and if it is premium or not
-    try{
-      let data;
-      data = await guilds_database.checkIfServerExist(database_pool, server_id, true);
-      if(!data.exist)return(1);//This server don't exist in database
-      premium = data.premium;
-    }catch(err){
-      logger.error("Error while checking if a guild is premium : "+err);
-      return(1);
-    }
+  /* Function used to translate BLockly's XML to executable JS.*/
+  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, premium){
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
@@ -146,19 +132,6 @@ module.exports = {
      }
 
     logger.debug("Correctly saved new workspace for server "+server_id);
-
-
-
-    if(user_id){//If undefined, this is a rollback which is logged as a different event
-      //Save this modification in logs
-      let resultLog = await serverLogs.addEventToLogs(client, server_id, user_id, serverLogs.eventType.updatedWorkspace, premium);
-      if(!resultLog.correct){
-        //error
-        logger.error("Error while saving workspace modification in logs for guild "+server_id+" : "+resultLog.message);
-        client.release(true);//Error, the pool will destroy this client.
-        return(1);
-      }
-    }
 
     client.release();//Release the client into pool
 
