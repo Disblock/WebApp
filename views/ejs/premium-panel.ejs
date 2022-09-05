@@ -1,0 +1,69 @@
+<link rel="stylesheet" type="text/css" href="/style/premium-panel-style">
+<div id="content_div">
+
+  <!-- Title -->
+  <h1 class="content_title">Oui<%# locale.logsPageTitle %></h1>
+
+  <!-- Text -->
+  <p class="content_text">Description<%# locale.logsPageText %></p>
+
+  <!-- Div that will show availables premium slots -->
+  <div class="premium_servers_div">
+
+    <!-- A premium server -->
+    <div class="premium_servers_div_server">
+      <img src="/img/logo.png" alt="" width="75px" height="75px" id="Server_name">
+    </div>
+    <!--<p>You don't have any available premium slot !</p>-->
+
+  </div>
+
+  <!-- Premium management div -->
+  <div class="premium_management_div">
+    <!-- Premium informations -->
+    <div class="premium_management_div_info_div">
+      <p style="margin:0px;">Créé le 25/12/2022 à 20H00<br>
+      Jusqu'au 25/01/2023<br>
+      Source : Abonnement</p>
+    </div>
+    <!-- Name of the server -->
+    <div class="premium_management_div_title_div">
+      <h3 style="margin:0px;">Server Premium</h3>
+    </div>
+    <!-- Premium ID -->
+    <div class="premium_management_div_id_div">
+      <p style="margin:0px;">#125</p>
+    </div>
+    <!-- Form to change the server -->
+    <form action="/panel/premium/edit" method="get" id="premium_management_div_form">
+      <input type="hidden" name="premium_id" value="undefined" />
+      <!-- TODO : add security token -->
+      <label for="servers_selection">Quel serveur ?</label>
+      <select id="servers_selection" form="premium_management_div_form" name="server_id" required>
+        <option value="4687564567">Disblock</option>
+        <option value="567654657">Disblock 2</option>
+      </select><br>
+      <input type="submit" value="Envoyer" id="send_form_button"/>
+      <!-- Pour modifier un premium : je le récupère avec son ID et l'ID de l'utilisateur connecté.
+      En prime, un token est généré ici et vérifié sur la page de modifications. -->
+    </form>
+  </div>
+
+  <div class="support_and_premium_div">
+
+    <div class="support_us_div">
+      <p>Faire un don</p>
+      <a href="#">Lien</a>
+    </div>
+
+    <div class="premium_code_div">
+      <form action="/panel/premium/code" method="get" id="premium_code_form">
+        <label for="premium_code_input">Entrez votre code :</label>
+        <input required type="text" name="premium_code" id="premium_code_input" maxlength="32"/><br>
+        <input type="submit" value="Valider" id="premium_code_submit_button"/>
+      </form>
+    </div>
+
+  </div>
+
+</div>

@@ -145,6 +145,7 @@
         1 = guild-panel
         2 = rollback-panel
         3 = logs-panel
+        4 = premium pannel
         */
         if(page==0){//Guild undefined
           //On /panel
@@ -161,6 +162,9 @@
         }else if(page==3){//Guild defined, blocks undefined
           //On /panel/:id/logs
           %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs, premium:premium}); %><%
+        }else if(page==4){
+          //On /panel/premium
+          %><%- include('ejs/premium-panel.ejs', {locale:locale}); %><%
         }
       %>
 

@@ -44,6 +44,7 @@ const guildPanelBackEnd = require('./modules/pages_back_end/guild_panel.js');
 const guildRollbackBackEnd = require('./modules/pages_back_end/rollback_panel.js');
 const rollbackWorkspaceBackEnd = require('./modules/pages_back_end/rollback_workspace.js');
 const logsPanelBackEnd = require('./modules/pages_back_end/logs_panel.js');
+const premiumPanelBackEnd = require('./modules/pages_back_end/premium_panel.js');
 
 /*############################################*/
 /* Back-End for pages */
@@ -350,6 +351,20 @@ app.get('/panel',async function(req, res){
 
 /*-----------------------------------*/
 
+app.get('/panel/premium', async function(req, res){
+  ratesLimitsRedis.consume(req.ip, 15)
+  .then(async()=>{
+    //User isn't rate limited
+    premiumPanelBackEnd(req, res, database_pool, logger);
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+});
+
+/*-----------------------------------*/
+
 app.get('/panel/:id',async function(req, res){
   ratesLimitsRedis.consume(req.ip, 10)
   .then(async()=>{
@@ -450,6 +465,10 @@ app.get('/style/rollback-panel-style',async function(req, res){
 app.get('/style/logs-panel-style',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
   res.render('./style/logs-panel-style.ejs');
+});
+app.get('/style/premium-panel-style', async function(req, res){
+  res.setHeader("Content-Type", 'text/css');
+  res.render('./style/premium-panel-style.ejs');
 });
 app.get('/style/check-cross-animation',async function(req, res){
   res.setHeader("Content-Type", 'text/css');
