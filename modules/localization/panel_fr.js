@@ -29,5 +29,24 @@ module.exports = {
   logsPageTitle: "Vérifier l'historique de votre serveur",
   logsPageText: "Ici, vous pouvez voir toutes les modifications faites sur votre serveur, quand et par qui elles ont été faites",
   logsPageNoLogs: "Il n'y a aucune modification enregistrée pour ce serveur !",
-  logsPageStaff: "Action du Staff"
+  logsPageStaff: "Action du Staff",
+
+  /* Premium panel */
+  premiumPageTitle: "Gestion Premium",
+  premiumPageText: "Vous pouvez gérer ici vos emplacements premium si vous en possédez. Vous pouvez aussi utiliser un code, ou nous soutenir pour obtenir des emplacements Premium.<br>Le premium n'est pas un produit, mais juste une contrepartie pour votre soutient",
+  premiumPageNoSlotsAvailable: "Vous n'avez aucun emplacement Premium utilisable actuellement",
+  premiumPageSelectASlot: "Séléctionnez un emplacement premium pour le modifier",
+  premiumPageChangeServer: "Soutenir un autre serveur :",
+  premiumPageSendChangeServer: "Changer le serveur",
+  premiumPageSupportUs: "Soutenez-nous sur {} !",
+  premiumPageSupportUsButton: "Accéder à {}",
+  premiumPageRedeemCode: "Vous avez un code ?",
+  premiumPageRedeemCodeSend:"Activer le code",
+  premiumPageStart:"Début : ",
+  premiumPageEnd:"Fin : ",
+  premiumPageNever:"Jamais",
+  premiumPagePremiumSource: "Provenance : ",
+  premiumPagePremiumSourceCode:"Code",
+  premiumPagePremiumSourceSubscription:"Abonnement",
+  premiumPageAvailableSlot: "Emplacement disponible"
 }

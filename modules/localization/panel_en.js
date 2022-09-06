@@ -29,5 +29,24 @@ module.exports = {
   logsPageTitle: "Check you server's audit log",
   logsPageText: "Here, you can see every modifications made to your server, when they was made and who did it.",
   logsPageNoLogs: "There isn't any saved modifications for this server !",
-  logsPageStaff: "Staff action"
+  logsPageStaff: "Staff action",
+
+  /* Premium panel */
+  premiumPageTitle: "Premium management",
+  premiumPageText: "If you have some Premium slots, you can manage them here. You can also redeem a code, or support us to get some Premium slots.<br>The Premium feature isn't a product, but just a bonus for supporting the bot.",
+  premiumPageNoSlotsAvailable: "You don't have any Premium slot available",
+  premiumPageSelectASlot: "Select a premium slot to manage it",
+  premiumPageChangeServer: "Use this Premium on another server :",
+  premiumPageSendChangeServer: "Confirm",
+  premiumPageSupportUs: "Support us on {} :",
+  premiumPageSupportUsButton: "{}",
+  premiumPageRedeemCode: "You have a premium code ?",
+  premiumPageRedeemCodeSend:"Redeem this code",
+  premiumPageStart:"From : ",
+  premiumPageEnd:"To : ",
+  premiumPageNever:"Never expire",
+  premiumPagePremiumSource: "Origin : ",
+  premiumPagePremiumSourceCode:"Code",
+  premiumPagePremiumSourceSubscription:"Subscription",
+  premiumPageAvailableSlot: "Available premium slot"
 }

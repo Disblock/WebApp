@@ -2,68 +2,129 @@
 <div id="content_div">
 
   <!-- Title -->
-  <h1 class="content_title">Oui<%# locale.logsPageTitle %></h1>
+  <h1 class="content_title"><%- locale.premiumPageTitle %></h1>
 
   <!-- Text -->
-  <p class="content_text">Description<%# locale.logsPageText %></p>
+  <p class="content_text"><%- locale.premiumPageText %></p>
 
   <!-- Div that will show availables premium slots -->
   <div class="premium_servers_div">
 
-    <!-- A premium server -->
-    <div class="premium_servers_div_server">
-      <img src="/img/logo.png" alt="" width="75px" height="75px" id="Server_name">
-    </div>
-    <!--<p>You don't have any available premium slot !</p>-->
+      <%
+      if(premiumSlots.length>0){
+        //At least one premium slot
+        for(let i=0; i<premiumSlots.length; i++){
+          //For each premium slot
+          if(premiumSlots[i].server_id){
+            //There is a server assigned to this slot
+
+            let premiumGuild = guilds.find(guild => guild.id === premiumSlots[i].server_id);
+            let link;
+            if(premiumGuild){
+              //Defined, we will get the server's picture from the guilds list.
+              //We can also deduce that the user is admin on this guild.
+              link = "https://cdn.discordapp.com/icons/"+premiumGuild.id+"/"+premiumGuild.icon+".png?size=64";
+            }else{
+              //Undefined, the user isn't admin on this anymore. We can't show the server picture due to lack of data about the guild.
+              link = "/img/profile.svg";
+            }
+            //We add data- tags to pass premium informations to the front-end.
+            %><div class="premium_servers_div_server"><img src="<%- link %>" alt="" width="75px" height="75px" id="<%= premiumSlots[i].server_id %>"
+              data-start="<%-premiumSlots[i].start_date.valueOf()%>" data-end="<%-premiumSlots[i].end_date ? premiumSlots[i].end_date.valueOf() : 'NULL'%>"
+              data-name="<%=premiumSlots[i].name%>" data-code="<%-premiumSlots[i].premium_code?'true':'false'%>" data-premiumid="<%-premiumSlots[i].premium_id %>"></div><%
+
+          }else{
+            //This slot don't have any server assigned
+            %><div class="premium_servers_div_server"><img src="/img/plus.svg" alt="" width="75px" height="75px" id="<%= i %>" class="not_assigned"
+              data-start="<%-premiumSlots[i].start_date.valueOf()%>" data-end="<%-premiumSlots[i].end_date ? premiumSlots[i].end_date.valueOf() : 'NULL'%>"
+              data-code="<%-premiumSlots[i].premium_code?'true':'false'%>" data-premiumid="<%-premiumSlots[i].premium_id %>"></div><%
+          }
+        }
+      }
+      %>
 
   </div>
 
   <!-- Premium management div -->
   <div class="premium_management_div">
-    <!-- Premium informations -->
-    <div class="premium_management_div_info_div">
-      <p style="margin:0px;">Créé le 25/12/2022 à 20H00<br>
-      Jusqu'au 25/01/2023<br>
-      Source : Abonnement</p>
-    </div>
-    <!-- Name of the server -->
-    <div class="premium_management_div_title_div">
-      <h3 style="margin:0px;">Server Premium</h3>
-    </div>
-    <!-- Premium ID -->
-    <div class="premium_management_div_id_div">
-      <p style="margin:0px;">#125</p>
-    </div>
-    <!-- Form to change the server -->
-    <form action="/panel/premium/edit" method="get" id="premium_management_div_form">
-      <input type="hidden" name="premium_id" value="undefined" />
-      <!-- TODO : add security token -->
-      <label for="servers_selection">Quel serveur ?</label>
-      <select id="servers_selection" form="premium_management_div_form" name="server_id" required>
-        <option value="4687564567">Disblock</option>
-        <option value="567654657">Disblock 2</option>
-      </select><br>
-      <input type="submit" value="Envoyer" id="send_form_button"/>
-      <!-- Pour modifier un premium : je le récupère avec son ID et l'ID de l'utilisateur connecté.
-      En prime, un token est généré ici et vérifié sur la page de modifications. -->
-    </form>
+    <%
+    if(premiumSlots.length>0){%>
+      <!-- Premium informations -->
+      <div class="premium_management_div_info_div jquery_show">
+        <p style="margin:0px;"></p>
+      </div>
+      <!-- Name of the server -->
+      <div class="premium_management_div_title_div jquery_show">
+        <h3 style="margin:0px;"></h3>
+      </div>
+      <!-- Premium ID -->
+      <div class="premium_management_div_id_div jquery_show">
+        <p style="margin:0px;"></p>
+      </div>
+      <!-- Form to change the server -->
+      <form action="/panel/premium/edit" method="get" id="premium_management_div_form" class="jquery_show">
+        <input type="hidden" name="premium_id" value="undefined" id="form_premium_id" />
+        <!-- TODO : add security token -->
+        <label for="servers_selection"><%- locale.premiumPageChangeServer %></label>
+        <select id="servers_selection" form="premium_management_div_form" name="server_id" required>
+          <%
+            for(let i=0; i<guilds.length; i++){
+            //For each guild, we check if this guild is already premium. If not, we can add an option here.
+              if(!premiumSlots.find(premium => premium.server_id === guilds[i].id)){
+                //Server don't have a premium assigned
+                %><option value="<%- guilds[i].id %>"><%= guilds[i].name %></option><%
+              }
+            }
+          %>
+        </select><br>
+        <input type="submit" value="<%- locale.premiumPageSendChangeServer %>" id="send_form_button"/>
+        <!-- Pour modifier un premium : je le récupère avec son ID et l'ID de l'utilisateur connecté.
+        En prime, un token est généré ici et vérifié sur la page de modifications. -->
+      </form>
+      <p style="color:black;text-align:center;" id="jquery_text"><%- locale.premiumPageSelectASlot %></p>
+    <% }else{ %>
+      <p style="color:black;text-align:center;"><%- locale.premiumPageNoSlotsAvailable %></p>
+    <% } %>
   </div>
 
   <div class="support_and_premium_div">
 
     <div class="support_us_div">
-      <p>Faire un don</p>
-      <a href="#">Lien</a>
+      <p><%- locale.premiumPageSupportUs %></p>
+      <a href="#"><%- locale.premiumPageSupportUsButton %></a>
     </div>
 
     <div class="premium_code_div">
       <form action="/panel/premium/code" method="get" id="premium_code_form">
-        <label for="premium_code_input">Entrez votre code :</label>
+        <label for="premium_code_input"><%- locale.premiumPageRedeemCode %></label>
         <input required type="text" name="premium_code" id="premium_code_input" maxlength="32"/><br>
-        <input type="submit" value="Valider" id="premium_code_submit_button"/>
+        <input type="submit" value="<%- locale.premiumPageRedeemCodeSend %>" id="premium_code_submit_button"/>
       </form>
     </div>
 
   </div>
 
 </div>
+<script>
+  let clicked = false;//Does the user already clicked on a premium slot ?
+  $('.premium_servers_div_server img').click(function(){
+    if(!clicked){
+      clicked=true;
+      $('.jquery_show').removeClass('jquery_show');
+      $('#jquery_text').css({'display':'none'});
+    }
+
+    //We will get premium slot data and show it
+    $('.premium_servers_div_server img').css({'box-shadow': 'none'});
+    $(this).css({'box-shadow': '0px 0px 10px 1px #2e86ab'});
+
+    $('.premium_management_div_title_div h3').text($(this).data('name') ? $(this).data('name'):'<%- locale.premiumPageAvailableSlot %>');
+    $('.premium_management_div_id_div p').text('#'+$(this).data('premiumid'));
+    $('.premium_management_div_info_div p').html('<%- locale.premiumPageStart %>'+new Date(parseInt($(this).data('start'))).toLocaleString()+
+      '<br><%- locale.premiumPageEnd %>'+($(this).data('end')=='NULL'?'<%- locale.premiumPageNever %>':new Date(parseInt($(this).data('end'))).toLocaleString())+
+      '<br><%- locale.premiumPagePremiumSource %>'+($(this).data('code')=='true'?'<%- locale.premiumPagePremiumSourceCode %>':'<%- locale.premiumPagePremiumSourceSubscription %>')
+    );
+    $('#form_premium_id').val($(this).data('premiumid'));
+  });
+
+</script>

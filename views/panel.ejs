@@ -75,7 +75,7 @@
 
       <!-- Div used to show user profile picture/pseudo, or the "Login" button -->
       <style>
-        #top_div_user::after{content: "<%- session.username||"" %>";}
+        #top_div_user::after{content: "<%= session.username||"" %>";}
       </style>
 
       <div id="top_div_user">
@@ -124,7 +124,7 @@
             <a href="/panel/<%- guilds[i].id %>">
               <div class="menu_div_guilds_guild_div" id="<%- guilds[i].id %>">
                 <img src="<%- link %>">
-                <p><%- guilds[i].name %></p>
+                <p><%= guilds[i].name %></p>
               </div>
             </a>
             <%
@@ -164,7 +164,7 @@
           %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs, premium:premium}); %><%
         }else if(page==4){
           //On /panel/premium
-          %><%- include('ejs/premium-panel.ejs', {locale:locale}); %><%
+          %><%- include('ejs/premium-panel.ejs', {locale:locale, guilds:guilds, premiumSlots:premiumSlots}); %><%
         }
       %>
 
