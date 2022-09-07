@@ -18,6 +18,8 @@ module.exports = {
   showWindowRollbackSuccessText: "Les actions du bot ainsi que l'espace de travail ont été restaurés.",
   showWindowRollbackErrorTitle: "Erreur lors de la restauration !",
   showWindowRollbackErrorText: "Il y a eu une erreur en restaurant l'espace de travail.",
+  showWindowGivePremiumToServerSuccessTitle: "Premium déplacé vers un autre serveur !",
+  showWindowGivePremiumToServerSuccessText: "Les évènements de l'ancien serveur vont être désactivés, et vous pouvez maintenant utiliser les avantages du Premium sur ce nouveau serveur !",
 
   /* Rollback panel */
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",

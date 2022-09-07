@@ -37,7 +37,7 @@ module.exports = async function(req, res, database_pool, logger){
               //If a rollback is done, we will use a security token to be sure that users can rollback only after visited this page
               //We also save last seen server's id to avoid rollbacking a server with token generated on another server's rollback page
               req.session.securityToken = crypto.randomBytes(16).toString('hex');
-              req.session.rollbackServer = String(req.params.id);
+              req.session.workingOnServer = String(req.params.id);
 
               let locale;
               //Select right language

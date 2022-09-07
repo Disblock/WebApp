@@ -20,7 +20,7 @@
 
             let premiumGuild = guilds.find(guild => guild.id === premiumSlots[i].server_id);
             let link;
-            if(premiumGuild){
+            if(premiumGuild && premiumGuild.icon!=null){
               //Defined, we will get the server's picture from the guilds list.
               //We can also deduce that the user is admin on this guild.
               link = "https://cdn.discordapp.com/icons/"+premiumGuild.id+"/"+premiumGuild.icon+".png?size=64";
@@ -64,7 +64,7 @@
       <!-- Form to change the server -->
       <form action="/panel/premium/edit" method="get" id="premium_management_div_form" class="jquery_show">
         <input type="hidden" name="premium_id" value="undefined" id="form_premium_id" />
-        <!-- TODO : add security token -->
+        <input type="hidden" name="token" value="<%= session.securityToken %>" id="form_security_token" />
         <label for="servers_selection"><%- locale.premiumPageChangeServer %></label>
         <select id="servers_selection" form="premium_management_div_form" name="server_id" required>
           <%
@@ -78,8 +78,6 @@
           %>
         </select><br>
         <input type="submit" value="<%- locale.premiumPageSendChangeServer %>" id="send_form_button"/>
-        <!-- Pour modifier un premium : je le récupère avec son ID et l'ID de l'utilisateur connecté.
-        En prime, un token est généré ici et vérifié sur la page de modifications. -->
       </form>
       <p style="color:black;text-align:center;" id="jquery_text"><%- locale.premiumPageSelectASlot %></p>
     <% }else{ %>

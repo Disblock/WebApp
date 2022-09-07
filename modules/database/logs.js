@@ -5,7 +5,9 @@ module.exports = {
   //Enum to store event type. The number is the row ID of the event in database.
   eventType: {
     updatedWorkspace:1,
-    rollbackedWorkspace:2
+    rollbackedWorkspace:2,
+    addedPremium:3,
+    removedPremium:4
   },
 
   /* This function will add an event to the audit log. If there is too much saved logs, we will delete some of them.

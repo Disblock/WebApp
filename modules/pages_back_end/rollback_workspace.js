@@ -8,7 +8,7 @@ module.exports = async function(req, res, database_pool, logger, Blockly, blockl
 
   if(req.session.discord_id!=undefined){
 
-    if(req.session.securityToken===req.query.token && req.session.securityToken!=undefined && req.session.rollbackServer === String(req.params.id)){
+    if(req.session.securityToken===req.query.token && req.session.securityToken!=undefined && req.session.workingOnServer === String(req.params.id)){
       //User is admin on the selected server : token generated on /rollback is correct
 
       req.session.securityToken = crypto.randomBytes(16).toString('hex');

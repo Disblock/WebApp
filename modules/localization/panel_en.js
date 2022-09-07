@@ -18,6 +18,8 @@ module.exports = {
   showWindowRollbackSuccessText: "Successfully restored workspace and executed actions.",
   showWindowRollbackErrorTitle: "Error while restoring the workspace !",
   showWindowRollbackErrorText: "There was an error while rollbacking the workspace.",
+  showWindowGivePremiumToServerSuccessTitle: "Successfully assigned this Premium slot to another server !",
+  showWindowGivePremiumToServerSuccessText: "The created code on the old server will be disabled, and you can now use the advantages of Premium on the new server !",
 
   /* Rollback panel */
   rollbackPageTitle: "Rollback to a previous state your server's workspace",
