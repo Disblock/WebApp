@@ -46,6 +46,7 @@ const rollbackWorkspaceBackEnd = require('./modules/pages_back_end/rollback_work
 const logsPanelBackEnd = require('./modules/pages_back_end/logs_panel.js');
 const premiumPanelBackEnd = require('./modules/pages_back_end/premium_panel.js');
 const premiumPanelEditBackEnd = require('./modules/pages_back_end/premium_panel_edit.js');
+const premiumPanelCodeBackEnd = require('./modules/pages_back_end/premium_panel_code.js');
 
 /*############################################*/
 /* Back-End for pages */
@@ -371,6 +372,20 @@ app.get('/panel/premium/edit', async function(req, res){
   .then(async()=>{
     //User isn't rate limited
     premiumPanelEditBackEnd(req, res, database_pool, logger);
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+});
+
+/*-----------------------------------*/
+
+app.get('/panel/premium/code', async function(req, res){
+  ratesLimitsRedis.consume(req.ip, 20)
+  .then(async()=>{
+    //User isn't rate limited
+    premiumPanelCodeBackEnd(req, res, database_pool, logger);
   })
   .catch(async(err)=>{
     //User is rate limited

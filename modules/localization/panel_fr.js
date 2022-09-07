@@ -20,6 +20,10 @@ module.exports = {
   showWindowRollbackErrorText: "Il y a eu une erreur en restaurant l'espace de travail.",
   showWindowGivePremiumToServerSuccessTitle: "Premium déplacé vers un autre serveur !",
   showWindowGivePremiumToServerSuccessText: "Les évènements de l'ancien serveur vont être désactivés, et vous pouvez maintenant utiliser les avantages du Premium sur ce nouveau serveur !",
+  showWindowPremiumCodeSuccessTitle: "Code utilisé !",
+  showWindowPremiumCodeSuccessText: "Vous venez d'obtenir un nouvel emplacement Premium. Merci pour votre soutient ! ;)",
+  showWindowPremiumCodeFailedTitle: "Code invalide",
+  showWindowPremiumCodeFailedText: "Essayez de vérifier si vous avez correctement écrit le code, puis réessayez. Ce code est peut-être déjà utilisé",
 
   /* Rollback panel */
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",

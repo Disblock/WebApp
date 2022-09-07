@@ -120,7 +120,7 @@
     $('.premium_management_div_id_div p').text('#'+$(this).data('premiumid'));
     $('.premium_management_div_info_div p').html('<%- locale.premiumPageStart %>'+new Date(parseInt($(this).data('start'))).toLocaleString()+
       '<br><%- locale.premiumPageEnd %>'+($(this).data('end')=='NULL'?'<%- locale.premiumPageNever %>':new Date(parseInt($(this).data('end'))).toLocaleString())+
-      '<br><%- locale.premiumPagePremiumSource %>'+($(this).data('code')=='true'?'<%- locale.premiumPagePremiumSourceCode %>':'<%- locale.premiumPagePremiumSourceSubscription %>')
+      '<br><%- locale.premiumPagePremiumSource %>'+($(this).data('code')==true?'<%- locale.premiumPagePremiumSourceCode %>':'<%- locale.premiumPagePremiumSourceSubscription %>')
     );
     $('#form_premium_id').val($(this).data('premiumid'));
   });
