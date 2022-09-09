@@ -429,6 +429,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Ranks";
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Embed Messages";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
+  Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "A message is sent or deleted";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "A message is updated";
@@ -476,6 +477,9 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Embed customization";
 
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Work with lists";
+
+  Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Get emoji's data";
+  Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Use Emojis";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "A message was sent %1 %2";
@@ -554,8 +558,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_VAR_NEW_TEXT_CHANNEL_TOOLTIP"] = "Represents the new state of a text channel";
   Blockly.Msg["EVENT_VAR_VOICE_CHANNEL"] = "Voice channel";
   Blockly.Msg["EVENT_VAR_VOICE_CHANNEL_TOOLTIP"] = "Represents the voice channel where an event was triggered";
-  Blockly.Msg["EVENT_VAR_REACTION"] = "Reaction";
-  Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Represents an event's reaction";
+  Blockly.Msg["EVENT_VAR_REACTION"] = "Emoji";
+  Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Represents an event's Emoji";
 
 
   //Channel Permissions
@@ -815,6 +819,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_COLOR_HEX"] = "Color from hexadecimal code %1";
   Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Get a color from his hexadecimal code";
 
+  //Emojis blocks
+  Blockly.Msg["BLOCK_EMOJI_GET_NAME"] = "Get emoji's name %1";
+  Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Get the name of an emoji from Discord or your server. If from Discord, return the unicode value of this emoji ( Get it by typing \"\\:joy:\" on Discord ). If from your server, return the name of this emoji.";
+  Blockly.Msg["BLOCK_EMOJI_REACT"] = "React with the emoji %1 to the message %2";
+  Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Add a reaction to a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord.";
+
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Save %1 in a temporary variable named  %2 of type %3";
   Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "You can use this block to store something and use it later. You must declare the variable and use it in the same event, they aren't kept after the code execution..";
@@ -829,6 +839,9 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_INVALID_NAME"] = "You must use only letters (a-z A-Z) and numbers (1-9) and shouldn't give a name longer than 16 characters when naming this";
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] = "This block can only be placed in a compatible event ! Try using another compatible Event Variable Block here";
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "An Event Variable blocks is incorrectly placed ! We placed warnings on these blocks to locate them and fix the problem.";
+  Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "You must give a value to this block !";
+  Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "A text block seems empty ! Try to write something in it before trying again.";
+  Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "There is too much blocks in your workspace ! Please, try to use less blocks";
 
   //Types names
   Blockly.Msg["STRING"] = "String";

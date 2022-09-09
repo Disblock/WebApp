@@ -1,21 +1,23 @@
+'use-strict';
 let Blockly = require('blockly');
-//const fs = require('fs');
-//const crypto = require('crypto');//Generate random strings
+const validateWorkspace = require('./validate_workspace.js');
+const guildsWorkspaces = require('../database/workspaces.js');
 
 module.exports = {
-  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, user_id=undefined){//If user_id is defined, we will log that in server's logs
+  /* Function used to translate BLockly's XML to executable JS.*/
+  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, premium){
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
 
-     const replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
+     let replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
 
      /*
-     Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
+     Blockly's Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
      <variables> ; procedures_defreturn ; procedures_defnoreturn must not be in xml
      */
      if(replacedXml.includes("<variables>") || replacedXml.includes("procedures_defreturn") || replacedXml.includes("procedures_defnoreturn")){
-       logger.debug(server_id+" used functions or variables in workspace, stopping here...");
+       logger.debug(server_id+" used blockly's functions or variables in workspace, stopping here...");
        return(1);
      }
 
@@ -23,6 +25,9 @@ module.exports = {
      function tryCodeGeneration(replacedXml, workspace){
        try{
          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
+
+         if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
+
          const code = Blockly.JavaScript.workspaceToCode(workspace);
          return code;
        }catch(err){
@@ -32,6 +37,11 @@ module.exports = {
      }
      const code = tryCodeGeneration(replacedXml, workspace);
      if(code==undefined){return(1);}//An error occured, return here
+     else if(code==="TOO MANY BLOCKS !"){
+       //User used too many blocks...
+       logger.debug("Too many blocks error for guild "+server_id);
+       return(1);
+     }
 
 
      logger.debug("Working on code for the guild "+server_id+"...");
@@ -45,7 +55,7 @@ module.exports = {
      //creating Sql request
      let splittedCodeToSend = [];
      let sql = 'INSERT INTO server_code (server_id, action_type, code) VALUES '
-     let sqlCompleted = false;//Check if a valid tupple is added to the sql string
+     let sqlCompleted = false;//Check if at least a valid tupple is added to the sql string
      let args = [server_id];
 
      for(var i=0; i<splittedCode.length; i=i+2){
@@ -72,95 +82,58 @@ module.exports = {
 
      }
 
-     if(!sqlCompleted){
+     let sqlRequests; // [ [request, args], [request, args] ]; will store requests and args to execute
+     if(sqlCompleted){
+       //User sent a valid workspace
+       sqlRequests = [
+         ['BEGIN;', []],
+         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]],
+         [sql+';', args]
+       ];
+       logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
 
+     }else{
        //Seem like the user sent a blank workspace, codes will be removed...
-       logger.debug("There isn't any code to add in the database for the guild "+server_id+", aborting and deleting active server code and workspace...");
-       database_pool.query('DELETE FROM server_code WHERE server_id = $1;', [server_id])
-        .catch(err=>{
-          logger.error("Error while deleting active codes for guild "+server_id+" : "+err);
-        });
-        //Workspace is updated
-        database_pool.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, '<xml xmlns="https://developers.google.com/blockly/xml"></xml>'])
-         .catch(err=>{
-           logger.error("Error while saving workspace for guild "+server_id+" : "+err);
-         });
-       return(0);
+       replacedXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
+       logger.debug("There isn't any code to add in the database for the guild "+server_id+", deleting active server code and workspace...");
+
+       sqlRequests = [
+         ['BEGIN;', []],
+         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]]
+       ];
      }
 
-     logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
-
      //Saving to Database
-     database_pool.connect((err, client, release) => {
-      if(err){
-        release(err);
-        logger.error("Error when getting a client from database pool : "+err);
-      }
+     let client = await database_pool.connect();
 
-      //Used to check if there is an error during transaction
-      function isError(err, client){
-        if(err){
-          logger.error("Error in transaction while saving a workspace !"+err);
-          try{
-            client.query("ROLLBACK");
-          }catch(err2){
-            logger.error("Can't rollback transaction : "+err2);
-          }
-          return true;
-        }else{
-          return false;
-        }
-      }
-      
-      //Transaction start
-      client.query('BEGIN;', (err)=>{
-        if(isError(err, client)){
-          release(err);
-        }else{
-          client.query('DELETE FROM server_code WHERE server_id = $1;', [server_id], (err,rep)=>{
-            if(isError(err, client)){
-              release(err);
-            }else{
-              //Tuples inserted
-              client.query(sql+';', args, (err, rep)=>{
-                if(isError(err, client)){
-                  //Problem, let's rollback
-                  release(err);
-                }else{
-                  //Saving workspace
-                  client.query('INSERT INTO server_workspace (server_id, xml) VALUES ($1, $2);', [server_id, replacedXml], (err)=>{
-                    if(isError(err, client)){
-                      release(err);
-                    }else{
-                      //Everything seems OK, let's commit
-                      client.query('COMMIT;', (err)=>{
-                        if(isError(err, client)){
-                          release(err);//Release the client with an error, this should delete this client
-                        }else{
-                          logger.debug("Correctly saved new workspace for server "+server_id);
-                          release();//Release the client into pool
-                        }
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          });
-        }
-      });
-    });
+     try{
+       //Saving codes
+       for(let i=0; i<sqlRequests.length; i++){
+         await client.query(sqlRequests[i][0], sqlRequests[i][1]);
+       }
 
-    if(user_id){//If undefined, this is a rollback which is logged as a different event
-      //Save this modification in logs
-      database_pool.query('INSERT INTO audit_log (server_id, user_id, action, action_date, staff_action) VALUES ($1, $2, 1, NOW(), FALSE);', [server_id, user_id], (err, res) => {
-        if (err) {
-          logger.error("Error while saving workspace modification in logs for guild "+server_id+" : "+err);
-        }
-      });
-    }
+       //Saving Workspace
+       let resultWorkspace = await guildsWorkspaces.addWorkspace(client, server_id, replacedXml, premium);
+       if(!resultWorkspace.correct)throw(resultWorkspace.message);
 
+       //Commit
+       await client.query('COMMIT;', []);
+     }catch(err){
+       logger.error("Error in transaction while saving a workspace and codes : "+err);
 
+       try{
+         await client.query("ROLLBACK;");
+       }catch(err2){
+         logger.error("Can't rollback transaction : "+err2);
+       }finally{
+         client.release(err);//Release the client with an error, this should delete this client
+         return(1);
+       }
+     }
+
+    logger.debug("Correctly saved new workspace for server "+server_id);
+
+    client.release();//Release the client into pool
 
     return(0);
   }

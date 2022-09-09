@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="description" content="Disblock panel, check latest news and manage your servers here"/>
     <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
     <title>Disblock - Panel</title>
+    <link rel="shortcut icon" type="image/png" href="/img/logo.png"/>
     <link rel="stylesheet" type="text/css" href="/style">
     <link rel="stylesheet" type="text/css" href="/style/panel-style">
   </head>
@@ -62,7 +64,7 @@
                   margin-bottom: 40%;
                 }
               </style>
-              <a href="<%- login_url %>&state=<%- session.state %>"><img src="img/login.svg"></a>
+              <a href="/login"><img src="img/login.svg"></a>
             <%
           }else{
             //Logged in
@@ -73,7 +75,7 @@
 
       <!-- Div used to show user profile picture/pseudo, or the "Login" button -->
       <style>
-        #top_div_user::after{content: "<%- session.username||"" %>";}
+        #top_div_user::after{content: "<%= session.username||"" %>";}
       </style>
 
       <div id="top_div_user">
@@ -99,7 +101,7 @@
       <div id="menu_div_links">
         <nav>
           <ul>
-            <li><a href="#">Lien 1</a></li>
+            <li><a href="/panel/premium">Premium</a></li>
             <li><a href="#">Lien 2</a></li>
           </ul>
         </nav>
@@ -122,7 +124,7 @@
             <a href="/panel/<%- guilds[i].id %>">
               <div class="menu_div_guilds_guild_div" id="<%- guilds[i].id %>">
                 <img src="<%- link %>">
-                <p><%- guilds[i].name %></p>
+                <p><%= guilds[i].name %></p>
               </div>
             </a>
             <%
@@ -143,6 +145,7 @@
         1 = guild-panel
         2 = rollback-panel
         3 = logs-panel
+        4 = premium pannel
         */
         if(page==0){//Guild undefined
           //On /panel
@@ -150,15 +153,18 @@
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
-          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild}); %>
+          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild, premium:premium}); %>
 
           <%
         }else if(page==2){//Guild defined, blocks undefined
           //On /panel/:id/rollback
-          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild, savedWorkspaces:savedWorkspaces}); %><%
+          %><%- include('ejs/rollback-panel.ejs', {locale:locale, guild:guild, savedWorkspaces:savedWorkspaces, premium:premium}); %><%
         }else if(page==3){//Guild defined, blocks undefined
           //On /panel/:id/logs
-          %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs}); %><%
+          %><%- include('ejs/logs-panel.ejs', {locale:locale, guild:guild, logs:logs, premium:premium}); %><%
+        }else if(page==4){
+          //On /panel/premium
+          %><%- include('ejs/premium-panel.ejs', {locale:locale, guilds:guilds, premiumSlots:premiumSlots}); %><%
         }
       %>
 
@@ -215,6 +221,15 @@
         break;
       case '3':
         showWindow(false, "<%- locale.showWindowRollbackErrorTitle %>", "<%- locale.showWindowRollbackErrorText %>");
+        break;
+      case '4':
+        showWindow(true, "<%- locale.showWindowGivePremiumToServerSuccessTitle %>", "<%- locale.showWindowGivePremiumToServerSuccessText %>");
+        break;
+      case '5':
+        showWindow(false, "<%- locale.showWindowPremiumCodeFailedTitle %>", "<%- locale.showWindowPremiumCodeFailedText %>");
+        break;
+      case '6':
+        showWindow(true, "<%- locale.showWindowPremiumCodeSuccessTitle %>", "<%- locale.showWindowPremiumCodeSuccessText %>");
         break;
       default:
         break;

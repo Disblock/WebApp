@@ -3,15 +3,15 @@
 <div id="content_div">
 
   <!-- This div is just under the #top_div, contain guild name and picture  -->
-  <%- include("../assets/guild_div.ejs", {guild:guild})%>
+  <%- include("../assets/guild_div.ejs", {guild:guild, premium:premium})%>
 
   <!-- This div contain the blocks on top of this space -->
   <div id="content_div_header_div">
-    <div class="content_div_header_div_subdiv">
+    <!--<div class="content_div_header_div_subdiv">
       <p>
         <a href="#"><%- locale.manageServerVars %></a>
       </p>
-    </div>
+    </div>-->
 
     <div class="content_div_header_div_subdiv">
       <p>
@@ -30,8 +30,8 @@
   </div>
 
   <div id="content_bottom_div">
-    <button onclick="sendWorkspaceToServer()" css="z-index: 999;"><%- locale.sendCodeButton %></button>
-    <!-- Temporary ! -->
+    <button onclick="sendWorkspaceToServer()" css="z-index: 999;"><%- locale.sendCodeButton %></button><!-- Temporary ! -->
+    <p class="content_bottom_div_blocks_count" id="blocks_count"></p>
   </div>
 
 
@@ -44,6 +44,14 @@
 <script>
   const socket = io();
   const toolbox = document.getElementById("toolbox");
+
+  <% if(premium){ %>
+      const maxBlocks = <%- process.env.P_WORKSPACE_MAX_BLOCKS %>;
+  <%}else{%>
+      const maxBlocks = <%- process.env.NP_WORKSPACE_MAX_BLOCKS %>;
+  <%}%>
+  //We define the max blocks amount in #blocks_count
+  $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+' 0 / '+maxBlocks);
 
   <%
     for(var i=0;i<blocks.length;i++){
@@ -61,7 +69,7 @@
     collapse : true,
     comments : true,
     disable : false,
-    maxBlocks : Infinity,
+    maxBlocks : maxBlocks,
     trashcan : true,
     horizontalLayout : false,
     toolboxPosition : 'start',
@@ -92,7 +100,9 @@
 
   //If a workspace is stored in database, it is restored here
   <% if(workspace_xml){ %>
-    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- workspace_xml %>`), workspace); <%
+    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- workspace_xml %>`), workspace);
+    $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+workspace.getAllBlocks(false).length +' / '+maxBlocks);
+    <%
   }%>
 
   //We include here events for Blockly

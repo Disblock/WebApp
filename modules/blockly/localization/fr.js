@@ -429,6 +429,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Rôles";
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
+  Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -476,6 +477,9 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Personnaliser un Embed";
 
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Travailler sur les listes";
+
+  Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Obtenir les informations d'un Emoji";
+  Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Utiliser les émojis";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -554,8 +558,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_VAR_NEW_TEXT_CHANNEL_TOOLTIP"] = "Représente le nouvel état d'un salon textuel";
   Blockly.Msg["EVENT_VAR_VOICE_CHANNEL"] = "Salon vocal";
   Blockly.Msg["EVENT_VAR_VOICE_CHANNEL_TOOLTIP"] = "Représente le salon vocal où s'est déroulé l'événement";
-  Blockly.Msg["EVENT_VAR_REACTION"] = "Réaction";
-  Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Représente la réaction de l'événement";
+  Blockly.Msg["EVENT_VAR_REACTION"] = "Emoji";
+  Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Représente l'émoji de l'événement";
 
 
   //Channel Permissions
@@ -815,6 +819,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_COLOR_HEX"] = "Couleur depuis le code hexadécimal %1";
   Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Permet d'obtenir une couleur à partir de son code héxadécimal";
 
+  //Emojis blocks
+  Blockly.Msg["BLOCK_EMOJI_GET_NAME"] = "Obtenir le nom de l'émoji %1";
+  Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Obtenir le nom d'un émoji de Discord ou de votre serveur. S'il vient de Discord, retourne la valeur unicode de l'émoji ( Trouvable en tapant \"\\:joy:\" dans Discord ). S'il vient de votre serveur, retourne son nom.";
+  Blockly.Msg["BLOCK_EMOJI_REACT"] = "Réagir avec l'émoji %1 au message %2";
+  Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Ajoute une réaction au message. Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord.";
+
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Sauvegarder la valeur %1 dans une variable temporaire nommée %2 de type %3";
   Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour conserver quelque chose et l'utiliser plus tard. Vous devez déclarer et utiliser la variable dans le même évènement, car elle n'est pas conservée après l'éxécution du code";
@@ -828,7 +838,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] = "Des blocs de variable temporaires sont mals placés ! Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
   Blockly.Msg["WARNING_INVALID_NAME"] = "Vous devez uniquement utiliser des lettres (a-z A-Z) et des chiffres (1-9) tout en ne dépassant pas 16 charactères en nommant cela !";
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] = "Ce bloc n'est pas placé dans un évènement compatible ! Essayez d'utiliser un autre bloc de variable d'évènement compatible";
-  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "un bloc de variable d'évènement est incorrectement placé. Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
+  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "Un bloc de variable d'évènement est incorrectement placé. Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
+  Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "Vous devez entrer une valeur pour ce bloc !";
+  Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "Un bloc de texte semble vide ! Essayez d'y entrer quelque chose avant de réessayer";
+  Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "Il y a trop de blocs dans votre espace de travail ! Essayez d'utiliser moins de blocs";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";

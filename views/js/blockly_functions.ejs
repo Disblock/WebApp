@@ -60,14 +60,28 @@ function checkIfValueAndTypeVarCompatibles(event){
   }
 }
 
+/* This function will be called each time a block is added or removed from workspace to update the blocks count <p> */
+function updateMaxBlocks(event){
+  if(event.type==Blockly.Events.BLOCK_CREATE || Blockly.Events.BLOCK_DELETE){
+    $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+workspace.getAllBlocks(false).length +' / '+maxBlocks);
+  }
+}
+
 workspace.addChangeListener(saveVarBlockModified);
 workspace.addChangeListener(checkIfValueAndTypeVarCompatibles);
+workspace.addChangeListener(updateMaxBlocks);
 
 /*Function used to check if everything seems OK in workspace before sending code
 We check : - Temporary variables blocks
 
 Return {correct:true, message:'OK'} or {correct:false, message:'Error message'}*/
 function validateWorkspace(workspace){
+
+  //We check if user used the allowed number of blocks
+  if(workspace.getAllBlocks(false).length > maxBlocks){
+    return({correct:false, message:Blockly.Msg["WARNING_TOO_MANY_BLOCKS"]});
+  }
+
   //Get all top blocks
   let topBlocks = workspace.getTopBlocks();
   let foundError = false;//Become true when an error is found
@@ -116,7 +130,7 @@ function validateWorkspace(workspace){
   }
 
   //Finished to check temporary variables, if there is an error, we can stop here
-  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]})
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]});
 
   //Now checking if an Event var Block was uncorrectly placed
   let blocks = workspace.getAllBlocks(false);
@@ -136,7 +150,23 @@ function validateWorkspace(workspace){
   }
 
   //Finished to check event var blocks, stop here in case of error
-  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"]})
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"]});
+
+  //Now checking for empty text blocks
+  for(let i=0; i<blocks.length; i++){
+     if(blocks[i].type==="text"){
+       if(/^\s*('|\\')*\s*$/.test(blocks[i].getFieldValue('TEXT'))){
+         //Text value is empty
+         blocks[i].setWarningText(Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"]);
+         foundError = true;
+       }else{
+         //OK
+         blocks[i].setWarningText(null);
+       }
+     }
+  }
+  //Finished to check text blocks, stop here in case of error
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"]});
 
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});

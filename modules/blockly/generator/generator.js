@@ -746,124 +746,124 @@ module.exports = {
         let code = value_user+'.permissions';
         switch(dropdown_permission){
           case 'SEE_CHANNEL':
-            code = code + '.has(\'VIEW_CHANNEL\', true)';//https://discord.js.org/#/docs/discord.js/stable/class/Permissions?scrollTo=has
+            code = code + '.has(Discord.PermissionsBitField.Flags.ViewChannel, true)';//https://discord.js.org/#/docs/discord.js/stable/class/Permissions?scrollTo=has
             break;
           case 'MANAGE_CHANNEL':
-            code = code + '.has(\'MANAGE_CHANNELS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageChannels, true)';
             break;
           case 'MANAGE_RANKS':
-            code = code + '.has(\'MANAGE_ROLES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageRoles, true)';
             break;
           case 'MANAGE_EMOJIS':
-            code = code + '.has(\'MANAGE_EMOJIS_AND_STICKERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageEmojisAndStickers, true)';
             break;
           case 'SEE_SERVER_LOGS':
-            code = code + '.has(\'VIEW_AUDIT_LOG\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ViewAuditLog, true)';
             break;
           case 'MANAGE_WEBHOOKS':
-            code = code + '.has(\'MANAGE_WEBHOOKS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageWebhooks, true)';
             break;
           case 'MANAGE_SERVER':
-            code = code + '.has(\'MANAGE_GUILD\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageGuild, true)';
             break;
           case 'CREATE_INVITE':
-            code = code + '.has(\'CREATE_INSTANT_INVITE\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.CreateInstantInvite, true)';
             break;
           case 'EDIT_USERNAME':
-            code = code + '.has(\'CHANGE_NICKNAME\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ChangeNickname, true)';
             break;
           case 'EDIT_OTHERS_USERNAME':
-            code = code + '.has(\'MANAGE_NICKNAMES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageNicknames, true)';
             break;
           case 'KICK':
-            code = code + '.has(\'KICK_MEMBERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.KickMembers, true)';
             break;
           case 'BAN':
-            code = code + '.has(\'BAN_MEMBERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.BanMembers, true)';
             break;
           case 'TIMEOUT':
-            code = code + '.has(\'MODERATE_MEMBERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ModerateMembers, true)';
             break;
           case 'SEND_MESSAGES':
-            code = code + '.has(\'SEND_MESSAGES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.SendMessages, true)';
             break;
           case 'SEND_MESSAGES_IN_THREADS':
-            code = code + '.has(\'SEND_MESSAGES_IN_THREADS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.SendMessagesInThreads, true)';
             break;
           case 'CREATE_PUBLIC_THREADS':
-            code = code + '.has(\'CREATE_PUBLIC_THREADS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.CreatePublicThreads, true)';
             break;
           case 'CREATE_PRIVATE_THREADS':
-            code = code + '.has(\'CREATE_PRIVATE_THREADS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.CreatePrivateThreads, true)';
             break;
           case 'EMBED_LINKS':
-            code = code + '.has(\'EMBED_LINKS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.EmbedLinks, true)';
             break;
           case 'ADD_FILES':
-            code = code + '.has(\'ATTACH_FILES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.AttachFiles, true)';
             break;
           case 'ADD_REACTIONS':
-            code = code + '.has(\'ADD_REACTIONS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.AddReactions, true)';
             break;
           case 'USE_EXTERNAL_EMOJIS':
-            code = code + '.has(\'USE_EXTERNAL_EMOJIS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.UseExternalEmojis, true)';
             break;
           case 'USE_EXTERNAL_STICKERS':
-            code = code + '.has(\'USE_EXTERNAL_STICKERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.UseExternalStickers, true)';
             break;
           case 'PING_EVERYONE':
-            code = code + '.has(\'MENTION_EVERYONE\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.MentionEveryone, true)';
             break;
           case 'MANAGE_MESSAGES':
-            code = code + '.has(\'MANAGE_MESSAGES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageMessages, true)';
             break;
           case 'MANAGE_THREADS':
-            code = code + '.has(\'MANAGE_THREADS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageThreads, true)';
             break;
           case 'SEE_OLD_MESSAGES':
-            code = code + '.has(\'READ_MESSAGE_HISTORY\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ReadMessageHistory, true)';
             break;
           case 'SEND_VOICE_MESSAGE':
-            code = code + '.has(\'SEND_TTS_MESSAGES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.SendTTSMessages, true)';
             break;
           case 'USE_APP_COMMANDS':
-            code = code + '.has(\'USE_APPLICATION_COMMANDS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.UseApplicationCommands, true)';
             break;
           case 'CONNECT_TO_VOICE_CHANNEL':
-            code = code + '.has(\'CONNECT\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.Connect, true)';
             break;
           case 'SPEAK':
-            code = code + '.has(\'SPEAK\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.Speak, true)';
             break;
           case 'USE_VIDEO':
-            code = code + '.has(\'STREAM\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.Stream, true)';
             break;
           case 'START_ACTIVITY':
-            code = code + '.has(\'START_EMBEDDED_ACTIVITIES\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.UseEmbeddedActivities, true)';
             break;
           case 'VOICE_DETECTION':
-            code = code + '.has(\'USE_VAD\', true)';//Voice Activity Detection
+            code = code + '.has(Discord.PermissionsBitField.Flags.UseVAD, true)';//Voice Activity Detection
             break;
           case 'PRIORITY_SPEAKER':
-            code = code + '.has(\'PRIORITY_SPEAKER\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.PrioritySpeaker, true)';
             break;
           case 'MUTE_MEMBER':
-            code = code + '.has(\'MUTE_MEMBERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.MuteMembers, true)';
             break;
           case 'DEAF_MEMBER':
-            code = code + '.has(\'DEAFEN_MEMBERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.DeafenMembers, true)';
             break;
           case 'MOOVE_MEMBER':
-            code = code + '.has(\'MOVE_MEMBERS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.MoveMembers, true)';
             break;
           case 'MANAGE_EVENTS':
-            code = code + '.has(\'MANAGE_EVENTS\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.ManageEvents, true)';
             break;
           case 'ADMINISTRATOR':
-            code = code + '.has(\'ADMINISTRATOR\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.Administrator, true)';
             break;
           default:
-            code = code + '.has(\'ADMINISTRATOR\', true)';
+            code = code + '.has(Discord.PermissionsBitField.Flags.Administrator, true)';
             break;
         }
         return [code, Blockly.JavaScript.ORDER_NONE];
@@ -950,7 +950,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        let code = 'createdTextChannel = await CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_TEXT\', parent: '+value_category;//value_category should be a string with the ID or Category object
+        let code = 'createdTextChannel = await CURRENT_GUILD.channels.create({name:'+value_name+' ,type: Discord.ChannelType.GuildText, parent: '+value_category;//value_category should be a string with the ID or Category object
         code = code + ((value_topic!=='') ? ', topic: '+value_topic+'});\n' : '});\n');
         return code;
       }else{
@@ -963,7 +963,7 @@ module.exports = {
       const value_category = Blockly.JavaScript.valueToCode(block, 'category', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_category!==''){
-        const code = 'createdVoiceChannel = await CURRENT_GUILD.channels.create('+value_name+', {type: \'GUILD_VOICE\', parent: '+value_category+'});\n';
+        const code = 'createdVoiceChannel = await CURRENT_GUILD.channels.create({name:'+value_name+', type: Discord.ChannelType.GuildVoice, parent: '+value_category+'});\n';
         return code;
       }else{
         return '';
@@ -1079,97 +1079,97 @@ module.exports = {
 
         switch(dropdown_permission){
           case 'SEE_CHANNEL':
-            code = code + '\'VIEW_CHANNEL\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ViewChannel, true)';
             break;
           case 'MANAGE_CHANNEL':
-            code = code + '\'MANAGE_CHANNELS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ManageChannels, true)';
             break;
           case 'MANAGE_CHANNEL_PERMISSIONS':
-            code = code + '\'MANAGE_ROLES\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ManageRoles, true)';
             break;
           case 'MANAGE_CHANNEL_WEBHOOKS':
-            code = code + '\'MANAGE_WEBHOOKS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ManageWebhooks, true)';
             break;
           case 'CREATE_INVITE':
-            code = code + '\'CREATE_INSTANT_INVITE\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.CreateInstantInvite, true)';
             break;
           case 'SEND_MESSAGES':
-            code = code + '\'SEND_MESSAGES\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.SendMessages, true)';
             break;
           case 'SEND_MESSAGES_IN_THREADS':
-            code = code + '\'SEND_MESSAGES_IN_THREADS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.SendMessagesInThreads, true)';
             break;
           case 'CREATE_PUBLIC_THREADS':
-            code = code + '\'CREATE_PUBLIC_THREADS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.CreatePublicThreads, true)';
             break;
           case 'CREATE_PRIVATE_THREADS':
-            code = code + '\'CREATE_PRIVATE_THREADS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.CreatePrivateThreads, true)';
             break;
           case 'EMBED_LINKS':
-            code = code + '\'EMBED_LINKS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.EmbedLinks, true)';
             break;
           case 'ADD_FILES':
-            code = code + '\'ATTACH_FILES\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.AttachFiles, true)';
             break;
           case 'ADD_REACTIONS':
-            code = code + '\'ADD_REACTIONS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.AddReactions, true)';
             break;
           case 'USE_EXTERNAL_EMOJIS':
-            code = code + '\'USE_EXTERNAL_EMOJIS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.UseExternalEmojis, true)';
             break;
           case 'USE_EXTERNAL_STICKERS':
-            code = code + '\'USE_EXTERNAL_STICKERS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.UseExternalStickers, true)';
             break;
           case 'PING_EVERYONE':
-            code = code + '\'MENTION_EVERYONE\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.MentionEveryone, true)';
             break;
           case 'MANAGE_MESSAGES':
-            code = code + '\'MANAGE_MESSAGES\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ManageMessages, true)';
             break;
           case 'MANAGE_THREADS':
-            code = code + '\'MANAGE_THREADS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ManageThreads, true)';
             break;
           case 'SEE_OLD_MESSAGES':
-            code = code + '\'READ_MESSAGE_HISTORY\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ReadMessageHistory, true)';
             break;
           case 'SEND_VOICE_MESSAGE':
-            code = code + '\'SEND_TTS_MESSAGES\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.SendTTSMessages, true)';
             break;
           case 'USE_APP_COMMANDS':
-            code = code + '\'USE_APPLICATION_COMMANDS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.UseApplicationCommands, true)';
             break;
           case 'CONNECT_TO_VOICE_CHANNEL':
-            code = code + '\'CONNECT\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.Connect, true)';
             break;
           case 'SPEAK':
-            code = code + '\'SPEAK\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.Speak, true)';
             break;
           case 'USE_VIDEO':
-            code = code + '\'STREAM\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.Stream, true)';
             break;
           case 'START_ACTIVITY':
-            code = code + '\'START_EMBEDDED_ACTIVITIES\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.UseEmbeddedActivities, true)';
             break;
           case 'USE_VOICE_DETECTOR':
-            code = code + '\'USE_VAD\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.UseVAD, true)';
             break;
           case 'PRIORITY_SPEAKER':
-            code = code + '\'PRIORITY_SPEAKER\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.PrioritySpeaker, true)';
             break;
           case 'MUTE_MEMBER':
-            code = code + '\'MUTE_MEMBERS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.MuteMembers, true)';
             break;
           case 'DEAF_MEMBER':
-            code = code + '\'DEAFEN_MEMBERS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.DeafenMembers, true)';
             break;
           case 'MOOVE_MEMBER':
-            code = code + '\'MOVE_MEMBERS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.MoveMembers, true)';
             break;
           case 'MANAGE_VOICE_CHANNEL_EVENTS':
-            code = code + '\'MANAGE_EVENTS\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ManageEvents, true)';
             break;
           default:
-            code = code + '\'VIEW_CHANNEL\', true)';
+            code = code + 'Discord.PermissionsBitField.Flags.ViewChannel, true)';
             break;
         }
 
@@ -1184,104 +1184,104 @@ module.exports = {
       const dropdown_permission = block.getFieldValue('permission');
       let dropdown_isgranted = block.getFieldValue('isGranted');
       const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-      let permissionToEdit = '\'SEE_CHANNEL\'';//Used to store the permission to edit
+      let permissionToEdit = 'ViewChannel';//Used to store the permission to edit
       let code = '';
 
       if(value_userorrank!=='' && dropdown_permission!=='' && dropdown_isgranted!=='' && value_channel!==''){
 
         switch(dropdown_permission){
           case 'SEE_CHANNEL':
-            permissionToEdit = '\'VIEW_CHANNEL\'';
+            permissionToEdit = 'ViewChannel';
             break;
           case 'MANAGE_CHANNEL':
-            permissionToEdit = '\'MANAGE_CHANNELS\'';
+            permissionToEdit = 'ManageChannels';
             break;
           case 'MANAGE_CHANNEL_PERMISSIONS':
-            permissionToEdit = '\'MANAGE_ROLES\'';
+            permissionToEdit = 'ManageRoles';
             break;
           case 'MANAGE_CHANNEL_WEBHOOKS':
-            permissionToEdit = '\'MANAGE_WEBHOOKS\'';
+            permissionToEdit = 'ManageWebhooks';
             break;
           case 'CREATE_INVITE':
-            permissionToEdit = '\'CREATE_INSTANT_INVITE\'';
+            permissionToEdit = 'CreateInstantInvite';
             break;
           case 'SEND_MESSAGES':
-            permissionToEdit = '\'SEND_MESSAGES\'';
+            permissionToEdit = 'SendMessages';
             break;
           case 'SEND_MESSAGES_IN_THREADS':
-            permissionToEdit = '\'SEND_MESSAGES_IN_THREADS\'';
+            permissionToEdit = 'SendMessagesInThreads';
             break;
           case 'CREATE_PUBLIC_THREADS':
-            permissionToEdit = '\'CREATE_PUBLIC_THREADS\'';
+            permissionToEdit = 'CreatePublicThreads';
             break;
           case 'CREATE_PRIVATE_THREADS':
-            permissionToEdit = '\'CREATE_PRIVATE_THREADS\'';
+            permissionToEdit = 'CreatePrivateThreads';
             break;
           case 'EMBED_LINKS':
-            permissionToEdit = '\'EMBED_LINKS\'';
+            permissionToEdit = 'EmbedLinks';
             break;
           case 'ADD_FILES':
-            permissionToEdit = '\'ATTACH_FILES\'';
+            permissionToEdit = 'AttachFiles';
             break;
           case 'ADD_REACTIONS':
-            permissionToEdit = '\'ADD_REACTIONS\'';
+            permissionToEdit = 'AddReactions';
             break;
           case 'USE_EXTERNAL_EMOJIS':
-            permissionToEdit = '\'USE_EXTERNAL_EMOJIS\'';
+            permissionToEdit = 'UseExternalEmojis';
             break;
           case 'USE_EXTERNAL_STICKERS':
-            permissionToEdit = '\'USE_EXTERNAL_STICKERS\'';
+            permissionToEdit = 'UseExternalStickers';
             break;
           case 'PING_EVERYONE':
-            permissionToEdit = '\'MENTION_EVERYONE\'';
+            permissionToEdit = 'MentionEveryone';
             break;
           case 'MANAGE_MESSAGES':
-            permissionToEdit = '\'MANAGE_MESSAGES\'';
+            permissionToEdit = 'ManageMessages';
             break;
           case 'MANAGE_THREADS':
-            permissionToEdit = '\'MANAGE_THREADS\'';
+            permissionToEdit = 'ManageThreads';
             break;
           case 'SEE_OLD_MESSAGES':
-            permissionToEdit = '\'READ_MESSAGE_HISTORY\'';
+            permissionToEdit = 'ReadMessageHistory';
             break;
           case 'SEND_VOICE_MESSAGE':
-            permissionToEdit = '\'SEND_TTS_MESSAGES\'';
+            permissionToEdit = 'SendTTSMessages';
             break;
           case 'USE_APP_COMMANDS':
-            permissionToEdit = '\'USE_APPLICATION_COMMANDS\'';
+            permissionToEdit = 'UseApplicationCommands';
             break;
           case 'CONNECT_TO_VOICE_CHANNEL':
-            permissionToEdit = '\'CONNECT\'';
+            permissionToEdit = 'Connect';
             break;
           case 'SPEAK':
-            permissionToEdit = '\'SPEAK\'';
+            permissionToEdit = 'Speak';
             break;
           case 'USE_VIDEO':
-            permissionToEdit = '\'STREAM\'';
+            permissionToEdit = 'Stream';
             break;
           case 'START_ACTIVITY':
-            permissionToEdit = '\'START_EMBEDDED_ACTIVITIES\'';
+            permissionToEdit = 'UseEmbeddedActivities';
             break;
           case 'USE_VOICE_DETECTOR':
-            permissionToEdit = '\'USE_VAD\'';
+            permissionToEdit = 'UseVAD';
             break;
           case 'PRIORITY_SPEAKER':
-            permissionToEdit = '\'PRIORITY_SPEAKER\'';
+            permissionToEdit = 'PrioritySpeaker';
             break;
           case 'MUTE_MEMBER':
-            permissionToEdit = '\'MUTE_MEMBERS\'';
+            permissionToEdit = 'MuteMembers';
             break;
           case 'DEAF_MEMBER':
-            permissionToEdit = '\'DEAFEN_MEMBERS\'';
+            permissionToEdit = 'DeafenMembers';
             break;
           case 'MOOVE_MEMBER':
-            permissionToEdit = '\'MOVE_MEMBERS\'';
+            permissionToEdit = 'MoveMembers';
             break;
           case 'MANAGE_VOICE_CHANNEL_EVENTS':
-            permissionToEdit = '\'MANAGE_EVENTS\'';
+            permissionToEdit = 'ManageEvents';
             break;
           default:
-            permissionToEdit = '\'VIEW_CHANNEL\'';
+            permissionToEdit = 'ViewChannel';
             break;
         }
         switch(dropdown_isgranted){
@@ -1418,128 +1418,128 @@ module.exports = {
 
       if(dropdown_permission!=='' && value_rank!=='' && dropdown_isgranted!==''){
 
-        let currentPermission = '\'VIEW_CHANNEL\'';
+        let currentPermission = 'Discord.PermissionsBitField.Flags.ViewChannel';
         let code = '';
         switch(dropdown_permission){
           case 'SEE_CHANNEL':
-            currentPermission = '\'VIEW_CHANNEL\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ViewChannel';
             break;
           case 'MANAGE_CHANNEL':
-            currentPermission = '\'MANAGE_CHANNELS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageChannels';
             break;
           case 'MANAGE_RANKS':
-            currentPermission = '\'MANAGE_ROLES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageRoles';
             break;
           case 'MANAGE_EMOJIS':
-            currentPermission = '\'MANAGE_EMOJIS_AND_STICKERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageEmojisAndStickers';
             break;
           case 'SEE_SERVER_LOGS':
-            currentPermission = '\'VIEW_AUDIT_LOG\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ViewAuditLog';
             break;
           case 'MANAGE_WEBHOOKS':
-            currentPermission = '\'MANAGE_WEBHOOKS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageWebhooks';
             break;
           case 'MANAGE_SERVER':
-            currentPermission = '\'MANAGE_GUILD\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageGuild';
             break;
           case 'CREATE_INVITE':
-            currentPermission = '\'CREATE_INSTANT_INVITE\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.CreateInstantInvite';
             break;
           case 'EDIT_USERNAME':
-            currentPermission = '\'CHANGE_NICKNAME\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ChangeNickname';
             break;
           case 'EDIT_OTHERS_USERNAME':
-            currentPermission = '\'MANAGE_NICKNAMES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageNicknames';
             break;
           case 'KICK':
-            currentPermission = '\'KICK_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.KickMembers';
             break;
           case 'BAN':
-            currentPermission = '\'BAN_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.BanMembers';
             break;
           case 'TIMEOUT':
-            currentPermission = '\'MODERATE_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ModerateMembers';
             break;
           case 'SEND_MESSAGES':
-            currentPermission = '\'SEND_MESSAGES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.SendMessages';
             break;
           case 'SEND_MESSAGES_IN_THREADS':
-            currentPermission = '\'SEND_MESSAGES_IN_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.SendMessagesInThreads';
             break;
           case 'CREATE_PUBLIC_THREADS':
-            currentPermission = '\'CREATE_PUBLIC_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.CreatePublicThreads';
             break;
           case 'CREATE_PRIVATE_THREADS':
-            currentPermission = '\'CREATE_PRIVATE_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.CreatePrivateThreads';
             break;
           case 'EMBED_LINKS':
-            currentPermission = '\'EMBED_LINKS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.EmbedLinks';
             break;
           case 'ADD_FILES':
-            currentPermission = '\'ATTACH_FILES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.AttachFiles';
             break;
           case 'ADD_REACTIONS':
-            currentPermission = '\'ADD_REACTIONS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.AddReactions';
             break;
           case 'USE_EXTERNAL_EMOJIS':
-            currentPermission = '\'USE_EXTERNAL_EMOJIS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseExternalEmojis';
             break;
           case 'USE_EXTERNAL_STICKERS':
-            currentPermission = '\'USE_EXTERNAL_STICKERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseExternalStickers';
             break;
           case 'PING_EVERYONE':
-            currentPermission = '\'MENTION_EVERYONE\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.MentionEveryone';
             break;
           case 'MANAGE_MESSAGES':
-            currentPermission = '\'MANAGE_MESSAGES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageMessages';
             break;
           case 'MANAGE_THREADS':
-            currentPermission = '\'MANAGE_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageThreads';
             break;
           case 'SEE_OLD_MESSAGES':
-            currentPermission = '\'READ_MESSAGE_HISTORY\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ReadMessageHistory';
             break;
           case 'SEND_VOICE_MESSAGE':
-            currentPermission = '\'SEND_TTS_MESSAGES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.SendTTSMessages';
             break;
           case 'USE_APP_COMMANDS':
-            currentPermission = '\'USE_APPLICATION_COMMANDS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseApplicationCommands';
             break;
           case 'CONNECT_TO_VOICE_CHANNEL':
-            currentPermission = '\'CONNECT\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Connect';
             break;
           case 'SPEAK':
-            currentPermission = '\'SPEAK\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Speak';
             break;
           case 'USE_VIDEO':
-            currentPermission = '\'STREAM\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Stream';
             break;
           case 'START_ACTIVITY':
-            currentPermission = '\'START_EMBEDDED_ACTIVITIES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseEmbeddedActivities';
             break;
           case 'VOICE_DETECTION':
-            currentPermission = '\'USE_VAD\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseVAD';
             break;
           case 'PRIORITY_SPEAKER':
-            currentPermission = '\'PRIORITY_SPEAKER\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.PrioritySpeaker';
             break;
           case 'MUTE_MEMBER':
-            currentPermission = '\'MUTE_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.MuteMembers';
             break;
           case 'DEAF_MEMBER':
-            currentPermission = '\'DEAFEN_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.DeafenMembers';
             break;
           case 'MOOVE_MEMBER':
-            currentPermission = '\'MOVE_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.MoveMembers';
             break;
           case 'MANAGE_EVENTS':
-            currentPermission = '\'MANAGE_EVENTS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageEvents';
             break;
           case 'ADMINISTRATOR':
-            currentPermission = '\'ADMINISTRATOR\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Administrator';
             break;
           default:
-            currentPermission = '\'VIEW_CHANNEL\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ViewChannel';
             break;
         }
 
@@ -1605,127 +1605,127 @@ module.exports = {
       const dropdown_permission = block.getFieldValue('permission');
 
       if(value_rank!=='' && dropdown_permission!==''){
-        let currentPermission = '\'VIEW_CHANNEL\'';
+        let currentPermission = 'Discord.PermissionsBitField.Flags.ViewChannel';
         switch(dropdown_permission){
           case 'SEE_CHANNEL':
-            currentPermission = '\'VIEW_CHANNEL\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ViewChannel';
             break;
           case 'MANAGE_CHANNEL':
-            currentPermission = '\'MANAGE_CHANNELS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageChannels';
             break;
           case 'MANAGE_RANKS':
-            currentPermission = '\'MANAGE_ROLES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageRoles';
             break;
           case 'MANAGE_EMOJIS':
-            currentPermission = '\'MANAGE_EMOJIS_AND_STICKERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageEmojisAndStickers';
             break;
           case 'SEE_SERVER_LOGS':
-            currentPermission = '\'VIEW_AUDIT_LOG\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ViewAuditLog';
             break;
           case 'MANAGE_WEBHOOKS':
-            currentPermission = '\'MANAGE_WEBHOOKS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageWebhooks';
             break;
           case 'MANAGE_SERVER':
-            currentPermission = '\'MANAGE_GUILD\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageGuild';
             break;
           case 'CREATE_INVITE':
-            currentPermission = '\'CREATE_INSTANT_INVITE\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.CreateInstantInvite';
             break;
           case 'EDIT_USERNAME':
-            currentPermission = '\'CHANGE_NICKNAME\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ChangeNickname';
             break;
           case 'EDIT_OTHERS_USERNAME':
-            currentPermission = '\'MANAGE_NICKNAMES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageNicknames';
             break;
           case 'KICK':
-            currentPermission = '\'KICK_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.KickMembers';
             break;
           case 'BAN':
-            currentPermission = '\'BAN_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.BanMembers';
             break;
           case 'TIMEOUT':
-            currentPermission = '\'MODERATE_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ModerateMembers';
             break;
           case 'SEND_MESSAGES':
-            currentPermission = '\'SEND_MESSAGES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.SendMessages';
             break;
           case 'SEND_MESSAGES_IN_THREADS':
-            currentPermission = '\'SEND_MESSAGES_IN_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.SendMessagesInThreads';
             break;
           case 'CREATE_PUBLIC_THREADS':
-            currentPermission = '\'CREATE_PUBLIC_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.CreatePublicThreads';
             break;
           case 'CREATE_PRIVATE_THREADS':
-            currentPermission = '\'CREATE_PRIVATE_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.CreatePrivateThreads';
             break;
           case 'EMBED_LINKS':
-            currentPermission = '\'EMBED_LINKS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.EmbedLinks';
             break;
           case 'ADD_FILES':
-            currentPermission = '\'ATTACH_FILES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.AttachFiles';
             break;
           case 'ADD_REACTIONS':
-            currentPermission = '\'ADD_REACTIONS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.AddReactions';
             break;
           case 'USE_EXTERNAL_EMOJIS':
-            currentPermission = '\'USE_EXTERNAL_EMOJIS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseExternalEmojis';
             break;
           case 'USE_EXTERNAL_STICKERS':
-            currentPermission = '\'USE_EXTERNAL_STICKERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseExternalStickers';
             break;
           case 'PING_EVERYONE':
-            currentPermission = '\'MENTION_EVERYONE\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.MentionEveryone';
             break;
           case 'MANAGE_MESSAGES':
-            currentPermission = '\'MANAGE_MESSAGES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageMessages';
             break;
           case 'MANAGE_THREADS':
-            currentPermission = '\'MANAGE_THREADS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageThreads';
             break;
           case 'SEE_OLD_MESSAGES':
-            currentPermission = '\'READ_MESSAGE_HISTORY\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ReadMessageHistory';
             break;
           case 'SEND_VOICE_MESSAGE':
-            currentPermission = '\'SEND_TTS_MESSAGES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.SendTTSMessages';
             break;
           case 'USE_APP_COMMANDS':
-            currentPermission = '\'USE_APPLICATION_COMMANDS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseApplicationCommands';
             break;
           case 'CONNECT_TO_VOICE_CHANNEL':
-            currentPermission = '\'CONNECT\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Connect';
             break;
           case 'SPEAK':
-            currentPermission = '\'SPEAK\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Speak';
             break;
           case 'USE_VIDEO':
-            currentPermission = '\'STREAM\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Stream';
             break;
           case 'START_ACTIVITY':
-            currentPermission = '\'START_EMBEDDED_ACTIVITIES\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseEmbeddedActivities';
             break;
           case 'VOICE_DETECTION':
-            currentPermission = '\'USE_VAD\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.UseVAD';
             break;
           case 'PRIORITY_SPEAKER':
-            currentPermission = '\'PRIORITY_SPEAKER\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.PrioritySpeaker';
             break;
           case 'MUTE_MEMBER':
-            currentPermission = '\'MUTE_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.MuteMembers';
             break;
           case 'DEAF_MEMBER':
-            currentPermission = '\'DEAFEN_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.DeafenMembers';
             break;
           case 'MOOVE_MEMBER':
-            currentPermission = '\'MOVE_MEMBERS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.MoveMembers';
             break;
           case 'MANAGE_EVENTS':
-            currentPermission = '\'MANAGE_EVENTS\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ManageEvents';
             break;
           case 'ADMINISTRATOR':
-            currentPermission = '\'ADMINISTRATOR\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.Administrator';
             break;
           default:
-            currentPermission = '\'VIEW_CHANNEL\'';
+            currentPermission = 'Discord.PermissionsBitField.Flags.ViewChannel';
             break;
         }
 
@@ -1745,7 +1745,7 @@ module.exports = {
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_color!==''){
-        const code = 'embedMessage = new Discord.MessageEmbed().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
+        const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
         return '';
@@ -1780,7 +1780,7 @@ module.exports = {
       const checkbox_inline = block.getFieldValue('inline') === 'TRUE';
 
       if(value_name!=='' && value_text!==''){
-        const code = '.addField('+value_name+', '+value_text+', '+( checkbox_inline ? 'true':'false' )+')';
+        const code = '.addFields({name:'+value_name+', value:'+value_text+', inline:'+( checkbox_inline ? 'true':'false' )+'})';
         return code;
       }else{
         return '';
@@ -1960,6 +1960,29 @@ module.exports = {
       const code = 'temporaryStorage.'+text_name;
 
       return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    /* ##### Emojis blocks ##### */
+
+    Blockly.JavaScript['block_emoji_get_name'] = function(block) {
+      const value_emoji = Blockly.JavaScript.valueToCode(block, 'EMOJI', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_emoji!==''){
+        return [value_emoji+'.name', Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
+    Blockly.JavaScript['block_emoji_react'] = function(block) {
+      const value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_emoji!=='' && value_message!==''){
+        return value_message+".react("+value_emoji+");\n";
+      }else{
+        return '';
+      }
     };
 
 

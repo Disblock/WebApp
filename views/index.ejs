@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="description" content="Disblock is a totally customizable Discord Bot. You can create your own actions with blocks like in Scratch, and the bot will execute your created code in Discord !"/>
     <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
     <title>Disblock</title>
-    <link rel="stylesheet" type="text/css" href="style">
-    <link rel="stylesheet" type="text/css" href="style/index-style">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css"><!-- AOS stylesheet -->
+    <link rel="shortcut icon" type="image/png" href="/img/logo.png"/>
+    <link rel="stylesheet" type="text/css" href="style"/>
+    <link rel="stylesheet" type="text/css" href="style/index-style"/>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css"/><!-- AOS stylesheet -->
   </head>
   <body>
 
@@ -51,7 +53,7 @@
       let buttonLink, buttonText;
       if(session.username==undefined){
         //User not logged in
-        buttonLink = login_url+"&state="+session.state;
+        buttonLink = '/login';
         buttonText = locale.connectWith;
       }else{
         //User logged in
@@ -112,7 +114,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/main.png">
+          <img src="img/placeholder.png">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
@@ -130,7 +132,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-right">
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/main.png">
+          <img src="img/placeholder.png">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_right">
@@ -148,7 +150,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/main.png">
+          <img src="img/placeholder.png">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
@@ -191,17 +193,17 @@
         <!-- These div contain links to the docs-->
         <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic1 %></p></div>
-          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
+          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/placeholder.png"></a></div>
         </div>
 
         <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic2 %></p></div>
-          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
+          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/placeholder.png"></a></div>
         </div>
 
         <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic3 %></p></div>
-          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/doc_link.png"></a></div>
+          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/placeholder.png"></a></div>
         </div>
 
         <!-- This div contain Discord widget -->
@@ -210,7 +212,7 @@
             <p><%- locale.docsAsk %></p>
           </div>
           <div class="docs_div_content_discord_img_div">
-              <a href="#"><img id="discord_img" width="350px" height="350px" src="img/join_discord.png"></a>
+              <a href="#"><img id="discord_img" width="350px" height="350px" src="img/discord_temp.png"></a>
           </div>
         </div>
 
