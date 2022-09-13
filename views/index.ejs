@@ -17,18 +17,12 @@
     <div class="black_opacity" style="z-index:1;">
     </div>
 
-    <!-- Used to show bot logo, "Disblock" and "Go to panel" button -->
+    <!-- Used to show menu div, "Disblock"  -->
     <div class="header_div">
-      <div id="header_div_logo">
+      <div class="menu_div">
+        <img src="img/bouton_header.svg" alt="menu" width="100%" height="100%"/>
       </div>
       <h1>D<span>IS</span>BLOCK</h1>
-      <!-- Call to action / Go to panel button -->
-      <button onclick="location.href='/panel'" id="header_div_panel_button"><%- locale.panel %></button>
-
-      <!-- Used only in Phone responsive mode -->
-      <div id="first_area_menu_slider_button">
-        <img src="img/menu.svg">
-      </div>
     </div>
 
     <div id="first_area_div">
@@ -289,7 +283,7 @@
       });
 
       /* Menu slider on phones */
-      let isMenuShown = false;
+      /*let isMenuShown = false;
 
       $("#first_area_menu_slider_button img").click(()=>{
         if(isMenuShown){
@@ -311,7 +305,7 @@
 
           isMenuShown = true;
         }
-      });
+      });*/
 
       const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
       let error = url.get("error") || '0';
