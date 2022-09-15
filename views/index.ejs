@@ -287,30 +287,26 @@
         mirror: true
       });
 
-      /* Menu slider on phones */
-      /*let isMenuShown = false;
+      /* Menu slider */
+      let isMenuShown = false;
 
-      $("#first_area_menu_slider_button img").click(()=>{
+      $(".menu_svg").click(()=>{
         if(isMenuShown){
           //Remove menu
-          $(".black_opacity").css("display", "none");
-          $("#first_area_nav ul").css("visibility", "hidden");
-          $("#first_area_nav").animate({"max-width":"0%"}, 500, "swing", ()=>{
-            $("#first_area_nav").css("display", "none");
+          $(".menu_div").animate({"max-width":"0px"}, 500, "swing", ()=>{
+            $(".black_opacity").css("display", "none");
+            $(".menu_div nav").css("visibility", "hidden");
+            $(".menu_div").css("display", "none");
           });
-
-          isMenuShown = false;
         }else{
           //Show menu
           $(".black_opacity").css("display", "block");
-          $("#first_area_nav").css("display", "block");
-          $("#first_area_nav").animate({"max-width":"60%"}, 500, ()=>{
-            $("#first_area_nav ul").css("visibility", "visible");
-          });
-
-          isMenuShown = true;
+          $(".menu_div nav").css("visibility", "visible");
+          $(".menu_div").css("display", "block");
+          $(".menu_div").animate({"max-width":"300px"}, 500);
         }
-      });*/
+        isMenuShown = !isMenuShown;
+      });
 
       const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
       let error = url.get("error") || '0';
