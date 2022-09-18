@@ -17,31 +17,30 @@
     <div class="black_opacity" style="z-index:1;">
     </div>
 
-    <!-- Used to show bot logo, "Disblock" and "Go to panel" button -->
+    <!-- Used to hold space that should be taken by header_div in document flow -->
+    <div class="dummy_div"></div>
+
+    <!-- Used to show menu div, "Disblock"  -->
     <div class="header_div">
-      <div id="header_div_logo">
+      <div class="menu_svg">
+        <img src="img/bouton_header.svg" alt="menu" width="100%" height="100%"/>
       </div>
       <h1>D<span>IS</span>BLOCK</h1>
-      <!-- Call to action / Go to panel button -->
-      <button onclick="location.href='/panel'" id="header_div_panel_button"><%- locale.panel %></button>
-
-      <!-- Used only in Phone responsive mode -->
-      <div id="first_area_menu_slider_button">
-        <img src="img/menu.svg">
-      </div>
     </div>
 
-    <div id="first_area_div">
+    <!-- Menu / nav -->
+  <div class="menu_div">
+    <nav id="menu_nav">
+      <ul>
+        <li><a href="#"><%- locale.home %></a></li>
+        <li><a href="#"><%- locale.functionnalities %></a></li>
+        <li><a href="#"><%- locale.invite %></a></li>
+        <li><a href="#"><%- locale.premium %></a></li>
+      </ul>
+    </nav>
+  </div>
 
-      <!-- Menu / nav -->
-      <nav id="first_area_nav">
-        <ul>
-          <li><a href="#"><%- locale.home %></a></li>
-          <li><a href="#"><%- locale.functionnalities %></a></li>
-          <li><a href="#"><%- locale.invite %></a></li>
-          <li><a href="#"><%- locale.premium %></a></li>
-        </ul>
-      </nav>
+    <div id="first_area_div">
 
       <div class="first_area_div_text">
         <p><span style="font-size:1.5em;font-family: Roboto, Arial;"><%- locale.title %></span><br><br>
@@ -288,29 +287,25 @@
         mirror: true
       });
 
-      /* Menu slider on phones */
+      /* Menu slider */
       let isMenuShown = false;
 
-      $("#first_area_menu_slider_button img").click(()=>{
+      $(".menu_svg").click(()=>{
         if(isMenuShown){
           //Remove menu
-          $(".black_opacity").css("display", "none");
-          $("#first_area_nav ul").css("visibility", "hidden");
-          $("#first_area_nav").animate({"max-width":"0%"}, 500, "swing", ()=>{
-            $("#first_area_nav").css("display", "none");
+          $(".menu_div").animate({"max-width":"0px"}, 500, "swing", ()=>{
+            $(".black_opacity").css("display", "none");
+            $(".menu_div nav").css("visibility", "hidden");
+            $(".menu_div").css("display", "none");
           });
-
-          isMenuShown = false;
         }else{
           //Show menu
           $(".black_opacity").css("display", "block");
-          $("#first_area_nav").css("display", "block");
-          $("#first_area_nav").animate({"max-width":"60%"}, 500, ()=>{
-            $("#first_area_nav ul").css("visibility", "visible");
-          });
-
-          isMenuShown = true;
+          $(".menu_div nav").css("visibility", "visible");
+          $(".menu_div").css("display", "block");
+          $(".menu_div").animate({"max-width":"300px"}, 500);
         }
+        isMenuShown = !isMenuShown;
       });
 
       const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
