@@ -149,7 +149,7 @@
         */
         if(page==0){//Guild undefined
           //On /panel
-          %><%- include('ejs/index-panel.ejs', {locale:locale}); %><%
+          %><%- include('ejs/index-panel.ejs', {locale:locale, news:news}); %><%
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
