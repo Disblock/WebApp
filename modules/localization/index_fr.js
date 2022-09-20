@@ -24,11 +24,11 @@ module.exports = {
   whyDisblock2Link: "Voir la liste des blocs",
 
   whyDisblock3Title: "Une documentation en ligne",
-  whyDisblock3Text: "Dès que j'aurai du temps pour la faire",
+  whyDisblock3Text: "En cours d'écriture, si vous avez une question, la réponse est certainement ici !",
   whyDisblock3Link: "Voir la documentation",
 
   whyDisblock4Title: "Un support disponible",
-  whyDisblock4Text: "Sur Discord, faut encore que je le fasse",
+  whyDisblock4Text: "Sur Discord, nous sommes ravis d'aider ;)",
   whyDisblock4Link: "Accéder au serveur",
 
   div2Text: "<a style=\"color:#2e86ab\" href=\"https://docs.disblock.xyz/disblock/getting-started\" target=\"_blank\" rel=\"noreferrer noopener\">Commencer</a> à utiliser Disblock",
