@@ -11,34 +11,40 @@
   <div id="content_div_header_div">
     <div class="content_div_header_div_subdiv">
       <!-- Informations and help about the panel -->
-      <p>
-        Lorem ipsum dolor sit amet !<br>
-        Test !<br>
-      </p>
+      <p><%- locale.panelIndexMessageDiv1 %></p>
     </div>
 
     <div class="content_div_header_div_subdiv">
-      <!-- ? -->
+      <!-- More informations -->
+      <p><%- locale.panelIndexMessageDiv2 %></p>
     </div>
   </div>
 
   <!-- This div is used to contain news -->
   <div id="content_div_news_div">
 
-    <!-- A news div -->
-    <div class="content_div_news_subdiv">
-      <div class="news_subdiv_header">
-        <h2>Hello WORLD !</h2>
-        <p>Le 03/02/2022 à 21H11</p>
-      </div>
+    <%
+      for(let i=0; i<news.length; i++){
+        %>
+          <div class="content_div_news_subdiv">
+            <div class="news_subdiv_header">
+              <h2><%= news[i].title %></h2>
+              <p><%= news[i].sent_date.valueOf() %></p>
+            </div>
 
-      <div class="news_subdiv_text">
-        <p>
-          Bienvenue sur Disblock ! Vous pouvez ajouter le bot avec ce  <a href="https://discord.com/api/oauth2/authorize?client_id=903324635108634654&permissions=8&scope=bot">lien</a> et un serveur Discord est disponible avec ce <a href="https://discord.gg/jCF9GRRNKV">lien</a>  ( Il est en cours de construction ! ). Disblock est toujours en cours de développement, et est actuellement en Alpha, aucun lien ne fonctionne et des bugs sont présents, c'est normal ! Pensez juste à rapporter les bugs pour que je les corrige
-        </p>
-      </div>
-    </div>
+            <div class="news_subdiv_text">
+              <p><%= news[i].message %></p>
+            </div>
+          </div>
+        <%
+      }
+    %>
 
   </div>
 
 </div>
+<script>
+  $(".news_subdiv_header p").each((index,element)=>{
+    $(element).text(new Date(parseInt($(element).text())).toLocaleString());
+  });
+</script>

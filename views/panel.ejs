@@ -48,7 +48,7 @@
     <div id="top_div">
 
       <div id="top_div_img_div">
-        <a href="/"><img src="/img/carree.png"></a>
+        <a href="/"><img src="/img/logo.png"></a>
       </div>
       <!-- Div used to contain logout svg ( Or login svg ) -->
       <div id="top_div_logout">
@@ -101,8 +101,10 @@
       <div id="menu_div_links">
         <nav>
           <ul>
-            <li><a href="/panel/premium">Premium</a></li>
-            <li><a href="#">Lien 2</a></li>
+            <!--<li><a href="/panel/premium">Premium</a></li>-->
+            <li><a href="<%- process.env.INVITE_BOT_URL %>" target="_blank" rel="noreferrer noopener">Invite</a></li>
+            <li><a href="https://docs.disblock.xyz/" target="_blank" rel="noreferrer noopener">Documentation</a></li>
+            <li><a href="https://discord.gg/4b6j3UBKWp" target="_blank" rel="noreferrer noopener">Support server</a></li>
           </ul>
         </nav>
       </div>
@@ -149,7 +151,7 @@
         */
         if(page==0){//Guild undefined
           //On /panel
-          %><%- include('ejs/index-panel.ejs', {locale:locale}); %><%
+          %><%- include('ejs/index-panel.ejs', {locale:locale, news:news}); %><%
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>

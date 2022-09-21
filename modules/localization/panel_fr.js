@@ -1,5 +1,9 @@
 //File used to translate panel pages in French
 module.exports = {
+  /* Index panel */
+  panelIndexMessageDiv1: "Bienvenue sur l'interface de Disblock !<br><br>Vous pouvez ajouter le bot en cliquant sur  \"Inviter\", dans le menu à gauche.<br><br>Aussi, soyez sûr d'avoir la permission \"Administrateur\" sur le serveur à modifier !<br><br>Enfin, si vous avez besoin d'aide, vous pouvez aussi rejoindre le <a href=\"https://discord.gg/4b6j3UBKWp\">serveur de support</a>.",
+  panelIndexMessageDiv2: "Disblock est aussi open-source et disponible sous la license MIT ! Vous pouvez retrouver le projet <a href=\"https://github.com/Disblock/WebApp\">ici</a>.",
+
   /* Guild panel */
   manageServerVars: "Gérer les variables du serveur",
   modificationsLogs: "Historique des modifications",

@@ -135,9 +135,10 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_role_edited'] = function(block) {
-      const statements = Blockly.JavaScript.statementToCode(block, 'statements');
+      /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       const code = "\n<<"+token+">>event_role_edited<<"+token+">>"+statements;
-      return code;
+      return code;*/
+      return '';//Disabled : when a role is created, this event is sometimes triggered multiples times
     };
 
     Blockly.JavaScript['event_var_rank'] = function(block) {
@@ -185,9 +186,10 @@ module.exports = {
     };
 
     Blockly.JavaScript['event_user_start_writting'] = function(block) {
-      const statements = Blockly.JavaScript.statementToCode(block, 'statements');
+      /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       const code = "\n<<"+token+">>event_user_start_writting<<"+token+">>"+statements;
-      return code;
+      return code;*/
+      return '';//Disabled, always triggered multiple times when a bug message is written
     };
 
     Blockly.JavaScript['event_var_old_voice_channel'] = function(block) {

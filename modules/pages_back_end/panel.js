@@ -13,6 +13,17 @@ module.exports = async function(req, res, database_pool, logger){
     locale=panel_localization_en;
   }
 
+
+  let news;
+  try{
+    logger.debug("Sending a SQL request to get news from Database");
+    news = (await database_pool.query("SELECT title, message, sent_date FROM news ORDER BY news_id DESC LIMIT 10;")).rows;
+  }catch(err){
+    logger.error("Error while getting news from Database : "+err);
+    res.status(500).end("Error 500");
+    return;
+  }
+
   if(req.session.discord_id!=undefined){
     discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
       //guilds represent the guilds that user is admin on ( Array )
@@ -20,7 +31,7 @@ module.exports = async function(req, res, database_pool, logger){
 
       if(req.session){
         //If there is a problem ( Like a rate limit ), the session is destroyed so we send invalids sessions on index
-        res.render('panel.ejs', {session: req.session, locale: locale, guilds: guilds, guild: undefined, page:0});
+        res.render('panel.ejs', {session: req.session, locale: locale, news:news, guilds: guilds, guild: undefined, page:0});
       }else{
         res.redirect('/');
       }
@@ -28,7 +39,7 @@ module.exports = async function(req, res, database_pool, logger){
     });
   }else{
     //Not logged in
-    res.render('panel.ejs', {session: req.session, locale: locale, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined, page:0});
+    res.render('panel.ejs', {session: req.session, locale: locale, news:news, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined, page:0});
   }
 
 }

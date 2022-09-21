@@ -17,31 +17,34 @@
     <div class="black_opacity" style="z-index:1;">
     </div>
 
-    <!-- Used to show bot logo, "Disblock" and "Go to panel" button -->
+    <!-- Used to hold space that should be taken by header_div in document flow -->
+    <div class="dummy_div"></div>
+
+    <!-- Used to show menu div, "Disblock"  -->
     <div class="header_div">
-      <div id="header_div_logo">
+      <div class="menu_svg">
+        <img src="img/bouton_header.svg" alt="menu" width="100%" height="100%"/>
       </div>
       <h1>D<span>IS</span>BLOCK</h1>
-      <!-- Call to action / Go to panel button -->
-      <button onclick="location.href='/panel'" id="header_div_panel_button"><%- locale.panel %></button>
-
-      <!-- Used only in Phone responsive mode -->
-      <div id="first_area_menu_slider_button">
-        <img src="img/menu.svg">
-      </div>
     </div>
 
-    <div id="first_area_div">
+    <!-- Menu / nav -->
+  <div class="menu_div">
+    <nav id="menu_nav">
+      <ul>
+        <!--<li><a href="#"><%- locale.home %></a></li>
+        <li><a href="#"><%- locale.functionnalities %></a></li>
+        <li><a href="#"><%- locale.premium %></a></li>-->
+        <li><a href="/#about"><%- locale.about %></a></li>
+        <li><a href="/panel"><%- locale.panel %></a></li>
+        <li><a href="<%- process.env.INVITE_BOT_URL %>" target="_blank" rel="noreferrer noopener"><%- locale.invite %></a></li>
+        <li><a href="https://docs.disblock.xyz/"><%- locale.documentation %></a></li>
+        <li><a href="https://discord.gg/4b6j3UBKWp" target="_blank" rel="noreferrer noopener"><%- locale.support %></a></li>
+      </ul>
+    </nav>
+  </div>
 
-      <!-- Menu / nav -->
-      <nav id="first_area_nav">
-        <ul>
-          <li><a href="#"><%- locale.home %></a></li>
-          <li><a href="#"><%- locale.functionnalities %></a></li>
-          <li><a href="#"><%- locale.invite %></a></li>
-          <li><a href="#"><%- locale.premium %></a></li>
-        </ul>
-      </nav>
+    <div id="first_area_div">
 
       <div class="first_area_div_text">
         <p><span style="font-size:1.5em;font-family: Roboto, Arial;"><%- locale.title %></span><br><br>
@@ -83,15 +86,15 @@
 
     <!-- The div with a little text and a button/img -->
     <div class="content_line_div" style="margin-top:0px;">
-      <div class="content_line_div_text">
-        <p><%- locale.div1Text %></p>
+      <div class="content_line_div_text" style="width:100%;margin:0">
+        <p style="text-align:center;"><%- locale.div1Text %></p>
       </div>
-      <div class="content_line_div_media">
+      <div class="content_line_div_media" style="display:none">
       </div>
     </div>
 
     <!-- The "Why Disblock" area -->
-    <div id="why_disblock_div">
+    <div id="about">
       <h2 class="section_title"><%- locale.whyDisblock %></h2>
 
       <div class="why_disblock_content_div" data-aos="fade-right"><!-- That's the div  that contain everything -->
@@ -106,9 +109,9 @@
           <p class="why_disblock_content_div_text_desc_span">
             <%- locale.whyDisblock1Text %>
           </p>
-          <p class="why_disblock_content_div_text_link_span">
+          <!--<p class="why_disblock_content_div_text_link_span">
             <a href="#"><%- locale.whyDisblock1Link %></a>
-          </p>
+          </p>-->
         </div>
       </div>
 
@@ -124,9 +127,9 @@
           <p class="why_disblock_content_div_text_desc_span">
             <%- locale.whyDisblock2Text %>
           </p>
-          <p class="why_disblock_content_div_text_link_span">
+          <!--<p class="why_disblock_content_div_text_link_span">
             <a href="#"><%- locale.whyDisblock2Link %></a>
-          </p>
+          </p>-->
         </div>
       </div>
 
@@ -143,7 +146,7 @@
             <%- locale.whyDisblock3Text %>
           </p>
           <p class="why_disblock_content_div_text_link_span">
-            <a href="#"><%- locale.whyDisblock3Link %></a>
+            <a href="https://docs.disblock.xyz/"><%- locale.whyDisblock3Link %></a>
           </p>
         </div>
       </div>
@@ -161,7 +164,7 @@
             <%- locale.whyDisblock4Text %>
           </p>
           <p class="why_disblock_content_div_text_link_span">
-            <a href="#"><%- locale.whyDisblock4Link %></a>
+            <a href="https://discord.gg/4b6j3UBKWp" target="_blank" rel="noreferrer noopener"><%- locale.whyDisblock4Link %></a>
           </p>
         </div>
       </div>
@@ -171,10 +174,10 @@
 
     <!-- The div with a little text and a button/img -->
     <div class="content_line_div">
-      <div class="content_line_div_text">
-        <p><%- locale.div2Text %></p>
+      <div class="content_line_div_text" style="width:100%;margin:0">
+        <p style="text-align:center;"><%- locale.div2Text %></p>
       </div>
-      <div class="content_line_div_media">
+      <div class="content_line_div_media" style="display:none;">
       </div>
     </div>
 
@@ -193,17 +196,17 @@
         <!-- These div contain links to the docs-->
         <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic1 %></p></div>
-          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/placeholder.png"></a></div>
+          <div class="docs_div_content_link_img_div"><a href="https://docs.disblock.xyz/disblock/events/events" target="_blank" rel="noreferrer noopener"><img src="img/placeholder.png"></a></div>
         </div>
 
         <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic2 %></p></div>
-          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/placeholder.png"></a></div>
+          <div class="docs_div_content_link_img_div"><a href="https://docs.disblock.xyz/disblock/blocks/embeds-blocks" target="_blank" rel="noreferrer noopener" ><img src="img/placeholder.png"></a></div>
         </div>
 
         <div class="docs_div_content_link" data-aos="fade-right">
           <div class="docs_div_content_link_text_div"><p><%- locale.docsTopic3 %></p></div>
-          <div class="docs_div_content_link_img_div"><a href="#"><img src="img/placeholder.png"></a></div>
+          <div class="docs_div_content_link_img_div"><a href="https://docs.disblock.xyz/disblock/supporting" target="_blank" rel="noreferrer noopener"><img src="img/placeholder.png"></a></div>
         </div>
 
         <!-- This div contain Discord widget -->
@@ -212,7 +215,7 @@
             <p><%- locale.docsAsk %></p>
           </div>
           <div class="docs_div_content_discord_img_div">
-              <a href="#"><img id="discord_img" width="350px" height="350px" src="img/discord_temp.png"></a>
+              <a href="https://discord.gg/4b6j3UBKWp" target="_blank" rel="noreferrer noopener"><img id="discord_img" width="350px" height="350px" src="img/discord_temp.png"></a>
           </div>
         </div>
 
@@ -221,13 +224,13 @@
 
 
     <!-- The div with a little text and a button/img -->
-    <div class="content_line_div">
-      <div class="content_line_div_text">
-        <p><%- locale.div3Text %></p>
+    <!--<div class="content_line_div">
+      <div class="content_line_div_text" style="width:100%;margin:0">
+        <p style="text-align:center;"><%- locale.div3Text %></p>
       </div>
-      <div class="content_line_div_media">
+      <div class="content_line_div_media" style="display:none;">
       </div>
-    </div>
+    </div>-->
 
     <!-- The div with social networks ( Twitter )-->
     <!--<div id="social_networks_div">
@@ -265,9 +268,9 @@
 
         <!-- Links -->
         <ul>
-          <li><a href="#">Contact</a></li>
+          <!--<li><a href="#">Contact</a></li>
           <li><a href="#">RGPD</a></li>
-          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Mentions légales</a></li>-->
         </ul>
 
         <!-- Text on the bottom -->
@@ -288,29 +291,25 @@
         mirror: true
       });
 
-      /* Menu slider on phones */
+      /* Menu slider */
       let isMenuShown = false;
 
-      $("#first_area_menu_slider_button img").click(()=>{
+      $(".menu_svg").click(()=>{
         if(isMenuShown){
           //Remove menu
-          $(".black_opacity").css("display", "none");
-          $("#first_area_nav ul").css("visibility", "hidden");
-          $("#first_area_nav").animate({"max-width":"0%"}, 500, "swing", ()=>{
-            $("#first_area_nav").css("display", "none");
+          $(".menu_div").animate({"max-width":"0px"}, 500, "swing", ()=>{
+            $(".black_opacity").css("display", "none");
+            $(".menu_div nav").css("visibility", "hidden");
+            $(".menu_div").css("display", "none");
           });
-
-          isMenuShown = false;
         }else{
           //Show menu
           $(".black_opacity").css("display", "block");
-          $("#first_area_nav").css("display", "block");
-          $("#first_area_nav").animate({"max-width":"60%"}, 500, ()=>{
-            $("#first_area_nav ul").css("visibility", "visible");
-          });
-
-          isMenuShown = true;
+          $(".menu_div nav").css("visibility", "visible");
+          $(".menu_div").css("display", "block");
+          $(".menu_div").animate({"max-width":"300px"}, 500);
         }
+        isMenuShown = !isMenuShown;
       });
 
       const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
@@ -320,7 +319,7 @@
         case '0':
           break;//Everything is OK
         case '1975664':
-          alert("Sorry but Disblock is actually in closed Alpha for testing purposes. You can join the Discord Server to stay informed about us, we're planning to open soon !");
+          alert("Sorry but registrations are actually disabled. You can join the support server to be informed of the reopening !");
           break;
         default:
           break;

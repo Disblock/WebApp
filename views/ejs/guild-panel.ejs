@@ -27,10 +27,12 @@
   </div>
 
   <div id="content_blockly">
+    <div id="requestFullscreen" class="fullscreen_div"><i class="gg-maximize"></i></div>
+    <div id="cancelFullscreen" class="fullscreen_div" style="display:none;"><i class="gg-minimize"></i></div>
   </div>
 
   <div id="content_bottom_div">
-    <button onclick="sendWorkspaceToServer()" css="z-index: 999;"><%- locale.sendCodeButton %></button><!-- Temporary ! -->
+    <button onclick="sendWorkspaceToServer()" id="send_button"><%- locale.sendCodeButton %></button><!-- Temporary ! -->
     <p class="content_bottom_div_blocks_count" id="blocks_count"></p>
   </div>
 
@@ -42,6 +44,50 @@
 <script><%- blocklyLocale %>Blockly = init(Blockly);</script>
 
 <script>
+  //FullScreen control
+  $("#requestFullscreen").click(function(){
+    $("#requestFullscreen").css({"display":"none"});
+    $("#cancelFullscreen").css({"display":"block"});
+
+    let element = document.getElementById("content_blockly");
+
+    if(element.requestFullscreen){
+      element.requestFullscreen();
+    }else if(element.mozRequestFullScreen){
+      element.mozRequestFullScreen();
+    }else if(element.webkitRequestFullscreen){
+      element.webkitRequestFullscreen();
+    }else if(element.msRequestFullscreen){
+      element.msRequestFullscreen();
+    }
+
+  });
+  $("#cancelFullscreen").click(function(){
+    $("#cancelFullscreen").css({"display":"none"});
+    $("#requestFullscreen").css({"display":"block"});
+
+    if(document.exitFullscreen){
+      document.exitFullscreen();
+    }else if(document.mozCancelFullScreen){
+      document.mozCancelFullScreen();
+    }else if(document.webkitExitFullscreen){
+      document.webkitExitFullscreen();
+    }else if(document.msExitFullscreen){
+      document.msExitFullscreen();
+    }
+
+  });
+
+  document.getElementById('content_blockly').addEventListener('fullscreenchange', (event) => {
+    if(document.fullscreenElement==null){
+      //Will exit
+      $("#cancelFullscreen").css({"display":"none"});
+      $("#requestFullscreen").css({"display":"block"});
+    }
+  });
+
+
+
   const socket = io();
   const toolbox = document.getElementById("toolbox");
 

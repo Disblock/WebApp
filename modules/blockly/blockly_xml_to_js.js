@@ -26,6 +26,12 @@ module.exports = {
        try{
          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
 
+         //We remove here every comments to avoid sending them to database
+         let blocks = workspace.getAllBlocks(false);
+         for(let i=0; i<blocks.length; i++){
+           blocks[i].setCommentText(null);
+         }
+
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
 
          const code = Blockly.JavaScript.workspaceToCode(workspace);
