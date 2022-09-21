@@ -8,8 +8,9 @@ You can create your own actions with blocks, and the bot will execute your creat
 ## Links
 
 - [Homepage](https://disblock.xyz/)
-- [Documentation](https://docs.disblock.xyz/) **TODO**
-- [Discord server](https://discord.gg/jCF9GRRNKV)
+- [Documentation](https://docs.disblock.xyz/) *Work in progress*
+- [Discord server](https://discord.gg/4b6j3UBKWp)
+- [Trello](https://trello.com/b/rhMRsf4I/development)
 
 ## Installation
 
@@ -38,6 +39,3 @@ mkdir certs
 mv path_to_cerificate_key certs/key.pem
 mv path_to_certificate certs/cert.pem
 ```
-
-### Install with...
-**TODO**
