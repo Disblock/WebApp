@@ -3,13 +3,8 @@
 /* Homemade modules */
 /*############################################*/
 
-//const discord_login = require('./modules/discord_login.js');//Used to login with Discord
-//const discord_regen = require('./modules/discord_token_regen.js');//Used to regen user's tokens
-//const discord_get_servers = require('./modules/discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
-//const blockly_xml_to_js = require('./modules/blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
 const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
-//const serverLogs = require('./modules/database/logs.js');//Save modifications on servers to logs
 
 /*############################################*/
 /* Imported modules */
