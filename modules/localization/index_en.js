@@ -1,4 +1,4 @@
-//File used to translate index page in French
+//File used to translate index page in English
 module.exports = {
   home: "Home",
   about: "About",
@@ -20,18 +20,18 @@ module.exports = {
   whyDisblock1Link: "Check the features list !",
 
   whyDisblock2Title: "Customize everything",
-  whyDisblock2Text: "You can create events and commands and everything that you will need !",
+  whyDisblock2Text: "You can create events, commands and everything that you will need !",
   whyDisblock2Link: "See the list of available blocks",
 
   whyDisblock3Title: "An online documentation",
-  whyDisblock3Text: "Work in progress, if you have a question, the answer is certainly here !",
+  whyDisblock3Text: "Work in progress, learn how to use the bot here !",
   whyDisblock3Link: "Access online documentation",
 
   whyDisblock4Title: "An available support",
   whyDisblock4Text: "On Discord, we will be happy to help ;)",
   whyDisblock4Link: "Join us on Discord",
 
-  div2Text: "<a style=\"color:#2e86ab\" href=\"https://docs.disblock.xyz/disblock/getting-started\" target=\"_blank\" rel=\"noreferrer noopener\">Start</a> to use Disblock",
+  div2Text: "<a href=\"https://docs.disblock.xyz/disblock/getting-started\" target=\"_blank\" rel=\"noreferrer noopener\">Start</a> to use Disblock",
   docsTitle: "Need help ?",
   docsText: "Check our documentation and Discord support server !",
   iWant: "I want to...",
