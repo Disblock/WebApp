@@ -353,7 +353,7 @@ app.get('/panel',async function(req, res){
 
 /*-----------------------------------*/
 
-app.get('/panel/premium', async function(req, res){
+/*app.get('/panel/premium', async function(req, res){
   ratesLimitsRedis.consume(req.ip, 15)
   .then(async()=>{
     //User isn't rate limited
@@ -363,11 +363,11 @@ app.get('/panel/premium', async function(req, res){
     //User is rate limited
     res.status(429).end("Too many requests !");
   });
-});
+});*/
 
 /*-----------------------------------*/
 
-app.get('/panel/premium/edit', async function(req, res){
+/*app.get('/panel/premium/edit', async function(req, res){
   ratesLimitsRedis.consume(req.ip, 30)
   .then(async()=>{
     //User isn't rate limited
@@ -377,11 +377,11 @@ app.get('/panel/premium/edit', async function(req, res){
     //User is rate limited
     res.status(429).end("Too many requests !");
   });
-});
+});*/
 
 /*-----------------------------------*/
 
-app.get('/panel/premium/code', async function(req, res){
+/*app.get('/panel/premium/code', async function(req, res){
   ratesLimitsRedis.consume(req.ip, 20)
   .then(async()=>{
     //User isn't rate limited
@@ -391,7 +391,7 @@ app.get('/panel/premium/code', async function(req, res){
     //User is rate limited
     res.status(429).end("Too many requests !");
   });
-});
+});*/
 
 /*-----------------------------------*/
 
