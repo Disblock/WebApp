@@ -5,6 +5,10 @@ You can create your own actions with blocks, and the bot will execute your creat
 
 > You can define exactly what the Bot must do, without needing any developement knowledges !
 
+![blocks](https://user-images.githubusercontent.com/75009579/191807918-dcbf51f5-7be4-4e93-a6e2-f485164fba68.jpg)
+
+
+
 ## Links
 
 - [Homepage](https://disblock.xyz/)
