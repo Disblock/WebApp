@@ -87,7 +87,7 @@ services:
       DEBUG: ${DEBUG}
       NODE_ENV: ${NODE_ENV}
       BOT_LOG_ERRORS: ${BOT_LOG_ERRORS}
-
+      BOT_MOTD: ${BOT_MOTD}
 
 volumes:
   db_data: {}
