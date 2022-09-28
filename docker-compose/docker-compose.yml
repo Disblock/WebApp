@@ -5,8 +5,10 @@ services:
   redis-server:
     image: redis:alpine
     restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - redis_data:/data
+      - ./docker-compose/redis-config/default-redis.conf:/usr/local/etc/redis/redis.conf # You should specify here the path to a redis config file if needed / default file not available.
 
 
 #https://hub.docker.com/_/postgres/?tab=description
