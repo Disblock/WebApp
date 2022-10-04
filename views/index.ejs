@@ -292,25 +292,42 @@
       });
 
       /* Menu slider */
-      let isMenuShown = false;
+      let isMenuVisible = false;
 
+      function showMenu(){
+        //Show menu
+        $(".black_opacity").css("display", "block");
+        $(".menu_div nav").css("visibility", "visible");
+        $(".menu_div").css("display", "block");
+        $(".menu_div").animate({"max-width":"300px"}, 500);
+      }
+      function hideMenu(){
+        //Remove menu
+        $(".menu_div").animate({"max-width":"0px"}, 500, "swing", ()=>{
+          $(".black_opacity").css("display", "none");
+          $(".menu_div nav").css("visibility", "hidden");
+          $(".menu_div").css("display", "none");
+        });
+      }
+
+      //User use the menu button to show/hide the menu
       $(".menu_svg").click(()=>{
-        if(isMenuShown){
-          //Remove menu
-          $(".menu_div").animate({"max-width":"0px"}, 500, "swing", ()=>{
-            $(".black_opacity").css("display", "none");
-            $(".menu_div nav").css("visibility", "hidden");
-            $(".menu_div").css("display", "none");
-          });
+        if(isMenuVisible){
+          hideMenu();
         }else{
-          //Show menu
-          $(".black_opacity").css("display", "block");
-          $(".menu_div nav").css("visibility", "visible");
-          $(".menu_div").css("display", "block");
-          $(".menu_div").animate({"max-width":"300px"}, 500);
+          showMenu();
         }
-        isMenuShown = !isMenuShown;
+        isMenuVisible = !isMenuVisible;
       });
+
+      //User click on the black opacity div to hide the menu
+      $(".black_opacity").click(()=>{
+        if(isMenuVisible){//Menu must be visible to hide it
+          isMenuVisible = false;
+          hideMenu();
+        }
+      });
+
 
       const url = new URLSearchParams(document.location.search);//Get the error param in URL and check if there is an error
       let error = url.get("error") || '0';
