@@ -20,7 +20,7 @@ module.exports = async function(req, res, database_pool, logger){
 
     }else{
       //User may be clickjacked, cancelling connection
-      res.status(403).end("Security error ! Go back to the home page, reload and try again.");
+      res.status(403).end("Security error ! Go back to the home page, reload and try again. You may also have disabled your cookies.");
     }
   }else{
     //User is already logged in
