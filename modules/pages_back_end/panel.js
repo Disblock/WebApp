@@ -25,7 +25,9 @@ module.exports = async function(req, res, database_pool, logger){
   }
 
   if(req.session.discord_id!=undefined){
-    discord_get_servers.servers(req, database_pool, logger, (guilds)=>{
+    discord_get_servers(req, database_pool, logger).then(async(guilds)=>{
+
+
       //guilds represent the guilds that user is admin on ( Array )
       //This function can destroy the session if user is rate limited
 
@@ -35,8 +37,10 @@ module.exports = async function(req, res, database_pool, logger){
       }else{
         res.redirect('/');
       }
-
     });
+
+
+
   }else{
     //Not logged in
     res.render('panel.ejs', {session: req.session, locale: locale, news:news, login_url: process.env.LOGIN_URL, guilds: [], guild: undefined, page:0});

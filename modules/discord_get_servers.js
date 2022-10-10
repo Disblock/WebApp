@@ -2,90 +2,86 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const discord_regen = require('./discord_token_regen.js');
 const bigInt = require("big-integer");//Used to check permissions on a server
 
-module.exports = {
-  servers: async function(req, database_pool, logger, callback){
+module.exports = async function(req, database_pool, logger){
+  /* This module is used to get the guilds where an user has an Admin permission. We get all guilds from Discord API, then return only guilds with an Admin access. */
 
-    function getGuilds(token, callback){
-      if(token==undefined){return(callback(undefined));}
-      try{
-        logger.debug("Sending a request to Discord to get guilds of user "+req.session.discord_id);
+  async function askDiscordForGuilds(token){
+    if(token==undefined){return(undefined);}
+    try{
+      logger.debug("Sending a request to Discord to get guilds of user "+req.session.discord_id);
 
-        fetch('https://discord.com/api/users/@me/guilds', {
-          headers: {
-            authorization: 'Bearer '+req.session.token,
-          }
-        }).then(result => result.json()).then(response => {
-
-          if(response.message=="You are being rate limited."){
-            logger.info(req.session.discord_id + " was rate limited by Discord ( Spammed get user's guilds )");
-            return(callback(undefined));
-
-          }else if(response.error==undefined && response.message==undefined){
-            //OK
-            logger.debug("Sent a request to Discord to get guilds of user "+ req.session.discord_id);
-            return(callback(response));
-
-          }else{
-            //Error
-            logger.info("Error from the Discord API : "+req.session.discord_id+" may had removed our access");
-            return(callback('Token not set'));
-          }
-        });
-
-      }catch(err){
-        logger.error("Error while getting user "+req.session.discord_id+" 's guilds : "+err);
-        return(callback(undefined));
-      }
-    }
-
-    function getChannelsWhereAdmin(channels_json){
-      //Final function, it will return servers where the user is admin
-      let channels = [];
-      for(var i=0;i<channels_json.length;i++){
-        if(bigInt(channels_json[i].permissions_new).and(0x8) == 0x8){//AND operation on bits to check if user is admin
-          channels.push(channels_json[i]);
+      let response = await (await fetch('https://discord.com/api/users/@me/guilds', {
+        headers: {
+          authorization: 'Bearer '+req.session.token,
         }
-      }
-      callback(channels);
-    }
+      })).json();
 
+      if(response.message=="You are being rate limited."){
+        logger.debug(req.session.discord_id + " was rate limited by Discord.");
+        return(undefined);
 
-    getGuilds(req.session.token, async function(result){
-      if(result!=undefined && result!='Token not set'){
+      }else if(response.error==undefined && response.message==undefined){
         //OK
-        getChannelsWhereAdmin(result);
-      }else if(result=='Token not set'){
-        //NOT OK, must regen the token
-        logger.debug(req.session.discord_id+" 's token may have expired, we're trying now to regenerate it.");
-
-        discord_regen.regen(req, database_pool, logger, function(new_token){
-                if(new_token==undefined){
-                  //Error, the user has removed the application's access ?
-                  logger.info("Error while getting "+req.session.discord_id+" 's guilds, destroying the session...");
-                  req.session.destroy();
-                  return(callback([]));
-                }else{
-                  //OK, let's try again, no need to use new_token, req.session is updated in regen function
-                  getGuilds(req.session.token, function(result){
-                    if(result!=undefined && result!='Token not set'){
-                      getChannelsWhereAdmin(result);
-                    }else{
-                      //Fatal error : user may have removed access to the application
-                      logger.info("Error while getting "+req.session.discord_id+" 's guilds, token regenerated but seems useless, destroying the session...");
-                      req.session.destroy();
-                      return(callback([]));
-                    }
-                  })
-
-                }
-              });
+        logger.debug("Sent a request to Discord to get guilds of user " + req.session.discord_id);
+        return(response);
 
       }else{
-        //NOT OK, was an error
-        logger.info("Error while getting "+req.session.discord_id+" 's guilds, destroying the session...");
-        req.session.destroy();
-        return(callback([]));
+        //Error
+        logger.warn("Error from the Discord API : "+req.session.discord_id+" may had removed our access. Error : "+response.error+", message : "+response.message);
+        return('Token not set');
       }
-    });
+
+
+    }catch(err){
+      logger.error("Error while getting user "+req.session.discord_id+" 's guilds : "+err);
+      return(undefined);
+    }
   }
+
+  function getGuildsWhereAdmin(guilds_json){
+    //Final function, it will return servers where the user is admin
+    let channels = [];
+    for(let i=0;i<guilds_json.length;i++){
+      if(bigInt(guilds_json[i].permissions_new).and(0x8) == 0x8){//AND operation on bits to check if user is admin
+        channels.push(guilds_json[i]);
+      }
+    }
+    return(channels);
+  }
+
+  let discordResponse = await askDiscordForGuilds(req.session.token);
+  if(discordResponse!=undefined && discordResponse!='Token not set'){
+    //OK
+    return(getGuildsWhereAdmin(discordResponse));
+  }else if(discordResponse=='Token not set'){
+    //NOT OK, must regen the token
+
+    logger.debug(req.session.discord_id+" 's token may have expired, we're trying now to regenerate it.");
+
+    const new_token = await discord_regen(req, database_pool, logger);
+    if(new_token==undefined){
+      //Error, the user has removed the application's access ?
+      logger.warn("Error while getting "+req.session.discord_id+" 's guilds, destroying the session...");
+      req.session.destroy();
+      return([]);
+    }else{
+      //OK, let's try again, no need to use new_token, req.session is updated in regen function
+      let newDiscordResponse = await askDiscordForGuilds(req.session.token);
+      if(newDiscordResponse!=undefined && newDiscordResponse!='Token not set'){
+        return(getGuildsWhereAdmin(newDiscordResponse));
+      }else{
+        //Fatal error : user may have removed access to the application
+        logger.info("Error while getting "+req.session.discord_id+" 's guilds, token regenerated but seems useless, destroying the session...");
+        req.session.destroy();
+        return([]);
+      }
+    }
+
+  }else{
+    //NOT OK, was an error
+    logger.warn("Error while getting "+req.session.discord_id+" 's guilds from Discord, destroying the session...");
+    req.session.destroy();
+    return([]);
+  }
+
 }
