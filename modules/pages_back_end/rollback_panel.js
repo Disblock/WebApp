@@ -6,7 +6,7 @@ const panel_localization_fr = require('../localization/panel_fr.js');
 const panel_localization_en = require('../localization/panel_en.js');
 const crypto = require('crypto');//Generate random strings
 
-module.exports = async function(req, res, database_pool, logger){
+module.exports = async function(req, res, database_pool, logger, redisClient){
 
   if(req.session.discord_id!=undefined){
 
@@ -18,7 +18,7 @@ module.exports = async function(req, res, database_pool, logger){
         const premium = data.premium;//will store if the server is premium or not
 
         //Check if user is admin on selected server
-        const guilds = await discord_get_servers(req, database_pool, logger);//Get all guilds where user has an admin permission
+        const guilds = await discord_get_servers(req, database_pool, logger, redisClient);//Get all guilds where user has an admin permission
         const guild = check_guild_access(guilds, req.params.id);
         if(!guild){
           //Not admin

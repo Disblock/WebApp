@@ -3,7 +3,7 @@ const discord_get_servers = require('../discord_get_servers.js');//Used to get u
 const panel_localization_fr = require('../localization/panel_fr.js');
 const panel_localization_en = require('../localization/panel_en.js');
 
-module.exports = async function(req, res, database_pool, logger){
+module.exports = async function(req, res, database_pool, logger, redisClient){
 
   let locale;
   //Select right language
@@ -25,7 +25,7 @@ module.exports = async function(req, res, database_pool, logger){
   }
 
   if(req.session.discord_id!=undefined){
-    discord_get_servers(req, database_pool, logger).then(async(guilds)=>{
+    discord_get_servers(req, database_pool, logger, redisClient).then(async(guilds)=>{
 
 
       //guilds represent the guilds that user is admin on ( Array )

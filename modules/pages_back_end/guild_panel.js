@@ -7,7 +7,7 @@ const panel_localization_en = require('../localization/panel_en.js');
 const blockly_localization_fr = require('../blockly/localization/fr.js');//Add localization to the generator - FR
 const blockly_localization_en = require('../blockly/localization/en.js');//Add localization to the generator - EN
 
-module.exports = async function(req, res, database_pool, logger, blocklyBlocks){
+module.exports = async function(req, res, database_pool, logger, redisClient, blocklyBlocks){
 
   if(req.session.discord_id!=undefined){
 
@@ -19,7 +19,7 @@ module.exports = async function(req, res, database_pool, logger, blocklyBlocks){
         const premium = data.premium;//Will store if the server is premium or not
 
         //Check if user is admin on selected server
-        const guilds = await discord_get_servers(req, database_pool, logger);
+        const guilds = await discord_get_servers(req, database_pool, logger, redisClient);
         const guild = check_guild_access(guilds, req.params.id);
         if(!guild){
           //Not admin

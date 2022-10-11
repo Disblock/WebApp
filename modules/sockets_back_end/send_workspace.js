@@ -5,11 +5,11 @@ const blockly_xml_to_js = require('../blockly/blockly_xml_to_js.js');//Convert B
 const serverLogs = require('../database/logs.js');
 const guildsDatabase = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 
-module.exports = async function(socket, server_id, data, callback, database_pool, logger, Blockly, blocklyToken){
+module.exports = async function(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly, blocklyToken){
 
   if(socket.request.session.discord_id!=undefined){//Session must be defined
     logger.debug(socket.request.session.discord_id+" is sending a workspace");
-    const guilds = await discord_get_servers(socket.request, database_pool, logger);//Get a list of user's servers where has admin access
+    const guilds = await discord_get_servers(socket.request, database_pool, logger, redisClient);//Get a list of user's servers where has admin access
     const guild = check_guild_access(guilds, String(server_id));
     if(!guild){
       //User hasn't access to this server
