@@ -9,9 +9,9 @@ module.exports = {
   support: "Support",
   panel: "Panel",
   title: "Disblock",
-  subtitle: "Actually in private Alpha, we're opening soon !",
+  subtitle: "Create your own action flows easily !",
   connectWith: "Login with",
-  goToPanel: "Go to panel",
+  goToPanel: "Go to dashboard",
   div1Text: "More than 130 blocks availables !",
   whyDisblock: "Why Disblock ?",
 

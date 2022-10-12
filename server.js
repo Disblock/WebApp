@@ -337,7 +337,7 @@ app.get('/panel',async function(req, res){
   ratesLimitsRedis.consume(req.ip, 8)
   .then(async()=>{
     //User isn't rate limited
-    panelBackEnd(req, res, database_pool, logger);
+    panelBackEnd(req, res, database_pool, logger, redisClient);
 
   })
   .catch(async(err)=>{
@@ -352,7 +352,7 @@ app.get('/panel',async function(req, res){
   ratesLimitsRedis.consume(req.ip, 15)
   .then(async()=>{
     //User isn't rate limited
-    premiumPanelBackEnd(req, res, database_pool, logger);
+    premiumPanelBackEnd(req, res, database_pool, logger, redisClient);
   })
   .catch(async(err)=>{
     //User is rate limited
@@ -395,7 +395,7 @@ app.get('/panel/:id',async function(req, res){
   .then(async()=>{
     //User isn't rate limited
 
-    guildPanelBackEnd(req, res, database_pool, logger, blocklyBlocks);
+    guildPanelBackEnd(req, res, database_pool, logger, redisClient, blocklyBlocks);
 
   })
   .catch(async(err)=>{
@@ -412,7 +412,7 @@ app.get('/panel/:id/rollback',async function(req, res){
   .then(async()=>{
     //User isn't rate limited
 
-    guildRollbackBackEnd(req, res, database_pool, logger);
+    guildRollbackBackEnd(req, res, database_pool, logger, redisClient);
 
   })
   .catch(async(err)=>{
@@ -446,7 +446,7 @@ app.get('/panel/:id/logs',async function(req, res){
   .then(async()=>{
     //User isn't rate limited
 
-    logsPanelBackEnd(req, res, database_pool, logger);
+    logsPanelBackEnd(req, res, database_pool, logger, redisClient);
 
   })
   .catch(async(err)=>{
@@ -576,7 +576,7 @@ io.sockets.on('connect',async function(socket){
     .then(async()=>{
       //User isn't rate limited
 
-      sendWorkspaceSocketBackEnd(socket, server_id, data, callback, database_pool, logger, Blockly, blocklyToken);
+      sendWorkspaceSocketBackEnd(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly, blocklyToken);
 
     })
     .catch(async(err)=>{

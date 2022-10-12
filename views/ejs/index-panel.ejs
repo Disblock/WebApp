@@ -28,12 +28,12 @@
         %>
           <div class="content_div_news_subdiv">
             <div class="news_subdiv_header">
-              <h2><%= news[i].title %></h2>
+              <h2><%- news[i].title %></h2>
               <p><%= news[i].sent_date.valueOf() %></p>
             </div>
 
             <div class="news_subdiv_text">
-              <p><%= news[i].message %></p>
+              <p><%- news[i].message %></p>
             </div>
           </div>
         <%

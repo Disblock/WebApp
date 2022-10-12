@@ -9,7 +9,7 @@ module.exports = {
   support: "Support",
   panel: "Panel",
   title: "Disblock",
-  subtitle: "Actuellement en Alpha Fermée, ouverture à venir !",
+  subtitle: "Créez vos propres actions facilement !",
   connectWith: "Se connecter avec",
   goToPanel: "Aller sur le panel",
   div1Text: "Déjà plus de 130 blocks !",
