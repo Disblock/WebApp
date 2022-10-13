@@ -824,6 +824,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Get the name of an emoji from Discord or your server. If from Discord, return the unicode value of this emoji ( Get it by typing \"\\:joy:\" on Discord ). If from your server, return the name of this emoji.";
   Blockly.Msg["BLOCK_EMOJI_REACT"] = "React with the emoji %1 to the message %2";
   Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Add a reaction to a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord.";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS"] = "Get the number of reactions %1 on the message %2";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS_TOOLTIP"] = "Get the number of peoples who reacted with an emoji on a message ! Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION"] = "Remove the reaction %1 from the user %2 on the message %3";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] = "Remove a reaction from a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord.";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION"] = "Remove every reactions from the message %1";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION_TOOLTIP"] = "Remove ALL reactions from a message";
 
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Save %1 in a temporary variable named  %2 of type %3";
