@@ -1967,7 +1967,7 @@ module.exports = {
     /* ##### Emojis blocks ##### */
 
     Blockly.JavaScript['block_emoji_get_name'] = function(block) {
-      const value_emoji = Blockly.JavaScript.valueToCode(block, 'EMOJI', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_emoji!==''){
         return [value_emoji+'.name', Blockly.JavaScript.ORDER_NONE];
@@ -1988,7 +1988,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_emoji_get_number_of_reactions'] = function(block) {
-      let value_emoji = Blockly.JavaScript.valueToCode(block, 'Emoji', Blockly.JavaScript.ORDER_ATOMIC);
+      let value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
       const value_message = Blockly.JavaScript.valueToCode(block, 'Message', Blockly.JavaScript.ORDER_ATOMIC);
       if(value_emoji!=='' && value_message!==''){
 
@@ -2009,7 +2009,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_emoji_remove_reaction'] = function(block) {
-      let value_emoji = Blockly.JavaScript.valueToCode(block, 'Emoji', Blockly.JavaScript.ORDER_ATOMIC);
+      let value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
       const value_user = Blockly.JavaScript.valueToCode(block, 'User', Blockly.JavaScript.ORDER_ATOMIC);
       const value_message = Blockly.JavaScript.valueToCode(block, 'Message', Blockly.JavaScript.ORDER_ATOMIC);
 

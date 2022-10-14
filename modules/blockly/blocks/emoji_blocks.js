@@ -7,7 +7,7 @@ module.exports = {
 			"message0": "%{BKY_BLOCK_EMOJI_GET_NAME}",
 			"args0": [{
 				"type": "input_value",
-				"name": "EMOJI",
+				"name": "emoji",
 				"check": "Emoji"
 			}],
 			"output": "String",
@@ -45,7 +45,7 @@ module.exports = {
 		  "args0": [
 		    {
 		      "type": "input_value",
-		      "name": "Emoji",
+		      "name": "emoji",
 		      "check": [
 		        "String",
 		        "Emoji"
@@ -69,7 +69,7 @@ module.exports = {
 		  "args0": [
 		    {
 		      "type": "input_value",
-		      "name": "Emoji",
+		      "name": "emoji",
 		      "check": [
 		        "String",
 		        "Emoji"

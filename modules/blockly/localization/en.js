@@ -848,6 +848,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "You must give a value to this block !";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "A text block seems empty ! Try to write something in it before trying again.";
   Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "There is too much blocks in your workspace ! Please, try to use less blocks";
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "This don't looks like a valid custom emoji string. Try to send \\:your_emoji: in your server, and paste here the result."
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>."
 
   //Types names
   Blockly.Msg["STRING"] = "String";
