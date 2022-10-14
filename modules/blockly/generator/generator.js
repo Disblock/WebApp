@@ -1987,7 +1987,6 @@ module.exports = {
       }
     };
 
-    /* TODO : don't seems to work under some situations */
     Blockly.JavaScript['block_emoji_get_number_of_reactions'] = function(block) {
       let value_emoji = Blockly.JavaScript.valueToCode(block, 'Emoji', Blockly.JavaScript.ORDER_ATOMIC);
       const value_message = Blockly.JavaScript.valueToCode(block, 'Message', Blockly.JavaScript.ORDER_ATOMIC);
@@ -1996,19 +1995,19 @@ module.exports = {
         if(value_emoji==='(eventReaction)')value_emoji="(eventReaction.id || eventReaction.name)";//Sending directly this object will cause issues, so if the user gave the object, we get the id ( for custom emojis ) or the name ( Discord emojis )
         if(value_emoji.includes(':')){
           //That's a custom emoji. We will remove everything except the ID. I don't know why, but that don't work if we don't do that...
+          //We check in front-end that it's valid. If invalid data come here, an error will be thrown by node and caught in the caller context.
           value_emoji=value_emoji.split(':')[2];
           value_emoji=value_emoji.split('>')[0];
           value_emoji = "'"+value_emoji+"'";
         }
 
-        return [value_message+'.reactions.resolve('+value_emoji+')!=null ? '+value_message+'.reactions.resolve('+value_emoji+').count : 0', Blockly.JavaScript.ORDER_NONE];//If emoji found, return the count, else, return 0
+        return [value_message+'.reactions.resolve('+value_emoji+') ? '+value_message+'.reactions.resolve('+value_emoji+').count : 0', Blockly.JavaScript.ORDER_NONE];//If emoji found, return the count, else, return 0
       }else{
         return ['undefined', Blockly.JavaScript.ORDER_NONE];
       }
 
     };
 
-    /* TODO : don't seems to work under some situations */
     Blockly.JavaScript['block_emoji_remove_reaction'] = function(block) {
       let value_emoji = Blockly.JavaScript.valueToCode(block, 'Emoji', Blockly.JavaScript.ORDER_ATOMIC);
       const value_user = Blockly.JavaScript.valueToCode(block, 'User', Blockly.JavaScript.ORDER_ATOMIC);
@@ -2019,12 +2018,13 @@ module.exports = {
         if(value_emoji==='(eventReaction)')value_emoji="(eventReaction.id || eventReaction.name)";//Sending directly this object will cause issues, so if the user gave the object, we get the id ( for custom emojis ) or the name ( Discord emojis )
         if(value_emoji.includes(':')){
           //That's a custom emoji. We will remove everything except the ID. I don't know why, but that don't work if we don't do that...
+          //We check in front-end that it's valid. If invalid data come here, an error will be thrown by node and caught in the caller context.
           value_emoji=value_emoji.split(':')[2];
           value_emoji=value_emoji.split('>')[0];
           value_emoji = "'"+value_emoji+"'";
         }
 
-        return 'if('+value_message+'.reactions.resolve('+value_emoji+')!=null){'+value_message+'reactions.resolve('+value_emoji+').users.remove('+value_user+');}\n';
+        return 'if('+value_message+'.reactions.resolve('+value_emoji+')){'+value_message+'.reactions.resolve('+value_emoji+').users.remove('+value_user+');}\n';
       }else{
         return '';
       }
