@@ -1981,7 +1981,7 @@ module.exports = {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_emoji!=='' && value_message!==''){
-        return value_message+".react("+value_emoji+");\n";
+        return 'await sleep(1000).then(async()=>{'+value_message+".react("+value_emoji+");});\n";
       }else{
         return '';
       }
@@ -2024,7 +2024,7 @@ module.exports = {
           value_emoji = "'"+value_emoji+"'";
         }
 
-        return 'if('+value_message+'.reactions.resolve('+value_emoji+')){'+value_message+'.reactions.resolve('+value_emoji+').users.remove('+value_user+');}\n';
+        return 'if('+value_message+'.reactions.resolve('+value_emoji+')){await sleep(1000).then(async()=>{'+value_message+'.reactions.resolve('+value_emoji+').users.remove('+value_user+');});}\n';
       }else{
         return '';
       }
