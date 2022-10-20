@@ -827,7 +827,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS"] = "Obtenir le nombre de réactions %1 sur le message %2";
   Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS_TOOLTIP"] = "Obtenez le nombre de personnes qui ont réagit sur un message ! Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord.";
   Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION"] = "Retirer la réaction %1 de l'utilisateur %2 sur le message %3";
-  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] = "Retire une réaction d'un utilisateur sur un message. Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord.";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] = "Retire une réaction d'un utilisateur sur un message. Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord. Cela déclenchera l'évènement \"une réaction est retirée\".";
   Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION"] = "Retirer toutes les réactions du message %1";
   Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION_TOOLTIP"] = "Retire TOUTES les réactions d'un message";
 
