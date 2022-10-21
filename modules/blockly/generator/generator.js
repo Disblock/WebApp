@@ -1738,6 +1738,11 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_rank_get_everyone'] = function(block) {
+      let code = 'CURRENT_GUILD.roles.everyone';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
     /* ##### EMBEDS blocks ##### */
 
     Blockly.JavaScript['block_embed_create'] = function(block) {

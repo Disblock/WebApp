@@ -639,5 +639,13 @@ module.exports = {
   "colour": 15,
   "tooltip": "%{BKY_BLOCK_RANK_HAS_PERMISSION_TOOLTIP}",
   "helpUrl": ""
+},
+{
+  "type": "block_rank_get_everyone",
+  "message0": "%{BKY_BLOCK_RANK_GET_EVERYONE}",
+  "output": "Rank",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_RANK_GET_EVERYONE_TOOLTIP}",
+  "helpUrl": ""
 }]
 )};

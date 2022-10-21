@@ -794,6 +794,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_GET_ID_TOOLTIP"] = "Return the role ID";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION"] = "Does the role %1 has permission %2 ?";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Check if given role has given permission. Return True if role is allowed to use permission, False if not";
+  Blockly.Msg["BLOCK_RANK_GET_EVERYONE"] = "Get @everyone role";
+  Blockly.Msg["BLOCK_RANK_GET_EVERYONE_TOOLTIP"] = "Return the @everyone role";
 
   //Embeds blocks
   Blockly.Msg["BLOCK_EMBED_CREATE"] = "Create an embed message with title %1 Embed description : %2 Embed color : %3 and customization : %4 %5";

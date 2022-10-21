@@ -842,4 +842,41 @@
         <field name="HUE">15</field>
       </block>
     </value>
+  </block><block type="factory_base" id="!aOtQCVtm]7o1.XaTp-." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_rank_get_everyone</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="6gHdiLX^|sV.q!nq*c_X">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="h4/vhg!N$XyOV7Ri6ES]">
+            <field name="TEXT">Get the @everyone role</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="O8qNzNpD!Yy:Ylv1Jwq|" deletable="false" movable="false">
+        <field name="TEXT">Return the @everyone role</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=":izGOGx_CbKUrv0g6Fwj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",plt{$5iFPF~poSvAl}c"></shadow>
+      <block type="type_other" id="X@MX4%9X,H+td95oA{F%">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")^%$MAzP/}mcVxd$nSrU">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
   </block></xml>
