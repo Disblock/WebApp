@@ -207,7 +207,8 @@ module.exports = {
         "name": "userOrRank",
         "check": [
           "User",
-          "Rank"
+          "Rank",
+          "EveryoneRank"
         ]
       },
       {
@@ -364,7 +365,8 @@ module.exports = {
         "name": "userOrRank",
         "check": [
           "User",
-          "Rank"
+          "Rank",
+          "EveryoneRank"
         ]
       },
       {

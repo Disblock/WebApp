@@ -524,8 +524,18 @@
         </statement>
         <value name="TYPE">
           <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
-          <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
-            <field name="TYPE">Rank</field>
+          <block type="type_group" id="kQb)2rb}VDN/Qu@*AcB|">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="6IITaku@u)jS,/3:x]s:">
+                <field name="TYPE">EveryoneRank</field>
+              </block>
+            </value>
           </block>
         </value>
         <next>
@@ -756,8 +766,18 @@
         </statement>
         <value name="TYPE">
           <shadow type="type_null" id="I7b/msPdfgM608s9n;re"></shadow>
-          <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
-            <field name="TYPE">Rank</field>
+          <block type="type_group" id="X/trJ2Y-#8Tyf(JHK+7n">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="R2fOi`1e{O+cXaVN~1z3">
+                <field name="TYPE">Rank</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="_ea$uMm,Z+gw!x0Hy]gq">
+                <field name="TYPE">EveryoneRank</field>
+              </block>
+            </value>
           </block>
         </value>
         <next>
@@ -870,7 +890,7 @@
     <value name="OUTPUTTYPE">
       <shadow type="type_null" id=",plt{$5iFPF~poSvAl}c"></shadow>
       <block type="type_other" id="X@MX4%9X,H+td95oA{F%">
-        <field name="TYPE">Rank</field>
+        <field name="TYPE">EveryoneRank</field>
       </block>
     </value>
     <value name="COLOUR">
