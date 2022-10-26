@@ -430,6 +430,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Embed Messages";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
   Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
+  Blockly.Msg["WORKSPACE_TAB_MISCELLANEOUS"] = "Miscellaneous";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "A message is sent or deleted";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "A message is updated";
@@ -480,6 +481,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Get emoji's data";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Use Emojis";
+
+  Blockly.Msg["WORKSPACE_MISCELLANEOUS_MANAGE_ACTION_FLOW"] = "Manage action flow execution";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "A message was sent %1 %2";
@@ -838,6 +841,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "You can use this block to store something and use it later. You must declare the variable and use it in the same event, they aren't kept after the code execution..";
   Blockly.Msg["BLOCK_VAR_GET"] = "Get the content of the variable named %1";
   Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "You can use this block to get the content of a variable that was saved during the same event. Make sure the content is of the right type when using this somewhere !";
+
+  //Miscellaneous blocks
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN"] = "Stop execution";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "This block will stop the action flow";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";

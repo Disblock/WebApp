@@ -1,0 +1,38 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="6(!_b.!L]J:hXT7meuzz" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="TOP"></mutation>
+    <field name="NAME">block_miscellaneous_return</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">TOP</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="tIlLv+F6aH;HQgPa~h}~">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="Ta3P:Y.!{o#mJU;7rZhr">
+            <field name="TEXT">Stop execution</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+ZS6d`[UDySGFLGS|w(F" deletable="false" movable="false">
+        <field name="TEXT">This block will stop the action flow.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="31++0;]).=}yts.;pQVZ" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="wT/EAMn82RzCSEO*09|8"></shadow>
+      <block type="type_other" id=":dx+2w7,MHcP;IjC|x:O">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+ck,l/:N;{ST$4bMJl.t">
+        <mutation colour="#5b80a5"></mutation>
+        <field name="HUE">210</field>
+      </block>
+    </value>
+  </block></xml>

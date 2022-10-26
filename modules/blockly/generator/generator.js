@@ -2046,6 +2046,12 @@ module.exports = {
       }
     };
 
+    /* ##### Miscellaneous blocks ##### */
+
+    Blockly.JavaScript['block_miscellaneous_return'] = function(block) {
+      const code = 'return();\n';
+      return code;
+    };
 
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled

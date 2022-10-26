@@ -430,6 +430,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
   Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
+  Blockly.Msg["WORKSPACE_TAB_MISCELLANEOUS"] = "Autres";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -480,6 +481,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Obtenir les informations d'un Emoji";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Utiliser les émojis";
+
+  Blockly.Msg["WORKSPACE_MISCELLANEOUS_MANAGE_ACTION_FLOW"] = "Gérer l'exécution de l'évènement";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -838,6 +841,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour conserver quelque chose et l'utiliser plus tard. Vous devez déclarer et utiliser la variable dans le même évènement, car elle n'est pas conservée après l'éxécution du code";
   Blockly.Msg["BLOCK_VAR_GET"] = "Obtenir le contenu de la variable nommée %1";
   Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour obtenir le contenu d'une variable sauvegardée dans le même évènement. Soyez sûr que le contenu est du bon type quand vous l'utilisez quelque part !";
+
+  //Miscellaneous blocks
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN"] = "Arrêter l'exécution";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "Ce bloc arrêtera l'exécution de l'évènement";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
