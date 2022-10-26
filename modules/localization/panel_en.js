@@ -16,6 +16,7 @@ module.exports = {
   blocksInWorkspace: "Blocks in workspace : ",
 
   /* showWindow function, panel.ejs */
+  showWindowConfirm: "Confirm",
   showWindowCantAccessServerTitle: "Unable to access this server !",
   showWindowCantAccessServerText: "The bot must be added on the server before accessing his workspace !",
   showWindowRollbackSuccessTitle: "Workspace rollbacked !",
