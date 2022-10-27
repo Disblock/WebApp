@@ -845,6 +845,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   //Miscellaneous blocks
   Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN"] = "Arrêter l'exécution";
   Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "Ce bloc arrêtera l'exécution de l'évènement";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "Chaîne de caractères vers nombre %1";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "Ce bloc va transformer une chaîne de caractères en nombre. Il retournera -1 si la chaîne de caractères n'est pas un nombre";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";

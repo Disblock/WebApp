@@ -2053,6 +2053,15 @@ module.exports = {
       return code;
     };
 
+    Blockly.JavaScript['block_miscellaneous_str_to_int'] = function(block) {
+      const value_string = Blockly.JavaScript.valueToCode(block, 'STRING', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_string!=undefined && value_string!=''){
+        return ['strToInt('+value_string+')', Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['-1', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled
     //These blocks are removed / commented in toolbox.ejs
