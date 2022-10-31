@@ -20,8 +20,8 @@ module.exports = {
   whyDisblock1Link: "Check the features list !",
 
   whyDisblock2Title: "Customize everything",
-  whyDisblock2Text: "You can create events, commands and everything that you will need !",
-  whyDisblock2Link: "See the list of available blocks",
+  whyDisblock2Text: "You can create events, commands and everything that you will need with a totally no-code, block based editor !",
+  whyDisblock2Link: "See some examples of what can be done with Disblock",
 
   whyDisblock3Title: "An online documentation",
   whyDisblock3Text: "Work in progress, learn how to use the bot here !",
