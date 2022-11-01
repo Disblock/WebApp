@@ -29,6 +29,8 @@ module.exports = {
   showWindowPremiumCodeSuccessText: "Vous venez d'obtenir un nouvel emplacement Premium. Merci pour votre soutient ! ;)",
   showWindowPremiumCodeFailedTitle: "Code invalide",
   showWindowPremiumCodeFailedText: "Essayez de vérifier si vous avez correctement écrit le code, puis réessayez. Ce code est peut-être déjà utilisé",
+  serverBannedTitle: "Serveur banni !",
+  serverBannedText: "Ce serveur a été banni par un administrateur. Contactez-nous si vous pensez que ceci est une erreur.",
 
   /* Rollback panel */
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",
