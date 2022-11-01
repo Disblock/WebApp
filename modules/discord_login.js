@@ -48,11 +48,16 @@ module.exports = {
                  }//Throw an error if Discord didn't sent user's data
 
                  logger.debug("Sending an SQL request to the database : Checking if an user exist in database with user ID "+response.id);
-                 database_pool.query("SELECT EXISTS(SELECT 1 FROM users WHERE user_id=$1) AS exist;",[response.id], function(error, results){
+                 database_pool.query("SELECT EXISTS(SELECT 1 FROM users WHERE user_id=$1) AS exist, EXISTS(SELECT 1 FROM user_ban WHERE user_id=$1 AND active = TRUE) AS banned;",[response.id], function(error, results){
                    if(error instanceof Error){
                      logger.error("Error in SQL request when checking if user exist : "+error);
                      res.status(500).end("Error 500");
                    }else{
+                     if(results.rows[0].banned){
+                       //User banned, we will redirect and stop here.
+                       res.redirect('/?error=1');
+                       return;
+                     }
                      if(results.rows[0].exist){
                        //Already in database
                        logger.debug("Sending an SQL request to the database : updating an existing user with user ID "+response.id);
