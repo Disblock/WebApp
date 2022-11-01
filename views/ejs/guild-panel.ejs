@@ -91,11 +91,31 @@
   const socket = io();
   const toolbox = document.getElementById("toolbox");
 
-  <% if(premium){ %>
+  <%
+  let disabledBlocks = {};//Used to store the types of the disabled blocks
+  if(premium){ %>
       const maxBlocks = <%- process.env.P_WORKSPACE_MAX_BLOCKS %>;
-  <%}else{%>
+
+      <%
+      if(process.env.P_DISABLED_BLOCKS!="none"){
+        //We will disable some blocks
+        process.env.P_DISABLED_BLOCKS.split(',').forEach((item, i) => {
+          disabledBlocks[item] = 0;
+        });
+
+      }
+  }else{%>
       const maxBlocks = <%- process.env.NP_WORKSPACE_MAX_BLOCKS %>;
-  <%}%>
+
+      <%
+      if(process.env.NP_DISABLED_BLOCKS!="none"){
+        //We will disable some blocks
+        process.env.NP_DISABLED_BLOCKS.split(',').forEach((item, i) => {
+          disabledBlocks[item] = 0;
+        });
+
+      }
+  }%>
   //We define the max blocks amount in #blocks_count
   $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+' 0 / '+maxBlocks);
 
@@ -116,6 +136,7 @@
     comments : true,
     disable : false,
     maxBlocks : maxBlocks,
+    maxInstances: <%- JSON.stringify(disabledBlocks) %>,
     trashcan : true,
     horizontalLayout : false,
     toolboxPosition : 'start',
