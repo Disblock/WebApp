@@ -44,7 +44,7 @@ const premiumPanelEditBackEnd = require('./modules/pages_back_end/premium_panel_
 const premiumPanelCodeBackEnd = require('./modules/pages_back_end/premium_panel_code.js');
 
 /*############################################*/
-/* Back-End for pages */
+/* Back-End for socket.io */
 /*############################################*/
 
 const sendWorkspaceSocketBackEnd = require('./modules/sockets_back_end/send_workspace.js');
