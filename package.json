@@ -23,7 +23,7 @@
   },
   "name": "disblock_webapp",
   "description": "Disblock is a totally customizable Discord Bot.\r You can create your own actions with blocks, and the bot will execute your created code in Discord !",
-  "version": "1.2.1-alpha",
+  "version": "1.3.0-alpha",
   "main": "server.js",
   "repository": {
     "type": "git",
