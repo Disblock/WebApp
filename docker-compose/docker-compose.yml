@@ -46,6 +46,7 @@ services:
       PGUSER: ${DB_USER}
       PGDATABASE: ${DB_DATABASE}
       PGPORT: ${DB_PORT}
+      AES_PASSWORD: ${AES_PASSWORD}
       NODE_ENV: ${NODE_ENV}
       DEBUG: ${DEBUG}
       LOGS_MAX_FILES: ${LOGS_MAX_FILES}
@@ -84,6 +85,7 @@ services:
       PGUSER: ${DB_USER}
       PGDATABASE: ${DB_DATABASE}
       PGPORT: ${DB_PORT}
+      CLIENT_ID: ${CLIENT_ID}
       TOKEN: ${BOT_TOKEN}
       LOGS_MAX_FILES: ${LOGS_MAX_FILES}
       DEBUG: ${DEBUG}

@@ -430,6 +430,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
   Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
+  Blockly.Msg["WORKSPACE_TAB_MISCELLANEOUS"] = "Autres";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "Un message est envoyé ou supprimé";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "Un message est modifié";
@@ -480,6 +481,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Obtenir les informations d'un Emoji";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Utiliser les émojis";
+
+  Blockly.Msg["WORKSPACE_MISCELLANEOUS_MANAGE_ACTION_FLOW"] = "Gérer l'exécution de l'évènement";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "Un message est envoyé %1 %2";
@@ -794,6 +797,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_GET_ID_TOOLTIP"] = "Retourne l'identifiant du rôle";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION"] = "Le rôle %1 possède t-il la permission %2 ?";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Permet de savoir un rôle dispose d'une permission. Retourne Vrai si oui, Faux si non ou indéfinit";
+  Blockly.Msg["BLOCK_RANK_GET_EVERYONE"] = "Obtenir le rôle @everyone";
+  Blockly.Msg["BLOCK_RANK_GET_EVERYONE_TOOLTIP"] = "Retourne le role @everyone";
 
   //Embeds blocks
   Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la description : %2 Avec la couleur : %3 et les options : %4 %5";
@@ -824,12 +829,24 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Obtenir le nom d'un émoji de Discord ou de votre serveur. S'il vient de Discord, retourne la valeur unicode de l'émoji ( Trouvable en tapant \"\\:joy:\" dans Discord ). S'il vient de votre serveur, retourne son nom.";
   Blockly.Msg["BLOCK_EMOJI_REACT"] = "Réagir avec l'émoji %1 au message %2";
   Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Ajoute une réaction au message. Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord.";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS"] = "Obtenir le nombre de réactions %1 sur le message %2";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS_TOOLTIP"] = "Obtenez le nombre de personnes qui ont réagit sur un message ! Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord.";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION"] = "Retirer la réaction %1 de l'utilisateur %2 sur le message %3";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] = "Retire une réaction d'un utilisateur sur un message. Utilisez un Emoji, ou copiez-collez ce que vous obtenez en envoyant \\:emoji: quelque part sur Discord. Cela déclenchera l'évènement \"une réaction est retirée\".";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION"] = "Retirer toutes les réactions du message %1";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION_TOOLTIP"] = "Retire TOUTES les réactions d'un message";
 
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Sauvegarder la valeur %1 dans une variable temporaire nommée %2 de type %3";
   Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour conserver quelque chose et l'utiliser plus tard. Vous devez déclarer et utiliser la variable dans le même évènement, car elle n'est pas conservée après l'éxécution du code";
   Blockly.Msg["BLOCK_VAR_GET"] = "Obtenir le contenu de la variable nommée %1";
   Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "Vous pouvez utiliser ce bloc pour obtenir le contenu d'une variable sauvegardée dans le même évènement. Soyez sûr que le contenu est du bon type quand vous l'utilisez quelque part !";
+
+  //Miscellaneous blocks
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN"] = "Arrêter l'exécution";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "Ce bloc arrêtera l'exécution de l'évènement";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "Chaîne de caractères vers nombre %1";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "Ce bloc va transformer une chaîne de caractères en nombre. Il retournera -1 si la chaîne de caractères n'est pas un nombre";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
@@ -842,6 +859,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "Vous devez entrer une valeur pour ce bloc !";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "Un bloc de texte semble vide ! Essayez d'y entrer quelque chose avant de réessayer";
   Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "Il y a trop de blocs dans votre espace de travail ! Essayez d'utiliser moins de blocs";
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "Cela ne semble pas être un émoji custom valide. Essayez d'envoyer \\:votre_emoji: dans votre serveur et de coller ici le résultat."
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "Vous avez essayé d'utiliser un émoji custom dans un block d'émoji mais cela semble invalide. La valeur devrait ressembler à <:Nom:1234>."
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";

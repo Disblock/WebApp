@@ -380,7 +380,10 @@ module.exports = {
     {
       "type": "input_value",
       "name": "rank",
-      "check": "Rank"
+      "check": [
+        "Rank",
+        "EveryoneRank"
+      ]
     },
     {
       "type": "field_dropdown",
@@ -470,7 +473,10 @@ module.exports = {
     {
       "type": "input_value",
       "name": "rank",
-      "check": "Rank"
+      "check": [
+        "Rank",
+        "EveryoneRank"
+      ]
     },
     {
       "type": "field_dropdown",
@@ -638,6 +644,14 @@ module.exports = {
   "output": "Boolean",
   "colour": 15,
   "tooltip": "%{BKY_BLOCK_RANK_HAS_PERMISSION_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_rank_get_everyone",
+  "message0": "%{BKY_BLOCK_RANK_GET_EVERYONE}",
+  "output": "EveryoneRank",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_RANK_GET_EVERYONE_TOOLTIP}",
   "helpUrl": ""
 }]
 )};

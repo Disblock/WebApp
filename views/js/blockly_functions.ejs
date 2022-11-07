@@ -168,6 +168,30 @@ function validateWorkspace(workspace){
   //Finished to check text blocks, stop here in case of error
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"]});
 
+  //Now checking if there is an uncorrectly defined custom emoji in Emoji/reactions blocks
+  for(let i=0;i<blocks.length;i++){
+    if(blocks[i].type==="block_emoji_react" || blocks[i].type==="block_emoji_get_number_of_reactions" || blocks[i].type==="block_emoji_remove_reaction"){
+
+      if(blocks[i].getInputTargetBlock('emoji').type==='text'){//A text block is used a value for the emoji
+
+        if(/[a-zA-Z0-9]+/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
+          //A custom emoji is used in this block. We will check that it's correctly defined. We check with a regex, because Discord's Ascii emojis shouldn't include a-Z0-9 chars.
+
+          if(/^<:[a-zA-Z0-9]+:[0-9]+>$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
+            //Regex OK
+            blocks[i].getInputTargetBlock('emoji').setWarningText(null);
+          }else{
+            //Regex NOT OK
+            blocks[i].getInputTargetBlock('emoji').setWarningText(Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"]);
+            foundError = true;
+          }
+        }
+      }
+    }
+  }
+  //Finished to check custom emoji uses. In case of error, stop here
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"]});
+
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
 

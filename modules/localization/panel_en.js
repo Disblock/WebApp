@@ -16,6 +16,7 @@ module.exports = {
   blocksInWorkspace: "Blocks in workspace : ",
 
   /* showWindow function, panel.ejs */
+  showWindowConfirm: "Confirm",
   showWindowCantAccessServerTitle: "Unable to access this server !",
   showWindowCantAccessServerText: "The bot must be added on the server before accessing his workspace !",
   showWindowRollbackSuccessTitle: "Workspace rollbacked !",
@@ -28,6 +29,8 @@ module.exports = {
   showWindowPremiumCodeSuccessText: "You Successfully redeemed this code, and a new Premium slot was added to your account. Thanks for your support ! ;)",
   showWindowPremiumCodeFailedTitle: "Invalid code",
   showWindowPremiumCodeFailedText: "Check that the code is correctly written, and retry. This code is maybe already used.",
+  serverBannedTitle: "Server banned !",
+  serverBannedText: "This server was disabled by an Administrator. Contact us if you believe this is an error.",
 
   /* Rollback panel */
   rollbackPageTitle: "Rollback to a previous state your server's workspace",

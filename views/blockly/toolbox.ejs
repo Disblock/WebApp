@@ -55,6 +55,7 @@
     <block type="math_number">
       <field name="NUM">0</field>
     </block>
+    <block type="block_miscellaneous_str_to_int"></block>
     <block type="math_arithmetic">
       <field name="OP">ADD</field>
       <value name="A">
@@ -669,6 +670,7 @@
       <block type="block_rank_delete"></block>
 
     <label text="%{BKY_WORKSPACE_RANKS_GET_DATA}"></label>
+      <block type="block_rank_get_everyone"></block>
       <block type="block_rank_get_rank_with_id"></block>
       <block type="block_rank_get_name"></block>
       <block type="block_rank_get_position"></block>
@@ -706,8 +708,28 @@
         </shadow>
       </value>
     </block>
+    <block type="block_emoji_remove_reaction">
+      <value name="emoji">
+        <shadow type="text">
+          <field name="TEXT">👋</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="block_emoji_remove_all_reactions"></block>
     <label text="%{BKY_WORKSPACE_EMOJIS_GET_DATA}"></label>
     <block type="block_emoji_get_name"></block>
+    <block type="block_emoji_get_number_of_reactions">
+      <value name="emoji">
+        <shadow type="text">
+          <field name="TEXT">👋</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+
+  <category name="%{BKY_WORKSPACE_TAB_MISCELLANEOUS}" colour="210">
+    <label text="%{BKY_WORKSPACE_MISCELLANEOUS_MANAGE_ACTION_FLOW}"></label>
+    <block type="block_miscellaneous_return"></block>
   </category>
 
 </xml>

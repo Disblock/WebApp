@@ -617,7 +617,7 @@
         <value name="TYPE">
           <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
           <block type="type_group" id="ziOycw{ovF1*@GKW;BHg">
-            <mutation types="2"></mutation>
+            <mutation types="3"></mutation>
             <value name="TYPE0">
               <block type="type_other" id="voPe@w,N8~bbL/x;Yb3d">
                 <field name="TYPE">User</field>
@@ -626,6 +626,11 @@
             <value name="TYPE1">
               <block type="type_other" id="E`qv2lm|R{%ub.ns+y5u">
                 <field name="TYPE">Rank</field>
+              </block>
+            </value>
+            <value name="TYPE2">
+              <block type="type_other" id="{E.E#HLTXtu(_CzX_M8y">
+                <field name="TYPE">EveryoneRank</field>
               </block>
             </value>
           </block>
@@ -777,7 +782,7 @@
         <value name="TYPE">
           <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
           <block type="type_group" id="ziOycw{ovF1*@GKW;BHg">
-            <mutation types="2"></mutation>
+            <mutation types="3"></mutation>
             <value name="TYPE0">
               <block type="type_other" id="voPe@w,N8~bbL/x;Yb3d">
                 <field name="TYPE">User</field>
@@ -786,6 +791,11 @@
             <value name="TYPE1">
               <block type="type_other" id="E`qv2lm|R{%ub.ns+y5u">
                 <field name="TYPE">Rank</field>
+              </block>
+            </value>
+            <value name="TYPE2">
+              <block type="type_other" id=".R`M57^|pe*0m-0IhNE.">
+                <field name="TYPE">EveryoneRank</field>
               </block>
             </value>
           </block>

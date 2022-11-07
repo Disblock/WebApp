@@ -1738,6 +1738,11 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_rank_get_everyone'] = function(block) {
+      let code = 'CURRENT_GUILD.roles.everyone';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
     /* ##### EMBEDS blocks ##### */
 
     Blockly.JavaScript['block_embed_create'] = function(block) {
@@ -1967,7 +1972,7 @@ module.exports = {
     /* ##### Emojis blocks ##### */
 
     Blockly.JavaScript['block_emoji_get_name'] = function(block) {
-      const value_emoji = Blockly.JavaScript.valueToCode(block, 'EMOJI', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_emoji!==''){
         return [value_emoji+'.name', Blockly.JavaScript.ORDER_NONE];
@@ -1981,12 +1986,81 @@ module.exports = {
       const value_message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_emoji!=='' && value_message!==''){
-        return value_message+".react("+value_emoji+");\n";
+        return 'await sleep(1000).then(async()=>{'+value_message+".react("+value_emoji+");});\n";
       }else{
         return '';
       }
     };
 
+    Blockly.JavaScript['block_emoji_get_number_of_reactions'] = function(block) {
+      let value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_message = Blockly.JavaScript.valueToCode(block, 'Message', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_emoji!=='' && value_message!==''){
+
+        if(value_emoji==='(eventReaction)')value_emoji="(eventReaction.id || eventReaction.name)";//Sending directly this object will cause issues, so if the user gave the object, we get the id ( for custom emojis ) or the name ( Discord emojis )
+        if(value_emoji.includes(':')){
+          //That's a custom emoji. We will remove everything except the ID. I don't know why, but that don't work if we don't do that...
+          //We check in front-end that it's valid. If invalid data come here, an error will be thrown by node and caught in the caller context.
+          value_emoji=value_emoji.split(':')[2];
+          value_emoji=value_emoji.split('>')[0];
+          value_emoji = "'"+value_emoji+"'";
+        }
+
+        return [value_message+'.reactions.resolve('+value_emoji+') ? '+value_message+'.reactions.resolve('+value_emoji+').count : 0', Blockly.JavaScript.ORDER_NONE];//If emoji found, return the count, else, return 0
+      }else{
+        return ['undefined', Blockly.JavaScript.ORDER_NONE];
+      }
+
+    };
+
+    Blockly.JavaScript['block_emoji_remove_reaction'] = function(block) {
+      let value_emoji = Blockly.JavaScript.valueToCode(block, 'emoji', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_user = Blockly.JavaScript.valueToCode(block, 'User', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_message = Blockly.JavaScript.valueToCode(block, 'Message', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_emoji!=='' && value_user!=='' && value_message!==''){
+
+        if(value_emoji==='(eventReaction)')value_emoji="(eventReaction.id || eventReaction.name)";//Sending directly this object will cause issues, so if the user gave the object, we get the id ( for custom emojis ) or the name ( Discord emojis )
+        if(value_emoji.includes(':')){
+          //That's a custom emoji. We will remove everything except the ID. I don't know why, but that don't work if we don't do that...
+          //We check in front-end that it's valid. If invalid data come here, an error will be thrown by node and caught in the caller context.
+          value_emoji=value_emoji.split(':')[2];
+          value_emoji=value_emoji.split('>')[0];
+          value_emoji = "'"+value_emoji+"'";
+        }
+
+        return 'if('+value_message+'.reactions.resolve('+value_emoji+')){await sleep(1000).then(async()=>{'+value_message+'.reactions.resolve('+value_emoji+').users.remove('+value_user+');});}\n';
+      }else{
+        return '';
+      }
+
+    };
+
+    Blockly.JavaScript['block_emoji_remove_all_reactions'] = function(block) {
+      const value_message = Blockly.JavaScript.valueToCode(block, 'Message', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_message!==''){
+        return value_message+'.reactions.removeAll();\n';
+      }else{
+        return '';
+      }
+    };
+
+    /* ##### Miscellaneous blocks ##### */
+
+    Blockly.JavaScript['block_miscellaneous_return'] = function(block) {
+      const code = 'return();\n';
+      return code;
+    };
+
+    Blockly.JavaScript['block_miscellaneous_str_to_int'] = function(block) {
+      const value_string = Blockly.JavaScript.valueToCode(block, 'STRING', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_string!=undefined && value_string!=''){
+        return ['strToInt('+value_string+')', Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['-1', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
 
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled

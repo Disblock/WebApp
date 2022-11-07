@@ -10,7 +10,7 @@ module.exports = {
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
 
-     let replacedXml = xml.replaceAll('.token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
+     let replacedXml = xml.replaceAll('token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
 
      /*
      Blockly's Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
@@ -33,6 +33,7 @@ module.exports = {
          }
 
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
+         if(validateWorkspace.checkIfDisabledBlocksUsed(workspace, premium))return('USED DISABLED BLOCKS !');
 
          const code = Blockly.JavaScript.workspaceToCode(workspace);
          return code;
@@ -46,6 +47,10 @@ module.exports = {
      else if(code==="TOO MANY BLOCKS !"){
        //User used too many blocks...
        logger.debug("Too many blocks error for guild "+server_id);
+       return(1);
+     }
+     else if(code==="USED DISABLED BLOCKS !"){
+       logger.debug("Disabled blocks used for guild "+server_id);
        return(1);
      }
 

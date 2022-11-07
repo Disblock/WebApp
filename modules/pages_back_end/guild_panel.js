@@ -14,6 +14,11 @@ module.exports = async function(req, res, database_pool, logger, redisClient, bl
     //Check if server is in database ( = if the bot was added in the server ) and if this server is premium
     guilds_database.checkIfServerExist(database_pool, req.params.id, true)
     .then(async(data)=>{
+      if(data.banned){//Server banned
+        res.redirect('/panel?message=7');
+        logger.debug(req.session.discord_id+" tried to access banned server "+req.params.id);
+        return;
+      }
       if(data.exist){
         //Server is registered in database
         const premium = data.premium;//Will store if the server is premium or not

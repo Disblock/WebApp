@@ -157,4 +157,213 @@
         <field name="HUE">120</field>
       </block>
     </value>
+  </block><block type="factory_base" id="rfu2ag97Q{0Jtbk|:2:j" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_emoji_get_number_of_reactions</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="JvyC4c,m+F~CX4[IugBB">
+        <field name="INPUTNAME">Emoji</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=":O`9.7~:;@Lt:{uR5dF4">
+            <field name="TEXT">Get the number of reactions</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="51y=kkYGy5V./X]}{`]="></shadow>
+          <block type="type_group" id="mU^|RzS)0^LSg[Q_^(yZ">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_string" id="{EEpy^g5(UULMGa@d+F%"></block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="nJtD.QyTS}OXkJOz0zsx">
+                <field name="TYPE">Emoji</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="2up;m$~?8^IndODk0%9x">
+            <field name="INPUTNAME">Message</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="DJrSZ/[6YlGOP)==lQ_S">
+                <field name="TEXT">on the message</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="51y=kkYGy5V./X]}{`]="></shadow>
+              <block type="type_other" id="||jzl)2VZ,!=M=(~5v/Q">
+                <field name="TYPE">Message</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="JZqCp1RKwRD@m(N0W_o{" deletable="false" movable="false">
+        <field name="TEXT">Get the number of peoples who reacted with an emoji on a message ! Use an Emoji, or copy-paste the result of sending \:your_emoji: somewhere in Discord</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="2IlZ`Q=zLWSXb9b,vsru" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="Sx$cuKo4zsk78etGTds+"></shadow>
+      <block type="type_number" id="tOE1ydrXUEM7SGNsLe2^"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="~Di.PT.zl6i00%*9*Qas">
+        <mutation colour="#5ba55b"></mutation>
+        <field name="HUE">120</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="rfu2ag97Q{0Jtbk|:2:j" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_emoji_remove_reaction</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="JvyC4c,m+F~CX4[IugBB">
+        <field name="INPUTNAME">Emoji</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=":O`9.7~:;@Lt:{uR5dF4">
+            <field name="TEXT">Remove the reaction</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="51y=kkYGy5V./X]}{`]="></shadow>
+          <block type="type_group" id="mU^|RzS)0^LSg[Q_^(yZ">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_string" id="{EEpy^g5(UULMGa@d+F%"></block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="nJtD.QyTS}OXkJOz0zsx">
+                <field name="TYPE">Emoji</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="JP?C##$Yl*dccqtF{kuw">
+            <field name="INPUTNAME">User</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="A?RA6_#.HoSd2W$MJ,IZ">
+                <field name="TEXT">from the user</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="51y=kkYGy5V./X]}{`]="></shadow>
+              <block type="type_other" id="M[I.lZS=,S7Y*X*Ggh{=">
+                <field name="TYPE">User</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_value" id="2up;m$~?8^IndODk0%9x">
+                <field name="INPUTNAME">Message</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="DJrSZ/[6YlGOP)==lQ_S">
+                    <field name="TEXT">on the message</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="51y=kkYGy5V./X]}{`]="></shadow>
+                  <block type="type_other" id="||jzl)2VZ,!=M=(~5v/Q">
+                    <field name="TYPE">Message</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="JZqCp1RKwRD@m(N0W_o{" deletable="false" movable="false">
+        <field name="TEXT">Remove a reaction from a message. Use an Emoji, or copy-paste the result of sending \:your_emoji: somewhere in Discord.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="2IlZ`Q=zLWSXb9b,vsru" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="~V7e6IZd3`jCe@];:hUd"></shadow>
+      <block type="type_other" id="0*Ukm{DA^Lt:[%U7aW$#">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="T`NI,j9Sj9P`11HP^JFh"></shadow>
+      <block type="type_other" id="Y`W@!2.o{qvMnD*c8Rc$">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="~Di.PT.zl6i00%*9*Qas">
+        <mutation colour="#5ba55b"></mutation>
+        <field name="HUE">120</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="rfu2ag97Q{0Jtbk|:2:j" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_emoji_remove_all_reactions</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="2up;m$~?8^IndODk0%9x">
+        <field name="INPUTNAME">Message</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="DJrSZ/[6YlGOP)==lQ_S">
+            <field name="TEXT">Remove every reactions from the message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="51y=kkYGy5V./X]}{`]="></shadow>
+          <block type="type_other" id="||jzl)2VZ,!=M=(~5v/Q">
+            <field name="TYPE">Message</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="JZqCp1RKwRD@m(N0W_o{" deletable="false" movable="false">
+        <field name="TEXT">Remove ALL reactions from a message</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="2IlZ`Q=zLWSXb9b,vsru" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="~V7e6IZd3`jCe@];:hUd"></shadow>
+      <block type="type_other" id="0*Ukm{DA^Lt:[%U7aW$#">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="T`NI,j9Sj9P`11HP^JFh"></shadow>
+      <block type="type_other" id="Y`W@!2.o{qvMnD*c8Rc$">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="~Di.PT.zl6i00%*9*Qas">
+        <mutation colour="#5ba55b"></mutation>
+        <field name="HUE">120</field>
+      </block>
+    </value>
   </block></xml>

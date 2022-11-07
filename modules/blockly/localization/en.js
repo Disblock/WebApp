@@ -430,6 +430,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Embed Messages";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
   Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
+  Blockly.Msg["WORKSPACE_TAB_MISCELLANEOUS"] = "Miscellaneous";
 
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_SENT_DELETED"] = "A message is sent or deleted";
   Blockly.Msg["WORKSPACE_EVENTS_MESSAGE_UPDATED"] = "A message is updated";
@@ -480,6 +481,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Get emoji's data";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Use Emojis";
+
+  Blockly.Msg["WORKSPACE_MISCELLANEOUS_MANAGE_ACTION_FLOW"] = "Manage action flow execution";
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "A message was sent %1 %2";
@@ -794,6 +797,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_GET_ID_TOOLTIP"] = "Return the role ID";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION"] = "Does the role %1 has permission %2 ?";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Check if given role has given permission. Return True if role is allowed to use permission, False if not";
+  Blockly.Msg["BLOCK_RANK_GET_EVERYONE"] = "Get @everyone role";
+  Blockly.Msg["BLOCK_RANK_GET_EVERYONE_TOOLTIP"] = "Return the @everyone role";
 
   //Embeds blocks
   Blockly.Msg["BLOCK_EMBED_CREATE"] = "Create an embed message with title %1 Embed description : %2 Embed color : %3 and customization : %4 %5";
@@ -824,12 +829,24 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Get the name of an emoji from Discord or your server. If from Discord, return the unicode value of this emoji ( Get it by typing \"\\:joy:\" on Discord ). If from your server, return the name of this emoji.";
   Blockly.Msg["BLOCK_EMOJI_REACT"] = "React with the emoji %1 to the message %2";
   Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Add a reaction to a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord.";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS"] = "Get the number of reactions %1 on the message %2";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS_TOOLTIP"] = "Get the number of peoples who reacted with an emoji on a message ! Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION"] = "Remove the reaction %1 from the user %2 on the message %3";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] = "Remove a reaction from a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord. This will trigger the \"A reaction is removed\" event.";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION"] = "Remove every reactions from the message %1";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION_TOOLTIP"] = "Remove ALL reactions from a message";
 
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Save %1 in a temporary variable named  %2 of type %3";
   Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "You can use this block to store something and use it later. You must declare the variable and use it in the same event, they aren't kept after the code execution..";
   Blockly.Msg["BLOCK_VAR_GET"] = "Get the content of the variable named %1";
   Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "You can use this block to get the content of a variable that was saved during the same event. Make sure the content is of the right type when using this somewhere !";
+
+  //Miscellaneous blocks
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN"] = "Stop execution";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "This block will stop the action flow";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "String to number %1";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "This block will transform a string into a number. It will return -1 if the string isn't a number";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";
@@ -842,6 +859,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "You must give a value to this block !";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "A text block seems empty ! Try to write something in it before trying again.";
   Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "There is too much blocks in your workspace ! Please, try to use less blocks";
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "This don't looks like a valid custom emoji string. Try to send \\:your_emoji: in your server, and paste here the result."
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>."
 
   //Types names
   Blockly.Msg["STRING"] = "String";

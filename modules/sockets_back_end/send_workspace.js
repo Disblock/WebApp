@@ -23,6 +23,11 @@ module.exports = async function(socket, server_id, data, callback, database_pool
     try{
       let data;
       data = await guildsDatabase.checkIfServerExist(database_pool, server_id, true);
+      if(data.banned){//Server banned
+        logger.debug("Someone tried to send a new workspace for a banned server");
+        callback({status: "NOT OK"});
+        return;
+      }
       if(!data.exist){
         callback({status: "NOT OK"});
         return;//This server don't exist in database

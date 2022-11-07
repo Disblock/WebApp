@@ -44,7 +44,7 @@ const premiumPanelEditBackEnd = require('./modules/pages_back_end/premium_panel_
 const premiumPanelCodeBackEnd = require('./modules/pages_back_end/premium_panel_code.js');
 
 /*############################################*/
-/* Back-End for pages */
+/* Back-End for socket.io */
 /*############################################*/
 
 const sendWorkspaceSocketBackEnd = require('./modules/sockets_back_end/send_workspace.js');
@@ -207,7 +207,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const blocklyBlocks = [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,
                       require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,
                       require('./modules/blockly/blocks/user_blocks.js').blocks,require('./modules/blockly/blocks/color_blocks.js').blocks,require('./modules/blockly/blocks/var_blocks.js').blocks,
-                      require('./modules/blockly/blocks/emoji_blocks.js').blocks];
+                      require('./modules/blockly/blocks/emoji_blocks.js').blocks,require('./modules/blockly/blocks/miscellaneous_blocks.js').blocks];
 blocklyBlocks.forEach(element => {
   Blockly.defineBlocksWithJsonArray(JSON.parse(element));
 });

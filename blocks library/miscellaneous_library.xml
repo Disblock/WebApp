@@ -1,0 +1,78 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="6(!_b.!L]J:hXT7meuzz" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="TOP"></mutation>
+    <field name="NAME">block_miscellaneous_return</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">TOP</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="tIlLv+F6aH;HQgPa~h}~">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="Ta3P:Y.!{o#mJU;7rZhr">
+            <field name="TEXT">Stop execution</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+ZS6d`[UDySGFLGS|w(F" deletable="false" movable="false">
+        <field name="TEXT">This block will stop the action flow.</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="31++0;]).=}yts.;pQVZ" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="wT/EAMn82RzCSEO*09|8"></shadow>
+      <block type="type_other" id=":dx+2w7,MHcP;IjC|x:O">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+ck,l/:N;{ST$4bMJl.t">
+        <mutation colour="#5b80a5"></mutation>
+        <field name="HUE">210</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="6(!_b.!L]J:hXT7meuzz" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_miscellaneous_str_to_int</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="2T8Ny@TRWm],e`|VH)s)">
+        <field name="INPUTNAME">STRING</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="Ta3P:Y.!{o#mJU;7rZhr">
+            <field name="TEXT">String to number</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="N))ETa|xSQLH*]r/a;dX"></shadow>
+          <block type="type_string" id="G|`WQ.]EiNSV6e~)p|E)"></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="+ZS6d`[UDySGFLGS|w(F" deletable="false" movable="false">
+        <field name="TEXT">This block will transform a string into a number. It will return -1 if the string isn't a number</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="31++0;]).=}yts.;pQVZ" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="!A#y3Fg){qzkcde#L;LA"></shadow>
+      <block type="type_number" id=":j9yhyJ,Pt}=H|~hnJp0"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="+ck,l/:N;{ST$4bMJl.t">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block></xml>

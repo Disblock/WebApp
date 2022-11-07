@@ -6,7 +6,7 @@
     <meta name="description" content="Disblock is a totally customizable Discord Bot. You can create your own actions with blocks like in Scratch, and the bot will execute your created code in Discord !"/>
     <!-- Voir https://developer.mozilla.org/fr/docs/Web/HTTP/CSP et https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta -->
     <title>Disblock</title>
-    <link rel="shortcut icon" type="image/png" href="/img/logo.png"/>
+    <link rel="shortcut icon" type="image/png" href="/img/squareLogo.png"/>
     <link rel="stylesheet" type="text/css" href="style"/>
     <link rel="stylesheet" type="text/css" href="style/index-style"/>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@next/dist/aos.css"/><!-- AOS stylesheet -->
@@ -99,7 +99,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-right"><!-- That's the div  that contain everything -->
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/blocks.JPG">
+          <img src="img/whyDisblock1.svg">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_right"><!-- This div contain the description of the image -->
@@ -117,7 +117,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/placeholder.png">
+          <img src="img/whyDisblock2.svg">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
@@ -135,7 +135,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-right">
         <div class="why_disblock_content_div_img why_disblock_content_div_left"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/placeholder.png">
+          <img src="img/whyDisblock3.svg">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_right">
@@ -153,7 +153,7 @@
 
       <div class="why_disblock_content_div" data-aos="fade-left">
         <div class="why_disblock_content_div_img why_disblock_content_div_right"><!-- This div contain the image. why_disblock_content_div_left place this div on left. -->
-          <img src="img/placeholder.png">
+          <img src="img/whyDisblock4.svg">
         </div>
 
         <div class="why_disblock_content_div_text why_disblock_content_div_left">
@@ -335,6 +335,9 @@
       switch(error){
         case '0':
           break;//Everything is OK
+        case '1':
+          alert("Sorry, but you access was disabled. Contact the support on Discord or by mail if you believe this is an error.")
+          break;
         case '1975664':
           alert("Sorry but registrations are actually disabled. You can join the support server to be informed of the reopening !");
           break;
