@@ -429,7 +429,7 @@ app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
   .then(async()=>{
     //User isn't rate limited
 
-    rollbackWorkspaceBackEnd(req, res, database_pool, logger, Blockly, blocklyToken);
+    rollbackWorkspaceBackEnd(req, res, database_pool, logger, redisClient, Blockly, blocklyToken);
 
   })
   .catch(async(err)=>{

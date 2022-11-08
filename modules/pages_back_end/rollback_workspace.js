@@ -1,17 +1,22 @@
 'use strict';
+const check_guild_access = require('../check_access_to_guild.js');//Used to check if an user has an admin permission on a guild
+const discord_get_servers = require('../discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
 const crypto = require('crypto');//Generate random strings
 const serverLogs = require('../database/logs.js');//Save modifications on servers to logs
 const blockly_xml_to_js = require('../blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 
-module.exports = async function(req, res, database_pool, logger, Blockly, blocklyToken){
+module.exports = async function(req, res, database_pool, logger, redisClient, Blockly, blocklyToken){
 
   if(req.session.discord_id!=undefined){
 
-    if(req.session.securityToken===req.query.token && req.session.securityToken!=undefined && req.session.workingOnServer === String(req.params.id)){
-      //User is admin on the selected server : token generated on /rollback is correct
+    //Check if user is admin on selected server
+    const guilds = await discord_get_servers(req, database_pool, logger, redisClient);//Get all guilds where user has an admin permission
+    const guild = check_guild_access(guilds, req.params.id);
 
-      req.session.securityToken = crypto.randomBytes(16).toString('hex');
+    if(guild && req.session.securityToken===req.query.token && req.session.securityToken!=undefined){
+      //User is admin on the selected server and visited the rollback panel before trying to rollback
+      req.session.securityToken = crypto.randomBytes(4).toString('hex');
 
       let premium;//Store if the server is premium or not
       try{
