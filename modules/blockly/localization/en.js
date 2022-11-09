@@ -460,6 +460,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_CHANNELS_EDIT"] = "Update a channel";
   Blockly.Msg["WORKSPACE_CHANNELS_GET_DATA"] = "Get channel's data";
   Blockly.Msg["WORKSPACE_CHANNELS_GET_CHANNEL"] = "Get a channel";
+  Blockly.Msg["WORKSPACE_CHANNELS_GET_CATEGORY"] = "Get a category";
 
   Blockly.Msg["WORKSPACE_USERS_SEND_MESSAGE"] = "Send private message";
   Blockly.Msg["WORKSPACE_USERS_MODERATE"] = "Manage users";
@@ -510,7 +511,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_PINNED_UPDATED"] = "A message was pinned or unpinned %1 %2";
   Blockly.Msg["EVENT_PINNED_UPDATED_TOOLTIP"] = "A message was pinned or unpinned";
   Blockly.Msg["EVENT_USER_VOICE_UPDATE"] = "An user moved from a voice channel %1 %2";
-  Blockly.Msg["EVENT_USER_VOICE_UPDATE_TOOLTIP"] = "An user joined, left or switched his voice channel";
+  Blockly.Msg["EVENT_USER_VOICE_UPDATE_TOOLTIP"] = "An user joined, left or switched voice channel";
   Blockly.Msg["EVENT_USER_START_WRITTING"] = "An user started writting %1 %2";
   Blockly.Msg["EVENT_USER_START_WRITTING_TOOLTIP"] = "An user started writting in a text channel";
   Blockly.Msg["EVENT_TEXT_CHANNEL_CREATED"] = "A text channel was created %1 %2";
@@ -645,8 +646,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_TOPIC_TOOLTIP"] = "Get the topic of a channel";
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID"] = "Channel's ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID_TOOLTIP"] = "Get the ID of a channel";
-  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Get a channel with his ID %1";
-  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Get a text, voice or Thread channel with his ID";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Get a channel with its ID %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Get a text, voice or Thread channel with an ID";
   Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION"] = "Check if user or role %1 has the permission %2 %3 in text or voice channel %4";
   Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION_TOOLTIP"] = "Check if user or role has a permission in given text or voice channel. Return True or False";
   Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] = "Define permission %2 %3 %4 for user or rank %1 in text or voice channel %5";
@@ -655,6 +656,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Get a list of all channels in the server";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT"] = "Count users in voice channel %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Return the number of users connected to the given voice channel";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Get a category with its ID %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Get a category with an ID";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";
@@ -709,7 +712,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_KICK"] = "Kick user %1 with reason %2";
   Blockly.Msg["BLOCK_USER_KICK_TOOLTIP"] = "Kick an user from the server with a reason";
   Blockly.Msg["BLOCK_USER_GET_WITH_ID"] = "Get user with ID %1";
-  Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Get an user with his ID. The user must be in the server or an error will occur";
+  Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Get an user with its ID. The user must be in the server or an error will occur";
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME"] = "Get member's nickname %1";
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME_TOOLTIP"] = "Get the nickname of a member";
   Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Get user's username %1";
@@ -784,7 +787,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_EDIT_POSITION"] = "Define role %1 position in hierarchy to %2";
   Blockly.Msg["BLOCK_RANK_EDIT_POSITION_TOOLTIP"] = "Define the position where this role will be in server's hierarchy";
   Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID"] = "Get role with ID %1";
-  Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID_TOOLTIP"] = "Get a role with his ID";
+  Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID_TOOLTIP"] = "Get a role with its ID";
   Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS"] = "Set permission %1 for role %2 to %3";
   Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS_TOOLTIP"] = "Edit role permissions";
   Blockly.Msg["BLOCK_RANK_GET_NAME"] = "Get role name %1";
@@ -822,7 +825,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Color blocks
   Blockly.Msg["BLOCK_COLOR_HEX"] = "Color from hexadecimal code %1";
-  Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Get a color from his hexadecimal code";
+  Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Get a color from an hexadecimal code";
 
   //Emojis blocks
   Blockly.Msg["BLOCK_EMOJI_GET_NAME"] = "Get emoji's name %1";

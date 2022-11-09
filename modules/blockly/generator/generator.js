@@ -1309,6 +1309,16 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
+    Blockly.JavaScript['block_channel_get_category_with_id'] = function(block) {
+      const value_category_id = Blockly.JavaScript.valueToCode(block, 'category_id', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_category_id!==''){
+        const code = "await CURRENT_GUILD.channels.fetch("+value_category_id+")";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
+    };
+
     /* ##### RANKS blocks ##### */
 
     Blockly.JavaScript['block_rank_create'] = function(block) {

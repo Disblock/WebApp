@@ -460,6 +460,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_CHANNELS_EDIT"] = "Modifier un salon";
   Blockly.Msg["WORKSPACE_CHANNELS_GET_DATA"] = "Obtenir les informations du salon";
   Blockly.Msg["WORKSPACE_CHANNELS_GET_CHANNEL"] = "Récupérer un salon";
+  Blockly.Msg["WORKSPACE_CHANNELS_GET_CATEGORY"] = "Obtenir une catégorie";
 
   Blockly.Msg["WORKSPACE_USERS_SEND_MESSAGE"] = "Envoyer un message privé";
   Blockly.Msg["WORKSPACE_USERS_MODERATE"] = "Modérer les utilisateurs";
@@ -655,6 +656,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Permet de récupérer la liste de tous les salons du serveur";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT"] = "Nombre d'utilisateurs dans le salon vocal %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Permet de récupérer le nombre d'utilisateurs connectés à un salon vocal";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Récupérer une catégorie avec son ID %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Permet de récupérer une catégorie à partir de son ID";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";

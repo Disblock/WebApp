@@ -1026,4 +1026,46 @@
         <field name="HUE">75</field>
       </block>
     </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_get_category_with_id</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%v{qy7WO^$./i~{1/3qP">
+        <field name="INPUTNAME">category_id</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="5D:bYP|}vy/G~ff[-@Vb">
+            <field name="TEXT">Récupérer une catégorie avec son ID</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="*TIo8#W?mA1$HD[(|H84"></shadow>
+          <block type="type_string" id="L+!I2S@95=3^5tf94+Z."></block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer une catégorie à partir de son ID</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="vTeEF/ldNA}R0%#m(oV]"></shadow>
+      <block type="type_other" id="]NSBehT]}u;~hj3:B.b8">
+        <field name="TYPE">Category</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#93a55b"></mutation>
+        <field name="HUE">75</field>
+      </block>
+    </value>
   </block></xml>
