@@ -52,7 +52,7 @@ A good bug report should give all relevant information about the problem. Theref
 
 If you followed the previous step correctly, you should be ready to submit your bug report :
 
-- Open a [new issue](/issues/new).
+- Open a new issue.
 - Provide as much **context** as possible, explain what happened, and what should happened.
 - Explain **how to reproduce** the bug and provide the information you collected in the previous step.
 
