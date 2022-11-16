@@ -755,6 +755,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Permet de donner un grade à un utilisateur";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Retirer à l'utilisateur %1 le grade %2";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Permet de retirer un grade à un utilisateur";
+  Blockly.Msg["BLOCK_USER_RENAME"] = "Renommer l'utilisateur %1 avec le nouveau nom %2";
+  Blockly.Msg["BLOCK_USER_RENAME_TOOLTIP"] = "Permet de renommer un utilisateur sur le serveur Discord. L'utilisateur doit être modérable par le bot";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Identifiant du serveur";

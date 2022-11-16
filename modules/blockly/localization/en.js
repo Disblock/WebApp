@@ -755,6 +755,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Give a role to an user";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Remove from user %1 the role %2";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Remove a role from an user";
+  Blockly.Msg["BLOCK_USER_RENAME"] = "Rename user %1 with new name %2";
+  Blockly.Msg["BLOCK_USER_RENAME_TOOLTIP"] = "Give a new nickname to a user on your Discord server. The user must be moderatable by the bot";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Get Server ID";

@@ -944,6 +944,18 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_user_rename'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_name!==''){
+        const code = value_user+".setNickname("+value_name+");";
+        return code;
+      }else{
+        return '';
+      }
+    };
+
     /* ##### CHANNELS blocks ##### */
 
     Blockly.JavaScript['block_channel_create_text_channel'] = function(block) {

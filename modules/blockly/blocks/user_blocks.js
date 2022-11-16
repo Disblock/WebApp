@@ -667,4 +667,26 @@ module.exports = {
   "colour": 300,
   "tooltip": "%{BKY_BLOCK_USER_REMOVE_RANK_TOOLTIP}",
   "helpUrl": ""
+},
+{
+  "type": "block_user_rename",
+  "message0": "%{BKY_BLOCK_USER_RENAME}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "user",
+      "check": "User"
+    },
+    {
+      "type": "input_value",
+      "name": "name",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 300,
+  "tooltip": "%{BKY_BLOCK_USER_RENAME_TOOLTIP}",
+  "helpUrl": ""
 }])};
