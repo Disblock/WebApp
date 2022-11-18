@@ -1,16 +1,12 @@
 'use strict';
 
 module.exports = {
-  initializeGenerator: function(Blockly, token){//Token is used to separe events later
+  initializeGenerator: function(Blockly){
     //Blockly.Generator.COMMENT_WRAP = Infinity;
 
-    /* After that, we will cut the generated code by "<<token>>" where token is a randomly generated strings
-    We will get an array like :
-
-    [event_message_sent,
-    statements,
-    event_user_join,
-    statements]
+    /*
+    Events are now generated one by one directly in blockly_xml_to_js, so we don't need a token anymore.
+    Since the code of blocks inside an event are generated directly in xml_to_js, event by event, we don't need to cut a big string to separate events.
     */
 
     /*
@@ -58,38 +54,32 @@ module.exports = {
     /* ##### EVENTS blocks ##### */
     Blockly.JavaScript['event_message_sent'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_message_sent<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_message_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_message_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_message_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_message_updated<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_join'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_join<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_left'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_left<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_updated<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_var_message'] = function(block) {
@@ -124,20 +114,17 @@ module.exports = {
 
     Blockly.JavaScript['event_role_created'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_role_created<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_role_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_role_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_role_edited'] = function(block) {
       /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_role_edited<<"+token+">>"+statements;
-      return code;*/
+      return statements;*/
       return '';//Disabled : when a role is created, this event is sometimes triggered multiples times
     };
 
@@ -158,8 +145,7 @@ module.exports = {
 
     Blockly.JavaScript['event_user_banned'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_banned<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     /*  This event is disabled : Discord send the User but we can't get a GuildMember...
@@ -167,28 +153,24 @@ module.exports = {
 
     Blockly.JavaScript['event_user_unbanned'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_unbanned<<"+token+">>"+statements;
-      return code;
+      return statements;
     };*/
 
     /*  This event is disabled : Discord don't send the updated message, so we have to found it ourselves.
         This feature is planned, but require more development
     Blockly.JavaScript['event_pinned_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_pinned_updated<<"+token+">>"+statements;
-      return code;
+      return statements;
     };*/
 
     Blockly.JavaScript['event_user_voice_update'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_voice_update<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_start_writting'] = function(block) {
       /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_start_writting<<"+token+">>"+statements;
-      return code;*/
+      return statements;*/
       return '';//Disabled, always triggered multiple times when a bug message is written
     };
 
@@ -204,38 +186,32 @@ module.exports = {
 
     Blockly.JavaScript['event_text_channel_created'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_text_channel_created<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_text_channel_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_text_channel_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_text_channel_edited'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_text_channel_edited<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_voice_channel_created'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_voice_channel_created<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_voice_channel_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_voice_channel_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_voice_channel_edited'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_voice_channel_edited<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_var_text_channel'] = function(block) {
@@ -260,14 +236,12 @@ module.exports = {
 
     Blockly.JavaScript['event_reaction_added'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_reaction_added<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_reaction_removed'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_reaction_removed<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_var_reaction'] = function(block) {

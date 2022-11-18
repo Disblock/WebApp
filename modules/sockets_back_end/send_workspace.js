@@ -5,7 +5,7 @@ const blockly_xml_to_js = require('../blockly/blockly_xml_to_js.js');//Convert B
 const serverLogs = require('../database/logs.js');
 const guildsDatabase = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 
-module.exports = async function(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly, blocklyToken){
+module.exports = async function(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly){
 
   if(socket.request.session.discord_id!=undefined){//Session must be defined
     logger.debug(socket.request.session.discord_id+" is sending a workspace");
@@ -41,7 +41,7 @@ module.exports = async function(socket, server_id, data, callback, database_pool
 
 
     logger.info(socket.request.session.discord_id+" sent a new workspace via socket.io for the guild "+guild.id);
-    let result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, blocklyToken, database_pool, logger, premium).then(async(result)=>{//blocklyToken is a random string used to split the generated code
+    let result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, database_pool, logger, premium).then(async(result)=>{
 
       //Save this modification in logs
       let resultLog = await serverLogs.addEventToLogs(database_pool, server_id, socket.request.session.discord_id, serverLogs.eventType.updatedWorkspace, premium);

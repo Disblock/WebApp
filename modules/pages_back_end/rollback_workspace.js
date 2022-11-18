@@ -6,7 +6,7 @@ const serverLogs = require('../database/logs.js');//Save modifications on server
 const blockly_xml_to_js = require('../blockly/blockly_xml_to_js.js');//Convert Blockly's XML into JS
 const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
 
-module.exports = async function(req, res, database_pool, logger, redisClient, Blockly, blocklyToken){
+module.exports = async function(req, res, database_pool, logger, redisClient, Blockly){
 
   if(req.session.discord_id!=undefined){
 
@@ -32,7 +32,7 @@ module.exports = async function(req, res, database_pool, logger, redisClient, Bl
           //Found xml for this workspace
 
           //This function will regenerate codes for this workspace and save it as the newest workspace existing
-          blockly_xml_to_js.xml_to_js(String(req.params.id), data.rows[0].xml, Blockly, blocklyToken, database_pool, logger, premium).then(async(result)=>{
+          blockly_xml_to_js.xml_to_js(String(req.params.id), data.rows[0].xml, Blockly, database_pool, logger, premium).then(async(result)=>{
             if(result==0){
               //OK
               logger.info("User "+ req.session.discord_id +" rollbacked workspace for guild "+req.params.id);

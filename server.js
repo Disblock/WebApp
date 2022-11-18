@@ -214,9 +214,7 @@ blocklyBlocks.forEach(element => {
 
 //Text definition
 Blockly = blockly_localization_en(Blockly);
-
-const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the string code later
-Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
+Blockly = blockly_generator.initializeGenerator(Blockly);//Initialize generator
 
 /*############################################*/
 /* Rates limits */
@@ -429,7 +427,7 @@ app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
   .then(async()=>{
     //User isn't rate limited
 
-    rollbackWorkspaceBackEnd(req, res, database_pool, logger, redisClient, Blockly, blocklyToken);
+    rollbackWorkspaceBackEnd(req, res, database_pool, logger, redisClient, Blockly);
 
   })
   .catch(async(err)=>{
@@ -576,7 +574,7 @@ io.sockets.on('connect',async function(socket){
     .then(async()=>{
       //User isn't rate limited
 
-      sendWorkspaceSocketBackEnd(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly, blocklyToken);
+      sendWorkspaceSocketBackEnd(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly);
 
     })
     .catch(async(err)=>{
