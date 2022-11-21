@@ -1,0 +1,638 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">block_slash_command_creator</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="J]oEc)({uBrHTuO*S,v7">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="ome?vr!ibPk5V0$y=_+=">
+            <field name="TEXT">Créer une commande nommée</field>
+            <next>
+              <block type="field_input" id="D/}c}+!gPNd(06y(z!Tc">
+                <field name="TEXT">name</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="n%pA#vu#4/tB8mes.9pq">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="9a]rrI){P:gaJH,OE3;I">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="cQ`T]w(LW;Ee[T}`.ngB">
+                    <field name="TEXT">My command</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_statement" id="i5K~L2p]|)j#=|@3;HVP">
+                <field name="INPUTNAME">ARGS</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="vEh8aTxVeJ5[o-yv3$UI">
+                    <field name="TEXT">Avec les arguments</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="2k^qs)`yo=rJtW`]#Pxd"></shadow>
+                  <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+                    <field name="TYPE">SlashCommandOption</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_statement" id="izH4(`2XT^97pbh`9rR2">
+                    <field name="INPUTNAME">STATEMENTS</field>
+                    <field name="ALIGN">LEFT</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="{;N;eL=Y:j$sGzOFZra|">
+                        <field name="TEXT">qui réalisera</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="2k^qs)`yo=rJtW`]#Pxd"></shadow>
+                      <block type="type_other" id="I#!;2z]:Ra{Pcc/hRvk]">
+                        <field name="TYPE">block</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Créez une nouvelle commande pour votre serveur !</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a5805b"></mutation>
+        <field name="HUE">30</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_arg_boolean</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Ajouter un argument booléen nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Boolean</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="agNi/l;:gF:jE2$4z]A7">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="fuOIO6gb{HGf(9CkQ}O:">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="Yy?kTXGPRV@Mg27_U7*v">
+                    <field name="TEXT">Mon booléen</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                    <field name="TEXT">Est obligatoire ?</field>
+                    <next>
+                      <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">REQUIRED</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Ajoutez un argument booléen à votre commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_arg_int</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Ajouter un argument nombre entier nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Number</field>
+                <field name="FIELDNAME">INT</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="agNi/l;:gF:jE2$4z]A7">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="fuOIO6gb{HGf(9CkQ}O:">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="Yy?kTXGPRV@Mg27_U7*v">
+                    <field name="TEXT">An integer</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                    <field name="TEXT">Est obligatoire ?</field>
+                    <next>
+                      <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">REQUIRED</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Ajoutez un nombre entier à votre commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_arg_role</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Ajouter un argument rôle nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Role</field>
+                <field name="FIELDNAME">ROLE</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="agNi/l;:gF:jE2$4z]A7">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="fuOIO6gb{HGf(9CkQ}O:">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="Yy?kTXGPRV@Mg27_U7*v">
+                    <field name="TEXT">A Role</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                    <field name="TEXT">Est obligatoire ?</field>
+                    <next>
+                      <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">REQUIRED</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Ajoutez un rôle à votre commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_arg_string</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Ajouter un argument texte nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">texte</field>
+                <field name="FIELDNAME">TEXT</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="agNi/l;:gF:jE2$4z]A7">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="fuOIO6gb{HGf(9CkQ}O:">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="Yy?kTXGPRV@Mg27_U7*v">
+                    <field name="TEXT">A text</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                    <field name="TEXT">Est obligatoire ?</field>
+                    <next>
+                      <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">REQUIRED</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Ajoutez un texte à votre commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_arg_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Ajouter un argument membre nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Utilisateur</field>
+                <field name="FIELDNAME">USER</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="agNi/l;:gF:jE2$4z]A7">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="fuOIO6gb{HGf(9CkQ}O:">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="Yy?kTXGPRV@Mg27_U7*v">
+                    <field name="TEXT">Un utilisateur</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                    <field name="TEXT">Est obligatoire ?</field>
+                    <next>
+                      <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">REQUIRED</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Ajoutez un utilisateur à votre commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_reply</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="M6A}_nOnXGbG4{Ap~RyS">
+        <field name="INPUTNAME">TEXT</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Répondre à la commande avec le message</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="v`,+=N99o4B5#5/^+Md5"></shadow>
+          <block type="type_string" id="hKi]ZhsZ8,O~Y)I2%6QW"></block>
+        </value>
+        <next>
+          <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                <field name="TEXT">Réponse éphémère ?</field>
+                <next>
+                  <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                    <field name="CHECKED">TRUE</field>
+                    <field name="FIELDNAME">EPHEMERAL</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Répondre à une commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#5ba5a5"></mutation>
+        <field name="HUE">180</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_slash_command_arg_text_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Ajouter un argument channel nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Channel</field>
+                <field name="FIELDNAME">CHANNEL</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_dummy" id="agNi/l;:gF:jE2$4z]A7">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="fuOIO6gb{HGf(9CkQ}O:">
+                <field name="TEXT">Avec la description</field>
+                <next>
+                  <block type="field_input" id="Yy?kTXGPRV@Mg27_U7*v">
+                    <field name="TEXT">Mon salon</field>
+                    <field name="FIELDNAME">DESC</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
+                    <field name="TEXT">Est obligatoire ?</field>
+                    <next>
+                      <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">REQUIRED</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Ajoutez un salon textuel à votre commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="cBajqCdg3OL*Fy`dK{s5"></shadow>
+      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="$,q[z6.^W{e^Y/!,tVrs"></shadow>
+      <block type="type_other" id="H8D1_gr)-)_}L$khY~Rd">
+        <field name="TYPE">SlashCommandOption</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block></xml>
