@@ -422,6 +422,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Workspace
   Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Evénements";
+  Blockly.Msg["WORKSPACE_TAB_SLASH_COMMAND"] = "Commandes";
   Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
   Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Salons et fils";
   Blockly.Msg["WORKSPACE_TAB_USERS"] = "Utilisateurs";
@@ -446,6 +447,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EVENTS_VOICE_UPDATE"] = "L'état vocal d'un utilisateur est modifié";
   Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "Une réaction est ajoutée ou retirée d'un message";
   Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Autres";
+
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Créer une commande";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Ajouter des arguments à une commande";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Faire quelque chose quand cette commande est utilisée";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Supprimer un message";
@@ -852,6 +857,24 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "Ce bloc arrêtera l'exécution de l'évènement";
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "Chaîne de caractères vers nombre %1";
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "Ce bloc va transformer une chaîne de caractères en nombre. Il retournera -1 si la chaîne de caractères n'est pas un nombre";
+
+  //Slash commands blocks
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Créer une commande nommée %1 %2 Avec la description %3 %4 Avec les arguments %5 qui réalisera %6";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Créez une nouvelle commande pour votre serveur ! Vous pouvez lui donner un nom et une description ainsi qu'ajouter des arguments et des actions à exécuter";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Ajouter un argument booléen nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Ajoutez un argument booléen à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL"] = "Ajouter un argument channel textuel nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP"] = "Ajoutez un salon textuel à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT"] = "Ajouter un argument nombre entier nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT_TOOLTIP"] = "Ajoutez un nombre entier à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE"] = "Ajouter un argument rôle nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP"] = "Ajoutez un rôle à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING"] = "Ajouter un argument texte nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Ajoutez un texte à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Ajouter un argument membre nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Ajoutez un utilisateur à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Répondre à la commande avec le message %1 Réponse éphémère ? %2";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Répondre à une commande. Cela ne peut être utilisé qu'avec une commande, et peut n'être visible que pour l'utilisateur qui a utilisé la commande";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
