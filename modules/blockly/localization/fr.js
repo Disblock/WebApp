@@ -450,6 +450,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Créer une commande";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Ajouter des arguments à une commande";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Récupérer la valeur des arguments";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Faire quelque chose quand cette commande est utilisée";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
@@ -875,6 +876,18 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Ajoutez un utilisateur à votre commande avec un nom et une description";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Répondre à la commande avec le message %1 Réponse éphémère ? %2";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Répondre à une commande. Cela ne peut être utilisé qu'avec une commande, et peut n'être visible que pour l'utilisateur qui a utilisé la commande";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Récupérer l'argument booléen nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Permet de récupérer un argument booléen de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT"] = "Récupérer l'argument nombre entier nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] = "Permet de récupérer un argument nombre entier de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE"] = "Récupérer l'argument rôle nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] = "Permet de récupérer un argument rôle de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING"] = "Récupérer l'argument texte nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] = "Permet de récupérer un argument texte de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER"] = "Récupérer l'argument utilisateur nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Permet de récupérer un argument utilisateur de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Récupérer l'argument salon textuel nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Permet de récupérer un argument salon textuel de la commande, portant ce nom";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";

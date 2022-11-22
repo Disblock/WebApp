@@ -172,7 +172,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "TEXT",
-      "text": "text"
+      "text": "Text"
     },
     {
       "type": "input_dummy"
@@ -249,6 +249,96 @@ module.exports = {
   "nextStatement": "block",
   "colour": 180,
   "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_REPLY_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_get_boolean",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_GET_BOOLEAN}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "Boolean"
+    }
+  ],
+  "output": "Boolean",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_get_int",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_GET_INT}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "Number"
+    }
+  ],
+  "output": "Number",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_get_role",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_GET_ROLE}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "Role"
+    }
+  ],
+  "output": "Rank",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_get_string",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_GET_STRING}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "Text"
+    }
+  ],
+  "output": "String",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_get_user",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_GET_USER}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "User"
+    }
+  ],
+  "output": "User",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_get_text_channel",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "NAME",
+      "text": "textChannel"
+    }
+  ],
+  "output": "Channel",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP}",
   "helpUrl": ""
 }]
 )};

@@ -635,4 +635,256 @@
         <field name="HUE">15</field>
       </block>
     </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_get_boolean</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer le booléen nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Boolean</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'argument booléan portant ce nom</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_boolean" id="n:vboylbgdp#uMWWr.%8"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_get_int</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer le nombre entier nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Number</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'argument nombre entier portant ce nom</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_number" id="_0{NFz$4hT;hSN-0fNR*"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_get_role</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer le role nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Role</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'argument rôle portant ce nom</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_other" id="eWp(J-.~t^:(X6^Eu?Q`">
+        <field name="TYPE">Rank</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_get_string</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer le texte nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Text</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'argument texte portant ce nom</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_string" id="d{5C:Z@W.E)qP7d1:o8I"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_get_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer l'argument utilisateur nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">User</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'argument utilisateur portant ce nom</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_other" id="@n/hJAIw,_(l_{w9-k)O">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_get_text_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer l'argument salon textuel nommé</field>
+            <next>
+              <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
+                <field name="TEXT">Channel</field>
+                <field name="FIELDNAME">NAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'argument utilisateur portant ce nom</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_other" id="@n/hJAIw,_(l_{w9-k)O">
+        <field name="TYPE">Channel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
   </block></xml>

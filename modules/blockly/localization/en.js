@@ -450,6 +450,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Create a slash command";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Add arguments to a clash command";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get the value of command arguments";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Do something when this command is used";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Send a message";
@@ -875,6 +876,18 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Add an user arg to the slash command, with a name and description";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Reply to the command with the message %1 Ephemeral ? %2";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Reply to a slash command. This block can only be used with a command, and may be only visible for the user who used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Get the boolean arg nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Get the value of a boolean argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT"] = "Get the integer arg nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] = "Get the value of an integer argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE"] = "Get the role arg nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] = "Get the value of a role argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING"] = "Get the string arg nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] = "Get the value of a string argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER"] = "Get the user arg nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Get the value of an user argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Get the text channel arg nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Get the value of a text channel argument used in this slash command, with his name";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";
