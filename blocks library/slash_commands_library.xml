@@ -32,35 +32,51 @@
               </block>
             </statement>
             <next>
-              <block type="input_statement" id="i5K~L2p]|)j#=|@3;HVP">
-                <field name="INPUTNAME">ARGS</field>
+              <block type="input_dummy" id="yN1BpuF[XHr@%f1CC9aR">
                 <field name="ALIGN">LEFT</field>
                 <statement name="FIELDS">
-                  <block type="field_static" id="vEh8aTxVeJ5[o-yv3$UI">
-                    <field name="TEXT">Avec les arguments</field>
+                  <block type="field_static" id="TQPro;]f_OD(y%j@UJ$I">
+                    <field name="TEXT">Réponses éphémères :</field>
+                    <next>
+                      <block type="field_checkbox" id="-kD*5;Z$!ppthoEt[w,E">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">EPHEMERAL</field>
+                      </block>
+                    </next>
                   </block>
                 </statement>
-                <value name="TYPE">
-                  <shadow type="type_null" id="2k^qs)`yo=rJtW`]#Pxd"></shadow>
-                  <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
-                    <field name="TYPE">SlashCommandOption</field>
-                  </block>
-                </value>
                 <next>
-                  <block type="input_statement" id="izH4(`2XT^97pbh`9rR2">
-                    <field name="INPUTNAME">STATEMENTS</field>
+                  <block type="input_statement" id="i5K~L2p]|)j#=|@3;HVP">
+                    <field name="INPUTNAME">ARGS</field>
                     <field name="ALIGN">LEFT</field>
                     <statement name="FIELDS">
-                      <block type="field_static" id="{;N;eL=Y:j$sGzOFZra|">
-                        <field name="TEXT">qui réalisera</field>
+                      <block type="field_static" id="vEh8aTxVeJ5[o-yv3$UI">
+                        <field name="TEXT">Avec les arguments</field>
                       </block>
                     </statement>
                     <value name="TYPE">
                       <shadow type="type_null" id="2k^qs)`yo=rJtW`]#Pxd"></shadow>
-                      <block type="type_other" id="I#!;2z]:Ra{Pcc/hRvk]">
-                        <field name="TYPE">block</field>
+                      <block type="type_other" id="pVNYQ(EQ~c:gt`bS+Xn2">
+                        <field name="TYPE">SlashCommandOption</field>
                       </block>
                     </value>
+                    <next>
+                      <block type="input_statement" id="izH4(`2XT^97pbh`9rR2">
+                        <field name="INPUTNAME">STATEMENTS</field>
+                        <field name="ALIGN">LEFT</field>
+                        <statement name="FIELDS">
+                          <block type="field_static" id="{;N;eL=Y:j$sGzOFZra|">
+                            <field name="TEXT">qui réalisera</field>
+                          </block>
+                        </statement>
+                        <value name="TYPE">
+                          <shadow type="type_null" id="2k^qs)`yo=rJtW`]#Pxd"></shadow>
+                          <block type="type_other" id="I#!;2z]:Ra{Pcc/hRvk]">
+                            <field name="TYPE">block</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
                   </block>
                 </next>
               </block>
@@ -508,22 +524,6 @@
           <shadow type="type_null" id="v`,+=N99o4B5#5/^+Md5"></shadow>
           <block type="type_string" id="hKi]ZhsZ8,O~Y)I2%6QW"></block>
         </value>
-        <next>
-          <block type="input_dummy" id="z}@.tVYmM%=Qz~-dGog!">
-            <field name="ALIGN">LEFT</field>
-            <statement name="FIELDS">
-              <block type="field_static" id="j).0QLba+(?=r?NhE%B*">
-                <field name="TEXT">Réponse éphémère ?</field>
-                <next>
-                  <block type="field_checkbox" id="qm{lPiK|0A2@L[JuFj}W">
-                    <field name="CHECKED">TRUE</field>
-                    <field name="FIELDNAME">EPHEMERAL</field>
-                  </block>
-                </next>
-              </block>
-            </statement>
-          </block>
-        </next>
       </block>
     </statement>
     <value name="TOOLTIP">

@@ -860,7 +860,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "Ce bloc va transformer une chaîne de caractères en nombre. Il retournera -1 si la chaîne de caractères n'est pas un nombre";
 
   //Slash commands blocks
-  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Créer une commande nommée %1 %2 Avec la description %3 %4 Avec les arguments %5 qui réalisera %6";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Créer une commande nommée %1 %2 Avec la description %3 %4 Réponses éphèmères : %5 %6 Avec les arguments %7 qui réalisera %8";
   Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Créez une nouvelle commande pour votre serveur ! Vous pouvez lui donner un nom et une description ainsi qu'ajouter des arguments et des actions à exécuter";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Ajouter un argument booléen nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Ajoutez un argument booléen à votre commande avec un nom et une description";
@@ -874,7 +874,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Ajoutez un texte à votre commande avec un nom et une description";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Ajouter un argument membre nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Ajoutez un utilisateur à votre commande avec un nom et une description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Répondre à la commande avec le message %1 Réponse éphémère ? %2";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Répondre à la commande avec le message %1";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Répondre à une commande. Cela ne peut être utilisé qu'avec une commande, et peut n'être visible que pour l'utilisateur qui a utilisé la commande";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Récupérer l'argument booléen nommé %1";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Permet de récupérer un argument booléen de la commande, portant ce nom";

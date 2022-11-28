@@ -112,14 +112,15 @@ module.exports = {
        //Loop to generate SQL requests for slash commands
        const name = slashCommandBlocks[i].getFieldValue('NAME');//We get name and desc for the command
        const desc = slashCommandBlocks[i].getFieldValue('DESC');
+       const ephemeral = slashCommandBlocks[i].getFieldValue('EPHEMERAL') === 'TRUE';//Are the replies ephemeral or not ?
 
-       if(!( /^([A-Za-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ]{0,100})$/.test(desc) ))continue;//We check name and desc
+       if(!( /^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,.]{0,100})$/.test(desc) ))continue;//We check name and desc
        const statements = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'STATEMENTS');//We can now get the code to execute
        if(statements.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Something to execute must be provided
 
        logger.debug("Saving slash command "+name+" for guild "+server_id);
 
-       sqlRequests.push(["INSERT INTO commands (server_id, name, description, code, defined) VALUES ($1, $2, $3, $4, FALSE);", [server_id, name, desc, statements]]);//Added the request to create the command
+       sqlRequests.push(["INSERT INTO commands (server_id, name, description, code, defined, ephemeral) VALUES ($1, $2, $3, $4, FALSE, $5);", [server_id, name, desc, statements, ephemeral]]);//Added the request to create the command
 
        const jsonArgs = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'ARGS').slice(0, -1);//We remove a , at the end of the generated json. We got the args for the command. If there isn't any arg, return '' anyway
        const commandArgs = JSON.parse("{\"args\": ["+jsonArgs+"]}");//Check in generator, but each arg is a JSON object

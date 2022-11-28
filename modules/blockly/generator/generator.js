@@ -2122,7 +2122,6 @@ module.exports = {
 
     Blockly.JavaScript['block_slash_command_reply'] = function(block) {
       let value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-      let checkbox_ephemeral = block.getFieldValue('EPHEMERAL') === 'TRUE';
       // TODO: Assemble JavaScript into code variable.
       let code = '...;\n';
       return code;

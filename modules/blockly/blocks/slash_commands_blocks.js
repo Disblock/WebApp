@@ -23,6 +23,14 @@ module.exports = {
       "type": "input_dummy"
     },
     {
+      "type": "field_checkbox",
+      "name": "EPHEMERAL",
+      "checked": true
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
       "type": "input_statement",
       "name": "ARGS",
       "check": "SlashCommandOption"
@@ -237,11 +245,6 @@ module.exports = {
       "type": "input_value",
       "name": "TEXT",
       "check": "String"
-    },
-    {
-      "type": "field_checkbox",
-      "name": "EPHEMERAL",
-      "checked": true
     }
   ],
   "inputsInline": false,

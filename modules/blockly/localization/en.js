@@ -860,7 +860,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "This block will transform a string into a number. It will return -1 if the string isn't a number";
 
   //Slash commands blocks
-  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Create a slash command nammed %1 %2 With the description %3 %4 With arguments %5 that will do %6";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Create a slash command nammed %1 %2 With the description %3 %4 Ephemeral replies : %5 %6 With arguments %7 that will do %8";
   Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Create a new Slash command for your server ! You can give a name, a description and add some arguments";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Add a boolean arg nammed %1 %2 with the description %3 %4 Required ? %5";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Add a boolean arg to the slash command, with a name and description";
@@ -874,7 +874,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Add a string arg to the slash command, with a name and description";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Add an user arg nammed %1 %2 with the description %3 %4 Required ? %5";
   Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Add an user arg to the slash command, with a name and description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Reply to the command with the message %1 Ephemeral ? %2";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Reply to the command with the message %1";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Reply to a slash command. This block can only be used with a command, and may be only visible for the user who used this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Get the boolean arg nammed %1";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Get the value of a boolean argument used in this slash command, with his name";
