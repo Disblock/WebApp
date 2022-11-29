@@ -2121,10 +2121,13 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_reply'] = function(block) {
-      let value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
-      // TODO: Assemble JavaScript into code variable.
-      let code = '...;\n';
-      return code;
+      const value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_text!==""){
+        const code = 'interaction.editReply('+value_text+');\n';
+        return code;
+      }else{
+        return '';
+      }
     };
 
     Blockly.JavaScript['block_slash_command_arg_text_channel'] = function(block) {
@@ -2139,50 +2142,38 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_get_boolean'] = function(block) {
-      var text_name = block.getFieldValue('NAME');
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getBoolean("'+text_name+'")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['block_slash_command_get_int'] = function(block) {
-      var text_name = block.getFieldValue('NAME');
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getNumber("'+text_name+'")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['block_slash_command_get_role'] = function(block) {
-      var text_name = block.getFieldValue('NAME');
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getRole("'+text_name+'")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['block_slash_command_get_string'] = function(block) {
-      var text_name = block.getFieldValue('NAME');
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getString("'+text_name+'")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['block_slash_command_get_user'] = function(block) {
-      var text_name = block.getFieldValue('NAME');
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getMember("'+text_name+'")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript['block_slash_command_get_text_channel'] = function(block) {
-      var text_name = block.getFieldValue('NAME');
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      // TODO: Change ORDER_NONE to the correct strength.
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getChannel("'+text_name+'")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
