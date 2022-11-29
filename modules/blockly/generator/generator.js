@@ -2070,7 +2070,7 @@ module.exports = {
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
-      if(/^([A-Za-z0-9]{3,28})$/.test(text_name) && /^([A-Za-z0-9 ]{0,100})$/.test(text_desc)){
+      if(/^([a-z0-9]{3,28})$/.test(text_name) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_name+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.boolean+'"},';
       }
       return '';
@@ -2081,7 +2081,7 @@ module.exports = {
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
-      if(/^([A-Za-z0-9]{3,28})$/.test(text_int) && /^([A-Za-z0-9 ]{0,100})$/.test(text_desc)){
+      if(/^([a-z0-9]{3,28})$/.test(text_int) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_int+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.int+'"},';
       }
       return '';
@@ -2092,7 +2092,7 @@ module.exports = {
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
-      if(/^([A-Za-z0-9]{3,28})$/.test(text_role) && /^([A-Za-z0-9 ]{0,100})$/.test(text_desc)){
+      if(/^([a-z0-9]{3,28})$/.test(text_role) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_role+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.role+'"},';
       }
       return '';
@@ -2103,7 +2103,7 @@ module.exports = {
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
-      if(/^([A-Za-z0-9]{3,28})$/.test(text_text) && /^([A-Za-z0-9 ]{0,100})$/.test(text_desc)){
+      if(/^([a-z0-9]{3,28})$/.test(text_text) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_text+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.string+'"},';
       }
       return '';
@@ -2114,7 +2114,7 @@ module.exports = {
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
-      if(/^([A-Za-z0-9]{3,28})$/.test(text_user) && /^([A-Za-z0-9 ]{0,100})$/.test(text_desc)){
+      if(/^([a-z0-9]{3,28})$/.test(text_user) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_user+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.user+'"},';
       }
       return '';
@@ -2135,7 +2135,7 @@ module.exports = {
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
-      if(/^([A-Za-z0-9]{3,28})$/.test(text_channel) && /^([A-Za-z0-9 ]{0,100})$/.test(text_desc)){
+      if(/^([a-z0-9]{3,28})$/.test(text_channel) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_channel+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.textChannel+'"},';
       }
       return '';

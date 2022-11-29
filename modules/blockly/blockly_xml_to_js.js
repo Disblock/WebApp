@@ -36,6 +36,7 @@ module.exports = {
 
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
          if(validateWorkspace.checkIfDisabledBlocksUsed(workspace, premium))return('USED DISABLED BLOCKS !');
+         if(!validateWorkspace.checkIfCommandArgBlocksCorrectlyPlaced(workspace))return('INCORRECTLY PLACED COMMANDS BLOCKS !');
 
          const topBlocks = workspace.getTopBlocks(false);//https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
          let eventCodes = [];//Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
@@ -73,6 +74,9 @@ module.exports = {
      else if(eventCodes==="USED DISABLED BLOCKS !"){
        logger.debug("Disabled blocks used for guild "+server_id);
        return(1);
+     }else if(eventCodes==="INCORRECTLY PLACED COMMANDS BLOCKS !"){
+       logger.debug("Incorrectly placed commands blocks for guild "+server_id);
+       return(1);
      }
 
      logger.debug("Working on code for the guild "+server_id+"...");
@@ -107,23 +111,26 @@ module.exports = {
        replacedXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
        logger.debug("There isn't any code to add in the database for the guild "+server_id+", deleting active server code and workspace...");
      }
-
+     let slashCommandsNames = [];//This list is used to check that no commands share the same name
      for(let i=0; i<slashCommandBlocks.length; i++){
        //Loop to generate SQL requests for slash commands
        const name = slashCommandBlocks[i].getFieldValue('NAME');//We get name and desc for the command
        const desc = slashCommandBlocks[i].getFieldValue('DESC');
        const ephemeral = slashCommandBlocks[i].getFieldValue('EPHEMERAL') === 'TRUE';//Are the replies ephemeral or not ?
 
-       if(!( /^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,.]{0,100})$/.test(desc) ))continue;//We check name and desc
+       if(!( /^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(desc) ) || slashCommandsNames.includes(name))continue;//We check name and desc. Name must be unique
        const statements = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'STATEMENTS');//We can now get the code to execute
        if(statements.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Something to execute must be provided
+
+       const jsonArgs = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'ARGS').slice(0, -1);//We remove a , at the end of the generated json. We got the args for the command. If there isn't any arg, return '' anyway
+       const commandArgs = JSON.parse("{\"args\": ["+jsonArgs+"]}");//Look in generator, but each arg is a JSON object
+       if(commandArgs.args.length>parseInt(process.env.COMMAND_MAX_ARGS))continue;//We check that this command don't have more than n args
 
        logger.debug("Saving slash command "+name+" for guild "+server_id);
 
        sqlRequests.push(["INSERT INTO commands (server_id, name, description, code, defined, ephemeral) VALUES ($1, $2, $3, $4, FALSE, $5);", [server_id, name, desc, statements, ephemeral]]);//Added the request to create the command
+       slashCommandsNames.push(name);
 
-       const jsonArgs = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'ARGS').slice(0, -1);//We remove a , at the end of the generated json. We got the args for the command. If there isn't any arg, return '' anyway
-       const commandArgs = JSON.parse("{\"args\": ["+jsonArgs+"]}");//Check in generator, but each arg is a JSON object
        commandArgs.args.forEach((arg, i) => {//For each arg in this command
          //SQL request to save this arg added
          sqlRequests.push(["INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 )",

@@ -43,5 +43,23 @@ module.exports = {
     }
 
     return false;
+  },
+
+  /* Check that slash command args and reply blocks are used only in command_creator block
+     Args : workspace - A Blockly Workspace
+     Will return true if everything correct
+  */
+  checkIfCommandArgBlocksCorrectlyPlaced: function(workspace){
+    const blocks = workspace.getAllBlocks(false);
+    for(let i=0;i<blocks.length;i++){
+      if(blocks[i].type.startsWith("block_slash_command") && blocks[i].type!=="block_slash_command_creator"){
+        //We found a slash command block. We will check if the block is in a creator or don't have a top block
+        if(blocks[i].getRootBlock().type.startsWith("event_")){//If block is placed in an event block
+          //This block isn't correctly placed
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }
