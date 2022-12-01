@@ -52,7 +52,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "Boolean"
+      "text": "boolean"
     },
     {
       "type": "input_dummy"
@@ -83,8 +83,8 @@ module.exports = {
   "args0": [
     {
       "type": "field_input",
-      "name": "CHANNEL",
-      "text": "textChannel"
+      "name": "NAME",
+      "text": "textchannel"
     },
     {
       "type": "input_dummy"
@@ -115,8 +115,8 @@ module.exports = {
   "args0": [
     {
       "type": "field_input",
-      "name": "INT",
-      "text": "Number"
+      "name": "NAME",
+      "text": "number"
     },
     {
       "type": "input_dummy"
@@ -147,8 +147,8 @@ module.exports = {
   "args0": [
     {
       "type": "field_input",
-      "name": "ROLE",
-      "text": "Role"
+      "name": "NAME",
+      "text": "role"
     },
     {
       "type": "input_dummy"
@@ -179,8 +179,8 @@ module.exports = {
   "args0": [
     {
       "type": "field_input",
-      "name": "TEXT",
-      "text": "Text"
+      "name": "NAME",
+      "text": "text"
     },
     {
       "type": "input_dummy"
@@ -211,8 +211,8 @@ module.exports = {
   "args0": [
     {
       "type": "field_input",
-      "name": "USER",
-      "text": "User"
+      "name": "NAME",
+      "text": "user"
     },
     {
       "type": "input_dummy"

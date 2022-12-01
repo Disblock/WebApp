@@ -2077,7 +2077,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_arg_int'] = function(block) {
-      const text_int = block.getFieldValue('INT');
+      const text_int = block.getFieldValue('NAME');
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
@@ -2088,7 +2088,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_arg_role'] = function(block) {
-      const text_role = block.getFieldValue('ROLE');
+      const text_role = block.getFieldValue('NAME');
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
@@ -2099,7 +2099,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_arg_string'] = function(block) {
-      const text_text = block.getFieldValue('TEXT');
+      const text_text = block.getFieldValue('NAME');
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
@@ -2110,7 +2110,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_arg_user'] = function(block) {
-      const text_user = block.getFieldValue('USER');
+      const text_user = block.getFieldValue('NAME');
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 
@@ -2131,7 +2131,7 @@ module.exports = {
     };
 
     Blockly.JavaScript['block_slash_command_arg_text_channel'] = function(block) {
-      const text_channel = block.getFieldValue('CHANNEL');
+      const text_channel = block.getFieldValue('NAME');
       const text_desc = block.getFieldValue('DESC');
       const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
 

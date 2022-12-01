@@ -114,7 +114,7 @@
             <field name="TEXT">Ajouter un argument booléen nommé</field>
             <next>
               <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
-                <field name="TEXT">Boolean</field>
+                <field name="TEXT">boolean</field>
                 <field name="FIELDNAME">NAME</field>
               </block>
             </next>
@@ -195,8 +195,8 @@
             <field name="TEXT">Ajouter un argument nombre entier nommé</field>
             <next>
               <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
-                <field name="TEXT">Number</field>
-                <field name="FIELDNAME">INT</field>
+                <field name="TEXT">number</field>
+                <field name="FIELDNAME">NAME</field>
               </block>
             </next>
           </block>
@@ -276,8 +276,8 @@
             <field name="TEXT">Ajouter un argument rôle nommé</field>
             <next>
               <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
-                <field name="TEXT">Role</field>
-                <field name="FIELDNAME">ROLE</field>
+                <field name="TEXT">role</field>
+                <field name="FIELDNAME">NAME</field>
               </block>
             </next>
           </block>
@@ -358,7 +358,7 @@
             <next>
               <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
                 <field name="TEXT">texte</field>
-                <field name="FIELDNAME">TEXT</field>
+                <field name="FIELDNAME">NAME</field>
               </block>
             </next>
           </block>
@@ -438,8 +438,8 @@
             <field name="TEXT">Ajouter un argument membre nommé</field>
             <next>
               <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
-                <field name="TEXT">Utilisateur</field>
-                <field name="FIELDNAME">USER</field>
+                <field name="TEXT">utilisateur</field>
+                <field name="FIELDNAME">NAME</field>
               </block>
             </next>
           </block>
@@ -567,8 +567,8 @@
             <field name="TEXT">Ajouter un argument channel nommé</field>
             <next>
               <block type="field_input" id="ur@D6|TrU$)v91r0qi4z">
-                <field name="TEXT">Channel</field>
-                <field name="FIELDNAME">CHANNEL</field>
+                <field name="TEXT">channel</field>
+                <field name="FIELDNAME">NAME</field>
               </block>
             </next>
           </block>
