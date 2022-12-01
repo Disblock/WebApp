@@ -904,9 +904,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "Vous avez essayé d'utiliser un émoji custom dans un block d'émoji mais cela semble invalide. La valeur devrait ressembler à <:Nom:1234>."
   Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] = "Le nom ou la description contient un charactère invalide ! Le nom doit avoir une longueur de 3, et ne contenir que a-z0-9. La description ne doit pas inclure de caractères spéciaux";
   Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] = "Ce bloc ne peut être utilisé que dans un bloc de création de commande";
-  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_NAME"] = "Le nom de ce bloc ne semble pas être dans les arguments de cette commande";
+  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] = "Le nom de ce bloc ne semble pas être dans les arguments de cette commande";
   Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"] = "Cette commande possède trop d'arguments !";
   Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"] = "Cette commande a le même nom qu'une autre commande";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "Cet argument a le même nom qu'un autre argument !";
   Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Les argument requis ne peuvent pas être définis après des arguments optionnels !";
   Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "Il y a un problème avec un bloc de commande ! Lisez les avertissements pour en savoir plus";
 

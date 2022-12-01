@@ -254,7 +254,7 @@ function validateWorkspace(workspace){
       }
     }
 
-    //Optionnal commands args must be defined after required ones
+    //Optionnal commands args must be defined after required ones, args must be defined before being used
     if(blocks[i].type === "block_slash_command_creator"){
       const childBlocks = blocks[i].getDescendants(true);//All blocks within this command creator
 
@@ -282,6 +282,43 @@ function validateWorkspace(workspace){
         }
       }
 
+      //We will now check that used arguments are correctly defined
+      let definedArgs = {};//Will store args types and names
+      let argsNames = [];//Will store args names to check that no names are duplicated
+      for(let j=0; j<childBlocks.length; j++){
+        //childBlocks is a sorted list of blocks in a command block creator
+        if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
+          //This block define an arg, we will save his type and name
+          const argType = childBlocks[j].type.replace("block_slash_command_arg_", "");//We only keep the arg type
+          if(! definedArgs[argType]){
+            //We will add this type in this object
+            definedArgs[argType] = [];
+          }
+          const blockName = childBlocks[j].getFieldValue('NAME');
+          definedArgs[argType].push(blockName);
+
+          if(argsNames.includes(blockName)){
+            //NOT OK, this arg is defined with an already given name
+            childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"]);
+            foundError = true;
+          }
+          argsNames.push(blockName);
+
+        }else if(childBlocks[j].type.startsWith("block_slash_command_get_")){
+          //This block use a defined arg, we will check that it was defined
+          const argType = childBlocks[j].type.replace("block_slash_command_get_", "");//We only keep the arg type
+          if(definedArgs[argType]){
+            if(definedArgs[argType].includes(childBlocks[j].getFieldValue('NAME'))){
+              //OK
+              continue;//Check next block
+            }
+          }
+          //NOOT NOOT, this block refer to an undefined arg
+          childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"]);
+          foundError = true;
+        }
+
+      }//End of loop
     }
 
 

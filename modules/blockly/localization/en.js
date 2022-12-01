@@ -904,9 +904,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>."
   Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] = "The name or description contains an invalid character ! The name must have a length of at least 3, and must follow a-z0-9. The description can't include special characters";
   Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] = "This block can only be placed in a slash command creator block";
-  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_NAME"] = "The name of this block don't seems to be defined in command arguments";
+  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] = "The name of this block don't seems to be defined in command arguments";
   Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"] = "This command has too many arguments !";
   Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"] = "This command has the same name as another command !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "This argument has the same name as another argument !";
   Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Required arguments can't be defined after optionnal arguments !";
   Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "There is a problem with a slash command block. Read the warning to learn more about that";
 
