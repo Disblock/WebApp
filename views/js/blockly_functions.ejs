@@ -192,6 +192,103 @@ function validateWorkspace(workspace){
   //Finished to check custom emoji uses. In case of error, stop here
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"]});
 
+  let commandNames = [];//Used to store commands names. Will allow us to detect duplicated names
+  //Now checking that there isn't any problem with slash commands blocks
+  for(let i=0; i<blocks.length;i++){
+
+    //Commands blocks must be insine an command creator block
+    if(blocks[i].type.startsWith("block_slash_command_") && blocks[i].type!=="block_slash_command_creator"){
+      //This block is a command block, which can only be placed alone or in command_creator block
+      if(blocks[i].getRootBlock().type.startsWith("event_")){//If block is placed in an event block
+        //This block isn't correctly placed
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"]);
+        foundError = true;
+        continue;//An error was found, we can check the next block
+      }else{
+        //OK
+        blocks[i].setWarningText(null);
+      }
+    }
+
+    //Names and descriptions most be valid
+    if(blocks[i].type.startsWith("block_slash_command_arg") || blocks[i].type.startsWith("block_slash_command_creator")){
+      if(! /^([a-z0-9]{3,28})$/.test(blocks[i].getFieldValue('NAME')) || ! /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(blocks[i].getFieldValue('DESC'))){//Regex also checked in back-end
+        //NOT OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"]);
+        foundError = true;
+        continue;
+      }else{
+        //OK
+        blocks[i].setWarningText(null);
+      }
+    }
+
+    //Commands names must be unique and no more than n args
+    if(blocks[i].type === "block_slash_command_creator"){
+      if(commandNames.includes(blocks[i].getFieldValue('NAME'))){
+        //NOT OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"]);
+        foundError = true;
+        continue;
+      }else{
+        //OK
+        commandNames.push(blocks[i].getFieldValue('NAME'));
+        blocks[i].setWarningText(null);
+      }
+
+      //No more than n args
+      const childBlocks = blocks[i].getDescendants(false/*ordered*/);
+      let argCount = 0;
+      for(let j=0; j<childBlocks.length; j++){
+        if(childBlocks[j].type.startsWith("block_slash_command_arg_"))argCount++;
+        //When an arg block is found, we add 1 to number of arg blocks
+      }
+      if(argCount > <%-process.env.COMMAND_MAX_ARGS%> ){
+        //NOT OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"]);
+        foundError = true;
+        continue;
+      }else{
+        //OK
+        blocks[i].setWarningText(null);
+      }
+    }
+
+    //Optionnal commands args must be defined after required ones
+    if(blocks[i].type === "block_slash_command_creator"){
+      const childBlocks = blocks[i].getDescendants(true);//All blocks within this command creator
+
+      let optionnals = false;//Will be set to true when we will find optionnal args
+      for(let j=0; j<childBlocks.length; j++){
+        if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
+          //This is an arg block, we will check if required or optionnal
+          const required = childBlocks[j].getFieldValue('REQUIRED') === 'TRUE';
+          if(required && !optionnals){
+            //OK, this block is required, and not defined after an optionnal block
+            blocks[i].setWarningText(null);
+          }else if(!required && !optionnals){
+            //OK, this is the first optionnal block
+            optionnals = true;
+            blocks[i].setWarningText(null);
+          }else if(!required && optionnals){
+            //OK, this is an optionnal block, defined after required ones
+            blocks[i].setWarningText(null);
+          }else{
+            //NOT OK, seems to be a required arg defined after an optionnal arg
+            blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"]);
+            foundError = true;
+            break;
+          }
+        }
+      }
+
+    }
+
+
+  }
+  //Finished to check for problems with slash command blocks
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"]});
+
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
 
