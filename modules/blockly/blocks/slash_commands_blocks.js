@@ -261,7 +261,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "Boolean"
+      "text": "boolean"
     }
   ],
   "output": "Boolean",
@@ -276,7 +276,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "Number"
+      "text": "number"
     }
   ],
   "output": "Number",
@@ -291,7 +291,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "Role"
+      "text": "role"
     }
   ],
   "output": "Rank",
@@ -306,7 +306,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "Text"
+      "text": "text"
     }
   ],
   "output": "String",
@@ -321,7 +321,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "User"
+      "text": "user"
     }
   ],
   "output": "User",
@@ -336,7 +336,7 @@ module.exports = {
     {
       "type": "field_input",
       "name": "NAME",
-      "text": "textChannel"
+      "text": "textchannel"
     }
   ],
   "output": "Channel",
