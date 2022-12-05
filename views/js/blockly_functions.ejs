@@ -324,3 +324,19 @@ function checkIfEventVarBlockCorrectlyPlaced(event){
   }
 }
 workspace.addChangeListener(checkIfEventVarBlockCorrectlyPlaced);
+
+//When a block is added in a command creator block, we will check his it's an arg block or not.
+function checkIfAddedBlockIsCommandArgBlock(event){
+  if(event.type!=Blockly.Events.BLOCK_MOVE || !workspace.getBlockById(event.blockId) )return;//wrong event type or block undefined
+  if(!workspace.getBlockById(event.blockId).previousConnection)return;//Top block without previous connection, no need to check
+  if(!workspace.getBlockById(event.blockId).previousConnection.targetConnection)return;//block alone
+  if(!workspace.getBlockById(event.blockId).getRootBlock().type=="block_slash_command_creator")return;//This block is not in a command creator block, useless to check further
+  if(!workspace.getBlockById(event.blockId).previousConnection.targetConnection.getCheck())return;//This block also need to be connected to a connection that contain checks
+
+  if(workspace.getBlockById(event.blockId).previousConnection.targetConnection.getCheck().includes("SlashCommandOption")
+    && !workspace.getBlockById(event.blockId).type.startsWith("block_slash_command_arg_")){
+      //Block is connected to a SlashCommandOption, and isn't an arg for commands
+      workspace.getBlockById(event.blockId).unplug();
+    }
+}
+workspace.addChangeListener(checkIfAddedBlockIsCommandArgBlock);
