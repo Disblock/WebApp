@@ -56,6 +56,10 @@ module.exports = async function(socket, server_id, data, callback, database_pool
         callback({status: "NOT OK"});
       }
 
+    })
+    .catch(err=>{
+      logger.error("Error while working with workspace sent by server "+server_id+" : "+err);
+      callback({status: "NOT OK"});
     });
 
   }else{
