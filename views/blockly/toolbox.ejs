@@ -428,7 +428,17 @@
   </category>
   <category name="%{BKY_WORKSPACE_TAB_SLASH_COMMAND}" colour="15">
     <label text="%{BKY_WORKSPACE_SLASH_COMMAND_CREATE}"></label>
-      <block type="block_slash_command_creator"></block>
+      <block type="block_slash_command_creator">
+        <statement name="STATEMENTS">
+          <block type="block_slash_command_reply">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">Type something here or replace me with others blocks</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+      </block>
     <label text="%{BKY_WORKSPACE_SLASH_COMMAND_ARGS}"></label>
       <block type="block_slash_command_arg_boolean"></block>
       <block type="block_slash_command_arg_int"></block>

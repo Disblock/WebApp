@@ -46,10 +46,11 @@ module.exports = {
   },
 
   /* Check that slash command args and reply blocks are used only in command_creator block
+     We also check if at least one reply block is used
      Args : workspace - A Blockly Workspace
      Will return true if everything correct
   */
-  checkIfCommandArgBlocksCorrectlyPlaced: function(workspace){
+  checkIfCommandBlockCorrectlyDefined: function(workspace){
     const blocks = workspace.getAllBlocks(false);
     for(let i=0;i<blocks.length;i++){
       if(blocks[i].type.startsWith("block_slash_command") && blocks[i].type!=="block_slash_command_creator"){
@@ -58,7 +59,19 @@ module.exports = {
           //This block isn't correctly placed
           return false;
         }
+
+      }else if(blocks[i].type=="block_slash_command_creator"){
+        //We check if this block contain a command reply block
+        commandBlocks = blocks[i].getDescendants(false);//All blocks in the command creator block
+        let containReplyBlock = false;
+        for(let j=0;j<commandBlocks.length;j++){
+          if(commandBlocks[j].type==="block_slash_command_reply"){
+            containReplyBlock=true;break;
+          }
+        }
+        if(!containReplyBlock)return false;
       }
+
     }
     return true;
   }
