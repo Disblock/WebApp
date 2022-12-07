@@ -910,6 +910,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "Cet argument a le même nom qu'un autre argument !";
   Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Les argument requis ne peuvent pas être définis après des arguments optionnels !";
   Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "Vous devez utiliser un block de réponse à cette commande dans ce block !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "Vous ne pouvez pas utiliser ce bloc ici !";
   Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "Il y a un problème avec un bloc de commande ! Lisez les avertissements pour en savoir plus";
 
   //Types names

@@ -261,7 +261,7 @@ function validateWorkspace(workspace){
       //We will now check that used arguments are correctly defined and if at least one reply block is used
       let definedArgs = {};//Will store args types and names
       let argsNames = [];//Will store args names to check that no names are duplicated
-      let replyBlockused = false;
+      let replyBlockused = false;//Users must have used at least one command reply block
       for(let j=0; j<childBlocks.length; j++){
         //childBlocks is a sorted list of blocks in a command block creator
         if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
@@ -296,6 +296,11 @@ function validateWorkspace(workspace){
         }
         else if(childBlocks[j].type === "block_slash_command_reply")replyBlockused=true;//At least one reply block used
 
+        //Event var blocks can't be used in commands
+        if(childBlocks[j].type.startsWith("event_var_")){
+          childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"]);
+          foundError = true;
+        }
       }//End of loop
 
       if(!replyBlockused){
