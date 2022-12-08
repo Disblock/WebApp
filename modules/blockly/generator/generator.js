@@ -2177,6 +2177,16 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
+    Blockly.JavaScript['block_slash_command_data_channel'] = function(block) {
+      const code = 'interaction.channel';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_data_user'] = function(block) {
+      const code = 'interaction.member';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled
     //These blocks are removed / commented in toolbox.ejs

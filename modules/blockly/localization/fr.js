@@ -450,7 +450,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Créer une commande";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Ajouter des arguments à une commande";
-  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Récupérer la valeur des arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Récupérer la valeur des arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Obtenir des informations sur la commande";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Faire quelque chose quand cette commande est utilisée";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
@@ -888,6 +889,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Permet de récupérer un argument utilisateur de la commande, portant ce nom";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Récupérer l'argument salon textuel nommé %1";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Permet de récupérer un argument salon textuel de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL"] = "Salon où cette commande a été utilisée";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Retourne le salon où cette commande a été utilisée";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "Utilisateur qui a utilisé cette commande";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Retourne l'utilisateur qui a exécuté cette commande";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";

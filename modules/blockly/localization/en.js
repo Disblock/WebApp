@@ -450,7 +450,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Create a slash command";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Add arguments to a clash command";
-  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get the value of command arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Get the value of command arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get command's data";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Do something when this command is used";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Send a message";
@@ -888,6 +889,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Get the value of an user argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Get the text channel argument nammed %1";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Get the value of a text channel argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL"] = "Channel where this command was used";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Return the text channel where someone used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "User who ran this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Return the user who used this command";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";

@@ -887,4 +887,78 @@
         <field name="HUE">15</field>
       </block>
     </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_data_channel</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Salon où la commande a été exécutée</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer le salon textuel où la commande a été exécutée</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_other" id="@n/hJAIw,_(l_{w9-k)O">
+        <field name="TYPE">Channel</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_data_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Utilisateur qui a exécuté la commande</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer la personne qui a exécuté la commande</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="g=bM8b;}VFQPpfb:X/k."></shadow>
+      <block type="type_other" id="@n/hJAIw,_(l_{w9-k)O">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
   </block></xml>

@@ -343,5 +343,21 @@ module.exports = {
   "colour": 15,
   "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP}",
   "helpUrl": ""
+},
+{
+  "type": "block_slash_command_data_channel",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_DATA_CHANNEL}",
+  "output": "Channel",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_slash_command_data_user",
+  "message0": "%{BKY_BLOCK_SLASH_COMMAND_DATA_USER}",
+  "output": "User",
+  "colour": 15,
+  "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP}",
+  "helpUrl": ""
 }]
 )};
