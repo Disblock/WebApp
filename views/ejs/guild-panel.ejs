@@ -102,7 +102,14 @@
         process.env.P_DISABLED_BLOCKS.split(',').forEach((item, i) => {
           disabledBlocks[item] = 0;
         });
+      }
 
+      if(process.env.P_MAX_BLOCKS_BY_TYPE!="none"){
+        //We will limit the amount of some blocks
+        process.env.P_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
+          let block = item.split(':');// block = [block_type, max_amount]
+          disabledBlocks[block[0]] = parseInt(block[1]);
+        });
       }
   }else{%>
       const maxBlocks = <%- process.env.NP_WORKSPACE_MAX_BLOCKS %>;
@@ -113,7 +120,14 @@
         process.env.NP_DISABLED_BLOCKS.split(',').forEach((item, i) => {
           disabledBlocks[item] = 0;
         });
+      }
 
+      if(process.env.NP_MAX_BLOCKS_BY_TYPE!="none"){
+        //We will limit the amount of some blocks
+        process.env.NP_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
+          let block = item.split(':');// block = [block_type, max_amount]
+          disabledBlocks[block[0]] = parseInt(block[1]);
+        });
       }
   }%>
   //We define the max blocks amount in #blocks_count

@@ -45,6 +45,46 @@ module.exports = {
     return false;
   },
 
+  /* Check if a workspace contain the right number of blocks per blocks
+  Args : workspace - A Blockly Workspace
+         premium - Is this server Premium or not ? Boolean
+  Will return false if there is a problem with blocks amount */
+  checkIfRightNumberOfBlocksPerBlockUsed:function(workspace, premium){
+    let maxBlocks = {};//Will store blocks types and max amount
+    let blocksCount = {};//Will save how many blocks was seen, per type
+
+    if(premium){
+      //Premium server
+      if(process.env.P_MAX_BLOCKS_BY_TYPE!="none"){
+        process.env.P_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
+          let block = item.split(':');// block = [block_type, max_amount]
+          maxBlocks[block[0]] = parseInt(block[1]);
+        });
+      }else{return true;}//No limited blocks
+    }else{
+      //Not premium server
+      if(process.env.NP_MAX_BLOCKS_BY_TYPE!="none"){
+        process.env.NP_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
+          let block = item.split(':');
+          maxBlocks[block[0]] = parseInt(block[1]);
+        });
+      }else{return true;}//No limited blocks
+    }
+
+    //maxBlocks defined
+    const blocks = workspace.getAllBlocks(false);
+    for(let i=0;i<blocks.length;i++){
+      if(! Object.keys(maxBlocks).includes(blocks[i].type) )continue;//Block type not in keys of maxBlocks
+
+      if(! Object.keys(blocksCount).includes(blocks[i].type) )blocksCount[blocks[i].type]=0;//Type not in blockCount, we add it here
+      blocksCount[blocks[i].type]++;
+
+      if(maxBlocks[blocks[i].type] < blocksCount[blocks[i].type])return false;//More blocks used than allowed
+    }
+
+    return true;
+  },
+
   /* Check that slash command args and reply blocks are used only in command_creator block
      We also check if at least one reply block is used
      Args : workspace - A Blockly Workspace

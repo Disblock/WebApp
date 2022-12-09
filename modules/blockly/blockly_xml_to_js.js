@@ -37,6 +37,7 @@ module.exports = {
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
          if(validateWorkspace.checkIfDisabledBlocksUsed(workspace, premium))return('USED DISABLED BLOCKS !');
          if(!validateWorkspace.checkIfCommandBlockCorrectlyDefined(workspace))return('INCORRECTLY PLACED COMMANDS BLOCKS !');
+         if(!validateWorkspace.checkIfRightNumberOfBlocksPerBlockUsed(workspace, premium))return('USED DISABLED BLOCKS !');
 
          const topBlocks = workspace.getTopBlocks(false);//https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
          let eventCodes = [];//Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
