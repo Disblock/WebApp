@@ -97,13 +97,6 @@
       const maxBlocks = <%- process.env.P_WORKSPACE_MAX_BLOCKS %>;
 
       <%
-      if(process.env.P_DISABLED_BLOCKS!="none"){
-        //We will disable some blocks
-        process.env.P_DISABLED_BLOCKS.split(',').forEach((item, i) => {
-          disabledBlocks[item] = 0;
-        });
-      }
-
       if(process.env.P_MAX_BLOCKS_BY_TYPE!="none"){
         //We will limit the amount of some blocks
         process.env.P_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
@@ -115,13 +108,6 @@
       const maxBlocks = <%- process.env.NP_WORKSPACE_MAX_BLOCKS %>;
 
       <%
-      if(process.env.NP_DISABLED_BLOCKS!="none"){
-        //We will disable some blocks
-        process.env.NP_DISABLED_BLOCKS.split(',').forEach((item, i) => {
-          disabledBlocks[item] = 0;
-        });
-      }
-
       if(process.env.NP_MAX_BLOCKS_BY_TYPE!="none"){
         //We will limit the amount of some blocks
         process.env.NP_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
