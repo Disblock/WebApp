@@ -35,7 +35,6 @@ services:
       - db
     image: disblock
     ports:
-      - 8081:8081
       - 80:80
       - 443:443
     restart: always
