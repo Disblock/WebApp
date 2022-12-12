@@ -426,6 +426,45 @@
       <block type="event_var_user"></block>
       <block type="event_var_text_channel"></block>-->
   </category>
+  <category name="%{BKY_WORKSPACE_TAB_SLASH_COMMAND}" colour="15">
+    <label text="%{BKY_WORKSPACE_SLASH_COMMAND_CREATE}"></label>
+      <block type="block_slash_command_creator">
+        <statement name="STATEMENTS">
+          <block type="block_slash_command_reply">
+            <value name="TEXT">
+              <shadow type="text">
+                <field name="TEXT">Type something here or replace me with others blocks</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+      </block>
+    <label text="%{BKY_WORKSPACE_SLASH_COMMAND_ARGS}"></label>
+      <block type="block_slash_command_arg_boolean"></block>
+      <block type="block_slash_command_arg_int"></block>
+      <block type="block_slash_command_arg_string"></block>
+      <block type="block_slash_command_arg_text_channel"></block>
+      <block type="block_slash_command_arg_user"></block>
+      <block type="block_slash_command_arg_role"></block>
+    <label text="%{BKY_WORKSPACE_SLASH_COMMAND_GET_ARGS}"></label>
+      <block type="block_slash_command_get_boolean"></block>
+      <block type="block_slash_command_get_int"></block>
+      <block type="block_slash_command_get_string"></block>
+      <block type="block_slash_command_get_text_channel"></block>
+      <block type="block_slash_command_get_user"></block>
+      <block type="block_slash_command_get_role"></block>
+    <label text="%{BKY_WORKSPACE_SLASH_COMMAND_GET_DATA}"></label>
+      <block type="block_slash_command_data_user"></block>
+      <block type="block_slash_command_data_channel"></block>
+    <label text="%{BKY_WORKSPACE_SLASH_COMMAND_ACTIONS}"></label>
+      <block type="block_slash_command_reply">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Type something here or replace me with others blocks</field>
+          </shadow>
+        </value>
+      </block>
+  </category>
   <sep></sep>
   <category name="%{BKY_WORKSPACE_TAB_MESSAGES}" colour="180">
     <label text="%{BKY_WORKSPACE_MESSAGES_SEND}"></label>

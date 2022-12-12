@@ -77,9 +77,15 @@ We check : - Temporary variables blocks
 Return {correct:true, message:'OK'} or {correct:false, message:'Error message'}*/
 function validateWorkspace(workspace){
 
+  let blocks = workspace.getAllBlocks(false);//All blocks in this workspace
+
   //We check if user used the allowed number of blocks
-  if(workspace.getAllBlocks(false).length > maxBlocks){
+  if(blocks.length > maxBlocks){
     return({correct:false, message:Blockly.Msg["WARNING_TOO_MANY_BLOCKS"]});
+  }
+
+  for(let i=0; i<blocks.length; i++){
+    blocks[i].setWarningText(null);//We remove the warning, and add it again below if needed
   }
 
   //Get all top blocks
@@ -89,39 +95,33 @@ function validateWorkspace(workspace){
   //For each top block, we check what types and names of variables are defined, and check that every getter block is correctly placed
   for(let i=0; i<topBlocks.length; i++){
     let variablesTypes = {};//Will store what name contain what type of data as an object : {name:type, ...}
-    let blocks = topBlocks[i].getDescendants(true);//Every blocks in this event, sorted
+    let blocksInEvent = topBlocks[i].getDescendants(true);//Every blocks in this event, sorted
 
-    if(blocks.length==1)continue;//This block is alone, that's useless to continue
+    if(blocksInEvent.length==1)continue;//This block is alone, that's useless to continue
 
 
-    for(let j=0; j<blocks.length; j++){
-      if(blocks[j].type=="block_var_save"){
+    for(let j=0; j<blocksInEvent.length; j++){
+      if(blocksInEvent[j].type=="block_var_save"){
         //That's a setter block, we save his name and type here
 
-        if(blocks[j].allInputsFilled() && /^[a-zA-Z0-9]{1,16}$/.test(blocks[j].getFieldValue('NAME'))){
-          //OK
-          blocks[j].setWarningText(null);
-        }else{
-          if(!blocks[j].allInputsFilled()) blocks[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
-          if(!/^[a-zA-Z0-9]{1,16}$/.test(blocks[j].getFieldValue('NAME'))) blocks[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
+        if(!( blocksInEvent[j].allInputsFilled() && /^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME')) )){
+          if(!blocksInEvent[j].allInputsFilled()) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
+          if(!/^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME'))) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
 
           foundError = true;
         }
 
-        variablesTypes[blocks[j].getFieldValue('NAME')] = blocks[j].getFieldValue('TYPE');
+        variablesTypes[blocksInEvent[j].getFieldValue('NAME')] = blocksInEvent[j].getFieldValue('TYPE');
 
-      }else if(blocks[j].type=="block_var_get"){
+      }else if(blocksInEvent[j].type=="block_var_get"){
 
         //Getter block, we check if it's correctly placed or not
-        let neededTypes = blocks[j].outputConnection.targetConnection.getCheck();
+        let neededTypes = blocksInEvent[j].outputConnection.targetConnection.getCheck();
         if(neededTypes==null)neededTypes=[];// Accept everything, [] == 0
 
-        if( neededTypes.includes(variablesTypes[blocks[j].getFieldValue('NAME')]) || neededTypes==0 ){
-          //OK
-          blocks[j].setWarningText(null);
-        }else{
-          //That's an error
-          blocks[j].setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
+        if(!( neededTypes.includes(variablesTypes[blocksInEvent[j].getFieldValue('NAME')]) || neededTypes==0 )){
+          //Error
+          blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"]);
           foundError = true;
         }
 
@@ -133,15 +133,11 @@ function validateWorkspace(workspace){
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"]});
 
   //Now checking if an Event var Block was uncorrectly placed
-  let blocks = workspace.getAllBlocks(false);
   for(let i=0; i<blocks.length; i++){
     if(!blocks[i].getRootBlock())continue;//This block is alone
 
     if(events_var_blocks[blocks[i].getRootBlock().type] && blocks[i].type.startsWith("event_var_")){//The top block must be an event and have registered event var blocks, the source block must be an event var block
-      if( events_var_blocks[blocks[i].getRootBlock().type].includes(blocks[i].type) ){
-        //OK
-        blocks[i].setWarningText(null);
-      }else{
+      if( !events_var_blocks[blocks[i].getRootBlock().type].includes(blocks[i].type) ){
         //There is an error in workspace !
         blocks[i].setWarningText(Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"]);
         foundError = true;
@@ -159,9 +155,6 @@ function validateWorkspace(workspace){
          //Text value is empty
          blocks[i].setWarningText(Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"]);
          foundError = true;
-       }else{
-         //OK
-         blocks[i].setWarningText(null);
        }
      }
   }
@@ -177,10 +170,7 @@ function validateWorkspace(workspace){
         if(/[a-zA-Z0-9]+/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
           //A custom emoji is used in this block. We will check that it's correctly defined. We check with a regex, because Discord's Ascii emojis shouldn't include a-Z0-9 chars.
 
-          if(/^<:[a-zA-Z0-9]+:[0-9]+>$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
-            //Regex OK
-            blocks[i].getInputTargetBlock('emoji').setWarningText(null);
-          }else{
+          if(! /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
             //Regex NOT OK
             blocks[i].getInputTargetBlock('emoji').setWarningText(Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"]);
             foundError = true;
@@ -191,6 +181,139 @@ function validateWorkspace(workspace){
   }
   //Finished to check custom emoji uses. In case of error, stop here
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"]});
+
+  let commandNames = [];//Used to store commands names. Will allow us to detect duplicated names
+  //Now checking that there isn't any problem with slash commands blocks
+  for(let i=0; i<blocks.length;i++){
+
+    //Commands blocks must be insine an command creator block
+    if(blocks[i].type.startsWith("block_slash_command_") && blocks[i].type!=="block_slash_command_creator"){
+      //This block is a command block, which can only be placed alone or in command_creator block
+      if(blocks[i].getRootBlock().type.startsWith("event_")){//If block is placed in an event block
+        //This block isn't correctly placed
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"]);
+        foundError = true;
+        continue;//An error was found, we can check the next block
+      }
+    }
+
+    //Names and descriptions most be valid
+    if(blocks[i].type.startsWith("block_slash_command_arg") || blocks[i].type.startsWith("block_slash_command_creator")){
+      if(! /^([a-z0-9]{3,28})$/.test(blocks[i].getFieldValue('NAME')) || ! /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(blocks[i].getFieldValue('DESC'))){//Regex also checked in back-end
+        //NOT OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"]);
+        foundError = true;
+        continue;
+      }
+    }
+
+    //Commands names must be unique and no more than n args
+    if(blocks[i].type === "block_slash_command_creator"){
+      if(commandNames.includes(blocks[i].getFieldValue('NAME'))){
+        //NOT OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"]);
+        foundError = true;
+        continue;
+      }else{
+        //OK
+        commandNames.push(blocks[i].getFieldValue('NAME'));
+      }
+
+      //No more than n args
+      const childBlocks = blocks[i].getDescendants(false/*ordered*/);
+      let argCount = 0;
+      for(let j=0; j<childBlocks.length; j++){
+        if(childBlocks[j].type.startsWith("block_slash_command_arg_"))argCount++;
+        //When an arg block is found, we add 1 to number of arg blocks
+      }
+      if(argCount > <%-process.env.COMMAND_MAX_ARGS%> ){
+        //NOT OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"]);
+        foundError = true;
+        continue;
+      }
+    }
+
+    //Optionnal commands args must be defined after required ones, args must be defined before being used
+    if(blocks[i].type === "block_slash_command_creator"){
+      const childBlocks = blocks[i].getDescendants(true);//All blocks within this command creator
+
+      let optionnals = false;//Will be set to true when we will find optionnal args
+      for(let j=0; j<childBlocks.length; j++){
+        if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
+          //This is an arg block, we will check if required or optionnal
+          const requiredBlocks = childBlocks[j].getFieldValue('REQUIRED') === 'TRUE';
+          if(requiredBlocks && !optionnals){
+            //OK, this block is required, and not defined after an optionnal block
+          }else if(!requiredBlocks && !optionnals){
+            //OK, this is the first optionnal block
+            optionnals = true;
+          }else if(!requiredBlocks && optionnals){
+            //OK, this is an optionnal block, defined after required ones
+          }else{
+            //NOT OK, seems to be a required arg defined after an optionnal arg
+            childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"]);
+            foundError = true;
+          }
+        }
+      }
+
+      //We will now check that used arguments are correctly defined and if at least one reply block is used
+      let definedArgs = {};//Will store args types and names
+      let argsNames = [];//Will store args names to check that no names are duplicated
+      let replyBlockused = false;//Users must have used at least one command reply block
+      for(let j=0; j<childBlocks.length; j++){
+        //childBlocks is a sorted list of blocks in a command block creator
+        if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
+          //This block define an arg, we will save his type and name
+          const argType = childBlocks[j].type.replace("block_slash_command_arg_", "");//We only keep the arg type
+          if(! definedArgs[argType]){
+            //We will add this type in this object
+            definedArgs[argType] = [];
+          }
+          const blockName = childBlocks[j].getFieldValue('NAME');
+          definedArgs[argType].push(blockName);
+
+          if(argsNames.includes(blockName)){
+            //NOT OK, this arg is defined with an already given name
+            childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"]);
+            foundError = true;
+          }
+          argsNames.push(blockName);
+
+        }else if(childBlocks[j].type.startsWith("block_slash_command_get_")){
+          //This block use a defined arg, we will check that it was defined
+          const argType = childBlocks[j].type.replace("block_slash_command_get_", "");//We only keep the arg type
+          if(definedArgs[argType]){
+            if(definedArgs[argType].includes(childBlocks[j].getFieldValue('NAME'))){
+              //OK
+              continue;//Check next block
+            }
+          }
+          //NOOT NOOT, this block refer to an undefined arg
+          childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"]);
+          foundError = true;
+        }
+        else if(childBlocks[j].type === "block_slash_command_reply")replyBlockused=true;//At least one reply block used
+
+        //Event var blocks can't be used in commands
+        if(childBlocks[j].type.startsWith("event_var_")){
+          childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"]);
+          foundError = true;
+        }
+      }//End of loop
+
+      if(!replyBlockused){
+        //No reply block used in this command !
+        blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"]);
+        foundError = true;
+      }
+    }
+
+
+  }
+  //Finished to check for problems with slash command blocks
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"]});
 
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
@@ -214,3 +337,19 @@ function checkIfEventVarBlockCorrectlyPlaced(event){
   }
 }
 workspace.addChangeListener(checkIfEventVarBlockCorrectlyPlaced);
+
+//When a block is added in a command creator block, we will check his it's an arg block or not.
+function checkIfAddedBlockIsCommandArgBlock(event){
+  if(event.type!=Blockly.Events.BLOCK_MOVE || !workspace.getBlockById(event.blockId) )return;//wrong event type or block undefined
+  if(!workspace.getBlockById(event.blockId).previousConnection)return;//Top block without previous connection, no need to check
+  if(!workspace.getBlockById(event.blockId).previousConnection.targetConnection)return;//block alone
+  if(!workspace.getBlockById(event.blockId).getRootBlock().type=="block_slash_command_creator")return;//This block is not in a command creator block, useless to check further
+  if(!workspace.getBlockById(event.blockId).previousConnection.targetConnection.getCheck())return;//This block also need to be connected to a connection that contain checks
+
+  if(workspace.getBlockById(event.blockId).previousConnection.targetConnection.getCheck().includes("SlashCommandOption")
+    && !workspace.getBlockById(event.blockId).type.startsWith("block_slash_command_arg_")){
+      //Block is connected to a SlashCommandOption, and isn't an arg for commands
+      workspace.getBlockById(event.blockId).unplug();
+    }
+}
+workspace.addChangeListener(checkIfAddedBlockIsCommandArgBlock);

@@ -1,4 +1,5 @@
 'use strict';
+const commands_args_types = require("../../enums/commands_args_types.js");
 
 module.exports = {
   initializeGenerator: function(Blockly){
@@ -2056,6 +2057,134 @@ module.exports = {
       }else{
         return ['-1', Blockly.JavaScript.ORDER_NONE];
       }
+    };
+
+    /* ##### Slash commands blocks ##### */
+
+    Blockly.JavaScript['block_slash_command_creator'] = function(block) {
+      throw("We get values for this block directly in xml_to_js !");
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_boolean'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_name) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_name+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.boolean+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_int'] = function(block) {
+      const text_int = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_int) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_int+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.int+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_role'] = function(block) {
+      const text_role = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_role) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_role+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.role+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_string'] = function(block) {
+      const text_text = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_text) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_text+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.string+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_user'] = function(block) {
+      const text_user = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_user) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_user+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.user+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_reply'] = function(block) {
+      const value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_text!==""){
+        const code = 'interaction.editReply('+value_text+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_text_channel'] = function(block) {
+      const text_channel = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_channel) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_channel+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.textChannel+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_get_boolean'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getBoolean("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_int'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getNumber("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_role'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getRole("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_string'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getString("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_user'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getMember("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_text_channel'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getChannel("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_data_channel'] = function(block) {
+      const code = 'interaction.channel';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_data_user'] = function(block) {
+      const code = 'interaction.member';
+      return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### DISABLED blocks ##### */

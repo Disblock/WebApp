@@ -422,6 +422,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Workspace
   Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Events";
+  Blockly.Msg["WORKSPACE_TAB_SLASH_COMMAND"] = "Slash commands";
   Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
   Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Channels & Threads";
   Blockly.Msg["WORKSPACE_TAB_USERS"] = "Users";
@@ -446,6 +447,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EVENTS_VOICE_UPDATE"] = "An user's voice state is updated";
   Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "A reaction is added or removed from a message";
   Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Others";
+
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Create a slash command";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Add arguments to a clash command";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Get the value of command arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get command's data";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Do something when this command is used";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Send a message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Delete a message";
@@ -853,6 +860,40 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "String to number %1";
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "This block will transform a string into a number. It will return -1 if the string isn't a number";
 
+  //Slash commands blocks
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Create a slash command nammed %1 %2 With the description %3 %4 Ephemeral replies : %5 %6 With arguments %7 that will do %8";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Create a new Slash command for your server ! You can give a name, a description and add some arguments";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Add a boolean argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Add a boolean argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL"] = "Add a text channel argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP"] = "Add a text channel argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT"] = "Add an integer argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT_TOOLTIP"] = "Add an integer argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE"] = "Add a role argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP"] = "Add a role argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING"] = "add a text argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Add a text argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Add an user argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Add an user argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Reply to the command with the message %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Reply to a slash command. This block can only be used with a command, and may be only visible for the user who used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Get the boolean argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Get the value of a boolean argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT"] = "Get the integer argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] = "Get the value of an integer argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE"] = "Get the role argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] = "Get the value of a role argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING"] = "Get the text argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] = "Get the value of a text argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER"] = "Get the user argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Get the value of an user argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Get the text channel argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Get the value of a text channel argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL"] = "Channel where this command was used";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Return the text channel where someone used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "User who ran this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Return the user who used this command";
+
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";
   Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "To use this variable, you must assign a value to it !";
@@ -866,6 +907,16 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "There is too much blocks in your workspace ! Please, try to use less blocks";
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "This don't looks like a valid custom emoji string. Try to send \\:your_emoji: in your server, and paste here the result."
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>."
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] = "The name or description contains an invalid character ! The name must have a length of at least 3, and must follow a-z0-9. The description can't include special characters";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] = "This block can only be placed in a slash command creator block";
+  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] = "The name of this block don't seems to be defined in command arguments";
+  Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"] = "This command has too many arguments !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"] = "This command has the same name as another command !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "This argument has the same name as another argument !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Required arguments can't be defined after optionnal arguments !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "You need to use a reply to command block within this block !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "You can't use this block here !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "There is a problem with a slash command block. Read the warning to learn more about that";
 
   //Types names
   Blockly.Msg["STRING"] = "String";

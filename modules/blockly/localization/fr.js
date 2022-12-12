@@ -422,6 +422,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Workspace
   Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Evénements";
+  Blockly.Msg["WORKSPACE_TAB_SLASH_COMMAND"] = "Commandes";
   Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
   Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Salons et fils";
   Blockly.Msg["WORKSPACE_TAB_USERS"] = "Utilisateurs";
@@ -446,6 +447,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EVENTS_VOICE_UPDATE"] = "L'état vocal d'un utilisateur est modifié";
   Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "Une réaction est ajoutée ou retirée d'un message";
   Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Autres";
+
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Créer une commande";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Ajouter des arguments à une commande";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Récupérer la valeur des arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Obtenir des informations sur la commande";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Faire quelque chose quand cette commande est utilisée";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Supprimer un message";
@@ -809,11 +816,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_EMBED_CREATE"] = "Créer un message Embed avec le titre %1 Avec la description : %2 Avec la couleur : %3 et les options : %4 %5";
   Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] = "Permet de créer un message Embed, avec un titre et une couleur. Utilisez les blocs de description d'embed pour le modifier.";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE"] = "Définir l'URL de l'image de l'embed : %1";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'image sous forme de chaîne de charactères";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'image sous forme de chaîne de caractères";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL"] = "Définir l'URL de l'icone de l'embed : %1";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'icone sous forme de chaîne de charactères";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL_TOOLTIP"] = "Option d'embed, indiquez l'URL de l'icone sous forme de chaîne de caractères";
   Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD"] = "Ajouter un champ avec le nom %1 Et le texte : %2 Aligné avec les autres : %3";
-  Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD_TOOLTIP"] = "Option d'embed, Ajoutez un champ dans un embed. Taille max du texte : 255 charactères";
+  Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD_TOOLTIP"] = "Option d'embed, Ajoutez un champ dans un embed. Taille max du texte : 255 caractères";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR"] = "Définir l'auteur avec le nom %1 l'URL %2 Et le lien de son image %3";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR_TOOLTIP"] = "Option d'embed, Définissez l'auteur de l'embed";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER"] = "Ajouter un Footer avec le texte %1 Et le lien de son image %2";
@@ -853,12 +860,46 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "Chaîne de caractères vers nombre %1";
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "Ce bloc va transformer une chaîne de caractères en nombre. Il retournera -1 si la chaîne de caractères n'est pas un nombre";
 
+  //Slash commands blocks
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Créer une commande nommée %1 %2 Avec la description %3 %4 Réponses éphèmères : %5 %6 Avec les arguments %7 qui réalisera %8";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Créez une nouvelle commande pour votre serveur ! Vous pouvez lui donner un nom et une description ainsi qu'ajouter des arguments et des actions à exécuter";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Ajouter un argument booléen nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Ajoutez un argument booléen à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL"] = "Ajouter un argument channel textuel nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP"] = "Ajoutez un salon textuel à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT"] = "Ajouter un argument nombre entier nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT_TOOLTIP"] = "Ajoutez un nombre entier à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE"] = "Ajouter un argument rôle nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP"] = "Ajoutez un rôle à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING"] = "Ajouter un argument texte nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Ajoutez un texte à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Ajouter un argument membre nommé %1 %2 Avec la description %3 %4 Est obligatoire ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Ajoutez un utilisateur à votre commande avec un nom et une description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Répondre à la commande avec le message %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Répondre à une commande. Cela ne peut être utilisé qu'avec une commande, et peut n'être visible que pour l'utilisateur qui a utilisé la commande";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Récupérer l'argument booléen nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Permet de récupérer un argument booléen de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT"] = "Récupérer l'argument nombre entier nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] = "Permet de récupérer un argument nombre entier de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE"] = "Récupérer l'argument rôle nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] = "Permet de récupérer un argument rôle de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING"] = "Récupérer l'argument texte nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] = "Permet de récupérer un argument texte de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER"] = "Récupérer l'argument utilisateur nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Permet de récupérer un argument utilisateur de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Récupérer l'argument salon textuel nommé %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Permet de récupérer un argument salon textuel de la commande, portant ce nom";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL"] = "Salon où cette commande a été utilisée";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Retourne le salon où cette commande a été utilisée";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "Utilisateur qui a utilisé cette commande";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Retourne l'utilisateur qui a exécuté cette commande";
+
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
   Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "Pour utiliser cette variable, vous devez lui donner une valeur !";
   Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"] = "Le type de la valeur n'est pas compatible avec le type de la variable. Essayez d'utiliser une autre valeur, ou de changer le type de la variable.";
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] = "Des blocs de variable temporaires sont mals placés ! Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
-  Blockly.Msg["WARNING_INVALID_NAME"] = "Vous devez uniquement utiliser des lettres (a-z A-Z) et des chiffres (1-9) tout en ne dépassant pas 16 charactères en nommant cela !";
+  Blockly.Msg["WARNING_INVALID_NAME"] = "Vous devez uniquement utiliser des lettres (a-z A-Z) et des chiffres (1-9) tout en ne dépassant pas 16 caractères en nommant cela !";
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] = "Ce bloc n'est pas placé dans un évènement compatible ! Essayez d'utiliser un autre bloc de variable d'évènement compatible";
   Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "Un bloc de variable d'évènement est incorrectement placé. Utilisez les avertissements placés sur les blocs pour les trouver et corriger le problème.";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "Vous devez entrer une valeur pour ce bloc !";
@@ -866,6 +907,16 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "Il y a trop de blocs dans votre espace de travail ! Essayez d'utiliser moins de blocs";
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "Cela ne semble pas être un émoji custom valide. Essayez d'envoyer \\:votre_emoji: dans votre serveur et de coller ici le résultat."
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "Vous avez essayé d'utiliser un émoji custom dans un block d'émoji mais cela semble invalide. La valeur devrait ressembler à <:Nom:1234>."
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] = "Le nom ou la description contient un charactère invalide ! Le nom doit avoir une longueur de 3, et ne contenir que a-z0-9. La description ne doit pas inclure de caractères spéciaux";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] = "Ce bloc ne peut être utilisé que dans un bloc de création de commande";
+  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] = "Le nom de ce bloc ne semble pas être dans les arguments de cette commande";
+  Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"] = "Cette commande possède trop d'arguments !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"] = "Cette commande a le même nom qu'une autre commande";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "Cet argument a le même nom qu'un autre argument !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Les argument requis ne peuvent pas être définis après des arguments optionnels !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "Vous devez utiliser un block de réponse à cette commande dans ce block !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "Vous ne pouvez pas utiliser ce bloc ici !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "Il y a un problème avec un bloc de commande ! Lisez les avertissements pour en savoir plus";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";
