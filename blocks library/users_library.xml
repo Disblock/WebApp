@@ -1443,4 +1443,63 @@
         <field name="HUE">300</field>
       </block>
     </value>
+  </block><block type="factory_base" id="ia#P_P?Sp5V]dA92dac@" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_user_rename</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="yII5Cnpgo_YOF`!0{Jyw">
+        <field name="INPUTNAME">user</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="$}U-`w#e^u^aR9Zz%J!F">
+            <field name="TEXT">Renommer l'utilisateur</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="dFW{+WXDvK!;jv|/Gk#S"></shadow>
+          <block type="type_other" id="eEYMaFQ/r8sg~!YWz5Di">
+            <field name="TYPE">User</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="mQM|d86r+a)3O4q`8Rr{">
+            <field name="INPUTNAME">name</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="C-0U!itZQ%SK.-^fn0]{">
+                <field name="TEXT">avec le nouveau nom</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="MN}-B+3,xA!tRhXQBJ/~"></shadow>
+              <block type="type_string" id="-?|M`G[teNLP[.{TPJHL"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="7#I/@8^xpE[{Z{(!Uv}1" deletable="false" movable="false">
+        <field name="TEXT">Permet de renommer un utilisateur sur le serveur Discord</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="Dl21~ov/CoPBSl+DrwyY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id=".f77,|VG#kio6bN{#fQ)"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="5s_}(e!KsepsU.9D+;=M"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="?9I.t_^dCB-wAo`LiKRf">
+        <mutation colour="#a55ba5"></mutation>
+        <field name="HUE">300</field>
+      </block>
+    </value>
   </block></xml>

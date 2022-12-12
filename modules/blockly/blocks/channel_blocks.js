@@ -546,7 +546,7 @@ module.exports = {
   "colour": 75,
   "tooltip": "%{BKY_BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX}",
   "helpUrl": ""
-}
+},
   /*,
   {
     "type": "block_channel_list",
@@ -555,6 +555,21 @@ module.exports = {
     "colour": 60,
     "tooltip": "%{BKY_BLOCK_CHANNEL_LIST_TOOLTIP}",
     "helpUrl": ""
-  }*/
+  },*/
+  {
+  "type": "block_channel_get_category_with_id",
+  "message0": "%{BKY_BLOCK_CHANNEL_GET_CATEGORY_WITH_ID}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "category_id",
+      "check": "String"
+    }
+  ],
+  "output": "Category",
+  "colour": 75,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP}",
+  "helpUrl": ""
+}
 ])
 }

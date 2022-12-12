@@ -1,16 +1,13 @@
 'use strict';
+const commands_args_types = require("../../enums/commands_args_types.js");
 
 module.exports = {
-  initializeGenerator: function(Blockly, token){//Token is used to separe events later
+  initializeGenerator: function(Blockly){
     //Blockly.Generator.COMMENT_WRAP = Infinity;
 
-    /* After that, we will cut the generated code by "<<token>>" where token is a randomly generated strings
-    We will get an array like :
-
-    [event_message_sent,
-    statements,
-    event_user_join,
-    statements]
+    /*
+    Events are now generated one by one directly in blockly_xml_to_js, so we don't need a token anymore.
+    Since the code of blocks inside an event are generated directly in xml_to_js, event by event, we don't need to cut a big string to separate events.
     */
 
     /*
@@ -58,38 +55,32 @@ module.exports = {
     /* ##### EVENTS blocks ##### */
     Blockly.JavaScript['event_message_sent'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_message_sent<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_message_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_message_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_message_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_message_updated<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_join'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_join<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_left'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_left<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_updated<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_var_message'] = function(block) {
@@ -124,20 +115,17 @@ module.exports = {
 
     Blockly.JavaScript['event_role_created'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_role_created<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_role_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_role_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_role_edited'] = function(block) {
       /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_role_edited<<"+token+">>"+statements;
-      return code;*/
+      return statements;*/
       return '';//Disabled : when a role is created, this event is sometimes triggered multiples times
     };
 
@@ -158,8 +146,7 @@ module.exports = {
 
     Blockly.JavaScript['event_user_banned'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_banned<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     /*  This event is disabled : Discord send the User but we can't get a GuildMember...
@@ -167,28 +154,24 @@ module.exports = {
 
     Blockly.JavaScript['event_user_unbanned'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_unbanned<<"+token+">>"+statements;
-      return code;
+      return statements;
     };*/
 
     /*  This event is disabled : Discord don't send the updated message, so we have to found it ourselves.
         This feature is planned, but require more development
     Blockly.JavaScript['event_pinned_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_pinned_updated<<"+token+">>"+statements;
-      return code;
+      return statements;
     };*/
 
     Blockly.JavaScript['event_user_voice_update'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_voice_update<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_user_start_writting'] = function(block) {
       /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_user_start_writting<<"+token+">>"+statements;
-      return code;*/
+      return statements;*/
       return '';//Disabled, always triggered multiple times when a bug message is written
     };
 
@@ -204,38 +187,32 @@ module.exports = {
 
     Blockly.JavaScript['event_text_channel_created'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_text_channel_created<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_text_channel_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_text_channel_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_text_channel_edited'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_text_channel_edited<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_voice_channel_created'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_voice_channel_created<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_voice_channel_deleted'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_voice_channel_deleted<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_voice_channel_edited'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_voice_channel_edited<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_var_text_channel'] = function(block) {
@@ -260,14 +237,12 @@ module.exports = {
 
     Blockly.JavaScript['event_reaction_added'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_reaction_added<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_reaction_removed'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
-      const code = "\n<<"+token+">>event_reaction_removed<<"+token+">>"+statements;
-      return code;
+      return statements;
     };
 
     Blockly.JavaScript['event_var_reaction'] = function(block) {
@@ -944,6 +919,18 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_user_rename'] = function(block) {
+      const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_user!=='' && value_name!==''){
+        const code = value_user+".setNickname("+value_name+");";
+        return code;
+      }else{
+        return '';
+      }
+    };
+
     /* ##### CHANNELS blocks ##### */
 
     Blockly.JavaScript['block_channel_create_text_channel'] = function(block) {
@@ -1307,6 +1294,16 @@ module.exports = {
       //const code = 'await CURRENT_GUILD.channels.fetch()';
       const code = '';//This block is disabled
       return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_channel_get_category_with_id'] = function(block) {
+      const value_category_id = Blockly.JavaScript.valueToCode(block, 'category_id', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_category_id!==''){
+        const code = "await CURRENT_GUILD.channels.fetch("+value_category_id+")";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        return ['', Blockly.JavaScript.ORDER_NONE];
+      }
     };
 
     /* ##### RANKS blocks ##### */
@@ -2060,6 +2057,134 @@ module.exports = {
       }else{
         return ['-1', Blockly.JavaScript.ORDER_NONE];
       }
+    };
+
+    /* ##### Slash commands blocks ##### */
+
+    Blockly.JavaScript['block_slash_command_creator'] = function(block) {
+      throw("We get values for this block directly in xml_to_js !");
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_boolean'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_name) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_name+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.boolean+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_int'] = function(block) {
+      const text_int = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_int) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_int+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.int+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_role'] = function(block) {
+      const text_role = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_role) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_role+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.role+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_string'] = function(block) {
+      const text_text = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_text) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_text+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.string+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_user'] = function(block) {
+      const text_user = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_user) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_user+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.user+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_reply'] = function(block) {
+      const value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_text!==""){
+        const code = 'interaction.editReply('+value_text+');\n';
+        return code;
+      }else{
+        return '';
+      }
+    };
+
+    Blockly.JavaScript['block_slash_command_arg_text_channel'] = function(block) {
+      const text_channel = block.getFieldValue('NAME');
+      const text_desc = block.getFieldValue('DESC');
+      const checkbox_required = block.getFieldValue('REQUIRED') === 'TRUE';
+
+      if(/^([a-z0-9]{3,28})$/.test(text_channel) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(text_desc)){
+        return '{"name":"'+text_channel+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.textChannel+'"},';
+      }
+      return '';
+    };
+
+    Blockly.JavaScript['block_slash_command_get_boolean'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getBoolean("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_int'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getNumber("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_role'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getRole("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_string'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getString("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_user'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getMember("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_get_text_channel'] = function(block) {
+      const text_name = block.getFieldValue('NAME');
+      const code = 'interaction.options.getChannel("'+text_name+'")';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_data_channel'] = function(block) {
+      const code = 'interaction.channel';
+      return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript['block_slash_command_data_user'] = function(block) {
+      const code = 'interaction.member';
+      return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### DISABLED blocks ##### */

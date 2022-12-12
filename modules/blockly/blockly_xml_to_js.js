@@ -1,11 +1,11 @@
 'use-strict';
-let Blockly = require('blockly');
+//let Blockly = require('blockly');
 const validateWorkspace = require('./validate_workspace.js');
 const guildsWorkspaces = require('../database/workspaces.js');
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
-  xml_to_js: async function(server_id, xml, Blockly, token, database_pool, logger, premium){
+  xml_to_js: async function(server_id, xml, Blockly, database_pool, logger, premium){
 
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
@@ -21,7 +21,9 @@ module.exports = {
        return(1);
      }
 
+     let slashCommandBlocks = [];//Will store the create slash commands blocks. Defined in the function under
      //Function used to try/catch when generating code. If an error occured, undefined is returned
+     //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
      function tryCodeGeneration(replacedXml, workspace){
        try{
          Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
@@ -33,85 +35,114 @@ module.exports = {
          }
 
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
-         if(validateWorkspace.checkIfDisabledBlocksUsed(workspace, premium))return('USED DISABLED BLOCKS !');
+         if(!validateWorkspace.checkIfCommandBlockCorrectlyDefined(workspace))return('INCORRECTLY PLACED COMMANDS BLOCKS !');
+         if(!validateWorkspace.checkIfRightNumberOfBlocksPerBlockUsed(workspace, premium))return('TOO MANY OF A BLOCK !');
 
-         const code = Blockly.JavaScript.workspaceToCode(workspace);
-         return code;
+         const topBlocks = workspace.getTopBlocks(false);//https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
+         let eventCodes = [];//Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
+
+         Blockly.JavaScript.init(workspace);
+
+         //For each top block, if this is an event block, we get his type and generate code
+         for(let i=0; i<topBlocks.length; i++){
+           if(topBlocks[i].type.startsWith("event_")){
+             const code = Blockly.JavaScript.blockToCode(topBlocks[i], false);
+             if(code.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Nothing in this event, useless to add it
+
+             eventCodes.push([topBlocks[i].type, code]);
+             //https://developers.google.com/blockly/reference/js/blockly.generator_class.blocktocode_1_method.md
+
+           }else if(topBlocks[i].type === "block_slash_command_creator"){
+             //This is a slash command creation block, we will store this block and work on it later
+             slashCommandBlocks.push(topBlocks[i]);//We will generate code for this just before sending SQL requests
+           }
+         }
+
+         return eventCodes;
        }catch(err){
          logger.error("Error while converting workspace to code for guild "+server_id+" : "+err);
          return undefined;
        }
-     }
-     const code = tryCodeGeneration(replacedXml, workspace);
-     if(code==undefined){return(1);}//An error occured, return here
-     else if(code==="TOO MANY BLOCKS !"){
+     }//End of function
+     const eventCodes = tryCodeGeneration(replacedXml, workspace);
+     if(eventCodes==undefined){return(1);}//An error occured, return here
+     else if(eventCodes==="TOO MANY BLOCKS !"){
        //User used too many blocks...
        logger.debug("Too many blocks error for guild "+server_id);
        return(1);
      }
-     else if(code==="USED DISABLED BLOCKS !"){
-       logger.debug("Disabled blocks used for guild "+server_id);
+     else if(eventCodes==="TOO MANY OF A BLOCK !"){
+       logger.debug("Too many blocks for one block type for guild "+server_id);
+       return(1);
+     }else if(eventCodes==="INCORRECTLY PLACED COMMANDS BLOCKS !"){
+       logger.debug("Incorrectly placed commands blocks for guild "+server_id);
        return(1);
      }
 
-
      logger.debug("Working on code for the guild "+server_id+"...");
 
-     let splittedCode = code.split('<<'+token+'>>');
-
-    splittedCode.splice(0,1);//Remove first index ( contain only comments or empty string )
-    //splittedCode = [trigger, code, trigger, code, ...]
-
-
      //creating Sql request
-     let splittedCodeToSend = [];
      let sql = 'INSERT INTO server_code (server_id, action_type, code) VALUES '
-     let sqlCompleted = false;//Check if at least a valid tupple is added to the sql string
      let args = [server_id];
 
-     for(var i=0; i<splittedCode.length; i=i+2){
-       //Loop to check that triggers and code are correctly defined
-
-       if(splittedCode[i]==undefined || splittedCode[i+1]==undefined){
-          //Event and actions must be defined
-          logger.debug("Error in code for "+server_id+" : Event or code is undefined. Cancelling...");
-         return(1);
-       }
-
-       if(splittedCode[i].includes("event_") && splittedCode[i]!='' && splittedCode[i+1].replaceAll(/(\r\n|\n|\r)/gm, '')!=''){//If trigger isn't event block, do nothing; If user added an action block without instruction, it will be removed
-         //Trigger event defined, code defined, and not just some \n
-         splittedCodeToSend.push(splittedCode[i], splittedCode[i+1]);
-       }
+     for(let i=0; i<eventCodes.length; i++){
+       //Loop to generate SQL request for events
+       args.push(eventCodes[i][0], eventCodes[i][1]);// [type, code]
+       sql = sql + ( (i>0) ? ',':'' ) + '($1, $'+(args.length-1)+', $'+(args.length)+')';
      }
 
-     for(var i=0; i<splittedCodeToSend.length; i=i+2){
-       //Loop to generate SQL request
+     let sqlRequests = []; // [ [request, args], [request, args] ]; will store requests and args to execute
+     sqlRequests.push(['BEGIN;', []]);
+     sqlRequests.push(['DELETE FROM server_code WHERE server_id = $1;', [server_id]]);
+     sqlRequests.push(['DELETE FROM commands_args WHERE command_id IN (SELECT command_id FROM commands WHERE server_id = $1)', [server_id]]);
+     sqlRequests.push(['DELETE FROM commands WHERE server_id = $1', [server_id]]);
 
-       args.push(splittedCodeToSend[i], splittedCodeToSend[i+1]);
-       sql = sql + ( (sqlCompleted) ? ',':'' ) + '($1, $'+(i+2)+', $'+(i+3)+')';
-       sqlCompleted=true;//At least one tuple was added
-
-     }
-
-     let sqlRequests; // [ [request, args], [request, args] ]; will store requests and args to execute
-     if(sqlCompleted){
+     if(eventCodes.length>0){
        //User sent a valid workspace
-       sqlRequests = [
-         ['BEGIN;', []],
-         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]],
-         [sql+';', args]
-       ];
+       sqlRequests.push([sql+';', args]);
+
        logger.debug("Created SQL request for code update of guild "+server_id+" : "+sql+"; args :"+args);
 
+     }else if(slashCommandBlocks.length>0){
+       //At least one slash command, but no events
+       logger.debug("Only commands to add to server "+server_id);
      }else{
        //Seem like the user sent a blank workspace, codes will be removed...
        replacedXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
        logger.debug("There isn't any code to add in the database for the guild "+server_id+", deleting active server code and workspace...");
+     }
+     let slashCommandsNames = [];//This list is used to check that no commands share the same name
 
-       sqlRequests = [
-         ['BEGIN;', []],
-         ['DELETE FROM server_code WHERE server_id = $1;', [server_id]]
-       ];
+     try{
+       for(let i=0; i<slashCommandBlocks.length; i++){
+         //Loop to generate SQL requests for slash commands
+         const name = slashCommandBlocks[i].getFieldValue('NAME');//We get name and desc for the command
+         const desc = slashCommandBlocks[i].getFieldValue('DESC');
+         const ephemeral = slashCommandBlocks[i].getFieldValue('EPHEMERAL') === 'TRUE';//Are the replies ephemeral or not ?
+
+         if(!( /^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,éèê.]{0,100})$/.test(desc) ) || slashCommandsNames.includes(name))continue;//We check name and desc. Name must be unique
+         const statements = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'STATEMENTS');//We can now get the code to execute
+         if(statements.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Something to execute must be provided
+
+         const jsonArgs = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'ARGS').slice(0, -1);//We remove a , at the end of the generated json. We got the args for the command. If there isn't any arg, return '' anyway
+         const commandArgs = JSON.parse("{\"args\": ["+jsonArgs+"]}");//Look in generator, but each arg is a JSON object
+         if(commandArgs.args.length>parseInt(process.env.COMMAND_MAX_ARGS))continue;//We check that this command don't have more than n args
+
+         logger.debug("Saving slash command "+name+" for guild "+server_id);
+
+         sqlRequests.push(["INSERT INTO commands (server_id, name, description, code, defined, ephemeral) VALUES ($1, $2, $3, $4, FALSE, $5);", [server_id, name, desc, statements, ephemeral]]);//Added the request to create the command
+         slashCommandsNames.push(name);
+
+         commandArgs.args.forEach((arg, i) => {//For each arg in this command
+           //SQL request to save this arg added
+           sqlRequests.push(["INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 )",
+           [server_id, name, arg.name, arg.desc, arg.required, arg.type]]);//Type defined in enums/commands_args_types.js
+         });
+
+       }
+     }catch(err){
+       logger.error("Error while handling custom commands for guild : "+server_id+" : "+err);//Error in commands blocks, we can stop here and send an error to client
+       return(1);
      }
 
      //Saving to Database

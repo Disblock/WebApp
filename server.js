@@ -207,16 +207,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 const blocklyBlocks = [require('./modules/blockly/blocks/channel_blocks.js').blocks,require('./modules/blockly/blocks/embed_blocks.js').blocks,require('./modules/blockly/blocks/event_blocks.js').blocks,
                       require('./modules/blockly/blocks/guild_blocks.js').blocks,require('./modules/blockly/blocks/message_blocks.js').blocks,require('./modules/blockly/blocks/rank_blocks.js').blocks,
                       require('./modules/blockly/blocks/user_blocks.js').blocks,require('./modules/blockly/blocks/color_blocks.js').blocks,require('./modules/blockly/blocks/var_blocks.js').blocks,
-                      require('./modules/blockly/blocks/emoji_blocks.js').blocks,require('./modules/blockly/blocks/miscellaneous_blocks.js').blocks];
+                      require('./modules/blockly/blocks/emoji_blocks.js').blocks,require('./modules/blockly/blocks/miscellaneous_blocks.js').blocks,require('./modules/blockly/blocks/slash_commands_blocks.js').blocks];
 blocklyBlocks.forEach(element => {
   Blockly.defineBlocksWithJsonArray(JSON.parse(element));
 });
 
 //Text definition
 Blockly = blockly_localization_en(Blockly);
-
-const blocklyToken = crypto.randomBytes(8).toString('hex');//Used to cut the string code later
-Blockly = blockly_generator.initializeGenerator(Blockly, blocklyToken);//Initialize generator
+Blockly = blockly_generator.initializeGenerator(Blockly);//Initialize generator
 
 /*############################################*/
 /* Rates limits */
@@ -429,7 +427,7 @@ app.get('/panel/:id/rollback/:workspaceId',async function(req, res){
   .then(async()=>{
     //User isn't rate limited
 
-    rollbackWorkspaceBackEnd(req, res, database_pool, logger, Blockly, blocklyToken);
+    rollbackWorkspaceBackEnd(req, res, database_pool, logger, redisClient, Blockly);
 
   })
   .catch(async(err)=>{
@@ -576,7 +574,7 @@ io.sockets.on('connect',async function(socket){
     .then(async()=>{
       //User isn't rate limited
 
-      sendWorkspaceSocketBackEnd(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly, blocklyToken);
+      sendWorkspaceSocketBackEnd(socket, server_id, data, callback, database_pool, logger, redisClient, Blockly);
 
     })
     .catch(async(err)=>{

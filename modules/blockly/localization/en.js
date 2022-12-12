@@ -422,6 +422,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Workspace
   Blockly.Msg["WORKSPACE_TAB_EVENTS"] = "Events";
+  Blockly.Msg["WORKSPACE_TAB_SLASH_COMMAND"] = "Slash commands";
   Blockly.Msg["WORKSPACE_TAB_MESSAGES"] = "Messages";
   Blockly.Msg["WORKSPACE_TAB_CHANNELS"] = "Channels & Threads";
   Blockly.Msg["WORKSPACE_TAB_USERS"] = "Users";
@@ -447,6 +448,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EVENTS_REACTION"] = "A reaction is added or removed from a message";
   Blockly.Msg["WORKSPACE_EVENTS_EXTRA"] = "Others";
 
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_CREATE"] = "Create a slash command";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ARGS"] = "Add arguments to a clash command";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Get the value of command arguments";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get command's data";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Do something when this command is used";
+
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Send a message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Delete a message";
   Blockly.Msg["WORKSPACE_MESSAGES_CREATE_THREAD"] = "Create a Thread";
@@ -460,6 +467,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_CHANNELS_EDIT"] = "Update a channel";
   Blockly.Msg["WORKSPACE_CHANNELS_GET_DATA"] = "Get channel's data";
   Blockly.Msg["WORKSPACE_CHANNELS_GET_CHANNEL"] = "Get a channel";
+  Blockly.Msg["WORKSPACE_CHANNELS_GET_CATEGORY"] = "Get a category";
 
   Blockly.Msg["WORKSPACE_USERS_SEND_MESSAGE"] = "Send private message";
   Blockly.Msg["WORKSPACE_USERS_MODERATE"] = "Manage users";
@@ -510,7 +518,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_PINNED_UPDATED"] = "A message was pinned or unpinned %1 %2";
   Blockly.Msg["EVENT_PINNED_UPDATED_TOOLTIP"] = "A message was pinned or unpinned";
   Blockly.Msg["EVENT_USER_VOICE_UPDATE"] = "An user moved from a voice channel %1 %2";
-  Blockly.Msg["EVENT_USER_VOICE_UPDATE_TOOLTIP"] = "An user joined, left or switched his voice channel";
+  Blockly.Msg["EVENT_USER_VOICE_UPDATE_TOOLTIP"] = "An user joined, left or switched voice channel";
   Blockly.Msg["EVENT_USER_START_WRITTING"] = "An user started writting %1 %2";
   Blockly.Msg["EVENT_USER_START_WRITTING_TOOLTIP"] = "An user started writting in a text channel";
   Blockly.Msg["EVENT_TEXT_CHANNEL_CREATED"] = "A text channel was created %1 %2";
@@ -645,8 +653,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_TOPIC_TOOLTIP"] = "Get the topic of a channel";
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID"] = "Channel's ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID_TOOLTIP"] = "Get the ID of a channel";
-  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Get a channel with his ID %1";
-  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Get a text, voice or Thread channel with his ID";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Get a channel with its ID %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Get a text, voice or Thread channel with an ID";
   Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION"] = "Check if user or role %1 has the permission %2 %3 in text or voice channel %4";
   Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION_TOOLTIP"] = "Check if user or role has a permission in given text or voice channel. Return True or False";
   Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] = "Define permission %2 %3 %4 for user or rank %1 in text or voice channel %5";
@@ -655,6 +663,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Get a list of all channels in the server";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT"] = "Count users in voice channel %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Return the number of users connected to the given voice channel";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Get a category with its ID %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Get a category with an ID";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";
@@ -709,7 +719,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_KICK"] = "Kick user %1 with reason %2";
   Blockly.Msg["BLOCK_USER_KICK_TOOLTIP"] = "Kick an user from the server with a reason";
   Blockly.Msg["BLOCK_USER_GET_WITH_ID"] = "Get user with ID %1";
-  Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Get an user with his ID. The user must be in the server or an error will occur";
+  Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Get an user with its ID. The user must be in the server or an error will occur";
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME"] = "Get member's nickname %1";
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME_TOOLTIP"] = "Get the nickname of a member";
   Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Get user's username %1";
@@ -752,6 +762,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Give a role to an user";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Remove from user %1 the role %2";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Remove a role from an user";
+  Blockly.Msg["BLOCK_USER_RENAME"] = "Rename user %1 with new name %2";
+  Blockly.Msg["BLOCK_USER_RENAME_TOOLTIP"] = "Give a new nickname to a user on your Discord server. The user must be moderatable by the bot";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Get Server ID";
@@ -784,7 +796,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_EDIT_POSITION"] = "Define role %1 position in hierarchy to %2";
   Blockly.Msg["BLOCK_RANK_EDIT_POSITION_TOOLTIP"] = "Define the position where this role will be in server's hierarchy";
   Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID"] = "Get role with ID %1";
-  Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID_TOOLTIP"] = "Get a role with his ID";
+  Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID_TOOLTIP"] = "Get a role with its ID";
   Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS"] = "Set permission %1 for role %2 to %3";
   Blockly.Msg["BLOCK_RANK_EDIT_PERMISSIONS_TOOLTIP"] = "Edit role permissions";
   Blockly.Msg["BLOCK_RANK_GET_NAME"] = "Get role name %1";
@@ -822,7 +834,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Color blocks
   Blockly.Msg["BLOCK_COLOR_HEX"] = "Color from hexadecimal code %1";
-  Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Get a color from his hexadecimal code";
+  Blockly.Msg["BLOCK_COLOR_HEX_TOOLTIP"] = "Get a color from an hexadecimal code";
 
   //Emojis blocks
   Blockly.Msg["BLOCK_EMOJI_GET_NAME"] = "Get emoji's name %1";
@@ -848,6 +860,40 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "String to number %1";
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "This block will transform a string into a number. It will return -1 if the string isn't a number";
 
+  //Slash commands blocks
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Create a slash command nammed %1 %2 With the description %3 %4 Ephemeral replies : %5 %6 With arguments %7 that will do %8";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Create a new Slash command for your server ! You can give a name, a description and add some arguments";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Add a boolean argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Add a boolean argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL"] = "Add a text channel argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP"] = "Add a text channel argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT"] = "Add an integer argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT_TOOLTIP"] = "Add an integer argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE"] = "Add a role argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP"] = "Add a role argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING"] = "add a text argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Add a text argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Add an user argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Add an user argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Reply to the command with the message %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Reply to a slash command. This block can only be used with a command, and may be only visible for the user who used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Get the boolean argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Get the value of a boolean argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT"] = "Get the integer argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] = "Get the value of an integer argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE"] = "Get the role argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] = "Get the value of a role argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING"] = "Get the text argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] = "Get the value of a text argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER"] = "Get the user argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Get the value of an user argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Get the text channel argument nammed %1";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Get the value of a text channel argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL"] = "Channel where this command was used";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Return the text channel where someone used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "User who ran this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Return the user who used this command";
+
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";
   Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "To use this variable, you must assign a value to it !";
@@ -861,6 +907,16 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "There is too much blocks in your workspace ! Please, try to use less blocks";
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "This don't looks like a valid custom emoji string. Try to send \\:your_emoji: in your server, and paste here the result."
   Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>."
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] = "The name or description contains an invalid character ! The name must have a length of at least 3, and must follow a-z0-9. The description can't include special characters";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] = "This block can only be placed in a slash command creator block";
+  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] = "The name of this block don't seems to be defined in command arguments";
+  Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"] = "This command has too many arguments !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"] = "This command has the same name as another command !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "This argument has the same name as another argument !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Required arguments can't be defined after optionnal arguments !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "You need to use a reply to command block within this block !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "You can't use this block here !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "There is a problem with a slash command block. Read the warning to learn more about that";
 
   //Types names
   Blockly.Msg["STRING"] = "String";
