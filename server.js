@@ -34,6 +34,7 @@ require('winston-daily-rotate-file');//Daily rotating files
 //These modules are used to store functions to run when a webpage is reached
 const indexBackEnd = require('./modules/pages_back_end/index.js');
 const discordLoginBackEnd = require('./modules/pages_back_end/discord_login.js');
+const discordBotAddedBackEnd = require('./modules/pages_back_end/bot_added.js');
 const panelBackEnd = require('./modules/pages_back_end/panel.js');
 const guildPanelBackEnd = require('./modules/pages_back_end/guild_panel.js');
 const guildRollbackBackEnd = require('./modules/pages_back_end/rollback_panel.js');
@@ -304,6 +305,22 @@ app.get('/discord_login',async function(req, res){
     //User isn't rate limited
 
     discordLoginBackEnd(req, res, database_pool, logger);
+
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+});
+
+/*-----------------------------------*/
+
+app.get('/bot_added',async function(req, res){
+  ratesLimitsRedis.consume(req.ip, 20)
+  .then(async()=>{
+    //User isn't rate limited
+
+    discordBotAddedBackEnd(req, res, database_pool, logger);
 
   })
   .catch(async(err)=>{
