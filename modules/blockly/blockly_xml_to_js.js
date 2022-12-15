@@ -120,7 +120,7 @@ module.exports = {
          const desc = slashCommandBlocks[i].getFieldValue('DESC');
          const ephemeral = slashCommandBlocks[i].getFieldValue('EPHEMERAL') === 'TRUE';//Are the replies ephemeral or not ?
 
-         if(!( /^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,200})$/.test(desc) ) || slashCommandsNames.includes(name))continue;//We check name and desc. Name must be unique
+         if(!( /^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(desc) ) || slashCommandsNames.includes(name))continue;//We check name and desc. Name must be unique
          const statements = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], 'STATEMENTS');//We can now get the code to execute
          if(statements.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Something to execute must be provided
 

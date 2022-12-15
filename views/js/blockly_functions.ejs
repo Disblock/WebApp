@@ -199,7 +199,7 @@ function validateWorkspace(workspace){
 
     //Names and descriptions most be valid
     if(blocks[i].type.startsWith("block_slash_command_arg") || blocks[i].type.startsWith("block_slash_command_creator")){
-      if(! /^([a-z0-9]{3,28})$/.test(blocks[i].getFieldValue('NAME')) || ! /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,200})$/.test(blocks[i].getFieldValue('DESC'))){//Regex also checked in back-end
+      if(! /^([a-z0-9]{3,28})$/.test(blocks[i].getFieldValue('NAME')) || ! /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(blocks[i].getFieldValue('DESC'))){//Regex also checked in back-end
         //NOT OK
         blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"]);
         foundError = true;
