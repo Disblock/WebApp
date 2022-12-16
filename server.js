@@ -175,7 +175,7 @@ redisClient.on('ready', ()=>{
 /*############################################*/
 
 var sessionMiddleware = session({
-  secret: ['@ptR9F=~Y&qDZ3jW<_{bGt/C:lsKBJqE', 'U5WHH,aR\IF~4gCKhgOQ2lJwQH=T-C>C', 'M+ll2BYkCy0|0ze<ZaS}]&6l,iHzSA5B'],
+  secret: [process.env.SESSION_COOKIES_SECRET],
   //Sessions are stored in Redis server
   store: redisDatabase,
   saveUninitialized: true,
