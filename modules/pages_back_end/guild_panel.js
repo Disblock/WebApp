@@ -6,6 +6,7 @@ const panel_localization_fr = require('../localization/panel_fr.js');
 const panel_localization_en = require('../localization/panel_en.js');
 const blockly_localization_fr = require('../blockly/localization/fr.js');//Add localization to the generator - FR
 const blockly_localization_en = require('../blockly/localization/en.js');//Add localization to the generator - EN
+const default_workspace = require('../blockly/default_workspace.js');//The default workspace is none found in database
 
 module.exports = async function(req, res, database_pool, logger, redisClient, blocklyBlocks){
 
@@ -37,7 +38,7 @@ module.exports = async function(req, res, database_pool, logger, redisClient, bl
         .then(async (data) => {
 
           //Check here if a previous workspace was saved
-          let workspace_xml = undefined;
+          let workspace_xml = default_workspace;//Default workspace loaded by default, and changed if another workspace found in database
           if(data.rows[0]){
             workspace_xml = data.rows[0].xml;
             logger.debug("A saved workspace was found for guild "+guild.id);
