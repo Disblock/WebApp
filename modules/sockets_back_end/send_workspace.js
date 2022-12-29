@@ -41,7 +41,7 @@ module.exports = async function(socket, server_id, data, callback, database_pool
 
 
     logger.info(socket.request.session.discord_id+" sent a new workspace via socket.io for the guild "+guild.id);
-    let result = blockly_xml_to_js.xml_to_js(server_id, data, Blockly, database_pool, logger, premium).then(async(result)=>{
+    blockly_xml_to_js.xml_to_js(server_id, data, Blockly, database_pool, logger, premium).then(async(result)=>{
 
       //Save this modification in logs
       let resultLog = await serverLogs.addEventToLogs(database_pool, server_id, socket.request.session.discord_id, serverLogs.eventType.updatedWorkspace, premium);
