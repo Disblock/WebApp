@@ -5,7 +5,7 @@ module.exports = {
   banned: 3,
   notFound: 4,
   tooManyBlocks: 5,
-  IncorrectlyPlacedBlocks: 6,
+  incorrectlyPlacedBlocks: 6,
   tooManyOfABlock: 7,
   invalidRegex: 8,
   rateLimitError: 9
