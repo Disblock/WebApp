@@ -5,6 +5,7 @@
 
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
 const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
+const workspaceErrorsEnum = require('./modules/enums/workspace_errors.js');//Enum that refer to possible errors while working on code sent by a server
 
 /*############################################*/
 /* Imported modules */
@@ -596,7 +597,7 @@ io.sockets.on('connect',async function(socket){
     })
     .catch(async(err)=>{
       //User is rate limited
-      callback({status: "NOT OK"});
+      callback({status: "NOT OK", errorCode: workspaceErrorsEnum.rateLimitError});
     });
 
 

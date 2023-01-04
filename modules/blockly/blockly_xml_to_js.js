@@ -2,6 +2,7 @@
 //let Blockly = require('blockly');
 const validateWorkspace = require('./validate_workspace.js');
 const guildsWorkspaces = require('../database/workspaces.js');
+const workspaceErrorsEnum = require('../enums/workspace_errors.js');//Enum that refer to possible errors while working on code sent by a server
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
@@ -18,7 +19,7 @@ module.exports = {
      */
      if(replacedXml.includes("<variables>") || replacedXml.includes("procedures_defreturn") || replacedXml.includes("procedures_defnoreturn")){
        logger.debug(server_id+" used blockly's functions or variables in workspace, stopping here...");
-       return(1);
+       return(workspaceErrorsEnum.error);
      }
 
      let slashCommandBlocks = [];//Will store the create slash commands blocks. Defined in the function under
@@ -65,18 +66,18 @@ module.exports = {
        }
      }//End of function
      const eventCodes = tryCodeGeneration(replacedXml, workspace);
-     if(eventCodes==undefined){return(1);}//An error occured, return here
+     if(eventCodes==undefined){return(workspaceErrorsEnum.error);}//An error occured, return here
      else if(eventCodes==="TOO MANY BLOCKS !"){
        //User used too many blocks...
        logger.debug("Too many blocks error for guild "+server_id);
-       return(1);
+       return(workspaceErrorsEnum.tooManyBlocks);
      }
      else if(eventCodes==="TOO MANY OF A BLOCK !"){
        logger.debug("Too many blocks for one block type for guild "+server_id);
-       return(1);
+       return(workspaceErrorsEnum.tooManyOfABlock);
      }else if(eventCodes==="INCORRECTLY PLACED COMMANDS BLOCKS !"){
        logger.debug("Incorrectly placed commands blocks for guild "+server_id);
-       return(1);
+       return(workspaceErrorsEnum.incorrectlyPlacedBlocks);
      }
 
      logger.debug("Working on code for the guild "+server_id+"...");
@@ -142,7 +143,7 @@ module.exports = {
        }
      }catch(err){
        logger.error("Error while handling custom commands for guild : "+server_id+" : "+err);//Error in commands blocks, we can stop here and send an error to client
-       return(1);
+       return(workspaceErrorsEnum.error);
      }
 
      //Saving to Database
@@ -169,7 +170,7 @@ module.exports = {
          logger.error("Can't rollback transaction : "+err2);
        }finally{
          client.release(err);//Release the client with an error, this should delete this client
-         return(1);
+         return(workspaceErrorsEnum.error);
        }
      }
 

@@ -192,7 +192,37 @@
       if(callback.status == "OK"){
         showWindow(true, "<%- locale.showWindowSendCodeSuccessTitle %>", "<%- locale.showWindowSendCodeSuccessText %>");
       }else{
-        showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", "<%- locale.showWindowSendCodeErrorText %>");
+        let message;
+        switch(callback.errorCode){
+          case errorsEnum.notLoggedIn:
+            message = "<%- locale.workspaceToJsNotLoggedIn %>";
+            break;
+          case errorsEnum.banned:
+            message = "<%- locale.workspaceToJsBanned %>";
+            break;
+          case errorsEnum.notFound:
+            message = "<%- locale.workspaceToJsNotFound %>";
+            break;
+          case errorsEnum.tooManyBlocks:
+            message = "<%- locale.workspaceToJsTooManyBlocks %>";
+            break;
+          case errorsEnum.incorrectlyPlacedBlocks:
+            message = "<%- locale.workspaceToJsIncorrectlyPlacedBlocks %>";
+            break;
+          case errorsEnum.tooManyOfABlock:
+            message = "<%- locale.workspaceToJsTooManyOfABlock %>";
+            break;
+          case errorsEnum.invalidRegex:
+            message = "<%- locale.workspaceToJsInvalidRegex %>";
+            break;
+          case errorsEnum.rateLimitError:
+            message = "<%- locale.workspaceToJsRateLimitError %>";
+            break;
+          default:
+            message = "<%- locale.workspaceToJsError %>";
+            break;
+        }
+        showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", message);
         console.log("ERROR : "+ callback.status);
       }
     });
