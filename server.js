@@ -6,6 +6,7 @@
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
 const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
 const workspaceErrorsEnum = require('./modules/enums/workspace_errors.js');//Enum that refer to possible errors while working on code sent by a server
+const startupSQL = require('./modules/startup_sql_queries.js');//SQL requests that must be executed on startup
 
 /*############################################*/
 /* Imported modules */
@@ -150,7 +151,15 @@ database_pool.query('SELECT NOW();', (err, res) => {
         logger.error("Can't connect to the Database when starting !");
         throw(err);
       }else{
-        logger.debug("Successfully connected to the Database !");
+        startupSQL(database_pool, logger)
+        .then(()=>{
+          logger.debug("Successfully connected to the Database and ran neccessary SQL requests !");
+        })
+        .catch((err)=>{
+          logger.error("Error while executing startup SQL queries : "+err);
+          throw(err);//This is a fatal error, so we can stop here
+        });
+
       }
 });
 
