@@ -1,5 +1,5 @@
 'use-strict';
-module.exports = async function(database_pool, logger){
+module.exports = async function(database_pool){
   /* Function used to run SQL requests that must be runned on startup ( to create or update the database schem ) */
 
   await database_pool.query(
@@ -201,8 +201,4 @@ module.exports = async function(database_pool, logger){
   await database_pool.query("CREATE INDEX IF NOT EXISTS i_commands_args_command_id ON commands_args (command_id);");
 
   await database_pool.query("INSERT INTO audit_log_actions VALUES (1, 'Updated Workspace'), (2, 'Rollbacked Workspace'), (3, 'Made this server Premium'), (4, 'Removed Premium') ON CONFLICT DO NOTHING;");
-
-  //logger.warn("OK");
-
-  //TODO : Add every neccessary requests here, so we don't need to create manually the database anymore
 }

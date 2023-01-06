@@ -151,7 +151,7 @@ database_pool.query('SELECT NOW();', (err, res) => {
         logger.error("Can't connect to the Database when starting !");
         throw(err);
       }else{
-        startupSQL(database_pool, logger)
+        startupSQL(database_pool)
         .then(()=>{
           logger.debug("Successfully connected to the Database and ran neccessary SQL requests !");
         })
