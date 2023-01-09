@@ -218,6 +218,9 @@
           case errorsEnum.rateLimitError:
             message = "<%- locale.workspaceToJsRateLimitError %>";
             break;
+          case errorsEnum.uncompleteBlock:
+            message = "<%- locale.workspaceToJsUncompleteBlock %>";
+            break;
           default:
             message = "<%- locale.workspaceToJsError %>";
             break;

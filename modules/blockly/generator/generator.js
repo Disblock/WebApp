@@ -1,5 +1,6 @@
 'use strict';
 const commands_args_types = require("../../enums/commands_args_types.js");
+const errors_types = require("../../enums/workspace_errors.js");
 
 module.exports = {
   initializeGenerator: function(Blockly){
@@ -261,7 +262,7 @@ module.exports = {
         const code = 'sentMessage = await '+value_message+".reply("+value_text+");\n";
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -273,7 +274,7 @@ module.exports = {
         const code = 'sentMessage = await '+value_channel+'.send('+value_text+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -284,7 +285,7 @@ module.exports = {
         const code = value_message+'.delete();\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -296,7 +297,7 @@ module.exports = {
         const code = value_channel+'.bulkDelete('+number_amount+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -308,7 +309,7 @@ module.exports = {
         const code = 'createdThreadOnMessage = await '+value_message+'.startThread({name: '+value_name+'});\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -319,7 +320,7 @@ module.exports = {
         const code = value_message+'.pin();\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -330,7 +331,7 @@ module.exports = {
         const code = value_message+'.unpin();\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -341,7 +342,7 @@ module.exports = {
         const code = value_message+'.content || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -352,7 +353,7 @@ module.exports = {
         const code = value_message+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -363,7 +364,7 @@ module.exports = {
         const code = value_message+'.member';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -374,7 +375,7 @@ module.exports = {
         const code = value_message+'.channel';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -385,7 +386,7 @@ module.exports = {
         const code = value_message+'.mentions.everyone';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -396,7 +397,7 @@ module.exports = {
         const code = value_message+'.mentions.members.size>0';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -407,7 +408,7 @@ module.exports = {
         const code = value_message+'.mentions.channels.size>0';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -419,7 +420,7 @@ module.exports = {
         const code = value_message+'.mentions.members.at(('+number_mention_index+'-1) % '+value_message+'.mentions.members.size)';// For us, Collection start at index 0, for users, a collection start at index 1
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -431,7 +432,7 @@ module.exports = {
         const code = value_message+'.mentions.channels.at(('+number_mention_index+'-1) % '+value_message+'.mentions.channels.size)';// For us, Collection start at index 0, for users, a collection start at index 1
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -442,7 +443,7 @@ module.exports = {
         const code = value_message+'.mentions.members.size';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -453,7 +454,7 @@ module.exports = {
         const code = value_message+'.mentions.channels.size';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -479,7 +480,7 @@ module.exports = {
         const code = value_user+'.ban({days:0,reason:'+value_reason+'});\n'
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -492,7 +493,7 @@ module.exports = {
         const code = 'CURRENT_GUILD.bans.remove('+value_user+', '+value_reason+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -504,7 +505,7 @@ module.exports = {
         const code = value_user+'.send('+value_message+'+"\\nCustom message sent from the server *"+CURRENT_GUILD.name+"*");\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -517,7 +518,7 @@ module.exports = {
         const code = value_user+'.kick('+value_reason+');\n'
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -528,7 +529,7 @@ module.exports = {
         const code = 'await CURRENT_GUILD.members.fetch('+value_id+')';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -539,7 +540,7 @@ module.exports = {
         const code = value_user+'.displayName || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -550,7 +551,7 @@ module.exports = {
         const code = value_user+'.user.username || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -561,7 +562,7 @@ module.exports = {
         const code = value_user+'.user.tag || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -572,7 +573,7 @@ module.exports = {
         const code = value_user+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -583,7 +584,7 @@ module.exports = {
         const code = value_user+'.avatarURL({dynamic:true}) || '+value_user+'.user.avatarURL({dynamic:true}) || \'https://cdn.discordapp.com/attachments/973567795189153802/995083353663488010/unknown.png\'';//Users can have a per guild avatar or a global avatar
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -594,7 +595,7 @@ module.exports = {
         const code = value_user+'.user.bot';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -605,7 +606,7 @@ module.exports = {
         const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setMute(true);}\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -616,7 +617,7 @@ module.exports = {
         const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setMute(false);}\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -627,7 +628,7 @@ module.exports = {
         const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setDeaf(true);}\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -638,7 +639,7 @@ module.exports = {
         const code = 'if('+value_user+'.voice.channel){'+value_user+'.voice.setDeaf(false);}\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -649,7 +650,7 @@ module.exports = {
         const code = value_user+'.isCommunicationDisabled()';//Users can have a per guild avatar or a global avatar
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -686,7 +687,7 @@ module.exports = {
         }
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -700,7 +701,7 @@ module.exports = {
         const code = value_user + '.timeout('+value_duration*1000+', '+value_reason+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -711,7 +712,7 @@ module.exports = {
         const code = value_user + '.timeout(null);\n';//Giving null as argument remove the timeout
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -845,7 +846,7 @@ module.exports = {
         }
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -857,7 +858,7 @@ module.exports = {
         const code = value_user+'.roles.cache.has('+value_rank+'.id)';//value_rank should be a string with the ID, or a role object
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -868,7 +869,7 @@ module.exports = {
         const code = '('+value_user+'.voice.channel!=undefined)';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -879,7 +880,7 @@ module.exports = {
         const code = value_user+'.voice.channel';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -891,7 +892,7 @@ module.exports = {
         const code = value_user+".voice.setChannel("+value_channel+");";
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -903,7 +904,7 @@ module.exports = {
         const code = value_user+".roles.add("+value_rank+");";
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -915,7 +916,7 @@ module.exports = {
         const code = value_user+".roles.remove("+value_rank+");";
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -927,7 +928,7 @@ module.exports = {
         const code = value_user+".setNickname("+value_name+");";
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -943,7 +944,7 @@ module.exports = {
         code = code + ((value_topic!=='') ? ', topic: '+value_topic+'});\n' : '});\n');
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -955,7 +956,7 @@ module.exports = {
         const code = 'createdVoiceChannel = await CURRENT_GUILD.channels.create({name:'+value_name+', type: Discord.ChannelType.GuildVoice, parent: '+value_category+'});\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -976,7 +977,7 @@ module.exports = {
         const code = value_channel+'.delete();\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -988,7 +989,7 @@ module.exports = {
         const code = value_channel+'.setName('+value_text+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -999,7 +1000,7 @@ module.exports = {
         const code = value_channel+'.parent';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1010,7 +1011,7 @@ module.exports = {
         const code = value_channel+'.name || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1021,7 +1022,7 @@ module.exports = {
         const code = value_channel+'.topic || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1032,7 +1033,7 @@ module.exports = {
         const code = value_channel+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1043,7 +1044,7 @@ module.exports = {
         const code = value_channel+'.members.size || 0';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1054,7 +1055,7 @@ module.exports = {
         const code = 'CURRENT_GUILD.channels.resolve('+value_channel_id+')';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1164,7 +1165,7 @@ module.exports = {
 
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1286,7 +1287,7 @@ module.exports = {
         }
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1302,7 +1303,7 @@ module.exports = {
         const code = "await CURRENT_GUILD.channels.fetch("+value_category_id+")";
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1319,7 +1320,7 @@ module.exports = {
         const code = 'createdRank = await CURRENT_GUILD.roles.create({name:'+value_name+', color:\''+colour_color+'\', position: '+value_position+', hoist: '+checkbox_are_members_shown+', mentionable: '+checkbox_is_pingeable+'});\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1335,7 +1336,7 @@ module.exports = {
         const code = value_rank+'.delete();\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1347,7 +1348,7 @@ module.exports = {
         const code = value_rank+'.setName('+value_name+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1359,7 +1360,7 @@ module.exports = {
         const code = value_rank+'.setColor(\''+colour_color+'\');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1371,7 +1372,7 @@ module.exports = {
         const code = value_rank+'.setMentionable('+( (dropdown_is_pingeable==='PINGEABLE') ? 'true' : 'false' )+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1383,7 +1384,7 @@ module.exports = {
         const code = value_rank+'.setHoist('+( (dropdown_are_member_shown==='SHOWN') ? 'true' : 'false' )+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1395,7 +1396,7 @@ module.exports = {
         const code = value_rank+'.setPosition('+value_position+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1406,7 +1407,7 @@ module.exports = {
         const code = 'CURRENT_GUILD.roles.resolve('+value_id+')';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1551,7 +1552,7 @@ module.exports = {
         return code;
 
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1562,7 +1563,7 @@ module.exports = {
         const code = value_rank+'.name || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1573,7 +1574,7 @@ module.exports = {
         const code = value_rank+'.position';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1584,7 +1585,7 @@ module.exports = {
         const code = value_rank+'.color || \'#000000\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1595,7 +1596,7 @@ module.exports = {
         const code = value_rank+'.id || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1731,7 +1732,7 @@ module.exports = {
         const code = value_rank+'.permissions.has('+currentPermission+', true)';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1752,7 +1753,7 @@ module.exports = {
         const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1763,7 +1764,7 @@ module.exports = {
         const code = '.setImage(('+value_image_url+'.substr(0, 7)==="http://" || '+value_image_url+'.substr(0, 8)==="https://")?'+value_image_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png")';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1774,7 +1775,7 @@ module.exports = {
         const code = '.setThumbnail(('+value_thumbnail_url+'.substr(0, 7)==="http://" || '+value_thumbnail_url+'.substr(0, 8)==="https://")?'+value_thumbnail_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png")';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1787,7 +1788,7 @@ module.exports = {
         const code = '.addFields({name:'+value_name+', value:'+value_text+', inline:'+( checkbox_inline ? 'true':'false' )+'})';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1801,7 +1802,7 @@ module.exports = {
         const code = '.setAuthor({name:'+value_name+' '+( (value_url!=='') ? ', url: ('+value_url+'.substr(0, 7)==="http://" || '+value_url+'.substr(0, 8)==="https://")?'+value_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"' : '')+' '+ ( (value_icon_url!=='') ? ', iconURL: ('+value_icon_url+'.substr(0, 7)==="http://" || '+value_icon_url+'.substr(0, 8)==="https://")?'+value_icon_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"' : '') +'})';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1814,7 +1815,7 @@ module.exports = {
         const code = '.setFooter({text: '+value_name+' '+ ( (value_icon_url!=='') ? ', iconURL: ('+value_icon_url+'.substr(0, 7)==="http://" || '+value_icon_url+'.substr(0, 8)==="https://")?'+value_icon_url+':"https://cdn.discordapp.com/attachments/973567795189153802/986035610206744626/Sans_titre.png"': '' ) +'})';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1832,7 +1833,7 @@ module.exports = {
         const code = value_channel+'.send({ embeds: ['+value_embed+'] });\n'
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1942,7 +1943,7 @@ module.exports = {
       //const dropdown_type = block.getFieldValue('TYPE');
 
       if(!/^[a-zA-Z0-9]{1,16}$/.test(text_name)){
-        throw("User gave an incorrect name to temporary variables : "+text_name);
+        throw(errors_types.invalidRegex);
       }
 
       if(value_input=='' || value_input==undefined){
@@ -1958,7 +1959,7 @@ module.exports = {
       const text_name = block.getFieldValue('NAME');
 
       if(!/^[a-zA-Z0-9]{1,16}$/.test(text_name)){
-        throw("User gave an incorrect name to temporary variables : "+text_name);
+        throw(errors_types.invalidRegex);
       }
 
       const code = 'temporaryStorage.'+text_name;
@@ -1974,7 +1975,7 @@ module.exports = {
       if(value_emoji!==''){
         return [value_emoji+'.name', Blockly.JavaScript.ORDER_NONE];
       }else{
-        return ['', Blockly.JavaScript.ORDER_NONE];
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -1985,7 +1986,7 @@ module.exports = {
       if(value_emoji!=='' && value_message!==''){
         return 'await sleep(1000).then(async()=>{'+value_message+".react("+value_emoji+");});\n";
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -2028,7 +2029,7 @@ module.exports = {
 
         return 'if('+value_message+'.reactions.resolve('+value_emoji+')){await sleep(1000).then(async()=>{'+value_message+'.reactions.resolve('+value_emoji+').users.remove('+value_user+');});}\n';
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
 
     };
@@ -2039,7 +2040,7 @@ module.exports = {
       if(value_message!==''){
         return value_message+'.reactions.removeAll();\n';
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -2062,7 +2063,8 @@ module.exports = {
     /* ##### Slash commands blocks ##### */
 
     Blockly.JavaScript['block_slash_command_creator'] = function(block) {
-      throw("We get values for this block directly in xml_to_js !");
+      //We get values for this block directly in xml_to_js !
+      throw(errors_types.error);
     };
 
     Blockly.JavaScript['block_slash_command_arg_boolean'] = function(block) {
@@ -2073,7 +2075,7 @@ module.exports = {
       if(/^([a-z0-9]{3,28})$/.test(text_name) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_name+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.boolean+'"},';
       }
-      return '';
+      throw(errors_types.uncompleteBlock);
     };
 
     Blockly.JavaScript['block_slash_command_arg_int'] = function(block) {
@@ -2084,7 +2086,7 @@ module.exports = {
       if(/^([a-z0-9]{3,28})$/.test(text_int) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_int+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.int+'"},';
       }
-      return '';
+      throw(errors_types.uncompleteBlock);
     };
 
     Blockly.JavaScript['block_slash_command_arg_role'] = function(block) {
@@ -2095,7 +2097,7 @@ module.exports = {
       if(/^([a-z0-9]{3,28})$/.test(text_role) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_role+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.role+'"},';
       }
-      return '';
+      throw(errors_types.uncompleteBlock);
     };
 
     Blockly.JavaScript['block_slash_command_arg_string'] = function(block) {
@@ -2106,7 +2108,7 @@ module.exports = {
       if(/^([a-z0-9]{3,28})$/.test(text_text) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_text+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.string+'"},';
       }
-      return '';
+      throw(errors_types.uncompleteBlock);
     };
 
     Blockly.JavaScript['block_slash_command_arg_user'] = function(block) {
@@ -2117,7 +2119,7 @@ module.exports = {
       if(/^([a-z0-9]{3,28})$/.test(text_user) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_user+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.user+'"},';
       }
-      return '';
+      throw(errors_types.uncompleteBlock);
     };
 
     Blockly.JavaScript['block_slash_command_reply'] = function(block) {
@@ -2126,7 +2128,7 @@ module.exports = {
         const code = 'interaction.editReply('+value_text+');\n';
         return code;
       }else{
-        return '';
+        throw(errors_types.uncompleteBlock);
       }
     };
 
@@ -2138,7 +2140,7 @@ module.exports = {
       if(/^([a-z0-9]{3,28})$/.test(text_channel) && /^([A-Za-z0-9 ,éèê.!?;\-:()€$£%*+/]{0,100})$/.test(text_desc)){
         return '{"name":"'+text_channel+'", "desc":"'+text_desc+'", "required": '+checkbox_required+', "type":"'+commands_args_types.textChannel+'"},';
       }
-      return '';
+      throw(errors_types.uncompleteBlock);
     };
 
     Blockly.JavaScript['block_slash_command_get_boolean'] = function(block) {

@@ -42,6 +42,7 @@ module.exports = {
   workspaceToJsTooManyOfABlock: "Il y a trop d'exemplaires d'un même block !",
   workspaceToJsInvalidRegex: "Une entrée de texte contient une valeur incorrecte !",
   workspaceToJsRateLimitError: "Patientez avant de réessayer !",
+  workspaceToJsUncompleteBlock: "Il y a un block incomplet dans votre code ! Essayez d'ajouter la valeur manquante avant de réessayer...",
 
   /* Rollback panel */
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",

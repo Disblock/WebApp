@@ -8,5 +8,6 @@ module.exports = {
   incorrectlyPlacedBlocks: 6,
   tooManyOfABlock: 7,
   invalidRegex: 8,
-  rateLimitError: 9
+  rateLimitError: 9,
+  uncompleteBlock: 10
 }
