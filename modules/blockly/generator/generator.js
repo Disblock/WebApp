@@ -559,7 +559,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!==''){
-        const code = value_user+'.user.tag || \'\'';
+        const code = value_user+'.user.tag.split("#")[1] || \'\'';
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         throw(errors_types.uncompleteBlock);
