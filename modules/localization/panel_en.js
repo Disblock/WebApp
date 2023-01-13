@@ -32,6 +32,18 @@ module.exports = {
   serverBannedTitle: "Server banned !",
   serverBannedText: "This server was disabled by an Administrator. Contact us if you believe this is an error.",
 
+  /* Back-end errors for workspace sending */
+  workspaceToJsError: "There was an error while processing your workspace !",
+  workspaceToJsNotLoggedIn: "You are not logged in !",
+  workspaceToJsBanned: "This server can't be accessed at the moment",
+  workspaceToJsNotFound: "Server not found ! Try to remove and add again the bot on your server",
+  workspaceToJsTooManyBlocks: "Too many blocks in the editor !",
+  workspaceToJsIncorrectlyPlacedBlocks: "Some blocks are incorrectly placed !",
+  workspaceToJsTooManyOfABlock: "There are too many copies of a same block !",
+  workspaceToJsInvalidRegex: "A text input contain an invalid value !",
+  workspaceToJsRateLimitError: "Please, wait before trying again !",
+  workspaceToJsUncompleteBlock: "There is an uncomplete block in your code ! Please add the missing value to this block before trying again...",
+
   /* Rollback panel */
   rollbackPageTitle: "Rollback to a previous state your server's workspace",
   rollbackPageText: "Here, you can rollback to an old state of your server's workspace. When you rollback to an old version, we will immediatly update the code executed by the bot to the restored version. If you rollback your workspace, the actual state will be restorable here.",

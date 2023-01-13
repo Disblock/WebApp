@@ -12,7 +12,7 @@ module.exports = async function(req, res, database_pool, logger){
       req.session.state = crypto.randomBytes(4).toString('hex');//State is regenered; to avoid some security issues
 
       if(url.parse(req.url,true).query.code!=undefined){
-        discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger);
+        discord_login.login(url.parse(req.url,true).query.code, database_pool, req, res, logger, 'identify guilds', process.env.REDIRECT_URL);
       }else{
         //User denied access, we can redirect him to the home page
         res.redirect('/');

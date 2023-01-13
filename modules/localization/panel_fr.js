@@ -32,6 +32,18 @@ module.exports = {
   serverBannedTitle: "Serveur banni !",
   serverBannedText: "Ce serveur a été banni par un administrateur. Contactez-nous si vous pensez que ceci est une erreur.",
 
+  /* Back-end errors for workspace sending */
+  workspaceToJsError: "Il y a eu une erreur durant le traitement de l'éditeur !",
+  workspaceToJsNotLoggedIn: "Vous n'êtes pas connecté !",
+  workspaceToJsBanned: "Ce serveur ne peut pas être modifié pour le moment !",
+  workspaceToJsNotFound: "Serveur non trouvé ! Essayez de retirer et de rajouter le bot sur votre serveur",
+  workspaceToJsTooManyBlocks: "Trop de blocks dans votre éditeur !",
+  workspaceToJsIncorrectlyPlacedBlocks: "Certains blocks sont mal placés !",
+  workspaceToJsTooManyOfABlock: "Il y a trop d'exemplaires d'un même block !",
+  workspaceToJsInvalidRegex: "Une entrée de texte contient une valeur incorrecte !",
+  workspaceToJsRateLimitError: "Patientez avant de réessayer !",
+  workspaceToJsUncompleteBlock: "Il y a un block incomplet dans votre code ! Essayez d'ajouter la valeur manquante avant de réessayer...",
+
   /* Rollback panel */
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",
   rollbackPageText: "Sur cette page, vous pouvez restaurer une ancienne sauvegarde de l'espace de travail du serveur. Une fois une ancienne version restaurée, le bot va immédiatement appliquer le code lié à cette ancienne version. En cas de restauration, l'espace de travail actuel est sauvegardé et restaurable ici.",

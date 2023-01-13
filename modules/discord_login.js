@@ -1,4 +1,5 @@
 'use-strict';
+const url = require('url');//Enable access to query string parameters
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const crypto = require('crypto');//Generate random strings
 const aesjs = require('aes-js');//Used to encrypt tokens
@@ -10,7 +11,7 @@ const pbkdf2Async = promisify(pbkdf2.pbkdf2).bind(pbkdf2);
 
 module.exports = {
   //Take the discord login code and a connection object to the database
-  login: async function(code, database_pool, req, res, logger){
+  login: async function(code, database_pool, req, res, logger, scope, redirect_uri){
 
     try{
       //Sending the code to get tokens
@@ -22,8 +23,8 @@ module.exports = {
 					client_secret: process.env.clientSecret,
 					code: code,
 					grant_type: 'authorization_code',
-					redirect_uri: process.env.REDIRECT_URL,
-					scope: 'identify guilds',
+					redirect_uri: redirect_uri,//Must be modified depending if direct login by user, or login when bot was added
+					scope: scope,
 				}),
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
@@ -49,7 +50,7 @@ module.exports = {
                 //Now, check if the user is already registered
                try{
                  if(!response.id){
-                   logger.error("Response from Discord : "+response);
+                   logger.error("Response from Discord : "+response.message);
                    throw("Invalid user ID sent by Discord API when logging in");
                  }//Throw an error if Discord didn't sent user's data
 
@@ -94,7 +95,14 @@ module.exports = {
                            req.session.save();
                            logger.debug("Saved session's data for user "+req.session.discord_id);
                            logger.info("User "+req.session.discord_id+" logged in");
-                           res.redirect('/panel');
+
+                           if(url.parse(req.url,true).query.guild_id){
+                             //Bot was added, we will redirect to the guild panel
+                             res.redirect('/panel/'+url.parse(req.url,true).query.guild_id);
+                           }else{
+                             res.redirect('/panel');
+                           }
+
                          }
                        });
 
@@ -119,7 +127,13 @@ module.exports = {
                            req.session.save();
                            logger.debug("Saved session's data for user "+req.session.discord_id);
                            logger.info("User "+req.session.discord_id+" registered");
-                           res.redirect('/panel');
+
+                           if(url.parse(req.url,true).query.guild_id){
+                             //Bot was added, we will redirect to the guild panel
+                             res.redirect('/panel/'+url.parse(req.url,true).query.guild_id);
+                           }else{
+                             res.redirect('/panel');
+                           }
                          }
                        });
 

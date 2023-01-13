@@ -175,6 +175,9 @@
   //We include here events for Blockly
   <%-include("../js/blockly_functions.ejs");%>
 
+  //Here, the enum that list all possibles errors after sending a workspace
+  const errorsEnum = JSON.parse('<%-errorsEnum%>');
+
   //Function to send workspace's blocks to the server :
   function sendWorkspaceToServer(){
     //We check here that everything seems OK
@@ -189,7 +192,40 @@
       if(callback.status == "OK"){
         showWindow(true, "<%- locale.showWindowSendCodeSuccessTitle %>", "<%- locale.showWindowSendCodeSuccessText %>");
       }else{
-        showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", "<%- locale.showWindowSendCodeErrorText %>");
+        let message;
+        switch(callback.errorCode){
+          case errorsEnum.notLoggedIn:
+            message = "<%- locale.workspaceToJsNotLoggedIn %>";
+            break;
+          case errorsEnum.banned:
+            message = "<%- locale.workspaceToJsBanned %>";
+            break;
+          case errorsEnum.notFound:
+            message = "<%- locale.workspaceToJsNotFound %>";
+            break;
+          case errorsEnum.tooManyBlocks:
+            message = "<%- locale.workspaceToJsTooManyBlocks %>";
+            break;
+          case errorsEnum.incorrectlyPlacedBlocks:
+            message = "<%- locale.workspaceToJsIncorrectlyPlacedBlocks %>";
+            break;
+          case errorsEnum.tooManyOfABlock:
+            message = "<%- locale.workspaceToJsTooManyOfABlock %>";
+            break;
+          case errorsEnum.invalidRegex:
+            message = "<%- locale.workspaceToJsInvalidRegex %>";
+            break;
+          case errorsEnum.rateLimitError:
+            message = "<%- locale.workspaceToJsRateLimitError %>";
+            break;
+          case errorsEnum.uncompleteBlock:
+            message = "<%- locale.workspaceToJsUncompleteBlock %>";
+            break;
+          default:
+            message = "<%- locale.workspaceToJsError %>";
+            break;
+        }
+        showWindow(false, "<%- locale.showWindowSendCodeErrorTitle %>", message);
         console.log("ERROR : "+ callback.status);
       }
     });

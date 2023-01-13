@@ -5,6 +5,8 @@
 
 const blockly_generator = require('./modules/blockly/generator/generator.js');//Blockly's generator, blocks to Discord.js
 const init_logs = require('./modules/init_logs.js');//Show a message in logs files and console when starting
+const workspaceErrorsEnum = require('./modules/enums/workspace_errors.js');//Enum that refer to possible errors while working on code sent by a server
+const startupSQL = require('./modules/startup_sql_queries.js');//SQL requests that must be executed on startup
 
 /*############################################*/
 /* Imported modules */
@@ -34,6 +36,7 @@ require('winston-daily-rotate-file');//Daily rotating files
 //These modules are used to store functions to run when a webpage is reached
 const indexBackEnd = require('./modules/pages_back_end/index.js');
 const discordLoginBackEnd = require('./modules/pages_back_end/discord_login.js');
+const discordBotAddedBackEnd = require('./modules/pages_back_end/bot_added.js');
 const panelBackEnd = require('./modules/pages_back_end/panel.js');
 const guildPanelBackEnd = require('./modules/pages_back_end/guild_panel.js');
 const guildRollbackBackEnd = require('./modules/pages_back_end/rollback_panel.js');
@@ -148,7 +151,15 @@ database_pool.query('SELECT NOW();', (err, res) => {
         logger.error("Can't connect to the Database when starting !");
         throw(err);
       }else{
-        logger.debug("Successfully connected to the Database !");
+        startupSQL(database_pool)
+        .then(()=>{
+          logger.debug("Successfully connected to the Database and ran neccessary SQL requests !");
+        })
+        .catch((err)=>{
+          logger.error("Error while executing startup SQL queries : "+err);
+          throw(err);//This is a fatal error, so we can stop here
+        });
+
       }
 });
 
@@ -174,7 +185,7 @@ redisClient.on('ready', ()=>{
 /*############################################*/
 
 var sessionMiddleware = session({
-  secret: ['@ptR9F=~Y&qDZ3jW<_{bGt/C:lsKBJqE', 'U5WHH,aR\IF~4gCKhgOQ2lJwQH=T-C>C', 'M+ll2BYkCy0|0ze<ZaS}]&6l,iHzSA5B'],
+  secret: [process.env.SESSION_COOKIES_SECRET],
   //Sessions are stored in Redis server
   store: redisDatabase,
   saveUninitialized: true,
@@ -304,6 +315,22 @@ app.get('/discord_login',async function(req, res){
     //User isn't rate limited
 
     discordLoginBackEnd(req, res, database_pool, logger);
+
+  })
+  .catch(async(err)=>{
+    //User is rate limited
+    res.status(429).end("Too many requests !");
+  });
+});
+
+/*-----------------------------------*/
+
+app.get('/bot_added',async function(req, res){
+  ratesLimitsRedis.consume(req.ip, 20)
+  .then(async()=>{
+    //User isn't rate limited
+
+    discordBotAddedBackEnd(req, res, database_pool, logger);
 
   })
   .catch(async(err)=>{
@@ -579,7 +606,7 @@ io.sockets.on('connect',async function(socket){
     })
     .catch(async(err)=>{
       //User is rate limited
-      callback({status: "NOT OK"});
+      callback({status: "NOT OK", errorCode: workspaceErrorsEnum.rateLimitError});
     });
 
 
