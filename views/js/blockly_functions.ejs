@@ -167,7 +167,7 @@ function validateWorkspace(workspace){
 
       if(blocks[i].getInputTargetBlock('emoji').type==='text'){//A text block is used a value for the emoji
 
-        if(/[a-zA-Z0-9]+/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
+        if(/^[a-zA-Z0-9]+$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
           //A custom emoji is used in this block. We will check that it's correctly defined. We check with a regex, because Discord's Ascii emojis shouldn't include a-Z0-9 chars.
 
           if(! /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
