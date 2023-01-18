@@ -1,0 +1,345 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="ACB0pGq$%M7^=jQl3VQx" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_data_storage_create_int</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="d0Z}h[NjqcUdPf7%fdR8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="T6?q%mGgi0l.dFyo^uv7">
+            <field name="TEXT">Créer le stockage de nombres nommé </field>
+            <next>
+              <block type="field_input" id="FS+_%]]/xH)29jh9RBIB">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">DATANAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="P3KAk{pPqNtE=k81^Gzk" deletable="false" movable="false">
+        <field name="TEXT">Ce block permet de définir un stockage de nombres</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ivFPdv6V{t5-/|wt~joq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="hoXy8q211t+Ym8[;Bx+}"></shadow>
+      <block type="type_other" id="at+#W4uhfN.[0If;@:Q2">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="{*u-0Yd3MWJLJ5@Lm_Y8"></shadow>
+      <block type="type_other" id="XZ$I[Pmo+idzZfr+sk?e">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=";w?j6p.|4x?bW*d5CEJ^">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ACB0pGq$%M7^=jQl3VQx" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_data_storage_create_string</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="d0Z}h[NjqcUdPf7%fdR8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="T6?q%mGgi0l.dFyo^uv7">
+            <field name="TEXT">Créer le stockage de texte nommé </field>
+            <next>
+              <block type="field_input" id="FS+_%]]/xH)29jh9RBIB">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">DATANAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="P3KAk{pPqNtE=k81^Gzk" deletable="false" movable="false">
+        <field name="TEXT">Ce block permet de définir un stockage de textes</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ivFPdv6V{t5-/|wt~joq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="#.[#1=YrL@9+D[j667v."></shadow>
+      <block type="type_other" id="N}]whavGN(`gtQplgir^">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="bEf@-$iJ6Dp{_)KGQUIE"></shadow>
+      <block type="type_other" id="M1$8?$:}.awtaA~GMAN,">
+        <field name="TYPE">block</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=";w?j6p.|4x?bW*d5CEJ^">
+        <mutation colour="#5ba567"></mutation>
+        <field name="HUE">130</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ACB0pGq$%M7^=jQl3VQx" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">block_data_storage_save_int</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="d0Z}h[NjqcUdPf7%fdR8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="T6?q%mGgi0l.dFyo^uv7">
+            <field name="TEXT">Sauvegarder dans le stockage de nombre </field>
+            <next>
+              <block type="field_input" id="FS+_%]]/xH)29jh9RBIB">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">DATANAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="GSf0$=x6uwMe`?gLYs,b">
+            <field name="INPUTNAME">VARNAME</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="rI~4M42!no9GrZuW#;w*">
+                <field name="TEXT">la variable</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="3=/W-7`wlOedQX8/DJM_"></shadow>
+              <block type="type_string" id="y(S$Ue}enqHc3~(3-EWv"></block>
+            </value>
+            <next>
+              <block type="input_value" id="8:+=14;s,i5Q3;c;q+jX">
+                <field name="INPUTNAME">VARCONTENT</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="E#YCP,qqKm6eb2`EFAK6">
+                    <field name="TEXT">contenant</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="3=/W-7`wlOedQX8/DJM_"></shadow>
+                  <block type="type_number" id=":^Z@5-#[IeoR,CtAG4Ms"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="P3KAk{pPqNtE=k81^Gzk" deletable="false" movable="false">
+        <field name="TEXT">Sauvegarder une valeur dans un stockage. Le nom de la variable peut être une chaine de charactères représentant l'ID d'un utilisateur par exemple, tandis que le contenu est un nombre d'XP</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ivFPdv6V{t5-/|wt~joq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=";w?j6p.|4x?bW*d5CEJ^">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ACB0pGq$%M7^=jQl3VQx" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">block_data_storage_save_string</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="d0Z}h[NjqcUdPf7%fdR8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="T6?q%mGgi0l.dFyo^uv7">
+            <field name="TEXT">Sauvegarder dans le stockage de texte</field>
+            <next>
+              <block type="field_input" id="FS+_%]]/xH)29jh9RBIB">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">DATANAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="GSf0$=x6uwMe`?gLYs,b">
+            <field name="INPUTNAME">VARNAME</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="rI~4M42!no9GrZuW#;w*">
+                <field name="TEXT">la variable</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="3=/W-7`wlOedQX8/DJM_"></shadow>
+              <block type="type_string" id="y(S$Ue}enqHc3~(3-EWv"></block>
+            </value>
+            <next>
+              <block type="input_value" id="8:+=14;s,i5Q3;c;q+jX">
+                <field name="INPUTNAME">VARCONTENT</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="E#YCP,qqKm6eb2`EFAK6">
+                    <field name="TEXT">contenant</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="3=/W-7`wlOedQX8/DJM_"></shadow>
+                  <block type="type_number" id=":^Z@5-#[IeoR,CtAG4Ms"></block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="P3KAk{pPqNtE=k81^Gzk" deletable="false" movable="false">
+        <field name="TEXT">Sauvegarder une valeur dans un stockage. Le nom de la variable peut être une chaine de charactères représentant l'ID d'un utilisateur par exemple, tandis que le contenu est un nombre d'XP</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ivFPdv6V{t5-/|wt~joq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=";w?j6p.|4x?bW*d5CEJ^">
+        <mutation colour="#5ba567"></mutation>
+        <field name="HUE">130</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ACB0pGq$%M7^=jQl3VQx" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_data_storage_get_int</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="d0Z}h[NjqcUdPf7%fdR8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="T6?q%mGgi0l.dFyo^uv7">
+            <field name="TEXT">Obtenir dans le stockage de nombre </field>
+            <next>
+              <block type="field_input" id="FS+_%]]/xH)29jh9RBIB">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">DATANAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="GSf0$=x6uwMe`?gLYs,b">
+            <field name="INPUTNAME">VARNAME</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="rI~4M42!no9GrZuW#;w*">
+                <field name="TEXT">la variable</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="3=/W-7`wlOedQX8/DJM_"></shadow>
+              <block type="type_string" id="y(S$Ue}enqHc3~(3-EWv"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="P3KAk{pPqNtE=k81^Gzk" deletable="false" movable="false">
+        <field name="TEXT">Récupérer une valeur depuis un stockage</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ivFPdv6V{t5-/|wt~joq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="YsCDL~TD|awu?I5yD%2c"></shadow>
+      <block type="type_number" id="n{Mzfs;Y28IVK{K-x}c,"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=";w?j6p.|4x?bW*d5CEJ^">
+        <mutation colour="#5b6da5"></mutation>
+        <field name="HUE">225</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ACB0pGq$%M7^=jQl3VQx" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_data_storage_get_string</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="d0Z}h[NjqcUdPf7%fdR8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="T6?q%mGgi0l.dFyo^uv7">
+            <field name="TEXT">Obtenir dans le stockage de texte </field>
+            <next>
+              <block type="field_input" id="FS+_%]]/xH)29jh9RBIB">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">DATANAME</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id="GSf0$=x6uwMe`?gLYs,b">
+            <field name="INPUTNAME">VARNAME</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="rI~4M42!no9GrZuW#;w*">
+                <field name="TEXT">la variable</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="3=/W-7`wlOedQX8/DJM_"></shadow>
+              <block type="type_string" id="y(S$Ue}enqHc3~(3-EWv"></block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="P3KAk{pPqNtE=k81^Gzk" deletable="false" movable="false">
+        <field name="TEXT">Récupérer une valeur depuis un stockage</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ivFPdv6V{t5-/|wt~joq" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="YsCDL~TD|awu?I5yD%2c"></shadow>
+      <block type="type_string" id="F?d@^bZB!iX/sk4OrKR;"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=";w?j6p.|4x?bW*d5CEJ^">
+        <mutation colour="#5ba567"></mutation>
+        <field name="HUE">130</field>
+      </block>
+    </value>
+  </block></xml>
