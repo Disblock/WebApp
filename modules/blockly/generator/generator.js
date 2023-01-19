@@ -698,7 +698,7 @@ module.exports = {
 
       if(value_user!=='' && value_duration!==''){
         if(value_reason===''){value_reason='\'Reason undefined\''}
-        const code = value_user + '.timeout('+value_duration*1000+', '+value_reason+');\n';
+        const code = value_user + '.timeout('+value_duration+'*1000, '+value_reason+');\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
