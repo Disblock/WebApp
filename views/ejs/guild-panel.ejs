@@ -49,40 +49,28 @@
     $("#requestFullscreen").css({"display":"none"});
     $("#cancelFullscreen").css({"display":"block"});
 
-    let element = document.getElementById("content_blockly");
-
-    if(element.requestFullscreen){
-      element.requestFullscreen();
-    }else if(element.mozRequestFullScreen){
-      element.mozRequestFullScreen();
-    }else if(element.webkitRequestFullscreen){
-      element.webkitRequestFullscreen();
-    }else if(element.msRequestFullscreen){
-      element.msRequestFullscreen();
-    }
+    $("#content_blockly").addClass("full_screen_mode");
+    Blockly.svgResize(workspace);
 
   });
   $("#cancelFullscreen").click(function(){
     $("#cancelFullscreen").css({"display":"none"});
     $("#requestFullscreen").css({"display":"block"});
 
-    if(document.exitFullscreen){
-      document.exitFullscreen();
-    }else if(document.mozCancelFullScreen){
-      document.mozCancelFullScreen();
-    }else if(document.webkitExitFullscreen){
-      document.webkitExitFullscreen();
-    }else if(document.msExitFullscreen){
-      document.msExitFullscreen();
-    }
+    $("#content_blockly").removeClass("full_screen_mode");
+    Blockly.svgResize(workspace);
 
   });
 
-  document.getElementById('content_blockly').addEventListener('fullscreenchange', (event) => {
-    if(document.fullscreenElement==null){
-      //Will exit
+  //Remove full screen mode if esc pressed
+  $(document).on('keydown', function(event){
+    if(event.key == "Escape" && $("#content_blockly").hasClass("full_screen_mode")){
+      //Esc key pressed and full screen enabled
       $("#cancelFullscreen").css({"display":"none"});
       $("#requestFullscreen").css({"display":"block"});
+
+      $("#content_blockly").removeClass("full_screen_mode");
+      Blockly.svgResize(workspace);
     }
   });
 
@@ -130,7 +118,7 @@
     'startHats': true
   });
 
-  var options = {
+  let options = {
     toolbox : toolbox,
     collapse : true,
     comments : true,
