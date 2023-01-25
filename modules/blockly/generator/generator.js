@@ -2189,6 +2189,70 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
+    /* ##### Data storage blocks ##### */
+    //Blocks used to manage data in the database
+    Blockly.JavaScript['block_data_storage_create_int'] = function(block) {
+      //const text_dataname = block.getFieldValue('DATANAME');
+
+      //We get values for this block directly in xml_to_js !
+      throw(errors_types.error);
+    };
+
+    Blockly.JavaScript['block_data_storage_create_string'] = function(block) {
+      //const text_dataname = block.getFieldValue('DATANAME');
+
+      //We get values for this block directly in xml_to_js !
+      throw(errors_types.error);
+    };
+
+    Blockly.JavaScript['block_data_storage_save_int'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_varcontent = Blockly.JavaScript.valueToCode(block, 'VARCONTENT', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != '' && value_varcontent != ''){
+        return "dataStorage.saveValue('"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_save_string'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_varcontent = Blockly.JavaScript.valueToCode(block, 'VARCONTENT', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != '' && value_varcontent != ''){
+        return "dataStorage.saveValue('"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_get_int'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        const code = "strToInt((await dataStorage.getValue('"+text_dataname+"', "+value_varname+")))";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_get_string'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        const code = "await dataStorage.getValue('"+text_dataname+"', "+value_varname+")";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled
     //These blocks are removed / commented in toolbox.ejs
