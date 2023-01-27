@@ -259,7 +259,7 @@ module.exports = {
       const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_message!=='' && value_text!==''){
-        const code = 'sentMessage = await '+value_message+".reply("+value_text+");\n";
+        const code = 'sentMessage = await '+value_message+".reply(("+value_text+").replaceAll(\'<br>\', \'\\n\'));\n";
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -271,7 +271,7 @@ module.exports = {
       const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_channel!=='' && value_text!==''){
-        const code = 'sentMessage = await '+value_channel+'.send('+value_text+');\n';
+        const code = 'sentMessage = await '+value_channel+'.send(('+value_text+').replaceAll(\'<br>\', \'\\n\'));\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -502,7 +502,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!=='' && value_message!==''){
-        const code = value_user+'.send('+value_message+'+"\\nCustom message sent from the server *"+CURRENT_GUILD.name+"*");\n';
+        const code = value_user+'.send(('+value_message+').replaceAll(\'<br>\', \'\\n\')+"\\nCustom message sent from the server *"+CURRENT_GUILD.name+"*");\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -1750,7 +1750,7 @@ module.exports = {
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_color!==''){
-        const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
+        const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription(('+value_description+').replaceAll(\'<br>\', \'\\n\')).setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -1785,7 +1785,7 @@ module.exports = {
       const checkbox_inline = block.getFieldValue('inline') === 'TRUE';
 
       if(value_name!=='' && value_text!==''){
-        const code = '.addFields({name:'+value_name+', value:'+value_text+', inline:'+( checkbox_inline ? 'true':'false' )+'})';
+        const code = '.addFields({name:'+value_name+', value:('+value_text+').replaceAll(\'<br>\', \'\\n\'), inline:'+( checkbox_inline ? 'true':'false' )+'})';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
