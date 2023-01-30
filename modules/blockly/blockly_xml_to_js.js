@@ -51,7 +51,7 @@ module.exports = {
              if(code.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Nothing in this event, useless to add it
 
              eventCodes.push([topBlocks[i].type, code]);
-             //https://developers.google.com/blockly/reference/js/blockly.generator_class.blocktocode_1_method.md
+             //https://developers.google.com/blockly/reference/js/blockly.codegenerator_class.blocktocode_1_method.md
 
            }else if(topBlocks[i].type === "block_slash_command_creator"){
              //This is a slash command creation block, we will store this block and work on it later
