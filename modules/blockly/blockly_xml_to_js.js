@@ -23,6 +23,7 @@ module.exports = {
      }
 
      let slashCommandBlocks = [];//Will store the create slash commands blocks. Defined in the function under
+     let defineDataStorageBlocks = [];//Will store the blocks used to define a new data storage
      //Function used to try/catch when generating code. If an error occured, undefined is returned
      //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
      function tryCodeGeneration(replacedXml, workspace){
@@ -56,6 +57,9 @@ module.exports = {
            }else if(topBlocks[i].type === "block_slash_command_creator"){
              //This is a slash command creation block, we will store this block and work on it later
              slashCommandBlocks.push(topBlocks[i]);//We will generate code for this just before sending SQL requests
+           }else if(topBlocks[i].type.startsWith("block_data_storage_create_")){
+             //Data storage block
+             defineDataStorageBlocks.push(topBlocks[i]);//Blocks names will be sent to an PLPGSQL function, that will create or delete storages if needed
            }
          }
 
@@ -141,6 +145,17 @@ module.exports = {
          });
 
        }
+       //We will now work on data storages for this server
+       let newStoragesNames = [];
+       for(let i=0; i<defineDataStorageBlocks.length; i++){//For every define storage block
+         const storageName = defineDataStorageBlocks[i].getFieldValue('DATANAME');//We get the name of the storage
+         if(/^([A-Za-z0-9]{3,28})$/.test(storageName)){//Only if name is valid
+           newStoragesNames.push(storageName);//We save this name to send it to database
+         }
+       }
+
+       //sqlRequest.push(["TODO . . .", [newStoragesNames]]);
+       logger.warn("TODO : Storages names for this workspace : "+newStoragesNames);
      }catch(err){
        logger.error("Error while handling custom commands for guild : "+server_id+" : "+err);//Error in commands blocks, we can stop here and send an error to client
        return(workspaceErrorsEnum.error);
