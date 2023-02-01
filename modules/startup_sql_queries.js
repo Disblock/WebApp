@@ -200,5 +200,47 @@ module.exports = async function(database_pool){
   await database_pool.query("CREATE INDEX IF NOT EXISTS i_commands_server_and_name ON commands (server_id, name);");
   await database_pool.query("CREATE INDEX IF NOT EXISTS i_commands_args_command_id ON commands_args (command_id);");
 
+  await database_pool.query("CREATE OR REPLACE FUNCTION f_update_data_storages_for_guild(f_serverid servers.server_id%TYPE, VARIADIC f_storagesNames VARCHAR[] DEFAULT ARRAY[]::VARCHAR[]) \
+  RETURNS VOID \
+  LANGUAGE PLPGSQL \
+  AS $$ \
+  DECLARE \
+    v_server_exists INTEGER; \
+    v_current_storage_name VARCHAR; \
+  BEGIN \
+    SELECT COUNT(*) INTO v_server_exists \
+    FROM servers \
+    WHERE server_id = f_serverid; \
+    IF v_server_exists = 0 THEN \
+      RAISE EXCEPTION 'Server with id % does not exist', f_serverid; \
+    END IF; \
+    FOREACH v_current_storage_name IN ARRAY f_storagesNames LOOP \
+      IF v_current_storage_name NOT SIMILAR TO '(S|I)%' THEN \
+        RAISE EXCEPTION 'Invalid storage name: %', v_current_storage_name; \
+      END IF; \
+      IF NOT EXISTS ( \
+        SELECT 1 \
+        FROM data_storage \
+        WHERE server_id = f_serverid \
+          AND storage_name = v_current_storage_name \
+      ) THEN \
+        INSERT INTO data_storage (server_id, storage_name, storage_is_int) \
+        VALUES (f_serverid, v_current_storage_name, v_current_storage_name SIMILAR TO 'I%'); \
+      END IF; \
+    END LOOP; \
+    DELETE FROM stored_data \
+    WHERE storage_id IN ( \
+      SELECT storage_id \
+      FROM data_storage \
+      WHERE server_id = f_serverid \
+        AND storage_name NOT IN ( \
+          SELECT * FROM UNNEST(f_storagesNames) \
+        ));\
+    DELETE FROM data_storage \
+    WHERE server_id = f_serverid \
+      AND storage_name NOT IN (SELECT * FROM UNNEST(f_storagesNames)); \
+  END; \
+  $$;");
+
   await database_pool.query("INSERT INTO audit_log_actions VALUES (1, 'Updated Workspace'), (2, 'Rollbacked Workspace'), (3, 'Made this server Premium'), (4, 'Removed Premium') ON CONFLICT DO NOTHING;");
 }
