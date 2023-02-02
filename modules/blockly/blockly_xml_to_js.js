@@ -146,16 +146,18 @@ module.exports = {
 
        }
        //We will now work on data storages for this server
-       let newStoragesNames = [];
+       let newStoragesNames = [server_id];//We pass the server ID since it's the first arg of the SQL function
+       sqlStoragesRequest = "SELECT f_update_data_storages_for_guild($1";
        for(let i=0; i<defineDataStorageBlocks.length; i++){//For every define storage block
          const storageName = defineDataStorageBlocks[i].getFieldValue('DATANAME');//We get the name of the storage
          if(/^([A-Za-z0-9]{3,28})$/.test(storageName)){//Only if name is valid
-           newStoragesNames.push(storageName);//We save this name to send it to database
+           newStoragesNames.push((defineDataStorageBlocks[i].type == "block_data_storage_create_string" ? "S" : "I") + storageName);//We save this name to send it to database
+           sqlStoragesRequest = sqlStoragesRequest + ", $"+(i+2);//Indexes start at 1, and since 1 is already taken, we must do 0->2
          }
        }
-
-       //sqlRequest.push(["TODO . . .", [newStoragesNames]]);
-       logger.warn("TODO : Storages names for this workspace : "+newStoragesNames);
+       sqlStoragesRequest = sqlStoragesRequest + ");";//We can now finish the SQL request
+       sqlRequests.push([sqlStoragesRequest, newStoragesNames]);//And add this request to the list of requests
+       
      }catch(err){
        logger.error("Error while handling custom commands for guild : "+server_id+" : "+err);//Error in commands blocks, we can stop here and send an error to client
        return(workspaceErrorsEnum.error);
