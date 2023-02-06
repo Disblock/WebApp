@@ -148,7 +148,8 @@ module.exports = async function(database_pool){
       storage_id int,\
       data_key varchar(32) NOT NULL,\
       data varchar(256),\
-      CONSTRAINT fk_stored_data_storage FOREIGN KEY (storage_id) REFERENCES data_storage (storage_id)\
+      CONSTRAINT fk_stored_data_storage FOREIGN KEY (storage_id) REFERENCES data_storage (storage_id),\
+      CONSTRAINT u_names UNIQUE(storage_id, data_key)\
     );"
   );
 
