@@ -39,6 +39,7 @@ module.exports = {
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
          if(!validateWorkspace.checkIfCommandBlockCorrectlyDefined(workspace))return('INCORRECTLY PLACED COMMANDS BLOCKS !');
          if(!validateWorkspace.checkIfRightNumberOfBlocksPerBlockUsed(workspace, premium))return('TOO MANY OF A BLOCK !');
+         if(!validateWorkspace.checkIfDataStorageCorrectlyDefined(workspace))return('ERROR WITH DATA STORAGE !');
 
          const topBlocks = workspace.getTopBlocks(false);//https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
          let eventCodes = [];//Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
@@ -82,6 +83,9 @@ module.exports = {
      }else if(eventCodes==="INCORRECTLY PLACED COMMANDS BLOCKS !"){
        logger.debug("Incorrectly placed commands blocks for guild "+server_id);
        return(workspaceErrorsEnum.incorrectlyPlacedBlocks);
+     }else if(eventCodes==="ERROR WITH DATA STORAGE !"){
+       logger.debug("Incorrectly used storage blocks for guild "+server_id);
+       return(workspaceErrorsEnum.errorWithStorageBlocks);
      }
 
      logger.debug("Working on code for the guild "+server_id+"...");
@@ -157,7 +161,7 @@ module.exports = {
        }
        sqlStoragesRequest = sqlStoragesRequest + ");";//We can now finish the SQL request
        sqlRequests.push([sqlStoragesRequest, newStoragesNames]);//And add this request to the list of requests
-       
+
      }catch(err){
        logger.error("Error while handling custom commands for guild : "+server_id+" : "+err);//Error in commands blocks, we can stop here and send an error to client
        return(workspaceErrorsEnum.error);

@@ -43,6 +43,7 @@ module.exports = {
   workspaceToJsInvalidRegex: "Une entrée de texte contient une valeur incorrecte !",
   workspaceToJsRateLimitError: "Patientez avant de réessayer !",
   workspaceToJsUncompleteBlock: "Il y a un block incomplet dans votre code ! Essayez d'ajouter la valeur manquante avant de réessayer...",
+  errorWithStorageBlocks: "Il y a une erreur avec les blocks de stockage de données ! Essayez de vérifier que tout est correct avant de réessayer...",
 
   /* Rollback panel */
   rollbackPageTitle: "Restaurer une sauvegarde de l'espace de travail de votre serveur",

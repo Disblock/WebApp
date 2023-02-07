@@ -9,5 +9,6 @@ module.exports = {
   tooManyOfABlock: 7,
   invalidRegex: 8,
   rateLimitError: 9,
-  uncompleteBlock: 10
+  uncompleteBlock: 10,
+  errorWithStorageBlocks: 11
 }
