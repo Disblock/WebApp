@@ -2211,7 +2211,7 @@ module.exports = {
       const value_varcontent = Blockly.JavaScript.valueToCode(block, 'VARCONTENT', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != '' && value_varcontent != ''){
-        return "dataStorage.saveValue('"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";
+        return "dataStorage.saveValue('I"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";// At the start of data names, there is S or I to detect String or Int storages
       }else{
         throw(errors_types.uncompleteBlock);
       }
@@ -2223,7 +2223,7 @@ module.exports = {
       const value_varcontent = Blockly.JavaScript.valueToCode(block, 'VARCONTENT', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != '' && value_varcontent != ''){
-        return "dataStorage.saveValue('"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";
+        return "dataStorage.saveValue('S"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";
       }else{
         throw(errors_types.uncompleteBlock);
       }
@@ -2234,7 +2234,7 @@ module.exports = {
       const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
-        const code = "strToInt((await dataStorage.getValue('"+text_dataname+"', "+value_varname+")))";
+        const code = "strToInt((await dataStorage.getValue('I"+text_dataname+"', "+value_varname+")))";
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         throw(errors_types.uncompleteBlock);
@@ -2246,7 +2246,7 @@ module.exports = {
       const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
-        const code = "await dataStorage.getValue('"+text_dataname+"', "+value_varname+")";
+        const code = "await dataStorage.getValue('S"+text_dataname+"', "+value_varname+")";
         return [code, Blockly.JavaScript.ORDER_NONE];
       }else{
         throw(errors_types.uncompleteBlock);

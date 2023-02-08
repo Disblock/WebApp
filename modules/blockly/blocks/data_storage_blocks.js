@@ -81,7 +81,7 @@ module.exports = {
     {
       "type": "input_value",
       "name": "VARCONTENT",
-      "check": "Number"
+      "check": "String"
     }
   ],
   "inputsInline": true,
