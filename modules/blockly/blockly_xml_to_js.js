@@ -157,6 +157,9 @@ module.exports = {
          if(/^([A-Za-z0-9]{3,28})$/.test(storageName)){//Only if name is valid
            newStoragesNames.push((defineDataStorageBlocks[i].type == "block_data_storage_create_string" ? "S" : "I") + storageName);//We save this name to send it to database
            sqlStoragesRequest = sqlStoragesRequest + ", $"+(i+2);//Indexes start at 1, and since 1 is already taken, we must do 0->2
+         }else{
+           logger.debug("Invalid storage name for guild "+server_id);
+           return(workspaceErrorsEnum.errorWithStorageBlocks);
          }
        }
        sqlStoragesRequest = sqlStoragesRequest + ");";//We can now finish the SQL request
