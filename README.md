@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/github/package-json/v/Disblock/WebApp/master?color=green&label=Version)
 # Disblock
 
 Disblock is a totally customizable Discord Bot.
