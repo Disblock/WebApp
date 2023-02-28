@@ -201,6 +201,12 @@ module.exports = async function(database_pool){
   await database_pool.query("CREATE INDEX IF NOT EXISTS i_commands_server_and_name ON commands (server_id, name);");
   await database_pool.query("CREATE INDEX IF NOT EXISTS i_commands_args_command_id ON commands_args (command_id);");
 
+  /*
+  Function used to update datas storages for a server
+  First, the function check that the server exists
+  Then, we check that storage names starts with S or I ( String or Integer ) and insert new storages that doesn't exists in database
+  Finally, every storage not passed as arg of this function is deleted. Data first, then storages themselves.
+  */
   await database_pool.query("CREATE OR REPLACE FUNCTION f_update_data_storages_for_guild(f_serverid servers.server_id%TYPE, VARIADIC f_storagesNames VARCHAR[] DEFAULT ARRAY[]::VARCHAR[]) \
   RETURNS VOID \
   LANGUAGE PLPGSQL \
@@ -242,6 +248,25 @@ module.exports = async function(database_pool){
       AND storage_name NOT IN (SELECT * FROM UNNEST(f_storagesNames)); \
   END; \
   $$;");
+
+  /*
+  This function is used to manage stored data.
+  First, we delete the old var to avoid getting an error from the UNIQUE counstraint
+  Then, we can add a new row, and save the new value for the variable
+  */
+  await database_pool.query(
+    "CREATE OR REPLACE FUNCTION f_insert_or_update_data(f_serverid servers.server_id%TYPE, f_storage_name data_storage.storage_name%TYPE, f_data_key stored_data.data_key%TYPE, f_data stored_data.data%TYPE)\
+    RETURNS VOID AS $$\
+    BEGIN\
+    DELETE FROM stored_data\
+    WHERE storage_id = (SELECT storage_id FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name)\
+    AND data_key = f_data_key;\
+    \
+    INSERT INTO stored_data (storage_id, data_key, data) VALUES (\
+    (SELECT storage_id FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name), f_data_key, f_data);\
+    END;\
+    $$ LANGUAGE plpgsql;"
+  );
 
   await database_pool.query("INSERT INTO audit_log_actions VALUES (1, 'Updated Workspace'), (2, 'Rollbacked Workspace'), (3, 'Made this server Premium'), (4, 'Removed Premium') ON CONFLICT DO NOTHING;");
 }
