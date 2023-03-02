@@ -9,7 +9,7 @@ module.exports = async function(database_pool, logger, discordId){
   /* This function is used to regenerate the token of an user, with the savec regen_token. */
 
   //Getting user's refresh token
-  logger.info("Now trying to refresh the token of user "+ discordId);
+  logger.debug("Now trying to refresh the token of user "+ discordId);
   logger.debug("Sending an SQL request to the database : Get refresh token from user with ID "+discordId);
 
   try{

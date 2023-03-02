@@ -2,6 +2,7 @@
 const discord_get_servers = require('../discord_get_servers.js');//Used to get user's Discord guilds ( Where has an admin access )
 const check_guild_access = require('../check_access_to_guild.js');//Used to check if an user has an admin permission on a guild
 const guilds_database = require('../database/guilds.js');//Used to check in database if a server exist and if this server is premium
+const get_user_from_id = require('../utils/get_user_from_id.js');//Used to get user data from Discord API
 const panel_localization_fr = require('../localization/panel_fr.js');
 const panel_localization_en = require('../localization/panel_en.js');
 
@@ -34,9 +35,32 @@ module.exports = async function(req, res, database_pool, logger, redisClient){
         //User is admin on the selected server
 
         //Get saved logs for this guild :
-        database_pool.query('SELECT actions.action, action_date, staff_action, users.username, users.avatar, users.user_id FROM audit_log INNER JOIN audit_log_actions AS actions ON actions.audit_action_id=audit_log.action INNER JOIN users ON audit_log.user_id=users.user_id WHERE server_id=$1 ORDER BY action_date DESC LIMIT $2;', [String(req.params.id), process.env.P_MAX_LOGS])
+        database_pool.query('SELECT actions.action, action_date, staff_action, users.user_id FROM audit_log INNER JOIN audit_log_actions AS actions ON actions.audit_action_id=audit_log.action INNER JOIN users ON audit_log.user_id=users.user_id WHERE server_id=$1 ORDER BY action_date DESC LIMIT $2;', [String(req.params.id), process.env.P_MAX_LOGS])
         .then(async(logs)=>{
           //Successfully got saved logs
+
+          let users = [];//Array that will store users ID found in these logs.
+          for(let i=0;i<logs.rows.length;i++){
+            if(!users.includes(logs.rows[i].user_id)){//If user id not already found
+              users.push(logs.rows[i].user_id);//Added to the list
+            }
+          }
+
+          //We will now get more info about these users from Discord
+          for(let i=0; i<users.length; i++){
+            let user = await get_user_from_id(database_pool, logger, users[i]);
+            if(user){
+              //We will add properties required to render logs entries
+              for(let j=0; j<logs.rows.length;j++){
+                if(logs.rows[j].user_id == user.id){
+                  logs.rows[j].username = user.username+'#'+user.discriminator;
+                  logs.rows[j].avatarUrl = (user.avatar ? "https://cdn.discordapp.com/avatars/"+user.id+"/"+user.avatar+"?size=64" : "/img/profile.svg");
+                }
+              }
+
+            }//Else, we can't get data about this user.. He may have removed our access
+          }
+
 
           let locale;
           //Select right language
