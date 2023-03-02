@@ -5,16 +5,16 @@ const pbkdf2 = require('pbkdf2');//Used to transform process.env.AES_PASSWORD in
 const { promisify } = require('util');
 const pbkdf2Async = promisify(pbkdf2.pbkdf2).bind(pbkdf2);
 
-module.exports = async function(req, database_pool, logger){
+module.exports = async function(database_pool, logger, discordId){
   /* This function is used to regenerate the token of an user, with the savec regen_token. */
 
   //Getting user's refresh token
-  logger.info("Now trying to refresh the token of user "+ req.session.discord_id);
-  logger.debug("Sending an SQL request to the database : Get refresh token from user with ID "+req.session.discord_id);
+  logger.info("Now trying to refresh the token of user "+ discordId);
+  logger.debug("Sending an SQL request to the database : Get refresh token from user with ID "+discordId);
 
   try{
 
-    let sqlResult = ( await database_pool.query("SELECT ENCODE(refresh_token, 'hex') AS hex_refresh_token, salt FROM users WHERE user_id=$1;",[req.session.discord_id]) ).rows[0];
+    let sqlResult = ( await database_pool.query("SELECT ENCODE(refresh_token, 'hex') AS hex_refresh_token, salt FROM users WHERE user_id=$1;",[discordId]) ).rows[0];
     if(sqlResult.hex_refresh_token && sqlResult.salt){
       //OK, we got the refresh token
 
@@ -50,19 +50,16 @@ module.exports = async function(req, database_pool, logger){
         const encryptedRefreshToken = aesjs.utils.hex.fromBytes(aesCtr.encrypt(aesjs.utils.utf8.toBytes(oauthData.refresh_token)));
 
 
-        logger.debug("Sending an SQL request to the database : set tokens for user with ID "+req.session.discord_id);
-        await database_pool.query("UPDATE users SET token = DECODE($1, 'hex'), refresh_token = DECODE($2, 'hex') WHERE user_id = $3;", [encryptedToken, encryptedRefreshToken, req.session.discord_id]);
+        logger.debug("Sending an SQL request to the database : set tokens for user with ID "+discordId);
+        await database_pool.query("UPDATE users SET token = DECODE($1, 'hex'), refresh_token = DECODE($2, 'hex') WHERE user_id = $3;", [encryptedToken, encryptedRefreshToken, discordId]);
 
         //Correctly ended, sending the new token
-        req.session.token = oauthData.access_token;
-        req.session.save();//Must save to ensure everything is saved
-
-        logger.debug("Successfully refreshed the tokens of user "+req.session.discord_id);
+        logger.debug("Successfully got new tokens of user "+discordId);
         return(oauthData.access_token);
 
       }else{
         //Got an error on refreshing the token
-        logger.warn("Error when refreshing a token for the user "+req.session.discord_id+" : Error = "+oauthData.error+"; Message = "+oauthData.message);
+        logger.warn("Error when refreshing a token for the user "+discordId+" : Error = "+oauthData.error+"; Message = "+oauthData.message);
         return(undefined);
       }
 
@@ -70,11 +67,11 @@ module.exports = async function(req, database_pool, logger){
 
     }else{
       //Error...
-      logger.warn("Error : Tried to get refresh token of user "+req.session.discord_id+" but was unable to get it !");
+      logger.warn("Error : Tried to get refresh token of user "+discordId+" but was unable to get it !");
       return(undefined);
     }
 
   }catch(err){
-    logger.error("Error when refreshing a token for the user "+req.session.discord_id+" : "+err); return(undefined);
+    logger.error("Error when refreshing a token for the user "+discordId+" : "+err); return(undefined);
   }
 }
