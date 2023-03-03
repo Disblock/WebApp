@@ -4,8 +4,7 @@ module.exports = async function(database_pool){
 
   await database_pool.query(
     "CREATE TABLE IF NOT EXISTS servers ( \
-    server_id varchar(32) PRIMARY KEY NOT NULL, \
-    name varchar(64) NOT NULL \
+    server_id varchar(32) PRIMARY KEY NOT NULL\
     );"
   );
 
@@ -15,8 +14,6 @@ module.exports = async function(database_pool){
       token BYTEA NOT NULL,\
       refresh_token BYTEA NOT NULL,\
       salt varchar(16) NOT NULL,\
-      username varchar(64) NOT NULL,\
-      avatar varchar(64),\
       last_login timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP),\
       creation_date timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP),\
       admin_permissions bigint\
@@ -201,4 +198,8 @@ module.exports = async function(database_pool){
   await database_pool.query("CREATE INDEX IF NOT EXISTS i_commands_args_command_id ON commands_args (command_id);");
 
   await database_pool.query("INSERT INTO audit_log_actions VALUES (1, 'Updated Workspace'), (2, 'Rollbacked Workspace'), (3, 'Made this server Premium'), (4, 'Removed Premium') ON CONFLICT DO NOTHING;");
+
+  await database_pool.query("ALTER TABLE servers DROP COLUMN IF EXISTS name;");
+  await database_pool.query("ALTER TABLE users DROP COLUMN IF EXISTS username;");
+  await database_pool.query("ALTER TABLE users DROP COLUMN IF EXISTS avatar;");
 }
