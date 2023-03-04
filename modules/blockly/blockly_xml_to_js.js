@@ -11,7 +11,7 @@ module.exports = {
     // Create a headless workspace.
      const workspace = new Blockly.Workspace();
 
-     let replacedXml = xml.replaceAll('token', 't0ken').replaceAll('\`', '\'').replaceAll('${', '$');//Removing dangerous char
+     let replacedXml = xml.replaceAll('token', 't0ken').replaceAll('${', '$');//Removing dangerous char
 
      /*
      Blockly's Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
