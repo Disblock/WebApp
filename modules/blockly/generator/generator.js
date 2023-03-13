@@ -2253,6 +2253,28 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_data_storage_delete_int'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        return "dataStorage.delValue('I"+text_dataname+"', "+value_varname+");\n";// At the start of data names, there is S or I to detect String or Int storages
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_delete_string'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        return "dataStorage.delValue('S"+text_dataname+"', "+value_varname+");\n";// At the start of data names, there is S or I to detect String or Int storages
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
     /* ##### DISABLED blocks ##### */
     //Blockly's default blocks that should be disabled
     //These blocks are removed / commented in toolbox.ejs

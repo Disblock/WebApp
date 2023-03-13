@@ -491,6 +491,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_DATA_STORAGE_CREATE"] = "Create a new data storage";
   Blockly.Msg["WORKSPACE_DATA_STORAGE_SAVE"] = "Save a value to storage";
   Blockly.Msg["WORKSPACE_DATA_STORAGE_GET"] = "Get a value from storage";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_DELETE"] = "Delete a value from storage";
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Get emoji's data";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Use Emojis";
@@ -912,6 +913,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT_TOOLTIP"] = "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING"] = "Get from text storage %1 %2 the variable %3";
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP"] = "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT"] = "Delete from the number storage %1 %2 the variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP"] = "Delete a variable stored in a number storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING"] = "Delete from the text storage %1 %2 the variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP"] = "Delete a variable stored in a string storage";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";

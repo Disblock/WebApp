@@ -138,5 +138,55 @@ module.exports = {
   "colour": 130,
   "tooltip": "%{BKY_BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP}",
   "helpUrl": ""
+},
+{
+  "type": "block_data_storage_delete_int",
+  "message0": "%{BKY_BLOCK_DATA_STORAGE_DELETE_INT}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "DATANAME",
+      "text": "default"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "VARNAME",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 225,
+  "tooltip": "%{BKY_BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_data_storage_delete_string",
+  "message0": "%{BKY_BLOCK_DATA_STORAGE_DELETE_STRING}",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "DATANAME",
+      "text": "default"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "VARNAME",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 130,
+  "tooltip": "%{BKY_BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP}",
+  "helpUrl": ""
 }
 ])};

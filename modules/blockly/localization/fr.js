@@ -491,6 +491,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_DATA_STORAGE_CREATE"] = "Créer un stockage de données";
   Blockly.Msg["WORKSPACE_DATA_STORAGE_SAVE"] = "Sauvegarder une valeur";
   Blockly.Msg["WORKSPACE_DATA_STORAGE_GET"] = "Récupérer une valeur";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_DELETE"] = "Supprimer une valeur";
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Obtenir les informations d'un Emoji";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Utiliser les émojis";
@@ -912,6 +913,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT_TOOLTIP"] = "Récupérer une valeur dans un stockage. Le nom de la variable permet de retrouver cette variable dans le stockage";
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING"] = "Obtenir dans le stockage de texte %1 %2 la variable %3";
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP"] = "Récupérer une valeur dans un stockage. Le nom de la variable permet de retrouver cette variable dans le stockage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT"] = "Supprimer dans le stockage de nombre %1 %2 la variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP"] = "Supprimer une variable stockée dans le stockage de nombres";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING"] = "Supprimer dans le stockage de texte %1 %2 la variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP"] = "Supprimer une variable stockée dans un stockage de texte.";
 
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
