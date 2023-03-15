@@ -254,18 +254,11 @@ module.exports = async function(database_pool){
         AND storage_name NOT IN ( \
           SELECT * FROM UNNEST(f_storagesNames) \
         ));\
-    DELETE FROM data_storage_size WHERE storage_id IN (\
-    SELECT storage_id \
-    FROM data_storage \
-    WHERE server_id = f_serverid \
-      AND storage_name NOT IN (\
-        SELECT * FROM UNNEST(f_storagesNames)\
-      ));\
     DELETE FROM data_storage \
     WHERE server_id = f_serverid \
       AND storage_name NOT IN (SELECT * FROM UNNEST(f_storagesNames)); \
   END; \
-  $$;");//TODO : Enhance this function by reducing the complexity of the deleting part
+  $$;");
 
   /*
   This function is used to manage stored data.
@@ -276,15 +269,12 @@ module.exports = async function(database_pool){
     "CREATE OR REPLACE FUNCTION f_insert_or_update_data(f_serverid servers.server_id%TYPE, f_storage_name data_storage.storage_name%TYPE, f_data_key stored_data.data_key%TYPE, f_data stored_data.data%TYPE)\
     RETURNS VOID AS $$\
     BEGIN\
-    DELETE FROM stored_data\
-    WHERE storage_id = (SELECT storage_id FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name)\
-    AND data_key = f_data_key;\
-    \
     INSERT INTO stored_data (storage_id, data_key, data) VALUES (\
-    (SELECT storage_id FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name), f_data_key, f_data);\
+    (SELECT storage_id FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name), f_data_key, f_data)\
+    ON CONFLICT (storage_id, data_key) DO UPDATE SET data = EXCLUDED.data;\
     END;\
     $$ LANGUAGE plpgsql;"
-  );//TODO : optimize this function, deleting and inserting each time is not a good idea anymore
+  );
 
   /*
   This function is used to count the number of rows in each data storage.
