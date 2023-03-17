@@ -7,11 +7,9 @@ module.exports = {
     //Blockly.Generator.COMMENT_WRAP = Infinity;
 
     /*
-    Events are now generated one by one directly in blockly_xml_to_js, so we don't need a token anymore.
-    Since the code of blocks inside an event are generated directly in xml_to_js, event by event, we don't need to cut a big string to separate events.
-    */
+    The code of blocks inside an event are generated directly in xml_to_js, event by event.
 
-    /*
+    
     All variables here must be declared when starting to execute code
 
     The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
@@ -21,7 +19,7 @@ module.exports = {
     createdTextChannel represents the created Text Channel with create text channel block
     createdVoiceChannel represents the created voice channel with create voice channel block
 
-    sentMessage is a message sent with reply block or send message block
+    sentMessage is a message sent with reply block or send message block. It can also be an embed message that was sent
     createdThreadOnMessage represents the created Thread on created thread on message block
 
     createdRank Represent the rank created with a create rank block
@@ -1830,7 +1828,7 @@ module.exports = {
       const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_embed!=='' && value_channel!==''){
-        const code = value_channel+'.send({ embeds: ['+value_embed+'] });\n'
+        const code = 'sentMessage = await '+value_channel+'.send({ embeds: ['+value_embed+'] });\n'
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
