@@ -138,15 +138,8 @@ module.exports = async function(database_pool){
       server_id varchar(32),\
       storage_is_int boolean NOT NULL DEFAULT false,\
       storage_name varchar(32) NOT NULL,\
+      size INT NOT NULL DEFAULT 0,\
       CONSTRAINT fk_data_storage_server FOREIGN KEY (server_id) REFERENCES servers (server_id)\
-    );"
-  );
-
-  await database_pool.query(
-    "CREATE TABLE IF NOT EXISTS data_storage_size (\
-      storage_id BIGINT PRIMARY KEY,\
-      count INT NOT NULL DEFAULT 0,\
-      CONSTRAINT fk_data_storage_size_pk FOREIGN KEY (storage_id) REFERENCES data_storage (storage_id) ON DELETE CASCADE\
     );"
   );
 
@@ -222,7 +215,6 @@ module.exports = async function(database_pool){
   DECLARE \
     v_server_exists INTEGER; \
     v_current_storage_name VARCHAR; \
-    v_current_storage_id BIGINT;\
   BEGIN \
     SELECT COUNT(*) INTO v_server_exists \
     FROM servers \
@@ -241,9 +233,7 @@ module.exports = async function(database_pool){
           AND storage_name = v_current_storage_name \
       ) THEN \
         INSERT INTO data_storage (server_id, storage_name, storage_is_int) \
-        VALUES (f_serverid, v_current_storage_name, v_current_storage_name SIMILAR TO 'I%')\
-        RETURNING storage_id INTO v_current_storage_id; \
-        INSERT INTO data_storage_size(storage_id) VALUES (v_current_storage_id);\
+        VALUES (f_serverid, v_current_storage_name, v_current_storage_name SIMILAR TO 'I%');\
       END IF; \
     END LOOP; \
     DELETE FROM stored_data \
@@ -286,9 +276,9 @@ module.exports = async function(database_pool){
     RETURNS TRIGGER AS $$\
     BEGIN\
       IF (TG_OP = 'INSERT') THEN\
-        UPDATE data_storage_size SET count = count + 1 WHERE storage_id = NEW.storage_id;\
+        UPDATE data_storage SET size = size + 1 WHERE storage_id = NEW.storage_id;\
       ELSIF (TG_OP = 'DELETE') THEN\
-        UPDATE data_storage_size SET count = count - 1 WHERE storage_id = OLD.storage_id;\
+        UPDATE data_storage SET size = size - 1 WHERE storage_id = OLD.storage_id;\
       END IF;\
       RETURN NEW;\
     END;\
