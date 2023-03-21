@@ -258,9 +258,15 @@ module.exports = async function(database_pool){
   await database_pool.query(
     "CREATE OR REPLACE FUNCTION f_insert_or_update_data(f_serverid servers.server_id%TYPE, f_storage_name data_storage.storage_name%TYPE, f_data_key stored_data.data_key%TYPE, f_data stored_data.data%TYPE)\
     RETURNS VOID AS $$\
+    DECLARE\
+    f_size INTEGER;\
+    f_storage_id INTEGER;\
     BEGIN\
-    INSERT INTO stored_data (storage_id, data_key, data) VALUES (\
-    (SELECT storage_id FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name), f_data_key, f_data)\
+    SELECT storage_id, size INTO f_storage_id, f_size FROM data_storage WHERE server_id = f_serverid AND storage_name = f_storage_name;\
+    IF f_size > "+process.env.DATA_STORAGES_MAX_VARS+" THEN\
+    RAISE EXCEPTION 'Exceeded allowed size for storage: % server : %', f_storage_id, f_serverid;\
+    END IF;\
+    INSERT INTO stored_data (storage_id, data_key, data) VALUES (f_storage_id, f_data_key, f_data)\
     ON CONFLICT (storage_id, data_key) DO UPDATE SET data = EXCLUDED.data;\
     END;\
     $$ LANGUAGE plpgsql;"
