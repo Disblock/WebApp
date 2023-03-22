@@ -36,6 +36,18 @@ Then, start everything :
 ```
 docker-compose up
 ```
+If you have an error that looks like `repository does not exist or may require 'docker login'`, you may need to create the required images. You can run the following commands :
+```
+docker build . -t disblock
+cd ..
+git clone https://github.com/Disblock/BotApp
+cd BotApp
+docker build . -t disbot
+cd ../Disblock-WebApp
+```
+Once you built `disblock`(web application) and `disbot`(Discord bot), you can try to run `docker-compose up` again !
+
+> If you encounter any issues while trying to install and run Disblock, feel free to open an issue here or join the support server !
 
 #### Adding certificates for HTTPS
 Create a `certs` folder and move it your certificate and key
