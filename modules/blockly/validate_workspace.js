@@ -100,10 +100,20 @@ module.exports = {
     for(let i=0; i<blocks.length; i++){
       if(blocks[i].type.startsWith('block_data_storage_create')){
         //This block define a new storage
-        definedStorages.push(blocks[i].getFieldValue('DATANAME'));
+        if(blocks[i].type == "block_data_storage_create_int"){
+          definedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
+        }else{
+          definedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+        }
+
       }else if(blocks[i].type.startsWith('block_data_storage_')){
         //Save or get data from storage blocks
-        usedStorages.push(blocks[i].getFieldValue('DATANAME'));
+        if(blocks[i].type.includes("int")){
+          usedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
+        }else{
+          usedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+        }
+
       }
     }
 
