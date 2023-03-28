@@ -22,10 +22,23 @@ const events_var_blocks = {
   event_user_start_writting:['event_var_user', 'event_var_text_channel']
 }
 
+/* Function used to check if all inputs of a block are completed */
+function areInputsFilled(block) {
+  for(let i = 0; i < block.inputList.length; i++){
+    const input = block.inputList[i];
+    if(input.name=='')continue;//Dummy input
+    const connectedBlock = input && input.connection && input.connection.targetBlock();
+    if(!connectedBlock){//Can't get the connected block, this input is empty
+      return false;
+    }
+  }
+  return true;
+}
+
 /* When variable type edited, this function remove the value of this variable to avoid types errors*/
 function saveVarBlockModified(event){
   if(event.type==Blockly.Events.BLOCK_CHANGE && workspace.getBlockById(event.blockId).type=="block_var_save"){
-    if(event.name=="TYPE" && workspace.getBlockById(event.blockId).allInputsFilled()){
+    if(event.name=="TYPE" && areInputsFilled(workspace.getBlockById(event.blockId)) ){
       //A block is in block input, we can remove it to make sure an incompatible type isn't used
       workspace.getBlockById(event.blockId).getChildren(true)[0].unplug();
       workspace.getBlockById(event.blockId).bumpNeighbours();
@@ -104,8 +117,8 @@ function validateWorkspace(workspace){
       if(blocksInEvent[j].type=="block_var_save"){
         //That's a setter block, we save his name and type here
 
-        if(!( blocksInEvent[j].allInputsFilled() && /^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME')) )){
-          if(!blocksInEvent[j].allInputsFilled()) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
+        if(!( areInputsFilled(blocksInEvent[j]) && /^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME')) )){
+          if(! areInputsFilled(blocksInEvent[j]) ) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
           if(!/^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME'))) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
 
           foundError = true;
@@ -308,12 +321,56 @@ function validateWorkspace(workspace){
         blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"]);
         foundError = true;
       }
-    }
+    }//End of "If create_command block"
 
 
-  }
+  }//End of i loop on each block
   //Finished to check for problems with slash command blocks
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"]});
+
+  //We will now check that data storages are correctly defined
+  let definedStorages = [];//Save create storage names
+  let usedStoragesBlocks = [];//Save used storage blocks
+
+  for(let i=0; i<blocks.length; i++){
+    if(blocks[i].type.startsWith('block_data_storage_create')){
+      //This block define a new storage
+      if(blocks[i].type == "block_data_storage_create_int"){
+        definedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
+      }else{
+        definedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+      }
+
+      //We check that data storage name is valid
+      if(!/^([A-Za-z0-9]{3,28})$/.test( blocks[i].getFieldValue('DATANAME') )){
+        //Not OK
+        blocks[i].setWarningText(Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"]);
+        foundError = true;
+      }
+
+    }else if(blocks[i].type.startsWith('block_data_storage_')){
+      //Save or get data from storage blocks
+      usedStoragesBlocks.push(blocks[i]);
+    }
+  }
+
+  for(let i=0; i<usedStoragesBlocks.length; i++){
+    //We check that used storages are correctly defined
+    let blockType = usedStoragesBlocks[i].type.includes("int") ? "I"+usedStoragesBlocks[i].getFieldValue('DATANAME') : "S"+usedStoragesBlocks[i].getFieldValue('DATANAME');
+    if(!definedStorages.includes(blockType)){
+      //Not OK, undefined data storage
+      usedStoragesBlocks[i].setWarningText(Blockly.Msg["WARNING_DATA_STORAGE_UNDEFINED"]);
+      foundError = true;
+    }
+
+    if(!areInputsFilled(usedStoragesBlocks[i])){
+      //Not OK, All inputs aren't filled
+      usedStoragesBlocks[i].setWarningText(Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"]);
+      foundError = true;
+    }
+  }
+  //Finished to check for problems with data storage blocks
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"]});
 
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});

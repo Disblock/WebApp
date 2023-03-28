@@ -941,6 +941,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "You need to use a reply to command block within this block !";
   Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "You can't use this block here !";
   Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "There is a problem with a slash command block. Read the warning to learn more about that";
+  Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"] = "The name of this data storage is invalid ! It must not contain special characters and be between 3 and 28 characters long.";
+  Blockly.Msg["WARNING_DATA_STORAGE_UNDEFINED"] = "The data storage for this block does not seem to be defined !";
+  Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"] = "One input seems empty on this block !";
+  Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] = "There is a problem with the data storage blocks ! Read the warnings to learn more.";
 
   //Types names
   Blockly.Msg["STRING"] = "String";
