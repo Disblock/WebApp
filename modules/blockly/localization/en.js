@@ -430,6 +430,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Ranks";
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Embed Messages";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
+  Blockly.Msg["WORKSPACE_TAB_DATA_STORAGE"] = "Data storage";
   Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
   Blockly.Msg["WORKSPACE_TAB_MISCELLANEOUS"] = "Miscellaneous";
 
@@ -486,6 +487,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Embed customization";
 
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Work with lists";
+
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_CREATE"] = "Create a new data storage";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_SAVE"] = "Save a value to storage";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_GET"] = "Get a value from storage";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_DELETE"] = "Delete a value from storage";
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Get emoji's data";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Use Emojis";
@@ -894,6 +900,24 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "User who ran this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Return the user who used this command";
 
+  //Data storage blocks
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Create number storage named %1";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT_TOOLTIP"] = "This block defines a number storage. Deleting this block will delete all associated data.";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING"] = "Create text storage named %1";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING_TOOLTIP"] = "This block defines a text storage. Deleting this block will delete all associated data.";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT"] = "Save in number storage %1 %2 the variable %3 containing %4";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT_TOOLTIP"] = "Save a value in a storage. The variable name allows to find this variable in the storage, while the content is the saved value";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING"] = "Save in text storage %1 %2 the variable %3 containing %4";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING_TOOLTIP"] = "Save a value in a storage. The variable name allows to find this variable in the storage, while the content is the saved value";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT"] = "Get from number storage %1 %2 the variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT_TOOLTIP"] = "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING"] = "Get from text storage %1 %2 the variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP"] = "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT"] = "Delete from the number storage %1 %2 the variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP"] = "Delete a variable stored in a number storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING"] = "Delete from the text storage %1 %2 the variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP"] = "Delete a variable stored in a string storage";
+
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";
   Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "To use this variable, you must assign a value to it !";
@@ -917,6 +941,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "You need to use a reply to command block within this block !";
   Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "You can't use this block here !";
   Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "There is a problem with a slash command block. Read the warning to learn more about that";
+  Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"] = "The name of this data storage is invalid ! It must not contain special characters and be between 3 and 28 characters long.";
+  Blockly.Msg["WARNING_DATA_STORAGE_UNDEFINED"] = "The data storage for this block does not seem to be defined !";
+  Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"] = "One input seems empty on this block !";
+  Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] = "There is a problem with the data storage blocks ! Read the warnings to learn more.";
 
   //Types names
   Blockly.Msg["STRING"] = "String";

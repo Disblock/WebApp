@@ -430,6 +430,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_TAB_RANKS"] = "Rôles";
   Blockly.Msg["WORKSPACE_TAB_EMBEDS"] = "Messages Embed";
   Blockly.Msg["WORKSPACE_TAB_VARIABLES"] = "Variables";
+  Blockly.Msg["WORKSPACE_TAB_DATA_STORAGE"] = "Stockage de données";
   Blockly.Msg["WORKSPACE_TAB_EMOJIS"] = "Emojis";
   Blockly.Msg["WORKSPACE_TAB_MISCELLANEOUS"] = "Autres";
 
@@ -486,6 +487,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_EMBEDS_EDIT"] = "Personnaliser un Embed";
 
   Blockly.Msg["WORKSPACE_LISTS_USE"] = "Travailler sur les listes";
+
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_CREATE"] = "Créer un stockage de données";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_SAVE"] = "Sauvegarder une valeur";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_GET"] = "Récupérer une valeur";
+  Blockly.Msg["WORKSPACE_DATA_STORAGE_DELETE"] = "Supprimer une valeur";
 
   Blockly.Msg["WORKSPACE_EMOJIS_GET_DATA"] = "Obtenir les informations d'un Emoji";
   Blockly.Msg["WORKSPACE_EMOJIS_USE"] = "Utiliser les émojis";
@@ -894,6 +900,24 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "Utilisateur qui a utilisé cette commande";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Retourne l'utilisateur qui a exécuté cette commande";
 
+  //Data storage blocks
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Créer le stockage de nombres nommé %1";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT_TOOLTIP"] = "Ce block permet de définir un stockage de nombres. Supprimer ce bloc supprimera toutes les données associées.";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING"] = "Créer le stockage de texte nommé %1";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING_TOOLTIP"] = "Ce block permet de définir un stockage de textes. Supprimer ce bloc supprimera toutes les données associées.";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT"] = "Sauvegarder dans le stockage de nombre  %1 %2 la variable %3 contenant %4";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT_TOOLTIP"] = "Sauvegarder une valeur dans un stockage. Le nom de la variable permet de retrouver cette variable dans le stockage, tandis que le contenu est la valeur enregistrée";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING"] = "Sauvegarder dans le stockage de texte %1 %2 la variable %3 contenant %4";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING_TOOLTIP"] = "Sauvegarder une valeur dans un stockage. Le nom de la variable permet de retrouver cette variable dans le stockage, tandis que le contenu est la valeur enregistrée";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT"] = "Obtenir dans le stockage de nombre  %1 %2 la variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT_TOOLTIP"] = "Récupérer une valeur dans un stockage. Le nom de la variable permet de retrouver cette variable dans le stockage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING"] = "Obtenir dans le stockage de texte %1 %2 la variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP"] = "Récupérer une valeur dans un stockage. Le nom de la variable permet de retrouver cette variable dans le stockage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT"] = "Supprimer dans le stockage de nombre %1 %2 la variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP"] = "Supprimer une variable stockée dans le stockage de nombres";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING"] = "Supprimer dans le stockage de texte %1 %2 la variable %3";
+  Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP"] = "Supprimer une variable stockée dans un stockage de texte.";
+
   //Workspace warnings
   Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "Cette variable ne semble pas être du bon type ou définie. Soyez sûr d'utiliser un bloc \"Sauvegarder dans une variable temporaire\" avant celui-ci, et d'y utiliser le bon type et même nom qu'ici.";
   Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "Pour utiliser cette variable, vous devez lui donner une valeur !";
@@ -917,6 +941,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "Vous devez utiliser un block de réponse à cette commande dans ce block !";
   Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "Vous ne pouvez pas utiliser ce bloc ici !";
   Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "Il y a un problème avec un bloc de commande ! Lisez les avertissements pour en savoir plus";
+  Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"] = "Le nom de ce stockage de données n'est pas valide ! Il ne doit pas comporter de caractères spéciaux, et faire de 3 à 28 caractères.";
+  Blockly.Msg["WARNING_DATA_STORAGE_UNDEFINED"] = "Le stockage de données de ce bloc ne semble pas définit !";
+  Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"] = "Il y a des valeurs indéfinies à ce bloc !";
+  Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] = "Il y a un problème avec les blocs de stockage de données ! Lisez les avertissements pour en savoir plus";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";

@@ -84,5 +84,44 @@ module.exports = {
 
     }
     return true;
+  },
+
+  /*
+  Function used to check that data storage are correctly defined
+  Args : workspace - Al Blockly workspace
+  Will return true if everything correct
+  */
+  checkIfDataStorageCorrectlyDefined: function(workspace){
+    const blocks = workspace.getAllBlocks(false);
+
+    let definedStorages = [];//Save create storage names
+    let usedStorages = [];//Save used storage names
+
+    for(let i=0; i<blocks.length; i++){
+      if(blocks[i].type.startsWith('block_data_storage_create')){
+        //This block define a new storage
+        if(blocks[i].type == "block_data_storage_create_int"){
+          definedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
+        }else{
+          definedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+        }
+
+      }else if(blocks[i].type.startsWith('block_data_storage_')){
+        //Save or get data from storage blocks
+        if(blocks[i].type.includes("int")){
+          usedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
+        }else{
+          usedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+        }
+
+      }
+    }
+
+    for(let i=0; i<usedStorages.length; i++){
+      //We check that used storages are correctly defined
+      if(! definedStorages.includes(usedStorages[i]) ) return false;
+    }
+
+    return true;
   }
 }

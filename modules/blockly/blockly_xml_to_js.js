@@ -23,6 +23,7 @@ module.exports = {
      }
 
      let slashCommandBlocks = [];//Will store the create slash commands blocks. Defined in the function under
+     let defineDataStorageBlocks = [];//Will store the blocks used to define a new data storage
      //Function used to try/catch when generating code. If an error occured, undefined is returned
      //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
      function tryCodeGeneration(replacedXml, workspace){
@@ -38,6 +39,7 @@ module.exports = {
          if(!validateWorkspace.checkNumberOfBlocks(workspace, premium))return('TOO MANY BLOCKS !');
          if(!validateWorkspace.checkIfCommandBlockCorrectlyDefined(workspace))return('INCORRECTLY PLACED COMMANDS BLOCKS !');
          if(!validateWorkspace.checkIfRightNumberOfBlocksPerBlockUsed(workspace, premium))return('TOO MANY OF A BLOCK !');
+         if(!validateWorkspace.checkIfDataStorageCorrectlyDefined(workspace))return('ERROR WITH DATA STORAGE !');
 
          const topBlocks = workspace.getTopBlocks(false);//https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
          let eventCodes = [];//Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
@@ -51,11 +53,14 @@ module.exports = {
              if(code.replaceAll(/(\r\n|\n|\r)/gm, '')=='')continue;//Nothing in this event, useless to add it
 
              eventCodes.push([topBlocks[i].type, code]);
-             //https://developers.google.com/blockly/reference/js/blockly.generator_class.blocktocode_1_method.md
+             //https://developers.google.com/blockly/reference/js/blockly.codegenerator_class.blocktocode_1_method.md
 
            }else if(topBlocks[i].type === "block_slash_command_creator"){
              //This is a slash command creation block, we will store this block and work on it later
              slashCommandBlocks.push(topBlocks[i]);//We will generate code for this just before sending SQL requests
+           }else if(topBlocks[i].type.startsWith("block_data_storage_create_")){
+             //Data storage block
+             defineDataStorageBlocks.push(topBlocks[i]);//Blocks names will be sent to an PLPGSQL function, that will create or delete storages if needed
            }
          }
 
@@ -78,6 +83,9 @@ module.exports = {
      }else if(eventCodes==="INCORRECTLY PLACED COMMANDS BLOCKS !"){
        logger.debug("Incorrectly placed commands blocks for guild "+server_id);
        return(workspaceErrorsEnum.incorrectlyPlacedBlocks);
+     }else if(eventCodes==="ERROR WITH DATA STORAGE !"){
+       logger.debug("Incorrectly used storage blocks for guild "+server_id);
+       return(workspaceErrorsEnum.errorWithStorageBlocks);
      }
 
      logger.debug("Working on code for the guild "+server_id+"...");
@@ -141,6 +149,22 @@ module.exports = {
          });
 
        }
+       //We will now work on data storages for this server
+       let newStoragesNames = [server_id];//We pass the server ID since it's the first arg of the SQL function
+       sqlStoragesRequest = "SELECT f_update_data_storages_for_guild($1";
+       for(let i=0; i<defineDataStorageBlocks.length; i++){//For every define storage block
+         const storageName = defineDataStorageBlocks[i].getFieldValue('DATANAME');//We get the name of the storage
+         if(/^([A-Za-z0-9]{3,28})$/.test(storageName)){//Only if name is valid
+           newStoragesNames.push((defineDataStorageBlocks[i].type == "block_data_storage_create_string" ? "S" : "I") + storageName);//We save this name to send it to database
+           sqlStoragesRequest = sqlStoragesRequest + ", $"+(i+2);//Indexes start at 1, and since 1 is already taken, we must do 0->2
+         }else{
+           logger.debug("Invalid storage name for guild "+server_id);
+           return(workspaceErrorsEnum.errorWithStorageBlocks);
+         }
+       }
+       sqlStoragesRequest = sqlStoragesRequest + ");";//We can now finish the SQL request
+       sqlRequests.push([sqlStoragesRequest, newStoragesNames]);//And add this request to the list of requests
+
      }catch(err){
        logger.error("Error while handling custom commands for guild : "+server_id+" : "+err);//Error in commands blocks, we can stop here and send an error to client
        return(workspaceErrorsEnum.error);
