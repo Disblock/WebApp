@@ -81,15 +81,16 @@ module.exports = {
                      if(results.rows[0].exist){
                        //Already in database
                        logger.debug("Sending an SQL request to the database : updating an existing user with user ID "+response.id);
-                       database_pool.query("UPDATE users SET token = DECODE($1, 'hex'), refresh_token = DECODE($2, 'hex'), username = $3, avatar = $4, last_login = NOW(), salt=$5 WHERE user_id = $6;",[encryptedToken, encryptedRefreshToken, response.username+'#'+response.discriminator, response.avatar, salt, response.id], async(error, results)=>{
+                       database_pool.query("UPDATE users SET token = DECODE($1, 'hex'), refresh_token = DECODE($2, 'hex'), last_login = NOW(), salt=$3 WHERE user_id = $4;",
+                            [encryptedToken, encryptedRefreshToken, salt, response.id], async(error, results)=>{
                          if(error instanceof Error){
                            logger.error("Error in SQL request when updating an user : "+error);
                            res.redirect("/");//Error in the login process, user redirected to the main page
                          }else{
                            //User is now updated, we can log in
                            req.session.discord_id = response.id;
-                           req.session.username = response.username+'#'+response.discriminator;
-                           req.session.avatar = response.avatar;
+                           req.session.username = response.username+'#'+response.discriminator;//Only cached for the session
+                           req.session.avatar = response.avatar;//Only cached for the session
                            req.session.token = oauthData.access_token;
                            req.session.locale = (response.locale==='fr' ? 'fr':'en');//If discord locale is French, save it. If not, default to English
                            req.session.save();
@@ -113,15 +114,16 @@ module.exports = {
                          res.redirect('/?error=1975664');
                          return;
                        }
-                       database_pool.query("INSERT INTO users (user_id, token, refresh_token, username, avatar, last_login, creation_date, salt) VALUES($1, DECODE($2, 'hex'), DECODE($3, 'hex'), $4, $5, NOW(), NOW(), $6);", [response.id, encryptedToken, encryptedRefreshToken, response.username+'#'+response.discriminator, response.avatar, salt], (error, results)=>{
+                       database_pool.query("INSERT INTO users (user_id, token, refresh_token, last_login, creation_date, salt) VALUES($1, DECODE($2, 'hex'), DECODE($3, 'hex'), NOW(), NOW(), $4);",
+                            [response.id, encryptedToken, encryptedRefreshToken, salt], (error, results)=>{
                          if(error instanceof Error){
                            logger.error("Error in SQL request when registering an user : "+error);
                            res.redirect("/");//Error in the register process, user redirected to the main page
                          }else{
                            //User is registered, we can log in
                            req.session.discord_id = response.id;
-                           req.session.username = response.username+'#'+response.discriminator;
-                           req.session.avatar = response.avatar;
+                           req.session.username = response.username+'#'+response.discriminator;//Only cached for the session
+                           req.session.avatar = response.avatar;//Only cached for the session
                            req.session.token = oauthData.access_token;
                            req.session.locale = (response.locale==='fr' ? 'fr':'en');//If discord locale is French, save it. If not, default to English
                            req.session.save();

@@ -18,8 +18,8 @@
 
         %>
         <div class="content_logs_div_saved_entry">
-          <img width="40px" height="40px" src="https://cdn.discordapp.com/avatars/<%= logs[i].user_id %>/<%= logs[i].avatar %>?size=64">
-          <p class="content_logs_div_saved_entry_username"><%= logs[i].username %></p>
+          <img width="40px" height="40px" src="<%= logs[i].avatarUrl || "/img/profile.svg" %>">
+          <p class="content_logs_div_saved_entry_username"><%= logs[i].username || "Unknown user" %></p>
           <p class="content_logs_div_saved_entry_date"><%= logs[i].action_date.valueOf() %></p>
           <p class="content_logs_div_saved_entry_action"><%= logs[i].action %></p>
           <% if(logs[i].staff_action){%>

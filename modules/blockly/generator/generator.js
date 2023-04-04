@@ -7,11 +7,9 @@ module.exports = {
     //Blockly.Generator.COMMENT_WRAP = Infinity;
 
     /*
-    Events are now generated one by one directly in blockly_xml_to_js, so we don't need a token anymore.
-    Since the code of blocks inside an event are generated directly in xml_to_js, event by event, we don't need to cut a big string to separate events.
-    */
+    The code of blocks inside an event are generated directly in xml_to_js, event by event.
 
-    /*
+    
     All variables here must be declared when starting to execute code
 
     The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
@@ -21,7 +19,7 @@ module.exports = {
     createdTextChannel represents the created Text Channel with create text channel block
     createdVoiceChannel represents the created voice channel with create voice channel block
 
-    sentMessage is a message sent with reply block or send message block
+    sentMessage is a message sent with reply block or send message block. It can also be an embed message that was sent
     createdThreadOnMessage represents the created Thread on created thread on message block
 
     createdRank Represent the rank created with a create rank block
@@ -259,7 +257,7 @@ module.exports = {
       const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_message!=='' && value_text!==''){
-        const code = 'sentMessage = await '+value_message+".reply("+value_text+");\n";
+        const code = 'sentMessage = await '+value_message+".reply(("+value_text+").replaceAll(\'<br>\', \'\\n\'));\n";
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -271,7 +269,7 @@ module.exports = {
       const value_text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_channel!=='' && value_text!==''){
-        const code = 'sentMessage = await '+value_channel+'.send('+value_text+');\n';
+        const code = 'sentMessage = await '+value_channel+'.send(('+value_text+').replaceAll(\'<br>\', \'\\n\'));\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -502,7 +500,7 @@ module.exports = {
       const value_user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_user!=='' && value_message!==''){
-        const code = value_user+'.send('+value_message+'+"\\nCustom message sent from the server *"+CURRENT_GUILD.name+"*");\n';
+        const code = value_user+'.send(('+value_message+').replaceAll(\'<br>\', \'\\n\')+"\\nCustom message sent from the server *"+CURRENT_GUILD.name+"*");\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -698,7 +696,7 @@ module.exports = {
 
       if(value_user!=='' && value_duration!==''){
         if(value_reason===''){value_reason='\'Reason undefined\''}
-        const code = value_user + '.timeout('+value_duration*1000+', '+value_reason+');\n';
+        const code = value_user + '.timeout('+value_duration+'*1000, '+value_reason+');\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -1750,7 +1748,7 @@ module.exports = {
       const value_description = Blockly.JavaScript.valueToCode(block, 'description', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_name!=='' && value_color!==''){
-        const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription('+value_description+').setColor('+value_color+')'+statements_options.trim()+';\n';
+        const code = 'embedMessage = new Discord.EmbedBuilder().setTitle('+value_name+').setDescription(('+value_description+').replaceAll(\'<br>\', \'\\n\')).setColor('+value_color+')'+statements_options.trim()+';\n';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -1785,7 +1783,7 @@ module.exports = {
       const checkbox_inline = block.getFieldValue('inline') === 'TRUE';
 
       if(value_name!=='' && value_text!==''){
-        const code = '.addFields({name:'+value_name+', value:'+value_text+', inline:'+( checkbox_inline ? 'true':'false' )+'})';
+        const code = '.addFields({name:'+value_name+', value:('+value_text+').replaceAll(\'<br>\', \'\\n\'), inline:'+( checkbox_inline ? 'true':'false' )+'})';
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -1830,7 +1828,7 @@ module.exports = {
       const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
 
       if(value_embed!=='' && value_channel!==''){
-        const code = value_channel+'.send({ embeds: ['+value_embed+'] });\n'
+        const code = 'sentMessage = await '+value_channel+'.send({ embeds: ['+value_embed+'] });\n'
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
@@ -2187,6 +2185,92 @@ module.exports = {
     Blockly.JavaScript['block_slash_command_data_user'] = function(block) {
       const code = 'interaction.member';
       return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    /* ##### Data storage blocks ##### */
+    //Blocks used to manage data in the database
+    Blockly.JavaScript['block_data_storage_create_int'] = function(block) {
+      //const text_dataname = block.getFieldValue('DATANAME');
+
+      //We get values for this block directly in xml_to_js !
+      throw(errors_types.error);
+    };
+
+    Blockly.JavaScript['block_data_storage_create_string'] = function(block) {
+      //const text_dataname = block.getFieldValue('DATANAME');
+
+      //We get values for this block directly in xml_to_js !
+      throw(errors_types.error);
+    };
+
+    Blockly.JavaScript['block_data_storage_save_int'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_varcontent = Blockly.JavaScript.valueToCode(block, 'VARCONTENT', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != '' && value_varcontent != ''){
+        return "dataStorage.saveValue('I"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";// At the start of data names, there is S or I to detect String or Int storages
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_save_string'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+      const value_varcontent = Blockly.JavaScript.valueToCode(block, 'VARCONTENT', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != '' && value_varcontent != ''){
+        return "dataStorage.saveValue('S"+text_dataname+"', "+value_varname+", "+value_varcontent+");\n";
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_get_int'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        const code = "strToInt((await dataStorage.getValue('I"+text_dataname+"', "+value_varname+")))";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_get_string'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        const code = "await dataStorage.getValue('S"+text_dataname+"', "+value_varname+")";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_delete_int'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        return "dataStorage.delValue('I"+text_dataname+"', "+value_varname+");\n";// At the start of data names, there is S or I to detect String or Int storages
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_data_storage_delete_string'] = function(block) {
+      const text_dataname = block.getFieldValue('DATANAME');
+      const value_varname = Blockly.JavaScript.valueToCode(block, 'VARNAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(/^([a-zA-Z0-9]{1,16})$/.test(text_dataname) && value_varname != ''){
+        return "dataStorage.delValue('S"+text_dataname+"', "+value_varname+");\n";// At the start of data names, there is S or I to detect String or Int storages
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
     };
 
     /* ##### DISABLED blocks ##### */

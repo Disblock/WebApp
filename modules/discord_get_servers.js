@@ -101,14 +101,17 @@ module.exports = async function(req, database_pool, logger, redisClient){
 
     logger.debug(req.session.discord_id+" 's token may have expired, we're trying now to regenerate it.");
 
-    const new_token = await discord_regen(req, database_pool, logger);
+    const new_token = await discord_regen(database_pool, logger, req.session.discord_id);
     if(new_token==undefined){
       //Error, the user has removed the application's access ?
       logger.warn("Error while getting "+req.session.discord_id+" 's guilds, destroying the session...");
       req.session.destroy();
       return([]);
     }else{
-      //OK, let's try again, no need to use new_token, req.session is updated in regen function
+      //OK, let's try again
+      req.session.token = new_token;
+      req.session.save();//Must save to ensure everything is saved
+
       let newDiscordResponse = await askDiscordForGuilds(req.session.token);
       if(newDiscordResponse!=undefined && newDiscordResponse!='Token not set'){
 
