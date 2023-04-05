@@ -2,7 +2,7 @@
   "dependencies": {
     "aes-js": "^3.1.2",
     "big-integer": "^1.6.50",
-    "blockly": "^6.20210701.0",
+    "blockly": "^9.3.1",
     "body-parser": "^1.19.0",
     "connect-redis": "^6.0.0",
     "ejs": "^3.1.6",
@@ -23,7 +23,7 @@
   },
   "name": "disblock_webapp",
   "description": "Disblock is a totally customizable Discord Bot.\r You can create your own actions with blocks, and the bot will execute your created code in Discord !",
-  "version": "1.5.0-alpha",
+  "version": "1.6.0-alpha",
   "main": "server.js",
   "repository": {
     "type": "git",

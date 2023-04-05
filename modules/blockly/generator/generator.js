@@ -1,4 +1,5 @@
 'use strict';
+const {javascriptGenerator} = require('blockly/javascript');//JS generator for Blockly
 const commands_args_types = require("../../enums/commands_args_types.js");
 const errors_types = require("../../enums/workspace_errors.js");
 
@@ -9,7 +10,7 @@ module.exports = {
     /*
     The code of blocks inside an event are generated directly in xml_to_js, event by event.
 
-    
+
     All variables here must be declared when starting to execute code
 
     The const CURRENT_GUILD represent the Guild object that triggered an event, this const is defined in the bot when executing the code.
@@ -48,6 +49,7 @@ module.exports = {
 
     eventReaction All of these are variables are used in events
     */
+    Blockly.JavaScript = javascriptGenerator;
     Blockly.JavaScript.addReservedWords('loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,temporaryStorage');
     Blockly.JavaScript.INFINITE_LOOP_TRAP = "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
 
