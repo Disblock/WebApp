@@ -1,0 +1,56 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es2021": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"prettier"
+	],
+	"overrides": [],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"rules": {
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"quotes": [
+			"error",
+			"double"
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"no-console": "warn",
+		"no-eval": "error",
+		"curly": [
+			"error",
+			"multi"
+		],
+		"no-magic-numbers": [
+			"warn",
+			{
+				"ignore": [1],
+				"ignoreArrayIndexes": true
+
+			}
+		],
+		"no-var": "warn",
+		"prefer-const": "warn",
+		"strict": ["error", "global"],
+		"camelcase": ["warn", {
+			"properties": "always",
+			"allow": ["BLOCK_*"]
+		}]
+	}
+}

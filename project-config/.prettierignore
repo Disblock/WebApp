@@ -2,3 +2,4 @@
 *.yml
 .env
 *.env
+*.conf
