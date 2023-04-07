@@ -1,17 +1,19 @@
-'use-strict';
-let Blockly = require('blockly');
+"use strict";
 
 module.exports = {
   /* Check if a workspace has the correct amount of blocks.
   Args : workspace - A Blockly Workspace
          premium - Is this server Premium or not ? Boolean
   */
-  checkNumberOfBlocks:function(workspace, premium){
-    if(premium){
-      if(workspace.getAllBlocks(false).length > process.env.P_WORKSPACE_MAX_BLOCKS)return false;
-    }else{
-      if(workspace.getAllBlocks(false).length > process.env.NP_WORKSPACE_MAX_BLOCKS)return false;
+  checkNumberOfBlocks: function (workspace, premium) {
+    if (premium) {
+      if (workspace.getAllBlocks(false).length > process.env.P_WORKSPACE_MAX_BLOCKS) {
+        return false;
+      }
+    } else if (workspace.getAllBlocks(false).length > process.env.NP_WORKSPACE_MAX_BLOCKS) {
+      return false;
     }
+
     return true;
   },
 
@@ -19,37 +21,49 @@ module.exports = {
   Args : workspace - A Blockly Workspace
          premium - Is this server Premium or not ? Boolean
   Will return false if there is a problem with blocks amount */
-  checkIfRightNumberOfBlocksPerBlockUsed:function(workspace, premium){
-    let maxBlocks = {};//Will store blocks types and max amount
-    let blocksCount = {};//Will save how many blocks was seen, per type
+  checkIfRightNumberOfBlocksPerBlockUsed: function (workspace, premium) {
+    const maxBlocks = {}; //Will store blocks types and max amount
+    const blocksCount = {}; //Will save how many blocks was seen, per type
 
-    if(premium){
+    if (premium) {
       //Premium server
-      if(process.env.P_MAX_BLOCKS_BY_TYPE!="none"){
-        process.env.P_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
-          let block = item.split(':');// block = [block_type, max_amount]
+      if (process.env.P_MAX_BLOCKS_BY_TYPE != "none") {
+        process.env.P_MAX_BLOCKS_BY_TYPE.split(",").forEach((item) => {
+          const block = item.split(":"); // block = [block_type, max_amount]
           maxBlocks[block[0]] = parseInt(block[1]);
         });
-      }else{return true;}//No limited blocks
-    }else{
-      //Not premium server
-      if(process.env.NP_MAX_BLOCKS_BY_TYPE!="none"){
-        process.env.NP_MAX_BLOCKS_BY_TYPE.split(',').forEach((item, i) => {
-          let block = item.split(':');
-          maxBlocks[block[0]] = parseInt(block[1]);
-        });
-      }else{return true;}//No limited blocks
-    }
+      } else {
+        return true;
+      }
+    } //No limited blocks
+    //Not premium server
+    else if (process.env.NP_MAX_BLOCKS_BY_TYPE != "none") {
+      process.env.NP_MAX_BLOCKS_BY_TYPE.split(",").forEach((item) => {
+        const block = item.split(":");
+        maxBlocks[block[0]] = parseInt(block[1]);
+      });
+    } else {
+      return true;
+    } //No limited blocks
 
     //maxBlocks defined
     const blocks = workspace.getAllBlocks(false);
-    for(let i=0;i<blocks.length;i++){
-      if(! Object.keys(maxBlocks).includes(blocks[i].type) )continue;//Block type not in keys of maxBlocks
+    for (let i = 0; i < blocks.length; i++) {
+      if (!Object.keys(maxBlocks).includes(blocks[i].type)) {
+        continue;
+      }
+      //Block type not in keys of maxBlocks
 
-      if(! Object.keys(blocksCount).includes(blocks[i].type) )blocksCount[blocks[i].type]=0;//Type not in blockCount, we add it here
+      if (!Object.keys(blocksCount).includes(blocks[i].type)) {
+        blocksCount[blocks[i].type] = 0;
+      }
+      //Type not in blockCount, we add it here
       blocksCount[blocks[i].type]++;
 
-      if(maxBlocks[blocks[i].type] < blocksCount[blocks[i].type])return false;//More blocks used than allowed
+      if (maxBlocks[blocks[i].type] < blocksCount[blocks[i].type]) {
+        return false;
+      }
+      //More blocks used than allowed
     }
 
     return true;
@@ -60,29 +74,33 @@ module.exports = {
      Args : workspace - A Blockly Workspace
      Will return true if everything correct
   */
-  checkIfCommandBlockCorrectlyDefined: function(workspace){
+  checkIfCommandBlockCorrectlyDefined: function (workspace) {
     const blocks = workspace.getAllBlocks(false);
-    for(let i=0;i<blocks.length;i++){
-      if(blocks[i].type.startsWith("block_slash_command") && blocks[i].type!=="block_slash_command_creator"){
+    for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].type.startsWith("block_slash_command") && blocks[i].type !== "block_slash_command_creator") {
         //We found a slash command block. We will check if the block is in a creator or don't have a top block
-        if(blocks[i].getRootBlock().type.startsWith("event_")){//If block is placed in an event block
+        if (blocks[i].getRootBlock().type.startsWith("event_")) {
+          //If block is placed in an event block
           //This block isn't correctly placed
           return false;
         }
-
-      }else if(blocks[i].type=="block_slash_command_creator"){
+      } else if (blocks[i].type == "block_slash_command_creator") {
         //We check if this block contain a command reply block
-        commandBlocks = blocks[i].getDescendants(false);//All blocks in the command creator block
+        const commandBlocks = blocks[i].getDescendants(false); //All blocks in the command creator block
         let containReplyBlock = false;
-        for(let j=0;j<commandBlocks.length;j++){
-          if(commandBlocks[j].type==="block_slash_command_reply"){
-            containReplyBlock=true;break;
+        for (let j = 0; j < commandBlocks.length; j++) {
+          if (commandBlocks[j].type === "block_slash_command_reply") {
+            containReplyBlock = true;
+            break;
           }
         }
-        if(!containReplyBlock)return false;
-      }
 
+        if (!containReplyBlock) {
+          return false;
+        }
+      }
     }
+
     return true;
   },
 
@@ -91,37 +109,40 @@ module.exports = {
   Args : workspace - Al Blockly workspace
   Will return true if everything correct
   */
-  checkIfDataStorageCorrectlyDefined: function(workspace){
+  checkIfDataStorageCorrectlyDefined: function (workspace) {
     const blocks = workspace.getAllBlocks(false);
 
-    let definedStorages = [];//Save create storage names
-    let usedStorages = [];//Save used storage names
+    const definedStorages = []; //Save create storage names
+    const usedStorages = []; //Save used storage names
 
-    for(let i=0; i<blocks.length; i++){
-      if(blocks[i].type.startsWith('block_data_storage_create')){
+    for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].type.startsWith("block_data_storage_create")) {
         //This block define a new storage
-        if(blocks[i].type == "block_data_storage_create_int"){
-          definedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
-        }else{
-          definedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+        if (blocks[i].type == "block_data_storage_create_int") {
+          definedStorages.push("I" + blocks[i].getFieldValue("DATANAME"));
+        } else {
+          definedStorages.push("S" + blocks[i].getFieldValue("DATANAME"));
         }
-
-      }else if(blocks[i].type.startsWith('block_data_storage_')){
+      } else if (blocks[i].type.startsWith("block_data_storage_")) {
         //Save or get data from storage blocks
-        if(blocks[i].type.includes("int")){
-          usedStorages.push("I"+blocks[i].getFieldValue('DATANAME'));
-        }else{
-          usedStorages.push("S"+blocks[i].getFieldValue('DATANAME'));
+        if (blocks[i].type.includes("int")) {
+          usedStorages.push("I" + blocks[i].getFieldValue("DATANAME"));
+        } else {
+          usedStorages.push("S" + blocks[i].getFieldValue("DATANAME"));
         }
-
       }
     }
 
-    for(let i=0; i<usedStorages.length; i++){
-      //We check that used storages are correctly defined
-      if(! definedStorages.includes(usedStorages[i]) ) return false;
+    for (
+      let i = 0;
+      i < usedStorages.length;
+      i++ //We check that used storages are correctly defined
+    ) {
+      if (!definedStorages.includes(usedStorages[i])) {
+        return false;
+      }
     }
 
     return true;
-  }
-}
+  },
+};

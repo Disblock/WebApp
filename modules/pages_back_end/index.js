@@ -1,15 +1,16 @@
-'use strict';
+"use strict";
 //Used translations
-const index_localization_fr = require('../localization/index_fr.js');
-const index_localization_en = require('../localization/index_en.js');
+const indexLocalizationFr = require("../localization/index_fr.js");
+const indexLocalizationEn = require("../localization/index_en.js");
 
-module.exports = async function(req, res){
+module.exports = async function (req, res) {
   let locale;
   //Select right language
-  if(req.session.locale=='fr'){
-    locale=index_localization_fr;
-  }else{
-    locale=index_localization_en;
+  if (req.session.locale == "fr") {
+    locale = indexLocalizationFr;
+  } else {
+    locale = indexLocalizationEn;
   }
-  res.render('index.ejs', {session: req.session, locale:locale});
-}
+
+  res.render("index.ejs", { session: req.session, locale: locale });
+};
