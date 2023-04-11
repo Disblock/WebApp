@@ -5,7 +5,7 @@ const guildsWorkspaces = require("../database/workspaces.js");
 const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
 // -- Utils --
-const sanitizeXmlWorkspace = require("./utils/sanitizeXmlWorkspace.js");
+const sanitizeXmlWorkspace = require("./utils/sanitize_xml_workspace.js");
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
