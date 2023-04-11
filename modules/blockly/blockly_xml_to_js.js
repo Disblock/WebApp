@@ -4,34 +4,30 @@ const validateWorkspace = require("./validate_workspace.js");
 const guildsWorkspaces = require("../database/workspaces.js");
 const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
+// -- Utils --
+const sanitizeXmlWorkspace = require("./utils/sanitizeXmlWorkspace.js");
+
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
   xmlToJs: async function (serverId, xml, Blockly, databasePool, logger, premium) {
     // Create a headless workspace.
     const workspace = new Blockly.Workspace();
 
-    let replacedXml = xml.replaceAll("token", "t0ken").replaceAll("${", "$"); //Removing dangerous char
-
-    /*
-     Blockly's Variables and functions are disabled in user generated codes, so we check here that they wasn't used :
-     <variables> ; procedures_defreturn ; procedures_defnoreturn must not be in xml
-     */
-    if (
-      replacedXml.includes("<variables>") ||
-      replacedXml.includes("procedures_defreturn") ||
-      replacedXml.includes("procedures_defnoreturn")
-    ) {
+    let cleanXml;
+    try {
+      cleanXml = await sanitizeXmlWorkspace(xml);
+    } catch (err) {
       logger.debug(serverId + " used blockly's functions or variables in workspace, stopping here...");
-      return workspaceErrorsEnum.error;
+      return err; //ErrorsEnum, = 1
     }
 
     const slashCommandBlocks = []; //Will store the create slash commands blocks. Defined in the function under
     const defineDataStorageBlocks = []; //Will store the blocks used to define a new data storage
     //Function used to try/catch when generating code. If an error occured, undefined is returned
     //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
-    function tryCodeGeneration(replacedXml, workspace) {
+    function tryCodeGeneration(cleanXml, workspace) {
       try {
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(cleanXml), workspace);
 
         //We remove here every comments to avoid sending them to database
         const blocks = workspace.getAllBlocks(false);
@@ -87,7 +83,7 @@ module.exports = {
         return undefined;
       }
     } //End of function
-    const eventCodes = tryCodeGeneration(replacedXml, workspace);
+    const eventCodes = tryCodeGeneration(cleanXml, workspace);
     if (eventCodes == undefined) {
       return workspaceErrorsEnum.error;
     } //An error occured, return here
@@ -137,7 +133,7 @@ module.exports = {
       logger.debug("Only commands to add to server " + serverId);
     } else {
       //Seem like the user sent a blank workspace, codes will be removed...
-      replacedXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
+      cleanXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
       logger.debug(
         "There isn't any code to add in the database for the guild " +
           serverId +
@@ -224,7 +220,7 @@ module.exports = {
       }
 
       //Saving Workspace
-      const resultWorkspace = await guildsWorkspaces.addWorkspace(client, serverId, replacedXml, premium);
+      const resultWorkspace = await guildsWorkspaces.addWorkspace(client, serverId, cleanXml, premium);
       if (!resultWorkspace.correct) {
         throw resultWorkspace.message;
       }
