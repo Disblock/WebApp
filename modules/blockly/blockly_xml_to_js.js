@@ -1,6 +1,6 @@
 "use strict";
 //let Blockly = require('blockly');
-const validateWorkspace = require("./validate_workspace.js");
+const validateWorkspace = require("./utils/validate_workspace.js");
 const guildsWorkspaces = require("../database/workspaces.js");
 const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
@@ -21,36 +21,28 @@ module.exports = {
       return err; //ErrorsEnum, = 1
     }
 
+    Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(cleanXml), workspace);
+
+    //We remove here every comments to avoid sending them to database
+    const blocks = workspace.getAllBlocks(false);
+    for (let i = 0; i < blocks.length; i++) {
+      blocks[i].setCommentText(null);
+    }
+
+    //We can now check that workspace is valid
+    try {
+      await validateWorkspace(workspace, premium);
+    } catch (err) {
+      logger.debug(serverId + " sent an invalid workspace, stopping here... Error :" + err);
+      return err;
+    }
+
     const slashCommandBlocks = []; //Will store the create slash commands blocks. Defined in the function under
     const defineDataStorageBlocks = []; //Will store the blocks used to define a new data storage
     //Function used to try/catch when generating code. If an error occured, undefined is returned
     //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
-    function tryCodeGeneration(cleanXml, workspace) {
+    function tryCodeGeneration(workspace) {
       try {
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(cleanXml), workspace);
-
-        //We remove here every comments to avoid sending them to database
-        const blocks = workspace.getAllBlocks(false);
-        for (let i = 0; i < blocks.length; i++) {
-          blocks[i].setCommentText(null);
-        }
-
-        if (!validateWorkspace.checkNumberOfBlocks(workspace, premium)) {
-          return "TOO MANY BLOCKS !";
-        }
-
-        if (!validateWorkspace.checkIfCommandBlockCorrectlyDefined(workspace)) {
-          return "INCORRECTLY PLACED COMMANDS BLOCKS !";
-        }
-
-        if (!validateWorkspace.checkIfRightNumberOfBlocksPerBlockUsed(workspace, premium)) {
-          return "TOO MANY OF A BLOCK !";
-        }
-
-        if (!validateWorkspace.checkIfDataStorageCorrectlyDefined(workspace)) {
-          return "ERROR WITH DATA STORAGE !";
-        }
-
         const topBlocks = workspace.getTopBlocks(false); //https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
         const eventCodes = []; //Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
 
@@ -83,24 +75,10 @@ module.exports = {
         return undefined;
       }
     } //End of function
-    const eventCodes = tryCodeGeneration(cleanXml, workspace);
+    const eventCodes = tryCodeGeneration(workspace);
     if (eventCodes == undefined) {
       return workspaceErrorsEnum.error;
     } //An error occured, return here
-    else if (eventCodes === "TOO MANY BLOCKS !") {
-      //User used too many blocks...
-      logger.debug("Too many blocks error for guild " + serverId);
-      return workspaceErrorsEnum.tooManyBlocks;
-    } else if (eventCodes === "TOO MANY OF A BLOCK !") {
-      logger.debug("Too many blocks for one block type for guild " + serverId);
-      return workspaceErrorsEnum.tooManyOfABlock;
-    } else if (eventCodes === "INCORRECTLY PLACED COMMANDS BLOCKS !") {
-      logger.debug("Incorrectly placed commands blocks for guild " + serverId);
-      return workspaceErrorsEnum.incorrectlyPlacedBlocks;
-    } else if (eventCodes === "ERROR WITH DATA STORAGE !") {
-      logger.debug("Incorrectly used storage blocks for guild " + serverId);
-      return workspaceErrorsEnum.errorWithStorageBlocks;
-    }
 
     logger.debug("Working on code for the guild " + serverId + "...");
 
