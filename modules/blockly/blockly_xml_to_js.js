@@ -1,11 +1,12 @@
 "use strict";
 //let Blockly = require('blockly');
-const validateWorkspace = require("./utils/validate_workspace.js");
 const guildsWorkspaces = require("../database/workspaces.js");
 const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
 // -- Utils --
 const sanitizeXmlWorkspace = require("./utils/sanitize_xml_workspace.js");
+const validateWorkspace = require("./utils/validate_workspace.js");
+const manageWorkspaceBlocks = require("./utils/manage_workspace_blocks.js");
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
@@ -37,37 +38,17 @@ module.exports = {
       return err;
     }
 
-    const slashCommandBlocks = []; //Will store the create slash commands blocks. Defined in the function under
-    const defineDataStorageBlocks = []; //Will store the blocks used to define a new data storage
+    let slashCommandBlocks = []; //Will store the create slash commands blocks. Defined in the function under
+    let defineDataStorageBlocks = []; //Will store the blocks used to define a new data storage
     //Function used to try/catch when generating code. If an error occured, undefined is returned
     //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
-    function tryCodeGeneration(workspace) {
+    async function tryCodeGeneration(workspace) {
       try {
-        const topBlocks = workspace.getTopBlocks(false); //https://developers.google.com/blockly/reference/js/blockly.workspace_class.gettopblocks_1_method.md
-        const eventCodes = []; //Will store the events names and codes to run when an event is triggered. [ ['event_...', code], ... ]
-
         Blockly.JavaScript.init(workspace);
 
-        //For each top block, if this is an event block, we get his type and generate code
-        for (let i = 0; i < topBlocks.length; i++) {
-          if (topBlocks[i].type.startsWith("event_")) {
-            const code = Blockly.JavaScript.blockToCode(topBlocks[i], false);
-            if (code.replaceAll(/(\r\n|\n|\r)/gm, "") == "") {
-              continue;
-            }
-            //Nothing in this event, useless to add it
-
-            eventCodes.push([topBlocks[i].type, code]);
-            //https://developers.google.com/blockly/reference/js/blockly.codegenerator_class.blocktocode_1_method.md
-          } else if (topBlocks[i].type === "block_slash_command_creator") {
-            //This is a slash command creation block, we will store this block and work on it later
-            slashCommandBlocks.push(topBlocks[i]);
-          } //We will generate code for this just before sending SQL requests
-          else if (topBlocks[i].type.startsWith("block_data_storage_create_")) {
-            //Data storage block
-            defineDataStorageBlocks.push(topBlocks[i]);
-          }
-        } //Blocks names will be sent to an PLPGSQL function, that will create or delete storages if needed
+        const eventCodes = await manageWorkspaceBlocks.getEventCodes(Blockly, workspace);
+        slashCommandBlocks = await manageWorkspaceBlocks.getCommandsBlocks(workspace);
+        defineDataStorageBlocks = await manageWorkspaceBlocks.getStorageCreatorBlocks(workspace);
 
         return eventCodes;
       } catch (err) {
@@ -75,7 +56,7 @@ module.exports = {
         return undefined;
       }
     } //End of function
-    const eventCodes = tryCodeGeneration(workspace);
+    const eventCodes = await tryCodeGeneration(workspace);
     if (eventCodes == undefined) {
       return workspaceErrorsEnum.error;
     } //An error occured, return here
