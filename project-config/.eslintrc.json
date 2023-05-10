@@ -13,7 +13,7 @@
   },
   "ignorePatterns": ["init_logs.js"],
   "rules": {
-    "indent": ["error", "tab"],
+    "indent": "off",
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
