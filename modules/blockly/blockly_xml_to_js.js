@@ -40,26 +40,17 @@ module.exports = {
 
     let slashCommandBlocks = []; //Will store the create slash commands blocks. Defined in the function under
     let defineDataStorageBlocks = []; //Will store the blocks used to define a new data storage
-    //Function used to try/catch when generating code. If an error occured, undefined is returned
-    //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
-    async function tryCodeGeneration(workspace) {
-      try {
-        Blockly.JavaScript.init(workspace);
+    let eventCodes = []; //Array : [ ['event_type', codeToRun ], ... ]
+    try {
+      Blockly.JavaScript.init(workspace);
 
-        const eventCodes = await manageWorkspaceBlocks.getEventCodes(Blockly, workspace);
-        slashCommandBlocks = await manageWorkspaceBlocks.getCommandsBlocks(workspace);
-        defineDataStorageBlocks = await manageWorkspaceBlocks.getStorageCreatorBlocks(workspace);
-
-        return eventCodes;
-      } catch (err) {
-        logger.error("Error while converting workspace to code for guild " + serverId + " : " + err);
-        return undefined;
-      }
-    } //End of function
-    const eventCodes = await tryCodeGeneration(workspace);
-    if (eventCodes == undefined) {
+      eventCodes = await manageWorkspaceBlocks.getEventCodes(Blockly, workspace);
+      slashCommandBlocks = await manageWorkspaceBlocks.getCommandsBlocks(workspace);
+      defineDataStorageBlocks = await manageWorkspaceBlocks.getStorageCreatorBlocks(workspace);
+    } catch (err) {
+      logger.error("Error while converting workspace to code for guild " + serverId + " : " + err);
       return workspaceErrorsEnum.error;
-    } //An error occured, return here
+    }
 
     logger.debug("Working on code for the guild " + serverId + "...");
 
