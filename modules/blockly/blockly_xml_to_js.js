@@ -7,6 +7,7 @@ const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that
 const sanitizeXmlWorkspace = require("./utils/sanitize_xml_workspace.js");
 const validateWorkspace = require("./utils/validate_workspace.js");
 const manageWorkspaceBlocks = require("./utils/manage_workspace_blocks.js");
+const manageSlashCommands = require("./utils/manage_slash_commands.js");
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
@@ -90,52 +91,14 @@ module.exports = {
           ", deleting active server code and workspace..."
       );
     }
-    const slashCommandsNames = []; //This list is used to check that no commands share the same name
 
     try {
-      for (let i = 0; i < slashCommandBlocks.length; i++) {
-        //Loop to generate SQL requests for slash commands
-        const name = slashCommandBlocks[i].getFieldValue("NAME"); //We get name and desc for the command
-        const desc = slashCommandBlocks[i].getFieldValue("DESC");
-        const ephemeral = slashCommandBlocks[i].getFieldValue("EPHEMERAL") === "TRUE"; //Are the replies ephemeral or not ?
+      const slashCommandsRequests = await manageSlashCommands(Blockly, slashCommandBlocks, serverId); //We transform the list of Slash commands block into a list of SQL Queries
+      slashCommandsRequests.forEach((query) => {
+        sqlRequests.push(query); //For each query used in slash commands, we add it in the global queries list
+      });
+      logger.debug("Finished to work on slash commands for guild " + serverId);
 
-        if (
-          !(/^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(desc)) ||
-          slashCommandsNames.includes(name)
-        ) {
-          continue;
-        }
-        //We check name and desc. Name must be unique
-        const statements = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], "STATEMENTS"); //We can now get the code to execute
-        if (statements.replaceAll(/(\r\n|\n|\r)/gm, "") == "") {
-          continue;
-        }
-        //Something to execute must be provided
-
-        const jsonArgs = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], "ARGS").slice(0, -1); //We remove a , at the end of the generated json. We got the args for the command. If there isn't any arg, return '' anyway
-        const commandArgs = JSON.parse('{"args": [' + jsonArgs + "]}"); //Look in generator, but each arg is a JSON object
-        if (commandArgs.args.length > parseInt(process.env.COMMAND_MAX_ARGS)) {
-          continue;
-        }
-        //We check that this command don't have more than n args
-
-        logger.debug("Saving slash command " + name + " for guild " + serverId);
-
-        sqlRequests.push([
-          "INSERT INTO commands (server_id, name, description, code, defined, ephemeral) VALUES ($1, $2, $3, $4, FALSE, $5);",
-          [serverId, name, desc, statements, ephemeral],
-        ]); //Added the request to create the command
-        slashCommandsNames.push(name);
-
-        commandArgs.args.forEach((arg) => {
-          //For each arg in this command
-          //SQL request to save this arg added
-          sqlRequests.push([
-            "INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 )",
-            [serverId, name, arg.name, arg.desc, arg.required, arg.type],
-          ]); //Type defined in enums/commands_args_types.js
-        });
-      }
       //We will now work on data storages for this server
       const newStoragesNames = [serverId]; //We pass the server ID since it's the first arg of the SQL function
       let sqlStoragesRequest = "SELECT f_update_data_storages_for_guild($1";
