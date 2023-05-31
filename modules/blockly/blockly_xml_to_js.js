@@ -8,6 +8,7 @@ const sanitizeXmlWorkspace = require("./utils/sanitize_xml_workspace.js");
 const validateWorkspace = require("./utils/validate_workspace.js");
 const manageWorkspaceBlocks = require("./utils/manage_workspace_blocks.js");
 const manageSlashCommands = require("./utils/manage_slash_commands.js");
+const manageDataStorages = require("./utils/manage_data_storages.js");
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
@@ -100,24 +101,7 @@ module.exports = {
       logger.debug("Finished to work on slash commands for guild " + serverId);
 
       //We will now work on data storages for this server
-      const newStoragesNames = [serverId]; //We pass the server ID since it's the first arg of the SQL function
-      let sqlStoragesRequest = "SELECT f_update_data_storages_for_guild($1";
-      for (let i = 0; i < defineDataStorageBlocks.length; i++) {
-        //For every define storage block
-        const storageName = defineDataStorageBlocks[i].getFieldValue("DATANAME"); //We get the name of the storage
-        if (/^([A-Za-z0-9]{3,28})$/.test(storageName)) {
-          //Only if name is valid
-          newStoragesNames.push(
-            (defineDataStorageBlocks[i].type == "block_data_storage_create_string" ? "S" : "I") + storageName
-          ); //We save this name to send it to database
-          sqlStoragesRequest = sqlStoragesRequest + ", $" + (i + 2); //Indexes start at 1, and since 1 is already taken, we must do 0->2
-        } else {
-          logger.debug("Invalid storage name for guild " + serverId);
-          return workspaceErrorsEnum.errorWithStorageBlocks;
-        }
-      }
-      sqlStoragesRequest = sqlStoragesRequest + ");"; //We can now finish the SQL request
-      sqlRequests.push([sqlStoragesRequest, newStoragesNames]); //And add this request to the list of requests
+      sqlRequests.push(await manageDataStorages(defineDataStorageBlocks, serverId)); //And add this request to the list of requests
     } catch (err) {
       logger.error("Error while handling custom commands for guild : " + serverId + " : " + err); //Error in commands blocks, we can stop here and send an error to client
       return workspaceErrorsEnum.error;
