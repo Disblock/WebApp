@@ -1,5 +1,5 @@
 "use strict";
-const workspaceErrorsEnum = require("../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
+const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
 /*
 This function will loop through Data storages creator blocks, and will convert them to an SQL query.

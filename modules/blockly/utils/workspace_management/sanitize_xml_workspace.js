@@ -1,5 +1,5 @@
 "use strict";
-const workspaceErrorsEnum = require("../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
+const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
 //Function used to sanitize xml workspace sent by client
 module.exports = async (xml) => {

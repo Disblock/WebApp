@@ -4,11 +4,11 @@ const guildsWorkspaces = require("../database/workspaces.js");
 const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
 // -- Utils --
-const sanitizeXmlWorkspace = require("./utils/sanitize_xml_workspace.js");
-const validateWorkspace = require("./utils/validate_workspace.js");
-const manageWorkspaceBlocks = require("./utils/manage_workspace_blocks.js");
-const manageSlashCommands = require("./utils/manage_slash_commands.js");
-const manageDataStorages = require("./utils/manage_data_storages.js");
+const sanitizeXmlWorkspace = require("./utils/workspace_management/sanitize_xml_workspace.js");
+const validateWorkspace = require("./utils/workspace_management/validate_workspace.js");
+const manageWorkspaceBlocks = require("./utils/workspace_management/manage_workspace_blocks.js");
+const manageSlashCommands = require("./utils/workspace_management/manage_slash_commands.js");
+const manageDataStorages = require("./utils/workspace_management/manage_data_storages.js");
 
 module.exports = {
   /* Function used to translate BLockly's XML to executable JS.*/
