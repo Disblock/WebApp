@@ -6,7 +6,7 @@ const workspaceErrorsEnum = require("../enums/workspace_errors.js"); //Enum that
 // -- Utils --
 const sanitizeXmlWorkspace = require("./utils/workspace_management/sanitize_xml_workspace.js");
 const validateWorkspace = require("./utils/workspace_management/validate_workspace.js");
-const manageWorkspaceBlocks = require("./utils/workspace_management/manage_workspace_blocks.js");
+const workspaceGetBlocks = require("./utils/workspace_management/workspace_get_blocks.js");
 const manageSlashCommands = require("./utils/workspace_management/manage_slash_commands.js");
 const manageDataStorages = require("./utils/workspace_management/manage_data_storages.js");
 
@@ -46,9 +46,9 @@ module.exports = {
     try {
       Blockly.JavaScript.init(workspace);
 
-      eventCodes = await manageWorkspaceBlocks.getEventCodes(Blockly, workspace);
-      slashCommandBlocks = await manageWorkspaceBlocks.getCommandsBlocks(workspace);
-      defineDataStorageBlocks = await manageWorkspaceBlocks.getStorageCreatorBlocks(workspace);
+      eventCodes = await workspaceGetBlocks.getEventCodes(Blockly, workspace);
+      slashCommandBlocks = await workspaceGetBlocks.getCommandsBlocks(workspace);
+      defineDataStorageBlocks = await workspaceGetBlocks.getStorageCreatorBlocks(workspace);
     } catch (err) {
       logger.error("Error while converting workspace to code for guild " + serverId + " : " + err);
       return workspaceErrorsEnum.error;
