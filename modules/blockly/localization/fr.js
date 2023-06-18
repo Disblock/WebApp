@@ -671,6 +671,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Permet de récupérer le nombre d'utilisateurs connectés à un salon vocal";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Récupérer une catégorie avec son ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Permet de récupérer une catégorie à partir de son ID";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT"] = "Obtenir le salon parent du fil %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP"] = "Permet de retrouver le salon parent d'un fil";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";

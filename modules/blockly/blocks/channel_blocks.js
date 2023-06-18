@@ -570,6 +570,21 @@ module.exports = {
   "colour": 75,
   "tooltip": "%{BKY_BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP}",
   "helpUrl": ""
+},
+{
+  "type": "block_channel_get_thread_parent",
+  "message0": "%{BKY_BLOCK_CHANNEL_GET_THREAD_PARENT}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "output": "Channel",
+  "colour": 75,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP}",
+  "helpUrl": ""
 }
 ])
 }

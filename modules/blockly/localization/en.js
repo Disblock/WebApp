@@ -671,6 +671,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Return the number of users connected to the given voice channel";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Get a category with its ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Get a category with an ID";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT"] = "Get the parent channel of thread %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP"] = "Allows to retrieve the parent channel of a thread";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";

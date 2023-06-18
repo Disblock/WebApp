@@ -1307,6 +1307,16 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_channel_get_thread_parent'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+      if(value_channel!==''){
+        const code = "("+value_channel+".isThread() ? "+value_channel+".parent : undefined)";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
     /* ##### RANKS blocks ##### */
 
     Blockly.JavaScript['block_rank_create'] = function(block) {
