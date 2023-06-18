@@ -347,7 +347,10 @@ module.exports = {
 {
   "type": "block_slash_command_data_channel",
   "message0": "%{BKY_BLOCK_SLASH_COMMAND_DATA_CHANNEL}",
-  "output": "Channel",
+  "output": [
+    "Channel",
+    "ThreadChannel"
+  ],
   "colour": 15,
   "tooltip": "%{BKY_BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP}",
   "helpUrl": ""
