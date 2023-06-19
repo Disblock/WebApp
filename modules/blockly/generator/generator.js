@@ -1340,6 +1340,29 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_channel_set_thread_archived'] = function(block) {
+      const dropdown_isarchived = block.getFieldValue('isArchived');
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!=='' && dropdown_isarchived!==''){
+        const code = value_channel+".setArchived("+(dropdown_isarchived === 'ARCHIVED' ? 'true':'false')+");\n";
+        return code;
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_channel_is_thread_archived'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+".archived";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
     /* ##### RANKS blocks ##### */
 
     Blockly.JavaScript['block_rank_create'] = function(block) {

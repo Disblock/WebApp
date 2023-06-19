@@ -611,8 +611,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 60,
   "tooltip": "%{BKY_BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP}",
   "helpUrl": ""
@@ -631,6 +631,53 @@ module.exports = {
   "output": "Boolean",
   "colour": 75,
   "tooltip": "%{BKY_BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_channel_set_thread_archived",
+  "message0": "%{BKY_BLOCK_CHANNEL_SET_THREAD_ARCHIVED}",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "isArchived",
+      "options": [
+        [
+          "%{BKY_ARCHIVE}",
+          "ARCHIVED"
+        ],
+        [
+          "%{BKY_REOPEN}",
+          "ACTIVE"
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "Block",
+  "nextStatement": "Block",
+  "colour": 60,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_channel_is_thread_archived",
+  "message0": "%{BKY_BLOCK_CHANNEL_IS_THREAD_ARCHIVED}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 75,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP}",
   "helpUrl": ""
 }
 ])
