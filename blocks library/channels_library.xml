@@ -1112,4 +1112,110 @@
         <field name="HUE">75</field>
       </block>
     </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">block_channel_set_thread_locked</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="87Wzs@K?]!,y4v]vDmk5">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="Iyit|1[EOIN~LIf)t9/y">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">isLocked</field>
+            <field name="USER0">Verrouiller</field>
+            <field name="CPU0">LOCK</field>
+            <field name="USER1">Déverrouiller</field>
+            <field name="CPU1">UNLOCK</field>
+            <next>
+              <block type="field_static" id="B0.$ROnOK7NUUp[5wlam">
+                <field name="TEXT">le fil</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="$?b`F.BDXa)/vg#cD(tF"></shadow>
+          <block type="type_other" id="6E!.zhS](hoT{~]/X!F(">
+            <field name="TYPE">ThreadChannel</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de verrouiller ou déverrouiller un fil</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="3Buh.n~7r6}.2{[`eQ4E"></shadow>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="{phDo-,#KJ1B~z$N5i=;"></shadow>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#a5a55b"></mutation>
+        <field name="HUE">60</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="CN!MR_K{mx6gCa(Hq:3h" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_channel_is_thread_locked</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="87Wzs@K?]!,y4v]vDmk5">
+        <field name="INPUTNAME">channel</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="B0.$ROnOK7NUUp[5wlam">
+            <field name="TEXT">le fil</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="$?b`F.BDXa)/vg#cD(tF"></shadow>
+          <block type="type_other" id="6E!.zhS](hoT{~]/X!F(">
+            <field name="TYPE">ThreadChannel</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_dummy" id=")Qm-?crnC.xhPSKpZR=T">
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id=",OKfb=A.a?@,zi]y@Rlw">
+                <field name="TEXT">est-il verrouillé ?</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="2Ma4^4T)%bCL@p,%yFh@" deletable="false" movable="false">
+        <field name="TEXT">Permet de savoir si un fil est verrouillé</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="ESQ@.YPjW53fI1c,+/+2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="W.E^NuYp[=v=jEER+O8*"></shadow>
+      <block type="type_boolean" id="~UEA%^7HiFg[%NfphXF@"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="$Zy?KLE^z`UOHtnISm+f">
+        <mutation colour="#a5a55b"></mutation>
+        <field name="HUE">60</field>
+      </block>
+    </value>
   </block></xml>

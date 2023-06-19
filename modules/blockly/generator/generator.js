@@ -1317,6 +1317,29 @@ module.exports = {
       }
     };
 
+    Blockly.JavaScript['block_channel_set_thread_locked'] = function(block) {
+      const dropdown_islocked = block.getFieldValue('isLocked');
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!=='' && dropdown_islocked!==''){
+        const code = value_channel+".setLocked("+(dropdown_islocked === 'LOCK' ? 'true':'false')+");\n";
+        return code;
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
+    Blockly.JavaScript['block_channel_is_thread_locked'] = function(block) {
+      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+
+      if(value_channel!==''){
+        const code = value_channel+".locked";
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      }else{
+        throw(errors_types.uncompleteBlock);
+      }
+    };
+
     /* ##### RANKS blocks ##### */
 
     Blockly.JavaScript['block_rank_create'] = function(block) {

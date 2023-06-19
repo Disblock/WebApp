@@ -673,7 +673,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Get a category with an ID";
   Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT"] = "Get the parent channel of thread %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP"] = "Allows to retrieve the parent channel of a thread";
-
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED"] = "%1 the thread %2";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP"] = "Allows to lock or unlock a thread";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED"] = "Is thread %1 locked?";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] = "Allows to check if a thread is locked. Returns a Boolean True or False.";
+  
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";
   Blockly.Msg["BLOCK_MESSAGE_REPLY_TOOLTIP"] = "Reply to a message";
@@ -967,6 +971,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["YES"] = "Yes";
   Blockly.Msg["NO"] = "No";
   Blockly.Msg["UNLIMITED"] = "Unlimited";
+  Blockly.Msg["LOCK"] = "Lock";
+  Blockly.Msg["UNLOCK"] = "Unlock";
 
   return(Blockly);
 }

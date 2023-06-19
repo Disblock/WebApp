@@ -673,6 +673,10 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Permet de récupérer une catégorie à partir de son ID";
   Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT"] = "Obtenir le salon parent du fil %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP"] = "Permet de retrouver le salon parent d'un fil";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED"] = "%1 le fil  %2";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP"] = "Permet de verrouiller ou déverrouiller un fil";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED"] = "Le fil %1 est-il verrouillé ?";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] = "Permet de savoir si un fil est verrouillé. Retourne un Booléen Vrai ou Faux";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
@@ -967,6 +971,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["YES"] = "Oui";
   Blockly.Msg["NO"] = "Non";
   Blockly.Msg["UNLIMITED"] = "Illimité";
+  Blockly.Msg["LOCK"] = "Verrouiller";
+  Blockly.Msg["UNLOCK"] = "Déverrouiller";
 
   return(Blockly);
 }
