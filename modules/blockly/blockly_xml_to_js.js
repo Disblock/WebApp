@@ -51,7 +51,7 @@ module.exports = {
       defineDataStorageBlocks = await workspaceGetBlocks.getStorageCreatorBlocks(workspace);
     } catch (err) {
       logger.error("Error while converting workspace to code for guild " + serverId + " : " + err);
-      return workspaceErrorsEnum.error;
+      return err;
     }
 
     logger.debug("Working on code for the guild " + serverId + "...");
