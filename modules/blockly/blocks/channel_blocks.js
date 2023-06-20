@@ -658,8 +658,8 @@ module.exports = {
     }
   ],
   "inputsInline": true,
-  "previousStatement": "Block",
-  "nextStatement": "Block",
+  "previousStatement": "block",
+  "nextStatement": "block",
   "colour": 60,
   "tooltip": "%{BKY_BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP}",
   "helpUrl": ""
