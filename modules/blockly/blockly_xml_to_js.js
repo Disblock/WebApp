@@ -28,7 +28,7 @@ module.exports = {
      //Return an array if OK, a String if error, undefined if crashed. Array : [ ['event_type', codeToRun ], ... ]
      function tryCodeGeneration(replacedXml, workspace){
        try{
-         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(replacedXml), workspace);
+         Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(replacedXml), workspace);
 
          //We remove here every comments to avoid sending them to database
          let blocks = workspace.getAllBlocks(false);
