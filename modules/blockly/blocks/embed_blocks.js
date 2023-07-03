@@ -169,7 +169,8 @@ module.exports = {
         "name": "channel",
         "check": [
           "Channel",
-          "ThreadChannel"
+          "ThreadChannel",
+          "User"
         ]
       }
     ],

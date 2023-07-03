@@ -1885,8 +1885,9 @@ module.exports = {
       const value_embed = Blockly.JavaScript.valueToCode(block, 'embed', Blockly.JavaScript.ORDER_ATOMIC);
       const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_embed!=='' && value_channel!==''){
-        const code = 'sentMessage = await '+value_channel+'.send({ embeds: ['+value_embed+'] });\n'
+      if(value_embed!=='' && value_channel!==''){//GuildMember has a .user property, not the Channel objects
+        const code = 'if('+value_channel+'.user) sentMessage = await '+value_channel+'.send({ embeds: [Discord.EmbedBuilder.from('+value_embed+').setFooter({text:"This embed was sent by the server "+'+value_channel+'.guild.name+"("+'+value_channel+'.guild.id+")"})] });  \n\
+          else sentMessage = await '+value_channel+'.send({ embeds: ['+value_embed+'] });\n'
         return code;
       }else{
         throw(errors_types.uncompleteBlock);
