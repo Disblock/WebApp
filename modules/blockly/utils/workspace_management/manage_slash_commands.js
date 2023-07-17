@@ -1,4 +1,5 @@
 "use strict";
+const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 
 /*
 This function will loop through Slash command blocks, and will convert them to a set of SQL queries.
@@ -18,19 +19,20 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
       !(/^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(desc)) ||
       slashCommandsNames.includes(name)
     ) {
-      continue;
+      //We check name and desc. Name must be unique
+      throw workspaceErrorsEnum.invalidRegex;
     }
-    //We check name and desc. Name must be unique
+
     const statements = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], "STATEMENTS"); //We can now get the code to execute
     if (statements.replaceAll(/(\r\n|\n|\r)/gm, "") == "") {
-      continue;
+      throw workspaceErrorsEnum.uncompleteBlock;
     }
     //Something to execute must be provided
 
     const jsonArgs = Blockly.JavaScript.statementToCode(slashCommandBlocks[i], "ARGS").slice(0, -1); //We remove a , at the end of the generated json. We got the args for the command. If there isn't any arg, return '' anyway
     const commandArgs = JSON.parse('{"args": [' + jsonArgs + "]}"); //Look in generator, but each arg is a JSON object
     if (commandArgs.args.length > parseInt(process.env.COMMAND_MAX_ARGS)) {
-      continue;
+      throw workspaceErrorsEnum.error;
     }
     //We check that this command don't have more than n args
 

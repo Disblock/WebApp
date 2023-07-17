@@ -104,7 +104,7 @@ module.exports = {
       sqlRequests.push(await manageDataStorages(defineDataStorageBlocks, serverId)); //And add this request to the list of requests
     } catch (err) {
       logger.error("Error while handling custom commands for guild : " + serverId + " : " + err); //Error in commands blocks, we can stop here and send an error to client
-      return workspaceErrorsEnum.error;
+      return err;
     }
 
     //Saving to Database
