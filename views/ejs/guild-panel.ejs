@@ -157,7 +157,7 @@
   <% if(workspace_xml){
       escapedWorkspaceXml = workspace_xml/*.replace(/'/g, "\\'").replace(/"/g, '\\"')*/.replace(/`/g, '\\`');//We must escape that in order to display it without problems
    %>
-    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- escapedWorkspaceXml %>`), workspace);
+    Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(`<%- escapedWorkspaceXml %>`), workspace);
     $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+workspace.getAllBlocks(false).length +' / '+maxBlocks);
     <%
   }%>
