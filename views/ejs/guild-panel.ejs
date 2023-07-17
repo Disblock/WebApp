@@ -157,12 +157,12 @@
   <% if(workspaceXml){
       escapedWorkspaceXml = workspaceXml/*.replace(/'/g, "\\'").replace(/"/g, '\\"')*/.replace(/`/g, '\\`');//We must escape that in order to display it without problems
    %>
-    Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(`<%- escapedWorkspaceXml %>`), workspace);
+    Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(`<%- escapedWorkspaceXml %>`), workspace);
     $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+workspace.getAllBlocks(false).length +' / '+maxBlocks);
     <%
   }%>
 
-  //We include here events for Blockly
+  //We include here events for Blockly and validateWorkspace()
   <%-include("../js/blockly_functions.ejs");%>
 
   //Here, the enum that list all possibles errors after sending a workspace
