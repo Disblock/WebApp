@@ -58,7 +58,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
                   //We will add properties required to render logs entries
                   for (let j = 0; j < logs.rows.length; j++) {
                     if (logs.rows[j].user_id == user.id) {
-                      logs.rows[j].username = user.username + "#" + user.discriminator;
+                      logs.rows[j].username = user.username;
                       logs.rows[j].avatarUrl = user.avatar
                         ? "https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + "?size=64"
                         : "/img/profile.svg";
