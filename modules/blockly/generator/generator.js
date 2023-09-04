@@ -2251,7 +2251,7 @@ module.exports = {
     /* ##### Slash commands blocks ##### */
 
     Blockly.JavaScript["block_slash_command_creator"] = function (block) {
-      //We get values for this block directly in xml_to_js !
+      //We get values for this block directly in modules/blockly/utils/manage_slash_commands.js !
       throw errorsTypes.error;
     };
 

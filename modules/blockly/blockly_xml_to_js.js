@@ -26,7 +26,7 @@ module.exports = {
 
     Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(cleanXml), workspace);
 
-    //We remove here every comments to avoid sending them to database
+    //We remove here every comments to avoid sending them to database in code tables
     const blocks = workspace.getAllBlocks(false);
     for (let i = 0; i < blocks.length; i++) {
       blocks[i].setCommentText(null);
