@@ -70,6 +70,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient, bl
                 workspaceXml: workspaceXml,
                 errorsEnum: JSON.stringify(workspaceErrors),
                 page: 1,
+                definedRegexes: require("../utils/regex.js"),
               });
             })
 

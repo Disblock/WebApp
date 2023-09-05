@@ -1,4 +1,13 @@
 //Used to store what var blocks can be used in what event block
+<%
+
+for(let key in definedRegexes){//We import here regexes saved in modules/utils/regex.js
+  //variableNameRegex; slashCommandNameRegex; ect.. are functions defined here; in rejex.js
+  %><%- definedRegexes[key] %><%
+}
+
+%>
+
 const events_var_blocks = {
   event_message_sent:['event_var_message'],
   event_message_deleted:['event_var_message'],
@@ -43,7 +52,7 @@ function saveVarBlockModified(event){
       workspace.getBlockById(event.blockId).getChildren(true)[0].unplug();
       workspace.getBlockById(event.blockId).bumpNeighbours();
     }else if(event.name=="NAME"){
-      if(/^[a-zA-Z0-9]{1,16}$/.test(event.newValue)){
+      if(variableNameRegex(event.newValue)){
         //Valid name
         workspace.getBlockById(event.blockId).setWarningText(null);
       }else{
@@ -117,9 +126,9 @@ function validateWorkspace(workspace){
       if(blocksInEvent[j].type=="block_var_save"){
         //That's a setter block, we save his name and type here
 
-        if(!( areInputsFilled(blocksInEvent[j]) && /^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME')) )){
+        if(!( areInputsFilled(blocksInEvent[j]) && variableNameRegex(blocksInEvent[j].getFieldValue('NAME')) )){
           if(! areInputsFilled(blocksInEvent[j]) ) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"]);//Incomplete !
-          if(!/^[a-zA-Z0-9]{1,16}$/.test(blocksInEvent[j].getFieldValue('NAME'))) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
+          if(! variableNameRegex(blocksInEvent[j].getFieldValue('NAME'))) blocksInEvent[j].setWarningText(Blockly.Msg["WARNING_INVALID_NAME"]);//Invalid name !
 
           foundError = true;
         }
@@ -164,7 +173,7 @@ function validateWorkspace(workspace){
   //Now checking for empty text blocks
   for(let i=0; i<blocks.length; i++){
      if(blocks[i].type==="text"){
-       if(/^\s*('|\\')*\s*$/.test(blocks[i].getFieldValue('TEXT'))){
+       if(emptyTextBoxRegex(blocks[i].getFieldValue('TEXT'))){
          //Text value is empty
          blocks[i].setWarningText(Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"]);
          foundError = true;
@@ -180,10 +189,10 @@ function validateWorkspace(workspace){
 
       if(blocks[i].getInputTargetBlock('emoji').type==='text'){//A text block is used a value for the emoji
 
-        if(/^[a-zA-Z0-9]+$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
+        if(customEmojiRegex(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
           //A custom emoji is used in this block. We will check that it's correctly defined. We check with a regex, because Discord's Ascii emojis shouldn't include a-Z0-9 chars.
 
-          if(! /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
+          if(! validCustomEmojiRegex(blocks[i].getInputTargetBlock('emoji').getFieldValue('TEXT'))){
             //Regex NOT OK
             blocks[i].getInputTargetBlock('emoji').setWarningText(Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"]);
             foundError = true;
@@ -212,7 +221,7 @@ function validateWorkspace(workspace){
 
     //Names and descriptions most be valid
     if(blocks[i].type.startsWith("block_slash_command_arg") || blocks[i].type.startsWith("block_slash_command_creator")){
-      if(! /^([a-z0-9]{3,28})$/.test(blocks[i].getFieldValue('NAME')) || ! /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(blocks[i].getFieldValue('DESC'))){//Regex also checked in back-end
+      if(! slashCommandNameRegex(blocks[i].getFieldValue('NAME')) || ! slashCommandDescriptionRegex(blocks[i].getFieldValue('DESC'))){//Regex also checked in back-end
         //NOT OK
         blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"]);
         foundError = true;
@@ -342,7 +351,7 @@ function validateWorkspace(workspace){
       }
 
       //We check that data storage name is valid
-      if(!/^([A-Za-z0-9]{3,28})$/.test( blocks[i].getFieldValue('DATANAME') )){
+      if(!dataStorageNameRegex( blocks[i].getFieldValue('DATANAME') )){
         //Not OK
         blocks[i].setWarningText(Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"]);
         foundError = true;

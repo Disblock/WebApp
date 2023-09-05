@@ -1,15 +1,27 @@
 "use strict";
 
 module.exports = {
-
-  dataStorageName: (value)=>{
+  //We need to define function names, so we can just send that to client side with EJS, by adding functions one per one
+  //Check blockly_functions.ejs in view folder
+  dataStorageName: function dataStorageNameRegex(value) {
     return /^([A-Za-z0-9]{3,28})$/.test(value);
   },
-  slashCommandName: (value)=>{
+  slashCommandName: function slashCommandNameRegex(value) {
     return /^([a-z0-9]{3,28})$/.test(value);
   },
-  slashCommandDescription: (value)=>{
+  slashCommandDescription: function slashCommandDescriptionRegex(value) {
     return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(value);
-  }
-
-}
+  },
+  variableName: function variableNameRegex(value) {
+    return /^[a-zA-Z0-9]{1,16}$/.test(value);
+  },
+  emptyTextBox: function emptyTextBoxRegex(value) {
+    return /^\s*('|\\')*\s*$/.test(value);
+  },
+  mayBeCustomEmoji: function customEmojiRegex(value) {
+    return /^[a-zA-Z0-9]+$/.test(value);
+  },
+  validCustomEmoji: function validCustomEmojiRegex(value) {
+    return /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(value);
+  },
+};

@@ -163,7 +163,7 @@
   }%>
 
   //We include here events for Blockly and validateWorkspace()
-  <%-include("../js/blockly_functions.ejs");%>
+  <%-include("../js/blockly_functions.ejs", {definedRegexes:definedRegexes});%>
 
   //Here, the enum that list all possibles errors after sending a workspace
   const errorsEnum = JSON.parse('<%-errorsEnum%>');
