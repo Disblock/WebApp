@@ -1,5 +1,6 @@
 "use strict";
 const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
+const definedRegexes = require("../../../utils/regex.js");
 
 /*
 This function will loop through Slash command blocks, and will convert them to a set of SQL queries.
@@ -16,7 +17,7 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
     const ephemeral = slashCommandBlocks[i].getFieldValue("EPHEMERAL") === "TRUE"; //Are the replies ephemeral or not ?
 
     if (
-      !(/^([a-z0-9]{3,28})$/.test(name) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(desc)) ||
+      !(definedRegexes.slashCommandName(name) && definedRegexes.slashCommandDescription(desc)) ||
       slashCommandsNames.includes(name)
     ) {
       //We check name and desc. Name must be unique

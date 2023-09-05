@@ -1,5 +1,6 @@
 "use strict";
 const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
+const definedRegexes = require("../../../utils/regex.js");
 
 /*
 This function will loop through Data storages creator blocks, and will convert them to an SQL query.
@@ -11,7 +12,7 @@ module.exports = async (defineDataStorageBlocks, serverId) => {
   for (let i = 0; i < defineDataStorageBlocks.length; i++) {
     //For every define storage block
     const storageName = defineDataStorageBlocks[i].getFieldValue("DATANAME"); //We get the name of the storage
-    if (/^([A-Za-z0-9]{3,28})$/.test(storageName)) {
+    if (definedRegexes.dataStorageName(storageName)) {
       //Only if name is valid
       newStoragesNames.push(
         (defineDataStorageBlocks[i].type == "block_data_storage_create_string" ? "S" : "I") + storageName
