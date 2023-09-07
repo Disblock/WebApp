@@ -3,6 +3,7 @@ const panelLocalizationFr = require("../localization/panel_fr.js");
 const panelLocalizationEn = require("../localization/panel_en.js");
 const discordGetServers = require("../discord_get_servers.js"); //Used to get user's Discord guilds ( Where has an admin access )
 const crypto = require("crypto"); //Generate random strings
+const pagesEnums = require("../enums/pages.js"); //Enums for pages to render
 
 module.exports = async function (req, res, databasePool, logger, redisClient) {
   if (req.session.discord_id != undefined) {
@@ -43,7 +44,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
             locale: locale,
             guilds: guilds,
             guild: undefined,
-            page: 4,
+            page: pagesEnums.premium_panel,
             premiumSlots: result.rows,
           });
         })

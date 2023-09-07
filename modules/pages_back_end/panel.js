@@ -2,6 +2,7 @@
 const discordGetServers = require("../discord_get_servers.js"); //Used to get user's Discord guilds ( Where has an admin access )
 const panelLocalizationFr = require("../localization/panel_fr.js");
 const panelLocalizationEn = require("../localization/panel_en.js");
+const pagesEnums = require("../enums/pages.js"); //Enums for pages to render
 
 module.exports = async function (req, res, databasePool, logger, redisClient) {
   let locale;
@@ -36,7 +37,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
           news: news,
           guilds: guilds,
           guild: undefined,
-          page: 0,
+          page: pagesEnums.index_panel,
         });
       } else {
         res.redirect("/");

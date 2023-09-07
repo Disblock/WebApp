@@ -5,6 +5,7 @@ const guildsDatabase = require("../database/guilds.js"); //Used to check in data
 const getUserFromId = require("../utils/get_user_from_id.js"); //Used to get user data from Discord API
 const panelLocalizationFr = require("../localization/panel_fr.js");
 const panelLocalizationEn = require("../localization/panel_en.js");
+const pagesEnums = require("../enums/pages.js"); //Enums for pages to render
 
 module.exports = async function (req, res, databasePool, logger, redisClient) {
   if (req.session.discord_id != undefined) {
@@ -84,7 +85,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
                 guilds: guilds,
                 guild: guild,
                 premium: premium,
-                page: 3,
+                page: pagesEnums.logs_panel,
                 logs: logs.rows,
               });
             })

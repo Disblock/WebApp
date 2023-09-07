@@ -5,6 +5,7 @@ const guildsDatabase = require("../database/guilds.js"); //Used to check in data
 const panelLocalizationFr = require("../localization/panel_fr.js");
 const panelLocalizationEn = require("../localization/panel_en.js");
 const crypto = require("crypto"); //Generate random strings
+const pagesEnums = require("../enums/pages.js"); //Enums for pages to render
 
 module.exports = async function (req, res, databasePool, logger, redisClient) {
   if (req.session.discord_id != undefined) {
@@ -61,7 +62,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
                 guilds: guilds,
                 guild: guild,
                 premium: premium,
-                page: 2,
+                page: pagesEnums.rollback_panel,
                 savedWorkspaces: savedWorkspaces.rows,
               });
             })

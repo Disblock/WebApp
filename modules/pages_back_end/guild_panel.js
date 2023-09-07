@@ -8,6 +8,7 @@ const blocklyLocalizationFr = require("../blockly/localization/fr.js"); //Add lo
 const blocklyLocalizationEn = require("../blockly/localization/en.js"); //Add localization to the generator - EN
 const defaultWorkspace = require("../blockly/default_workspace.js"); //The default workspace is none found in database
 const workspaceErrors = require("../enums/workspace_errors.js"); //Enum of possibles errors when sending a workspace
+const pagesEnums = require("../enums/pages.js"); //Enums for pages to render
 
 module.exports = async function (req, res, databasePool, logger, redisClient, blocklyBlocks) {
   if (req.session.discord_id != undefined) {
@@ -69,7 +70,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient, bl
                 blocklyLocale: blocklyLocale,
                 workspaceXml: workspaceXml,
                 errorsEnum: JSON.stringify(workspaceErrors),
-                page: 1,
+                page: pagesEnums.guild_panel,
                 definedRegexes: require("../utils/regex.js"),
               });
             })
