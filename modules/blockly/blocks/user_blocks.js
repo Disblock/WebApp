@@ -137,21 +137,6 @@ module.exports = {
       helpUrl: "",
     },
     {
-      type: "block_user_get_tag",
-      message0: "%{BKY_BLOCK_USER_GET_TAG}",
-      args0: [
-        {
-          type: "input_value",
-          name: "user",
-          check: "User",
-        },
-      ],
-      output: "String",
-      colour: 285,
-      tooltip: "%{BKY_BLOCK_USER_GET_TAG_TOOLTIP}",
-      helpUrl: "",
-    },
-    {
       type: "block_user_get_id",
       message0: "%{BKY_BLOCK_USER_GET_ID}",
       args0: [

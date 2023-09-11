@@ -582,17 +582,6 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_tag"] = function (block) {
-      const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
-
-      if (valueUser !== "") {
-        const code = valueUser + ".user.tag.split(\"#\")[1] || ''";
-        return [code, Blockly.JavaScript.ORDER_NONE];
-      } else {
-        throw errorsTypes.uncompleteBlock;
-      }
-    };
-
     Blockly.JavaScript["block_user_get_id"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 

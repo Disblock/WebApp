@@ -792,9 +792,6 @@ module.exports = function init(Blockly) {
     "Récupérer le pseudo de l'utilisateur sur le serveur, sans le discriminant";
   Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Récupérer le pseudo de l'utilisateur %1";
   Blockly.Msg["BLOCK_USER_GET_USERNAME_TOOLTIP"] = "Récupérer le pseudo de l'utilisateur, sans le discriminant";
-  Blockly.Msg["BLOCK_USER_GET_TAG"] = "Récupérer le discriminant de l'utilisateur %1";
-  Blockly.Msg["BLOCK_USER_GET_TAG_TOOLTIP"] =
-    "Récupérer le discriminant de l'utilisateur, sans son pseudo. Ex : 'Pseudo#1234' retourne '1234'";
   Blockly.Msg["BLOCK_USER_GET_ID"] = "Récupérer l'ID de l'utilisateur %1";
   Blockly.Msg["BLOCK_USER_GET_ID_TOOLTIP"] = "Récupérer l'identifiant de l'utilisateur";
   Blockly.Msg["BLOCK_USER_GET_PICTURE"] = "Récupérer l'avatar de l'utilisateur %1";

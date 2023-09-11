@@ -769,9 +769,6 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME_TOOLTIP"] = "Get the nickname of a member";
   Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Get user's username %1";
   Blockly.Msg["BLOCK_USER_GET_USERNAME_TOOLTIP"] = "Get the username of an user";
-  Blockly.Msg["BLOCK_USER_GET_TAG"] = "Get user's tag %1";
-  Blockly.Msg["BLOCK_USER_GET_TAG_TOOLTIP"] =
-    'Get the Discord tag of an user ( ex : "Username#1234" will return "1234" )';
   Blockly.Msg["BLOCK_USER_GET_ID"] = "Get user's ID %1";
   Blockly.Msg["BLOCK_USER_GET_ID_TOOLTIP"] = "Get the ID of an user";
   Blockly.Msg["BLOCK_USER_GET_PICTURE"] = "Get user's profile picture %1";
