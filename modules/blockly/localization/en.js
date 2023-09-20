@@ -478,6 +478,7 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Get the value of command arguments";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get command's data";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Do something when this command is used";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_FORMS"] = "Create a form";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Send a message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Delete a message";
@@ -986,6 +987,13 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Return the text channel where someone used this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "User who ran this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Return the user who used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR"] =
+    "Create the form %1 %2 with fields: %3 Once the form is received, do: %4";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP"] =
+    "Allows you to create a form. This block must be the very first in the command's actions. You can add fields to fill out, as well as actions to be performed once the form has been submitted.";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT"] =
+    "Add a text input %1 named %2 %3 Minimum size: %4 Maximum size: %5 %6 Default content: %7 %8 Required: %9";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP"] = "Allows you to add a text input to a form";
 
   //Data storage blocks
   Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Create number storage named %1";
@@ -1075,6 +1083,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["YES"] = "Yes";
   Blockly.Msg["NO"] = "No";
   Blockly.Msg["UNLIMITED"] = "Unlimited";
+  Blockly.Msg["SHORT"] = "short";
+  Blockly.Msg["LONG"] = "long";
 
   return Blockly;
 };

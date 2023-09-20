@@ -490,6 +490,7 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Récupérer la valeur des arguments";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Obtenir des informations sur la commande";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Faire quelque chose quand cette commande est utilisée";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_FORMS"] = "Créer un formulaire";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Supprimer un message";
@@ -1013,6 +1014,13 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Retourne le salon où cette commande a été utilisée";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "Utilisateur qui a utilisé cette commande";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Retourne l'utilisateur qui a exécuté cette commande";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR"] =
+    "Créer le formulaire %1 %2 avec les champs : %3 Une fois le formulaire reçu, faire : %4";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP"] =
+    "Permet de créer un formulaire. Ce bloc doit être le tout premier dans les actions de la commande. Vous pouvez ajouter des champs à remplir, ainsi que les actions réalisées une fois que le formulaire a été envoyé.";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT"] =
+    "Ajouter une entrée de texte %1 nommée %2 %3 Taille minimale : %4 Taille maximale : %5 %6 Contenu par défaut : %7 %8 Requis : %9";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP"] = "Permet d'ajouter une entrée de texte à un formulaire";
 
   //Data storage blocks
   Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Créer le stockage de nombres nommé %1";
@@ -1105,6 +1113,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["YES"] = "Oui";
   Blockly.Msg["NO"] = "Non";
   Blockly.Msg["UNLIMITED"] = "Illimité";
+  Blockly.Msg["SHORT"] = "court";
+  Blockly.Msg["LONG"] = "long";
 
   return Blockly;
 };

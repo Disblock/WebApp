@@ -40,7 +40,7 @@ module.exports = {
         {
           type: "input_statement",
           name: "STATEMENTS",
-          check: "block",
+          check: ["block", "FormCreatorBlock"],
         },
       ],
       colour: 30,
@@ -360,6 +360,94 @@ module.exports = {
       output: "User",
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP}",
+      helpUrl: "",
+    },
+    {
+      type: "block_slash_command_form_creator",
+      message0: "%{BKY_BLOCK_SLASH_COMMAND_FORM_CREATOR}",
+      args0: [
+        {
+          type: "field_input",
+          name: "NAME",
+          text: "default",
+        },
+        {
+          type: "input_dummy",
+        },
+        {
+          type: "input_statement",
+          name: "INPUTS",
+          check: "FormInputBlock",
+        },
+        {
+          type: "input_statement",
+          name: "STATEMENTS",
+          check: "block",
+        },
+      ],
+      previousStatement: "FormCreatorBlock",
+      nextStatement: "block",
+      colour: 60,
+      tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP}",
+      helpUrl: "",
+    },
+    {
+      type: "block_slash_command_form_input_text",
+      message0: "%{BKY_BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT}",
+      args0: [
+        {
+          type: "field_dropdown",
+          name: "STYLE",
+          options: [
+            ["%{BKY_SHORT}", "SHORT"],
+            ["%{BKY_LONG}", "LONG"],
+          ],
+        },
+        {
+          type: "field_input",
+          name: "NAME",
+          text: "default",
+        },
+        {
+          type: "input_dummy",
+        },
+        {
+          type: "field_number",
+          name: "MINSIZE",
+          value: 0,
+          min: 0,
+          max: 3999,
+          precision: 1,
+        },
+        {
+          type: "field_number",
+          name: "MAXSIZE",
+          value: 4000,
+          min: 1,
+          max: 4000,
+          precision: 1,
+        },
+        {
+          type: "input_dummy",
+        },
+        {
+          type: "field_input",
+          name: "PLACEHOLDER",
+          text: "Type something here..",
+        },
+        {
+          type: "input_dummy",
+        },
+        {
+          type: "field_checkbox",
+          name: "REQUIRED",
+          checked: true,
+        },
+      ],
+      previousStatement: "FormInputBlock",
+      nextStatement: "FormInputBlock",
+      colour: 45,
+      tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP}",
       helpUrl: "",
     },
   ]),
