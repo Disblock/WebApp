@@ -450,5 +450,28 @@ module.exports = {
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP}",
       helpUrl: "",
     },
+    {
+      type: "block_slash_command_form_get_input_text",
+      message0: "%{BKY_BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT}",
+      args0: [
+        {
+          type: "field_input",
+          name: "NAME",
+          text: "default",
+        },
+      ],
+      output: "String",
+      colour: 40,
+      tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT_TOOLTIP}",
+      helpUrl: "",
+    },
+    {
+      type: "block_slash_command_form_get_user",
+      message0: "%{BKY_BLOCK_SLASH_COMMAND_FORM_GET_USER}",
+      output: "User",
+      colour: 40,
+      tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_GET_USER_TOOLTIP}",
+      helpUrl: "",
+    },
   ]),
 };

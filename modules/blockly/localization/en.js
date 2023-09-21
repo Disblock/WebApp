@@ -994,6 +994,12 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT"] =
     "Add a text input %1 named %2 %3 Minimum size: %4 Maximum size: %5 %6 Default content: %7 %8 Required: %9";
   Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP"] = "Allows you to add a text input to a form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT"] = "Retrieve the text field %1 from the form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT_TOOLTIP"] =
+    "Allows you to retrieve the response provided to a question in the form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_USER"] = "Retrieve the user who responded to the form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_USER_TOOLTIP"] =
+    "Allows you to retrieve the user who responded to the form";
 
   //Data storage blocks
   Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Create number storage named %1";

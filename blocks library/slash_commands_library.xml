@@ -1183,4 +1183,87 @@
         <field name="HUE">45</field>
       </block>
     </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="-5" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_form_get_input_text</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer le champ de texte </field>
+            <next>
+              <block type="field_input" id="d@-n./C)BUhH.SWr;!^V">
+                <field name="TEXT">default</field>
+                <field name="FIELDNAME">NAME</field>
+                <next>
+                  <block type="field_static" id=";Kgq+7ZHssKL6?w2IKHM">
+                    <field name="TEXT">du formulaire</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer la réponse fournie à une question du formulaire</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="-D]1i-8t~={)@zOU!q^U"></shadow>
+      <block type="type_string" id="oC-ik2?akE9wvV4n5_El"></block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a58c5b"></mutation>
+        <field name="HUE">40</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="Q%%y@@x7fE*;cay=e4M." deletable="false" movable="false" x="-5" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">block_slash_command_form_get_user</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id=")mkSdypaD[Hl7o%H*Lhr">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",,2B}FfG$V}.6:DliL2j">
+            <field name="TEXT">Récupérer l'utilisateur qui a répondu au formulaire</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="kfi8euqW=zzEyreCuT9P" deletable="false" movable="false">
+        <field name="TEXT">Permet de récupérer l'utilisateur qui a répondu au formulaire</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(;CU,A*dBU3js)v_C[bY" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="-D]1i-8t~={)@zOU!q^U"></shadow>
+      <block type="type_other" id="1U.|X9iWmmMTy`f+5d-o">
+        <field name="TYPE">User</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id=")9QmeD(7VNT1VS=t+-$3">
+        <mutation colour="#a58c5b"></mutation>
+        <field name="HUE">40</field>
+      </block>
+    </value>
   </block></xml>
