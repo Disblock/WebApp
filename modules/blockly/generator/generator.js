@@ -52,7 +52,7 @@ module.exports = {
     */
     Blockly.JavaScript = javascriptGenerator;
     Blockly.JavaScript.addReservedWords(
-      "loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,temporaryStorage"
+      "loopCount,CURRENT_GUILD,embedMessage,createdTextChannel,createdVoiceChannel,sentMessage,createdThreadOnMessage,createdRank,eventMessage,eventOldMessage,eventNewMessage,eventUser,eventOldUser,eventNewUser,eventRole,eventOldRole,eventNewRole,eventOldVoiceChannel,eventNewVoiceChannel,eventVoiceChannel,eventTextChannel,eventOldTextChannel,eventNewTextChannel,eventReaction,temporaryStorage,interaction"
     );
     Blockly.JavaScript.INFINITE_LOOP_TRAP =
       "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
@@ -2433,6 +2433,67 @@ module.exports = {
     Blockly.JavaScript["block_slash_command_data_user"] = function (block) {
       const code = "interaction.member";
       return [code, Blockly.JavaScript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript["block_slash_command_form_creator"] = function (block) {
+      const textName = block.getFieldValue("NAME");
+      const statementsInputs = Blockly.JavaScript.statementToCode(block, "INPUTS");
+      //onst statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS'); //TODO : manage this
+
+      const code =
+        "await interaction.showModal( new Discord.ModalBuilder().setCustomId(CURRENT_GUILD.id+'" +
+        textName +
+        "').setTitle('" +
+        textName +
+        "').addComponents(" +
+        statementsInputs +
+        ") );\n";
+      return code;
+    };
+
+    Blockly.JavaScript["block_slash_command_form_input_text"] = function (block) {
+      const dropdownStyle = block.getFieldValue("STYLE");
+      const textName = block.getFieldValue("NAME");
+      const numberMinsize = block.getFieldValue("MINSIZE");
+      const numberMaxsize = block.getFieldValue("MAXSIZE");
+      const textPlaceholder = block.getFieldValue("PLACEHOLDER");
+      const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
+
+      const code =
+        "new Discord.ActionRowBuilder().addComponents( \
+                    new Discord.TextInputBuilder().setCustomId('" +
+        textName +
+        "').setLabel('" +
+        textName +
+        "').setStyle(Discord.TextInputStyle." +
+        (dropdownStyle === "SHORT" ? "Short" : "Paragraph") +
+        ").setMaxLength(" +
+        numberMaxsize +
+        ").setMinLength(" +
+        numberMinsize +
+        ").setPlaceholder('" +
+        textPlaceholder +
+        "').setRequired(" +
+        checkboxRequired +
+        ")\
+                  ),"; // , because that's included IN the block_slash_command_data_user block
+      //Yes, it's a TextInputBuilder in an ActionRowBuilder, in a ModalBuilder. Should be complex enough to work
+      return code;
+    };
+
+    Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
+      const textName = block.getFieldValue("NAME");
+      // TODO: Assemble javascript into code variable.
+      const code = "...";
+      // TODO: Change ORDER_NONE to the correct strength.
+      return [code, Blockly.javascript.ORDER_NONE];
+    };
+
+    Blockly.JavaScript["block_slash_command_form_get_user"] = function (block) {
+      // TODO: Assemble javascript into code variable.
+      const code = "...";
+      // TODO: Change ORDER_NONE to the correct strength.
+      return [code, Blockly.javascript.ORDER_NONE];
     };
 
     /* ##### Data storage blocks ##### */
