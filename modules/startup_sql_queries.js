@@ -184,7 +184,7 @@ module.exports = async function (databasePool) {
       name varchar(32) NOT NULL,\
       code text NOT NULL,\
       PRIMARY KEY (form_id, command_id),\
-      CONSTRAINT fk_forms_command_id FOREIGN KEY (command_id) REFERENCES commands (command_id)\
+      CONSTRAINT fk_forms_command_id FOREIGN KEY (command_id) REFERENCES commands (command_id) ON DELETE CASCADE\
     );"
   );
 

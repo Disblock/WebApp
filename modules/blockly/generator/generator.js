@@ -2438,7 +2438,7 @@ module.exports = {
     Blockly.JavaScript["block_slash_command_form_creator"] = function (block) {
       const textName = block.getFieldValue("NAME");
       const statementsInputs = Blockly.JavaScript.statementToCode(block, "INPUTS");
-      //onst statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS'); //TODO : manage this
+      //onst statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS'); //This part is managed in manage_slash_commands.js
 
       const code =
         "await interaction.showModal( new Discord.ModalBuilder().setCustomId(CURRENT_GUILD.id+'" +

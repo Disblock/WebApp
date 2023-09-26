@@ -47,10 +47,21 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
       //For each arg in this command
       //SQL request to save this arg added
       sqlRequests.push([
-        "INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 )",
+        "INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 );",
         [serverId, name, arg.name, arg.desc, arg.required, arg.type],
       ]); //Type defined in enums/commands_args_types.js
     });
+
+    const firstBlockInCommand = slashCommandBlocks[i].getInputTargetBlock("STATEMENTS");
+    if(firstBlockInCommand.type=="block_slash_command_form_creator"){//First block can't be undefined, as we check before that command statements are filled
+      //This command contains a form. We must save this in database so statements to execute when answered are saved
+      sqlRequests.push([
+        "INSERT INTO forms(form_id, command_id, name, code) VALUES($1, (SELECT command_id FROM commands WHERE server_id = $2 AND name=$3), $4, $5);",
+        [serverId+firstBlockInCommand.getFieldValue("NAME")/*Form ID = serverId+FormName*/, serverId, name,
+        firstBlockInCommand.getFieldValue("NAME"), Blockly.JavaScript.statementToCode(firstBlockInCommand, "STATEMENTS")]
+      ]);
+    }
+
   }
 
   return sqlRequests;
