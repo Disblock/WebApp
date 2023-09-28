@@ -2483,16 +2483,14 @@ module.exports = {
 
     Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
       const textName = block.getFieldValue("NAME");
-      // TODO: Assemble javascript into code variable.
-      const code = "...";
-      // TODO: Change ORDER_NONE to the correct strength.
+      // TODO: Regex
+      const code = "interaction.fields.getTextInputValue('"+textName+"')";
       return [code, Blockly.javascript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_form_get_user"] = function (block) {
-      // TODO: Assemble javascript into code variable.
-      const code = "...";
-      // TODO: Change ORDER_NONE to the correct strength.
+      // TODO: Regex
+      const code = "interaction.member";
       return [code, Blockly.javascript.ORDER_NONE];
     };
 
