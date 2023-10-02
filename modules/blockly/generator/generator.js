@@ -2484,14 +2484,14 @@ module.exports = {
     Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
       const textName = block.getFieldValue("NAME");
       // TODO: Regex
-      const code = "interaction.fields.getTextInputValue('"+textName+"')";
-      return [code, Blockly.javascript.ORDER_NONE];
+      const code = "( interaction.fields.getTextInputValue('"+textName+"')!=='' ? interaction.fields.getTextInputValue('"+textName+"') : undefined)";
+      return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_form_get_user"] = function (block) {
       // TODO: Regex
       const code = "interaction.member";
-      return [code, Blockly.javascript.ORDER_NONE];
+      return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### Data storage blocks ##### */
