@@ -2484,7 +2484,12 @@ module.exports = {
     Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
       const textName = block.getFieldValue("NAME");
       // TODO: Regex
-      const code = "( interaction.fields.getTextInputValue('"+textName+"')!=='' ? interaction.fields.getTextInputValue('"+textName+"') : undefined)";
+      const code =
+        "( interaction.fields.getTextInputValue('" +
+        textName +
+        "')!=='' ? interaction.fields.getTextInputValue('" +
+        textName +
+        "') : undefined)";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 

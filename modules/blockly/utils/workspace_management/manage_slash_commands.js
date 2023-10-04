@@ -53,15 +53,20 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
     });
 
     const firstBlockInCommand = slashCommandBlocks[i].getInputTargetBlock("STATEMENTS");
-    if(firstBlockInCommand.type=="block_slash_command_form_creator"){//First block can't be undefined, as we check before that command statements are filled
+    if (firstBlockInCommand.type == "block_slash_command_form_creator") {
+      //First block can't be undefined, as we check before that command statements are filled
       //This command contains a form. We must save this in database so statements to execute when answered are saved
       sqlRequests.push([
         "INSERT INTO forms(form_id, command_id, name, code) VALUES($1, (SELECT command_id FROM commands WHERE server_id = $2 AND name=$3), $4, $5);",
-        [serverId+firstBlockInCommand.getFieldValue("NAME")/*Form ID = serverId+FormName*/, serverId, name,
-        firstBlockInCommand.getFieldValue("NAME"), Blockly.JavaScript.statementToCode(firstBlockInCommand, "STATEMENTS")]
+        [
+          serverId + firstBlockInCommand.getFieldValue("NAME") /*Form ID = serverId+FormName*/,
+          serverId,
+          name,
+          firstBlockInCommand.getFieldValue("NAME"),
+          Blockly.JavaScript.statementToCode(firstBlockInCommand, "STATEMENTS"),
+        ],
       ]);
     }
-
   }
 
   return sqlRequests;
