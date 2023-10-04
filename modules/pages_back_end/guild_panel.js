@@ -70,7 +70,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient, bl
                 blocklyLocale: blocklyLocale,
                 workspaceXml: workspaceXml,
                 errorsEnum: JSON.stringify(workspaceErrors),
-                page: pagesEnums.guild_panel,
+                page: pagesEnums.guildPanel,
                 definedRegexes: require("../utils/regex.js"),
               });
             })

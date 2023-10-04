@@ -37,7 +37,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
           news: news,
           guilds: guilds,
           guild: undefined,
-          page: pagesEnums.index_panel,
+          page: pagesEnums.indexPanel,
         });
       } else {
         res.redirect("/");

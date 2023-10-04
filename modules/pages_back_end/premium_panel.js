@@ -44,7 +44,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
             locale: locale,
             guilds: guilds,
             guild: undefined,
-            page: pagesEnums.premium_panel,
+            page: pagesEnums.premiumPanel,
             premiumSlots: result.rows,
           });
         })
