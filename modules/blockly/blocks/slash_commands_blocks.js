@@ -386,7 +386,7 @@ module.exports = {
         },
       ],
       previousStatement: "FormCreatorBlock",
-      nextStatement: "block",
+      //nextStatement: "block",
       colour: 60,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP}",
       helpUrl: "",
