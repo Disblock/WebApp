@@ -85,17 +85,17 @@ module.exports = {
           return false;
         }
       } else if (blocks[i].type == "block_slash_command_creator") {
-        //We check if this block contain a command reply block
+        //We check if this block contain a command reply block or a form block
         const commandBlocks = blocks[i].getDescendants(false); //All blocks in the command creator block
-        let containReplyBlock = false;
+        let replyOrFormBlockused = false;
         for (let j = 0; j < commandBlocks.length; j++) {
-          if (commandBlocks[j].type === "block_slash_command_reply") {
-            containReplyBlock = true;
+          if (commandBlocks[j].type === "block_slash_command_reply" || commandBlocks[j].type === "block_slash_command_form_creator") {
+            replyOrFormBlockused = true;
             break;
           }
         }
 
-        if (!containReplyBlock) {
+        if (!replyOrFormBlockused) {
           return false;
         }
       }

@@ -281,9 +281,10 @@ function validateWorkspace(workspace){
       }
 
       //We will now check that used arguments are correctly defined and if at least one reply block is used
+      //We also check that users use at least one reply block, or a form in the command
       let definedArgs = {};//Will store args types and names
       let argsNames = [];//Will store args names to check that no names are duplicated
-      let replyBlockused = false;//Users must have used at least one command reply block
+      let replyOrFormBlockused = false;//Users must have used at least one command reply block
       for(let j=0; j<childBlocks.length; j++){
         //childBlocks is a sorted list of blocks in a command block creator
         if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
@@ -316,7 +317,7 @@ function validateWorkspace(workspace){
           childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"]);
           foundError = true;
         }
-        else if(childBlocks[j].type === "block_slash_command_reply")replyBlockused=true;//At least one reply block used
+        else if(childBlocks[j].type === "block_slash_command_reply" || childBlocks[j].type === "block_slash_command_form_creator")replyOrFormBlockused=true;//At least one reply or form block used
 
         //Event var blocks can't be used in commands
         if(childBlocks[j].type.startsWith("event_var_")){
@@ -325,7 +326,7 @@ function validateWorkspace(workspace){
         }
       }//End of loop
 
-      if(!replyBlockused){
+      if(!replyOrFormBlockused){
         //No reply block used in this command !
         blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"]);
         foundError = true;
