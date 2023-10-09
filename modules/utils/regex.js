@@ -24,4 +24,10 @@ module.exports = {
   validCustomEmoji: function validCustomEmojiRegex(value) {
     return /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(value);
   },
+  formName: function slashCommandDescriptionRegex(value) {
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,32})$/.test(value);
+  },
+  isNumber: function isNumber(value) {
+    return /^([0-9]{0,12})$/.test(value);
+  }
 };

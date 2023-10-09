@@ -3,6 +3,7 @@
 const { javascriptGenerator } = require("blockly/javascript"); //JS generator for Blockly
 const commandsArgsTypes = require("../../enums/commands_args_types.js");
 const errorsTypes = require("../../enums/workspace_errors.js");
+const definedRegexes = require("../../utils/regex.js");
 
 module.exports = {
   initializeGenerator: function (Blockly) {
@@ -2440,6 +2441,11 @@ module.exports = {
       const statementsInputs = Blockly.JavaScript.statementToCode(block, "INPUTS");
       //onst statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS'); //This part is managed in manage_slash_commands.js
 
+      if(! definedRegexes.formName(textName)){
+        //Invalid regex
+        throw errorsTypes.invalidRegex;
+      }
+
       const code =
         "await interaction.showModal( new Discord.ModalBuilder().setCustomId(CURRENT_GUILD.id+'" +
         textName +
@@ -2458,6 +2464,15 @@ module.exports = {
       const numberMaxsize = block.getFieldValue("MAXSIZE");
       const textPlaceholder = block.getFieldValue("PLACEHOLDER");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
+
+      if(! definedRegexes.formName(textName) ||
+        ! definedRegexes.isNumber(numberMinsize) ||
+        ! definedRegexes.isNumber(numberMaxsize) ||
+        ! definedRegexes.formName(textPlaceholder) ||
+        ! (dropdownStyle === "SHORT" || dropdownStyle === "LONG")
+      ){
+        throw errorsTypes.invalidRegex;
+      }
 
       const code =
         "new Discord.ActionRowBuilder().addComponents( \
@@ -2483,7 +2498,9 @@ module.exports = {
 
     Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
       const textName = block.getFieldValue("NAME");
-      // TODO: Regex
+
+      if(! definedRegexes.formName(textName) )throw errorsTypes.invalidRegex;
+
       const code =
         "( interaction.fields.getTextInputValue('" +
         textName +
@@ -2494,7 +2511,6 @@ module.exports = {
     };
 
     Blockly.JavaScript["block_slash_command_form_get_user"] = function (block) {
-      // TODO: Regex
       const code = "interaction.member";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
