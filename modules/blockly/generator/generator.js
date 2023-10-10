@@ -2441,7 +2441,7 @@ module.exports = {
       const statementsInputs = Blockly.JavaScript.statementToCode(block, "INPUTS");
       //onst statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS'); //This part is managed in manage_slash_commands.js
 
-      if(! definedRegexes.formName(textName)){
+      if (!definedRegexes.formName(textName)) {
         //Invalid regex
         throw errorsTypes.invalidRegex;
       }
@@ -2465,12 +2465,13 @@ module.exports = {
       const textPlaceholder = block.getFieldValue("PLACEHOLDER");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if(! definedRegexes.formName(textName) ||
-        ! definedRegexes.isNumber(numberMinsize) ||
-        ! definedRegexes.isNumber(numberMaxsize) ||
-        ! definedRegexes.formName(textPlaceholder) ||
-        ! (dropdownStyle === "SHORT" || dropdownStyle === "LONG")
-      ){
+      if (
+        !definedRegexes.formName(textName) ||
+        !definedRegexes.isNumber(numberMinsize) ||
+        !definedRegexes.isNumber(numberMaxsize) ||
+        !definedRegexes.formName(textPlaceholder) ||
+        !(dropdownStyle === "SHORT" || dropdownStyle === "LONG")
+      ) {
         throw errorsTypes.invalidRegex;
       }
 
@@ -2499,7 +2500,7 @@ module.exports = {
     Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
       const textName = block.getFieldValue("NAME");
 
-      if(! definedRegexes.formName(textName) )throw errorsTypes.invalidRegex;
+      if (!definedRegexes.formName(textName)) throw errorsTypes.invalidRegex;
 
       const code =
         "( interaction.fields.getTextInputValue('" +
