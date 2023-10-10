@@ -1,6 +1,7 @@
 "use strict";
 const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 const definedRegexes = require("../../../utils/regex.js");
+const { checkIfFormCorrectlyDefined } = require("./validate_workspace_functions.js");
 
 /*
 This function will loop through Slash command blocks, and will convert them to a set of SQL queries.
@@ -56,6 +57,10 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
     if (firstBlockInCommand.type == "block_slash_command_form_creator") {
       //First block can't be undefined, as we check before that command statements are filled
       //This command contains a form. We must save this in database so statements to execute when answered are saved
+
+      //But before, checking if the form is valid :
+      if (!checkIfFormCorrectlyDefined(Blockly, firstBlockInCommand)) throw workspaceErrorsEnum.error; //Error with form
+
       sqlRequests.push([
         "INSERT INTO forms(form_id, command_id, name, code) VALUES($1, (SELECT command_id FROM commands WHERE server_id = $2 AND name=$3), $4, $5);",
         [

@@ -89,7 +89,10 @@ module.exports = {
         const commandBlocks = blocks[i].getDescendants(false); //All blocks in the command creator block
         let replyOrFormBlockused = false;
         for (let j = 0; j < commandBlocks.length; j++) {
-          if (commandBlocks[j].type === "block_slash_command_reply" || commandBlocks[j].type === "block_slash_command_form_creator") {
+          if (
+            commandBlocks[j].type === "block_slash_command_reply" ||
+            commandBlocks[j].type === "block_slash_command_form_creator"
+          ) {
             replyOrFormBlockused = true;
             break;
           }
@@ -142,6 +145,38 @@ module.exports = {
         return false;
       }
     }
+
+    return true;
+  },
+  /*
+  Function used to check that forms are correctly defined
+  Args : Blockly & formBlock ( the block_slash_command_form_creator block )
+  Will return true if everything correct
+  */
+  checkIfFormCorrectlyDefined: function (Blockly, formBlock) {
+    //This function takes the form block, and will return true if valid, false if not.
+    //Regex already checked in generator
+
+    //Checking if at least one field defined
+    if (formBlock.getInputTargetBlock("INPUTS")) {
+      //There is a block attached here, must be an input
+      if (formBlock.getInputTargetBlock("INPUTS").type !== "block_slash_command_form_input_text") return false;
+    } else {
+      //No block here, so no inputs on this form
+      return false;
+    }
+
+    //Same, but this time we check that there is a least one action block
+    if (!formBlock.getInputTargetBlock("STATEMENTS")) {
+      //No action block
+      return false;
+    }
+
+    //block_slash_command_reply is forbiden in forms, as receiving the form is not handled the same as commands
+    const blocks = formBlock.getChildren(false);
+    blocks.forEach((item) => {
+      if (item.type === "block_slash_command_reply") return false; //forbiden block used
+    });
 
     return true;
   },
