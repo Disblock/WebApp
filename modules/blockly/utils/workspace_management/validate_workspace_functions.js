@@ -173,10 +173,10 @@ module.exports = {
     }
 
     //block_slash_command_reply is forbiden in forms, as receiving the form is not handled the same as commands
-    const blocks = formBlock.getChildren(false);
-    blocks.forEach((item) => {
-      if (item.type === "block_slash_command_reply") return false; //forbiden block used
-    });
+    const blocks = formBlock.getDescendants(false);
+    for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].type === "block_slash_command_reply") return false;
+    }
 
     return true;
   },
