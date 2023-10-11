@@ -1099,6 +1099,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"] = "Il y a des valeurs indéfinies à ce bloc !";
   Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] =
     "Il y a un problème avec les blocs de stockage de données ! Lisez les avertissements pour en savoir plus";
+  Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"] = "Ce bloc ne semble pas être complet !";
+  Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Certains blocs sont incomplets !";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";

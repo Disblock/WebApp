@@ -382,6 +382,21 @@ function validateWorkspace(workspace){
   //Finished to check for problems with data storage blocks
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"]});
 
+  //We will now check Form blocks
+  for(let i=0; i<blocks.length; i++){
+    if(blocks[i].type==="block_slash_command_form_creator"){
+      //Loop through all Form blocks
+      if( !blocks[i].getInputTargetBlock("INPUTS") || !blocks[i].getInputTargetBlock("STATEMENTS") ){
+        //NOT OK : no input block or statement blocks !
+        blocks[i].setWarningText(Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"]);
+        foundError = true;
+      }
+
+    }
+  }
+  //Finished to check for errors with forms
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"]});
+
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
 
