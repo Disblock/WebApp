@@ -435,3 +435,31 @@ function checkIfAddedBlockIsCommandArgBlock(event){
     }
 }
 workspace.addChangeListener(checkIfAddedBlockIsCommandArgBlock);
+
+//When a command reply block is added somewhere, we check that it's correctly added
+function checkIfCommandReplyBlockCorrectlyPlaced(event){
+  if(event.type!=Blockly.Events.BLOCK_MOVE || !workspace.getBlockById(event.blockId) )return;//wrong event type or block undefined
+  if(workspace.getBlockById(event.blockId).type!=="block_slash_command_reply")return;//We only check this block
+  if(!workspace.getBlockById(event.blockId).getParent())return;//block alone
+
+  if(workspace.getBlockById(event.blockId).getRootBlock().type!=="block_slash_command_creator"){
+    //Not in a command
+    workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"]);
+    workspace.getBlockById(event.blockId).unplug();
+    return;
+  }
+
+  let blocks = workspace.getBlockById(event.blockId).getRootBlock().getDescendants(false);//All blocks that are on top or under the reply block
+  for(let i=0; i<blocks.length; i++){
+    //We're looking every blocks. If we find a block_slash_command_form_creator, we remove the reply block as it's not a block allowed here
+    if(blocks[i].type==="block_slash_command_form_creator"){
+      workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"]);
+      workspace.getBlockById(event.blockId).unplug();
+      return;
+    }
+  }
+
+  workspace.getBlockById(event.blockId).setWarningText(null);
+}
+
+workspace.addChangeListener(checkIfCommandReplyBlockCorrectlyPlaced);

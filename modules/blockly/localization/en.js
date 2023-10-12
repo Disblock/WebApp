@@ -1071,6 +1071,7 @@ module.exports = function init(Blockly) {
     "There is a problem with the data storage blocks ! Read the warnings to learn more.";
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"] = "This block seems to be uncomplete !";
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Some blocks are uncomplete !";
+  Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"] = "This block can't be used here !";
 
   //Types names
   Blockly.Msg["STRING"] = "String";
