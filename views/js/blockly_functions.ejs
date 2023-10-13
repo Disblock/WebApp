@@ -392,6 +392,21 @@ function validateWorkspace(workspace){
         foundError = true;
       }
 
+
+      //We check here that there isn't too many input blocks in this form
+      let count=0;
+      blocks[i].getDescendants(false).forEach((item) => {
+        if(item.type.startsWith("block_slash_command_form_input_"))count++;
+
+        if(count><%= process.env.COMMAND_FORM_MAX_INPUTS %> && item.type.startsWith("block_slash_command_form_input_")){
+          //NOT OK, too many input blocks in this form !
+          item.setWarningText(Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"]);
+          foundError = true;
+        }else{
+          item.setWarningText(null);//OK, this input is within the limit
+        }
+      });
+
     }
   }
   //Finished to check for errors with forms

@@ -1072,6 +1072,7 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"] = "This block seems to be uncomplete !";
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Some blocks are uncomplete !";
   Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"] = "This block can't be used here !";
+  Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "You can't add more inputs to this form !";
 
   //Types names
   Blockly.Msg["STRING"] = "String";

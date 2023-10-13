@@ -1102,6 +1102,7 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"] = "Ce bloc ne semble pas être complet !";
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Certains blocs sont incomplets !";
   Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"] = "Ce bloc ne peut pas être placé ici !";
+  Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "Vous ne pouvez pas ajouter plus d'entrées à ce formulaire !";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";
