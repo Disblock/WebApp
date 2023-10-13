@@ -173,9 +173,15 @@ module.exports = {
     }
 
     //block_slash_command_reply is forbiden in forms, as receiving the form is not handled the same as commands
+    //We will also check that users didn't used more inputs than allowed
+    let count = 0; //Number of input blocks
+
     const blocks = formBlock.getDescendants(false);
     for (let i = 0; i < blocks.length; i++) {
       if (blocks[i].type === "block_slash_command_reply") return false;
+
+      if (blocks[i].type.startsWith("block_slash_command_form_input_")) count++;
+      if (count > process.env.COMMAND_FORM_MAX_INPUTS) return false; //Too many input blocks :
     }
 
     return true;
