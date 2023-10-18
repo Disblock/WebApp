@@ -9,7 +9,7 @@ These SQL queries will allow to save everything in the database
 */
 module.exports = async (Blockly, slashCommandBlocks, serverId) => {
   const slashCommandsNames = []; //This list is used to check that no commands share the same name
-  const formsNames = [];//Same, but for commands names
+  const formsNames = []; //Same, but for commands names
   const sqlRequests = []; //SQL queries needed to save theses commands in database
 
   for (let i = 0; i < slashCommandBlocks.length; i++) {
@@ -57,7 +57,7 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
     const firstBlockInCommand = slashCommandBlocks[i].getInputTargetBlock("STATEMENTS");
     if (firstBlockInCommand.type == "block_slash_command_form_creator") {
       //Form command ! Name mus be unique
-      if(formsNames.includes(firstBlockInCommand.getFieldValue("NAME"))){
+      if (formsNames.includes(firstBlockInCommand.getFieldValue("NAME"))) {
         //NOT OK ! Another form has already that name !
         throw workspaceErrorsEnum.error;
       }

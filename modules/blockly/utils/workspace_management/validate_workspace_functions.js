@@ -177,10 +177,20 @@ module.exports = {
     let count = 0; //Number of input blocks
 
     const blocks = formBlock.getDescendants(false);
+    const definedInputsNames = []; //Used to remember the names of inputs. Names must be unique
     for (let i = 0; i < blocks.length; i++) {
       if (blocks[i].type === "block_slash_command_reply") return false;
 
-      if (blocks[i].type.startsWith("block_slash_command_form_input_")) count++;
+      if (blocks[i].type.startsWith("block_slash_command_form_input_")) {
+        count++;
+
+        if (definedInputsNames.includes(blocks[i].getFieldValue("NAME"))) {
+          //NOT OK, duplicated name
+          return false;
+        } else {
+          definedInputsNames.push(blocks[i].getFieldValue("NAME")); //Adding this name to the list of already used names
+        }
+      }
       if (count > process.env.COMMAND_FORM_MAX_INPUTS) return false; //Too many input blocks :
     }
 
