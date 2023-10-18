@@ -404,15 +404,25 @@ function validateWorkspace(workspace){
 
       //We check here that there isn't too many input blocks in this form
       let count=0;
+      const definedInputsNames = []; //Used to remember the names of inputs. Names must be unique
       blocks[i].getDescendants(false).forEach((item) => {
-        if(item.type.startsWith("block_slash_command_form_input_"))count++;
+        if(item.type.startsWith("block_slash_command_form_input_")){
+          item.setWarningText(null);
+          count++;
+
+          if (definedInputsNames.includes(item.getFieldValue("NAME"))) {
+            //NOT OK, duplicated name
+            item.setWarningText(Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"]);
+            foundError = true;
+          } else {
+            definedInputsNames.push(item.getFieldValue("NAME")); //Adding this name to the list of already used names
+          }
+        }
 
         if(count><%= process.env.COMMAND_FORM_MAX_INPUTS %> && item.type.startsWith("block_slash_command_form_input_")){
           //NOT OK, too many input blocks in this form !
           item.setWarningText(Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"]);
           foundError = true;
-        }else if(item.type.startsWith("block_slash_command_form_input_")){
-          item.setWarningText(null);//OK, this input is within the limit
         }
       });
 
