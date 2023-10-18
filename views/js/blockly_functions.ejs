@@ -383,6 +383,7 @@ function validateWorkspace(workspace){
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"]});
 
   //We will now check Form blocks
+  let definedFormsNames = [];//Contains the name of defined forms, so we can check that no one is used twice
   for(let i=0; i<blocks.length; i++){
     if(blocks[i].type==="block_slash_command_form_creator"){
       //Loop through all Form blocks
@@ -392,6 +393,14 @@ function validateWorkspace(workspace){
         foundError = true;
       }
 
+      if(definedFormsNames.includes(blocks[i].getFieldValue('NAME'))){
+        //NOT OK, form already defined. Forms names must be unique
+        blocks[i].setWarningText(Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"]);
+        foundError = true;
+      }else{
+        definedFormsNames.push(blocks[i].getFieldValue('NAME'));
+        blocks[i].setWarningText(null);
+      }
 
       //We check here that there isn't too many input blocks in this form
       let count=0;
@@ -402,7 +411,7 @@ function validateWorkspace(workspace){
           //NOT OK, too many input blocks in this form !
           item.setWarningText(Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"]);
           foundError = true;
-        }else{
+        }else if(item.type.startsWith("block_slash_command_form_input_")){
           item.setWarningText(null);//OK, this input is within the limit
         }
       });

@@ -1073,6 +1073,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Some blocks are uncomplete !";
   Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"] = "This block can't be used here !";
   Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "You can't add more inputs to this form !";
+  Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"] = "You can't give the same name to multiple forms !";
+  Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"] = "You can't use the same name for multiple inputs !";
 
   //Types names
   Blockly.Msg["STRING"] = "String";
