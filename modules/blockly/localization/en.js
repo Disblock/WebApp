@@ -1075,6 +1075,9 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "You can't add more inputs to this form !";
   Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"] = "You can't give the same name to multiple forms !";
   Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"] = "You can't use the same name for multiple inputs !";
+  Blockly.Msg["WARNING_FORM_INPUT_NOT_DEFINED"] = "This input isn't defined !";
+  Blockly.Msg["WARNING_FORM_NO_INPUTS"] = "You must define at least one input !";
+  Blockly.Msg["WARNING_FORM_ERROR_WINDOW"] = "There is an error with a form block !";
 
   //Types names
   Blockly.Msg["STRING"] = "String";

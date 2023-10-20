@@ -1105,6 +1105,9 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "Vous ne pouvez pas ajouter plus d'entrées à ce formulaire !";
   Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"] = "Vous ne pouvez pas donner le même nom à plusieurs formulaires !";
   Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"] = "Vous ne pouvez pas utiliser le même nom pour plusieurs champs !";
+  Blockly.Msg["WARNING_FORM_INPUT_NOT_DEFINED"] = "Cette entrée ne semble pas définie !";
+  Blockly.Msg["WARNING_FORM_NO_INPUTS"] = "Vous devez définir au moins une entrée !";
+  Blockly.Msg["WARNING_FORM_ERROR_WINDOW"] = "Il y a une erreur dans un bloc de formulaire !";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";

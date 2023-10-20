@@ -405,7 +405,7 @@ function validateWorkspace(workspace){
       //We check here that there isn't too many input blocks in this form
       let count=0;
       const definedInputsNames = []; //Used to remember the names of inputs. Names must be unique
-      blocks[i].getDescendants(false).forEach((item) => {
+      blocks[i].getDescendants(true).forEach((item) => {
         if(item.type.startsWith("block_slash_command_form_input_")){
           item.setWarningText(null);
           count++;
@@ -417,6 +417,14 @@ function validateWorkspace(workspace){
           } else {
             definedInputsNames.push(item.getFieldValue("NAME")); //Adding this name to the list of already used names
           }
+        }else if(item.type.startsWith("block_slash_command_form_get_input_")){
+          item.setWarningText(null);
+          //Get input block. Before using this block, users must have defined it, so the name should be already in definedInputsNames
+          if (!definedInputsNames.includes(item.getFieldValue("NAME"))){
+            //NOT OK, this input is undefined
+            foundError = true;
+            item.setWarningText(Blockly.Msg["WARNING_FORM_INPUT_NOT_DEFINED"]);
+          }
         }
 
         if(count><%= process.env.COMMAND_FORM_MAX_INPUTS %> && item.type.startsWith("block_slash_command_form_input_")){
@@ -425,11 +433,16 @@ function validateWorkspace(workspace){
           foundError = true;
         }
       });
+      if (count == 0){
+        //NOT OK, at least one input block must be defined
+        blocks[i].setWarningText(Blockly.Msg["WARNING_FORM_NO_INPUTS"]);
+        foundError = true;
+      }
 
     }
   }
   //Finished to check for errors with forms
-  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"]});
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_FORM_ERROR_WINDOW"]});
 
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
