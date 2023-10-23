@@ -387,11 +387,6 @@ function validateWorkspace(workspace){
   for(let i=0; i<blocks.length; i++){
     if(blocks[i].type==="block_slash_command_form_creator"){
       //Loop through all Form blocks
-      if( !blocks[i].getInputTargetBlock("INPUTS") || !blocks[i].getInputTargetBlock("STATEMENTS") ){
-        //NOT OK : no input block or statement blocks !
-        blocks[i].setWarningText(Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"]);
-        foundError = true;
-      }
 
       if(definedFormsNames.includes(blocks[i].getFieldValue('NAME'))){
         //NOT OK, form already defined. Forms names must be unique
@@ -400,6 +395,12 @@ function validateWorkspace(workspace){
       }else{
         definedFormsNames.push(blocks[i].getFieldValue('NAME'));
         blocks[i].setWarningText(null);
+      }
+      
+      if( !blocks[i].getInputTargetBlock("INPUTS") || !blocks[i].getInputTargetBlock("STATEMENTS") ){
+        //NOT OK : no input block or statement blocks !
+        blocks[i].setWarningText(Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"]);
+        foundError = true;
       }
 
       //We check here that there isn't too many input blocks in this form
