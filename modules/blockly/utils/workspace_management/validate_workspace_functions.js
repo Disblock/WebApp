@@ -95,7 +95,8 @@ module.exports = {
           ) {
             replyOrFormBlockused = true;
           }
-          if (commandBlocks[j].type === "block_slash_command_form_creator" && j>1){//j>1, as the first block is always the creator/root block from .getDescendants()
+          if (commandBlocks[j].type === "block_slash_command_form_creator" && j > 1) {
+            //j>1, as the first block is always the creator/root block from .getDescendants()
             //NO OK, there is more than just a form_creator defined. User must directly use a form block, not add something else
             return false;
           }
