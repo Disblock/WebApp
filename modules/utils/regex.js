@@ -27,6 +27,9 @@ module.exports = {
   formName: function formName(value) {
     return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,32})$/.test(value);
   },
+  formPlaceholder: function formPlaceholder(value) {
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,256})$/.test(value);
+  },
   isNumber: function isNumber(value) {
     return /^([0-9]{0,12})$/.test(value);
   },

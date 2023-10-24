@@ -2469,7 +2469,7 @@ module.exports = {
         !definedRegexes.formName(textName) ||
         !definedRegexes.isNumber(numberMinsize) ||
         !definedRegexes.isNumber(numberMaxsize) ||
-        !definedRegexes.formName(textPlaceholder) ||
+        !definedRegexes.formPlaceholder(textPlaceholder) ||
         !(dropdownStyle === "SHORT" || dropdownStyle === "LONG")
       ) {
         throw errorsTypes.invalidRegex;
