@@ -25,7 +25,7 @@ module.exports = {
     return /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(value);
   },
   formName: function formName(value) {
-    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,32})$/.test(value);
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,64})$/.test(value);
   },
   formPlaceholder: function formPlaceholder(value) {
     return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,256})$/.test(value);
