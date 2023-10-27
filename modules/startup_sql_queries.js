@@ -179,9 +179,9 @@ module.exports = async function (databasePool) {
 
   await databasePool.query(
     "CREATE TABLE IF NOT EXISTS forms (\
-      form_id varchar(64),\
+      form_id varchar(128),\
       command_id bigint NOT NULL,\
-      name varchar(32) NOT NULL,\
+      name varchar(64) NOT NULL,\
       code text NOT NULL,\
       PRIMARY KEY (form_id),\
       CONSTRAINT fk_forms_command_id FOREIGN KEY (command_id) REFERENCES commands (command_id) ON DELETE CASCADE\

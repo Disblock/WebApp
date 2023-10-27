@@ -164,7 +164,7 @@ module.exports = {
     //Checking if at least one field defined
     if (formBlock.getInputTargetBlock("INPUTS")) {
       //There is a block attached here, must be an input
-      if (formBlock.getInputTargetBlock("INPUTS").type !== "block_slash_command_form_input_text") return false;
+      if (!formBlock.getInputTargetBlock("INPUTS").type.startsWith("block_slash_command_form_input_")) return false;
     } else {
       //No block here, so no inputs on this form
       return false;
