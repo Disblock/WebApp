@@ -490,6 +490,7 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Récupérer la valeur des arguments";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Obtenir des informations sur la commande";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Faire quelque chose quand cette commande est utilisée";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_FORMS"] = "Créer un formulaire";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Envoyer un message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Supprimer un message";
@@ -1013,6 +1014,19 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Retourne le salon où cette commande a été utilisée";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "Utilisateur qui a utilisé cette commande";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Retourne l'utilisateur qui a exécuté cette commande";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR"] =
+    "Créer le formulaire %1 %2 avec les champs : %3 Une fois le formulaire reçu, faire : %4";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP"] =
+    "Permet de créer un formulaire. Ce bloc doit être le tout premier dans les actions de la commande. Vous pouvez ajouter des champs à remplir, ainsi que les actions réalisées une fois que le formulaire a été envoyé.";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT"] =
+    "Ajouter une entrée de texte %1 nommée %2 %3 Taille minimale : %4 Taille maximale : %5 %6 Contenu par défaut : %7 %8 Requis : %9";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP"] = "Permet d'ajouter une entrée de texte à un formulaire";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT"] = "Récupérer le champ de texte %1 du formulaire";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT_TOOLTIP"] =
+    "Permet de récupérer la réponse fournie à une question du formulaire";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_USER"] = "Récupérer l'utilisateur qui a répondu au formulaire";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_USER_TOOLTIP"] =
+    "Permet de récupérer l'utilisateur qui a répondu au formulaire";
 
   //Data storage blocks
   Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Créer le stockage de nombres nommé %1";
@@ -1085,6 +1099,15 @@ module.exports = function init(Blockly) {
   Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"] = "Il y a des valeurs indéfinies à ce bloc !";
   Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] =
     "Il y a un problème avec les blocs de stockage de données ! Lisez les avertissements pour en savoir plus";
+  Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"] = "Ce bloc ne semble pas être complet !";
+  Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Certains blocs sont incomplets !";
+  Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"] = "Ce bloc ne peut pas être placé ici !";
+  Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "Vous ne pouvez pas ajouter plus d'entrées à ce formulaire !";
+  Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"] = "Vous ne pouvez pas donner le même nom à plusieurs formulaires !";
+  Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"] = "Vous ne pouvez pas utiliser le même nom pour plusieurs champs !";
+  Blockly.Msg["WARNING_FORM_INPUT_NOT_DEFINED"] = "Cette entrée ne semble pas définie !";
+  Blockly.Msg["WARNING_FORM_NO_INPUTS"] = "Vous devez définir au moins une entrée !";
+  Blockly.Msg["WARNING_FORM_ERROR_WINDOW"] = "Il y a une erreur dans un bloc de formulaire !";
 
   //Types names
   Blockly.Msg["STRING"] = "Chaîne de caractères";
@@ -1105,6 +1128,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["YES"] = "Oui";
   Blockly.Msg["NO"] = "Non";
   Blockly.Msg["UNLIMITED"] = "Illimité";
+  Blockly.Msg["SHORT"] = "court";
+  Blockly.Msg["LONG"] = "long";
 
   return Blockly;
 };

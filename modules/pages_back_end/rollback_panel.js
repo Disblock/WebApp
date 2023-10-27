@@ -62,7 +62,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
                 guilds: guilds,
                 guild: guild,
                 premium: premium,
-                page: pagesEnums.rollback_panel,
+                page: pagesEnums.rollbackPanel,
                 savedWorkspaces: savedWorkspaces.rows,
               });
             })

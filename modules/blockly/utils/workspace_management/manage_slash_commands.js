@@ -1,6 +1,7 @@
 "use strict";
 const workspaceErrorsEnum = require("../../../enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 const definedRegexes = require("../../../utils/regex.js");
+const { checkIfFormCorrectlyDefined } = require("./validate_workspace_functions.js");
 
 /*
 This function will loop through Slash command blocks, and will convert them to a set of SQL queries.
@@ -8,6 +9,7 @@ These SQL queries will allow to save everything in the database
 */
 module.exports = async (Blockly, slashCommandBlocks, serverId) => {
   const slashCommandsNames = []; //This list is used to check that no commands share the same name
+  const formsNames = []; //Same, but for commands names
   const sqlRequests = []; //SQL queries needed to save theses commands in database
 
   for (let i = 0; i < slashCommandBlocks.length; i++) {
@@ -47,10 +49,37 @@ module.exports = async (Blockly, slashCommandBlocks, serverId) => {
       //For each arg in this command
       //SQL request to save this arg added
       sqlRequests.push([
-        "INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 )",
+        "INSERT INTO commands_args(command_id, name, description, required, type) VALUES( (SELECT command_id FROM commands WHERE server_id = $1 AND name=$2), $3, $4, $5, $6 );",
         [serverId, name, arg.name, arg.desc, arg.required, arg.type],
       ]); //Type defined in enums/commands_args_types.js
     });
+
+    const firstBlockInCommand = slashCommandBlocks[i].getInputTargetBlock("STATEMENTS");
+    if (firstBlockInCommand.type == "block_slash_command_form_creator") {
+      //Form command ! Name mus be unique
+      if (formsNames.includes(firstBlockInCommand.getFieldValue("NAME"))) {
+        //NOT OK ! Another form has already that name !
+        throw workspaceErrorsEnum.error;
+      }
+      formsNames.push(firstBlockInCommand.getFieldValue("NAME"));
+
+      //First block can't be undefined, as we check before that command statements are filled
+      //This command contains a form. We must save this in database so statements to execute when answered are saved
+
+      //But before, checking if the form is valid :
+      if (!checkIfFormCorrectlyDefined(Blockly, firstBlockInCommand)) throw workspaceErrorsEnum.error; //Error with form
+
+      sqlRequests.push([
+        "INSERT INTO forms(form_id, command_id, name, code) VALUES($1, (SELECT command_id FROM commands WHERE server_id = $2 AND name=$3), $4, $5);",
+        [
+          serverId + firstBlockInCommand.getFieldValue("NAME") /*Form ID = serverId+FormName*/,
+          serverId,
+          name,
+          firstBlockInCommand.getFieldValue("NAME"),
+          Blockly.JavaScript.statementToCode(firstBlockInCommand, "STATEMENTS"),
+        ],
+      ]);
+    }
   }
 
   return sqlRequests;

@@ -10,7 +10,7 @@ module.exports = {
     return /^([a-z0-9]{3,28})$/.test(value);
   },
   slashCommandDescription: function slashCommandDescriptionRegex(value) {
-    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(value);
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,100})$/.test(value);
   },
   variableName: function variableNameRegex(value) {
     return /^[a-zA-Z0-9]{1,16}$/.test(value);
@@ -23,5 +23,14 @@ module.exports = {
   },
   validCustomEmoji: function validCustomEmojiRegex(value) {
     return /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(value);
+  },
+  formName: function formName(value) {
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{3,64})$/.test(value);
+  },
+  formPlaceholder: function formPlaceholder(value) {
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,256})$/.test(value);
+  },
+  isNumber: function isNumber(value) {
+    return /^([0-9]{0,12})$/.test(value);
   },
 };

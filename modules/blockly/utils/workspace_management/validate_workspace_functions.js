@@ -85,17 +85,24 @@ module.exports = {
           return false;
         }
       } else if (blocks[i].type == "block_slash_command_creator") {
-        //We check if this block contain a command reply block
+        //We check if this block contain a command reply block or a form block
         const commandBlocks = blocks[i].getDescendants(false); //All blocks in the command creator block
-        let containReplyBlock = false;
+        let replyOrFormBlockused = false;
         for (let j = 0; j < commandBlocks.length; j++) {
-          if (commandBlocks[j].type === "block_slash_command_reply") {
-            containReplyBlock = true;
-            break;
+          if (
+            commandBlocks[j].type === "block_slash_command_reply" ||
+            commandBlocks[j].type === "block_slash_command_form_creator"
+          ) {
+            replyOrFormBlockused = true;
+          }
+          if (commandBlocks[j].type === "block_slash_command_form_creator" && j > 1) {
+            //j>1, as the first block is always the creator/root block from .getDescendants()
+            //NO OK, there is more than just a form_creator defined. User must directly use a form block, not add something else
+            return false;
           }
         }
 
-        if (!containReplyBlock) {
+        if (!replyOrFormBlockused) {
           return false;
         }
       }
@@ -142,6 +149,59 @@ module.exports = {
         return false;
       }
     }
+
+    return true;
+  },
+  /*
+  Function used to check that forms are correctly defined
+  Args : Blockly & formBlock ( the block_slash_command_form_creator block )
+  Will return true if everything correct
+  */
+  checkIfFormCorrectlyDefined: function (Blockly, formBlock) {
+    //This function takes the form block, and will return true if valid, false if not.
+    //Regex already checked in generator
+
+    //Checking if at least one field defined
+    if (formBlock.getInputTargetBlock("INPUTS")) {
+      //There is a block attached here, must be an input
+      if (!formBlock.getInputTargetBlock("INPUTS").type.startsWith("block_slash_command_form_input_")) return false;
+    } else {
+      //No block here, so no inputs on this form
+      return false;
+    }
+
+    //Same, but this time we check that there is a least one action block
+    if (!formBlock.getInputTargetBlock("STATEMENTS")) {
+      //No action block
+      return false;
+    }
+
+    //block_slash_command_reply is forbiden in forms, as receiving the form is not handled the same as commands
+    //We will also check that users didn't used more inputs than allowed
+    let count = 0; //Number of input blocks
+
+    const blocks = formBlock.getDescendants(true);
+    const definedInputsNames = []; //Used to remember the names of inputs. Names must be unique
+    for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].type === "block_slash_command_reply") return false;
+
+      if (blocks[i].type.startsWith("block_slash_command_form_input_")) {
+        count++;
+
+        if (definedInputsNames.includes(blocks[i].getFieldValue("NAME"))) {
+          //NOT OK, duplicated name
+          return false;
+        } else {
+          definedInputsNames.push(blocks[i].getFieldValue("NAME")); //Adding this name to the list of already used names
+        }
+      } else if (blocks[i].type.startsWith("block_slash_command_form_get_input_")) {
+        //Get input block. Before using this block, users must have defined it, so the name should be already in definedInputsNames
+        if (!definedInputsNames.includes(blocks[i].getFieldValue("NAME"))) return false; //NOT OK, this input is undefined
+      }
+
+      if (count > process.env.COMMAND_FORM_MAX_INPUTS) return false; //Too many input blocks :
+    }
+    if (count == 0) return false; //NOT OK, at least one input block must be defined
 
     return true;
   },

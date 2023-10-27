@@ -281,9 +281,10 @@ function validateWorkspace(workspace){
       }
 
       //We will now check that used arguments are correctly defined and if at least one reply block is used
+      //We also check that users use at least one reply block, or a form in the command
       let definedArgs = {};//Will store args types and names
       let argsNames = [];//Will store args names to check that no names are duplicated
-      let replyBlockused = false;//Users must have used at least one command reply block
+      let replyOrFormBlockused = false;//Users must have used at least one command reply block
       for(let j=0; j<childBlocks.length; j++){
         //childBlocks is a sorted list of blocks in a command block creator
         if(childBlocks[j].type.startsWith("block_slash_command_arg_")){
@@ -316,7 +317,7 @@ function validateWorkspace(workspace){
           childBlocks[j].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"]);
           foundError = true;
         }
-        else if(childBlocks[j].type === "block_slash_command_reply")replyBlockused=true;//At least one reply block used
+        else if(childBlocks[j].type === "block_slash_command_reply" || childBlocks[j].type === "block_slash_command_form_creator")replyOrFormBlockused=true;//At least one reply or form block used
 
         //Event var blocks can't be used in commands
         if(childBlocks[j].type.startsWith("event_var_")){
@@ -325,7 +326,7 @@ function validateWorkspace(workspace){
         }
       }//End of loop
 
-      if(!replyBlockused){
+      if(!replyOrFormBlockused){
         //No reply block used in this command !
         blocks[i].setWarningText(Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"]);
         foundError = true;
@@ -381,6 +382,69 @@ function validateWorkspace(workspace){
   //Finished to check for problems with data storage blocks
   if(foundError)return({correct:false, message:Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"]});
 
+  //We will now check Form blocks
+  let definedFormsNames = [];//Contains the name of defined forms, so we can check that no one is used twice
+  for(let i=0; i<blocks.length; i++){
+    if(blocks[i].type==="block_slash_command_form_creator"){
+      //Loop through all Form blocks
+
+      if(definedFormsNames.includes(blocks[i].getFieldValue('NAME'))){
+        //NOT OK, form already defined. Forms names must be unique
+        blocks[i].setWarningText(Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"]);
+        foundError = true;
+      }else{
+        definedFormsNames.push(blocks[i].getFieldValue('NAME'));
+        blocks[i].setWarningText(null);
+      }
+      
+      if( !blocks[i].getInputTargetBlock("INPUTS") || !blocks[i].getInputTargetBlock("STATEMENTS") ){
+        //NOT OK : no input block or statement blocks !
+        blocks[i].setWarningText(Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"]);
+        foundError = true;
+      }
+
+      //We check here that there isn't too many input blocks in this form
+      let count=0;
+      const definedInputsNames = []; //Used to remember the names of inputs. Names must be unique
+      blocks[i].getDescendants(true).forEach((item) => {
+        if(item.type.startsWith("block_slash_command_form_input_")){
+          item.setWarningText(null);
+          count++;
+
+          if (definedInputsNames.includes(item.getFieldValue("NAME"))) {
+            //NOT OK, duplicated name
+            item.setWarningText(Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"]);
+            foundError = true;
+          } else {
+            definedInputsNames.push(item.getFieldValue("NAME")); //Adding this name to the list of already used names
+          }
+        }else if(item.type.startsWith("block_slash_command_form_get_input_")){
+          item.setWarningText(null);
+          //Get input block. Before using this block, users must have defined it, so the name should be already in definedInputsNames
+          if (!definedInputsNames.includes(item.getFieldValue("NAME"))){
+            //NOT OK, this input is undefined
+            foundError = true;
+            item.setWarningText(Blockly.Msg["WARNING_FORM_INPUT_NOT_DEFINED"]);
+          }
+        }
+
+        if(count><%= process.env.COMMAND_FORM_MAX_INPUTS %> && item.type.startsWith("block_slash_command_form_input_")){
+          //NOT OK, too many input blocks in this form !
+          item.setWarningText(Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"]);
+          foundError = true;
+        }
+      });
+      if (count == 0){
+        //NOT OK, at least one input block must be defined
+        blocks[i].setWarningText(Blockly.Msg["WARNING_FORM_NO_INPUTS"]);
+        foundError = true;
+      }
+
+    }
+  }
+  //Finished to check for errors with forms
+  if(foundError)return({correct:false, message:Blockly.Msg["WARNING_FORM_ERROR_WINDOW"]});
+
   //End of this function, we didn't found any error
   return({correct:true, message:'OK'});
 
@@ -419,3 +483,31 @@ function checkIfAddedBlockIsCommandArgBlock(event){
     }
 }
 workspace.addChangeListener(checkIfAddedBlockIsCommandArgBlock);
+
+//When a command reply block is added somewhere, we check that it's correctly added
+function checkIfCommandReplyBlockCorrectlyPlaced(event){
+  if(event.type!=Blockly.Events.BLOCK_MOVE || !workspace.getBlockById(event.blockId) )return;//wrong event type or block undefined
+  if(workspace.getBlockById(event.blockId).type!=="block_slash_command_reply")return;//We only check this block
+  if(!workspace.getBlockById(event.blockId).getParent())return;//block alone
+
+  if(workspace.getBlockById(event.blockId).getRootBlock().type!=="block_slash_command_creator"){
+    //Not in a command
+    workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"]);
+    workspace.getBlockById(event.blockId).unplug();
+    return;
+  }
+
+  let blocks = workspace.getBlockById(event.blockId).getRootBlock().getDescendants(false);//All blocks that are on top or under the reply block
+  for(let i=0; i<blocks.length; i++){
+    //We're looking every blocks. If we find a block_slash_command_form_creator, we remove the reply block as it's not a block allowed here
+    if(blocks[i].type==="block_slash_command_form_creator"){
+      workspace.getBlockById(event.blockId).setWarningText(Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"]);
+      workspace.getBlockById(event.blockId).unplug();
+      return;
+    }
+  }
+
+  workspace.getBlockById(event.blockId).setWarningText(null);
+}
+
+workspace.addChangeListener(checkIfCommandReplyBlockCorrectlyPlaced);

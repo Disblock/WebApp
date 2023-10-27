@@ -85,7 +85,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient) {
                 guilds: guilds,
                 guild: guild,
                 premium: premium,
-                page: pagesEnums.logs_panel,
+                page: pagesEnums.logsPanel,
                 logs: logs.rows,
               });
             })
