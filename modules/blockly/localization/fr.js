@@ -724,6 +724,16 @@ module.exports = function init(Blockly) {
     "Permet de récupérer le nombre d'utilisateurs connectés à un salon vocal";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Récupérer une catégorie avec son ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Permet de récupérer une catégorie à partir de son ID";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT"] = "Obtenir le salon parent du fil %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP"] = "Permet de retrouver le salon parent d'un fil";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED"] = "%1 le fil  %2";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP"] = "Permet de verrouiller ou déverrouiller un fil";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED"] = "Le fil %1 est-il verrouillé ?";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] = "Permet de savoir si un fil est verrouillé. Retourne un Booléen Vrai ou Faux";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED"] = "%1 le fil %2";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP"] = "Permet d'archiver ou de désarchiver un fil";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED"] = "le fil %1 est-il archivé ?";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP"] = "Permet de savoir si un fil est archivé. Retourne un booléen Vrai ou Faux";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
@@ -920,7 +930,12 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP"] = "Ajouter la date d'envoi de l'embed";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] =
     "Option d'embed, permet d'ajouter la date d'envoi de l'embed";
-  Blockly.Msg["BLOCK_EMBED_SEND"] = "Envoyer le message Embed %1 dans le salon %2";
+  Blockly.Msg["BLOCK_EMBED_SEND"] = 
+    "Envoyer le message Embed %1 dans le salon %2";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] = 
+    "Option d'embed, permet d'ajouter la date d'envoi de l'embed";
+  Blockly.Msg["BLOCK_EMBED_SEND"] = "Envoyer le message Embed %1 dans le salon ou à l'utilisateur %2";
+
   Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Permet d'envoyer un message Embed";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Message Embed";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Représente le message Embed créé";
@@ -1130,6 +1145,10 @@ module.exports = function init(Blockly) {
   Blockly.Msg["UNLIMITED"] = "Illimité";
   Blockly.Msg["SHORT"] = "court";
   Blockly.Msg["LONG"] = "long";
+  Blockly.Msg["LOCK"] = "Verrouiller";
+  Blockly.Msg["UNLOCK"] = "Déverrouiller";
+  Blockly.Msg["ARCHIVE"] = "Archiver";
+  Blockly.Msg["REOPEN"] = "Rouvrir";
 
   return Blockly;
 };

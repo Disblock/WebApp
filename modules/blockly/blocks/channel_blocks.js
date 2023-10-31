@@ -347,5 +347,114 @@ module.exports = {
       tooltip: "%{BKY_BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP}",
       helpUrl: "",
     },
-  ]),
+{
+  "type": "block_channel_get_thread_parent",
+  "message0": "%{BKY_BLOCK_CHANNEL_GET_THREAD_PARENT}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "output": "Channel",
+  "colour": 75,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_channel_set_thread_locked",
+  "message0": "%{BKY_BLOCK_CHANNEL_SET_THREAD_LOCKED}",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "isLocked",
+      "options": [
+        [
+          "%{BKY_LOCK}",
+          "LOCK"
+        ],
+        [
+          "%{BKY_UNLOCK}",
+          "UNLOCK"
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 60,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_channel_is_thread_locked",
+  "message0": "%{BKY_BLOCK_CHANNEL_IS_THREAD_LOCKED}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 75,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_channel_set_thread_archived",
+  "message0": "%{BKY_BLOCK_CHANNEL_SET_THREAD_ARCHIVED}",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "isArchived",
+      "options": [
+        [
+          "%{BKY_ARCHIVE}",
+          "ARCHIVED"
+        ],
+        [
+          "%{BKY_REOPEN}",
+          "ACTIVE"
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": "block",
+  "nextStatement": "block",
+  "colour": 60,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP}",
+  "helpUrl": ""
+},
+{
+  "type": "block_channel_is_thread_archived",
+  "message0": "%{BKY_BLOCK_CHANNEL_IS_THREAD_ARCHIVED}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "channel",
+      "check": "ThreadChannel"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Boolean",
+  "colour": 75,
+  "tooltip": "%{BKY_BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP}",
+  "helpUrl": ""
+}
+])
 };
