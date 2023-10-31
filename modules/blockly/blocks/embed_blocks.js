@@ -168,7 +168,7 @@ module.exports = {
         {
           type: "input_value",
           name: "channel",
-          check: ["Channel", "ThreadChannel", "User],
+          check: ["Channel", "ThreadChannel", "User"],
         },
       ],
       inputsInline: false,
