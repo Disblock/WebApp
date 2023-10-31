@@ -148,6 +148,7 @@
         2 = rollback-panel
         3 = logs-panel
         4 = premium pannel
+        If you edit this, please look at enums/pages.js
         */
         if(page==0){//Guild undefined
           //On /panel
@@ -155,7 +156,8 @@
         }else if(page==1){//Guild defined, blocks defined
           //On /panel/:id
           %><%- include('blockly/toolbox.ejs'); %><%# Blockly Toolbox included here %>
-          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks, workspace_xml:workspace_xml, guild:guild, premium:premium}); %>
+          <%- include('ejs/guild-panel.ejs', {locale:locale, blocklyLocale:blocklyLocale, blocks: blocks,
+            workspaceXml:workspaceXml, guild:guild, premium:premium, definedRegexes:definedRegexes}); %>
 
           <%
         }else if(page==2){//Guild defined, blocks undefined

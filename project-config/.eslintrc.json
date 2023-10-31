@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "ignorePatterns": ["init_logs.js"],
+  "rules": {
+    "indent": "off",
+    "linebreak-style": ["error", "windows"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-console": "warn",
+    "no-eval": "error",
+    "curly": ["error", "multi-line", "consistent"],
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "strict": ["error", "global"],
+    "camelcase": [
+      "warn",
+      {
+        "properties": "always",
+        "allow": ["BLOCK_*"]
+      }
+    ]
+  }
+}
