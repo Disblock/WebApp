@@ -1363,59 +1363,59 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript['block_channel_get_thread_parent'] = function(block) {
-      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
-      if(value_channel!==''){
-        const code = "("+value_channel+".isThread() ? "+value_channel+".parent : undefined)";
+    Blockly.JavaScript["block_channel_get_thread_parent"] = function (block) {
+      const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
+      if (valueChannel !== "") {
+        const code = "(" + valueChannel + ".isThread() ? " + valueChannel + ".parent : undefined)";
         return [code, Blockly.JavaScript.ORDER_NONE];
-      }else{
-        throw(errors_types.uncompleteBlock);
+      } else {
+        throw errorsTypes.uncompleteBlock;
       }
     };
 
-    Blockly.JavaScript['block_channel_set_thread_locked'] = function(block) {
-      const dropdown_islocked = block.getFieldValue('isLocked');
-      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+    Blockly.JavaScript["block_channel_set_thread_locked"] = function (block) {
+      const dropdownIsLocked = block.getFieldValue("isLocked");
+      const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_channel!=='' && dropdown_islocked!==''){
-        const code = value_channel+".setLocked("+(dropdown_islocked === 'LOCK' ? 'true':'false')+");\n";
+      if (valueChannel !== "" && dropdownIsLocked !== "") {
+        const code = valueChannel + ".setLocked(" + (dropdownIsLocked === "LOCK" ? "true" : "false") + ");\n";
         return code;
-      }else{
-        throw(errors_types.uncompleteBlock);
+      } else {
+        throw errorsTypes.uncompleteBlock;
       }
     };
 
-    Blockly.JavaScript['block_channel_is_thread_locked'] = function(block) {
-      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+    Blockly.JavaScript["block_channel_is_thread_locked"] = function (block) {
+      const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_channel!==''){
-        const code = value_channel+".locked";
+      if (valueChannel !== "") {
+        const code = valueChannel + ".locked";
         return [code, Blockly.JavaScript.ORDER_NONE];
-      }else{
-        throw(errors_types.uncompleteBlock);
+      } else {
+        throw errorsTypes.uncompleteBlock;
       }
     };
 
-    Blockly.JavaScript['block_channel_set_thread_archived'] = function(block) {
-      const dropdown_isarchived = block.getFieldValue('isArchived');
-      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+    Blockly.JavaScript["block_channel_set_thread_archived"] = function (block) {
+      const dropdownIsArchived = block.getFieldValue("isArchived");
+      const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_channel!=='' && dropdown_isarchived!==''){
-        const code = value_channel+".setArchived("+(dropdown_isarchived === 'ARCHIVED' ? 'true':'false')+");\n";
+      if (valueChannel !== "" && dropdownIsArchived !== "") {
+        const code = valueChannel + ".setArchived(" + (dropdownIsArchived === "ARCHIVED" ? "true" : "false") + ");\n";
         return code;
-      }else{
-        throw(errors_types.uncompleteBlock);
+      } else {
+        throw errorsTypes.uncompleteBlock;
       }
     };
 
-    Blockly.JavaScript['block_channel_is_thread_archived'] = function(block) {
-      const value_channel = Blockly.JavaScript.valueToCode(block, 'channel', Blockly.JavaScript.ORDER_ATOMIC);
+    Blockly.JavaScript["block_channel_is_thread_archived"] = function (block) {
+      const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(value_channel!==''){
-        const code = value_channel+".archived";
+      if (valueChannel !== "") {
+        const code = valueChannel + ".archived";
         return [code, Blockly.JavaScript.ORDER_NONE];
-      }else{
-        throw(errors_types.uncompleteBlock);
+      } else {
+        throw errorsTypes.uncompleteBlock;
       }
     };
 
@@ -2029,9 +2029,25 @@ module.exports = {
       const valueEmbed = Blockly.JavaScript.valueToCode(block, "embed", Blockly.JavaScript.ORDER_ATOMIC);
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if(valueEmbed!=='' && valueChannel!==''){//GuildMember has a .user property, not the Channel objects
-        const code = 'if('+valueChannel+'.user) sentMessage = await '+valueChannel+'.send({ embeds: [Discord.EmbedBuilder.from('+valueEmbed+').setFooter({iconURL: '+valueChannel+'.guild.iconURL({dynamic:true}), text:"Sent from the server "+'+valueChannel+'.guild.name})] });  \n\
-          else sentMessage = await '+valueChannel+'.send({ embeds: ['+valueEmbed+'] });\n'
+      if (valueEmbed !== "" && valueChannel !== "") {
+        //GuildMember has a .user property, not the Channel objects
+        const code =
+          "if(" +
+          valueChannel +
+          ".user) sentMessage = await " +
+          valueChannel +
+          ".send({ embeds: [Discord.EmbedBuilder.from(" +
+          valueEmbed +
+          ").setFooter({iconURL: " +
+          valueChannel +
+          '.guild.iconURL({dynamic:true}), text:"Sent from the server "+' +
+          valueChannel +
+          ".guild.name})] });  \n\
+          else sentMessage = await " +
+          valueChannel +
+          ".send({ embeds: [" +
+          valueEmbed +
+          "] });\n";
 
         return code;
       } else {

@@ -729,11 +729,13 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED"] = "%1 le fil  %2";
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP"] = "Permet de verrouiller ou déverrouiller un fil";
   Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED"] = "Le fil %1 est-il verrouillé ?";
-  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] = "Permet de savoir si un fil est verrouillé. Retourne un Booléen Vrai ou Faux";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] =
+    "Permet de savoir si un fil est verrouillé. Retourne un Booléen Vrai ou Faux";
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED"] = "%1 le fil %2";
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP"] = "Permet d'archiver ou de désarchiver un fil";
   Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED"] = "le fil %1 est-il archivé ?";
-  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP"] = "Permet de savoir si un fil est archivé. Retourne un booléen Vrai ou Faux";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP"] =
+    "Permet de savoir si un fil est archivé. Retourne un booléen Vrai ou Faux";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Repondre au message %1 Avec le texte %2";
@@ -930,9 +932,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP"] = "Ajouter la date d'envoi de l'embed";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] =
     "Option d'embed, permet d'ajouter la date d'envoi de l'embed";
-  Blockly.Msg["BLOCK_EMBED_SEND"] = 
-    "Envoyer le message Embed %1 dans le salon %2";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] = 
+  Blockly.Msg["BLOCK_EMBED_SEND"] = "Envoyer le message Embed %1 dans le salon %2";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] =
     "Option d'embed, permet d'ajouter la date d'envoi de l'embed";
   Blockly.Msg["BLOCK_EMBED_SEND"] = "Envoyer le message Embed %1 dans le salon ou à l'utilisateur %2";
 

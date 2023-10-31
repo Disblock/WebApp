@@ -713,11 +713,13 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED"] = "%1 the thread %2";
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP"] = "Allows to lock or unlock a thread";
   Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED"] = "Is thread %1 locked?";
-  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] = "Allows to check if a thread is locked. Returns a Boolean True or False.";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] =
+    "Allows to check if a thread is locked. Returns a Boolean True or False.";
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED"] = "%1 the thread %2";
   Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP"] = "Allows to archive or unarchive a thread";
   Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED"] = "Is thread %1 archived?";
-  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP"] = "Checks if a thread is archived. Returns a Boolean value of True or False.";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP"] =
+    "Checks if a thread is archived. Returns a Boolean value of True or False.";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";
@@ -901,7 +903,8 @@ module.exports = function init(Blockly) {
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER_TOOLTIP"] =
     "Embed option, define Embed footer with content and image. Give an URL linked to the image";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP"] = "Add Timestamp to the Embed";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] = "Embed option, use this to show the timestamp within the embed";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] =
+    "Embed option, use this to show the timestamp within the embed";
   Blockly.Msg["BLOCK_EMBED_SEND"] = "Send embed message %1 to channel or user %2";
   Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Send an embed message to a channel or an user";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Embed message";
