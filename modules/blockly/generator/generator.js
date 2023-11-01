@@ -297,7 +297,7 @@ module.exports = {
       const numberAmount = block.getFieldValue("amount");
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (numberAmount !== "" && valueChannel !== "") {
+      if (definedRegexes.isNumber(numberAmount) && valueChannel !== "") {
         const code = valueChannel + ".bulkDelete(" + numberAmount + ");\n";
         return code;
       } else {
@@ -420,7 +420,7 @@ module.exports = {
       const numberMentionIndex = block.getFieldValue("mention_index");
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (valueMessage !== "" && numberMentionIndex !== "" && numberMentionIndex !== "NaN") {
+      if (valueMessage !== "" && definedRegexes.isNumber(numberMentionIndex)) {
         const code =
           valueMessage +
           ".mentions.members.at((" +
@@ -438,7 +438,7 @@ module.exports = {
       const numberMentionIndex = block.getFieldValue("mention_index");
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (valueMessage !== "" && numberMentionIndex !== "" && numberMentionIndex !== "NaN") {
+      if (valueMessage !== "" && definedRegexes.isNumber(numberMentionIndex)) {
         const code =
           valueMessage +
           ".mentions.channels.at((" +
@@ -681,6 +681,7 @@ module.exports = {
       let valueReason = Blockly.JavaScript.valueToCode(block, "reason", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "" && dropdownDuration !== "") {
+        //dropdownDuration isn't checked for injections, as it's only used for switch, and never executed
         if (valueReason === "") {
           valueReason = "'Reason undefined'";
         }
@@ -745,7 +746,7 @@ module.exports = {
 
     Blockly.JavaScript["block_user_has_permission"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownPermission = block.getFieldValue("permission");
+      const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : only used for a switch and never executed
 
       if (valueUser !== "" && dropdownPermission !== "") {
         let code = valueUser + ".permissions";
@@ -1097,7 +1098,7 @@ module.exports = {
 
     Blockly.JavaScript["block_channel_get_permission"] = function (block) {
       const valueUserOrRank = Blockly.JavaScript.valueToCode(block, "userOrRank", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownPermission = block.getFieldValue("permission");
+      const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : only used for a switch and never executed
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUserOrRank !== "" && dropdownPermission !== "" && valueChannel !== "") {
@@ -1207,7 +1208,7 @@ module.exports = {
 
     Blockly.JavaScript["block_channel_set_permission"] = function (block) {
       const valueUserOrRank = Blockly.JavaScript.valueToCode(block, "userOrRank", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownPermission = block.getFieldValue("permission");
+      const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : only used for a switch and never executed
       const dropdownIsGranted = block.getFieldValue("isGranted");
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
       let permissionToEdit = "ViewChannel"; //Used to store the permission to edit
@@ -1374,7 +1375,7 @@ module.exports = {
     };
 
     Blockly.JavaScript["block_channel_set_thread_locked"] = function (block) {
-      const dropdownIsLocked = block.getFieldValue("isLocked");
+      const dropdownIsLocked = block.getFieldValue("isLocked"); //Regex not needed : Just used for an if
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "" && dropdownIsLocked !== "") {
@@ -1397,7 +1398,7 @@ module.exports = {
     };
 
     Blockly.JavaScript["block_channel_set_thread_archived"] = function (block) {
-      const dropdownIsArchived = block.getFieldValue("isArchived");
+      const dropdownIsArchived = block.getFieldValue("isArchived"); //Regex not needed : only used for an if
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "" && dropdownIsArchived !== "") {
@@ -1428,7 +1429,7 @@ module.exports = {
       const checkboxAreMembersShown = block.getFieldValue("are_members_shown") === "TRUE";
       const valuePosition = Blockly.JavaScript.valueToCode(block, "position", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (valueName !== "" && colourColor !== "" && valuePosition !== "") {
+      if (valueName !== "" && definedRegexes.isHexColor(colourColor) && valuePosition !== "") {
         const code =
           "createdRank = await CURRENT_GUILD.roles.create({name:" +
           valueName +
@@ -1479,7 +1480,7 @@ module.exports = {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const colourColor = block.getFieldValue("color");
 
-      if (valueRank !== "" && colourColor !== "") {
+      if (valueRank !== "" && definedRegexes.isHexColor(colourColor)) {
         const code = valueRank + ".setColor('" + colourColor + "');\n";
         return code;
       } else {
@@ -1489,7 +1490,7 @@ module.exports = {
 
     Blockly.JavaScript["block_rank_edit_pingeable"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownIsPingeable = block.getFieldValue("IS_PINGEABLE");
+      const dropdownIsPingeable = block.getFieldValue("IS_PINGEABLE"); //Regex not needed : used only for an if
 
       if (valueRank !== "") {
         const code = valueRank + ".setMentionable(" + (dropdownIsPingeable === "PINGEABLE" ? "true" : "false") + ");\n";
@@ -1501,7 +1502,7 @@ module.exports = {
 
     Blockly.JavaScript["block_rank_edit_members_shown"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownAreMemberShown = block.getFieldValue("ARE_MEMBER_SHOWN");
+      const dropdownAreMemberShown = block.getFieldValue("ARE_MEMBER_SHOWN"); //Regex not needed : used only for an if
 
       if (valueRank !== "") {
         const code = valueRank + ".setHoist(" + (dropdownAreMemberShown === "SHOWN" ? "true" : "false") + ");\n";
@@ -1535,9 +1536,9 @@ module.exports = {
     };
 
     Blockly.JavaScript["block_rank_edit_permissions"] = function (block) {
-      const dropdownPermission = block.getFieldValue("permission");
+      const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : used only for a switch
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownIsGranted = block.getFieldValue("isGranted");
+      const dropdownIsGranted = block.getFieldValue("isGranted"); //Regex not needed : used only for an if
 
       if (dropdownPermission !== "" && valueRank !== "" && dropdownIsGranted !== "") {
         let currentPermission = "Discord.PermissionsBitField.Flags.ViewChannel";
@@ -1738,7 +1739,7 @@ module.exports = {
 
     Blockly.JavaScript["block_rank_has_permission"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
-      const dropdownPermission = block.getFieldValue("permission");
+      const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : used only for a switch
 
       if (valueRank !== "" && dropdownPermission !== "") {
         let currentPermission = "Discord.PermissionsBitField.Flags.ViewChannel";
@@ -2078,8 +2079,8 @@ module.exports = {
     };
 
     Blockly.JavaScript["block_guild_create_invite"] = function (block) {
-      const dropdownDuration = block.getFieldValue("duration");
-      const dropdownUses = block.getFieldValue("uses");
+      const dropdownDuration = block.getFieldValue("duration"); //Regex not needed : used only for a switch
+      const dropdownUses = block.getFieldValue("uses"); //Regex not needed : used only for a switch
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel === "") {
@@ -2159,7 +2160,7 @@ module.exports = {
     /* ##### COLOR blocks ##### */
     Blockly.JavaScript["block_color_hex"] = function (block) {
       const textColor = block.getFieldValue("color");
-      const code = /^#[0-9a-f]{3,6}$/i.test(textColor) ? "'" + textColor + "'" : ""; //A regex check if color hex is valid
+      const code = definedRegexes.isHexColor(textColor) ? "'" + textColor + "'" : ""; //A regex check if color hex is valid
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
@@ -2169,7 +2170,7 @@ module.exports = {
       const textName = block.getFieldValue("NAME");
       //const dropdown_type = block.getFieldValue('TYPE');
 
-      if (!/^[a-zA-Z0-9]{1,16}$/.test(textName)) {
+      if (!definedRegexes.variableName(textName)) {
         throw errorsTypes.invalidRegex;
       }
 
@@ -2186,7 +2187,7 @@ module.exports = {
     Blockly.JavaScript["block_var_get"] = function (block) {
       const textName = block.getFieldValue("NAME");
 
-      if (!/^[a-zA-Z0-9]{1,16}$/.test(textName)) {
+      if (!definedRegexes.variableName(textName)) {
         throw errorsTypes.invalidRegex;
       }
 
@@ -2324,7 +2325,7 @@ module.exports = {
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if (/^([a-z0-9]{3,28})$/.test(textName) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(textDesc)) {
+      if (definedRegexes.slashCommandName(textName) && definedRegexes.slashCommandDescription(textDesc)) {
         return (
           '{"name":"' +
           textName +
@@ -2346,7 +2347,7 @@ module.exports = {
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if (/^([a-z0-9]{3,28})$/.test(textInt) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(textDesc)) {
+      if (definedRegexes.slashCommandName(textInt) && definedRegexes.slashCommandDescription(textDesc)) {
         return (
           '{"name":"' +
           textInt +
@@ -2368,7 +2369,7 @@ module.exports = {
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if (/^([a-z0-9]{3,28})$/.test(textRole) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(textDesc)) {
+      if (definedRegexes.slashCommandName(textRole) && definedRegexes.slashCommandDescription(textDesc)) {
         return (
           '{"name":"' +
           textRole +
@@ -2390,7 +2391,7 @@ module.exports = {
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if (/^([a-z0-9]{3,28})$/.test(textText) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(textDesc)) {
+      if (definedRegexes.slashCommandName(textText) && definedRegexes.slashCommandDescription(textDesc)) {
         return (
           '{"name":"' +
           textText +
@@ -2412,7 +2413,7 @@ module.exports = {
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if (/^([a-z0-9]{3,28})$/.test(textUser) && /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(textDesc)) {
+      if (definedRegexes.slashCommandName(textUser) && definedRegexes.slashCommandDescription(textDesc)) {
         return (
           '{"name":"' +
           textUser +
@@ -2444,10 +2445,7 @@ module.exports = {
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
 
-      if (
-        /^([a-z0-9]{3,28})$/.test(textChannel) &&
-        /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%*+/]{0,100})$/.test(textDesc)
-      ) {
+      if (definedRegexes.slashCommandName(textChannel) && definedRegexes.slashCommandDescription(textDesc)) {
         return (
           '{"name":"' +
           textChannel +
@@ -2466,36 +2464,48 @@ module.exports = {
 
     Blockly.JavaScript["block_slash_command_get_boolean"] = function (block) {
       const textName = block.getFieldValue("NAME");
+      if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
+
       const code = 'interaction.options.getBoolean("' + textName + '")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_get_int"] = function (block) {
       const textName = block.getFieldValue("NAME");
+      if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
+
       const code = 'interaction.options.getNumber("' + textName + '")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_get_role"] = function (block) {
       const textName = block.getFieldValue("NAME");
+      if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
+
       const code = 'interaction.options.getRole("' + textName + '")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_get_string"] = function (block) {
       const textName = block.getFieldValue("NAME");
+      if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
+
       const code = 'interaction.options.getString("' + textName + '")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_get_user"] = function (block) {
       const textName = block.getFieldValue("NAME");
+      if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
+
       const code = 'interaction.options.getMember("' + textName + '")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     Blockly.JavaScript["block_slash_command_get_text_channel"] = function (block) {
       const textName = block.getFieldValue("NAME");
+      if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
+
       const code = 'interaction.options.getChannel("' + textName + '")';
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
@@ -2611,7 +2621,7 @@ module.exports = {
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
       const valueVarContent = Blockly.JavaScript.valueToCode(block, "VARCONTENT", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (/^([a-zA-Z0-9]{1,16})$/.test(textDataname) && valueVarname != "" && valueVarContent != "") {
+      if (definedRegexes.dataStorageName(textDataname) && valueVarname != "" && valueVarContent != "") {
         return "dataStorage.saveValue('I" + textDataname + "', " + valueVarname + ", " + valueVarContent + ");\n";
       }
       // At the start of data names, there is S or I to detect String or Int storages
@@ -2625,7 +2635,7 @@ module.exports = {
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
       const valueVarContent = Blockly.JavaScript.valueToCode(block, "VARCONTENT", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (/^([a-zA-Z0-9]{1,16})$/.test(textDataname) && valueVarname != "" && valueVarContent != "") {
+      if (definedRegexes.dataStorageName(textDataname) && valueVarname != "" && valueVarContent != "") {
         return "dataStorage.saveValue('S" + textDataname + "', " + valueVarname + ", " + valueVarContent + ");\n";
       } else {
         throw errorsTypes.uncompleteBlock;
@@ -2636,7 +2646,7 @@ module.exports = {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (/^([a-zA-Z0-9]{1,16})$/.test(textDataname) && valueVarname != "") {
+      if (definedRegexes.dataStorageName(textDataname) && valueVarname != "") {
         const code = "strToInt((await dataStorage.getValue('I" + textDataname + "', " + valueVarname + ")))";
         return [code, Blockly.JavaScript.ORDER_NONE];
       } else {
@@ -2648,7 +2658,7 @@ module.exports = {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (/^([a-zA-Z0-9]{1,16})$/.test(textDataname) && valueVarname != "") {
+      if (definedRegexes.dataStorageName(textDataname) && valueVarname != "") {
         const code = "await dataStorage.getValue('S" + textDataname + "', " + valueVarname + ")";
         return [code, Blockly.JavaScript.ORDER_NONE];
       } else {
@@ -2660,7 +2670,7 @@ module.exports = {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (/^([a-zA-Z0-9]{1,16})$/.test(textDataname) && valueVarname != "") {
+      if (definedRegexes.dataStorageName(textDataname) && valueVarname != "") {
         return "dataStorage.delValue('I" + textDataname + "', " + valueVarname + ");\n";
       }
       // At the start of data names, there is S or I to detect String or Int storages
@@ -2673,7 +2683,7 @@ module.exports = {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
-      if (/^([a-zA-Z0-9]{1,16})$/.test(textDataname) && valueVarname != "") {
+      if (definedRegexes.dataStorageName(textDataname) && valueVarname != "") {
         return "dataStorage.delValue('S" + textDataname + "', " + valueVarname + ");\n";
       }
       // At the start of data names, there is S or I to detect String or Int storages

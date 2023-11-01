@@ -31,6 +31,9 @@ module.exports = {
     return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,256})$/.test(value);
   },
   isNumber: function isNumber(value) {
-    return /^([0-9]{0,12})$/.test(value);
+    return /^([0-9]{1,12})$/.test(value);
+  },
+  isHexColor: function isHexColor(value) {
+    return /^#[0-9a-f]{3,6}$/i.test(value);
   },
 };
