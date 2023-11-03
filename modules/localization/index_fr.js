@@ -1,3 +1,4 @@
+"use strict";
 //File used to translate index page in French
 module.exports = {
   home: "Accueil",
@@ -16,11 +17,13 @@ module.exports = {
   whyDisblock: "Pourquoi Disblock ?",
 
   whyDisblock1Title: "Créez vos commandes, vos actions, sans devoir maîtriser le développement",
-  whyDisblock1Text: "Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !",
+  whyDisblock1Text:
+    "Avec Disblock, vous pouvez créer facilement vos propres commandes, et réaliser automatiquement des actions lorqu'un événement se réalise !",
   whyDisblock1Link: "Voir la liste des fonctionnalités",
 
   whyDisblock2Title: "Personnalisez Tout",
-  whyDisblock2Text: "Vous pouvez créer des commandes, évènements et tout ce qui vous passe par la tête, via un éditeur basé sur des blocs !",
+  whyDisblock2Text:
+    "Vous pouvez créer des commandes, évènements et tout ce qui vous passe par la tête, via un éditeur basé sur des blocs !",
   whyDisblock2Link: "Voir quelques examples de ce qui peut être fait avec Disblock",
 
   whyDisblock3Title: "Une documentation en ligne",
@@ -31,7 +34,8 @@ module.exports = {
   whyDisblock4Text: "Sur Discord, nous sommes ravis d'aider ;)",
   whyDisblock4Link: "Accéder au serveur",
 
-  div2Text: "<a href=\"https://docs.disblock.xyz/disblock/getting-started\" target=\"_blank\" rel=\"noreferrer noopener\">Commencer</a> à utiliser Disblock",
+  div2Text:
+    '<a href="https://docs.disblock.xyz/disblock/getting-started" target="_blank" rel="noreferrer noopener">Commencer</a> à utiliser Disblock',
   docsTitle: "Une documentation en constante expansion",
   docsText: "Besoin d'aide ? Nous avons des guides et une communauté Discord !",
   iWant: "Je veux...",
@@ -40,6 +44,5 @@ module.exports = {
   docsTopic3: "Soutenir Disblock ?",
   docsAsk: "Demander ?",
   div3Text: "Inviter sur mon serveur",
-  followUsTwitter: "Suivez-nous sur Twitter !"
-
-}
+  followUsTwitter: "Suivez-nous sur Twitter !",
+};

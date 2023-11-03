@@ -1,4 +1,4 @@
-'use-strict';
+"use strict";
 module.exports = {
   error: 1,
   notLoggedIn: 2,
@@ -10,5 +10,5 @@ module.exports = {
   invalidRegex: 8,
   rateLimitError: 9,
   uncompleteBlock: 10,
-  errorWithStorageBlocks: 11
-}
+  errorWithStorageBlocks: 11,
+};

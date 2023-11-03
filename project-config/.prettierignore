@@ -1,0 +1,5 @@
+*.md
+*.yml
+.env
+*.env
+*.conf

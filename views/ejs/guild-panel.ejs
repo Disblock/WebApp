@@ -154,16 +154,16 @@
   workspace.addChangeListener(Blockly.Events.disableOrphans);//Disable blocks not on events
 
   //If a workspace is stored in database, it is restored here
-  <% if(workspace_xml){
-      escapedWorkspaceXml = workspace_xml/*.replace(/'/g, "\\'").replace(/"/g, '\\"')*/.replace(/`/g, '\\`');//We must escape that in order to display it without problems
+  <% if(workspaceXml){
+      escapedWorkspaceXml = workspaceXml/*.replace(/'/g, "\\'").replace(/"/g, '\\"')*/.replace(/`/g, '\\`');//We must escape that in order to display it without problems
    %>
     Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(`<%- escapedWorkspaceXml %>`), workspace);
     $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+workspace.getAllBlocks(false).length +' / '+maxBlocks);
     <%
   }%>
 
-  //We include here events for Blockly
-  <%-include("../js/blockly_functions.ejs");%>
+  //We include here events for Blockly and validateWorkspace()
+  <%-include("../js/blockly_functions.ejs", {definedRegexes:definedRegexes});%>
 
   //Here, the enum that list all possibles errors after sending a workspace
   const errorsEnum = JSON.parse('<%-errorsEnum%>');

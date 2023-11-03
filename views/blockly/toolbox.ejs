@@ -478,6 +478,11 @@
           </shadow>
         </value>
       </block>
+    <label text="%{BKY_WORKSPACE_SLASH_COMMAND_FORMS}"></label>
+      <block type="block_slash_command_form_creator"></block>
+      <block type="block_slash_command_form_input_text"></block>
+      <block type="block_slash_command_form_get_input_text"></block>
+      <block type="block_slash_command_form_get_user"></block>
   </category>
   <sep></sep>
   <category name="%{BKY_WORKSPACE_TAB_MESSAGES}" colour="180">
@@ -634,9 +639,12 @@
         </value>
       </block>
       <block type="block_channel_set_permission"></block>
+      <block type="block_channel_set_thread_locked"></block>
+      <block type="block_channel_set_thread_archived"></block>
 
     <label text="%{BKY_WORKSPACE_CHANNELS_GET_CHANNEL}"></label>
       <block type="block_channel_get_channel_with_id"></block>
+      <block type="block_channel_get_thread_parent"></block>
 
     <label text="%{BKY_WORKSPACE_CHANNELS_GET_DATA}"></label>
       <block type="block_channel_get_channel_name"></block>
@@ -645,6 +653,8 @@
       <block type="block_channel_get_user_count"></block>
       <block type="block_channel_get_category_of_channel"></block>
       <block type="block_channel_get_permission"></block>
+      <block type="block_channel_is_thread_locked"></block>
+      <block type="block_channel_is_thread_archived"></block>
 
     <label text="%{BKY_WORKSPACE_CHANNELS_GET_CATEGORY}"></label>
       <block type="block_channel_get_category_with_id"></block>
@@ -687,7 +697,6 @@
       <block type="block_user_get_with_id"></block>
       <block type="block_user_get_username"></block>
       <block type="block_user_get_server_username"></block>
-      <block type="block_user_get_tag"></block>
       <block type="block_user_get_id"></block>
       <block type="block_user_get_picture"></block>
       <block type="block_user_is_bot"></block>

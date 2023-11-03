@@ -1,7 +1,10 @@
-module.exports = function init(Blockly){//A name has been set, in order to make it runnable when sent to front-end
+"use strict";
+module.exports = function init(Blockly) {
+  //A name has been set, in order to make it runnable when sent to front-end
 
   Blockly.Msg["ADD_COMMENT"] = "Add Comment";
-  Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Can't delete the variable '%1' because it's part of the definition of the function '%2'";
+  Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] =
+    "Can't delete the variable '%1' because it's part of the definition of the function '%2'";
   Blockly.Msg["CHANGE_VALUE_TITLE"] = "Change value:";
   Blockly.Msg["CLEAN_UP"] = "Clean up Blocks";
   Blockly.Msg["COLLAPSED_WARNINGS_WARNING"] = "Collapsed blocks contain warnings.";
@@ -23,19 +26,24 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["COLOUR_RGB_HELPURL"] = "https://www.december.com/html/spec/colorpercompact.html";
   Blockly.Msg["COLOUR_RGB_RED"] = "red";
   Blockly.Msg["COLOUR_RGB_TITLE"] = "colour with";
-  Blockly.Msg["COLOUR_RGB_TOOLTIP"] = "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 100.";
-  Blockly.Msg["CONTROLS_FLOW_STATEMENTS_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#loop-termination-blocks";
+  Blockly.Msg["COLOUR_RGB_TOOLTIP"] =
+    "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 100.";
+  Blockly.Msg["CONTROLS_FLOW_STATEMENTS_HELPURL"] =
+    "https://github.com/google/blockly/wiki/Loops#loop-termination-blocks";
   Blockly.Msg["CONTROLS_FLOW_STATEMENTS_OPERATOR_BREAK"] = "break out of loop";
   Blockly.Msg["CONTROLS_FLOW_STATEMENTS_OPERATOR_CONTINUE"] = "continue with next iteration of loop";
   Blockly.Msg["CONTROLS_FLOW_STATEMENTS_TOOLTIP_BREAK"] = "Break out of the containing loop.";
-  Blockly.Msg["CONTROLS_FLOW_STATEMENTS_TOOLTIP_CONTINUE"] = "Skip the rest of this loop, and continue with the next iteration.";
+  Blockly.Msg["CONTROLS_FLOW_STATEMENTS_TOOLTIP_CONTINUE"] =
+    "Skip the rest of this loop, and continue with the next iteration.";
   Blockly.Msg["CONTROLS_FLOW_STATEMENTS_WARNING"] = "Warning: This block may only be used within a loop.";
   Blockly.Msg["CONTROLS_FOREACH_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#for-each";
   Blockly.Msg["CONTROLS_FOREACH_TITLE"] = "for each item %1 in list %2";
-  Blockly.Msg["CONTROLS_FOREACH_TOOLTIP"] = "For each item in a list, set the variable '%1' to the item, and then do some statements.";
+  Blockly.Msg["CONTROLS_FOREACH_TOOLTIP"] =
+    "For each item in a list, set the variable '%1' to the item, and then do some statements.";
   Blockly.Msg["CONTROLS_FOR_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#count-with";
   Blockly.Msg["CONTROLS_FOR_TITLE"] = "count with %1 from %2 to %3 by %4";
-  Blockly.Msg["CONTROLS_FOR_TOOLTIP"] = "Have the variable '%1' take on the values from the start number to the end number, counting by the specified interval, and do the specified blocks.";
+  Blockly.Msg["CONTROLS_FOR_TOOLTIP"] =
+    "Have the variable '%1' take on the values from the start number to the end number, counting by the specified interval, and do the specified blocks.";
   Blockly.Msg["CONTROLS_IF_ELSEIF_TOOLTIP"] = "Add a condition to the if block.";
   Blockly.Msg["CONTROLS_IF_ELSE_TOOLTIP"] = "Add a final, catch-all condition to the if block.";
   Blockly.Msg["CONTROLS_IF_HELPURL"] = "https://github.com/google/blockly/wiki/IfElse";
@@ -44,9 +52,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["CONTROLS_IF_MSG_ELSEIF"] = "else if";
   Blockly.Msg["CONTROLS_IF_MSG_IF"] = "if";
   Blockly.Msg["CONTROLS_IF_TOOLTIP_1"] = "If a value is true, then do some statements.";
-  Blockly.Msg["CONTROLS_IF_TOOLTIP_2"] = "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.";
-  Blockly.Msg["CONTROLS_IF_TOOLTIP_3"] = "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements.";
-  Blockly.Msg["CONTROLS_IF_TOOLTIP_4"] = "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements. If none of the values are true, do the last block of statements.";
+  Blockly.Msg["CONTROLS_IF_TOOLTIP_2"] =
+    "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.";
+  Blockly.Msg["CONTROLS_IF_TOOLTIP_3"] =
+    "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements.";
+  Blockly.Msg["CONTROLS_IF_TOOLTIP_4"] =
+    "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements. If none of the values are true, do the last block of statements.";
   Blockly.Msg["CONTROLS_REPEAT_HELPURL"] = "https://en.wikipedia.org/wiki/For_loop";
   Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"] = "do";
   Blockly.Msg["CONTROLS_REPEAT_TITLE"] = "repeat %1 times";
@@ -76,7 +87,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "create empty list";
   Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "Returns a list, of length 0, containing no data records";
   Blockly.Msg["LISTS_CREATE_WITH_CONTAINER_TITLE_ADD"] = "list";
-  Blockly.Msg["LISTS_CREATE_WITH_CONTAINER_TOOLTIP"] = "Add, remove, or reorder sections to reconfigure this list block.";
+  Blockly.Msg["LISTS_CREATE_WITH_CONTAINER_TOOLTIP"] =
+    "Add, remove, or reorder sections to reconfigure this list block.";
   Blockly.Msg["LISTS_CREATE_WITH_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-list-with";
   Blockly.Msg["LISTS_CREATE_WITH_INPUT_WITH"] = "create list with";
   Blockly.Msg["LISTS_CREATE_WITH_ITEM_TOOLTIP"] = "Add an item to the list.";
@@ -95,7 +107,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_LAST"] = "Returns the last item in a list.";
   Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_RANDOM"] = "Returns a random item in a list.";
   Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FIRST"] = "Removes and returns the first item in a list.";
-  Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM"] = "Removes and returns the item at the specified position in a list.";
+  Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM"] =
+    "Removes and returns the item at the specified position in a list.";
   Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_LAST"] = "Removes and returns the last item in a list.";
   Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM"] = "Removes and returns a random item in a list.";
   Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_REMOVE_FIRST"] = "Removes the first item in a list.";
@@ -116,7 +129,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LISTS_INDEX_OF_FIRST"] = "find first occurrence of item";
   Blockly.Msg["LISTS_INDEX_OF_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#getting-items-from-a-list";
   Blockly.Msg["LISTS_INDEX_OF_LAST"] = "find last occurrence of item";
-  Blockly.Msg["LISTS_INDEX_OF_TOOLTIP"] = "Returns the index of the first/last occurrence of the item in the list. Returns %1 if item is not found.";
+  Blockly.Msg["LISTS_INDEX_OF_TOOLTIP"] =
+    "Returns the index of the first/last occurrence of the item in the list. Returns %1 if item is not found.";
   Blockly.Msg["LISTS_INLIST"] = "in list";
   Blockly.Msg["LISTS_ISEMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#is-empty";
   Blockly.Msg["LISTS_ISEMPTY_TITLE"] = "%1 is empty";
@@ -126,7 +140,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LISTS_LENGTH_TOOLTIP"] = "Returns the length of a list.";
   Blockly.Msg["LISTS_REPEAT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-list-with";
   Blockly.Msg["LISTS_REPEAT_TITLE"] = "create list with item %1 repeated %2 times";
-  Blockly.Msg["LISTS_REPEAT_TOOLTIP"] = "Creates a list consisting of the given value repeated the specified number of times.";
+  Blockly.Msg["LISTS_REPEAT_TOOLTIP"] =
+    "Creates a list consisting of the given value repeated the specified number of times.";
   Blockly.Msg["LISTS_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#reversing-a-list";
   Blockly.Msg["LISTS_REVERSE_MESSAGE0"] = "reverse %1";
   Blockly.Msg["LISTS_REVERSE_TOOLTIP"] = "Reverse a copy of a list.";
@@ -150,7 +165,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LISTS_SORT_TYPE_IGNORECASE"] = "alphabetic, ignore case";
   Blockly.Msg["LISTS_SORT_TYPE_NUMERIC"] = "numeric";
   Blockly.Msg["LISTS_SORT_TYPE_TEXT"] = "alphabetic";
-  Blockly.Msg["LISTS_SPLIT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#splitting-strings-and-joining-lists";
+  Blockly.Msg["LISTS_SPLIT_HELPURL"] =
+    "https://github.com/google/blockly/wiki/Lists#splitting-strings-and-joining-lists";
   Blockly.Msg["LISTS_SPLIT_LIST_FROM_TEXT"] = "make list from text";
   Blockly.Msg["LISTS_SPLIT_TEXT_FROM_LIST"] = "make text from list";
   Blockly.Msg["LISTS_SPLIT_TOOLTIP_JOIN"] = "Join a list of texts into one text, separated by a delimiter.";
@@ -163,9 +179,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LOGIC_COMPARE_HELPURL"] = "https://en.wikipedia.org/wiki/Inequality_(mathematics)";
   Blockly.Msg["LOGIC_COMPARE_TOOLTIP_EQ"] = "Return true if both inputs equal each other.";
   Blockly.Msg["LOGIC_COMPARE_TOOLTIP_GT"] = "Return true if the first input is greater than the second input.";
-  Blockly.Msg["LOGIC_COMPARE_TOOLTIP_GTE"] = "Return true if the first input is greater than or equal to the second input.";
+  Blockly.Msg["LOGIC_COMPARE_TOOLTIP_GTE"] =
+    "Return true if the first input is greater than or equal to the second input.";
   Blockly.Msg["LOGIC_COMPARE_TOOLTIP_LT"] = "Return true if the first input is smaller than the second input.";
-  Blockly.Msg["LOGIC_COMPARE_TOOLTIP_LTE"] = "Return true if the first input is smaller than or equal to the second input.";
+  Blockly.Msg["LOGIC_COMPARE_TOOLTIP_LTE"] =
+    "Return true if the first input is smaller than or equal to the second input.";
   Blockly.Msg["LOGIC_COMPARE_TOOLTIP_NEQ"] = "Return true if both inputs are not equal to each other.";
   Blockly.Msg["LOGIC_NEGATE_HELPURL"] = "https://github.com/google/blockly/wiki/Logic#not";
   Blockly.Msg["LOGIC_NEGATE_TITLE"] = "not %1";
@@ -182,7 +200,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["LOGIC_TERNARY_HELPURL"] = "https://en.wikipedia.org/wiki/%3F:";
   Blockly.Msg["LOGIC_TERNARY_IF_FALSE"] = "if false";
   Blockly.Msg["LOGIC_TERNARY_IF_TRUE"] = "if true";
-  Blockly.Msg["LOGIC_TERNARY_TOOLTIP"] = "Check the condition in 'test'. If the condition is true, returns the 'if true' value; otherwise returns the 'if false' value.";
+  Blockly.Msg["LOGIC_TERNARY_TOOLTIP"] =
+    "Check the condition in 'test'. If the condition is true, returns the 'if true' value; otherwise returns the 'if false' value.";
   Blockly.Msg["MATH_ADDITION_SYMBOL"] = "+";
   Blockly.Msg["MATH_ARITHMETIC_HELPURL"] = "https://en.wikipedia.org/wiki/Arithmetic";
   Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_ADD"] = "Return the sum of the two numbers.";
@@ -197,7 +216,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["MATH_CHANGE_TITLE"] = "change %1 by %2";
   Blockly.Msg["MATH_CHANGE_TOOLTIP"] = "Add a number to variable '%1'.";
   Blockly.Msg["MATH_CONSTANT_HELPURL"] = "https://en.wikipedia.org/wiki/Mathematical_constant";
-  Blockly.Msg["MATH_CONSTANT_TOOLTIP"] = "Return one of the common constants: π (3.141…), e (2.718…), φ (1.618…), sqrt(2) (1.414…), sqrt(½) (0.707…), or ∞ (infinity).";
+  Blockly.Msg["MATH_CONSTANT_TOOLTIP"] =
+    "Return one of the common constants: π (3.141…), e (2.718…), φ (1.618…), sqrt(2) (1.414…), sqrt(½) (0.707…), or ∞ (infinity).";
   Blockly.Msg["MATH_CONSTRAIN_HELPURL"] = "https://en.wikipedia.org/wiki/Clamping_(graphics)";
   Blockly.Msg["MATH_CONSTRAIN_TITLE"] = "constrain %1 low %2 high %3";
   Blockly.Msg["MATH_CONSTRAIN_TOOLTIP"] = "Constrain a number to be between the specified limits (inclusive).";
@@ -208,7 +228,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["MATH_IS_ODD"] = "is odd";
   Blockly.Msg["MATH_IS_POSITIVE"] = "is positive";
   Blockly.Msg["MATH_IS_PRIME"] = "is prime";
-  Blockly.Msg["MATH_IS_TOOLTIP"] = "Check if a number is an even, odd, prime, whole, positive, negative, or if it is divisible by certain number. Returns true or false.";
+  Blockly.Msg["MATH_IS_TOOLTIP"] =
+    "Check if a number is an even, odd, prime, whole, positive, negative, or if it is divisible by certain number. Returns true or false.";
   Blockly.Msg["MATH_IS_WHOLE"] = "is whole";
   Blockly.Msg["MATH_MODULO_HELPURL"] = "https://en.wikipedia.org/wiki/Modulo_operation";
   Blockly.Msg["MATH_MODULO_TITLE"] = "remainder of %1 ÷ %2";
@@ -225,7 +246,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["MATH_ONLIST_OPERATOR_RANDOM"] = "random item of list";
   Blockly.Msg["MATH_ONLIST_OPERATOR_STD_DEV"] = "standard deviation of list";
   Blockly.Msg["MATH_ONLIST_OPERATOR_SUM"] = "sum of list";
-  Blockly.Msg["MATH_ONLIST_TOOLTIP_AVERAGE"] = "Return the average (arithmetic mean) of the numeric values in the list.";
+  Blockly.Msg["MATH_ONLIST_TOOLTIP_AVERAGE"] =
+    "Return the average (arithmetic mean) of the numeric values in the list.";
   Blockly.Msg["MATH_ONLIST_TOOLTIP_MAX"] = "Return the largest number in the list.";
   Blockly.Msg["MATH_ONLIST_TOOLTIP_MEDIAN"] = "Return the median number in the list.";
   Blockly.Msg["MATH_ONLIST_TOOLTIP_MIN"] = "Return the smallest number in the list.";
@@ -343,7 +365,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["TEXT_INDEXOF_OPERATOR_FIRST"] = "find first occurrence of text";
   Blockly.Msg["TEXT_INDEXOF_OPERATOR_LAST"] = "find last occurrence of text";
   Blockly.Msg["TEXT_INDEXOF_TITLE"] = "in text %1 %2 %3";
-  Blockly.Msg["TEXT_INDEXOF_TOOLTIP"] = "Returns the index of the first/last occurrence of the first text in the second text. Returns %1 if text is not found.";
+  Blockly.Msg["TEXT_INDEXOF_TOOLTIP"] =
+    "Returns the index of the first/last occurrence of the first text in the second text. Returns %1 if text is not found.";
   Blockly.Msg["TEXT_ISEMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Text#checking-for-empty-text";
   Blockly.Msg["TEXT_ISEMPTY_TITLE"] = "%1 is empty";
   Blockly.Msg["TEXT_ISEMPTY_TOOLTIP"] = "Returns true if the provided text is empty.";
@@ -386,7 +409,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#set";
   Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "Sets this variable to be equal to the input.";
   Blockly.Msg["VARIABLE_ALREADY_EXISTS"] = "A variable named '%1' already exists.";
-  Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] = "A variable named '%1' already exists for another type: '%2'.";
+  Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] =
+    "A variable named '%1' already exists for another type: '%2'.";
   Blockly.Msg["WORKSPACE_ARIA_LABEL"] = "Blockly Workspace";
   Blockly.Msg["WORKSPACE_COMMENT_DEFAULT_TEXT"] = "Say something...";
   Blockly.Msg["CONTROLS_FOREACH_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
@@ -454,6 +478,7 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_ARGS"] = "Get the value of command arguments";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_GET_DATA"] = "Get command's data";
   Blockly.Msg["WORKSPACE_SLASH_COMMAND_ACTIONS"] = "Do something when this command is used";
+  Blockly.Msg["WORKSPACE_SLASH_COMMAND_FORMS"] = "Create a form";
 
   Blockly.Msg["WORKSPACE_MESSAGES_SEND"] = "Send a message";
   Blockly.Msg["WORKSPACE_MESSAGES_DELETE"] = "Delete a message";
@@ -461,7 +486,6 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["WORKSPACE_MESSAGES_PINE"] = "Pin or unpin";
   Blockly.Msg["WORKSPACE_MESSAGES_GET_DATA"] = "Get data";
   Blockly.Msg["WORKSPACE_MESSAGES_MENTIONS"] = "@mentions";
-
 
   Blockly.Msg["WORKSPACE_CHANNELS_CREATE"] = "Create or delete a text or voice channel";
   Blockly.Msg["WORKSPACE_CHANNELS_DELETE"] = "Delete a channel";
@@ -500,11 +524,14 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Event blocks
   Blockly.Msg["EVENT_MESSAGE_SENT"] = "A message was sent %1 %2";
-  Blockly.Msg["EVENT_MESSAGE_SENT_TOOLTIP"] = "A message was sent, use the \"Sent Message\" variable to get message's data";
+  Blockly.Msg["EVENT_MESSAGE_SENT_TOOLTIP"] =
+    'A message was sent, use the "Sent Message" variable to get message\'s data';
   Blockly.Msg["EVENT_MESSAGE_DELETED"] = "A message was deleted %1 %2";
-  Blockly.Msg["EVENT_MESSAGE_DELETED_TOOLTIP"] = "A message was deleted, use the \"message\" variable to get the deleted message";
+  Blockly.Msg["EVENT_MESSAGE_DELETED_TOOLTIP"] =
+    'A message was deleted, use the "message" variable to get the deleted message';
   Blockly.Msg["EVENT_MESSAGE_UPDATED"] = "A message was updated %1 %2";
-  Blockly.Msg["EVENT_MESSAGE_UPDATED_TOOLTIP"] = "A message was updated, use \"Old message\" and \"New message\" vars to get messages data";
+  Blockly.Msg["EVENT_MESSAGE_UPDATED_TOOLTIP"] =
+    'A message was updated, use "Old message" and "New message" vars to get messages data';
   Blockly.Msg["EVENT_USER_JOIN"] = "An user joined %1 %2";
   Blockly.Msg["EVENT_USER_JOIN_TOOLTIP"] = "An user joined the server";
   Blockly.Msg["EVENT_USER_LEFT"] = "An user left %1 %2";
@@ -548,9 +575,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_VAR_MESSAGE"] = "Message";
   Blockly.Msg["EVENT_VAR_MESSAGE_TOOLTIP"] = "Represents an Event's message";
   Blockly.Msg["EVENT_VAR_OLD_MESSAGE"] = "Old message";
-  Blockly.Msg["EVENT_VAR_OLD_MESSAGE_TOOLTIP"] = "Represents the old state of an edited message. Used only in updated message event";
+  Blockly.Msg["EVENT_VAR_OLD_MESSAGE_TOOLTIP"] =
+    "Represents the old state of an edited message. Used only in updated message event";
   Blockly.Msg["EVENT_VAR_NEW_MESSAGE"] = "New message";
-  Blockly.Msg["EVENT_VAR_NEW_MESSAGE_TOOLTIP"] = "Represents the new state of an edited message. Used only in updated message event";
+  Blockly.Msg["EVENT_VAR_NEW_MESSAGE_TOOLTIP"] =
+    "Represents the new state of an edited message. Used only in updated message event";
   Blockly.Msg["EVENT_VAR_USER"] = "User";
   Blockly.Msg["EVENT_VAR_USER_TOOLTIP"] = "Represents the user who triggered an event";
   Blockly.Msg["EVENT_VAR_OLD_USER"] = "Old user";
@@ -564,9 +593,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_VAR_NEW_RANK"] = "New rank";
   Blockly.Msg["EVENT_VAR_NEW_RANK_TOOLTIP"] = "Represents the new state of an event's rank";
   Blockly.Msg["EVENT_VAR_OLD_VOICE_CHANNEL"] = "Old voice channel";
-  Blockly.Msg["EVENT_VAR_OLD_VOICE_CHANNEL_TOOLTIP"] = "Represents the voice channel before an event. If the channel was updated, this is his old state, if a member's voice state was updated, this is the voice channel where the user was. If the user just joined voice channels, this will be undefined/null.";
+  Blockly.Msg["EVENT_VAR_OLD_VOICE_CHANNEL_TOOLTIP"] =
+    "Represents the voice channel before an event. If the channel was updated, this is his old state, if a member's voice state was updated, this is the voice channel where the user was. If the user just joined voice channels, this will be undefined/null.";
   Blockly.Msg["EVENT_VAR_NEW_VOICE_CHANNEL"] = "New voice channel";
-  Blockly.Msg["EVENT_VAR_NEW_VOICE_CHANNEL_TOOLTIP"] = "Represents the voice channel after an event. If the channel was updated, this is his new state, if a member's voice state was updated, this is the voice channel where the user is after the event. If the user just left voice channels, this will be undefined/null.";
+  Blockly.Msg["EVENT_VAR_NEW_VOICE_CHANNEL_TOOLTIP"] =
+    "Represents the voice channel after an event. If the channel was updated, this is his new state, if a member's voice state was updated, this is the voice channel where the user is after the event. If the user just left voice channels, this will be undefined/null.";
   Blockly.Msg["EVENT_VAR_TEXT_CHANNEL"] = "Text channel";
   Blockly.Msg["EVENT_VAR_TEXT_CHANNEL_TOOLTIP"] = "Represents the text channel where an event was triggered";
   Blockly.Msg["EVENT_VAR_OLD_TEXT_CHANNEL"] = "Old text channel";
@@ -577,7 +608,6 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["EVENT_VAR_VOICE_CHANNEL_TOOLTIP"] = "Represents the voice channel where an event was triggered";
   Blockly.Msg["EVENT_VAR_REACTION"] = "Emoji";
   Blockly.Msg["EVENT_VAR_REACTION_TOOLTIP"] = "Represents an event's Emoji";
-
 
   //Channel Permissions
   Blockly.Msg["PERMISSION_SEE_CHANNEL"] = "View Channels";
@@ -640,9 +670,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Channels blocks
   Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL"] = "Create a text channel %1 With the topic %2 In the category %3";
-  Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL_TOOLTIP"] = "Create a new text channel. If category isn't defined, it will be created without a category";
+  Blockly.Msg["BLOCK_CHANNEL_CREATE_TEXT_CHANNEL_TOOLTIP"] =
+    "Create a new text channel. If category isn't defined, it will be created without a category";
   Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL"] = "Create a voice channel named %1 In the category %2";
-  Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL_TOOLTIP"] = "Create a new voice channel. If category isn't defined, it will be created without a category";
+  Blockly.Msg["BLOCK_CHANNEL_CREATE_VOICE_CHANNEL_TOOLTIP"] =
+    "Create a new voice channel. If category isn't defined, it will be created without a category";
   Blockly.Msg["BLOCK_CHANNEL_VAR_VOICE_CHANNEL"] = "Created voice channel";
   Blockly.Msg["BLOCK_CHANNEL_VAR_VOICE_CHANNEL_TOOLTIP"] = "Represents the created voice channel";
   Blockly.Msg["BLOCK_CHANNEL_VAR_TEXT_CHANNEL"] = "Created text channel";
@@ -661,16 +693,33 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_ID_TOOLTIP"] = "Get the ID of a channel";
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID"] = "Get a channel with its ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CHANNEL_WITH_ID_TOOLTIP"] = "Get a text, voice or Thread channel with an ID";
-  Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION"] = "Check if user or role %1 has the permission %2 %3 in text or voice channel %4";
-  Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION_TOOLTIP"] = "Check if user or role has a permission in given text or voice channel. Return True or False";
-  Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] = "Define permission %2 %3 %4 for user or rank %1 in text or voice channel %5";
-  Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] = "Define a permission for an user or rank in a voice or text channel";
+  Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION"] =
+    "Check if user or role %1 has the permission %2 %3 in text or voice channel %4";
+  Blockly.Msg["BLOCK_CHANNEL_GET_PERMISSION_TOOLTIP"] =
+    "Check if user or role has a permission in given text or voice channel. Return True or False";
+  Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION"] =
+    "Define permission %2 %3 %4 for user or rank %1 in text or voice channel %5";
+  Blockly.Msg["BLOCK_CHANNEL_SET_PERMISSION_TOOLTIP"] =
+    "Define a permission for an user or rank in a voice or text channel";
   Blockly.Msg["BLOCK_CHANNEL_LIST"] = "List of all channels in the server";
   Blockly.Msg["BLOCK_CHANNEL_LIST_TOOLTIP"] = "Get a list of all channels in the server";
   Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT"] = "Count users in voice channel %1";
-  Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] = "Return the number of users connected to the given voice channel";
+  Blockly.Msg["BLOCK_CHANNEL_GET_USER_COUNT_TOOLBOX"] =
+    "Return the number of users connected to the given voice channel";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID"] = "Get a category with its ID %1";
   Blockly.Msg["BLOCK_CHANNEL_GET_CATEGORY_WITH_ID_TOOLTIP"] = "Get a category with an ID";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT"] = "Get the parent channel of thread %1";
+  Blockly.Msg["BLOCK_CHANNEL_GET_THREAD_PARENT_TOOLTIP"] = "Allows to retrieve the parent channel of a thread";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED"] = "%1 the thread %2";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_LOCKED_TOOLTIP"] = "Allows to lock or unlock a thread";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED"] = "Is thread %1 locked?";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_LOCKED_TOOLTIP"] =
+    "Allows to check if a thread is locked. Returns a Boolean True or False.";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED"] = "%1 the thread %2";
+  Blockly.Msg["BLOCK_CHANNEL_SET_THREAD_ARCHIVED_TOOLTIP"] = "Allows to archive or unarchive a thread";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED"] = "Is thread %1 archived?";
+  Blockly.Msg["BLOCK_CHANNEL_IS_THREAD_ARCHIVED_TOOLTIP"] =
+    "Checks if a thread is archived. Returns a Boolean value of True or False.";
 
   //Message blocks
   Blockly.Msg["BLOCK_MESSAGE_REPLY"] = "Reply to message %1 with content %2";
@@ -682,7 +731,8 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MESSAGE_DELETE_BULK"] = "Delete %1 messages in text channel %2";
   Blockly.Msg["BLOCK_MESSAGE_DELETE_BULK_TOOLTIP"] = "Bulk delete in a text channel or Thread";
   Blockly.Msg["BLOCK_MESSAGE_START_THREAD"] = "Create a Thread named %1 starting with the message %2";
-  Blockly.Msg["BLOCK_MESSAGE_START_THREAD_TOOLTIP"] = "Create a Thread starting by the given message. The message must be in a text channel and not a Thread !";
+  Blockly.Msg["BLOCK_MESSAGE_START_THREAD_TOOLTIP"] =
+    "Create a Thread starting by the given message. The message must be in a text channel and not a Thread !";
   Blockly.Msg["BLOCK_MESSAGE_PINE"] = "Pin the message %1";
   Blockly.Msg["BLOCK_MESSAGE_PINE_TOOLTIP"] = "Pin a message";
   Blockly.Msg["BLOCK_MESSAGE_UNPINE"] = "Unpin the message %1";
@@ -702,9 +752,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_CHANNEL"] = "Did a channel was mentionned ? %1";
   Blockly.Msg["BLOCK_MESSAGE_DOES_MENTION_CHANNEL_TOOLTIP"] = "Return True if #channel was used, False if not";
   Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION"] = "Get the @user mention at position %1 from message %2";
-  Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION_TOOLTIP"] = "Get the mentionned user at a given position ( 1 = First @user, 2 = Second @user , ect...)";
+  Blockly.Msg["BLOCK_MESSAGE_GET_USER_MENTION_TOOLTIP"] =
+    "Get the mentionned user at a given position ( 1 = First @user, 2 = Second @user , ect...)";
   Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION"] = "Get the #channel mention at position %1 from message %2";
-  Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION_TOOLTIP"] = "Get the mentionned channel at a given position ( 1 = First #channel, 2 = Second #channel , ect...)";
+  Blockly.Msg["BLOCK_MESSAGE_GET_CHANNEL_MENTION_TOOLTIP"] =
+    "Get the mentionned channel at a given position ( 1 = First #channel, 2 = Second #channel , ect...)";
   Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_USER"] = "Number of @user mentions in message %1";
   Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_USER_TOOLTIP"] = "Get the number of @user mentions in a message";
   Blockly.Msg["BLOCK_MESSAGE_NUMBER_OF_MENTIONS_CHANNEL"] = "Number of #channel mentions in message %1";
@@ -713,7 +765,6 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_MESSAGE_VAR_SENT_MESSAGE_TOOLTIP"] = "Represents the sent message";
   Blockly.Msg["BLOCK_MESSAGE_VAR_CREATED_THREAD"] = "Created Thread";
   Blockly.Msg["BLOCK_MESSAGE_VAR_CREATED_THREAD_TOOLTIP"] = "Represents the created Thread channel";
-
 
   //User blocks
   Blockly.Msg["BLOCK_USER_BAN"] = "Ban member %1 with reason %2";
@@ -725,13 +776,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_KICK"] = "Kick user %1 with reason %2";
   Blockly.Msg["BLOCK_USER_KICK_TOOLTIP"] = "Kick an user from the server with a reason";
   Blockly.Msg["BLOCK_USER_GET_WITH_ID"] = "Get user with ID %1";
-  Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] = "Get an user with its ID. The user must be in the server or an error will occur";
+  Blockly.Msg["BLOCK_USER_GET_WITH_ID_TOOLTIP"] =
+    "Get an user with its ID. The user must be in the server or an error will occur";
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME"] = "Get member's nickname %1";
   Blockly.Msg["BLOCK_USER_GET_SERVER_USERNAME_TOOLTIP"] = "Get the nickname of a member";
   Blockly.Msg["BLOCK_USER_GET_USERNAME"] = "Get user's username %1";
   Blockly.Msg["BLOCK_USER_GET_USERNAME_TOOLTIP"] = "Get the username of an user";
-  Blockly.Msg["BLOCK_USER_GET_TAG"] = "Get user's tag %1";
-  Blockly.Msg["BLOCK_USER_GET_TAG_TOOLTIP"] = "Get the Discord tag of an user ( ex : \"Username#1234\" will return \"1234\" )";
   Blockly.Msg["BLOCK_USER_GET_ID"] = "Get user's ID %1";
   Blockly.Msg["BLOCK_USER_GET_ID_TOOLTIP"] = "Get the ID of an user";
   Blockly.Msg["BLOCK_USER_GET_PICTURE"] = "Get user's profile picture %1";
@@ -739,15 +789,20 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_IS_BOT"] = "Is the user a bot ? %1";
   Blockly.Msg["BLOCK_USER_IS_BOT_TOOLTIP"] = "Return True if user is a bot, false if not";
   Blockly.Msg["BLOCK_USER_MUTE"] = "Mute user %1";
-  Blockly.Msg["BLOCK_USER_MUTE_TOOLTIP"] = "Mute an user in voice channels. The user should be connected to a voice channel";
+  Blockly.Msg["BLOCK_USER_MUTE_TOOLTIP"] =
+    "Mute an user in voice channels. The user should be connected to a voice channel";
   Blockly.Msg["BLOCK_USER_UNMUTE"] = "Unmute user %1";
-  Blockly.Msg["BLOCK_USER_UNMUTE_TOOLTIP"] = "Unmute an user in voice channels. The user should be connected to a voice channel";
+  Blockly.Msg["BLOCK_USER_UNMUTE_TOOLTIP"] =
+    "Unmute an user in voice channels. The user should be connected to a voice channel";
   Blockly.Msg["BLOCK_USER_DEAF"] = "Deafen user %1";
-  Blockly.Msg["BLOCK_USER_DEAF_TOOLTIP"] = "Deafen an user in voice channels. The user should be connected to a voice channel";
+  Blockly.Msg["BLOCK_USER_DEAF_TOOLTIP"] =
+    "Deafen an user in voice channels. The user should be connected to a voice channel";
   Blockly.Msg["BLOCK_USER_UNDEAF"] = "Undeafen user %1";
-  Blockly.Msg["BLOCK_USER_UNDEAF_TOOLTIP"] = "Undeafen an user in voice channels. The user should be connected to a voice channel";
+  Blockly.Msg["BLOCK_USER_UNDEAF_TOOLTIP"] =
+    "Undeafen an user in voice channels. The user should be connected to a voice channel";
   Blockly.Msg["BLOCK_USER_IS_TIMEOUT"] = "Is member timed out ? %1";
-  Blockly.Msg["BLOCK_USER_IS_TIMEOUT_TOOLTIP"] = "Check if member is actually timed out ( Can't send message, join voice channels, ... ). Return True if timed out, False if not";
+  Blockly.Msg["BLOCK_USER_IS_TIMEOUT_TOOLTIP"] =
+    "Check if member is actually timed out ( Can't send message, join voice channels, ... ). Return True if timed out, False if not";
   Blockly.Msg["BLOCK_USER_TIMEOUT"] = "Time out user %1 for %2 with reason %3";
   Blockly.Msg["BLOCK_USER_TIMEOUT_TOOLTIP"] = "Time out an user with a reason and a duration";
   Blockly.Msg["BLOCK_USER_CUSTOM_TIMEOUT"] = "Time out user %1 for %2 seconds with reason %3";
@@ -755,21 +810,26 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_USER_REMOVE_TIMEOUT"] = "Cancel time out for user %1";
   Blockly.Msg["BLOCK_USER_REMOVE_TIMEOUT_TOOLTIP"] = "Cancel a time out for an user";
   Blockly.Msg["BLOCK_USER_HAS_PERMISSION"] = "Does user %1 has permission %2 ?";
-  Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] = "Check if user has given permission. Return True if has permission, False if not";
+  Blockly.Msg["BLOCK_USER_HAS_PERMISSION_TOOLTIP"] =
+    "Check if user has given permission. Return True if has permission, False if not";
   Blockly.Msg["BLOCK_USER_HAS_RANK"] = "Does user %1 has the role %2 ?";
   Blockly.Msg["BLOCK_USER_HAS_RANK_TOOLTIP"] = "Check if user has given role. Return True if has role, False if not.";
   Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL"] = "Is user %1 connected to a voice channel ?";
-  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL_TOOLTIP"] = "Return true if given user is connected to a voice channel, false if not";
+  Blockly.Msg["BLOCK_USER_IS_IN_VOICE_CHANNEL_TOOLTIP"] =
+    "Return true if given user is connected to a voice channel, false if not";
   Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL"] = "Get voice channel where is connected user %1";
-  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL_TOOLTIP"] = "Return the voice channel where the user is connected. Return Nul if user isn't connected to a voice channel";
+  Blockly.Msg["BLOCK_USER_GET_VOICE_CHANNEL_TOOLTIP"] =
+    "Return the voice channel where the user is connected. Return Nul if user isn't connected to a voice channel";
   Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL"] = "Move user %1 to voice channel %2";
-  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP"] = "Move an user to another voice channel. The user must be connected to a voice channel, this can be checked with \"If\" block and \"Is user connected to a voice channel ?\" block";
+  Blockly.Msg["BLOCK_USER_MOVE_TO_VOICE_CHANNEL_TOOLTIP"] =
+    'Move an user to another voice channel. The user must be connected to a voice channel, this can be checked with "If" block and "Is user connected to a voice channel ?" block';
   Blockly.Msg["BLOCK_USER_GIVE_RANK"] = "Give to user %1 the role %2";
   Blockly.Msg["BLOCK_USER_GIVE_RANK_TOOLTIP"] = "Give a role to an user";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK"] = "Remove from user %1 the role %2";
   Blockly.Msg["BLOCK_USER_REMOVE_RANK_TOOLTIP"] = "Remove a role from an user";
   Blockly.Msg["BLOCK_USER_RENAME"] = "Rename user %1 with new name %2";
-  Blockly.Msg["BLOCK_USER_RENAME_TOOLTIP"] = "Give a new nickname to a user on your Discord server. The user must be moderatable by the bot";
+  Blockly.Msg["BLOCK_USER_RENAME_TOOLTIP"] =
+    "Give a new nickname to a user on your Discord server. The user must be moderatable by the bot";
 
   //Guild blocks
   Blockly.Msg["BLOCK_GUILD_GET_ID"] = "Get Server ID";
@@ -783,10 +843,11 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_GUILD_CREATE_INVITE"] = "Create an invite for the channel %1 that expire after %2 with %3 uses";
   Blockly.Msg["BLOCK_GUILD_CREATE_INVITE_TOOLTIP"] = "Create an invite for the server. Return the created invite code";
 
-
   //Ranks blocks
-  Blockly.Msg["BLOCK_RANK_CREATE"] = "Create a rank named %1 with color %2 %3 Can members be @mentionned : %4 %5 Does members shown in members list : %6 %7 Add this role at given position in roles hierarchy : %8";
-  Blockly.Msg["BLOCK_RANK_CREATE_TOOLTIP"] = "Create a new role. Give a name, a color ( White = not colored ) and choose if members can be @mentionned or shown in members list. Finally, give the position where this role will be added in server's hierarchy.";
+  Blockly.Msg["BLOCK_RANK_CREATE"] =
+    "Create a rank named %1 with color %2 %3 Can members be @mentionned : %4 %5 Does members shown in members list : %6 %7 Add this role at given position in roles hierarchy : %8";
+  Blockly.Msg["BLOCK_RANK_CREATE_TOOLTIP"] =
+    "Create a new role. Give a name, a color ( White = not colored ) and choose if members can be @mentionned or shown in members list. Finally, give the position where this role will be added in server's hierarchy.";
   Blockly.Msg["BLOCK_RANK_VAR_CREATED_RANK"] = "Created role";
   Blockly.Msg["BLOCK_RANK_VAR_CREATED_RANK_TOOLTIP"] = "Return the created role";
   Blockly.Msg["BLOCK_RANK_DELETE"] = "Delete the role %1";
@@ -794,11 +855,13 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_EDIT_NAME"] = "Renamme role %1 with %2";
   Blockly.Msg["BLOCK_RANK_EDIT_NAME_TOOLTIP"] = "Renamme a role with the given new name";
   Blockly.Msg["BLOCK_RANK_EDIT_COLOR"] = "Change the color of role %1 with new color %2";
-  Blockly.Msg["BLOCK_RANK_EDIT_COLOR_TOOLTIP"] = "Change the color of a role. If white is given, the color will be removed";
+  Blockly.Msg["BLOCK_RANK_EDIT_COLOR_TOOLTIP"] =
+    "Change the color of a role. If white is given, the color will be removed";
   Blockly.Msg["BLOCK_RANK_EDIT_PINGEABLE"] = "Define if the role %1 is @mentionnable : %2";
   Blockly.Msg["BLOCK_RANK_EDIT_PINGEABLE_TOOLTIP"] = "Set if everyone can @mention the given role or not";
   Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN"] = "Define if role %1 members are shown in members list : %2";
-  Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN_TOOLTIP"] = "Set if users who have the given role are shown in the members list";
+  Blockly.Msg["BLOCK_RANK_EDIT_MEMBERS_SHOWN_TOOLTIP"] =
+    "Set if users who have the given role are shown in the members list";
   Blockly.Msg["BLOCK_RANK_EDIT_POSITION"] = "Define role %1 position in hierarchy to %2";
   Blockly.Msg["BLOCK_RANK_EDIT_POSITION_TOOLTIP"] = "Define the position where this role will be in server's hierarchy";
   Blockly.Msg["BLOCK_RANK_GET_RANK_WITH_ID"] = "Get role with ID %1";
@@ -814,27 +877,36 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["BLOCK_RANK_GET_ID"] = "Get role ID %1";
   Blockly.Msg["BLOCK_RANK_GET_ID_TOOLTIP"] = "Return the role ID";
   Blockly.Msg["BLOCK_RANK_HAS_PERMISSION"] = "Does the role %1 has permission %2 ?";
-  Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] = "Check if given role has given permission. Return True if role is allowed to use permission, False if not";
+  Blockly.Msg["BLOCK_RANK_HAS_PERMISSION_TOOLTIP"] =
+    "Check if given role has given permission. Return True if role is allowed to use permission, False if not";
   Blockly.Msg["BLOCK_RANK_GET_EVERYONE"] = "Get @everyone role";
   Blockly.Msg["BLOCK_RANK_GET_EVERYONE_TOOLTIP"] = "Return the @everyone role";
 
   //Embeds blocks
-  Blockly.Msg["BLOCK_EMBED_CREATE"] = "Create an embed message with title %1 Embed description : %2 Embed color : %3 and customization : %4 %5";
-  Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] = "Create an embed message with defined title and color. Use embeds customization blocks to modify the created embed";
+  Blockly.Msg["BLOCK_EMBED_CREATE"] =
+    "Create an embed message with title %1 Embed description : %2 Embed color : %3 and customization : %4 %5";
+  Blockly.Msg["BLOCK_EMBED_CREATE_TOOLTIP"] =
+    "Create an embed message with defined title and color. Use embeds customization blocks to modify the created embed";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE"] = "Define Embed Image %1";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] = "Embed option, define the image shown within the embed message. Give an URL linked to the image";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_IMAGE_TOOLTIP"] =
+    "Embed option, define the image shown within the embed message. Give an URL linked to the image";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL"] = "Define Embed Thumbnail %1";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL_TOOLTIP"] = "Embed option, define the thumbnail shown within the embed message. Give an URL linked to the image";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_THUMBNAIL_TOOLTIP"] =
+    "Embed option, define the thumbnail shown within the embed message. Give an URL linked to the image";
   Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD"] = "Add field with name %1 And content : %2 Is inline ? : %3";
-  Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD_TOOLTIP"] = "Embed option, Add a field in embed message. Content can't be longer than 255 characters";
+  Blockly.Msg["BLOCK_EMBED_OPTION_ADD_FIELD_TOOLTIP"] =
+    "Embed option, Add a field in embed message. Content can't be longer than 255 characters";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR"] = "Set author with name %1 and URL %2 with image %3";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR_TOOLTIP"] = "Embed option, define Embed author with name, an URL and an image, give an URL linked to the image";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_AUTHOR_TOOLTIP"] =
+    "Embed option, define Embed author with name, an URL and an image, give an URL linked to the image";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER"] = "Add footer with content %1 And image %2";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER_TOOLTIP"] = "Embed option, define Embed footer with content and image. Give an URL linked to the image";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_FOOTER_TOOLTIP"] =
+    "Embed option, define Embed footer with content and image. Give an URL linked to the image";
   Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP"] = "Add Timestamp to the Embed";
-  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] = "Embed option, use this to show the timestamp within the embed";
-  Blockly.Msg["BLOCK_EMBED_SEND"] = "Send embed message %1 in channel %2";
-  Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Send an embed message in given channel";
+  Blockly.Msg["BLOCK_EMBED_OPTION_SET_TIMESTAMP_TOOLTIP"] =
+    "Embed option, use this to show the timestamp within the embed";
+  Blockly.Msg["BLOCK_EMBED_SEND"] = "Send embed message %1 to channel or user %2";
+  Blockly.Msg["BLOCK_EMBED_SEND_TOOLTIP"] = "Send an embed message to a channel or an user";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED"] = "Embed message";
   Blockly.Msg["BLOCK_EMBED_VAR_EMBED_TOOLTIP"] = "Represents the created embed message";
 
@@ -844,107 +916,180 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
 
   //Emojis blocks
   Blockly.Msg["BLOCK_EMOJI_GET_NAME"] = "Get emoji's name %1";
-  Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] = "Get the name of an emoji from Discord or your server. If from Discord, return the unicode value of this emoji ( Get it by typing \"\\:joy:\" on Discord ). If from your server, return the name of this emoji.";
+  Blockly.Msg["BLOCK_EMOJI_GET_NAME_TOOLTIP"] =
+    'Get the name of an emoji from Discord or your server. If from Discord, return the unicode value of this emoji ( Get it by typing "\\:joy:" on Discord ). If from your server, return the name of this emoji.';
   Blockly.Msg["BLOCK_EMOJI_REACT"] = "React with the emoji %1 to the message %2";
-  Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] = "Add a reaction to a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord.";
+  Blockly.Msg["BLOCK_EMOJI_REACT_TOOLTIP"] =
+    "Add a reaction to a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord.";
   Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS"] = "Get the number of reactions %1 on the message %2";
-  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS_TOOLTIP"] = "Get the number of peoples who reacted with an emoji on a message ! Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord";
+  Blockly.Msg["BLOCK_EMOJI_GET_NUMBER_OF_REACTIONS_TOOLTIP"] =
+    "Get the number of peoples who reacted with an emoji on a message ! Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord";
   Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION"] = "Remove the reaction %1 from the user %2 on the message %3";
-  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] = "Remove a reaction from a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord. This will trigger the \"A reaction is removed\" event.";
+  Blockly.Msg["BLOCK_EMOJI_REMOVE_REACTION_TOOLTIP"] =
+    'Remove a reaction from a message. Use an Emoji, or copy-paste the result of sending \\:your_emoji: somewhere in Discord. This will trigger the "A reaction is removed" event.';
   Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION"] = "Remove every reactions from the message %1";
   Blockly.Msg["BLOCK_EMOJI_REMOVE_ALL_REACTION_TOOLTIP"] = "Remove ALL reactions from a message";
 
   //Temporary variables blocks
   Blockly.Msg["BLOCK_VAR_SAVE"] = "Save %1 in a temporary variable named  %2 of type %3";
-  Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] = "You can use this block to store something and use it later. You must declare the variable and use it in the same event, they aren't kept after the code execution..";
+  Blockly.Msg["BLOCK_VAR_SAVE_TOOLTIP"] =
+    "You can use this block to store something and use it later. You must declare the variable and use it in the same event, they aren't kept after the code execution..";
   Blockly.Msg["BLOCK_VAR_GET"] = "Get the content of the variable named %1";
-  Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] = "You can use this block to get the content of a variable that was saved during the same event. Make sure the content is of the right type when using this somewhere !";
+  Blockly.Msg["BLOCK_VAR_GET_TOOLTIP"] =
+    "You can use this block to get the content of a variable that was saved during the same event. Make sure the content is of the right type when using this somewhere !";
 
   //Miscellaneous blocks
   Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN"] = "Stop execution";
   Blockly.Msg["BLOCK_MISCELLANEOUS_RETURN_TOOLTIP"] = "This block will stop the action flow";
   Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT"] = "String to number %1";
-  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] = "This block will transform a string into a number. It will return -1 if the string isn't a number";
+  Blockly.Msg["BLOCK_MISCELLANEOUS_STR_TO_INT_TOOLTIP"] =
+    "This block will transform a string into a number. It will return -1 if the string isn't a number";
 
   //Slash commands blocks
-  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] = "Create a slash command nammed %1 %2 With the description %3 %4 Ephemeral replies : %5 %6 With arguments %7 that will do %8";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] = "Create a new Slash command for your server ! You can give a name, a description and add some arguments";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] = "Add a boolean argument nammed %1 %2 with the description %3 %4 Required ? %5";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] = "Add a boolean argument to the slash command, with a name and description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL"] = "Add a text channel argument nammed %1 %2 with the description %3 %4 Required ? %5";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP"] = "Add a text channel argument to the slash command, with a name and description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT"] = "Add an integer argument nammed %1 %2 with the description %3 %4 Required ? %5";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT_TOOLTIP"] = "Add an integer argument to the slash command, with a name and description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE"] = "Add a role argument nammed %1 %2 with the description %3 %4 Required ? %5";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP"] = "Add a role argument to the slash command, with a name and description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING"] = "add a text argument nammed %1 %2 with the description %3 %4 Required ? %5";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] = "Add a text argument to the slash command, with a name and description";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] = "Add an user argument nammed %1 %2 with the description %3 %4 Required ? %5";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] = "Add an user argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR"] =
+    "Create a slash command nammed %1 %2 With the description %3 %4 Ephemeral replies : %5 %6 With arguments %7 that will do %8";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP"] =
+    "Create a new Slash command for your server ! You can give a name, a description and add some arguments";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN"] =
+    "Add a boolean argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP"] =
+    "Add a boolean argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL"] =
+    "Add a text channel argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP"] =
+    "Add a text channel argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT"] =
+    "Add an integer argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_INT_TOOLTIP"] =
+    "Add an integer argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE"] =
+    "Add a role argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP"] =
+    "Add a role argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING"] =
+    "add a text argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP"] =
+    "Add a text argument to the slash command, with a name and description";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER"] =
+    "Add an user argument nammed %1 %2 with the description %3 %4 Required ? %5";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP"] =
+    "Add an user argument to the slash command, with a name and description";
   Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY"] = "Reply to the command with the message %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] = "Reply to a slash command. This block can only be used with a command, and may be only visible for the user who used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_REPLY_TOOLTIP"] =
+    "Reply to a slash command. This block can only be used with a command, and may be only visible for the user who used this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN"] = "Get the boolean argument nammed %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] = "Get the value of a boolean argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP"] =
+    "Get the value of a boolean argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT"] = "Get the integer argument nammed %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] = "Get the value of an integer argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP"] =
+    "Get the value of an integer argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE"] = "Get the role argument nammed %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] = "Get the value of a role argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP"] =
+    "Get the value of a role argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING"] = "Get the text argument nammed %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] = "Get the value of a text argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP"] =
+    "Get the value of a text argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER"] = "Get the user argument nammed %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] = "Get the value of an user argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP"] =
+    "Get the value of an user argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL"] = "Get the text channel argument nammed %1";
-  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] = "Get the value of a text channel argument used in this slash command, with his name";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP"] =
+    "Get the value of a text channel argument used in this slash command, with his name";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL"] = "Channel where this command was used";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_CHANNEL_TOOLTIP"] = "Return the text channel where someone used this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER"] = "User who ran this command";
   Blockly.Msg["BLOCK_SLASH_COMMAND_DATA_USER_TOOLTIP"] = "Return the user who used this command";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR"] =
+    "Create the form %1 %2 with fields: %3 Once the form is received, do: %4";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP"] =
+    "Allows you to create a form. This block must be the very first in the command's actions. You can add fields to fill out, as well as actions to be performed once the form has been submitted.";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT"] =
+    "Add a text input %1 named %2 %3 Minimum size: %4 Maximum size: %5 %6 Default content: %7 %8 Required: %9";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP"] = "Allows you to add a text input to a form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT"] = "Retrieve the text field %1 from the form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT_TOOLTIP"] =
+    "Allows you to retrieve the response provided to a question in the form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_USER"] = "Retrieve the user who responded to the form";
+  Blockly.Msg["BLOCK_SLASH_COMMAND_FORM_GET_USER_TOOLTIP"] =
+    "Allows you to retrieve the user who responded to the form";
 
   //Data storage blocks
   Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT"] = "Create number storage named %1";
-  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT_TOOLTIP"] = "This block defines a number storage. Deleting this block will delete all associated data.";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_INT_TOOLTIP"] =
+    "This block defines a number storage. Deleting this block will delete all associated data.";
   Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING"] = "Create text storage named %1";
-  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING_TOOLTIP"] = "This block defines a text storage. Deleting this block will delete all associated data.";
+  Blockly.Msg["BLOCK_DATA_STORAGE_CREATE_STRING_TOOLTIP"] =
+    "This block defines a text storage. Deleting this block will delete all associated data.";
   Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT"] = "Save in number storage %1 %2 the variable %3 containing %4";
-  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT_TOOLTIP"] = "Save a value in a storage. The variable name allows to find this variable in the storage, while the content is the saved value";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_INT_TOOLTIP"] =
+    "Save a value in a storage. The variable name allows to find this variable in the storage, while the content is the saved value";
   Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING"] = "Save in text storage %1 %2 the variable %3 containing %4";
-  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING_TOOLTIP"] = "Save a value in a storage. The variable name allows to find this variable in the storage, while the content is the saved value";
+  Blockly.Msg["BLOCK_DATA_STORAGE_SAVE_STRING_TOOLTIP"] =
+    "Save a value in a storage. The variable name allows to find this variable in the storage, while the content is the saved value";
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT"] = "Get from number storage %1 %2 the variable %3";
-  Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT_TOOLTIP"] = "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_INT_TOOLTIP"] =
+    "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
   Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING"] = "Get from text storage %1 %2 the variable %3";
-  Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP"] = "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
+  Blockly.Msg["BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP"] =
+    "Retrieve a value from a storage. The variable name allows to find this variable in the storage";
   Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT"] = "Delete from the number storage %1 %2 the variable %3";
   Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP"] = "Delete a variable stored in a number storage";
   Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING"] = "Delete from the text storage %1 %2 the variable %3";
   Blockly.Msg["BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP"] = "Delete a variable stored in a string storage";
 
   //Workspace warnings
-  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] = "This variable don't seem to be of the right type. Please, make sure to use a \"save in temporary variable\" block before, and to use the same name and type required here.";
+  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE"] =
+    'This variable don\'t seem to be of the right type. Please, make sure to use a "save in temporary variable" block before, and to use the same name and type required here.';
   Blockly.Msg["WARNING_SAVE_VAR_UNCOMPLETE"] = "To use this variable, you must assign a value to it !";
-  Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"] = "The value's type isn't compatible with the variable value. Try to use another block as value, or to change the value of this variable";
-  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] = "Some temporary variables blocks are incorrectly used ! We placed warnings on these blocks to locate them and fix the problem.";
-  Blockly.Msg["WARNING_INVALID_NAME"] = "You must use only letters (a-z A-Z) and numbers (1-9) and shouldn't give a name longer than 16 characters when naming this";
-  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] = "This block can only be placed in a compatible event ! Try using another compatible Event Variable Block here";
-  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] = "An Event Variable blocks is incorrectly placed ! We placed warnings on these blocks to locate them and fix the problem.";
+  Blockly.Msg["WARNING_SAVE_VAR_INCOMPATIBLE"] =
+    "The value's type isn't compatible with the variable value. Try to use another block as value, or to change the value of this variable";
+  Blockly.Msg["WARNING_GET_VAR_INCORRECT_VALUE_WINDOW"] =
+    "Some temporary variables blocks are incorrectly used ! We placed warnings on these blocks to locate them and fix the problem.";
+  Blockly.Msg["WARNING_INVALID_NAME"] =
+    "You must use only letters (a-z A-Z) and numbers (1-9) and shouldn't give a name longer than 16 characters when naming this";
+  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED"] =
+    "This block can only be placed in a compatible event ! Try using another compatible Event Variable Block here";
+  Blockly.Msg["WARNING_EVENT_VAR_BLOCK_INCORRECTLY_PLACED_WINDOW"] =
+    "An Event Variable blocks is incorrectly placed ! We placed warnings on these blocks to locate them and fix the problem.";
   Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK"] = "You must give a value to this block !";
-  Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] = "A text block seems empty ! Try to write something in it before trying again.";
-  Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] = "There is too much blocks in your workspace ! Please, try to use less blocks";
-  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] = "This don't looks like a valid custom emoji string. Try to send \\:your_emoji: in your server, and paste here the result."
-  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] = "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>."
-  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] = "The name or description contains an invalid character ! The name must have a length of at least 3, and must follow a-z0-9. The description can't include special characters";
-  Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] = "This block can only be placed in a slash command creator block";
-  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] = "The name of this block don't seems to be defined in command arguments";
+  Blockly.Msg["WARNING_EMPTY_TEXT_BLOCK_WINDOW"] =
+    "A text block seems empty ! Try to write something in it before trying again.";
+  Blockly.Msg["WARNING_TOO_MANY_BLOCKS"] =
+    "There is too much blocks in your workspace ! Please, try to use less blocks";
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING"] =
+    "This don't looks like a valid custom emoji string. Try to send \\:your_emoji: in your server, and paste here the result.";
+  Blockly.Msg["WARNING_INVALID_CUSTOM_EMOJI_STRING_WINDOW"] =
+    "You tried to use a custom emoji as value for an Emoji block, but you didn't defined it correctly. The value should looks like <:Name:1234>.";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REGEX"] =
+    "The name or description contains an invalid character ! The name must have a length of at least 3, and must follow a-z0-9. The description can't include special characters";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INCORRECT_PLACEMENT"] =
+    "This block can only be placed in a slash command creator block";
+  Blockly.Msg["WARNING_SLASH_COMMAND_UNDEFINED_NAME"] =
+    "The name of this block don't seems to be defined in command arguments";
   Blockly.Msg["WARNING_SLASH_COMMAND_TOO_MANY_ARGS"] = "This command has too many arguments !";
   Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_NAME"] = "This command has the same name as another command !";
   Blockly.Msg["WARNING_SLASH_COMMAND_DUPLICATED_ARG"] = "This argument has the same name as another argument !";
-  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] = "Required arguments can't be defined after optionnal arguments !";
+  Blockly.Msg["WARNING_SLASH_COMMAND_INVALID_REQUIRE_STATE"] =
+    "Required arguments can't be defined after optionnal arguments !";
   Blockly.Msg["WARNING_SLASH_COMMAND_NO_REPLY_BLOCK"] = "You need to use a reply to command block within this block !";
   Blockly.Msg["WARNING_SLASH_COMMAND_EVENT_VAR_USED"] = "You can't use this block here !";
-  Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] = "There is a problem with a slash command block. Read the warning to learn more about that";
-  Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"] = "The name of this data storage is invalid ! It must not contain special characters and be between 3 and 28 characters long.";
+  Blockly.Msg["WARNING_SLASH_COMMAND_ERROR_WINDOW"] =
+    "There is a problem with a slash command block. Read the warning to learn more about that";
+  Blockly.Msg["WARNING_DATA_STORAGE_INVALID_NAME"] =
+    "The name of this data storage is invalid ! It must not contain special characters and be between 3 and 28 characters long.";
   Blockly.Msg["WARNING_DATA_STORAGE_UNDEFINED"] = "The data storage for this block does not seem to be defined !";
   Blockly.Msg["WARNING_DATA_STORAGE_EMPTY_INPUT"] = "One input seems empty on this block !";
-  Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] = "There is a problem with the data storage blocks ! Read the warnings to learn more.";
+  Blockly.Msg["WARNING_DATA_STORAGE_ERROR_WINDOW"] =
+    "There is a problem with the data storage blocks ! Read the warnings to learn more.";
+  Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"] = "This block seems to be uncomplete !";
+  Blockly.Msg["WARNING_BLOCK_UNCOMPLETE_WINDOW"] = "Some blocks are uncomplete !";
+  Blockly.Msg["WARNING_BLOCK_INVALID_PLACEMENT"] = "This block can't be used here !";
+  Blockly.Msg["WARNING_FORM_TOO_MANY_INPUTS"] = "You can't add more inputs to this form !";
+  Blockly.Msg["WARNING_FORM_NAME_ALREADY_DEFINED"] = "You can't give the same name to multiple forms !";
+  Blockly.Msg["WARNING_FORM_INPUT_ALREADY_DEFINED"] = "You can't use the same name for multiple inputs !";
+  Blockly.Msg["WARNING_FORM_INPUT_NOT_DEFINED"] = "This input isn't defined !";
+  Blockly.Msg["WARNING_FORM_NO_INPUTS"] = "You must define at least one input !";
+  Blockly.Msg["WARNING_FORM_ERROR_WINDOW"] = "There is an error with a form block !";
 
   //Types names
   Blockly.Msg["STRING"] = "String";
@@ -965,6 +1110,12 @@ module.exports = function init(Blockly){//A name has been set, in order to make 
   Blockly.Msg["YES"] = "Yes";
   Blockly.Msg["NO"] = "No";
   Blockly.Msg["UNLIMITED"] = "Unlimited";
+  Blockly.Msg["SHORT"] = "short";
+  Blockly.Msg["LONG"] = "long";
+  Blockly.Msg["LOCK"] = "Lock";
+  Blockly.Msg["UNLOCK"] = "Unlock";
+  Blockly.Msg["ARCHIVE"] = "Archive";
+  Blockly.Msg["REOPEN"] = "Reopen";
 
-  return(Blockly);
-}
+  return Blockly;
+};
