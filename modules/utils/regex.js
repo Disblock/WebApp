@@ -25,10 +25,10 @@ module.exports = {
     return /^<:[a-zA-Z0-9]+:[0-9]+>$/.test(value);
   },
   formName: function formName(value) {
-    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{3,64})$/.test(value);
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{1,45})$/.test(value);
   },
   formPlaceholder: function formPlaceholder(value) {
-    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,256})$/.test(value);
+    return /^([A-Za-z0-9 ,ąćęóśżźéèê.!?;\-:()€$£%+=]{0,100})$/.test(value);
   },
   isNumber: function isNumber(value) {
     return /^([0-9]{1,12})$/.test(value);
