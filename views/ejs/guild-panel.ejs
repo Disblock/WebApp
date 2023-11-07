@@ -108,8 +108,18 @@
   $('#blocks_count').text('<%-locale.blocksInWorkspace%>'+' 0 / '+maxBlocks);
 
   <%
-    for(var i=0;i<blocks.length;i++){
+
+    for(let key in definedRegexes){//We import here regexes saved in modules/utils/regex.js
+      //variableNameRegex; slashCommandNameRegex; ect.. are functions defined here; in rejex.js
+      %><%- definedRegexes[key] %><%
+    }
+
+    for(let i=0;i<blocks.length;i++){
       %> Blockly.defineBlocksWithJsonArray(<%- blocks[i] %>); <%
+    }
+
+    for(let i=0; i<extensions.length; i++){//https://stackoverflow.com/a/9091416
+      %> (<%- extensions[i] %>)(Blockly);<%//extensions contains functions that defined fuctions executed when blocks are created. Since that's directly functions, we can import them and execute them immediately on client side
     }
   %>
 
@@ -163,7 +173,7 @@
   }%>
 
   //We include here events for Blockly and validateWorkspace()
-  <%-include("../js/blockly_functions.ejs", {definedRegexes:definedRegexes});%>
+  <%-include("../js/blockly_functions.ejs", {});%>
 
   //Here, the enum that list all possibles errors after sending a workspace
   const errorsEnum = JSON.parse('<%-errorsEnum%>');

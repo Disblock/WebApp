@@ -10,7 +10,7 @@ const defaultWorkspace = require("../blockly/default_workspace.js"); //The defau
 const workspaceErrors = require("../enums/workspace_errors.js"); //Enum of possibles errors when sending a workspace
 const pagesEnums = require("../enums/pages.js"); //Enums for pages to render
 
-module.exports = async function (req, res, databasePool, logger, redisClient, blocklyBlocks) {
+module.exports = async function (req, res, databasePool, logger, redisClient, blocklyBlocks, blocklyExtensions) {
   if (req.session.discord_id != undefined) {
     //Check if server is in database ( = if the bot was added in the server ) and if this server is premium
     guildsDatabase
@@ -67,6 +67,7 @@ module.exports = async function (req, res, databasePool, logger, redisClient, bl
                 guild: guild,
                 premium: premium,
                 blocks: blocklyBlocks,
+                extensions: blocklyExtensions,
                 blocklyLocale: blocklyLocale,
                 workspaceXml: workspaceXml,
                 errorsEnum: JSON.stringify(workspaceErrors),

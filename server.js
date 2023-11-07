@@ -269,6 +269,13 @@ const blocklyBlocks = [
 blocklyBlocks.forEach((element) => {
   Blockly.defineBlocksWithJsonArray(JSON.parse(element));
 });
+//Extensions definition
+const blocklyExtensions = [
+  require("./modules/blockly/blocks/extensions/slash_commands.js"), //Refers immediately to a function
+];
+blocklyExtensions.forEach((element) => {
+  element(Blockly); //Runs the function with Blockly, which defines the extensions used for the blocks
+});
 
 //Text definition
 Blockly = initLogsblocklyLocalizationEn(Blockly);
@@ -471,7 +478,7 @@ app.get("/panel/:id", async function (req, res) {
     .then(async () => {
       //User isn't rate limited
 
-      guildPanelBackEnd(req, res, databasePool, logger, redisClient, blocklyBlocks);
+      guildPanelBackEnd(req, res, databasePool, logger, redisClient, blocklyBlocks, blocklyExtensions);
     })
     .catch(async () => {
       //User is rate limited
