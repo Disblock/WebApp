@@ -21,6 +21,8 @@ You can create your own actions with blocks, and the bot will execute your creat
 
 Actually, we only support installation with `docker`, but we're planning to add `standalone` soon.
 
+> A more precise guide to install Disblock is planned and will be available soon !
+
 ### Install with docker-compose
 One of the fastest and easiest way to have the bot running.
 Install Docker and Docker-Compose and download files
