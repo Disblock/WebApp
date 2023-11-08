@@ -1,12 +1,7 @@
 //Used to store what var blocks can be used in what event block
-<%
 
-for(let key in definedRegexes){//We import here regexes saved in modules/utils/regex.js
-  //variableNameRegex; slashCommandNameRegex; ect.. are functions defined here; in rejex.js
-  %><%- definedRegexes[key] %><%
-}
-
-%>
+// /!\ : At this point, Regex functions are defined ! We defined that in the caller context, guild-panel.ejs
+//Look /modules/utils/regex.js for details
 
 const events_var_blocks = {
   event_message_sent:['event_var_message'],
@@ -396,7 +391,7 @@ function validateWorkspace(workspace){
         definedFormsNames.push(blocks[i].getFieldValue('NAME'));
         blocks[i].setWarningText(null);
       }
-      
+
       if( !blocks[i].getInputTargetBlock("INPUTS") || !blocks[i].getInputTargetBlock("STATEMENTS") ){
         //NOT OK : no input block or statement blocks !
         blocks[i].setWarningText(Blockly.Msg["WARNING_BLOCK_UNCOMPLETE"]);

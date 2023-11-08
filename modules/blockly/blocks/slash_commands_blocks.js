@@ -46,6 +46,7 @@ module.exports = {
       colour: 30,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_CREATOR_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension", "block_slash_command_block_input_desc_extension"],
     },
     {
       type: "block_slash_command_arg_boolean",
@@ -78,6 +79,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_ARG_BOOLEAN_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension", "block_slash_command_block_input_desc_extension"],
     },
     {
       type: "block_slash_command_arg_text_channel",
@@ -110,6 +112,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_ARG_TEXT_CHANNEL_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension", "block_slash_command_block_input_desc_extension"],
     },
     {
       type: "block_slash_command_arg_int",
@@ -135,6 +138,10 @@ module.exports = {
           type: "field_checkbox",
           name: "REQUIRED",
           checked: true,
+          extensions: [
+            "block_slash_command_block_input_name_extension",
+            "block_slash_command_block_input_desc_extension",
+          ],
         },
       ],
       previousStatement: "SlashCommandOption",
@@ -174,6 +181,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_ARG_ROLE_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension", "block_slash_command_block_input_desc_extension"],
     },
     {
       type: "block_slash_command_arg_string",
@@ -206,6 +214,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_ARG_STRING_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension", "block_slash_command_block_input_desc_extension"],
     },
     {
       type: "block_slash_command_arg_user",
@@ -238,6 +247,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_ARG_USER_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension", "block_slash_command_block_input_desc_extension"],
     },
     {
       type: "block_slash_command_reply",
@@ -270,6 +280,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_GET_BOOLEAN_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension"],
     },
     {
       type: "block_slash_command_get_int",
@@ -285,6 +296,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_GET_INT_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension"],
     },
     {
       type: "block_slash_command_get_role",
@@ -300,6 +312,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_GET_ROLE_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension"],
     },
     {
       type: "block_slash_command_get_string",
@@ -315,6 +328,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_GET_STRING_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension"],
     },
     {
       type: "block_slash_command_get_user",
@@ -330,6 +344,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_GET_USER_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension"],
     },
     {
       type: "block_slash_command_get_text_channel",
@@ -345,6 +360,7 @@ module.exports = {
       colour: 15,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_GET_TEXT_CHANNEL_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_block_input_name_extension"],
     },
     {
       type: "block_slash_command_data_channel",
@@ -390,6 +406,7 @@ module.exports = {
       colour: 60,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_CREATOR_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_form_input_name_extension"],
     },
     {
       type: "block_slash_command_form_input_text",
@@ -449,6 +466,10 @@ module.exports = {
       colour: 45,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_INPUT_TEXT_TOOLTIP}",
       helpUrl: "",
+      extensions: [
+        "block_slash_command_form_input_name_extension",
+        "block_slash_command_form_input_placeholder_extension",
+      ],
     },
     {
       type: "block_slash_command_form_get_input_text",
@@ -464,6 +485,7 @@ module.exports = {
       colour: 40,
       tooltip: "%{BKY_BLOCK_SLASH_COMMAND_FORM_GET_INPUT_TEXT_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_slash_command_form_input_name_extension"],
     },
     {
       type: "block_slash_command_form_get_user",
