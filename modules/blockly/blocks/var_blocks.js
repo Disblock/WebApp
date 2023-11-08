@@ -43,6 +43,7 @@ module.exports = {
       colour: 225,
       tooltip: "%{BKY_BLOCK_VAR_SAVE_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_var_input_name_extension"],
     },
     {
       type: "block_var_get",
@@ -59,6 +60,7 @@ module.exports = {
       colour: 225,
       tooltip: "%{BKY_BLOCK_VAR_GET_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_var_input_name_extension"],
     },
   ]),
 };

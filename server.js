@@ -270,8 +270,11 @@ blocklyBlocks.forEach((element) => {
   Blockly.defineBlocksWithJsonArray(JSON.parse(element));
 });
 //Extensions definition
+//Mostly used to Regex check values entered in direct inputs, in Front end
 const blocklyExtensions = [
-  require("./modules/blockly/blocks/extensions/slash_commands.js"), //Refers immediately to a function
+  require("./modules/blockly/blocks/extensions/slash_commands_blocks.js"), //Refers immediately to a function
+  require("./modules/blockly/blocks/extensions/var_blocks.js"),
+  require("./modules/blockly/blocks/extensions/storage_blocks.js"),
 ];
 blocklyExtensions.forEach((element) => {
   element(Blockly); //Runs the function with Blockly, which defines the extensions used for the blocks

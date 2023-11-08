@@ -17,6 +17,7 @@ module.exports = {
       colour: 225,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_CREATE_INT_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_create_string",
@@ -31,6 +32,7 @@ module.exports = {
       colour: 130,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_CREATE_STRING_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_save_int",
@@ -61,6 +63,7 @@ module.exports = {
       colour: 225,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_SAVE_INT_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_save_string",
@@ -91,6 +94,7 @@ module.exports = {
       colour: 130,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_SAVE_STRING_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_get_int",
@@ -115,6 +119,7 @@ module.exports = {
       colour: 225,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_GET_INT_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_get_string",
@@ -139,6 +144,7 @@ module.exports = {
       colour: 130,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_GET_STRING_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_delete_int",
@@ -164,6 +170,7 @@ module.exports = {
       colour: 225,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_DELETE_INT_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
     {
       type: "block_data_storage_delete_string",
@@ -189,6 +196,7 @@ module.exports = {
       colour: 130,
       tooltip: "%{BKY_BLOCK_DATA_STORAGE_DELETE_STRING_TOOLTIP}",
       helpUrl: "",
+      extensions: ["block_storage_input_dataname_extension"],
     },
   ]),
 };
