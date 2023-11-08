@@ -119,7 +119,7 @@
     }
 
     for(let i=0; i<extensions.length; i++){//https://stackoverflow.com/a/9091416
-      %> (<%- extensions[i] %>)(Blockly);<%//extensions contains functions that defined fuctions executed when blocks are created. Since that's directly functions, we can import them and execute them immediately on client side
+      %> (<%- extensions[i] %>)(Blockly);<%//extensions contains functions that define executed functions when blocks are created. Since that's directly functions, we can import them and execute them immediately on client side
     }
   %>
 
