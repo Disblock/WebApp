@@ -21,7 +21,8 @@
   "scripts": {
     "start": "node server.js",
     "eslint": "npx eslint --config ./project-config/.eslintrc.json --fix .",
-    "prettier": "npx prettier --config ./project-config/.prettierrc --ignore-path ./project-config/.prettierignore --write ."
+    "prettier": "npx prettier --config ./project-config/.prettierrc --ignore-path ./project-config/.prettierignore --write .",
+    "test": "jest"
   },
   "name": "disblock_webapp",
   "description": "Disblock is a totally customizable Discord Bot.\r You can create your own actions with blocks, and the bot will execute your created code in Discord !",
@@ -48,6 +49,7 @@
   "devDependencies": {
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
+    "jest": "^29.7.0",
     "prettier": "^2.8.7"
   }
 }
