@@ -1,8 +1,7 @@
-'use-strict';
+"use strict";
 const { promisify } = require("util");
 
 module.exports = {
-
   askRedisForGuilds: async function (redisClient, logger, userId) {
     try {
       const getAsync = promisify(redisClient.get).bind(redisClient); /* https://stackoverflow.com/a/63349259/19753521 */
@@ -27,6 +26,5 @@ module.exports = {
     } catch (err) {
       logger.error("Failed to cache guilds for user " + userId + " in redis : " + err);
     }
-  }
-
-}
+  },
+};

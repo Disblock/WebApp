@@ -2,7 +2,7 @@
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const discordRegen = require("./discord_token_regen.js");
 const bigInt = require("big-integer"); //Used to check permissions on a server
-const {askRedisForGuilds, saveGuildsInRedis} = require("./redis/redis.js");
+const { askRedisForGuilds, saveGuildsInRedis } = require("./redis/redis.js");
 
 module.exports = async function (req, databasePool, logger, redisClient) {
   /* This module is used to get the guilds where an user has an Admin permission. We get all guilds from Discord API, then return only guilds with an Admin access. */
@@ -72,10 +72,10 @@ module.exports = async function (req, databasePool, logger, redisClient) {
 
   /* ==================================== */
 
-  const maxTries = 2;//2, so we can try to get servers, and regen the token is neccessary
+  const maxTries = 2; //2, so we can try to get servers, and regen the token is neccessary
 
   let counter = 0;
-  do{
+  do {
     counter++;
 
     const discordResponse = await askDiscordForGuilds(req.session.token);
@@ -84,7 +84,6 @@ module.exports = async function (req, databasePool, logger, redisClient) {
       const guilds = getGuildsWhereAdmin(discordResponse);
       await saveGuildsInRedis(redisClient, logger, req.session.discord_id, guilds);
       return guilds;
-
     } else if (discordResponse == "Token not set") {
       //NOT OK, must regen the token
 
@@ -105,12 +104,13 @@ module.exports = async function (req, databasePool, logger, redisClient) {
       }
     } else {
       //NOT OK, was an error
-      logger.warn("Error while getting " + req.session.discord_id + " 's guilds from Discord, destroying the session...");
+      logger.warn(
+        "Error while getting " + req.session.discord_id + " 's guilds from Discord, destroying the session..."
+      );
       req.session.destroy();
       return [];
     }
-
-  }while(counter<maxTries);
+  } while (counter < maxTries);
 
   //If we arrive here, without a return statement being used, we can assume the token wasn't correctly regenerated
   //Maybe the user removed our access to his tokens
