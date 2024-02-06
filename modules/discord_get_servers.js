@@ -1,8 +1,7 @@
 "use strict";
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const discordRegen = require("./discord_token_regen.js");
-const bigInt = require("big-integer"); //Used to check permissions on a server
 const { askRedisForGuilds, saveGuildsInRedis } = require("./redis/redis.js");
+const { askDiscordForGuilds, getGuildsWhereAdmin } = require("./utils/get_guilds_from_Discord_API.js");
 
 module.exports = async function (req, databasePool, logger, redisClient) {
   /* This module is used to get the guilds where an user has an Admin permission. We get all guilds from Discord API, then return only guilds with an Admin access. */
@@ -14,71 +13,13 @@ module.exports = async function (req, databasePool, logger, redisClient) {
     return cachedGuilds;
   }
 
-  /* ==================================== */
-
-  async function askDiscordForGuilds(token) {
-    if (token == undefined) {
-      return undefined;
-    }
-
-    try {
-      logger.debug("Sending a request to Discord to get guilds of user " + req.session.discord_id);
-
-      const response = await (
-        await fetch("https://discord.com/api/users/@me/guilds", {
-          headers: {
-            authorization: "Bearer " + req.session.token,
-          },
-        })
-      ).json();
-
-      if (response.message == "You are being rate limited.") {
-        logger.debug(req.session.discord_id + " was rate limited by Discord.");
-        return undefined;
-      } else if (response.error == undefined && response.message == undefined) {
-        //OK
-        logger.debug("Sent a request to Discord to get guilds of user " + req.session.discord_id);
-        return response;
-      } else {
-        //Error
-        logger.warn(
-          "Error from the Discord API : " +
-            req.session.discord_id +
-            " may had removed our access. Error : " +
-            response.error +
-            ", message : " +
-            response.message
-        );
-        return "Token not set";
-      }
-    } catch (err) {
-      logger.error("Error while getting user " + req.session.discord_id + " 's guilds : " + err);
-      return undefined;
-    }
-  }
-
-  function getGuildsWhereAdmin(guildsJson) {
-    //Final function, it will return servers where the user is admin
-    const channels = [];
-    for (let i = 0; i < guildsJson.length; i++) {
-      if (bigInt(guildsJson[i].permissions_new).and(0x8) == 0x8) {
-        //AND operation on bits to check if user is admin
-        channels.push(guildsJson[i]);
-      }
-    }
-
-    return channels;
-  }
-
-  /* ==================================== */
-
   const maxTries = 2; //2, so we can try to get servers, and regen the token is neccessary
 
   let counter = 0;
   do {
     counter++;
 
-    const discordResponse = await askDiscordForGuilds(req.session.token);
+    const discordResponse = await askDiscordForGuilds(req.session.token, req, logger);
     if (discordResponse != undefined && discordResponse != "Token not set") {
       //OK
       const guilds = getGuildsWhereAdmin(discordResponse);
