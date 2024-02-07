@@ -6,7 +6,7 @@
 const mockReq = {
   session: {
     discord_id: "mocked_discord_id",
-    token: "mocked_token",
+    token: "Default mocked token",
     save: jest.fn(),
     destroy: jest.fn(),
   },
@@ -39,6 +39,9 @@ describe("Getting guilds for an user", () => {
   });
   const { askDiscordForGuilds, getGuildsWhereAdmin } = require("../../modules/utils/get_guilds_from_Discord_API.js");
 
+  jest.mock("../../modules/discord_token_regen.js");
+  const discordRegenToken = require("../../modules/discord_token_regen.js");
+
   //Ready, we can import the module, and start testing
   const discordGetServers = require("../../modules/discord_get_servers.js");
 
@@ -67,7 +70,7 @@ describe("Getting guilds for an user", () => {
 
   describe("Guilds from Discord API", () => {
     let guilds;
-    beforeEach(() => {
+    beforeAll(() => {
       guilds = [
         //Same as Discord sends, user is admin on the first only
         {
@@ -79,12 +82,41 @@ describe("Getting guilds for an user", () => {
           permissions_new: "4",
         },
       ];
-      askDiscordForGuilds.mockResolvedValue(guilds);
+
+      askDiscordForGuilds.mockResolvedValueOnce(guilds)//First test
+        //Second test
+        .mockResolvedValueOnce("Token not set")
+        .mockResolvedValueOnce(guilds)
+        //Third and Fourth test
+        .mockResolvedValue("Token not set");
+
+      discordRegenToken.mockResolvedValueOnce("New token")//Second test
+        .mockResolvedValueOnce("New token");//third test, then fails for the fourth one ( returns undefined )
     });
 
-    test("From Discord API, token valid", async () => {
+    test("Token valid", async () => {
       await expect(discordGetServers(mockReq, undefined, logger, undefined)).resolves.toEqual([guilds[0]]); //Admin perm only on the first guild, so we should only get that one
       await expect(mockReq.session.destroy.mock.calls).toHaveLength(0); //Shouldn't met errors
+    });
+
+    test("Token regenerated", async () => {
+      await expect(mockReq.session.token).toBe("Default mocked token");
+      await expect(discordGetServers(mockReq, undefined, logger, undefined)).resolves.toEqual([guilds[0]]);
+      await expect(mockReq.session.token).toBe("New token"); //Token must be updated with the new one
+      await expect(mockReq.session.destroy.mock.calls).toHaveLength(0); //Shouldn't met errors
+    });
+
+    test("Token regenerated but unable to get guilds", async() => {
+      mockReq.session.token = "old token";
+      await expect(mockReq.session.token).toBe("old token");
+      await expect(discordGetServers(mockReq, undefined, logger, undefined)).resolves.toEqual([]);
+      await expect(mockReq.session.token).toBe("New token"); //Token must be updated with the new one
+      await expect(mockReq.session.destroy.mock.calls).toHaveLength(1);
+    });
+
+    test("Failed to regen the token", async() => {
+      await expect(discordGetServers(mockReq, undefined, logger, undefined)).resolves.toEqual([]);
+      await expect(mockReq.session.destroy.mock.calls).toHaveLength(2); //Session must be destroyed
     });
   });
 });
