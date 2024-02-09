@@ -83,15 +83,17 @@ describe("Getting guilds for an user", () => {
         },
       ];
 
-      askDiscordForGuilds.mockResolvedValueOnce(guilds)//First test
+      askDiscordForGuilds
+        .mockResolvedValueOnce(guilds) //First test
         //Second test
         .mockResolvedValueOnce("Token not set")
         .mockResolvedValueOnce(guilds)
         //Third and Fourth test
         .mockResolvedValue("Token not set");
 
-      discordRegenToken.mockResolvedValueOnce("New token")//Second test
-        .mockResolvedValueOnce("New token");//third test, then fails for the fourth one ( returns undefined )
+      discordRegenToken
+        .mockResolvedValueOnce("New token") //Second test
+        .mockResolvedValueOnce("New token"); //third test, then fails for the fourth one ( returns undefined )
     });
 
     test("Token valid", async () => {
@@ -106,7 +108,7 @@ describe("Getting guilds for an user", () => {
       await expect(mockReq.session.destroy.mock.calls).toHaveLength(0); //Shouldn't met errors
     });
 
-    test("Token regenerated but unable to get guilds", async() => {
+    test("Token regenerated but unable to get guilds", async () => {
       mockReq.session.token = "old token";
       await expect(mockReq.session.token).toBe("old token");
       await expect(discordGetServers(mockReq, undefined, logger, undefined)).resolves.toEqual([]);
@@ -114,7 +116,7 @@ describe("Getting guilds for an user", () => {
       await expect(mockReq.session.destroy.mock.calls).toHaveLength(1);
     });
 
-    test("Failed to regen the token", async() => {
+    test("Failed to regen the token", async () => {
       await expect(discordGetServers(mockReq, undefined, logger, undefined)).resolves.toEqual([]);
       await expect(mockReq.session.destroy.mock.calls).toHaveLength(2); //Session must be destroyed
     });
