@@ -3,10 +3,10 @@
 /* Homemade modules */
 /*############################################*/
 
-const blocklyGenerator = require("./modules/blockly/generator/generator.js"); //Blockly's generator, blocks to Discord.js
 const initLogs = require("./modules/init_logs.js"); //Show a message in logs files and console when starting
 const workspaceErrorsEnum = require("./modules/enums/workspace_errors.js"); //Enum that refer to possible errors while working on code sent by a server
 const startupSQL = require("./modules/startup_sql_queries.js"); //SQL requests that must be executed on startup
+const { blocklyInit, blocklyBlocks, blocklyExtensions } = require("./modules/blockly/init.js"); //Used to prepare Blockly, get a ready instance of it, and to get a list of blocks/extensions
 
 /*############################################*/
 /* Imported modules */
@@ -14,18 +14,13 @@ const startupSQL = require("./modules/startup_sql_queries.js"); //SQL requests t
 
 const express = require("express"); //Did I really need to explain ?
 const morgan = require("morgan"); //Logs for the server
-//const ejs = require("ejs");//Allow to serve .ejs files
 const bodyParser = require("body-parser"); //Get data from <form>
 const pg = require("pg"); //Postgresql
 const redis = require("redis"); //Redis
 const session = require("express-session"); //Sessions management
 const redisStore = require("connect-redis")(session); //Save sessions in Redis
 const fs = require("fs"); //FileSystem, can interact with files stored in the system
-//const path = require("path");//Manage access paths
 const crypto = require("crypto"); //Generate random strings
-//const url = require("url");//Enable access to query string parameters
-//const bigInt = require("big-integer");//Used to check permissions on a server
-let Blockly = require("blockly"); //Blockly
 const winston = require("winston"); //Used to save app logs
 const rateLimiter = require("rate-limiter-flexible"); //Rates limits management
 require("winston-daily-rotate-file"); //Daily rotating files
@@ -51,12 +46,6 @@ const logsPanelBackEnd = require("./modules/pages_back_end/logs_panel.js");
 /*############################################*/
 
 const sendWorkspaceSocketBackEnd = require("./modules/sockets_back_end/send_workspace.js");
-
-/*############################################*/
-/* Used translations */
-/*############################################*/
-//This translation is used here. Per page translations are loaded in their back-end functions.
-const initLogsblocklyLocalizationEn = require("./modules/blockly/localization/en.js"); //Add localization to the generator - EN
 
 /*############################################*/
 /* Express and server creation */
@@ -250,39 +239,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /* Blockly Initialization */
 /*############################################*/
 
-//Blocks definition
-const blocklyBlocks = [
-  require("./modules/blockly/blocks/channel_blocks.js").blocks,
-  require("./modules/blockly/blocks/embed_blocks.js").blocks,
-  require("./modules/blockly/blocks/event_blocks.js").blocks,
-  require("./modules/blockly/blocks/guild_blocks.js").blocks,
-  require("./modules/blockly/blocks/message_blocks.js").blocks,
-  require("./modules/blockly/blocks/rank_blocks.js").blocks,
-  require("./modules/blockly/blocks/user_blocks.js").blocks,
-  require("./modules/blockly/blocks/color_blocks.js").blocks,
-  require("./modules/blockly/blocks/var_blocks.js").blocks,
-  require("./modules/blockly/blocks/emoji_blocks.js").blocks,
-  require("./modules/blockly/blocks/miscellaneous_blocks.js").blocks,
-  require("./modules/blockly/blocks/slash_commands_blocks.js").blocks,
-  require("./modules/blockly/blocks/data_storage_blocks.js").blocks,
-];
-blocklyBlocks.forEach((element) => {
-  Blockly.defineBlocksWithJsonArray(JSON.parse(element));
-});
-//Extensions definition
-//Mostly used to Regex check values entered in direct inputs, in Front end
-const blocklyExtensions = [
-  require("./modules/blockly/blocks/extensions/slash_commands_blocks.js"), //Refers immediately to a function
-  require("./modules/blockly/blocks/extensions/var_blocks.js"),
-  require("./modules/blockly/blocks/extensions/storage_blocks.js"),
-];
-blocklyExtensions.forEach((element) => {
-  element(Blockly); //Runs the function with Blockly, which defines the extensions used for the blocks
-});
-
-//Text definition
-Blockly = initLogsblocklyLocalizationEn(Blockly);
-Blockly = blocklyGenerator.initializeGenerator(Blockly); //Initialize generator
+const Blockly = blocklyInit(); //this function returns Blockly, with every blocks and functions defined
 
 /*############################################*/
 /* Rates limits */
