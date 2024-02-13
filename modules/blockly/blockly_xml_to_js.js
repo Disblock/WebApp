@@ -73,7 +73,7 @@ module.exports = {
       "DELETE FROM commands_args WHERE command_id IN (SELECT command_id FROM commands WHERE server_id = $1)",
       [serverId],
     ]);
-    sqlRequests.push(["DELETE FROM commands WHERE server_id = $1", [serverId]]);
+    sqlRequests.push(["DELETE FROM commands WHERE server_id = $1;", [serverId]]);
 
     if (eventCodes.length > 0) {
       //User sent a valid workspace
