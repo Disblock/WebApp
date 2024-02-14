@@ -70,7 +70,7 @@ module.exports = {
     sqlRequests.push(["BEGIN;", []]);
     sqlRequests.push(["DELETE FROM server_code WHERE server_id = $1;", [serverId]]);
     sqlRequests.push([
-      "DELETE FROM commands_args WHERE command_id IN (SELECT command_id FROM commands WHERE server_id = $1)",
+      "DELETE FROM commands_args WHERE command_id IN (SELECT command_id FROM commands WHERE server_id = $1);",
       [serverId],
     ]);
     sqlRequests.push(["DELETE FROM commands WHERE server_id = $1;", [serverId]]);
