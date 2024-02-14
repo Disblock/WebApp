@@ -8,6 +8,32 @@ describe("XML to JS functions", () => {
   const { blocklyInit } = require("../../modules/blockly/init.js");
   const Blockly = blocklyInit(); //Blockly initialisation
 
+  function checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, serverId, workspaceXml) {
+    //Checking that every SQL requests are successfully executed
+    //This function is supposed to be executed at each test, as the requests are always the same.
+    //Additionnal requests that are executed only in some case will be checked directly in the test
+    //console.log(mockedDatabaseClient.query.mock.calls); // Trouble understanding the following ?  <--
+    expect(mockedDatabaseClient.query.mock.calls[0][0]).toBe("BEGIN;"); // Starting transaction, first request must be BEGIN;
+
+    expect(mockedDatabaseClient.query.mock.calls[1][0]).toBe("DELETE FROM server_code WHERE server_id = $1;");
+
+    expect(mockedDatabaseClient.query.mock.calls[1][1][0]).toBe(serverId);
+
+    expect(mockedDatabaseClient.query.mock.calls[2][0]).toBe(
+      "DELETE FROM commands_args WHERE command_id IN (SELECT command_id FROM commands WHERE server_id = $1);"
+    );
+    expect(mockedDatabaseClient.query.mock.calls[2][1][0]).toBe(serverId);
+
+    expect(mockedDatabaseClient.query.mock.calls[3][0]).toBe("DELETE FROM commands WHERE server_id = $1;");
+    expect(mockedDatabaseClient.query.mock.calls[3][1][0]).toBe(serverId);
+
+    expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe("SELECT f_update_data_storages_for_guild($1);");
+    expect(mockedDatabaseClient.query.mock.calls[4][1][0]).toBe(serverId);
+
+    //The sixth command sent, second arg ( the array of sql args ), second value ( cleaned workspace xml )
+    expect(mockedDatabaseClient.query.mock.calls[5][1][1]).toBe(workspaceXml);
+  }
+
   /* Mocked logger and database */
   const logger = {
     debug: jest.fn(),
@@ -39,33 +65,7 @@ describe("XML to JS functions", () => {
     //No blocks in workspace
     const emptyWorkspaceXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
     await expect(xmlToJs("1234", emptyWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(0);
-    //Checking that the INSERT in workspaces tables request is an empty workspace
-    //The sixth command sent, second arg ( the array of sql args ), second value ( cleaned workspace xml )
-    expect(mockedDatabaseClient.query.mock.calls[5][1][1]).toBe(emptyWorkspaceXml);
-    //console.log(mockedDatabaseClient.query.mock.calls); // Trouble understanding the following ?  <--
 
-    //Checking that every SQL requests are successfully executed
-    expect(mockedDatabaseClient.query.mock.calls[0][0]).toBe("BEGIN;"); // Starting transaction, first request must be BEGIN;
-
-    expect(
-      mockedDatabaseClient.query.mock.calls[1][0] === "DELETE FROM server_code WHERE server_id = $1;" &&
-        mockedDatabaseClient.query.mock.calls[1][1][0] === "1234"
-    ).toBe(true);
-
-    expect(
-      mockedDatabaseClient.query.mock.calls[2][0] ===
-        "DELETE FROM commands_args WHERE command_id IN (SELECT command_id FROM commands WHERE server_id = $1)" &&
-        mockedDatabaseClient.query.mock.calls[2][1][0] === "1234"
-    ).toBe(true);
-
-    expect(
-      mockedDatabaseClient.query.mock.calls[3][0] === "DELETE FROM commands WHERE server_id = $1;" &&
-        mockedDatabaseClient.query.mock.calls[3][1][0] === "1234"
-    ).toBe(true);
-
-    expect(
-      mockedDatabaseClient.query.mock.calls[4][0] === "SELECT f_update_data_storages_for_guild($1);" &&
-        mockedDatabaseClient.query.mock.calls[4][1][0] === "1234"
-    ).toBe(true);
+    checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, "1234", emptyWorkspaceXml);
   });
 });
