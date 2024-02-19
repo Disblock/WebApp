@@ -8,6 +8,8 @@ describe("XML to JS functions", () => {
   const { blocklyInit } = require("../../modules/blockly/init.js");
   const Blockly = blocklyInit(); //Blockly initialisation
 
+  const emptyWorkspaceXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
+
   function checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, serverId, workspaceXml) {
     //Checking that every SQL requests are successfully executed
     //This function is supposed to be executed at each test, as the requests are always the same.
@@ -27,11 +29,22 @@ describe("XML to JS functions", () => {
     expect(mockedDatabaseClient.query.mock.calls[3][0]).toBe("DELETE FROM commands WHERE server_id = $1;");
     expect(mockedDatabaseClient.query.mock.calls[3][1][0]).toBe(serverId);
 
-    expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe("SELECT f_update_data_storages_for_guild($1);");
-    expect(mockedDatabaseClient.query.mock.calls[4][1][0]).toBe(serverId);
+    if(workspaceXml==emptyWorkspaceXml){
+      //Empty workspace, we just need to delete ( previous checks ) and workspace insert
+      expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe("SELECT f_update_data_storages_for_guild($1);");
+      expect(mockedDatabaseClient.query.mock.calls[4][1][0]).toBe(serverId);
 
-    //The sixth command sent, second arg ( the array of sql args ), second value ( cleaned workspace xml )
-    expect(mockedDatabaseClient.query.mock.calls[5][1][1]).toBe(workspaceXml);
+      //The sixth command sent, second arg ( the array of sql args ), second value ( cleaned workspace xml )
+      expect(mockedDatabaseClient.query.mock.calls[5][1][1]).toBe(workspaceXml);
+    }else{
+      //Events and slash commands
+      expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe("INSERT INTO server_code (server_id, action_type, code) VALUES ($1, $2, $3);");
+      expect(mockedDatabaseClient.query.mock.calls[4][1][0]).toBe(serverId);
+      //expect(mockedDatabaseClient.query.mock.calls[4][1][2]).toBe(workspaceXml);// Ready-to-run code check
+
+    }
+    const length = mockedDatabaseClient.query.mock.calls.length;
+    expect(mockedDatabaseClient.query.mock.calls[length-1][0]).toBe("COMMIT;");
   }
 
   /* Mocked logger and database */
@@ -63,9 +76,16 @@ describe("XML to JS functions", () => {
 
   test("Empty workspace", async () => {
     //No blocks in workspace
-    const emptyWorkspaceXml = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
     await expect(xmlToJs("1234", emptyWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(0);
 
     checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, "1234", emptyWorkspaceXml);
+  });
+
+  test("Default workspace", async () => {
+    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js");//Directly gives the string
+
+    await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(0);
+
+    checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, "1234", defaultWorkspaceXml);
   });
 });
