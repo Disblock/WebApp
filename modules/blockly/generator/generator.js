@@ -59,98 +59,98 @@ module.exports = {
       "if(loopCount > 1000){throw 'Reached the limit of iterations !'}\nloopCount++;\n";
 
     /* ##### EVENTS blocks ##### */
-    Blockly.JavaScript["event_message_sent"] = function (block) {
+    Blockly.JavaScript.forBlock["event_message_sent"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_message_deleted"] = function (block) {
+    Blockly.JavaScript.forBlock["event_message_deleted"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_message_updated"] = function (block) {
+    Blockly.JavaScript.forBlock["event_message_updated"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_user_join"] = function (block) {
+    Blockly.JavaScript.forBlock["event_user_join"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_user_left"] = function (block) {
+    Blockly.JavaScript.forBlock["event_user_left"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_user_updated"] = function (block) {
+    Blockly.JavaScript.forBlock["event_user_updated"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_var_message"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_message"] = function (block) {
       const code = "eventMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_message_old"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_message_old"] = function (block) {
       const code = "eventOldMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_message_new"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_message_new"] = function (block) {
       const code = "eventNewMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_user"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_user"] = function (block) {
       const code = "eventUser";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_old_user"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_old_user"] = function (block) {
       const code = "eventOldUser";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_new_user"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_new_user"] = function (block) {
       const code = "eventNewUser";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_role_created"] = function (block) {
+    Blockly.JavaScript.forBlock["event_role_created"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_role_deleted"] = function (block) {
+    Blockly.JavaScript.forBlock["event_role_deleted"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_role_edited"] = function (block) {
+    Blockly.JavaScript.forBlock["event_role_edited"] = function (block) {
       /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       return statements;*/
       return ""; //Disabled : when a role is created, this event is sometimes triggered multiples times
     };
 
-    Blockly.JavaScript["event_var_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_rank"] = function (block) {
       const code = "eventRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_old_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_old_rank"] = function (block) {
       const code = "eventOldRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_new_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_new_rank"] = function (block) {
       const code = "eventNewRole";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_user_banned"] = function (block) {
+    Blockly.JavaScript.forBlock["event_user_banned"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
@@ -158,107 +158,107 @@ module.exports = {
     /*  This event is disabled : Discord send the User but we can't get a GuildMember...
         This feature is planned, but require more development
 
-    Blockly.JavaScript['event_user_unbanned'] = function(block) {
+    Blockly.JavaScript.forBlock['event_user_unbanned'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       return statements;
     };*/
 
     /*  This event is disabled : Discord don't send the updated message, so we have to found it ourselves.
         This feature is planned, but require more development
-    Blockly.JavaScript['event_pinned_updated'] = function(block) {
+    Blockly.JavaScript.forBlock['event_pinned_updated'] = function(block) {
       const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       return statements;
     };*/
 
-    Blockly.JavaScript["event_user_voice_update"] = function (block) {
+    Blockly.JavaScript.forBlock["event_user_voice_update"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_user_start_writting"] = function (block) {
+    Blockly.JavaScript.forBlock["event_user_start_writting"] = function (block) {
       /*const statements = Blockly.JavaScript.statementToCode(block, 'statements');
       return statements;*/
       return ""; //Disabled, always triggered multiple times when a bug message is written
     };
 
-    Blockly.JavaScript["event_var_old_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_old_voice_channel"] = function (block) {
       const code = "eventOldVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_new_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_new_voice_channel"] = function (block) {
       const code = "eventNewVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_textChannel_created"] = function (block) {
+    Blockly.JavaScript.forBlock["event_textChannel_created"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_textChannel_deleted"] = function (block) {
+    Blockly.JavaScript.forBlock["event_textChannel_deleted"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_textChannel_edited"] = function (block) {
+    Blockly.JavaScript.forBlock["event_textChannel_edited"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_voice_channel_created"] = function (block) {
+    Blockly.JavaScript.forBlock["event_voice_channel_created"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_voice_channel_deleted"] = function (block) {
+    Blockly.JavaScript.forBlock["event_voice_channel_deleted"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_voice_channel_edited"] = function (block) {
+    Blockly.JavaScript.forBlock["event_voice_channel_edited"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_var_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_text_channel"] = function (block) {
       const code = "eventTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_old_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_old_text_channel"] = function (block) {
       const code = "eventOldTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_new_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_new_text_channel"] = function (block) {
       const code = "eventNewTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_var_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_voice_channel"] = function (block) {
       const code = "eventVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["event_reaction_added"] = function (block) {
+    Blockly.JavaScript.forBlock["event_reaction_added"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_reaction_removed"] = function (block) {
+    Blockly.JavaScript.forBlock["event_reaction_removed"] = function (block) {
       const statements = Blockly.JavaScript.statementToCode(block, "statements");
       return statements;
     };
 
-    Blockly.JavaScript["event_var_reaction"] = function (block) {
+    Blockly.JavaScript.forBlock["event_var_reaction"] = function (block) {
       const code = "eventReaction";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### MESSAGES blocks ##### */
 
-    Blockly.JavaScript["block_message_reply"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_reply"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
       const valueText = Blockly.JavaScript.valueToCode(block, "text", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -270,7 +270,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_send"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_send"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
       const valueText = Blockly.JavaScript.valueToCode(block, "text", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -282,7 +282,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_delete"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_delete"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -293,7 +293,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_delete_bulk"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_delete_bulk"] = function (block) {
       const numberAmount = block.getFieldValue("amount");
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -305,7 +305,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_start_thread"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_start_thread"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -317,7 +317,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_pine"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_pine"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -328,7 +328,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_unpine"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_unpine"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -339,7 +339,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_get_text"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_get_text"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -350,7 +350,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_get_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_get_id"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -361,7 +361,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_get_autor"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_get_autor"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -372,7 +372,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_get_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_get_channel"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -383,7 +383,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_does_mention_everyone"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_does_mention_everyone"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -394,7 +394,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_does_mention_user"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_does_mention_user"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -405,7 +405,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_does_mention_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_does_mention_channel"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -416,7 +416,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_get_user_mention"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_get_user_mention"] = function (block) {
       const numberMentionIndex = block.getFieldValue("mention_index");
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -434,7 +434,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_get_channel_mention"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_get_channel_mention"] = function (block) {
       const numberMentionIndex = block.getFieldValue("mention_index");
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -452,7 +452,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_number_of_mentions_user"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_number_of_mentions_user"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -463,7 +463,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_number_of_mentions_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_number_of_mentions_channel"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -474,19 +474,19 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_message_var_sent_message"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_var_sent_message"] = function (block) {
       const code = "sentMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_message_var_created_thread"] = function (block) {
+    Blockly.JavaScript.forBlock["block_message_var_created_thread"] = function (block) {
       const code = "createdThreadOnMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### USERS blocks ##### */
 
-    Blockly.JavaScript["block_user_ban"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_ban"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       let valueReason = Blockly.JavaScript.valueToCode(block, "reason", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -502,7 +502,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_unban"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_unban"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       let valueReason = Blockly.JavaScript.valueToCode(block, "reason", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -518,7 +518,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_send_private_message"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_send_private_message"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -534,7 +534,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_kick"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_kick"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       let valueReason = Blockly.JavaScript.valueToCode(block, "reason", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -550,7 +550,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_with_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_get_with_id"] = function (block) {
       const valueId = Blockly.JavaScript.valueToCode(block, "id", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueId !== "") {
@@ -561,7 +561,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_server_username"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_get_server_username"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -572,7 +572,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_username"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_get_username"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -583,7 +583,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_get_id"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -594,7 +594,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_picture"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_get_picture"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -609,7 +609,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_is_bot"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_is_bot"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -620,7 +620,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_mute"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_mute"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -631,7 +631,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_unmute"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_unmute"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -642,7 +642,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_deaf"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_deaf"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -653,7 +653,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_undeaf"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_undeaf"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -664,7 +664,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_is_timeout"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_is_timeout"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -675,7 +675,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_timeout"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_timeout"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownDuration = block.getFieldValue("duration");
       let valueReason = Blockly.JavaScript.valueToCode(block, "reason", Blockly.JavaScript.ORDER_ATOMIC);
@@ -716,7 +716,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_custom_timeout"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_custom_timeout"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const valueDuration = Blockly.JavaScript.valueToCode(block, "duration", Blockly.JavaScript.ORDER_ATOMIC);
       let valueReason = Blockly.JavaScript.valueToCode(block, "reason", Blockly.JavaScript.ORDER_ATOMIC);
@@ -733,7 +733,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_remove_timeout"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_remove_timeout"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -744,7 +744,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_has_permission"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_has_permission"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : only used for a switch and never executed
 
@@ -878,7 +878,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_has_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_has_rank"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -890,7 +890,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_is_in_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_is_in_voice_channel"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -901,7 +901,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_get_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_get_voice_channel"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueUser !== "") {
@@ -912,7 +912,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_move_to_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_move_to_voice_channel"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -924,7 +924,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_give_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_give_rank"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -936,7 +936,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_remove_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_remove_rank"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -948,7 +948,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_user_rename"] = function (block) {
+    Blockly.JavaScript.forBlock["block_user_rename"] = function (block) {
       const valueUser = Blockly.JavaScript.valueToCode(block, "user", Blockly.JavaScript.ORDER_ATOMIC);
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -962,7 +962,7 @@ module.exports = {
 
     /* ##### CHANNELS blocks ##### */
 
-    Blockly.JavaScript["block_channel_create_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_create_text_channel"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const valueTopic = Blockly.JavaScript.valueToCode(block, "topic", Blockly.JavaScript.ORDER_ATOMIC);
       const valueCategory = Blockly.JavaScript.valueToCode(block, "category", Blockly.JavaScript.ORDER_ATOMIC);
@@ -980,7 +980,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_create_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_create_voice_channel"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const valueCategory = Blockly.JavaScript.valueToCode(block, "category", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -997,17 +997,17 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_var_voice_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_var_voice_channel"] = function (block) {
       const code = "createdVoiceChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_channel_var_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_var_text_channel"] = function (block) {
       const code = "createdTextChannel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_channel_delete"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_delete"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1018,7 +1018,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_renamme"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_renamme"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
       const valueText = Blockly.JavaScript.valueToCode(block, "text", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -1030,7 +1030,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_category_of_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_category_of_channel"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1041,7 +1041,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_channel_name"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_channel_name"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1052,7 +1052,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_channel_topic"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_channel_topic"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1063,7 +1063,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_channel_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_channel_id"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1074,7 +1074,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_user_count"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_user_count"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1085,7 +1085,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_channel_with_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_channel_with_id"] = function (block) {
       const valueChannelId = Blockly.JavaScript.valueToCode(block, "channel_id", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannelId !== "") {
@@ -1096,7 +1096,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_permission"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_permission"] = function (block) {
       const valueUserOrRank = Blockly.JavaScript.valueToCode(block, "userOrRank", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : only used for a switch and never executed
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
@@ -1206,7 +1206,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_set_permission"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_set_permission"] = function (block) {
       const valueUserOrRank = Blockly.JavaScript.valueToCode(block, "userOrRank", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : only used for a switch and never executed
       const dropdownIsGranted = block.getFieldValue("isGranted");
@@ -1348,13 +1348,13 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_list"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_list"] = function (block) {
       //const code = 'await CURRENT_GUILD.channels.fetch()';
       const code = ""; //This block is disabled
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_channel_get_category_with_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_category_with_id"] = function (block) {
       const valueCategoryId = Blockly.JavaScript.valueToCode(block, "category_id", Blockly.JavaScript.ORDER_ATOMIC);
       if (valueCategoryId !== "") {
         const code = "await CURRENT_GUILD.channels.fetch(" + valueCategoryId + ")";
@@ -1364,7 +1364,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_get_thread_parent"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_get_thread_parent"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
       if (valueChannel !== "") {
         const code = "(" + valueChannel + ".isThread() ? " + valueChannel + ".parent : undefined)";
@@ -1374,7 +1374,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_set_thread_locked"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_set_thread_locked"] = function (block) {
       const dropdownIsLocked = block.getFieldValue("isLocked"); //Regex not needed : Just used for an if
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -1386,7 +1386,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_is_thread_locked"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_is_thread_locked"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1397,7 +1397,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_set_thread_archived"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_set_thread_archived"] = function (block) {
       const dropdownIsArchived = block.getFieldValue("isArchived"); //Regex not needed : only used for an if
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -1409,7 +1409,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_channel_is_thread_archived"] = function (block) {
+    Blockly.JavaScript.forBlock["block_channel_is_thread_archived"] = function (block) {
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueChannel !== "") {
@@ -1422,7 +1422,7 @@ module.exports = {
 
     /* ##### RANKS blocks ##### */
 
-    Blockly.JavaScript["block_rank_create"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_create"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const colourColor = block.getFieldValue("color");
       const checkboxIsPingeable = block.getFieldValue("is_pingeable") === "TRUE";
@@ -1448,12 +1448,12 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_var_created_rank"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_var_created_rank"] = function (block) {
       const code = "createdRank";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_rank_delete"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_delete"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueRank !== "") {
@@ -1464,7 +1464,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_edit_name"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_edit_name"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -1476,7 +1476,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_edit_color"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_edit_color"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const colourColor = block.getFieldValue("color");
 
@@ -1488,7 +1488,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_edit_pingeable"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_edit_pingeable"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownIsPingeable = block.getFieldValue("IS_PINGEABLE"); //Regex not needed : used only for an if
 
@@ -1500,7 +1500,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_edit_members_shown"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_edit_members_shown"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownAreMemberShown = block.getFieldValue("ARE_MEMBER_SHOWN"); //Regex not needed : used only for an if
 
@@ -1512,7 +1512,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_edit_position"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_edit_position"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const valuePosition = Blockly.JavaScript.valueToCode(block, "position", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -1524,7 +1524,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_get_rank_with_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_get_rank_with_id"] = function (block) {
       const valueId = Blockly.JavaScript.valueToCode(block, "id", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueId !== "") {
@@ -1535,7 +1535,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_edit_permissions"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_edit_permissions"] = function (block) {
       const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : used only for a switch
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownIsGranted = block.getFieldValue("isGranted"); //Regex not needed : used only for an if
@@ -1693,7 +1693,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_get_name"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_get_name"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueRank !== "") {
@@ -1704,7 +1704,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_get_position"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_get_position"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueRank !== "") {
@@ -1715,7 +1715,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_get_color"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_get_color"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueRank !== "") {
@@ -1726,7 +1726,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_get_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_get_id"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueRank !== "") {
@@ -1737,7 +1737,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_has_permission"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_has_permission"] = function (block) {
       const valueRank = Blockly.JavaScript.valueToCode(block, "rank", Blockly.JavaScript.ORDER_ATOMIC);
       const dropdownPermission = block.getFieldValue("permission"); //Regex not needed : used only for a switch
 
@@ -1873,14 +1873,14 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_rank_get_everyone"] = function (block) {
+    Blockly.JavaScript.forBlock["block_rank_get_everyone"] = function (block) {
       const code = "CURRENT_GUILD.roles.everyone";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### EMBEDS blocks ##### */
 
-    Blockly.JavaScript["block_embed_create"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_create"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const valueColor = Blockly.JavaScript.valueToCode(block, "color", Blockly.JavaScript.ORDER_ATOMIC);
       const statementsOptions = Blockly.JavaScript.statementToCode(block, "options");
@@ -1903,7 +1903,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_option_set_image"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_option_set_image"] = function (block) {
       const valueImageUrl = Blockly.JavaScript.valueToCode(block, "image_url", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueImageUrl !== "") {
@@ -1921,7 +1921,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_option_set_thumbnail"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_option_set_thumbnail"] = function (block) {
       const valueThumbnailUrl = Blockly.JavaScript.valueToCode(block, "thumbnail_url", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueThumbnailUrl !== "") {
@@ -1939,7 +1939,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_option_add_field"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_option_add_field"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const valueText = Blockly.JavaScript.valueToCode(block, "text", Blockly.JavaScript.ORDER_ATOMIC);
       const checkboxInline = block.getFieldValue("inline") === "TRUE";
@@ -1959,7 +1959,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_option_set_author"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_option_set_author"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const valueUrl = Blockly.JavaScript.valueToCode(block, "URL", Blockly.JavaScript.ORDER_ATOMIC);
       const valueIconUrl = Blockly.JavaScript.valueToCode(block, "icon_URL", Blockly.JavaScript.ORDER_ATOMIC);
@@ -1995,7 +1995,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_option_set_footer"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_option_set_footer"] = function (block) {
       const valueName = Blockly.JavaScript.valueToCode(block, "name", Blockly.JavaScript.ORDER_ATOMIC);
       const valueIconUrl = Blockly.JavaScript.valueToCode(block, "icon_URL", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2020,13 +2020,13 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_option_set_timestamp"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_option_set_timestamp"] = function (block) {
       // TODO: Assemble JavaScript into code variable.
       const code = ".setTimestamp()";
       return code;
     };
 
-    Blockly.JavaScript["block_embed_send"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_send"] = function (block) {
       const valueEmbed = Blockly.JavaScript.valueToCode(block, "embed", Blockly.JavaScript.ORDER_ATOMIC);
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2056,29 +2056,29 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_embed_var_embed"] = function (block) {
+    Blockly.JavaScript.forBlock["block_embed_var_embed"] = function (block) {
       const code = "embedMessage";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### GUILD blocks ##### */
 
-    Blockly.JavaScript["block_guild_get_id"] = function (block) {
+    Blockly.JavaScript.forBlock["block_guild_get_id"] = function (block) {
       const code = "CURRENT_GUILD.id || ''";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_guild_get_boosts_count"] = function (block) {
+    Blockly.JavaScript.forBlock["block_guild_get_boosts_count"] = function (block) {
       const code = "CURRENT_GUILD.premiumSubscriptionCount";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_guild_get_members_count"] = function (block) {
+    Blockly.JavaScript.forBlock["block_guild_get_members_count"] = function (block) {
       const code = "CURRENT_GUILD.memberCount";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_guild_create_invite"] = function (block) {
+    Blockly.JavaScript.forBlock["block_guild_create_invite"] = function (block) {
       const dropdownDuration = block.getFieldValue("duration"); //Regex not needed : used only for a switch
       const dropdownUses = block.getFieldValue("uses"); //Regex not needed : used only for a switch
       const valueChannel = Blockly.JavaScript.valueToCode(block, "channel", Blockly.JavaScript.ORDER_ATOMIC);
@@ -2152,20 +2152,20 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_guild_get_name"] = function (block) {
+    Blockly.JavaScript.forBlock["block_guild_get_name"] = function (block) {
       const code = "CURRENT_GUILD.name || ''";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### COLOR blocks ##### */
-    Blockly.JavaScript["block_color_hex"] = function (block) {
+    Blockly.JavaScript.forBlock["block_color_hex"] = function (block) {
       const textColor = block.getFieldValue("color");
       const code = definedRegexes.isHexColor(textColor) ? "'" + textColor + "'" : ""; //A regex check if color hex is valid
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### Temporary VARIABLES blocks ##### */
-    Blockly.JavaScript["block_var_save"] = function (block) {
+    Blockly.JavaScript.forBlock["block_var_save"] = function (block) {
       const valueInput = Blockly.JavaScript.valueToCode(block, "INPUT", Blockly.JavaScript.ORDER_ATOMIC);
       const textName = block.getFieldValue("NAME");
       //const dropdown_type = block.getFieldValue('TYPE');
@@ -2184,7 +2184,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_var_get"] = function (block) {
+    Blockly.JavaScript.forBlock["block_var_get"] = function (block) {
       const textName = block.getFieldValue("NAME");
 
       if (!definedRegexes.variableName(textName)) {
@@ -2198,7 +2198,7 @@ module.exports = {
 
     /* ##### Emojis blocks ##### */
 
-    Blockly.JavaScript["block_emoji_get_name"] = function (block) {
+    Blockly.JavaScript.forBlock["block_emoji_get_name"] = function (block) {
       const valueEmoji = Blockly.JavaScript.valueToCode(block, "emoji", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueEmoji !== "") {
@@ -2208,7 +2208,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_emoji_react"] = function (block) {
+    Blockly.JavaScript.forBlock["block_emoji_react"] = function (block) {
       const valueEmoji = Blockly.JavaScript.valueToCode(block, "emoji", Blockly.JavaScript.ORDER_ATOMIC);
       const valueMessage = Blockly.JavaScript.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2219,7 +2219,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_emoji_get_number_of_reactions"] = function (block) {
+    Blockly.JavaScript.forBlock["block_emoji_get_number_of_reactions"] = function (block) {
       let valueEmoji = Blockly.JavaScript.valueToCode(block, "emoji", Blockly.JavaScript.ORDER_ATOMIC);
       const valueMessage = Blockly.JavaScript.valueToCode(block, "Message", Blockly.JavaScript.ORDER_ATOMIC);
       if (valueEmoji !== "" && valueMessage !== "") {
@@ -2251,7 +2251,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_emoji_remove_reaction"] = function (block) {
+    Blockly.JavaScript.forBlock["block_emoji_remove_reaction"] = function (block) {
       let valueEmoji = Blockly.JavaScript.valueToCode(block, "emoji", Blockly.JavaScript.ORDER_ATOMIC);
       const valueUser = Blockly.JavaScript.valueToCode(block, "User", Blockly.JavaScript.ORDER_ATOMIC);
       const valueMessage = Blockly.JavaScript.valueToCode(block, "Message", Blockly.JavaScript.ORDER_ATOMIC);
@@ -2287,7 +2287,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_emoji_remove_all_reactions"] = function (block) {
+    Blockly.JavaScript.forBlock["block_emoji_remove_all_reactions"] = function (block) {
       const valueMessage = Blockly.JavaScript.valueToCode(block, "Message", Blockly.JavaScript.ORDER_ATOMIC);
 
       if (valueMessage !== "") {
@@ -2299,12 +2299,12 @@ module.exports = {
 
     /* ##### Miscellaneous blocks ##### */
 
-    Blockly.JavaScript["block_miscellaneous_return"] = function (block) {
+    Blockly.JavaScript.forBlock["block_miscellaneous_return"] = function (block) {
       const code = "return();\n";
       return code;
     };
 
-    Blockly.JavaScript["block_miscellaneous_str_to_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_miscellaneous_str_to_int"] = function (block) {
       const valueString = Blockly.JavaScript.valueToCode(block, "STRING", Blockly.JavaScript.ORDER_ATOMIC);
       if (valueString != undefined && valueString != "") {
         return ["strToInt(" + valueString + ")", Blockly.JavaScript.ORDER_NONE];
@@ -2315,12 +2315,12 @@ module.exports = {
 
     /* ##### Slash commands blocks ##### */
 
-    Blockly.JavaScript["block_slash_command_creator"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_creator"] = function (block) {
       //We get values for this block directly in modules/blockly/utils/manage_slash_commands.js !
       throw errorsTypes.error;
     };
 
-    Blockly.JavaScript["block_slash_command_arg_boolean"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_arg_boolean"] = function (block) {
       const textName = block.getFieldValue("NAME");
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
@@ -2342,7 +2342,7 @@ module.exports = {
       throw errorsTypes.uncompleteBlock;
     };
 
-    Blockly.JavaScript["block_slash_command_arg_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_arg_int"] = function (block) {
       const textInt = block.getFieldValue("NAME");
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
@@ -2364,7 +2364,7 @@ module.exports = {
       throw errorsTypes.uncompleteBlock;
     };
 
-    Blockly.JavaScript["block_slash_command_arg_role"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_arg_role"] = function (block) {
       const textRole = block.getFieldValue("NAME");
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
@@ -2386,7 +2386,7 @@ module.exports = {
       throw errorsTypes.uncompleteBlock;
     };
 
-    Blockly.JavaScript["block_slash_command_arg_string"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_arg_string"] = function (block) {
       const textText = block.getFieldValue("NAME");
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
@@ -2408,7 +2408,7 @@ module.exports = {
       throw errorsTypes.uncompleteBlock;
     };
 
-    Blockly.JavaScript["block_slash_command_arg_user"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_arg_user"] = function (block) {
       const textUser = block.getFieldValue("NAME");
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
@@ -2430,7 +2430,7 @@ module.exports = {
       throw errorsTypes.uncompleteBlock;
     };
 
-    Blockly.JavaScript["block_slash_command_reply"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_reply"] = function (block) {
       const valueText = Blockly.JavaScript.valueToCode(block, "TEXT", Blockly.JavaScript.ORDER_ATOMIC);
       if (valueText !== "") {
         const code = "interaction.editReply(" + valueText + ");\n";
@@ -2440,7 +2440,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_slash_command_arg_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_arg_text_channel"] = function (block) {
       const textChannel = block.getFieldValue("NAME");
       const textDesc = block.getFieldValue("DESC");
       const checkboxRequired = block.getFieldValue("REQUIRED") === "TRUE";
@@ -2462,7 +2462,7 @@ module.exports = {
       throw errorsTypes.uncompleteBlock;
     };
 
-    Blockly.JavaScript["block_slash_command_get_boolean"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_get_boolean"] = function (block) {
       const textName = block.getFieldValue("NAME");
       if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
 
@@ -2470,7 +2470,7 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_get_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_get_int"] = function (block) {
       const textName = block.getFieldValue("NAME");
       if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
 
@@ -2478,7 +2478,7 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_get_role"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_get_role"] = function (block) {
       const textName = block.getFieldValue("NAME");
       if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
 
@@ -2486,7 +2486,7 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_get_string"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_get_string"] = function (block) {
       const textName = block.getFieldValue("NAME");
       if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
 
@@ -2494,7 +2494,7 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_get_user"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_get_user"] = function (block) {
       const textName = block.getFieldValue("NAME");
       if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
 
@@ -2502,7 +2502,7 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_get_text_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_get_text_channel"] = function (block) {
       const textName = block.getFieldValue("NAME");
       if (!definedRegexes.slashCommandName(textName)) throw errorsTypes.invalidRegex;
 
@@ -2510,17 +2510,17 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_data_channel"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_data_channel"] = function (block) {
       const code = "interaction.channel";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_data_user"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_data_user"] = function (block) {
       const code = "interaction.member";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_form_creator"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_form_creator"] = function (block) {
       const textName = block.getFieldValue("NAME");
       const statementsInputs = Blockly.JavaScript.statementToCode(block, "INPUTS");
       //onst statements_statements = Blockly.JavaScript.statementToCode(block, 'STATEMENTS'); //This part is managed in manage_slash_commands.js
@@ -2541,7 +2541,7 @@ module.exports = {
       return code;
     };
 
-    Blockly.JavaScript["block_slash_command_form_input_text"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_form_input_text"] = function (block) {
       const dropdownStyle = block.getFieldValue("STYLE");
       const textName = block.getFieldValue("NAME");
       const numberMinsize = block.getFieldValue("MINSIZE");
@@ -2581,7 +2581,7 @@ module.exports = {
       return code;
     };
 
-    Blockly.JavaScript["block_slash_command_form_get_input_text"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_form_get_input_text"] = function (block) {
       const textName = block.getFieldValue("NAME");
 
       if (!definedRegexes.formName(textName)) throw errorsTypes.invalidRegex;
@@ -2595,28 +2595,28 @@ module.exports = {
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
-    Blockly.JavaScript["block_slash_command_form_get_user"] = function (block) {
+    Blockly.JavaScript.forBlock["block_slash_command_form_get_user"] = function (block) {
       const code = "interaction.member";
       return [code, Blockly.JavaScript.ORDER_NONE];
     };
 
     /* ##### Data storage blocks ##### */
     //Blocks used to manage data in the database
-    Blockly.JavaScript["block_data_storage_create_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_create_int"] = function (block) {
       //const textDataname = block.getFieldValue('DATANAME');
 
       //We get values for this block directly in xml_to_js !
       throw errorsTypes.error;
     };
 
-    Blockly.JavaScript["block_data_storage_create_string"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_create_string"] = function (block) {
       //const textDataname = block.getFieldValue('DATANAME');
 
       //We get values for this block directly in xml_to_js !
       throw errorsTypes.error;
     };
 
-    Blockly.JavaScript["block_data_storage_save_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_save_int"] = function (block) {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
       const valueVarContent = Blockly.JavaScript.valueToCode(block, "VARCONTENT", Blockly.JavaScript.ORDER_ATOMIC);
@@ -2630,7 +2630,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_data_storage_save_string"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_save_string"] = function (block) {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
       const valueVarContent = Blockly.JavaScript.valueToCode(block, "VARCONTENT", Blockly.JavaScript.ORDER_ATOMIC);
@@ -2642,7 +2642,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_data_storage_get_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_get_int"] = function (block) {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2654,7 +2654,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_data_storage_get_string"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_get_string"] = function (block) {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2666,7 +2666,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_data_storage_delete_int"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_delete_int"] = function (block) {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2679,7 +2679,7 @@ module.exports = {
       }
     };
 
-    Blockly.JavaScript["block_data_storage_delete_string"] = function (block) {
+    Blockly.JavaScript.forBlock["block_data_storage_delete_string"] = function (block) {
       const textDataname = block.getFieldValue("DATANAME");
       const valueVarname = Blockly.JavaScript.valueToCode(block, "VARNAME", Blockly.JavaScript.ORDER_ATOMIC);
 
@@ -2700,32 +2700,32 @@ module.exports = {
       return "";
     };
     //Loops
-    Blockly.JavaScript["controls_repeat_ext"] = disabledFunction;
-    Blockly.JavaScript["controls_whileUntil"] = disabledFunction;
-    Blockly.JavaScript["controls_for"] = disabledFunction;
-    Blockly.JavaScript["controls_forEach"] = disabledFunction;
-    Blockly.JavaScript["controls_flow_statements"] = disabledFunction;
+    Blockly.JavaScript.forBlock["controls_repeat_ext"] = disabledFunction;
+    Blockly.JavaScript.forBlock["controls_whileUntil"] = disabledFunction;
+    Blockly.JavaScript.forBlock["controls_for"] = disabledFunction;
+    Blockly.JavaScript.forBlock["controls_forEach"] = disabledFunction;
+    Blockly.JavaScript.forBlock["controls_flow_statements"] = disabledFunction;
 
     //Text
-    Blockly.JavaScript["text_print"] = disabledFunction;
-    Blockly.JavaScript["text_append"] = disabledFunction;
-    Blockly.JavaScript["text_prompt_ext"] = disabledFunction;
+    Blockly.JavaScript.forBlock["text_print"] = disabledFunction;
+    Blockly.JavaScript.forBlock["text_append"] = disabledFunction;
+    Blockly.JavaScript.forBlock["text_prompt_ext"] = disabledFunction;
 
     //Lists
-    //Blockly.JavaScript['lists_create_with'] = disabledFunction;
-    Blockly.JavaScript["lists_repeat"] = disabledFunction;
-    /*Blockly.JavaScript['lists_length'] = disabledFunction;
-        Blockly.JavaScript['lists_isEmpty'] = disabledFunction;
-        Blockly.JavaScript['lists_indexOf'] = disabledFunction;
-        Blockly.JavaScript['lists_getIndex'] = disabledFunction;
-        Blockly.JavaScript['lists_setIndex'] = disabledFunction;
-        Blockly.JavaScript['lists_getSublist'] = disabledFunction;
-        Blockly.JavaScript['lists_split'] = disabledFunction;
-        Blockly.JavaScript['lists_sort'] = disabledFunction;*/
+    //Blockly.JavaScript.forBlock['lists_create_with'] = disabledFunction;
+    Blockly.JavaScript.forBlock["lists_repeat"] = disabledFunction;
+    /*Blockly.JavaScript.forBlock['lists_length'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_isEmpty'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_indexOf'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_getIndex'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_setIndex'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_getSublist'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_split'] = disabledFunction;
+        Blockly.JavaScript.forBlock['lists_sort'] = disabledFunction;*/
 
     //Colors
-    Blockly.JavaScript["colour_rgb"] = disabledFunction;
-    Blockly.JavaScript["colour_blend"] = disabledFunction;
+    Blockly.JavaScript.forBlock["colour_rgb"] = disabledFunction;
+    Blockly.JavaScript.forBlock["colour_blend"] = disabledFunction;
 
     return Blockly;
   },
