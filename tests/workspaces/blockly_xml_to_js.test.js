@@ -29,22 +29,23 @@ describe("XML to JS functions", () => {
     expect(mockedDatabaseClient.query.mock.calls[3][0]).toBe("DELETE FROM commands WHERE server_id = $1;");
     expect(mockedDatabaseClient.query.mock.calls[3][1][0]).toBe(serverId);
 
-    if(workspaceXml==emptyWorkspaceXml){
+    if (workspaceXml == emptyWorkspaceXml) {
       //Empty workspace, we just need to delete ( previous checks ) and workspace insert
       expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe("SELECT f_update_data_storages_for_guild($1);");
       expect(mockedDatabaseClient.query.mock.calls[4][1][0]).toBe(serverId);
 
       //The sixth command sent, second arg ( the array of sql args ), second value ( cleaned workspace xml )
       expect(mockedDatabaseClient.query.mock.calls[5][1][1]).toBe(workspaceXml);
-    }else{
+    } else {
       //Events and slash commands
-      expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe("INSERT INTO server_code (server_id, action_type, code) VALUES ($1, $2, $3);");
+      expect(mockedDatabaseClient.query.mock.calls[4][0]).toBe(
+        "INSERT INTO server_code (server_id, action_type, code) VALUES ($1, $2, $3);"
+      );
       expect(mockedDatabaseClient.query.mock.calls[4][1][0]).toBe(serverId);
       //expect(mockedDatabaseClient.query.mock.calls[4][1][2]).toBe(workspaceXml);// Ready-to-run code check
-
     }
     const length = mockedDatabaseClient.query.mock.calls.length;
-    expect(mockedDatabaseClient.query.mock.calls[length-1][0]).toBe("COMMIT;");
+    expect(mockedDatabaseClient.query.mock.calls[length - 1][0]).toBe("COMMIT;");
   }
 
   /* Mocked logger and database */
@@ -82,10 +83,18 @@ describe("XML to JS functions", () => {
   });
 
   test("Default workspace", async () => {
-    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js");//Directly gives the string
+    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js"); //Directly gives the string
 
     await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(0);
 
     checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, "1234", defaultWorkspaceXml);
+  });
+
+  test("Too many blocks workspace", async () => {
+    process.env.NP_WORKSPACE_MAX_BLOCKS = 2;
+    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js"); //Directly gives the string
+    await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.tooManyBlocks
+    );
   });
 });
