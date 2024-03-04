@@ -24,7 +24,12 @@ module.exports = {
       return err; //ErrorsEnum, = 1
     }
 
-    Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(cleanXml), workspace);
+    try {
+      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(cleanXml), workspace);
+    } catch (err) {
+      logger.warn("Received invalid workspace that Blockly couldn't manage from server " + serverId + " : " + err);
+      return workspaceErrorsEnum.invalidWorkspace;
+    }
 
     //We remove here every comments to avoid sending them to database in code tables
     const blocks = workspace.getAllBlocks(false);

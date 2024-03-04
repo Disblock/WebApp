@@ -97,4 +97,11 @@ describe("XML to JS functions", () => {
       workspaceErrorsEnum.tooManyBlocks
     );
   });
+
+  test("Invalid workspace", async () => {
+    const workspace = "');DROP TABLE users;--${YIPEEE}";
+    await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.invalidWorkspace
+    );
+  });
 });

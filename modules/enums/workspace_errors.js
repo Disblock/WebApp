@@ -11,4 +11,5 @@ module.exports = {
   rateLimitError: 9,
   uncompleteBlock: 10,
   errorWithStorageBlocks: 11,
+  invalidWorkspace: 12,
 };
