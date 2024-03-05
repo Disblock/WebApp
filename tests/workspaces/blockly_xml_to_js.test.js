@@ -104,4 +104,12 @@ describe("XML to JS functions", () => {
       workspaceErrorsEnum.invalidWorkspace
     );
   });
+
+  test("Undefined block", async () => {
+    const workspace =
+      '<xml xmlns="https://developers.google.com/blockly/xml"><block type="undefined" x="10" y="10"></block></xml>';
+    await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.invalidWorkspace
+    );
+  });
 });
