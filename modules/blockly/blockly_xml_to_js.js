@@ -113,7 +113,13 @@ module.exports = {
     }
 
     //Saving to Database
-    const client = await databasePool.connect();
+    let client;
+    try {
+      client = await databasePool.connect();
+    } catch (err) {
+      logger.error("Can't get a client from Database pool : " + err);
+      return workspaceErrorsEnum.error;
+    }
 
     try {
       //Saving codes

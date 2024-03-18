@@ -96,6 +96,7 @@ describe("XML to JS functions", () => {
     await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
       workspaceErrorsEnum.tooManyBlocks
     );
+    process.env.NP_WORKSPACE_MAX_BLOCKS = 200; //So the 2 blocks limits doesn't impact following tests
   });
 
   test("Invalid workspace", async () => {
@@ -111,5 +112,32 @@ describe("XML to JS functions", () => {
     await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
       workspaceErrorsEnum.invalidWorkspace
     );
+  });
+
+  test("Database error : can't get client", async () => {
+    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js");
+    const mockOfflineDatabasePool = { connect: jest.fn().mockRejectedValue(new Error("Can't reach database !")) };
+    await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockOfflineDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.error
+    );
+  });
+
+  test("Database error : can't send queries", async () => {
+    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js");
+
+    const errorSentByClient = new Error("No, lol");
+    const mockDatabaseClientError = {
+      query: jest.fn().mockRejectedValue(errorSentByClient),
+      release: jest.fn(),
+    };
+    const mockDatabasePoolError = {
+      connect: jest.fn().mockResolvedValue(mockDatabaseClientError),
+    };
+
+    await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePoolError, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.error
+    );
+    await expect(mockDatabaseClientError.query.mock.calls[1][0]).toBe("ROLLBACK;"); //Must send command ROLLBACK;
+    await expect(mockDatabaseClientError.release.mock.calls[0][0]).toBe(errorSentByClient); //Must release the client with the error, so the pool kills it
   });
 });
