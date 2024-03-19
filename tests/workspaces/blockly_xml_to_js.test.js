@@ -140,4 +140,19 @@ describe("XML to JS functions", () => {
     await expect(mockDatabaseClientError.query.mock.calls[1][0]).toBe("ROLLBACK;"); //Must send command ROLLBACK;
     await expect(mockDatabaseClientError.release.mock.calls[0][0]).toBe(errorSentByClient); //Must release the client with the error, so the pool kills it
   });
+
+  test("Invalid data storage block", async () => {
+    const workspace =
+    '<xml xmlns="https://developers.google.com/blockly/xml"><block type="block_data_storage_create_string" x="-210" y="130"><field name="DATANAME">aaa</field></block><block type="event_message_sent" x="-229" y="230"><statement name="statements"><block type="block_data_storage_save_string"><field name="DATANAME">aab</field><value name="VARNAME"><block type="text"><field name="TEXT">yes</field></block></value><value name="VARCONTENT"><block type="block_message_get_text"><value name="message"><block type="event_var_message"></block></value></block></value></block></statement></block></xml>';
+    await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.errorWithStorageBlocks
+    );
+  });
+
+  test("Uncomplete block", async () => {
+    const workspace = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="block_data_storage_create_string" x="-210" y="130"><field name="DATANAME">aaa</field></block><block type="event_message_sent" x="-229" y="230"><statement name="statements"><block type="block_data_storage_save_string"><field name="DATANAME">aaa</field><value name="VARNAME"><block type="text"><field name="TEXT">yes</field></block></value><value name="VARCONTENT"><block type="block_message_get_text"></block></value></block></statement></block></xml>'
+    await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.uncompleteBlock
+    );
+  });
 });
