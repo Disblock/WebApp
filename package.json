@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "clean": "npx eslint --config ./project-config/.eslintrc.json --fix . && npx prettier --config ./project-config/.prettierrc --ignore-path ./project-config/.prettierignore --write .",
     "eslint": "npx eslint --config ./project-config/.eslintrc.json --fix .",
     "prettier": "npx prettier --config ./project-config/.prettierrc --ignore-path ./project-config/.prettierignore --write .",
     "test": "jest"
