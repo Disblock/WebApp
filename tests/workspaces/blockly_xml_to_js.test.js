@@ -90,13 +90,23 @@ describe("XML to JS functions", () => {
     checkThatEveryDatabaseRequestWasRan(mockedDatabaseClient, "1234", defaultWorkspaceXml);
   });
 
-  test("Too many blocks workspace", async () => {
+  test("Too many blocks in workspace", async () => {
     process.env.NP_WORKSPACE_MAX_BLOCKS = 2;
     const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js"); //Directly gives the string
     await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
       workspaceErrorsEnum.tooManyBlocks
     );
     process.env.NP_WORKSPACE_MAX_BLOCKS = 200; //So the 2 blocks limits doesn't impact following tests
+  });
+
+  test("Too many blocks of a given type", async () => {
+    process.env.NP_MAX_BLOCKS_BY_TYPE = "event_var_message:1";
+    const workspace =
+      '<xml xmlns="https://developers.google.com/blockly/xml"><block type="event_message_sent" x="-170" y="210"><statement name="statements"><block type="block_message_reply"><value name="message"><block type="event_var_message"></block></value><value name="text"><shadow type="text"><field name="TEXT">1</field></shadow></value><next><block type="block_message_reply"><value name="message"><block type="event_var_message"></block></value><value name="text"><shadow type="text"><field name="TEXT">2</field></shadow></value></block></next></block></statement></block></xml>';
+    await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
+      workspaceErrorsEnum.tooManyOfABlock
+    );
+    process.env.NP_MAX_BLOCKS_BY_TYPE = "none";
   });
 
   test("Invalid workspace", async () => {
@@ -143,14 +153,15 @@ describe("XML to JS functions", () => {
 
   test("Invalid data storage block", async () => {
     const workspace =
-    '<xml xmlns="https://developers.google.com/blockly/xml"><block type="block_data_storage_create_string" x="-210" y="130"><field name="DATANAME">aaa</field></block><block type="event_message_sent" x="-229" y="230"><statement name="statements"><block type="block_data_storage_save_string"><field name="DATANAME">aab</field><value name="VARNAME"><block type="text"><field name="TEXT">yes</field></block></value><value name="VARCONTENT"><block type="block_message_get_text"><value name="message"><block type="event_var_message"></block></value></block></value></block></statement></block></xml>';
+      '<xml xmlns="https://developers.google.com/blockly/xml"><block type="block_data_storage_create_string" x="-210" y="130"><field name="DATANAME">aaa</field></block><block type="event_message_sent" x="-229" y="230"><statement name="statements"><block type="block_data_storage_save_string"><field name="DATANAME">aab</field><value name="VARNAME"><block type="text"><field name="TEXT">yes</field></block></value><value name="VARCONTENT"><block type="block_message_get_text"><value name="message"><block type="event_var_message"></block></value></block></value></block></statement></block></xml>';
     await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
       workspaceErrorsEnum.errorWithStorageBlocks
     );
   });
 
   test("Uncomplete block", async () => {
-    const workspace = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="block_data_storage_create_string" x="-210" y="130"><field name="DATANAME">aaa</field></block><block type="event_message_sent" x="-229" y="230"><statement name="statements"><block type="block_data_storage_save_string"><field name="DATANAME">aaa</field><value name="VARNAME"><block type="text"><field name="TEXT">yes</field></block></value><value name="VARCONTENT"><block type="block_message_get_text"></block></value></block></statement></block></xml>'
+    const workspace =
+      '<xml xmlns="https://developers.google.com/blockly/xml"><block type="block_data_storage_create_string" x="-210" y="130"><field name="DATANAME">aaa</field></block><block type="event_message_sent" x="-229" y="230"><statement name="statements"><block type="block_data_storage_save_string"><field name="DATANAME">aaa</field><value name="VARNAME"><block type="text"><field name="TEXT">yes</field></block></value><value name="VARCONTENT"><block type="block_message_get_text"></block></value></block></statement></block></xml>';
     await expect(xmlToJs("1234", workspace, Blockly, mockDatabasePool, logger, false)).resolves.toBe(
       workspaceErrorsEnum.uncompleteBlock
     );
