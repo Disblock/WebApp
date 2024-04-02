@@ -98,6 +98,14 @@ describe("XML to JS functions", () => {
     );
     process.env.NP_WORKSPACE_MAX_BLOCKS = 200; //So the 2 blocks limits doesn't impact following tests
   });
+  test("Too many blocks in premium workspace", async () => {
+    process.env.P_WORKSPACE_MAX_BLOCKS = 2;
+    const defaultWorkspaceXml = require("../../modules/blockly/default_workspace.js"); //Directly gives the string
+    await expect(xmlToJs("1234", defaultWorkspaceXml, Blockly, mockDatabasePool, logger, true)).resolves.toBe(
+      workspaceErrorsEnum.tooManyBlocks
+    );
+    process.env.P_WORKSPACE_MAX_BLOCKS = 200; //So the 2 blocks limits doesn't impact following tests
+  });
 
   test("Too many blocks of a given type", async () => {
     process.env.NP_MAX_BLOCKS_BY_TYPE = "event_var_message:1";
