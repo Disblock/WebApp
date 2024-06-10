@@ -1,5 +1,5 @@
 "use strict";
-//File used to translate index page in English
+//File used to translate index page in Dutch
 module.exports = {
   home: "Start",
   about: "Over",
