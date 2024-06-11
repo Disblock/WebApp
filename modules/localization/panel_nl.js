@@ -1,5 +1,5 @@
 "use strict";
-//File used to translate panel pages in English
+//File used to translate panel pages in Dutch
 module.exports = {
   /* Index panel */
   panelIndexMessageDiv1:
