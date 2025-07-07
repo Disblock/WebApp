@@ -1,6 +1,14 @@
 ![Version](https://img.shields.io/github/package-json/v/Disblock/WebApp/master?color=green&label=Version)
 # Disblock
 
+> [!WARNING]
+> This project is **discontinued**.
+> Starting from **July, 31st, 2025**, Disblock website will be closed, and the Discord bot will stop working.
+>
+> To learn more about this, please check [this announcement](END_MESSAGE.md).
+>
+> Thanks to everyone who used Disblock ! ❤️
+
 Disblock is a totally customizable Discord Bot.
 You can create your own actions with blocks, and the bot will execute your created code in Discord !
 
